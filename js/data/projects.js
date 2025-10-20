@@ -61,6 +61,7 @@ const PROJECTS_DATA = [
         technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
         // image: 'https://picsum.photos/400/250?random=5',
         playUrl: '#', // 後日ゲームファイル追加予定
+        webPath: '', // ゲームファイル追加時に設定
         githubUrl: '#', // リポジトリ状況確認後更新
         year: '1年次',
         category: 'web-game',
@@ -74,6 +75,8 @@ const PROJECTS_DATA = [
         technologies: ['HTML', 'CSS', 'JavaScript'],
         // image: 'https://picsum.photos/400/250?random=6',
         playUrl: '#', // 後日ゲームファイル追加予定
+        localPath: 'web-game/ElementBattle/index.html', // ローカルゲームファイル
+        webPath: 'web-game/ElementBattle/index.html', // ウェブ公開用パス
         githubUrl: 'https://github.com/wine-5',
         year: '1年次',
         category: 'web-game',

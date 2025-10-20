@@ -81,9 +81,7 @@ class GamesManager {
                     ${noteBadge}
                     
                     <div class="work-card__buttons">
-                        <a href="${project.playUrl}" target="_blank" class="btn btn--primary work-card__button">
-                            ${project.category === 'web' ? 'Visit Site' : 'Play Game'}
-                        </a>
+                        ${this.createPlayButton(project)}
                         <a href="${project.githubUrl}" target="_blank" class="btn btn--secondary work-card__button">
                             GitHub
                         </a>
@@ -91,5 +89,37 @@ class GamesManager {
                 </div>
             </div>
         `;
+    }
+
+    createPlayButton(project) {
+        // ウェブ公開用パスがある場合は、オンラインでプレイ可能
+        if (project.webPath) {
+            return `<a href="${project.webPath}" target="_blank" class="btn btn--primary work-card__button">
+                        <i class="fas fa-play"></i>
+                        Play Game
+                    </a>`;
+        }
+        
+        // localPathがある場合は、ローカルファイルを開くボタンを表示
+        if (project.localPath) {
+            return `<a href="${project.localPath}" target="_blank" class="btn btn--primary work-card__button">
+                        <i class="fas fa-desktop"></i>
+                        Play Game (Local)
+                    </a>`;
+        }
+        
+        // 通常のplayUrlボタン
+        if (project.playUrl && project.playUrl !== '#') {
+            return `<a href="${project.playUrl}" target="_blank" class="btn btn--primary work-card__button">
+                        <i class="fas fa-external-link-alt"></i>
+                        ${project.category === 'web' ? 'Visit Site' : 'Play Game'}
+                    </a>`;
+        }
+        
+        // プレイできない場合
+        return `<button class="btn btn--primary work-card__button" disabled>
+                    <i class="fas fa-clock"></i>
+                    Coming Soon
+                </button>`;
     }
 }
