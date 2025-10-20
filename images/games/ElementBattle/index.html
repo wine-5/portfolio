@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タイトル画面</title>
+    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/cardColor.css">
+    <link rel="stylesheet" href="CSS/effect.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1 id="game-title">Element Battle</h1>
+    </header>
+
+    <!-- ルール説明セクション -->
+    <section id="game-rules">
+        <h2>ルール説明</h2>
+        <p>
+            Element Battleは自分の手札を使用し「Element」を強化して、先にElement Pointが20点に達したほうが勝ちです！
+        </p>
+
+        <ul>
+            <li>1:各プレイヤーに５枚のカードを配ります</li>
+            <li>2:山札から１枚カードを引き、手札から１枚カードを場に出します</li>
+            <li>3:カードのマークに応じて「エレメント」が増減します</li>
+            <li>4:Element Pointが20点に達したほうが勝ちです！</li>
+        </ul>
+
+        <h2>各マークの解説</h2>
+        <div class="mark-row">
+            <div class="mark-item">
+                <img src="Pictures/Harts.png" alt="ハート" class="suits-img">
+                <p>自分のエレメントを<br><span class="increase">2ポイント強化</span>します</p>
+            </div>
+            <div class="mark-item">
+                <img src="Pictures/Spades.png" alt="スペード" class="suits-img">
+                <p>他のプレイヤーのエレメントを<br><span class="decrease">2ポイント減少</span>させます</p>
+            </div>
+        </div>
+        <div class="mark-row">
+            <div class="mark-item">
+                <img src="Pictures/Diamonds.png" alt="ダイヤ" class="suits-img">
+                <p>自分のエレメントを<br><span class="increase">1ポイント強化</span>します</p>
+            </div>
+            <div class="mark-item">
+                <img src="Pictures/Clubs.png" alt="クローバー" class="suits-img">
+                <p>他のプレイヤーのエレメントを<br><span class="decrease">1ポイント減少</span>させます</p>
+            </div>
+        </div>
+
+        <!-- 特殊カードの設計 -->
+        <h2>特殊カード</h2>
+        <div class="mark-row">
+            <div class="mark-item">
+                <div class="card joker">Joker</div>
+                <p>以下の2つから選べます</p>
+                <p>自分のエレメントを<span class="increase">5ポイント強化</span>します</p>
+                <p>相手のエレメントを<span class="decrease">5ポイント減少</span>させます</p>
+            </div>
+            <div class="mark-item">
+                <div class="card spade-A">♠A</div>
+                <p>自分と相手のエレメントポイントが入れ替わります</p>
+            </div>
+        </div>
+
+        <div class="mark-row">
+            <div class="mark-item">
+                <div class="card hart-7">♥7</div>
+                <p>自分のエレメントポイントを<br><span class="increase">3倍強化</span>します</p>
+            </div>
+            <div class="mark-item">
+                <div class="card diamond-7">♦7</div>
+                <p>自分のエレメントポイントを<br><span class="increase">2倍強化</span>します</p>
+            </div>
+        </div>
+
+        <div class="mark-row">
+            <div class="mark-item">
+                <div class="card heart-diamond-K">♥K・♦K</div>
+                <p>自分のエレメントを<br><span class="increase">3ポイント強化</span>します</p>
+            </div>
+            <div class="mark-item">
+                <div class="card spade-club-K">♠K・♣K</div>
+                <p>相手のエレメントを<br><span class="decrease">3ポイント減少</span>させます</p>
+            </div>
+        </div>
+
+        <!-- 特殊ルールの設計 -->
+        <h2>特殊ルール</h2>
+        <div class="mark-row">
+            <div class="mark-item">
+                <h3 id="twinSuit">Twin Suit</h3>
+                <div class="particle-container" id="particleContainer"></div>
+                <p>同じマークを2ターン連続で出したら<br><span class="other-color">もう1枚カードが追加</span>されます</p>
+                <p>※相手のターンで出したマークの次のターンで自分が同じマークを出しても効果は発動しません</p>
+            </div>
+            <div class="mark-item">
+                <h3 id="twinRank">Twin Rank</h3>
+                <div class="blue-particle-container" id="blueParticleContainer"></div>
+                <p>同じ数字を2ターン連続で出したら<br><span class="other-color">もう2枚カードが追加</span>できます</p>
+                <p>※相手のターンで出した数字の次のターンで自分が同じ数字を出しても効果は発動しません</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- お好みで設計できるように -->
+    <!-- <section id="option">
+        <h2>カスタマイズ</h2>
+        <div id="toggle-container" class="toggle-container">
+            <span id="toggle-arrow">▶</span> <span id="toggle-text">カードを設定する</span>
+        </div>
+        <div id="checkbox-container" class="hidden">
+            <label><input type="checkbox" name="card" value="A" class="checkbox"> A</label>
+            <label><input type="checkbox" name="card" value="2" class="checkbox"> 2</label>
+            <label><input type="checkbox" name="card" value="3" class="checkbox"> 3</label>
+            <label><input type="checkbox" name="card" value="4" class="checkbox"> 4</label>
+            <label><input type="checkbox" name="card" value="5" class="checkbox"> 5</label>
+            <label><input type="checkbox" name="card" value="6" class="checkbox"> 6</label>
+            <label><input type="checkbox" name="card" value="7" class="checkbox"> 7</label>
+            <label><input type="checkbox" name="card" value="8" class="checkbox"> 8</label>
+            <label><input type="checkbox" name="card" value="9" class="checkbox"> 9</label>
+            <label><input type="checkbox" name="card" value="10" class="checkbox"> 10</label>
+            <label><input type="checkbox" name="card" value="J" class="checkbox"> J</label>
+            <label><input type="checkbox" name="card" value="Q" class="checkbox"> Q</label>
+            <label><input type="checkbox" name="card" value="K" class="checkbox"> K</label>
+            <label><input type="checkbox" name="card" value="Joker" class="checkbox"> Joker</label>
+        </div>
+    </section> -->
+
+    <p id="help-text">※ルールは「H」キーでいつでも確認できます</p>
+
+    <!-- Hキーを押したときの画像 -->
+    <div id="overlay">
+        <img src="Pictures/help_background.JPG" alt="help-img">
+    </div>
+
+    <!-- ゲームスタートボタンの配置 -->
+    <section id="gama-page">
+        <button id="gama-page-button">Enter Game!</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Element_Battle</p>
+    </footer>
+    <script src="JS/index.js"></script>
+    
+    <!-- <script src="JS/cards.js"></script> -->
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+/*
+ *
+ * game.css
+ * 
+ */
+
+/* 全体スタイル */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* main部分のレイアウト */
+main {
+    background-color: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 75%;
+    /* max-width: 800px; */
+}
+
+/* ゲーム画面のレイアウト */
+#game-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 得点表 */
+#element-status {
+    display: flex;
+    justify-content: space-around; /* フレックスコンテナ内のアイテムを水平方向に均等に配置するために使う */
+    width: 100%;
+    gap: 20px;
+}
+
+/* 得点が増減した際のエフェクト */
+#scoreEffect {
+    position: absolute;
+    font-size: 20px;
+    color: white;
+    display: none;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+
+#element-status div {
+    background-color: #e0e0e0;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    width: 28%;
+}
+
+#player-points, #opponent-points {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* スタートボタンのレイアウト */
+#start-game {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.transparent-background #element-status,
+.transparent-background #opponent-hand,
+.transparent-background #play-area,
+.transparent-background #player-hand,
+.transparent-background #actions {
+    opacity: 0.15; /*背景を透明にする */
+    pointer-events: none;
+}
+
+#start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: linear-gradient(90deg, red, yellow, green, blue, red);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s;
+    background-size: 400%; /* グラデーションの繰り返しを設定 */
+    animation: gradientAnimation 5s infinite, floatAnimation 2s infinite; /* アニメーションの追加 */
+}
+
+
+
+/* グラデーションのアニメーション */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 浮き出ているように見せるアニメーション */
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+
+
+/* カード各種のレイアウト */
+#player-hand, #player-hand, #element-status, #actions, #play-area {
+    margin : 20px 0;
+}
+
+#player-hand, #opponent-hand, #play-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中央揃えにする */
+}
+
+/* プレイエリアないのカードのスタイル */
+#play-area #played-cards .card {
+    position: absolute;
+    transition: transform 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+#play-area {
+    position: relative;  /* 親要素を相対位置に設定 */
+}
+
+
+#player-hand h2, #opponent-hand h2 {
+    text-align: center; /* テキストを中央揃えにする */
+}
+
+/* 敵のカードのレイアウト */
+.debug #opponent-hand #cards .card {
+    visibility: visible; /* 表示する */
+}
+
+/* 敵のカードにはグラデーションを適用しない */
+#opponent-hand #cards .card {
+    background: none; 
+    animation: none; 
+    text-shadow: none;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+/* プライヤーのカードが選択されたとき */
+.selected-card {
+    transform: scale(1.2);
+    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+}
+
+
+/* Jokerを出したとき背景を薄くする */
+.transparent-background {
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明の白で背景を薄く */
+    transition: background-color 0.3s ease; /* 背景の変更をスムーズに */
+}
+
+/* Jokerを出した際のボタン */
+#joker-select-buttons button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 15px;
+    border: #000;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#joker-select-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+
+/* ボタンのレイアウト */
+#actions button {
+    margin-right: 10px; /* ボタン間に10pxのスペースを追加 */
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* 勝利と残念のレイアウト */
+#message-container, #joker-message-container {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+}
+
+#victory-message, #lose-message, #joker-message{
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#end-game-buttons, #joker-select-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* タイトルともう一度プレイするボタンのレイアウト */
+#end-game-buttons button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 15px;
+    border: #000;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#end-game-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Hキーを押したときのレイアウト */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+
+#overlay img {
+    max-width: 80%;    max-height: 80%;
+    opacity: 0; /* 初期状態を透明に設定 */
+    transition: opacity 1s ease-in-out;
+    border: 5px solid #000;
+    border-radius: 5px;   
+}
+
+#overlay.show {
+    display: flex;
+}
+
+#overlay.show img {
+    opacity: 1; /* 透明度 */
+}
+
+/* ヘルプボタンのスタイル */
+#help-button, #home-button, #restart-button {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    z-index: 200;
+}
+
+#home-button {
+    position: fixed;
+    top: 20px; /* 上書きしてる */
+    left: 20px;
+}
+
+#restart-button {
+    position: fixed;
+    top: 120px; /* 上書きしてる */
+    left: 20px;
+}
+
+#help-button:hover, #home-button:hover, #restart-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.2);
+}
+

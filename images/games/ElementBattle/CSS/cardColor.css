@@ -1,0 +1,97 @@
+/*
+ *
+ * cardColor.css
+ * 
+ */
+
+/*敵の手札は見えてないけないため、青色で塗りつぶす（コメントアウトしたら相手の手札も見れるようになる） */
+#opponent-hand #cards .card {
+    width: 30px; /* カードの幅を固定 */
+    height: 30px; /* カードの高さを固定 */
+    background-color: blue !important; /* !important注意がほんと必要です */
+    color: blue;
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: none;
+    user-select: none; /* 敵のカードをタップしてもカードの内容が見えないようにテキスト選択を無効化する */
+
+    /* -webkit-user-select: none;  Safari対応 */
+    /* -moz-user-select: none;  Firefox対応 */
+    /* -ms-user-select: none; 旧IE対応 */
+}
+
+
+
+#cards { /* プレイヤーと相手のカードを表示するためのclass */
+    display: flex;justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; /* 折り返しを有効 */
+}
+
+.card { /* 手札そのもののclass */
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 20px;
+    transition: transform 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+ /* カードの色を変更する */
+
+.spade-A {
+    color:  black;
+    background: linear-gradient(90deg, white, black); /* 白と黒のグラデーション */
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s ease infinite;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* 文字の光沢感 */
+}
+
+.hart-7 {
+    color:  red;
+    background: linear-gradient(90deg, red, yellow, green, blue, red);
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+.diamond-7 {
+    color:  red;
+    background: linear-gradient(90deg, red, yellow);
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+.spade-club-K {
+    color: #FFD700; /* 金色 */
+    background-color: rgba(0, 0, 0, 0.8); /* 黒色を少し透明に */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 光沢感のある影 */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 1), 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.3); /* 発光効果 */
+}
+
+.heart-diamond-K {
+    color: #FFD700; /* 金色 */
+    background-color: rgba(255, 0, 0, 0.9); /* 赤色を少し透明に */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 光沢感のある影 */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 1), 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.3); /* 発光効果 */
+}
+
+.heart-diamond {/* ハートとダイヤはカードを赤くする */
+    color:  red;
+}
+
+.spade-club {
+    color:  black;
+}
+
+.joker {
+    color: black;
+    text-shadow: 2px 2px 5px white, -2px -2px 5px white, 2px -2px 5px white, -2px 2px 5px white;
+    background: linear-gradient(45deg, blue, red);
+    background-size: 200% 200%;
+    animation: gradientAnimation 3s ease infinite;
+}
