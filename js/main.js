@@ -14,6 +14,7 @@ class PortfolioApp {
         this.animationManager = new AnimationManager();
         this.gamesManager = new GamesManager();
         this.skillsManager = new SkillsManager();
+        this.timelineManager = new TimelineManager();
         this.contactForm = new ContactForm();
         this.updatesManager = new UpdatesManager();
     }
@@ -27,6 +28,7 @@ class PortfolioApp {
         this.animationManager.init();
         this.gamesManager.init();
         this.skillsManager.init();
+        this.timelineManager.init();
         this.contactForm.init();
         this.updatesManager.init();
     }

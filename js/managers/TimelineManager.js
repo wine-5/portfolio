@@ -9,9 +9,58 @@ class TimelineManager {
     }
 
     init() {
-        if (!this.timelineContainer || !this.timelineData.length) return;
-        this.renderScrollTimeline();
-        this.setupScrollTriggers();
+        if (!this.timelineContainer) return;
+        
+        // メインページかタイムライン専用ページかを判定
+        const isMainPage = document.getElementById('games') !== null;
+        
+        if (isMainPage) {
+            this.renderSimpleTimeline();
+        } else {
+            // タイムライン専用ページの場合
+            if (!this.timelineData.length) return;
+            this.renderScrollTimeline();
+            this.setupScrollTriggers();
+        }
+    }
+
+    renderSimpleTimeline() {
+        if (!this.timelineData.length) return;
+        
+        // 重要なマイルストーンのみを表示（最新4つ）
+        const importantEvents = [...this.timelineData]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 4);
+        
+        const timelineHTML = `
+            <div class="simple-timeline">
+                ${importantEvents.map((item, index) => this.createSimpleTimelineItem(item, index)).join('')}
+            </div>
+        `;
+        
+        this.timelineContainer.innerHTML = timelineHTML;
+    }
+
+    createSimpleTimelineItem(item, index) {
+        const typeConfig = this.getProjectTypeConfig(item.type);
+        
+        return `
+            <div class="simple-timeline-item" data-index="${index}">
+                <div class="simple-timeline-icon" style="background: ${typeConfig.color};">
+                    <i class="${typeConfig.icon}"></i>
+                </div>
+                <div class="simple-timeline-content">
+                    <div class="simple-timeline-date">${this.formatDate(item.date)}</div>
+                    <h4 class="simple-timeline-title">${item.title}</h4>
+                    <p class="simple-timeline-description">${item.description}</p>
+                    ${item.technologies ? `
+                        <div class="simple-timeline-technologies">
+                            ${item.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        `;
     }
 
     renderScrollTimeline() {

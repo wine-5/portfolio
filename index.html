@@ -57,6 +57,9 @@
                     <a href="#contact" class="header__nav-link">Contact</a>
                 </li>
                 <li class="header__nav-item">
+                    <a href="#timeline" class="header__nav-link">Timeline</a>
+                </li>
+                <li class="header__nav-item">
                     <a href="#updates" class="header__nav-link">Updates</a>
                 </li>
             </ul>
@@ -96,6 +99,20 @@
                 <h2 class="section__title">Games</h2>
                 <div class="works__grid" id="works-grid">
                     <!-- 作品カードはJavaScriptで動的生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- タイムラインセクション -->
+        <section class="timeline-section" id="timeline">
+            <div class="container">
+                <h2 class="section__title">Development Timeline</h2>
+                <p class="section__subtitle">ゲーム開発の軌跡</p>
+                <div class="timeline" id="timeline-container">
+                    <!-- タイムラインアイテムはJavaScriptで動的生成 -->
+                </div>
+                <div class="timeline__cta">
+                    <a href="timeline.html" class="btn btn--primary">詳細なタイムラインを見る</a>
                 </div>
             </div>
         </section>
@@ -172,6 +189,17 @@
                                 UnityRoom
                             </a>
                         </div>
+                        
+                        <!-- タイムラインページへのリンク -->
+                        <div class="about__timeline-link">
+                            <a href="timeline.html" class="btn btn--primary about__timeline-button">
+                                <i class="fas fa-history"></i>
+                                開発の軌跡を見る
+                            </a>
+                            <p class="about__timeline-description">
+                                入学から現在までの詳細な開発履歴とプロジェクトの軌跡をご覧いただけます
+                            </p>
+                        </div>
                     </div>
                     <div class="about__image">
                         <div class="about__avatar">
@@ -180,15 +208,6 @@
                                 <i class="fas fa-user"></i>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- 開発軌跡タイムライン -->
-                <div class="about__timeline">
-                    <h3 class="about__timeline-title">開発の軌跡</h3>
-                    <p class="about__timeline-subtitle">入学から現在までのゲーム開発ジャーニー</p>
-                    <div class="timeline-container" id="timeline-container">
-                        <!-- タイムラインはJavaScriptで動的生成 -->
                     </div>
                 </div>
             </div>
@@ -257,16 +276,16 @@
     
     <!-- データファイル -->
     <script src="js/data/projects.js"></script>
-    <script src="js/data/updates.js"></script>
     <script src="js/data/timeline.js"></script>
+    <script src="js/data/updates.js"></script>
     
     <!-- マネージャークラス -->
     <script src="js/managers/ScrollManager.js"></script>
     <script src="js/managers/GamesManager.js"></script>
     <script src="js/managers/SkillsManager.js"></script>
+    <script src="js/managers/TimelineManager.js"></script>
     <script src="js/managers/UpdatesManager.js"></script>
     <script src="js/managers/ContactForm.js"></script>
-    <script src="js/managers/TimelineManager.js"></script>
     
     <!-- EmailJS設定 -->
     <script src="js/email-config.js"></script>

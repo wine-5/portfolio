@@ -110,6 +110,19 @@ class GamesManager {
                         ).join('')}
                     </div>
                     
+                    <!-- 詳細情報の折りたたみ -->
+                    ${project.detailedFeatures ? `
+                        <details class="work-card__details">
+                            <summary class="work-card__details-summary">
+                                <i class="fas fa-chevron-down"></i>
+                                <span>詳細な特徴を見る</span>
+                            </summary>
+                            <div class="work-card__details-content">
+                                <p class="work-card__features">${project.detailedFeatures}</p>
+                            </div>
+                        </details>
+                    ` : ''}
+                    
                     ${noteBadge}
                     
                     <div class="work-card__buttons">

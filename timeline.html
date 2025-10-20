@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="wine-5の開発履歴 - ゲーム開発の軌跡とプロジェクト詳細">
+    <meta name="keywords" content="wine-5, ゲーム開発, 履歴, タイムライン, Unity, C#">
+    <title>開発履歴 - wine-5 Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ローディング画面 -->
+    <div id="loading" class="loading">
+        <div class="loading__content">
+            <div class="loading__spinner"></div>
+            <p class="loading__text">Loading Timeline...</p>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <nav class="header__nav">
+            <div class="header__logo">
+                <h1 class="header__title">
+                    <a href="index.html" class="header__title-link">wine-5</a>
+                </h1>
+            </div>
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    <a href="index.html#home" class="header__nav-link">Home</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="index.html#games" class="header__nav-link">Games</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="index.html#skills" class="header__nav-link">Skills</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="index.html#about" class="header__nav-link">About</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="index.html#contact" class="header__nav-link">Contact</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="timeline.html" class="header__nav-link header__nav-link--active">Timeline</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="index.html#updates" class="header__nav-link">Updates</a>
+                </li>
+            </ul>
+            <div class="header__hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+        <!-- タイムラインヒーローセクション -->
+        <section class="timeline-hero">
+            <div class="container">
+                <div class="timeline-hero__content">
+                    <h1 class="timeline-hero__title">開発の軌跡</h1>
+                    <p class="timeline-hero__subtitle">入学から現在までのゲーム開発ジャーニー</p>
+                    <p class="timeline-hero__description">
+                        HAL東京での学びと成長、チーム開発経験、受賞歴まで。<br>
+                        ゲーム開発者としての歩みを時系列で振り返ります。
+                    </p>
+                </div>
+                <div class="timeline-hero__stats">
+                    <div class="timeline-stat">
+                        <div class="timeline-stat__number">6</div>
+                        <div class="timeline-stat__label">プロジェクト</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat__number">2</div>
+                        <div class="timeline-stat__label">受賞歴</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat__number">1.5</div>
+                        <div class="timeline-stat__label">年間</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- タイムラインセクション -->
+        <section class="timeline-section">
+            <div class="container">
+                <div class="timeline-container" id="timeline-container">
+                    <!-- タイムラインはJavaScriptで動的生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 戻るボタンセクション -->
+        <section class="timeline-navigation">
+            <div class="container">
+                <div class="timeline-navigation__content">
+                    <a href="index.html" class="btn btn--secondary timeline-navigation__back">
+                        <i class="fas fa-arrow-left"></i>
+                        ポートフォリオに戻る
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__main">
+                    <div class="footer__brand">
+                        <h3 class="footer__title">wine-5</h3>
+                        <p class="footer__description">Game Developer & Unity Specialist</p>
+                    </div>
+                    <div class="footer__links">
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">ナビゲーション</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="index.html#home" class="footer__link">Home</a></li>
+                                <li><a href="index.html#games" class="footer__link">Games</a></li>
+                                <li><a href="index.html#skills" class="footer__link">Skills</a></li>
+                                <li><a href="index.html#about" class="footer__link">About</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">ソーシャル</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="https://github.com/wine-5" target="_blank" class="footer__link">GitHub</a></li>
+                                <li><a href="https://x.com/wine_program" target="_blank" class="footer__link">X (Twitter)</a></li>
+                                <li><a href="https://unityroom.com/users/wine-555" target="_blank" class="footer__link">UnityRoom</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__bottom">
+                    <p class="footer__text">&copy; 2025 wine-5. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <!-- ユーティリティ関数 -->
+    <script src="js/utils/functions.js"></script>
+    
+    <!-- データファイル -->
+    <script src="js/data/timeline.js"></script>
+    
+    <!-- マネージャークラス -->
+    <script src="js/managers/ScrollManager.js"></script>
+    <script src="js/managers/TimelineManager.js"></script>
+    
+    <!-- タイムラインページ専用スクリプト -->
+    <script src="js/timeline-page.js"></script>
+</body>
+</html>

@@ -244,6 +244,21 @@
         font-size: 1.3rem;
     }
 
+    /* 詳細情報の折りたたみ - モバイル対応 */
+    .work-card__details-summary {
+        padding: 0.8rem 1rem;
+        font-size: 1.3rem;
+    }
+
+    .work-card__details-content {
+        padding: 1rem;
+    }
+
+    .work-card__features {
+        font-size: 1.3rem;
+        line-height: 1.6;
+    }
+
     /* スキル */
     .skill {
         padding: 2rem;
