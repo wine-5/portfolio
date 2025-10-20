@@ -180,24 +180,24 @@ class WorksManager {
                 description: 'Unity × C#で開発したアクションゲーム。プレイヤーは様々なステージを攻略していきます。',
                 technologies: ['Unity', 'C#', 'DOTween'],
                 image: 'images/games/game1.jpg',
-                playUrl: 'https://unityroom.com/games/your-game1',
-                githubUrl: 'https://github.com/your-username/game1'
+                playUrl: 'https://unityroom.com/users/wine-555',
+                githubUrl: 'https://github.com/wine-5'
             },
             {
                 title: 'サンプルゲーム2',
                 description: 'パズルゲーム。美しいビジュアルと直感的な操作性を重視して開発しました。',
                 technologies: ['Unity', 'C#', 'Timeline'],
                 image: 'images/games/game2.jpg',
-                playUrl: 'https://unityroom.com/games/your-game2',
-                githubUrl: 'https://github.com/your-username/game2'
+                playUrl: 'https://unityroom.com/users/wine-555',
+                githubUrl: 'https://github.com/wine-5'
             },
             {
                 title: 'サンプルゲーム3',
-                description: 'モバイル向けカジュアルゲーム。App Storeで公開中です。',
+                description: 'モバイル向けカジュアルゲーム。今後App Storeでの公開を予定しています。',
                 technologies: ['Unity', 'C#', 'Firebase'],
                 image: 'images/games/game3.jpg',
-                playUrl: 'https://apps.apple.com/app/your-game3',
-                githubUrl: 'https://github.com/your-username/game3'
+                playUrl: 'https://unityroom.com/users/wine-555',
+                githubUrl: 'https://github.com/wine-5'
             }
         ];
     }
@@ -282,8 +282,8 @@ class UpdatesManager {
         this.updates = [
             {
                 date: '2025-10-20',
-                title: 'ポートフォリオサイト公開',
-                description: 'ゲーム開発者向けポートフォリオサイトを公開しました。レスポンシブ対応、パーティクルアニメーション、EmailJS統合を実装。'
+                title: 'wine-5ポートフォリオサイト公開',
+                description: 'ゲーム開発者・wine-5のポートフォリオサイトを公開しました。レスポンシブ対応、パーティクルアニメーション、EmailJS統合を実装。'
             },
             {
                 date: '2025-10-20',
