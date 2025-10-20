@@ -1,0 +1,512 @@
+/* ===================================
+   レスポンシブデザイン
+   モバイルファースト設計
+   =================================== */
+
+/* ===================================
+   タブレット (768px以下)
+   =================================== */
+@media screen and (max-width: 768px) {
+    /* フォントサイズ調整 */
+    html {
+        font-size: 55%;
+    }
+
+    /* コンテナ */
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    /* ヘッダー */
+    .header__nav-list {
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background: rgba(15, 15, 35, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 5rem;
+        gap: 4rem;
+        transition: left var(--transition-normal);
+    }
+
+    .header__nav-list.active {
+        left: 0;
+    }
+
+    .header__hamburger {
+        display: flex;
+    }
+
+    .header__hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    }
+
+    .header__hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .header__hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(0.7rem, -0.6rem);
+    }
+
+    /* ヒーロー */
+    .hero__title {
+        font-size: 4.5rem;
+    }
+
+    .hero__subtitle {
+        font-size: 2rem;
+    }
+
+    .hero__description {
+        font-size: 1.6rem;
+    }
+
+    .hero__buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .hero__buttons .btn {
+        width: 100%;
+        max-width: 30rem;
+    }
+
+    /* セクションタイトル */
+    .section__title {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+    }
+
+    /* 作品セクション */
+    .works {
+        padding: 8rem 0;
+    }
+
+    .works__grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    /* スキル */
+    .skills {
+        padding: 8rem 0;
+    }
+
+    .skills__grid {
+        gap: 2.5rem;
+    }
+
+    .skill {
+        padding: 2.5rem;
+    }
+
+    .skill__name {
+        font-size: 1.8rem;
+    }
+
+    /* 更新履歴 */
+    .updates {
+        padding: 8rem 0;
+    }
+
+    .updates__content {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .updates__last-modified {
+        padding: 2.5rem;
+    }
+
+    .updates__timeline {
+        padding: 2.5rem;
+    }
+
+    .update-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .update-item__date {
+        min-width: auto;
+        font-size: 1.3rem;
+    }
+
+    /* About */
+    .about {
+        padding: 8rem 0;
+    }
+
+    .about__content {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        text-align: center;
+    }
+
+    .about__avatar {
+        width: 25rem;
+        height: 25rem;
+    }
+
+    .about__avatar-placeholder {
+        font-size: 6rem;
+    }
+
+    .about__links {
+        justify-content: center;
+    }
+
+    /* コンタクト */
+    .contact {
+        padding: 8rem 0;
+    }
+
+    .contact__content {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        text-align: center;
+    }
+
+    .contact__form {
+        padding: 3rem;
+    }
+}
+
+/* ===================================
+   スマートフォン (480px以下)
+   =================================== */
+@media screen and (max-width: 480px) {
+    /* フォントサイズ調整 */
+    html {
+        font-size: 50%;
+    }
+
+    /* コンテナ */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* ヘッダー */
+    .header__nav {
+        padding: 0 1rem;
+    }
+
+    .header__title {
+        font-size: 2rem;
+    }
+
+    /* ヒーロー */
+    .hero__content {
+        padding: 0 1rem;
+    }
+
+    .hero__title {
+        font-size: 3.5rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.8rem;
+    }
+
+    .hero__description {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+    }
+
+    /* セクションタイトル */
+    .section__title {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    /* 作品カード */
+    .work-card__content {
+        padding: 2rem;
+    }
+
+    .work-card__title {
+        font-size: 1.8rem;
+    }
+
+    .work-card__buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .work-card__button {
+        font-size: 1.3rem;
+    }
+
+    /* スキル */
+    .skill {
+        padding: 2rem;
+    }
+
+    .skill__name {
+        font-size: 1.6rem;
+    }
+
+    .skill__percentage {
+        font-size: 1.4rem;
+    }
+
+    .skill__description {
+        font-size: 1.4rem;
+    }
+
+    /* 更新履歴 */
+    .updates__subtitle {
+        font-size: 2rem;
+    }
+
+    .updates__date {
+        font-size: 1.8rem;
+    }
+
+    .updates__last-modified {
+        padding: 2rem;
+    }
+
+    .updates__timeline {
+        padding: 2rem;
+    }
+
+    /* About */
+    .about__subtitle {
+        font-size: 2.4rem;
+    }
+
+    .about__description {
+        font-size: 1.6rem;
+    }
+
+    .about__avatar {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .about__avatar-placeholder {
+        font-size: 5rem;
+    }
+
+    .about__links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about__link {
+        width: 100%;
+        max-width: 25rem;
+        justify-content: center;
+    }
+
+    /* コンタクト */
+    .contact__subtitle {
+        font-size: 2.4rem;
+    }
+
+    .contact__description {
+        font-size: 1.6rem;
+    }
+
+    .contact__form {
+        padding: 2rem;
+    }
+
+    .form__input,
+    .form__textarea {
+        padding: 1.2rem;
+        font-size: 1.4rem;
+    }
+}
+
+/* ===================================
+   大画面 (1200px以上)
+   =================================== */
+@media screen and (min-width: 1200px) {
+    /* ヒーロー */
+    .hero__title {
+        font-size: 7rem;
+    }
+
+    .hero__subtitle {
+        font-size: 2.8rem;
+    }
+
+    .hero__description {
+        font-size: 2rem;
+    }
+
+    /* 作品グリッド */
+    .works__grid {
+        grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    }
+
+    /* スキル */
+    .skills__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===================================
+   高解像度対応
+   =================================== */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 140rem;
+    }
+
+    .hero__title {
+        font-size: 8rem;
+    }
+
+    .section__title {
+        font-size: 4.5rem;
+    }
+}
+
+/* ===================================
+   縦向き画面での調整
+   =================================== */
+@media screen and (max-height: 700px) and (orientation: landscape) {
+    .hero {
+        min-height: 120vh;
+    }
+
+    .hero__content {
+        padding-top: 5rem;
+    }
+
+    .hero__title {
+        font-size: 4rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.8rem;
+    }
+
+    .hero__description {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero__buttons .btn {
+        padding: 1rem 2rem;
+    }
+}
+
+/* ===================================
+   プリント時のスタイル
+   =================================== */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+
+    .header,
+    .hero__particles,
+    .loading,
+    .btn,
+    .contact__form {
+        display: none !important;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+
+    .section__title {
+        color: black !important;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+    }
+
+    .works,
+    .skills,
+    .about,
+    .contact {
+        padding: 3rem 0;
+    }
+
+    .work-card,
+    .skill,
+    .about__content {
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+}
+
+/* ===================================
+   アクセシビリティ対応
+   =================================== */
+
+/* モーション制限のユーザー向け */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .loading__spinner {
+        animation: none;
+        border: 0.4rem solid var(--primary-color);
+    }
+
+    .hero__scroll-icon::after {
+        animation: none;
+        transform: translateX(-50%);
+    }
+
+    .skill__progress::after {
+        animation: none;
+    }
+}
+
+/* ハイコントラストモード */
+@media (prefers-contrast: high) {
+    :root {
+        --bg-primary: #000000;
+        --bg-secondary: #111111;
+        --bg-card: #222222;
+        --text-primary: #ffffff;
+        --text-secondary: #ffffff;
+        --text-muted: #cccccc;
+        --primary-color: #ffffff;
+        --secondary-color: #ffffff;
+        --accent-color: #ffffff;
+    }
+
+    .btn--secondary {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+
+    .work-card,
+    .skill,
+    .contact__form {
+        border: 2px solid #ffffff;
+    }
+}
+
+/* フォーカス可視化の改善 */
+@media (prefers-reduced-motion: no-preference) {
+    .header__nav-link:focus,
+    .btn:focus,
+    .form__input:focus,
+    .form__textarea:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}

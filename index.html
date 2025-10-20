@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Game Developer Portfolio - Unity, C#を使用したゲーム開発者のポートフォリオサイト">
+    <meta name="keywords" content="ゲーム開発, Unity, C#, ポートフォリオ, Game Developer">
+    <title>Game Developer Portfolio</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- ローディング画面 -->
+    <div id="loading" class="loading">
+        <div class="loading__content">
+            <div class="loading__spinner"></div>
+            <p class="loading__text">Loading Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <nav class="header__nav">
+            <div class="header__logo">
+                <h1 class="header__title">Game Dev</h1>
+            </div>
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    <a href="#home" class="header__nav-link">Home</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#works" class="header__nav-link">Works</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#skills" class="header__nav-link">Skills</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#about" class="header__nav-link">About</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#contact" class="header__nav-link">Contact</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#updates" class="header__nav-link">Updates</a>
+                </li>
+            </ul>
+            <div class="header__hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+        <!-- ヒーローセクション -->
+        <section class="hero" id="home">
+            <div class="hero__background">
+                <div class="hero__particles" id="particles"></div>
+            </div>
+            <div class="hero__content">
+                <h2 class="hero__title">Game Developer</h2>
+                <p class="hero__subtitle">Creating Amazing Gaming Experiences</p>
+                <p class="hero__description">Unity & C#を使用したゲーム開発者のポートフォリオ</p>
+                <div class="hero__buttons">
+                    <a href="#works" class="btn btn--primary">View Works</a>
+                    <a href="#contact" class="btn btn--secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero__scroll">
+                <span class="hero__scroll-text">Scroll Down</span>
+                <div class="hero__scroll-icon"></div>
+            </div>
+        </section>
+
+        <!-- 作品セクション -->
+        <section class="works" id="works">
+            <div class="container">
+                <h2 class="section__title">Works</h2>
+                <div class="works__grid" id="works-grid">
+                    <!-- 作品カードはJavaScriptで動的生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- スキルセクション -->
+        <section class="skills" id="skills">
+            <div class="container">
+                <h2 class="section__title">Skills</h2>
+                <div class="skills__grid">
+                    <div class="skill">
+                        <div class="skill__header">
+                            <span class="skill__name">Unity</span>
+                        </div>
+                        <div class="skill__description">
+                            3D/2Dゲーム開発、アニメーション、物理演算
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill__header">
+                            <span class="skill__name">C#</span>
+                        </div>
+                        <div class="skill__description">
+                            オブジェクト指向設計、SOLID原則、デザインパターン
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill__header">
+                            <span class="skill__name">JavaScript</span>
+                        </div>
+                        <div class="skill__description">
+                            ES6+、DOM操作、非同期処理、Webアニメーション
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill__header">
+                            <span class="skill__name">Git</span>
+                        </div>
+                        <div class="skill__description">
+                            バージョン管理、ブランチ戦略、チーム開発
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aboutセクション -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section__title">About</h2>
+                <div class="about__content">
+                    <div class="about__text">
+                        <h3 class="about__subtitle">Game Developer</h3>
+                        <p class="about__description">
+                            ゲーム業界を目指すゲーム開発者です。<br>
+                            UnityとC#を使用したゲーム開発を行っており、<br>
+                            SOLID原則を意識した設計を心がけています。<br>
+                            UnityRoomやApp Storeでの公開経験があります。
+                        </p>
+                        <div class="about__links">
+                            <a href="#" class="about__link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                            <a href="#" class="about__link">
+                                <i class="fab fa-twitter"></i>
+                                Twitter
+                            </a>
+                            <a href="#" class="about__link">
+                                <i class="fas fa-gamepad"></i>
+                                UnityRoom
+                            </a>
+                        </div>
+                    </div>
+                    <div class="about__image">
+                        <div class="about__avatar">
+                            <!-- プロフィール画像エリア -->
+                            <div class="about__avatar-placeholder">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- コンタクトセクション -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section__title">Contact</h2>
+                <div class="contact__content">
+                    <div class="contact__info">
+                        <h3 class="contact__subtitle">Get In Touch</h3>
+                        <p class="contact__description">
+                            ゲーム開発に関するお仕事やご相談がございましたら、<br>
+                            お気軽にお問い合わせください。
+                        </p>
+                    </div>
+                    <form class="contact__form" id="contact-form">
+                        <div class="form__group">
+                            <input type="text" class="form__input" id="name" name="name" placeholder="お名前" required>
+                        </div>
+                        <div class="form__group">
+                            <input type="email" class="form__input" id="email" name="email" placeholder="メールアドレス" required>
+                        </div>
+                        <div class="form__group">
+                            <textarea class="form__textarea" id="message" name="message" placeholder="メッセージ" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 更新履歴セクション -->
+        <section class="updates" id="updates">
+            <div class="container">
+                <h2 class="section__title">Updates</h2>
+                <div class="updates__content">
+                    <div class="updates__info">
+                        <div class="updates__last-modified">
+                            <h3 class="updates__subtitle">Last Updated</h3>
+                            <p class="updates__date" id="last-updated-date">2025年10月20日</p>
+                        </div>
+                    </div>
+                    <div class="updates__history">
+                        <h3 class="updates__subtitle">Update History</h3>
+                        <div class="updates__timeline" id="updates-timeline">
+                            <!-- 更新履歴はJavaScriptで動的生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer__text">&copy; 2025 Game Developer Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
