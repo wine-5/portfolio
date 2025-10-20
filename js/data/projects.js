@@ -16,7 +16,7 @@ const PROJECTS_DATA = [
             'images/game/takasi/takasi-in-game.png'
         ],
         playUrl: 'https://unityroom.com/games/i-want-hosurus',
-        githubUrl: 'https://github.com/wine-5/takashi-jinsei-bet-chu',
+        githubUrl: 'https://github.com/wine-5/TechC_GameJam',
         year: '2年次',
         category: 'game',
         teamSize: '5人（プログラマー4人、デザイナー1人）',
@@ -25,7 +25,7 @@ const PROJECTS_DATA = [
     },
     {
         title: '蝶々反乱',
-        description: 'Sapporo Game Camp2025参加作品。全員初対面の7人チームで開発した2Dアクションゲーム。学外ゲームジャム初挑戦。',
+        description: 'Sapporo Game Camp2025参加作品。全員初対面の7人チームで開発した2Dアクションゲーム。学外ゲームジャム初挑戦、リポジトリ公開済み。',
         detailedFeatures: `Sapporo Game Camp2025で作成したゲームです。全員が初対面で、学外のゲームジャムに参加するのは初めてでした。
 前回の学内ゲームジャムの反省を活かして、開催前にUnityのプロジェクトを作って基底クラスをあらかじめ準備したり、リポジトリとプロジェクトを連携するなど行いました。
 ゲーム自体は無事に完成しましたが、本来予定していたステージ数は用意できなかったりデザイナーさんが作ってくださった絵を全て使い切れなかったのも後悔しています。`,
@@ -35,14 +35,12 @@ const PROJECTS_DATA = [
             'images/game/chocho/chocho-title.png'
         ],
         playUrl: 'https://unityroom.com/users/wine-555',
-        githubUrl: '#', // ブラッシュアップ中のためリポジトリ非公開
+        githubUrl: 'https://github.com/wine-5/SGC2025',
         year: '2年次',
         category: 'game',
         teamSize: '7人（現役プログラマー1人、学生プログラマー2人、現役デザイナー1人、学生デザイナー2人、学生プランナー1人）',
         period: '2日間（現在ブラッシュアップ中）',
-        note: 'リファクタリング・ブラッシュアップ進行中',
-        locked: true,
-        lockReason: 'ブラッシュアップ中'
+        note: 'SGC2025参加作品'
     },
     {
         title: 'Git Command Helper',

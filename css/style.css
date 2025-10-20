@@ -1207,19 +1207,21 @@ body {
     position: relative;
 }
 
-.update-item {
+.updates .update-item {
     display: flex;
     gap: 2rem;
     margin-bottom: 3rem;
     position: relative;
     padding-left: 2rem;
+    opacity: 1;
+    visibility: visible;
 }
 
-.update-item:last-child {
+.updates .update-item:last-child {
     margin-bottom: 0;
 }
 
-.update-item::before {
+.updates .update-item::before {
     content: '';
     position: absolute;
     left: 0;
@@ -1232,7 +1234,7 @@ body {
     box-shadow: 0 0 0 3px var(--primary-color);
 }
 
-.update-item:not(:last-child)::after {
+.updates .update-item:not(:last-child)::after {
     content: '';
     position: absolute;
     left: 0.5rem;
@@ -1243,7 +1245,7 @@ body {
     opacity: 0.3;
 }
 
-.update-item__date {
+.updates .update-item__date {
     min-width: 12rem;
     font-family: var(--font-primary);
     font-size: 1.4rem;
@@ -1251,18 +1253,18 @@ body {
     font-weight: 600;
 }
 
-.update-item__content {
+.updates .update-item__content {
     flex: 1;
 }
 
-.update-item__title {
+.updates .update-item__title {
     font-size: 1.8rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
-.update-item__description {
+.updates .update-item__description {
     color: var(--text-secondary);
     line-height: 1.6;
 }
@@ -1363,9 +1365,9 @@ body {
 
 /* タイムラインセクション */
 .timeline-section {
-    padding: 80px 0 120px 0; /* 下部パディングを増加 */
+    padding: 80px 0 200px 0; /* さらに下部パディングを増加 */
     background: var(--bg-primary);
-    min-height: 100vh; /* 最小高さを設定 */
+    min-height: 150vh; /* 最小高さを増加 */
 }
 
 .timeline-section .section__subtitle {
@@ -1704,6 +1706,24 @@ body {
 /* 最後のアイテムには追加のマージン */
 .scroll-timeline-item:last-child {
     margin-bottom: 10rem;
+}
+
+/* タイムラインエラー表示 */
+.timeline-error {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.timeline-error h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.timeline-error p {
+    font-size: 1rem;
+    opacity: 0.8;
 }
 
 .scroll-timeline-item--visible {

@@ -138,12 +138,48 @@ class TimelinePageApp {
 // 重複初期化を防ぐフラグ
 let isTimelinePageInitialized = false;
 
-document.addEventListener('DOMContentLoaded', function() {
+// より確実な初期化関数
+function initializeTimelinePage() {
     if (isTimelinePageInitialized) return;
     
-    // タイムラインページアプリケーションを初期化
-    const app = new TimelinePageApp();
-    app.init();
+    console.log('Timeline page initialization started');
     
-    isTimelinePageInitialized = true;
+    // 必要なクラスが読み込まれているかチェック
+    if (typeof ScrollManager === 'undefined') {
+        console.error('ScrollManager is not loaded');
+        return;
+    }
+    
+    if (typeof TimelineManager === 'undefined') {
+        console.error('TimelineManager is not loaded');
+        return;
+    }
+    
+    if (typeof TIMELINE_DATA === 'undefined') {
+        console.error('TIMELINE_DATA is not loaded');
+        return;
+    }
+    
+    console.log('All required classes and data loaded');
+    
+    try {
+        // タイムラインページアプリケーションを初期化
+        const app = new TimelinePageApp();
+        app.init();
+        isTimelinePageInitialized = true;
+        console.log('Timeline page initialization completed');
+    } catch (error) {
+        console.error('Error initializing timeline page:', error);
+    }
+}
+
+// 複数のイベントで初期化を試行
+document.addEventListener('DOMContentLoaded', initializeTimelinePage);
+
+// DOM読み込み完了後にもう一度試行
+window.addEventListener('load', () => {
+    if (!isTimelinePageInitialized) {
+        console.log('Retrying timeline initialization after window load');
+        setTimeout(initializeTimelinePage, 100);
+    }
 });

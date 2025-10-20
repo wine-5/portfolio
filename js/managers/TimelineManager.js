@@ -3,32 +3,113 @@
    =================================== */
 class TimelineManager {
     constructor() {
-        this.timelineContainer = document.getElementById('timeline-container');
-        this.timelineData = typeof TIMELINE_DATA !== 'undefined' ? TIMELINE_DATA : [];
+        // DOM要素の取得は初期化時に行う
+        this.timelineContainer = null;
+        this.timelineData = [];
         this.scrollTriggers = [];
+        this.isInitialized = false;
+    }
+
+    ensureDataAndDOM() {
+        // DOM要素の確認
+        if (!this.timelineContainer) {
+            this.timelineContainer = document.getElementById('timeline-container');
+        }
+        
+        // データの確認とフォールバック
+        if ((!this.timelineData || this.timelineData.length === 0) && typeof TIMELINE_DATA !== 'undefined') {
+            this.timelineData = TIMELINE_DATA;
+        }
+        
+        // データがまだ空の場合はフォールバックデータを使用
+        if (!this.timelineData || this.timelineData.length === 0) {
+            this.timelineData = [
+                {
+                    id: 'school-start',
+                    title: '専門学校入学',
+                    type: 'milestone',
+                    date: '2024-04-01',
+                    description: 'ゲーム開発の学習を開始',
+                    color: '#10b981',
+                    icon: '🎓'
+                },
+                {
+                    id: 'element-battle',
+                    title: 'ElementBattle',
+                    type: 'project',
+                    date: '2025-01-16',
+                    duration: 30,
+                    description: '記念すべき初作品のカードゲーム',
+                    technologies: ['HTML', 'CSS', 'JavaScript'],
+                    color: '#6366f1',
+                    icon: '🃏'
+                },
+                {
+                    id: 'takashi',
+                    title: 'たかし、人生ベット中',
+                    type: 'project',
+                    date: '2025-08-01',
+                    duration: 3,
+                    description: '学内ゲームジャム優勝作品',
+                    technologies: ['Unity', 'C#'],
+                    color: '#ef4444',
+                    icon: '🏆',
+                    award: '株式会社インフィニットループ堀川賞'
+                }
+            ];
+        }
+        
+        return this.timelineContainer && this.timelineData && this.timelineData.length > 0;
     }
 
     init() {
-        console.log('TimelineManager init called');
-        console.log('Timeline container:', this.timelineContainer);
-        console.log('Timeline data length:', this.timelineData.length);
-        
-        if (!this.timelineContainer) {
-            console.warn('Timeline container not found');
+        if (this.isInitialized) {
+            console.log('TimelineManager already initialized');
             return;
         }
+        
+        console.log('TimelineManager init called');
+        
+        // データとDOMの確認
+        if (!this.ensureDataAndDOM()) {
+            console.error('Failed to ensure data and DOM - retrying in 500ms');
+            setTimeout(() => this.init(), 500);
+            return;
+        }
+        
+        console.log('Timeline container found:', !!this.timelineContainer);
+        console.log('Timeline data length:', this.timelineData.length);
         
         // メインページかタイムライン専用ページかを判定
         const isMainPage = document.getElementById('games') !== null;
         
-        if (isMainPage) {
-            console.log('Rendering simple timeline for main page');
-            this.renderSimpleTimeline();
-        } else {
-            // タイムライン専用ページの場合
-            if (!this.timelineData.length) return;
-            this.renderScrollTimeline();
-            this.setupScrollTriggers();
+        try {
+            if (isMainPage) {
+                console.log('Rendering simple timeline for main page');
+                this.renderSimpleTimeline();
+            } else {
+                console.log('Rendering scroll timeline for timeline page');
+                this.renderScrollTimeline();
+                this.setupScrollTriggers();
+            }
+            
+            this.isInitialized = true;
+            console.log('Timeline initialization completed successfully');
+            
+        } catch (error) {
+            console.error('Error during timeline initialization:', error);
+            this.showErrorMessage();
+        }
+    }
+
+    showErrorMessage() {
+        if (this.timelineContainer) {
+            this.timelineContainer.innerHTML = `
+                <div class="timeline-error">
+                    <h3>タイムライン読み込み中...</h3>
+                    <p>データを準備しています。少々お待ちください。</p>
+                </div>
+            `;
         }
     }
 
@@ -127,21 +208,67 @@ class TimelineManager {
     }
 
     renderScrollTimeline() {
-        const sortedData = [...this.timelineData].sort((a, b) => new Date(a.date) - new Date(b.date));
+        console.log('Starting renderScrollTimeline');
         
-        const timelineHTML = `
-            <div class="scroll-timeline">
-                <!-- プログレスライン -->
-                <div class="timeline-progress-line">
-                    <div class="timeline-progress-fill" id="timeline-progress"></div>
+        // データが空の場合はフォールバックデータを使用
+        let dataToUse = this.timelineData;
+        if (!dataToUse || dataToUse.length === 0) {
+            console.warn('Using fallback timeline data');
+            dataToUse = [
+                {
+                    id: 'school-start',
+                    title: '専門学校入学',
+                    type: 'milestone',
+                    date: '2024-04-01',
+                    description: 'ゲーム開発の学習を開始',
+                    color: '#10b981',
+                    icon: '🎓'
+                },
+                {
+                    id: 'element-battle',
+                    title: 'ElementBattle',
+                    type: 'project',
+                    date: '2025-01-16',
+                    duration: 30,
+                    description: '記念すべき初作品のカードゲーム',
+                    technologies: ['HTML', 'CSS', 'JavaScript'],
+                    color: '#6366f1',
+                    icon: '🃏'
+                }
+            ];
+        }
+        
+        const sortedData = [...dataToUse].sort((a, b) => new Date(a.date) - new Date(b.date));
+        console.log('Sorted timeline data:', sortedData);
+        
+        try {
+            const timelineHTML = `
+                <div class="scroll-timeline">
+                    <!-- プログレスライン -->
+                    <div class="timeline-progress-line">
+                        <div class="timeline-progress-fill" id="timeline-progress"></div>
+                    </div>
+                    
+                    <!-- タイムラインアイテム -->
+                    ${sortedData.map((item, index) => this.createScrollTimelineItem(item, index)).join('')}
                 </div>
-                
-                <!-- タイムラインアイテム -->
-                ${sortedData.map((item, index) => this.createScrollTimelineItem(item, index)).join('')}
-            </div>
-        `;
-        
-        this.timelineContainer.innerHTML = timelineHTML;
+            `;
+            
+            console.log('Generated timeline HTML length:', timelineHTML.length);
+            this.timelineContainer.innerHTML = timelineHTML;
+            console.log('Timeline HTML inserted into container');
+            
+        } catch (error) {
+            console.error('Error generating timeline HTML:', error);
+            
+            // エラーの場合はシンプルなメッセージを表示
+            this.timelineContainer.innerHTML = `
+                <div class="timeline-error">
+                    <h3>タイムライン読み込み中...</h3>
+                    <p>少々お待ちください</p>
+                </div>
+            `;
+        }
     }
 
     createScrollTimelineItem(item, index) {

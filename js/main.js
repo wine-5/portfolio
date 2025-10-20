@@ -24,13 +24,19 @@ class PortfolioApp {
         this.hideLoading();
         
         // 各マネージャーを初期化
+        console.log('Starting manager initialization...');
         this.scrollManager.init();
         this.animationManager.init();
         this.gamesManager.init();
         this.skillsManager.init();
         this.timelineManager.init();
         this.contactForm.init();
-        this.updatesManager.init();
+        
+        // UpdatesManagerは他の初期化完了後に実行
+        setTimeout(() => {
+            console.log('Initializing UpdatesManager...');
+            this.updatesManager.init();
+        }, 100);
     }
 
     setupEventListeners() {
@@ -58,10 +64,21 @@ class PortfolioApp {
         const navLinks = document.querySelectorAll('.header__nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = link.getAttribute('href');
-                smoothScrollTo(target);
-                this.closeMobileMenu();
+                const href = link.getAttribute('href');
+                
+                // 外部ページや pages/ フォルダへのリンクは直接遷移
+                if (href.startsWith('pages/') || href.includes('.html')) {
+                    // デフォルトの動作を許可（直接遷移）
+                    this.closeMobileMenu();
+                    return;
+                }
+                
+                // ページ内アンカーの場合はスムーズスクロール
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    smoothScrollTo(href);
+                    this.closeMobileMenu();
+                }
             });
         });
     }
