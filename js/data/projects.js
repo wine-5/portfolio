@@ -9,13 +9,14 @@ const PROJECTS_DATA = [
         detailedFeatures: `学内で3日間開催されたゲームジャムのゲームです。初めてのゲームジャムでプロジェクトのリーダーだったので指揮を取るのが大変でした。
 デザイナーへの絵を任せるときにどのような絵が欲しいか、形式はどうするかなどとてもいい経験になりました。プログラマーがたくさんいるので、基底クラスを作って、クリティカルパスを短くするのが大変でした。
 そして設計方法を学び始めたころなので、シングルトンやObjectPoolなどを使って効率化を考えて頑張りました。`,
+        myResponsibilities: `プロジェクトリーダー、基底クラス設計、シングルトンパターン実装、ObjectPoolシステム実装`,
         technologies: ['Unity', 'C#', 'シングルトン', 'ObjectPool'],
         images: [
             'images/game/takasi/takasi-home.png',
             'images/game/takasi/takasi-in-game.png'
         ],
         playUrl: 'https://unityroom.com/games/i-want-hosurus',
-        githubUrl: 'https://github.com/wine-5',
+        githubUrl: 'https://github.com/wine-5/takashi-jinsei-bet-chu',
         year: '2年次',
         category: 'game',
         teamSize: '5人（プログラマー4人、デザイナー1人）',
@@ -28,10 +29,13 @@ const PROJECTS_DATA = [
         detailedFeatures: `Sapporo Game Camp2025で作成したゲームです。全員が初対面で、学外のゲームジャムに参加するのは初めてでした。
 前回の学内ゲームジャムの反省を活かして、開催前にUnityのプロジェクトを作って基底クラスをあらかじめ準備したり、リポジトリとプロジェクトを連携するなど行いました。
 ゲーム自体は無事に完成しましたが、本来予定していたステージ数は用意できなかったりデザイナーさんが作ってくださった絵を全て使い切れなかったのも後悔しています。`,
-        technologies: ['Unity', 'C#', '設計パターン', 'チーム開発'],
-        // image: 'https://picsum.photos/400/250?random=2',
+        myResponsibilities: `基底クラス設計、プレイヤーの弾の実装、敵の挙動や攻撃パターンの実装`,
+        technologies: ['Unity', 'C#'],
+        images: [
+            'images/game/chocho/chocho-title.png'
+        ],
         playUrl: 'https://unityroom.com/users/wine-555',
-        githubUrl: 'https://github.com/wine-5',
+        githubUrl: '#', // ブラッシュアップ中のためリポジトリ非公開
         year: '2年次',
         category: 'game',
         teamSize: '7人（現役プログラマー1人、学生プログラマー2人、現役デザイナー1人、学生デザイナー2人、学生プランナー1人）',
@@ -50,7 +54,7 @@ const PROJECTS_DATA = [
             'images/game/git-command/git-home2.png'
         ],
         playUrl: 'https://git-command.com/',
-        githubUrl: 'https://github.com/wine-5',
+        githubUrl: 'https://github.com/wine-5/Git-Command-Helper',
         year: '2年次',
         category: 'web',
         teamSize: '1人',
@@ -66,8 +70,8 @@ const PROJECTS_DATA = [
             'images/game/under-over/UnderOver-title.png',
             'images/game/under-over/UnderOver-in-game.png'
         ],
-        playUrl: 'https://github.com/wine-5', // UnityRoom公開後に更新予定
-        githubUrl: 'https://github.com/wine-5',
+        playUrl: 'https://github.com/wine-5/UnderOver', // UnityRoom公開後に更新予定
+        githubUrl: 'https://github.com/wine-5/UnderOver',
         year: '1年次',
         category: 'game',
         teamSize: '1人',
@@ -80,6 +84,7 @@ const PROJECTS_DATA = [
         title: 'Split',
         description: '初めてのチーム開発で作った2Dアクションゲーム。企画からデバッグまで全工程を経験。Git初体験作品。',
         detailedFeatures: `企画から開発、デバッグのすべてを初めて行いました。初めてGitに出会って、わちゃわちゃしていたのを思い出します。チーム開発の基礎を学び、バージョン管理の重要性を実感した貴重な経験でした。`,
+        myResponsibilities: `プログラミング全般、Git操作学習、チーム内でのタスク調整、デバッグ作業`,
         technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
         images: [
             'images/game/split/split-title.png',
@@ -88,7 +93,7 @@ const PROJECTS_DATA = [
         playUrl: '#', // 後日ゲームファイル追加予定
         localPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ローカルゲームファイル
         webPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ウェブ公開用パス
-        githubUrl: '#', // リポジトリ状況確認後更新
+        githubUrl: 'https://github.com/wine-5/Split',
         year: '1年次',
         category: 'web-game',
         teamSize: '3人（プログラマー3人）',
@@ -107,7 +112,7 @@ const PROJECTS_DATA = [
         playUrl: '#', // 後日ゲームファイル追加予定
         localPath: 'web-game/ElementBattle/index.html', // ローカルゲームファイル
         webPath: 'web-game/ElementBattle/index.html', // ウェブ公開用パス
-        githubUrl: 'https://github.com/wine-5',
+        githubUrl: 'https://github.com/wine-5/Element_Battle',
         year: '1年次',
         category: 'web-game',
         teamSize: '1人',

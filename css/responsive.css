@@ -259,6 +259,16 @@
         line-height: 1.6;
     }
 
+    /* 担当箇所 - モバイル対応 */
+    .work-card__responsibilities-title {
+        font-size: 1.3rem;
+    }
+
+    .work-card__responsibilities-content {
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+
     /* スキル */
     .skill {
         padding: 2rem;

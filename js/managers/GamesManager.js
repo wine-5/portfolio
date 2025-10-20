@@ -118,7 +118,22 @@ class GamesManager {
                                 <span>詳細な特徴を見る</span>
                             </summary>
                             <div class="work-card__details-content">
-                                <p class="work-card__features">${project.detailedFeatures}</p>
+                                ${project.myResponsibilities ? `
+                                    <div class="work-card__responsibilities">
+                                        <h5 class="work-card__responsibilities-title">
+                                            <i class="fas fa-user-cog"></i>
+                                            自分の担当箇所
+                                        </h5>
+                                        <p class="work-card__responsibilities-content">${project.myResponsibilities}</p>
+                                    </div>
+                                ` : ''}
+                                <div class="work-card__features-section">
+                                    <h5 class="work-card__features-title">
+                                        <i class="fas fa-info-circle"></i>
+                                        詳細な説明
+                                    </h5>
+                                    <p class="work-card__features">${project.detailedFeatures}</p>
+                                </div>
                             </div>
                         </details>
                     ` : ''}
@@ -127,9 +142,7 @@ class GamesManager {
                     
                     <div class="work-card__buttons">
                         ${this.createPlayButton(project)}
-                        <a href="${project.githubUrl}" target="_blank" class="btn btn--secondary work-card__button">
-                            GitHub
-                        </a>
+                        ${this.createGitHubButton(project)}
                     </div>
                 </div>
             </div>
@@ -226,6 +239,18 @@ class GamesManager {
                     <i class="fas fa-clock"></i>
                     Coming Soon
                 </button>`;
+    }
+
+    createGitHubButton(project) {
+        // GitHubリンクが有効な場合のみボタンを表示
+        if (!project.githubUrl || project.githubUrl === '#' || project.githubUrl === 'https://github.com/wine-5') {
+            return ''; // 無効なリンクの場合は非表示
+        }
+        
+        return `<a href="${project.githubUrl}" target="_blank" class="btn btn--secondary work-card__button">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>`;
     }
 
     setupImageSliders() {

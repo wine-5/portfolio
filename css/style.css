@@ -43,6 +43,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 62.5%; /* 1rem = 10px */
+    height: 100%;
+    overflow-y: auto;
 }
 
 body {
@@ -52,6 +54,8 @@ body {
     line-height: 1.6;
     font-size: 1.6rem;
     overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
 }
 
 /* ===================================
@@ -658,6 +662,54 @@ body {
     line-height: 1.7;
     white-space: pre-line;
     margin: 0;
+}
+
+/* 担当箇所セクション */
+.work-card__responsibilities {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-card__responsibilities-title {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.work-card__responsibilities-title i {
+    font-size: 0.9rem;
+}
+
+.work-card__responsibilities-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+}
+
+/* 詳細説明セクション */
+.work-card__details-content > .work-card__features-section:first-child {
+    padding-top: 0;
+    border-top: none;
+}
+
+.work-card__features-title {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.work-card__features-title i {
+    font-size: 0.9rem;
 }
 
 @keyframes slideDown {
@@ -1311,8 +1363,9 @@ body {
 
 /* タイムラインセクション */
 .timeline-section {
-    padding: 80px 0;
+    padding: 80px 0 120px 0; /* 下部パディングを増加 */
     background: var(--bg-primary);
+    min-height: 100vh; /* 最小高さを設定 */
 }
 
 .timeline-section .section__subtitle {
@@ -1605,8 +1658,8 @@ body {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 4rem 0 8rem 0;
-    min-height: 150vh; /* スクロール体験のための高さ */
+    padding: 4rem 0 12rem 0; /* 下部に十分なマージンを追加 */
+    min-height: 200vh; /* より長いスクロール体験 */
 }
 
 /* プログレスライン */
@@ -1614,7 +1667,7 @@ body {
     position: fixed;
     left: 50%;
     top: 120px;
-    bottom: 120px;
+    bottom: 200px; /* 下部マージンを増加 */
     width: 4px;
     background: rgba(99, 102, 241, 0.2);
     transform: translateX(-50%);
@@ -1642,10 +1695,15 @@ body {
 /* タイムラインアイテム */
 .scroll-timeline-item {
     position: relative;
-    margin: 8rem 0;
+    margin: 6rem 0; /* アイテム間のスペースを調整 */
     opacity: 0;
     transform: translateY(60px) scale(0.9);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 最後のアイテムには追加のマージン */
+.scroll-timeline-item:last-child {
+    margin-bottom: 10rem;
 }
 
 .scroll-timeline-item--visible {
