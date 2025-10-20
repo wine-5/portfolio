@@ -9,7 +9,7 @@ class PortfolioApp {
         this.loading = document.getElementById('loading');
         this.scrollManager = new ScrollManager();
         this.animationManager = new AnimationManager();
-        this.worksManager = new WorksManager();
+        this.gamesManager = new GamesManager();
         this.skillsManager = new SkillsManager();
         this.contactForm = new ContactForm();
         this.updatesManager = new UpdatesManager();
@@ -19,17 +19,14 @@ class PortfolioApp {
     }
 
     init() {
-        console.log('PortfolioApp initializing...');
         this.setupEventListeners();
         this.hideLoading();
         this.scrollManager.init();
         this.animationManager.init();
-        console.log('About to initialize WorksManager...');
-        this.worksManager.init();
+        this.gamesManager.init();
         this.skillsManager.init();
         this.contactForm.init();
         this.updatesManager.init();
-        console.log('PortfolioApp initialization complete');
     }
 
     setupEventListeners() {
@@ -173,9 +170,9 @@ class ScrollManager {
 }
 
 /* ===================================
-   作品管理クラス
+   ゲーム管理クラス
    =================================== */
-class WorksManager {
+class GamesManager {
     constructor() {
         this.worksGrid = document.getElementById('works-grid');
         this.projects = [
@@ -262,29 +259,35 @@ class WorksManager {
     }
 
     init() {
-        console.log('WorksManager initializing...');
-        console.log('worksGrid element:', this.worksGrid);
-        console.log('projects array length:', this.projects.length);
-        this.renderProjects();
+        this.renderGames();
     }
 
-    renderProjects() {
-        if (!this.worksGrid) {
-            console.error('works-grid element not found!');
-            return;
-        }
+    renderGames() {
+        if (!this.worksGrid) return;
 
-        console.log('Rendering projects...');
         const projectsHtml = this.projects.map(project => 
-            this.createProjectCard(project)
+            this.createGameCard(project)
         ).join('');
-        console.log('Generated HTML length:', projectsHtml.length);
-        console.log('First 500 characters of HTML:', projectsHtml.substring(0, 500));
         this.worksGrid.innerHTML = projectsHtml;
-        console.log('Projects rendered successfully');
+        
+        // レンダリング後にアニメーション用のクラスを追加
+        this.setupGameAnimations();
+    }
+    
+    setupGameAnimations() {
+        // DOM更新後に実行
+        setTimeout(() => {
+            const workCards = this.worksGrid.querySelectorAll('.work-card');
+            workCards.forEach((card, index) => {
+                // 各カードに遅延を設定してアニメーション
+                setTimeout(() => {
+                    card.classList.add('fade-in', 'visible');
+                }, index * 150); // 150ms間隔でアニメーション
+            });
+        }, 50);
     }
 
-    createProjectCard(project) {
+    createGameCard(project) {
         const awardBadge = project.award ? `<div class="work-card__award">🏆 ${project.award}</div>` : '';
         const noteBadge = project.note ? `<div class="work-card__note">${project.note}</div>` : '';
         
@@ -675,13 +678,6 @@ class ContactForm {
 }
 
 /* ===================================
-   アプリケーション初期化
-   =================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    new PortfolioApp();
-});
-
-/* ===================================
    ユーティリティ関数
    =================================== */
 
@@ -698,34 +694,6 @@ function debounce(func, wait) {
     };
 }
 
-// スムーズスクロール（古いブラウザ対応）
-function smoothScrollTo(target, duration = 1000) {
-    const targetElement = document.querySelector(target);
-    if (!targetElement) return;
-
-    const startPosition = window.pageYOffset;
-    const targetPosition = targetElement.offsetTop - 80;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-}
-
 /* ===================================
    アプリケーション初期化
    =================================== */
@@ -733,30 +701,17 @@ function smoothScrollTo(target, duration = 1000) {
 let isInitialized = false;
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (isInitialized) {
-        console.log('Already initialized, skipping...');
-        return;
-    }
+    if (isInitialized) return;
     
-    console.log('DOM loaded, initializing portfolio app...');
     // ポートフォリオアプリケーションを初期化
     const app = new PortfolioApp();
     app.init();
     
     isInitialized = true;
-    
-    // ローディング画面を非表示
-    setTimeout(() => {
-        const loading = document.getElementById('loading');
-        if (loading) {
-            loading.style.display = 'none';
-        }
-    }, 1000);
 });
 
 // ページロード完了後にパーティクルアニメーション開始
 window.addEventListener('load', function() {
-    console.log('Window loaded, initializing particle system...');
     const particleCanvas = document.getElementById('particle-canvas');
     if (particleCanvas && typeof ParticleSystem !== 'undefined') {
         const particleSystem = new ParticleSystem('particle-canvas');
