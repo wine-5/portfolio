@@ -1,0 +1,61 @@
+/* タイムラインページ専用スタイル */
+
+/* タイムラインページの高さを適切に調整 */
+body {
+    min-height: 100vh;
+}
+
+.timeline-section {
+    min-height: 200vh;
+    padding-bottom: 200px;
+}
+
+.scroll-timeline {
+    min-height: 150vh;
+    padding-bottom: 100px;
+}
+
+/* タイムラインノードの色とサイズを修正（vhを使用してレスポンシブ対応） */
+.scroll-timeline-node {
+    width: 10vh;
+    height: 10vh;
+    background: #6366f1;
+    box-shadow: 0 0 0 0.4vh #6366f1, 0 0 4vh rgba(99, 102, 241, 0.5);
+}
+
+.scroll-timeline-node.node-activated {
+    box-shadow: 0 0 0 0.6vh #6366f1, 0 0 5vh rgba(99, 102, 241, 0.7);
+}
+
+/* ノードの位置調整（vhサイズに合わせて） */
+.scroll-timeline-item--left .scroll-timeline-node {
+    right: calc(50% - 5vh);
+}
+
+.scroll-timeline-item--right .scroll-timeline-node {
+    left: calc(50% - 5vh);
+}
+
+/* アイコンのサイズもvhを使用 */
+.scroll-timeline-node i {
+    font-size: 3vh;
+}
+
+/* クリック可能なアイテムのスタイル */
+.scroll-timeline-item--clickable {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.scroll-timeline-item--clickable:hover {
+    transform: scale(1.02);
+}
+
+.scroll-timeline-item--clickable:hover .scroll-timeline-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-timeline-item--clickable:hover .scroll-timeline-node {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 0.6vh #6366f1, 0 0 6vh rgba(99, 102, 241, 0.8);
+}
