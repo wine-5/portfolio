@@ -347,11 +347,30 @@ class TimelineManager {
         // アイテムのアニメーション
         this.setupItemAnimations();
         
-        // スクロールイベント
-        window.addEventListener('scroll', this.handleScroll.bind(this));
+        // タイムラインの境界を計算
+        this.updateTimelineBounds();
+        
+        // スクロールイベント（パッシブリスナー使用）
+        window.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
+        window.addEventListener('resize', this.updateTimelineBounds.bind(this), { passive: true });
         
         // 初期表示
         this.handleScroll();
+    }
+
+    updateTimelineBounds() {
+        if (this.timelineElement) {
+            const rect = this.timelineElement.getBoundingClientRect();
+            this.timelineTop = this.timelineElement.offsetTop;
+            this.timelineHeight = this.timelineElement.offsetHeight;
+            this.timelineBottom = this.timelineTop + this.timelineHeight;
+            
+            // デバッグ情報を出力
+            console.log('Timeline bounds updated:');
+            console.log(`Timeline top: ${this.timelineTop}`);
+            console.log(`Timeline height: ${this.timelineHeight}`);
+            console.log(`Timeline bottom: ${this.timelineBottom}`);
+        }
     }
 
     setupProgressLine() {
@@ -426,15 +445,42 @@ class TimelineManager {
         // プログレスラインの更新（改善版）
         let scrollProgress = 0;
         
-        if (viewportTop >= timelineTop - windowHeight * 0.5 && viewportTop <= timelineBottom) {
-            // タイムラインエリア内でのプログレス計算
-            const effectiveStart = timelineTop - windowHeight * 0.5;
-            const effectiveEnd = timelineBottom - windowHeight * 0.5;
-            const effectiveProgress = (viewportTop - effectiveStart) / (effectiveEnd - effectiveStart);
-            scrollProgress = Math.max(0, Math.min(1, effectiveProgress));
-        } else if (viewportTop > timelineBottom - windowHeight * 0.5) {
-            // タイムライン終了後は100%
+        // タイムラインセクション全体を基準にした計算に変更
+        const timelineSection = document.getElementById('timeline');
+        const sectionTop = timelineSection ? timelineSection.offsetTop : timelineTop;
+        const sectionHeight = timelineSection ? timelineSection.offsetHeight : this.timelineHeight;
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        // より長いスクロール範囲を設定（終点を延長）
+        const effectiveStart = sectionTop - windowHeight * 0.2;
+        const effectiveEnd = sectionBottom + windowHeight * 0.3; // 終点を延長
+        
+        if (viewportTop >= effectiveStart) {
+            if (viewportTop <= effectiveEnd) {
+                // タイムラインエリア内でのプログレス計算
+                const effectiveProgress = (viewportTop - effectiveStart) / (effectiveEnd - effectiveStart);
+                scrollProgress = Math.max(0, Math.min(1, effectiveProgress));
+            } else {
+                // タイムライン終了後は100%
+                scrollProgress = 1;
+            }
+        }
+        
+        // セクションの終端近くでは強制的に100%にする
+        if (viewportTop >= sectionBottom - windowHeight * 0.5) {
             scrollProgress = 1;
+        }
+        
+        // デバッグ情報をコンソールに出力（開発時のみ）
+        if ((scrollProgress > 0.1 && scrollProgress % 0.1 < 0.02) || scrollProgress === 1) {
+            console.log(`Timeline scroll progress: ${(scrollProgress * 100).toFixed(1)}%`);
+            console.log(`Section range: ${sectionTop} - ${sectionBottom} (height: ${sectionHeight})`);
+            console.log(`Effective range: ${effectiveStart} - ${effectiveEnd}`);
+            console.log(`Current viewport: ${viewportTop}`);
+            console.log(`Force 100% threshold: ${sectionBottom - windowHeight * 0.5}`);
+            if (scrollProgress === 1) {
+                console.log('🎉 Timeline reached 100%!');
+            }
         }
         
         this.progressLine.style.height = `${scrollProgress * 100}%`;

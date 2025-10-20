@@ -1365,9 +1365,9 @@ body {
 
 /* タイムラインセクション */
 .timeline-section {
-    padding: 80px 0 200px 0; /* さらに下部パディングを増加 */
+    padding: 80px 0 120px 0; /* 下部パディングを適切なサイズに調整 */
     background: var(--bg-primary);
-    min-height: 150vh; /* 最小高さを増加 */
+    min-height: 100vh; /* 通常の高さに調整 */
 }
 
 .timeline-section .section__subtitle {
@@ -1660,8 +1660,8 @@ body {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 4rem 0 12rem 0; /* 下部に十分なマージンを追加 */
-    min-height: 200vh; /* より長いスクロール体験 */
+    padding: 4rem 0 8rem 0; /* 下部マージンを適切なサイズに調整 */
+    min-height: auto; /* 自動高さに変更 */
 }
 
 /* プログレスライン */
@@ -1697,7 +1697,7 @@ body {
 /* タイムラインアイテム */
 .scroll-timeline-item {
     position: relative;
-    margin: 6rem 0; /* アイテム間のスペースを調整 */
+    margin: 6rem 0; /* アイテム間のスペースを適切に調整 */
     opacity: 0;
     transform: translateY(60px) scale(0.9);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1705,7 +1705,7 @@ body {
 
 /* 最後のアイテムには追加のマージン */
 .scroll-timeline-item:last-child {
-    margin-bottom: 10rem;
+    margin-bottom: 8rem; /* 最後のアイテムのマージンを適切に調整 */
 }
 
 /* タイムラインエラー表示 */
