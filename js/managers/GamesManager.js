@@ -1,29 +1,29 @@
 /* ===================================
-   作品管理クラス
+   ゲーム管理クラス
    =================================== */
-class WorksManager {
+class GamesManager {
     constructor() {
         this.worksGrid = document.getElementById('works-grid');
         this.projects = PROJECTS_DATA; // 外部データを参照
     }
 
     init() {
-        this.renderProjects();
+        this.renderGames();
     }
 
-    renderProjects() {
+    renderGames() {
         if (!this.worksGrid) return;
 
         const projectsHtml = this.projects.map(project => 
-            this.createProjectCard(project)
+            this.createGameCard(project)
         ).join('');
         this.worksGrid.innerHTML = projectsHtml;
         
         // レンダリング後にアニメーション用のクラスを追加
-        this.setupProjectAnimations();
+        this.setupGameAnimations();
     }
     
-    setupProjectAnimations() {
+    setupGameAnimations() {
         // DOM更新後に実行
         setTimeout(() => {
             const workCards = this.worksGrid.querySelectorAll('.work-card');
@@ -36,7 +36,7 @@ class WorksManager {
         }, 50);
     }
 
-    createProjectCard(project) {
+    createGameCard(project) {
         const awardBadge = project.award ? `<div class="work-card__award">🏆 ${project.award}</div>` : '';
         const noteBadge = project.note ? `<div class="work-card__note">${project.note}</div>` : '';
         
@@ -78,21 +78,16 @@ class WorksManager {
                         ).join('')}
                     </div>
                     
-                    <div class="work-card__links">
-                        ${project.playUrl && project.playUrl !== '#' ? 
-                            `<a href="${project.playUrl}" target="_blank" rel="noopener noreferrer" class="work-card__link work-card__link--play">
-                                <i class="fas fa-play"></i>
-                                <span>プレイ</span>
-                            </a>` : ''
-                        }
-                        ${project.githubUrl && project.githubUrl !== '#' ? 
-                            `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="work-card__link work-card__link--github">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub</span>
-                            </a>` : ''
-                        }
-                    </div>
                     ${noteBadge}
+                    
+                    <div class="work-card__buttons">
+                        <a href="${project.playUrl}" target="_blank" class="btn btn--primary work-card__button">
+                            ${project.category === 'web' ? 'Visit Site' : 'Play Game'}
+                        </a>
+                        <a href="${project.githubUrl}" target="_blank" class="btn btn--secondary work-card__button">
+                            GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
         `;
