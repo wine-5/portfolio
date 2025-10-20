@@ -7,7 +7,10 @@ const PROJECTS_DATA = [
         title: 'たかし、人生ベット中',
         description: '学内ゲームジャム3日間で開発した2Dシューティングゲーム。5人チームでのリーダー経験。株式会社インフィニットループ堀川賞受賞。',
         technologies: ['Unity', 'C#', 'シングルトン', 'ObjectPool'],
-        // image: 'https://picsum.photos/400/250?random=1',
+        images: [
+            'images/game/takasi/takasi-home.png',
+            'images/game/takasi/takasi-in-game.png'
+        ],
         playUrl: 'https://unityroom.com/games/i-want-hosurus',
         githubUrl: 'https://github.com/wine-5',
         year: '2年次',
@@ -27,13 +30,18 @@ const PROJECTS_DATA = [
         category: 'game',
         teamSize: '7人（現役プログラマー1人、学生プログラマー2人、現役デザイナー1人、学生デザイナー2人、学生プランナー1人）',
         period: '2日間（現在ブラッシュアップ中）',
-        note: 'リファクタリング・ブラッシュアップ進行中'
+        note: 'リファクタリング・ブラッシュアップ進行中',
+        locked: true,
+        lockReason: 'ブラッシュアップ中'
     },
     {
         title: 'Git Command Helper',
         description: 'Git学習用のコマンド専用Webサイト。実用性を重視した学習ツール。',
         technologies: ['HTML', 'CSS', 'JavaScript', 'Web Design'],
-        // image: 'https://picsum.photos/400/250?random=3',
+        images: [
+            'images/game/git-command/git-home1.png',
+            'images/game/git-command/git-home2.png'
+        ],
         playUrl: 'https://git-command.com/',
         githubUrl: 'https://github.com/wine-5',
         year: '2年次',
@@ -46,14 +54,19 @@ const PROJECTS_DATA = [
         title: 'UnderOver',
         description: 'Unity独自メソッドの学習を兼ねて開発した2Dアクションゲーム。Unity基礎固めの集大成。',
         technologies: ['Unity', 'C#', '2D Physics'],
-        // image: 'https://picsum.photos/400/250?random=4',
+        images: [
+            'images/game/UnderOver/スクリーンショット 2025-10-21 000659.png',
+            'images/game/UnderOver/スクリーンショット 2025-10-21 000736.png'
+        ],
         playUrl: 'https://github.com/wine-5', // UnityRoom公開後に更新予定
         githubUrl: 'https://github.com/wine-5',
         year: '1年次',
         category: 'game',
         teamSize: '1人',
         period: '2〜3ヶ月',
-        note: 'UnityRoom公開予定'
+        note: 'UnityRoom公開予定',
+        locked: true,
+        lockReason: 'UnityRoom公開準備中'
     },
     {
         title: 'Split',
@@ -61,7 +74,8 @@ const PROJECTS_DATA = [
         technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
         // image: 'https://picsum.photos/400/250?random=5',
         playUrl: '#', // 後日ゲームファイル追加予定
-        webPath: '', // ゲームファイル追加時に設定
+        localPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ローカルゲームファイル
+        webPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ウェブ公開用パス
         githubUrl: '#', // リポジトリ状況確認後更新
         year: '1年次',
         category: 'web-game',
@@ -73,7 +87,10 @@ const PROJECTS_DATA = [
         title: 'ElementBattle',
         description: '記念すべき初作品のカードゲーム。関数・変数を学習しながら開発。プログラミングの基礎を身につけた思い出の作品。',
         technologies: ['HTML', 'CSS', 'JavaScript'],
-        // image: 'https://picsum.photos/400/250?random=6',
+        images: [
+            'images/game/element-battle/element-home.png',
+            'images/game/element-battle/element-in-game.png'
+        ],
         playUrl: '#', // 後日ゲームファイル追加予定
         localPath: 'web-game/ElementBattle/index.html', // ローカルゲームファイル
         webPath: 'web-game/ElementBattle/index.html', // ウェブ公開用パス
