@@ -1,0 +1,68 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+  /* 画面の幅によってサイズを変更する場合 */
+  
+  canvas {
+    display: block;
+    width: 100%;  
+    height: 50vh; 
+}
+   
+
+
+#canvas2{
+    background-color: black;
+}
+
+/* 最初に画像を非表示に */
+#image {
+    visibility: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
+    max-width: 50%;
+    max-height: 100%;
+
+    z-index: 1; /* 画像を手前側に */
+    border-radius: 8px; /* 角を丸くする */
+    margin-right: 20px;
+    margin-left: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 1.0); /* 影を追加 */
+    border: 2px solid white; /* 白い枠線 */
+    outline: 3px solid black; /* 黒い枠線 */
+}
+
+.UI{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#helpButton {
+    font-size: 36px;
+    background-color: white; /* ボタンの背景色 */
+    color: black;             /* テキストの色 */
+    border: 4px solid black;  /*枠線の太さと色*/
+    cursor: pointer;          /* ポインタを変更 */
+    transition: background-color 1.0s; /* 背景色の変化にアニメーションを追加 */
+    margin: 10px 0px 10px 10px;/*余白を付与*/
+    /* margin-top: 60%; */
+    width: 60px;  /* 幅を90pxに設定 */
+    height: 60px; /* 高さを90pxに設定 */
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#helpButton:hover {
+    background-color: black; /* ホバー時の背景色 */
+    color: white;            /* テキストの色 */
+    border: 4px solid white; /*枠線の太さと色*/
+}

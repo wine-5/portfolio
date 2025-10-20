@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="wine-5 - Unity, C#を使用したゲーム開発者のポートフォリオサイト | Game Developer Portfolio">
     <meta name="keywords" content="wine-5, ゲーム開発, Unity, C#, ポートフォリオ, Game Developer">
-    <title>wine-5 - Game Developer Portfolio</title>
+    <title>wine-5 - Portfolio</title>
+    
+    <!-- Favicon (シンプルなゲームコントローラーアイコン) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -42,16 +45,19 @@
                     <a href="#home" class="header__nav-link">Home</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#works" class="header__nav-link">Works</a>
+                    <a href="#games" class="header__nav-link">Games</a>
                 </li>
                 <li class="header__nav-item">
                     <a href="#skills" class="header__nav-link">Skills</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#about" class="header__nav-link">About</a>
+                    <a href="#connect" class="header__nav-link">Connect</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#contact" class="header__nav-link">Contact</a>
+                    <a href="#update-history" class="header__nav-link">Update History</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#timeline" class="header__nav-link">Timeline</a>
                 </li>
                 <li class="header__nav-item">
                     <a href="#updates" class="header__nav-link">Updates</a>
@@ -74,11 +80,10 @@
             </div>
             <div class="hero__content">
                 <h2 class="hero__title">wine-5</h2>
-                <p class="hero__subtitle">Game Developer & Unity Specialist</p>
-                <p class="hero__description">Unity & C#でゲームの可能性を追求し続ける開発者</p>
+                <p class="hero__subtitle">Game Developer</p>
+                <!-- <p class="hero__description">Unity & C#でゲームの可能性を追求し続ける開発者</p> -->
                 <div class="hero__buttons">
-                    <a href="#works" class="btn btn--primary">View Works</a>
-                    <a href="#contact" class="btn btn--secondary">Contact Me</a>
+                    <a href="#games" class="btn btn--primary">View Games</a>
                 </div>
             </div>
             <div class="hero__scroll">
@@ -87,12 +92,26 @@
             </div>
         </section>
 
-        <!-- 作品セクション -->
-        <section class="works" id="works">
+        <!-- ゲームセクション -->
+        <section class="works" id="games">
             <div class="container">
-                <h2 class="section__title">Works</h2>
+                <h2 class="section__title">Games</h2>
                 <div class="works__grid" id="works-grid">
                     <!-- 作品カードはJavaScriptで動的生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- タイムラインセクション -->
+        <section class="timeline-section" id="timeline">
+            <div class="container">
+                <h2 class="section__title">Development Timeline</h2>
+                <p class="section__subtitle">ゲーム開発の軌跡</p>
+                <div class="timeline" id="timeline-container">
+                    <!-- タイムラインアイテムはJavaScriptで動的生成 -->
+                </div>
+                <div class="timeline__cta">
+                    <a href="pages/timeline.html" class="btn btn--primary">詳細なタイムラインを見る</a>
                 </div>
             </div>
         </section>
@@ -169,6 +188,17 @@
                                 UnityRoom
                             </a>
                         </div>
+                        
+                        <!-- タイムラインページへのリンク -->
+                        <div class="about__timeline-link">
+                            <a href="pages/timeline.html" class="btn btn--primary about__timeline-button">
+                                <i class="fas fa-history"></i>
+                                開発の軌跡を見る
+                            </a>
+                            <p class="about__timeline-description">
+                                入学から現在までの詳細な開発履歴とプロジェクトの軌跡をご覧いただけます
+                            </p>
+                        </div>
                     </div>
                     <div class="about__image">
                         <div class="about__avatar">
@@ -182,15 +212,71 @@
             </div>
         </section>
 
+        <!-- 更新履歴セクション -->
+        <section class="updates" id="update-history">
+            <div class="container">
+                <h2 class="section__title">Updates</h2>
+                <div class="updates__content">
+                    <div class="updates__info">
+                        <div class="updates__last-modified">
+                            <h3 class="updates__subtitle">Last Updated</h3>
+                            <p class="updates__date" id="last-updated-date">2025年10月21日</p>
+                        </div>
+                    </div>
+                    <div class="updates__history">
+                        <h3 class="updates__subtitle">Update History</h3>
+                        <div class="updates__timeline" id="updates-timeline">
+                            <!-- 更新履歴はJavaScriptで動的生成 -->
+                            <div class="update-item">
+                                <div class="update-item__date">2025/10/21</div>
+                                <div class="update-item__content">
+                                    <h4 class="update-item__title">タイムラインページ実装とUpdateHistory修正</h4>
+                                    <p class="update-item__description">スクロールドリブンタイムラインページを実装。GitHubリポジトリリンク機能を追加し、UpdateHistoryセクションの表示問題を修正。READMEファイルも詳細なプロジェクト説明に更新。</p>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-item__date">2025/10/21</div>
+                                <div class="update-item__content">
+                                    <h4 class="update-item__title">画像スライダー機能とプロジェクト詳細拡張</h4>
+                                    <p class="update-item__description">各プロジェクトに複数画像対応のスライダー機能を実装。画像クリックでゲーム遷移、ロック機能、詳細特徴の折りたたみ表示、共同制作時の担当箇所表示機能を追加。HTMLファイル整理とタイムライン表示機能も実装。</p>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-item__date">2025/10/20</div>
+                                <div class="update-item__content">
+                                    <h4 class="update-item__title">wine-5ポートフォリオサイト公開</h4>
+                                    <p class="update-item__description">ゲーム開発者・wine-5のポートフォリオサイトを公開。レスポンシブ対応、パーティクルアニメーション、EmailJS統合を実装。</p>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-item__date">2025/10/20</div>
+                                <div class="update-item__content">
+                                    <h4 class="update-item__title">スキルセクション改良</h4>
+                                    <p class="update-item__description">スキルのパーセンテージ表示を削除し、より詳細な説明を追加。成長の余地を示すデザインに変更。</p>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <div class="update-item__date">2025/10/20</div>
+                                <div class="update-item__content">
+                                    <h4 class="update-item__title">更新履歴機能追加</h4>
+                                    <p class="update-item__description">Webサイトの更新履歴を表示する機能を追加。最終更新日と詳細な更新内容を確認できるようになりました。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- コンタクトセクション -->
-        <section class="contact" id="contact">
+        <section class="contact" id="connect">
             <div class="container">
                 <h2 class="section__title">Contact</h2>
                 <div class="contact__content">
                     <div class="contact__info">
                         <h3 class="contact__subtitle">Get In Touch</h3>
                         <p class="contact__description">
-                            ゲーム開発に関するお仕事やご相談がございましたら、<br>
+                            ゲーム開発に関する質問やご意見等がございましたら、<br>
                             お気軽にお問い合わせください。
                         </p>
                     </div>
@@ -209,27 +295,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- 更新履歴セクション -->
-        <section class="updates" id="updates">
-            <div class="container">
-                <h2 class="section__title">Updates</h2>
-                <div class="updates__content">
-                    <div class="updates__info">
-                        <div class="updates__last-modified">
-                            <h3 class="updates__subtitle">Last Updated</h3>
-                            <p class="updates__date" id="last-updated-date">2025年10月20日</p>
-                        </div>
-                    </div>
-                    <div class="updates__history">
-                        <h3 class="updates__subtitle">Update History</h3>
-                        <div class="updates__timeline" id="updates-timeline">
-                            <!-- 更新履歴はJavaScriptで動的生成 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- フッター -->
@@ -240,8 +305,29 @@
     </footer>
 
     <!-- JavaScript -->
+    <!-- ユーティリティ関数 -->
+    <script src="js/utils/functions.js"></script>
+    
+    <!-- データファイル -->
+    <script src="js/data/projects.js"></script>
+    <script src="js/data/timeline.js"></script>
+    <script src="js/data/updates.js"></script>
+    
+    <!-- マネージャークラス -->
+    <script src="js/managers/ScrollManager.js"></script>
+    <script src="js/managers/GamesManager.js"></script>
+    <script src="js/managers/SkillsManager.js"></script>
+    <script src="js/managers/TimelineManager.js"></script>
+    <script src="js/managers/UpdatesManager.js"></script>
+    <script src="js/managers/ContactForm.js"></script>
+    
+    <!-- EmailJS設定 -->
     <script src="js/email-config.js"></script>
-    <script src="js/main.js"></script>
+    
+    <!-- アニメーション -->
     <script src="js/animations.js"></script>
+    
+    <!-- メインアプリケーション -->
+    <script src="js/main.js"></script>
 </body>
 </html>

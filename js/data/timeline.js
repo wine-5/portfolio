@@ -1,0 +1,76 @@
+/* ===================================
+   タイムラインデータ
+   =================================== */
+const TIMELINE_DATA = [
+    {
+        id: 'school-start',
+        title: '専門学校入学',
+        type: 'milestone',
+        date: '2024-04-01',
+        description: 'ゲーム開発の学習を開始',
+        color: '#10b981',
+        icon: '🎓'
+    },
+    {
+        id: 'element-battle',
+        title: 'ElementBattle',
+        type: 'project',
+        date: '2025-01-16',
+        duration: 30, // 開発期間（日数）
+        description: '記念すべき初作品のカードゲーム。関数・変数を学習しながら開発。',
+        technologies: ['HTML', 'CSS', 'JavaScript'],
+        color: '#6366f1',
+        icon: '🃏'
+    },
+    {
+        id: 'split',
+        title: 'Split',
+        type: 'project',
+        date: '2024-10-01',
+        duration: 180, // 6ヶ月
+        description: '初めてのチーム開発で作った2Dアクションゲーム。企画からデバッグまで全工程を経験。',
+        technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
+        color: '#8b5cf6',
+        icon: '🎮'
+    },
+    {
+        id: 'under-over',
+        title: 'UnderOver',
+        type: 'project',
+        date: '2024-12-01',
+        duration: 90, // 2-3ヶ月
+        description: 'Unity独自メソッドの学習を兼ねて開発した2Dアクションゲーム。Unity基礎固めの集大成。',
+        technologies: ['Unity', 'C#', '2D Physics'],
+        color: '#f59e0b',
+        icon: '⚡'
+    },
+    {
+        id: 'takashi',
+        title: 'たかし、人生ベット中',
+        type: 'project',
+        date: '2025-08-01',
+        duration: 3, // 3日間
+        description: '学内ゲームジャム3日間で開発した2Dシューティングゲーム。5人チームでのリーダー経験。',
+        technologies: ['Unity', 'C#', 'シングルトン', 'ObjectPool'],
+        color: '#ef4444',
+        icon: '🏆',
+        award: '株式会社インフィニットループ堀川賞'
+    },
+    {
+        id: 'butterfly',
+        title: '蝶々反乱',
+        type: 'project',
+        date: '2025-10-18',
+        duration: 2, // 2日間
+        description: 'Sapporo Game Camp2025参加作品。全員初対面の7人チームで開発した2Dアクションゲーム。',
+        technologies: ['Unity', 'C#', '設計パターン', 'チーム開発'],
+        color: '#06b6d4',
+        icon: '🦋',
+        status: 'ブラッシュアップ中'
+    }
+];
+
+// タイムラインデータのエクスポート
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = TIMELINE_DATA;
+}

@@ -1,0 +1,86 @@
+<!-- 以下のリンクをブラウザに貼りつけると
+ http://localhost:5500/homepage/homepage.html
+  -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホームページ</title>
+    <link rel="stylesheet" href="../CSS/homepage.css">
+</head>
+<body>
+    
+    <iframe id="game" src="../../../game/title/canvas.html"></iframe>
+
+    <!-- ゲーム紹介セクション -->
+    <section id="game_introduction">
+        <div id="wrapper">
+            <h2>game introduction</h2>
+            <div class="container">
+                <img src="../img/Split.png" alt="ゲームアイコン" class="game_img">
+                <div class="explain">
+                    <h3 class="control">●ゲーム操作方法●</h3>
+                    <p>スペースキーでジャンプ</p>
+                    <h4>黒</h4>
+                    <p>
+                        A：左に移動<br>
+                        D：右に移動<br>
+                    </p>
+                    <h4>白</h4>
+                    <p>
+                        ←：左に移動<br>
+                        →：右に移動 <br>
+                    </p><br>
+                    <p>※プレイ中でもHキーで確認できます</p>
+
+                    <h3 class="explain_gimmicks">●ギミック説明●</h3>
+                    <h4>Push Block</h4>
+                    <img src="../img/PushBlock.png " alt="Push Blockの画像" class="gimmicks_img">
+                    <p>このブロックを押すと、ブロックを移動することができる</p>
+
+                    <h4>Switch Block</h4>
+                    <img src="../img/SwitchBlock.png" alt="Switch Blockの画像" class="gimmicks_img">
+                    <p>このブロックを押すと、ほかのブロックが凹む</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- メンバーセクション -->
+    <section id="member">
+        <!-- <div class="container"> -->
+            <h2>members</h2>
+            <div class="member_info">
+                <h3>金澤　大和</h3>
+                <p>ゲームクリエーター専攻</p><br>
+
+                <h3>今多　悠人</h3>
+                <p>スーパーゲームクリエーター専攻</p><br>
+        
+                <h3>今野　楓真</h3>
+                <p>スーパーゲームクリエーター専攻</p><br>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- ユーザーの口コミ掲示板セクション -->
+    <!-- <section id="user_reviews">
+        
+        <h2>reviews</h2> -->
+
+        <button id="reviewsButton"></button>
+
+
+    <!-- </section> -->
+
+    <!-- JSファイルの読み込み -->
+
+
+     <script src="../JS/homepage.js"></script>
+
+</body>
+</html>

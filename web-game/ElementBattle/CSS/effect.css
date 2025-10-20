@@ -1,0 +1,63 @@
+/*
+ *
+ * effect.css
+ * 
+ */
+
+/* パーティクル全体のコンテナ */
+.particle-container {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    
+    /* border: 1px solid red;  */
+}
+
+/* 1つ1つのパーティクル */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: gold;  /* 初期色は金色 */
+    border-radius: 50%;
+    opacity: 1;
+    animation: particleFade 1s ease-out forwards;
+}
+
+/* パーティクルの消滅 */
+@keyframes particleFade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* 青色のパーティクルコンテナ */
+.blue-particle-container {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* 青色のパーティクル */
+.blue-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: blue;  /* 青色 */
+    border-radius: 50%;
+    opacity: 1;
+    animation: blueParticleFade 1s ease-out forwards;
+}
+
+/* パーティクルの消滅 */
+@keyframes blueParticleFade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}

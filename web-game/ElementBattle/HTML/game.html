@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element_Battle</title>
+    <link rel="stylesheet" href="../CSS/game.css">
+    <link rel="stylesheet" href="../CSS/cardColor.css">
+    <link rel="stylesheet" href="../CSS/effect.css">
+</head>
+<body>
+    <button id="home-button">ホームへ戻る</button>
+    <button id="help-button">ヘルプ：H</button>
+    <button id="restart-button">リスタート：R</button>
+
+    <main>
+        <section id="game-board" class="transparent-background">
+
+            <div id="element-status">
+                <h2>Element Point</h2>
+                <div id="player-element">あなた：<br><span id="player-points">0</span></div>
+                <div id="opponent-element">相手：<br><span id="opponent-points">0</span></div>
+            </div>
+
+            <!-- 得点の変動を表示するためのエレメント -->
+            <div id="scoreEffect" ></div>
+
+
+            <div id="opponent-hand">
+                <h2>相手の手札</h2>
+                <div id="cards"></div>
+            </div>
+
+            <div id="play-area">
+                <h2>プレイエリア</h2>
+                <div id="played-cards"></div>
+            </div>
+
+            <div id="player-hand">
+                <h2>あなたの手札</h2>
+                <div id="cards"></div>
+            </div>
+
+            <div id="actions">
+                <button id="draw-card">カードを引く</button>
+                <button id="play-card">カードを出す</button>
+            </div>
+
+            <div id="start-game">
+                <button id="start-button">Start Game!</button>
+            </div>
+
+            <!-- Jokerを出したときの選択画面 -->
+            <div id="joker-message-container">
+                <div id="joker-message" style="display: none;">
+                    <h2>どちらか選択してください！</h2>
+                </div>
+            </div>
+            <div id="joker-select-buttons" style="display: none;">
+                <button id="increase-points">5ポイント強化</button>
+                <button id="decrease-points">5ポイント減少</button>
+            </div>
+
+            <!-- Hキーを押したときの画像 -->
+             <div id="overlay">
+                <img src="../Pictures/help_background.JPG" alt="help-img">
+             </div>
+
+
+            <!-- ゲーム終了時の画面 -->
+            <div id="message-container">
+                <div id="victory-message" style="display: none;">
+                    <h2>勝利！</h2>
+                </div>
+
+                <div id="lose-message" style="display: none;">
+                    <h2>残念！</h2>
+                </div>
+            </div>
+
+            <div id="end-game-buttons" style="display: none;">
+                <button id="return-title">ホームへ戻る</button>
+                <button id="replay-game">もう一度プレイする</button>
+            </div>
+
+        </section> 
+    </main>
+
+    <!-- 
+    JSファイルの読み込み
+    ※読み込む順番次第でエラーが起きるから要注意！！！
+    -->
+
+    <script src="../JS/background.js"></script>
+    <script src="../JS/debug.js"></script>
+    <script src="../JS/cards.js"></script>
+    <!-- <script src="../JS/test.js"></script> -->
+    <script src="../JS/rule.js"></script>
+    <script src="../JS/specialCards.js"></script>
+    <script src="../JS/turnManager.js"></script>
+    <script src="../JS/inputkeys.js"></script>
+    <script src="../JS/specialRules.js"></script>
+    <script src="../JS/main.js"></script>
+
+</body>
+</html>
