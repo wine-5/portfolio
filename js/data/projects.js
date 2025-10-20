@@ -82,7 +82,7 @@ const PROJECTS_DATA = [
         title: 'Split',
         description: '初めてのチーム開発で作った2Dアクションゲーム。企画からデバッグまで全工程を経験。Git初体験作品。',
         detailedFeatures: `企画から開発、デバッグのすべてを初めて行いました。初めてGitに出会って、わちゃわちゃしていたのを思い出します。チーム開発の基礎を学び、バージョン管理の重要性を実感した貴重な経験でした。`,
-        myResponsibilities: `プログラミング全般、Git操作学習、チーム内でのタスク調整、デバッグ作業`,
+        myResponsibilities: `ステージの何度調整、デバッグ作業`,
         technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
         images: [
             'images/game/split/split-title.png',
