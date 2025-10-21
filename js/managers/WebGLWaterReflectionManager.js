@@ -57,6 +57,9 @@ class WebGLWaterReflectionManager {
             // ウィンドウリサイズ対応
             this.setupWindowResize();
             
+            // スクロール監視を設定
+            this.setupScrollObserver();
+            
         } catch (error) {
             console.warn('WebGL initialization failed, falling back to CSS version:', error);
             this.fallbackToCSS();
@@ -140,33 +143,38 @@ class WebGLWaterReflectionManager {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
-            z-index: 2;
+            z-index: 1;
             background: transparent;
         `;
         
-        const heroContent = document.querySelector('.hero__content');
-        heroContent.appendChild(canvas);
+        // ヒーローセクションに追加
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            heroSection.appendChild(canvas);
+        } else {
+            // フォールバック: ヒーローセクションが見つからない場合はbodyに追加
+            document.body.appendChild(canvas);
+        }
 
-        // hero__content要素のサイズを取得
-        const contentRect = heroContent.getBoundingClientRect();
-        const contentWidth = contentRect.width;
-        const contentHeight = contentRect.height;
+        // 画面全体のサイズを使用
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
         
-        console.log(`Hero content size: ${contentWidth} x ${contentHeight}`);
+        console.log(`Screen size: ${screenWidth} x ${screenHeight}`);
 
-        // Three.js基本設定 - hero__contentのサイズを使用
+        // Three.js基本設定 - 画面全体のサイズを使用
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(75, contentWidth / contentHeight, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(75, screenWidth / screenHeight, 0.1, 1000);
         this.renderer = new THREE.WebGLRenderer({ 
             canvas: canvas,
             alpha: true,
             antialias: true 
         });
         
-        this.renderer.setSize(contentWidth, contentHeight);
+        this.renderer.setSize(screenWidth, screenHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -177,22 +185,22 @@ class WebGLWaterReflectionManager {
     }
 
     setupSimpleWater() {
-        // 簡素化した水面（適切なサイズに調整）
-        const waterGeometry = new THREE.PlaneGeometry(15, 6, 32, 16);
+        // 大幅に拡張した水面 - 画面全体をカバー
+        const waterGeometry = new THREE.PlaneGeometry(40, 20, 64, 32);
         
-        // 簡単な水面マテリアル
+        // 美しい水面マテリアル
         const waterMaterial = new THREE.MeshPhongMaterial({
             color: 0x006994,
             transparent: true,
-            opacity: 0.6,
-            reflectivity: 0.8,
-            shininess: 100
+            opacity: 0.7,
+            reflectivity: 0.9,
+            shininess: 150
         });
 
         this.water = new THREE.Mesh(waterGeometry, waterMaterial);
         this.water.rotation.x = -Math.PI / 2;
-        this.water.position.y = -3;
-        this.water.position.z = 2;
+        this.water.position.y = -2;  // 少し上に
+        this.water.position.z = 0;   // 中央に
         this.scene.add(this.water);
         
         console.log('Simple water surface created');
@@ -256,24 +264,31 @@ class WebGLWaterReflectionManager {
             switch(letter) {
                 case 'w':
                     textGeometry = this.createLetterW();
+                    console.log(`Created letter W with ${textGeometry.children.length} parts`);
                     break;
                 case 'i':
                     textGeometry = this.createLetterI();
+                    console.log(`Created letter I with ${textGeometry.children.length} parts`);
                     break;
                 case 'n':
                     textGeometry = this.createLetterN();
+                    console.log(`Created letter N with ${textGeometry.children.length} parts`);
                     break;
                 case 'e':
                     textGeometry = this.createLetterE();
+                    console.log(`Created letter E with ${textGeometry.children.length} parts`);
                     break;
                 case '-':
                     textGeometry = this.createLetterDash();
+                    console.log(`Created letter - with ${textGeometry.children.length} parts`);
                     break;
                 case '5':
                     textGeometry = this.createLetter5();
+                    console.log(`Created letter 5 with ${textGeometry.children.length} parts`);
                     break;
                 default:
                     textGeometry = new THREE.BoxGeometry(0.3, 0.5, 0.1);
+                    console.log(`Created default geometry for ${letter}`);
             }
             
             // textGeometryは既にGroupオブジェクトなので、直接追加
@@ -291,6 +306,9 @@ class WebGLWaterReflectionManager {
             letterGroup.position.copy(centerPos);
             
             console.log(`Letter ${letter} (${index}) positioned at:`, centerPos);
+            console.log(`Letter ${letter} group children count:`, letterGroup.children.length);
+            console.log(`Letter ${letter} visible:`, letterGroup.visible);
+            console.log(`Letter ${letter} scale:`, letterGroup.scale);
             
             // 4. 初期状態は非表示（画面の左端から開始）
             letterGroup.visible = false;
@@ -311,6 +329,7 @@ class WebGLWaterReflectionManager {
             
             this.textMeshes.push(letterGroup);
             this.scene.add(letterGroup);
+            console.log(`Added letter ${letter} to scene. Scene children count:`, this.scene.children.length);
         });
         
         console.log('Trump card text system created:', this.textMeshes.length);
@@ -1077,21 +1096,19 @@ class WebGLWaterReflectionManager {
     // ウィンドウリサイズ対応
     setupWindowResize() {
         window.addEventListener('resize', () => {
-            // hero__content要素のサイズを取得
-            const heroContent = document.querySelector('.hero__content');
-            const contentRect = heroContent.getBoundingClientRect();
-            const contentWidth = contentRect.width;
-            const contentHeight = contentRect.height;
+            // 画面全体のサイズを取得
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
             
             // ウィンドウサイズを更新
-            this.windowWidth = contentWidth;
-            this.windowHeight = contentHeight;
+            this.windowWidth = screenWidth;
+            this.windowHeight = screenHeight;
             
             // レンダラーサイズを更新
-            this.renderer.setSize(contentWidth, contentHeight);
+            this.renderer.setSize(screenWidth, screenHeight);
             
             // カメラのアスペクト比を更新
-            this.camera.aspect = contentWidth / contentHeight;
+            this.camera.aspect = screenWidth / screenHeight;
             this.camera.updateProjectionMatrix();
             
             // 文字位置を再計算
@@ -1200,5 +1217,31 @@ class WebGLWaterReflectionManager {
         if (canvas) {
             canvas.remove();
         }
+    }
+
+    // スクロール監視を設定
+    setupScrollObserver() {
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const canvas = document.getElementById('webgl-water-canvas');
+                if (canvas) {
+                    if (entry.isIntersecting) {
+                        // ヒーローセクションが表示されている時はキャンバスを表示
+                        canvas.style.display = 'block';
+                    } else {
+                        // ヒーローセクションが非表示の時はキャンバスを隠す
+                        canvas.style.display = 'none';
+                    }
+                }
+            });
+        }, {
+            // 少しでもセクションが見えたら表示、完全に隠れたら非表示
+            threshold: 0.1
+        });
+
+        observer.observe(heroSection);
     }
 }
