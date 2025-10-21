@@ -1408,10 +1408,18 @@ body {
 }
 
 .updates__content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 6rem;
-    align-items: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.updates__simple {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    max-width: 500px;
+    width: 100%;
 }
 
 .updates__subtitle {
@@ -1424,10 +1432,11 @@ body {
 
 .updates__last-modified {
     background: var(--bg-card);
-    padding: 3rem;
+    padding: 3rem 4rem;
     border-radius: var(--border-radius);
     text-align: center;
     border: 2px solid var(--primary-color);
+    width: 100%;
 }
 
 .updates__date {
@@ -1438,11 +1447,33 @@ body {
     margin: 0;
 }
 
-.updates__timeline {
-    background: var(--bg-card);
+.updates__action {
+    text-align: center;
+}
+
+.updates__action .btn {
+    padding: 1.5rem 3rem;
+    font-size: 1.6rem;
+    font-weight: 600;
     border-radius: var(--border-radius);
-    padding: 3rem;
-    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.updates__action .btn--primary {
+    background: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+}
+
+.updates__action .btn--primary:hover {
+    background: transparent;
+    color: var(--primary-color);
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1rem 3rem rgba(99, 102, 241, 0.3);
 }
 
 .updates .update-item {
@@ -2589,4 +2620,13 @@ body {
     .timeline-section {
         padding: 60px 0;
     }
+}
+
+/* セクションタイトルの強制表示 */
+.section__title.no-animate,
+.section__title {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: translateY(0) !important;
 }
