@@ -216,6 +216,19 @@
         font-size: 1.8rem;
     }
 
+    /* モバイル向け文字調整 */
+    .letter {
+        font-size: 4rem !important;
+    }
+
+    .letter-reflection {
+        font-size: 4rem !important;
+    }
+
+    .hero__title-container {
+        transform: scale(0.8);
+    }
+
     .hero__description {
         font-size: 1.4rem;
         margin-bottom: 3rem;

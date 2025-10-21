@@ -505,15 +505,34 @@ body {
     display: none;
 }
 
-.letter,
-.letter.animate-in {
-    /* CSS版を無効化 - WebGL版を使用 */
-    display: none;
+.letter {
+    font-family: var(--font-primary);
+    font-size: 6rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4, #10b981);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease-in-out infinite;
+    opacity: 0;
+    transform: translateX(-300px) rotateY(-90deg) scale(0.3) translateZ(-100px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-shadow: 
+        0 5px 15px rgba(99, 102, 241, 0.4),
+        0 10px 30px rgba(139, 92, 246, 0.3);
 }
 
-/* 反射効果 - CSS版を無効化 */
+.letter.animate-in {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg) scale(1) translateZ(0px);
+}
+
+/* 反射効果 */
 .hero__title-reflection {
-    display: none;
+    opacity: 0.8;
+    transform: rotateX(180deg) translateY(10px);
+    filter: blur(1px);
 }
 
 .letter-reflection {

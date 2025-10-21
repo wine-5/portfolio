@@ -133,11 +133,31 @@ class WebGLWaterReflectionManager {
     showCSSVersion() {
         // CSS版を表示する
         const heroContent = document.querySelector('.hero__content');
+        const titleContainer = document.querySelector('.hero__title-container');
+        const titleLetters = document.querySelector('.hero__title-letters');
+        const titleReflection = document.querySelector('.hero__title-reflection');
+        
         if (heroContent) {
             heroContent.style.display = 'block';
             heroContent.style.opacity = '1';
         }
-        console.log('Showing CSS fallback version');
+        
+        if (titleContainer) {
+            titleContainer.style.display = 'block';
+            titleContainer.style.opacity = '1';
+        }
+        
+        if (titleLetters) {
+            titleLetters.style.display = 'flex';
+            titleLetters.style.opacity = '1';
+        }
+        
+        if (titleReflection) {
+            titleReflection.style.display = 'flex';
+            titleReflection.style.opacity = '0.8';
+        }
+        
+        console.log('Showing CSS fallback version with all elements visible');
     }
 
     async loadThreeJS() {
@@ -723,10 +743,20 @@ class WebGLWaterReflectionManager {
     }
 
     startAnimation() {
-        const animate = () => {
+        let lastTime = 0;
+        const targetFPS = this.isMobileDevice() ? 30 : 60; // モバイルでは30FPS
+        const frameInterval = 1000 / targetFPS;
+        
+        const animate = (currentTime) => {
             this.animationId = requestAnimationFrame(animate);
             
-            const time = performance.now() * 0.001;
+            // フレームレート制限
+            if (currentTime - lastTime < frameInterval) {
+                return;
+            }
+            lastTime = currentTime;
+            
+            const time = currentTime * 0.001;
             
             // リアルな水面アニメーション
             if (this.water && this.water.userData) {
