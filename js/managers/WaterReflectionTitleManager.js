@@ -5,7 +5,7 @@ class WaterReflectionTitleManager {
     constructor() {
         this.letters = [];
         this.reflectionLetters = [];
-        this.animationDelay = 300; // 各文字間の遅延時間(ms)
+        this.animationDelay = 400; // 各文字間の遅延時間(ms)を増加
         this.startDelay = 1000; // 開始遅延時間(ms)
     }
 

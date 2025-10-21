@@ -42,6 +42,14 @@ class SectionAnimationManager {
         sections.forEach(section => {
             // セクションにアニメーションクラスを追加
             section.classList.add('section-animate');
+            
+            // セクションタイトルは除外（常に表示）
+            const sectionTitle = section.querySelector('.section__title');
+            if (sectionTitle) {
+                sectionTitle.style.opacity = '1';
+                sectionTitle.style.transform = 'translateY(0)';
+            }
+            
             this.observer.observe(section);
         });
     }
