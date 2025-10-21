@@ -34,13 +34,15 @@ const PROJECTS_DATA = [
         images: [
             'images/game/chocho/chocho-title.png'
         ],
-        playUrl: '',
+        playUrl: '', // UnityRoom公開予定
         githubUrl: 'https://github.com/wine-5/SGC2025',
         year: '2年次',
         category: 'game',
         teamSize: '7人（現役プログラマー1人、学生プログラマー2人、現役デザイナー1人、学生デザイナー2人、学生プランナー1人）',
         period: '2日間（現在ブラッシュアップ中）',
-        note: 'SGC2025参加作品・UnityRoom公開予定'
+        note: 'SGC2025参加作品・UnityRoom公開予定',
+        locked: true,
+        lockReason: 'UnityRoom公開準備中'
     },
     {
         title: 'Git Command Helper',
@@ -88,7 +90,7 @@ const PROJECTS_DATA = [
             'images/game/split/split-title.png',
             'images/game/split/split-in-game.png'
         ],
-        playUrl: '#', // 後日ゲームファイル追加予定
+        playUrl: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ゲームに直接アクセス
         localPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ローカルゲームファイル
         webPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ウェブ公開用パス
         githubUrl: 'https://github.com/wine-5/Split',
@@ -107,7 +109,7 @@ const PROJECTS_DATA = [
             'images/game/element-battle/element-home.png',
             'images/game/element-battle/element-in-game.png'
         ],
-        playUrl: '#', // 後日ゲームファイル追加予定
+        playUrl: 'web-game/ElementBattle/index.html', // ゲームに直接アクセス
         localPath: 'web-game/ElementBattle/index.html', // ローカルゲームファイル
         webPath: 'web-game/ElementBattle/index.html', // ウェブ公開用パス
         githubUrl: 'https://github.com/wine-5/Element_Battle',

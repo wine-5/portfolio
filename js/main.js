@@ -14,7 +14,7 @@ class PortfolioApp {
         this.animationManager = new AnimationManager();
         this.gamesManager = new GamesManager();
         this.skillsManager = new SkillsManager();
-        this.timelineManager = new TimelineManager();
+        // this.timelineManager = new TimelineManager(); // タイムラインは別ページでのみ表示
         this.contactForm = new ContactForm();
         this.updatesManager = new UpdatesManager();
     }
@@ -29,7 +29,7 @@ class PortfolioApp {
         this.animationManager.init();
         this.gamesManager.init();
         this.skillsManager.init();
-        this.timelineManager.init();
+        // this.timelineManager.init(); // タイムラインは別ページでのみ表示
         this.contactForm.init();
         
         // UpdatesManagerは他の初期化完了後に実行
