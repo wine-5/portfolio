@@ -729,9 +729,16 @@ body {
 }
 
 .work-card__button {
-    flex: 1;
+    flex: 0 0 calc(50% - 0.5rem);
     padding: 1rem;
     font-size: 1.4rem;
+    text-align: center;
+}
+
+/* 非表示ボタン用のスタイル */
+.work-card__button--hidden {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* ===================================

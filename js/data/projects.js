@@ -34,13 +34,13 @@ const PROJECTS_DATA = [
         images: [
             'images/game/chocho/chocho-title.png'
         ],
-        playUrl: 'https://unityroom.com/users/wine-555',
+        playUrl: '',
         githubUrl: 'https://github.com/wine-5/SGC2025',
         year: '2年次',
         category: 'game',
         teamSize: '7人（現役プログラマー1人、学生プログラマー2人、現役デザイナー1人、学生デザイナー2人、学生プランナー1人）',
         period: '2日間（現在ブラッシュアップ中）',
-        note: 'SGC2025参加作品'
+        note: 'SGC2025参加作品・UnityRoom公開予定'
     },
     {
         title: 'Git Command Helper',
