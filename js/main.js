@@ -134,32 +134,24 @@ class PortfolioApp {
     // WebGL水面反射システムの初期化
     async initWaterReflectionSystem() {
         try {
-            // WebGL対応チェック
-            if (this.isWebGLSupported()) {
-                console.log('WebGL supported, initializing advanced water system...');
-                await this.webglWaterManager.init();
-                
-                // 3秒後に文字アニメーション開始
+            console.log('Checking WebGL support and device capabilities...');
+            
+            // WebGLマネージャー内のチェックを使用
+            await this.webglWaterManager.init();
+            
+            // WebGLが正常に初期化された場合のみアニメーション開始
+            if (this.webglWaterManager.isInitialized) {
+                console.log('WebGL initialized successfully, starting animations...');
+                // 1秒後に文字アニメーション開始
                 setTimeout(() => {
                     this.webglWaterManager.animateLettersIn();
                 }, 1000);
             } else {
-                throw new Error('WebGL not supported');
+                throw new Error('WebGL initialization failed');
             }
         } catch (error) {
             console.log('Falling back to CSS water system:', error.message);
             this.waterReflectionTitleManager.init();
-        }
-    }
-
-    // WebGL対応チェック
-    isWebGLSupported() {
-        try {
-            const canvas = document.createElement('canvas');
-            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-            return !!gl;
-        } catch (e) {
-            return false;
         }
     }
 }

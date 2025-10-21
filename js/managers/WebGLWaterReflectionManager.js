@@ -28,6 +28,18 @@ class WebGLWaterReflectionManager {
         try {
             console.log('Initializing WebGL Water Reflection System...');
             
+            // WebGLサポートチェック
+            if (!this.isWebGLSupported()) {
+                console.warn('WebGL is not supported on this device, falling back to CSS version');
+                this.showCSSVersion();
+                return;
+            }
+            
+            // モバイルデバイスチェック
+            if (this.isMobileDevice()) {
+                console.log('Mobile device detected, using optimized settings');
+            }
+            
             // Three.jsがロードされているかチェック
             if (typeof THREE === 'undefined') {
                 console.log('Loading Three.js...');
@@ -67,11 +79,72 @@ class WebGLWaterReflectionManager {
         }
     }
 
+    isWebGLSupported() {
+        try {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            
+            if (!context) {
+                console.log('WebGL context not available');
+                return false;
+            }
+            
+            // 基本的なWebGL機能をテスト
+            const renderer = context.getParameter(context.RENDERER);
+            const vendor = context.getParameter(context.VENDOR);
+            
+            console.log('WebGL Renderer:', renderer);
+            console.log('WebGL Vendor:', vendor);
+            
+            // ソフトウェアレンダリング検出
+            if (renderer && (renderer.toLowerCase().includes('software') || 
+                           renderer.toLowerCase().includes('swiftshader') ||
+                           renderer.toLowerCase().includes('microsoft basic'))) {
+                console.warn('Software rendering detected, may have performance issues');
+                return false; // ソフトウェアレンダリングでは重い処理を避ける
+            }
+            
+            return true;
+        } catch (error) {
+            console.error('WebGL support check failed:', error);
+            return false;
+        }
+    }
+
+    isMobileDevice() {
+        // より詳細なモバイルデバイス検出
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // モバイルデバイスの検出
+        const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+        
+        // タッチスクリーンの検出
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        
+        // 画面サイズによる判定
+        const isSmallScreen = window.innerWidth <= 768;
+        
+        const result = isMobile || (isTouchDevice && isSmallScreen);
+        console.log('Mobile device check - UserAgent:', isMobile, 'Touch:', isTouchDevice, 'SmallScreen:', isSmallScreen, 'Result:', result);
+        
+        return result;
+    }
+
+    showCSSVersion() {
+        // CSS版を表示する
+        const heroContent = document.querySelector('.hero__content');
+        if (heroContent) {
+            heroContent.style.display = 'block';
+            heroContent.style.opacity = '1';
+        }
+        console.log('Showing CSS fallback version');
+    }
+
     async loadThreeJS() {
         return new Promise((resolve, reject) => {
-            // Three.js本体を安定版CDNから読み込み
+            // Three.js本体を最新の安定版CDNから読み込み（警告を回避）
             const threeScript = document.createElement('script');
-            threeScript.src = 'https://unpkg.com/three@0.150.1/build/three.min.js';
+            threeScript.src = 'https://unpkg.com/three@0.158.0/build/three.min.js';
             threeScript.crossOrigin = 'anonymous';
             
             threeScript.onload = () => {
@@ -176,9 +249,19 @@ class WebGLWaterReflectionManager {
         });
         
         this.renderer.setSize(screenWidth, screenHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        
+        // モバイル最適化
+        if (this.isMobileDevice()) {
+            // モバイルではピクセル比を制限してパフォーマンスを向上
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            // シャドウマップを無効化
+            this.renderer.shadowMap.enabled = false;
+            console.log('Mobile optimizations applied');
+        } else {
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            this.renderer.shadowMap.enabled = true;
+            this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        }
         
         // カメラ位置（水面も見えるように上に配置）
         this.camera.position.set(0, 2, 6);
@@ -186,19 +269,23 @@ class WebGLWaterReflectionManager {
     }
 
     setupRealisticWater() {
-        // 画面下部を確実にカバーする巨大な水面
-        const waterGeometry = new THREE.PlaneGeometry(200, 100, 128, 64);
+        // モバイル最適化: ジオメトリの複雑さを調整
+        const isMobile = this.isMobileDevice();
+        const segments = isMobile ? [64, 32] : [128, 64]; // モバイルでは解像度を下げる
         
-        // リアルな水面マテリアル
+        // 画面下部を確実にカバーする巨大な水面
+        const waterGeometry = new THREE.PlaneGeometry(200, 100, segments[0], segments[1]);
+        
+        // リアルな水面マテリアル（モバイル最適化）
         const waterMaterial = new THREE.MeshPhongMaterial({
             color: 0x001e3c,
             transparent: true,
             opacity: 0.8,
-            reflectivity: 1.0,
-            shininess: 200,
+            reflectivity: isMobile ? 0.5 : 1.0, // モバイルでは反射を抑制
+            shininess: isMobile ? 100 : 200,     // モバイルでは光沢を抑制
             specular: 0x111111,
             // 法線マップ効果をシミュレート
-            bumpScale: 0.05
+            bumpScale: isMobile ? 0.02 : 0.05    // モバイルでは効果を抑制
         });
 
         this.water = new THREE.Mesh(waterGeometry, waterMaterial);
@@ -341,12 +428,13 @@ class WebGLWaterReflectionManager {
             this.reflectionMeshes.push(reflectionGroup);
             this.scene.add(reflectionGroup);
             
-            // 5. 初期状態は非表示（画面の左端から開始）
+            // 5. 初期状態は非表示（各文字に個別の開始位置）
             letterGroup.visible = false;
-            const startX = this.calculateStartPosition();
+            const baseStartX = this.calculateStartPosition();
+            const startX = baseStartX - (index * 2); // 各文字をずらして配置
             letterGroup.position.x = startX;
             
-            console.log(`Letter ${letter} start position: x=${startX}`);
+            console.log(`Letter ${letter} (${index}) start position: x=${startX}`);
             
             // 5. アニメーション用のプロパティを追加
             letterGroup.userData = {
@@ -705,10 +793,13 @@ class WebGLWaterReflectionManager {
 
     // トランプカード演出付きの文字アニメーション
     animateLettersIn() {
+        console.log('Starting letter animations...');
         this.textMeshes.forEach((letterGroup, index) => {
+            const delay = index * 300; // 300ms間隔で順番に開始
+            console.log(`Letter ${letterGroup.userData.letter} will start in ${delay}ms`);
             setTimeout(() => {
                 this.animateLetterWithCard(letterGroup);
-            }, index * 500); // カード演出があるので間隔を少し長めに
+            }, delay);
         });
     }
 
