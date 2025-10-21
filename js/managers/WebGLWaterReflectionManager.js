@@ -9,6 +9,7 @@ class WebGLWaterReflectionManager {
         this.renderer = null;
         this.water = null;
         this.textMeshes = [];
+        this.reflectionMeshes = []; // 独立した反射文字管理
         this.particles = [];
         this.lightRings = [];
         this.reflectionCamera = null;
@@ -35,7 +36,7 @@ class WebGLWaterReflectionManager {
             
             console.log('Setting up WebGL scene...');
             this.setupScene();
-            this.setupSimpleWater(); // 簡素化した水面
+            this.setupRealisticWater(); // リアルな水面
             this.setupLights();
             this.createTextMeshes(); // 簡素化したテキスト
             this.startAnimation();
@@ -94,14 +95,14 @@ class WebGLWaterReflectionManager {
 
     // 文字配置テスト（まず一番左に配置）
     calculateCenterPosition(index) {
-        // 手動で中央配置 - 6文字を画面中央に配置
+        // 手動で中央配置 - 6文字を画面端まで広く配置
         const positions = [
-            -3.0,  // W (0)
-            -1.8,  // I (1)
-            -0.6,  // N (2)
-             0.6,  // E (3)
-             1.8,  // - (4)
-             3.0   // 5 (5)
+            -4.5,  // W (0)
+            -2.7,  // I (1)
+            -0.9,  // N (2)
+             0.9,  // E (3)
+             2.7,  // - (4)
+             4.5   // 5 (5)
         ];
         
         // インデックスの安全性チェック
@@ -167,7 +168,7 @@ class WebGLWaterReflectionManager {
 
         // Three.js基本設定 - 画面全体のサイズを使用
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(75, screenWidth / screenHeight, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(90, screenWidth / screenHeight, 0.1, 1000);
         this.renderer = new THREE.WebGLRenderer({ 
             canvas: canvas,
             alpha: true,
@@ -179,28 +180,40 @@ class WebGLWaterReflectionManager {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         
-        // カメラ位置（動的に計算された中央位置にフォーカス）
-        this.camera.position.set(0, 1, 6);
-        this.camera.lookAt(0, 0.5, 0); // シンプルに中央を見る
+        // カメラ位置（水面も見えるように上に配置）
+        this.camera.position.set(0, 2, 6);
+        this.camera.lookAt(0, -1, 0); // 下方向を見る
     }
 
-    setupSimpleWater() {
-        // 大幅に拡張した水面 - 画面全体をカバー
-        const waterGeometry = new THREE.PlaneGeometry(40, 20, 64, 32);
+    setupRealisticWater() {
+        // 画面下部を確実にカバーする巨大な水面
+        const waterGeometry = new THREE.PlaneGeometry(200, 100, 128, 64);
         
-        // 美しい水面マテリアル
+        // リアルな水面マテリアル
         const waterMaterial = new THREE.MeshPhongMaterial({
-            color: 0x006994,
+            color: 0x001e3c,
             transparent: true,
-            opacity: 0.7,
-            reflectivity: 0.9,
-            shininess: 150
+            opacity: 0.8,
+            reflectivity: 1.0,
+            shininess: 200,
+            specular: 0x111111,
+            // 法線マップ効果をシミュレート
+            bumpScale: 0.05
         });
 
         this.water = new THREE.Mesh(waterGeometry, waterMaterial);
         this.water.rotation.x = -Math.PI / 2;
-        this.water.position.y = -2;  // 少し上に
-        this.water.position.z = 0;   // 中央に
+        this.water.position.y = -4.0;  // 適切な範囲で下に配置
+        this.water.position.z = 0;
+        this.water.receiveShadow = true;
+        
+        // 水面の動的アニメーション用プロパティ
+        this.water.userData = {
+            time: 0,
+            waveSpeed: 0.5,
+            waveHeight: 0.02
+        };
+        
         this.scene.add(this.water);
         
         console.log('Simple water surface created');
@@ -310,7 +323,25 @@ class WebGLWaterReflectionManager {
             console.log(`Letter ${letter} visible:`, letterGroup.visible);
             console.log(`Letter ${letter} scale:`, letterGroup.scale);
             
-            // 4. 初期状態は非表示（画面の左端から開始）
+            // 4. 鏡面反射を独立して作成
+            const reflectionGroup = this.createLetterReflection(textGeometry, cardFrame);
+            reflectionGroup.position.copy(centerPos);
+            reflectionGroup.position.y = -4.5; // 水面の下に配置
+            reflectionGroup.scale.y = -1; // Y軸反転
+            reflectionGroup.visible = false; // 初期状態は非表示
+            
+            // 反射文字にユーザーデータを追加
+            reflectionGroup.userData = {
+                letter: letter,
+                index: index,
+                parentLetter: letterGroup,
+                targetPosition: { x: centerPos.x, y: -4.5, z: centerPos.z }
+            };
+            
+            this.reflectionMeshes.push(reflectionGroup);
+            this.scene.add(reflectionGroup);
+            
+            // 5. 初期状態は非表示（画面の左端から開始）
             letterGroup.visible = false;
             const startX = this.calculateStartPosition();
             letterGroup.position.x = startX;
@@ -575,15 +606,58 @@ class WebGLWaterReflectionManager {
         return cardFrame;
     }
 
+    // 文字の鏡面反射を作成
+    createLetterReflection(textGeometry, cardFrame) {
+        const reflectionGroup = new THREE.Group();
+        
+        // 文字の反射をクローン
+        const letterReflection = textGeometry.clone();
+        
+        // 反射用マテリアルを作成（水中効果を追加）
+        letterReflection.traverse((child) => {
+            if (child.isMesh) {
+                const reflectionMaterial = child.material.clone();
+                reflectionMaterial.opacity = 0.6; // より見やすく
+                reflectionMaterial.transparent = true;
+                reflectionMaterial.emissiveIntensity = 0.1;
+                // 水中の青みがかった効果
+                reflectionMaterial.color.setHex(0x87CEEB); // スカイブルー系
+                reflectionMaterial.emissive.setHex(0x4682B4); // より濃い青
+                child.material = reflectionMaterial;
+            }
+        });
+        
+        reflectionGroup.add(letterReflection);
+        
+        // カードフレームは反射しない（文字のみ反射）
+        
+        return reflectionGroup;
+    }
+
     startAnimation() {
         const animate = () => {
             this.animationId = requestAnimationFrame(animate);
             
             const time = performance.now() * 0.001;
             
-            // 水面アニメーション
-            if (this.water && this.water.material.uniforms) {
-                this.water.material.uniforms.time.value = time;
+            // リアルな水面アニメーション
+            if (this.water && this.water.userData) {
+                this.water.userData.time += 0.016;
+                
+                // 水面の微細な波動効果
+                const vertices = this.water.geometry.attributes.position.array;
+                for (let i = 0; i < vertices.length; i += 3) {
+                    const x = vertices[i];
+                    const z = vertices[i + 2];
+                    
+                    // 複数の波を組み合わせた自然な水面
+                    vertices[i + 1] = 
+                        Math.sin(x * 0.5 + this.water.userData.time * 2) * 0.02 +
+                        Math.cos(z * 0.3 + this.water.userData.time * 1.5) * 0.015 +
+                        Math.sin((x + z) * 0.2 + this.water.userData.time) * 0.01;
+                }
+                this.water.geometry.attributes.position.needsUpdate = true;
+                this.water.geometry.computeVertexNormals();
             }
             
             // テキストグループの微細な浮遊アニメーション（完了後のみ）
