@@ -102,6 +102,12 @@ class GamesManager {
                             <span class="detail-label">開発期間:</span>
                             <span class="detail-value">${project.period}</span>
                         </div>
+                        ${project.supportedPlatforms ? `
+                        <div class="work-card__detail">
+                            <span class="detail-label">対応端末:</span>
+                            <span class="detail-value">${project.supportedPlatforms.join(', ')}</span>
+                        </div>
+                        ` : ''}
                     </div>
                     
                     <div class="work-card__tags">

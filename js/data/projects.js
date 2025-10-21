@@ -11,6 +11,7 @@ const PROJECTS_DATA = [
 そして設計方法を学び始めたころなので、シングルトンやObjectPoolなどを使って効率化を考えて頑張りました。`,
         myResponsibilities: `プロジェクトリーダー、基底クラス設計、シングルトンパターン実装、ObjectPoolシステム実装`,
         technologies: ['Unity', 'C#', 'シングルトン', 'ObjectPool'],
+        supportedPlatforms: ['PC', 'Mac', 'モバイル'], // 対応端末を追加
         images: [
             'images/game/takasi/takasi-home.png',
             'images/game/takasi/takasi-in-game.png'
@@ -31,6 +32,7 @@ const PROJECTS_DATA = [
 ゲーム自体は無事に完成しましたが、本来予定していたステージ数は用意できなかったりデザイナーさんが作ってくださった絵を全て使い切れなかったのも後悔しています。`,
         myResponsibilities: `基底クラス設計、プレイヤーの弾の実装、敵の挙動や攻撃パターンの実装`,
         technologies: ['Unity', 'C#'],
+        supportedPlatforms: ['PC', 'Mac', 'モバイル'], // UnityRoom対応
         images: [
             'images/game/chocho/chocho-title.png'
         ],
@@ -49,6 +51,7 @@ const PROJECTS_DATA = [
         description: 'Git学習用のコマンド専用Webサイト。実用性を重視した学習ツール。',
         detailedFeatures: `自分がコマンドの勉強をしていて、楽をするためのツールです。Gitのコマンドを効率的に学習・参照できるWebサイトとして開発しました。`,
         technologies: ['HTML', 'CSS', 'JavaScript', 'Web Design'],
+        supportedPlatforms: ['全機種対応'], // Webサイトなので全機種対応
         images: [
             'images/game/git-command/git-home1.png',
             'images/game/git-command/git-home2.png'
@@ -66,6 +69,7 @@ const PROJECTS_DATA = [
         description: 'Unity独自メソッドの学習を兼ねて開発した2Dアクションゲーム。Unity基礎固めの集大成。',
         detailedFeatures: `Unity独自のメソッドを復習しながら作ったゲームです。Unityの基本的な機能を理解し、2Dアクションゲームの開発を通してUnityでのゲーム制作の基礎を固めました。`,
         technologies: ['Unity', 'C#', '2D Physics'],
+        supportedPlatforms: ['PC', 'Mac', 'モバイル'], // UnityRoom対応予定
         images: [
             'images/game/under-over/UnderOver-title.png',
             'images/game/under-over/UnderOver-in-game.png'
@@ -86,6 +90,7 @@ const PROJECTS_DATA = [
         detailedFeatures: `企画から開発、デバッグのすべてを初めて行いました。初めてGitに出会って、わちゃわちゃしていたのを思い出します。チーム開発の基礎を学び、バージョン管理の重要性を実感した貴重な経験でした。`,
         myResponsibilities: `ステージの何度調整、デバッグ作業`,
         technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
+        supportedPlatforms: ['PCのみ'], // ローカルゲームファイル
         images: [
             'images/game/split/split-title.png',
             'images/game/split/split-in-game.png'
@@ -105,6 +110,7 @@ const PROJECTS_DATA = [
         description: '記念すべき初作品のカードゲーム。関数・変数を学習しながら開発。プログラミングの基礎を身につけた思い出の作品。',
         detailedFeatures: `自分が初めて作ったゲームです。関数、変数などを学習しながら作ったものです。プログラミングの基礎概念を実際のゲーム制作を通して学ぶことができた、非常に思い出深い作品です。`,
         technologies: ['HTML', 'CSS', 'JavaScript'],
+        supportedPlatforms: ['PCのみ'], // ローカルゲームファイル
         images: [
             'images/game/element-battle/element-home.png',
             'images/game/element-battle/element-in-game.png'
