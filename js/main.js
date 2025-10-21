@@ -151,8 +151,29 @@ class PortfolioApp {
             }
         } catch (error) {
             console.log('Falling back to CSS water system:', error.message);
+            // CSS版のタイトル要素を確実に表示
+            this.showCSSElements();
             this.waterReflectionTitleManager.init();
         }
+    }
+
+    showCSSElements() {
+        // CSS版の要素を強制的に表示
+        const elements = [
+            '.hero__content',
+            '.hero__title-container', 
+            '.hero__title-letters',
+            '.hero__title-reflection'
+        ];
+        
+        elements.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.style.display = element === '.hero__title-letters' || element === '.hero__title-reflection' ? 'flex' : 'block';
+                element.style.opacity = '1';
+                element.style.visibility = 'visible';
+            }
+        });
     }
 }
 
