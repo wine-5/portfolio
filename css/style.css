@@ -326,6 +326,117 @@ body {
     z-index: 2;
     max-width: 80rem;
     padding: 0 2rem;
+    transform-style: preserve-3d;
+    perspective: 1200px;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===================================
+   湖面・水面エフェクト
+   =================================== */
+.water-surface {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.water-svg {
+    width: 100%;
+    height: 100%;
+    animation: waterFlow 8s ease-in-out infinite;
+}
+
+.water-path {
+    filter: blur(1px);
+    animation: waterRipple 6s ease-in-out infinite;
+}
+
+@keyframes waterFlow {
+    0%, 100% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes waterRipple {
+    0%, 100% {
+        d: path("M0,150 Q300,130 600,150 T1200,150 L1200,300 L0,300 Z");
+    }
+    25% {
+        d: path("M0,150 Q300,140 600,145 T1200,155 L1200,300 L0,300 Z");
+    }
+    50% {
+        d: path("M0,150 Q300,135 600,155 T1200,145 L1200,300 L0,300 Z");
+    }
+    75% {
+        d: path("M0,150 Q300,145 600,140 T1200,150 L1200,300 L0,300 Z");
+    }
+}
+
+/* 3D空間演出用の追加要素 */
+.hero__3d-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    perspective: 1500px;
+}
+
+.hero__floating-cube {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    transform-style: preserve-3d;
+    animation: floatingCube 8s ease-in-out infinite;
+}
+
+.hero__floating-cube:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.hero__floating-cube:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: -2s;
+}
+
+.hero__floating-cube:nth-child(3) {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+@keyframes floatingCube {
+    0%, 100% {
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+    }
+    25% {
+        transform: translateY(-30px) rotateX(90deg) rotateY(45deg) translateZ(50px);
+    }
+    50% {
+        transform: translateY(-60px) rotateX(180deg) rotateY(90deg) translateZ(100px);
+    }
+    75% {
+        transform: translateY(-30px) rotateX(270deg) rotateY(135deg) translateZ(50px);
+    }
 }
 
 .hero__title {
@@ -333,24 +444,184 @@ body {
     font-size: 6rem;
     font-weight: 900;
     margin-bottom: 2rem;
-    background: var(--gradient-primary);
+    background: linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4, #10b981);
+    background-size: 400% 400%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeInUp 1s ease 0.2s both;
+    animation: heroTitleEntrance 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both,
+               gradientShift 4s ease-in-out infinite 2s;
     transform-style: preserve-3d;
-    text-shadow: 
-        0 1px 0 #6366f1,
-        0 2px 0 #5855f5,
-        0 3px 0 #4f46e5,
-        0 4px 0 #4338ca,
-        0 5px 0 #3730a3,
-        0 6px 10px rgba(99, 102, 241, 0.3);
-    transition: transform 0.3s ease;
+    perspective: 1000px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero__title::before {
+    content: 'wine-5';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #1e293b, #374151, #4b5563);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateZ(-50px) rotateX(90deg);
+    opacity: 0.3;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero__title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%) translateZ(-30px);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero__title:hover {
-    transform: rotateX(15deg) rotateY(-5deg) translateZ(20px);
+    transform: rotateX(25deg) rotateY(-15deg) translateZ(40px) scale(1.05);
+    text-shadow: 
+        0 5px 15px rgba(99, 102, 241, 0.4),
+        0 10px 30px rgba(139, 92, 246, 0.3),
+        0 20px 60px rgba(6, 182, 212, 0.2);
+}
+
+.hero__title:hover::before {
+    transform: translateZ(-80px) rotateX(45deg);
+    opacity: 0.6;
+}
+
+.hero__title:hover::after {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) translateZ(-30px) scale(1.2);
+}
+
+/* 3Dタイトル登場アニメーション */
+@keyframes heroTitleEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotateX(-90deg) translateZ(-200px);
+        filter: blur(10px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(20px) rotateX(-15deg) translateZ(-50px);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) translateZ(0px);
+        filter: blur(0px);
+    }
+}
+
+/* グラデーション移動アニメーション */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===================================
+   ヒーロータイトル文字アニメーション
+   =================================== */
+.hero__title-container {
+    position: relative;
+    margin-bottom: 3rem;
+    z-index: 10;
+}
+
+.hero__title-letters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.letter {
+    font-family: var(--font-primary);
+    font-size: 6rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4, #10b981);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease-in-out infinite;
+    opacity: 0;
+    transform: translateX(-100px) rotateY(-90deg);
+    transform-style: preserve-3d;
+    text-shadow: 
+        0 5px 15px rgba(99, 102, 241, 0.4),
+        0 10px 30px rgba(139, 92, 246, 0.3);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.letter.animate-in {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+}
+
+/* 反射効果 */
+.hero__title-reflection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scaleY(-1);
+    opacity: 0.6;
+    filter: blur(1px);
+    mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, transparent 100%);
+    -webkit-mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, transparent 100%);
+}
+
+.letter-reflection {
+    font-family: var(--font-primary);
+    font-size: 6rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4, #10b981);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease-in-out infinite, reflectionWave 3s ease-in-out infinite;
+    opacity: 0;
+    transform: translateX(-100px) rotateY(-90deg);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.letter-reflection.animate-in {
+    opacity: 0.6;
+    transform: translateX(0) rotateY(0deg);
+}
+
+@keyframes reflectionWave {
+    0%, 100% {
+        transform: translateX(0) scaleX(1);
+        filter: blur(1px);
+    }
+    50% {
+        transform: translateX(2px) scaleX(0.98);
+        filter: blur(1.5px);
+    }
 }
 
 .hero__subtitle {
@@ -358,7 +629,9 @@ body {
     font-weight: 300;
     color: var(--text-secondary);
     margin-bottom: 1rem;
-    animation: fadeInUp 1s ease 0.4s both;
+    opacity: 0;
+    transform: translateY(30px);
+    /* animation: fadeInUp 1s ease 0.4s both; */
 }
 
 .hero__description {
@@ -373,7 +646,9 @@ body {
     gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp 1s ease 0.8s both;
+    opacity: 0;
+    transform: translateY(30px);
+    /* animation: fadeInUp 1s ease 0.8s both; */
 }
 
 .hero__scroll {

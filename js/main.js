@@ -13,6 +13,8 @@ class PortfolioApp {
         this.scrollManager = new ScrollManager();
         this.animationManager = new AnimationManager();
         this.sectionAnimationManager = new SectionAnimationManager();
+        this.waterReflectionTitleManager = new WaterReflectionTitleManager();
+        this.hero3DManager = new Hero3DManager();
         this.gamesManager = new GamesManager();
         this.skillsManager = new SkillsManager();
         // this.timelineManager = new TimelineManager(); // タイムラインは別ページでのみ表示
@@ -29,6 +31,8 @@ class PortfolioApp {
         this.scrollManager.init();
         this.animationManager.init();
         this.sectionAnimationManager.init();
+        this.waterReflectionTitleManager.init();
+        this.hero3DManager.init();
         this.gamesManager.init();
         this.skillsManager.init();
         // this.timelineManager.init(); // タイムラインは別ページでのみ表示
