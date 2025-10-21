@@ -315,29 +315,236 @@ body {
     opacity: 0.1;
 }
 
-.hero__particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
+/* 古いパーティクル処理を削除 - WebGL版を使用 */
 
 .hero__content {
     text-align: center;
     z-index: 2;
     max-width: 80rem;
     padding: 0 2rem;
+    transform-style: preserve-3d;
+    perspective: 1200px;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===================================
+   水たまり・水面エフェクト
+   =================================== */
+.water-surface {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 40vh;
+    pointer-events: none;
+    overflow: hidden;
+    margin-left: -50vw;
+    left: 50%;
+}
+
+.water-svg {
+    width: 100%;
+    height: 100%;
+    animation: waterFlow 8s ease-in-out infinite;
+}
+
+.water-path {
+    filter: blur(1px);
+    animation: waterRipple 6s ease-in-out infinite;
+}
+
+@keyframes waterFlow {
+    0%, 100% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes waterRipple {
+    0%, 100% {
+        d: path("M0,150 Q300,130 600,150 T1200,150 L1200,300 L0,300 Z");
+    }
+    25% {
+        d: path("M0,150 Q300,140 600,145 T1200,155 L1200,300 L0,300 Z");
+    }
+    50% {
+        d: path("M0,150 Q300,135 600,155 T1200,145 L1200,300 L0,300 Z");
+    }
+    75% {
+        d: path("M0,150 Q300,145 600,140 T1200,150 L1200,300 L0,300 Z");
+    }
+}
+
+/* 3D空間演出用の追加要素 */
+.hero__3d-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    perspective: 1500px;
+}
+
+.hero__floating-cube {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    transform-style: preserve-3d;
+    animation: floatingCube 8s ease-in-out infinite;
+}
+
+.hero__floating-cube:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.hero__floating-cube:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: -2s;
+}
+
+.hero__floating-cube:nth-child(3) {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+@keyframes floatingCube {
+    0%, 100% {
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+    }
+    25% {
+        transform: translateY(-30px) rotateX(90deg) rotateY(45deg) translateZ(50px);
+    }
+    50% {
+        transform: translateY(-60px) rotateX(180deg) rotateY(90deg) translateZ(100px);
+    }
+    75% {
+        transform: translateY(-30px) rotateX(270deg) rotateY(135deg) translateZ(50px);
+    }
 }
 
 .hero__title {
+    /* CSS版を無効化 - WebGL版のみを使用 */
+    display: none;
+}
+
+.hero__title::before {
+    /* CSS版を無効化 - WebGL版を使用 */
+    content: '';
+    display: none;
+}
+
+.hero__title::after {
+    /* CSS版を無効化 - WebGL版を使用 */
+    display: none;
+}
+
+.hero__title:hover,
+.hero__title:hover::before,
+.hero__title:hover::after {
+    /* CSS版を無効化 - WebGL版を使用 */
+    display: none;
+}
+
+/* 3Dタイトル登場アニメーション */
+@keyframes heroTitleEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotateX(-90deg) translateZ(-200px);
+        filter: blur(10px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(20px) rotateX(-15deg) translateZ(-50px);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) translateZ(0px);
+        filter: blur(0px);
+    }
+}
+
+/* グラデーション移動アニメーション */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===================================
+   ヒーロータイトル文字アニメーション
+   =================================== */
+.hero__title-container {
+    /* CSS版を無効化 - WebGL版を使用 */
+    display: none;
+}
+
+.hero__title-letters {
+    /* CSS版を無効化 - WebGL版を使用 */
+    display: none;
+}
+
+.letter,
+.letter.animate-in {
+    /* CSS版を無効化 - WebGL版を使用 */
+    display: none;
+}
+
+/* 反射効果 - CSS版を無効化 */
+.hero__title-reflection {
+    display: none;
+}
+
+.letter-reflection {
     font-family: var(--font-primary);
     font-size: 6rem;
     font-weight: 900;
-    margin-bottom: 2rem;
-    background: var(--gradient-primary);
+    background: linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4, #10b981);
+    background-size: 400% 400%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeInUp 1s ease 0.2s both;
+    animation: gradientShift 4s ease-in-out infinite, reflectionWave 3s ease-in-out infinite;
+    opacity: 0;
+    transform: translateX(-300px) rotateY(-90deg) translateZ(-100px);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.letter-reflection.animate-in {
+    opacity: 0.6;
+    transform: translateX(0) rotateY(0deg);
+}
+
+@keyframes reflectionWave {
+    0%, 100% {
+        transform: translateX(0) scaleX(1);
+        filter: blur(1px);
+    }
+    50% {
+        transform: translateX(2px) scaleX(0.98);
+        filter: blur(1.5px);
+    }
 }
 
 .hero__subtitle {
@@ -345,7 +552,9 @@ body {
     font-weight: 300;
     color: var(--text-secondary);
     margin-bottom: 1rem;
-    animation: fadeInUp 1s ease 0.4s both;
+    opacity: 0;
+    transform: translateY(30px);
+    /* animation: fadeInUp 1s ease 0.4s both; */
 }
 
 .hero__description {
@@ -360,7 +569,9 @@ body {
     gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp 1s ease 0.8s both;
+    opacity: 0;
+    transform: translateY(30px);
+    /* animation: fadeInUp 1s ease 0.8s both; */
 }
 
 .hero__scroll {
@@ -739,6 +950,26 @@ body {
 .work-card__button--hidden {
     visibility: hidden;
     pointer-events: none;
+}
+
+/* ===================================
+   セクション出現アニメーション
+   =================================== */
+.section-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* セクションタイトルは最初から見える状態に */
+.section__title {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 /* ===================================
@@ -1177,10 +1408,18 @@ body {
 }
 
 .updates__content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 6rem;
-    align-items: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.updates__simple {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    max-width: 500px;
+    width: 100%;
 }
 
 .updates__subtitle {
@@ -1193,10 +1432,11 @@ body {
 
 .updates__last-modified {
     background: var(--bg-card);
-    padding: 3rem;
+    padding: 3rem 4rem;
     border-radius: var(--border-radius);
     text-align: center;
     border: 2px solid var(--primary-color);
+    width: 100%;
 }
 
 .updates__date {
@@ -1207,11 +1447,33 @@ body {
     margin: 0;
 }
 
-.updates__timeline {
-    background: var(--bg-card);
+.updates__action {
+    text-align: center;
+}
+
+.updates__action .btn {
+    padding: 1.5rem 3rem;
+    font-size: 1.6rem;
+    font-weight: 600;
     border-radius: var(--border-radius);
-    padding: 3rem;
-    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+}
+
+.updates__action .btn--primary {
+    background: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+}
+
+.updates__action .btn--primary:hover {
+    background: transparent;
+    color: var(--primary-color);
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1rem 3rem rgba(99, 102, 241, 0.3);
 }
 
 .updates .update-item {
@@ -2358,4 +2620,13 @@ body {
     .timeline-section {
         padding: 60px 0;
     }
+}
+
+/* セクションタイトルの強制表示 */
+.section__title.no-animate,
+.section__title {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: translateY(0) !important;
 }

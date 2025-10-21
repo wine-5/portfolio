@@ -12,6 +12,13 @@ class PortfolioApp {
         // 各マネージャーの初期化
         this.scrollManager = new ScrollManager();
         this.animationManager = new AnimationManager();
+        this.sectionAnimationManager = new SectionAnimationManager();
+        
+        // WebGL水面反射システム（フォールバック付き）
+        this.webglWaterManager = new WebGLWaterReflectionManager();
+        this.waterReflectionTitleManager = new WaterReflectionTitleManager();
+        
+        this.hero3DManager = new Hero3DManager();
         this.gamesManager = new GamesManager();
         this.skillsManager = new SkillsManager();
         // this.timelineManager = new TimelineManager(); // タイムラインは別ページでのみ表示
@@ -27,6 +34,12 @@ class PortfolioApp {
         console.log('Starting manager initialization...');
         this.scrollManager.init();
         this.animationManager.init();
+        this.sectionAnimationManager.init();
+        
+        // WebGL対応チェック後、適切なマネージャーを初期化
+        this.initWaterReflectionSystem();
+        
+        this.hero3DManager.init();
         this.gamesManager.init();
         this.skillsManager.init();
         // this.timelineManager.init(); // タイムラインは別ページでのみ表示
@@ -116,6 +129,38 @@ class PortfolioApp {
                 }, 300);
             }
         }, 1000);
+    }
+
+    // WebGL水面反射システムの初期化
+    async initWaterReflectionSystem() {
+        try {
+            // WebGL対応チェック
+            if (this.isWebGLSupported()) {
+                console.log('WebGL supported, initializing advanced water system...');
+                await this.webglWaterManager.init();
+                
+                // 3秒後に文字アニメーション開始
+                setTimeout(() => {
+                    this.webglWaterManager.animateLettersIn();
+                }, 1000);
+            } else {
+                throw new Error('WebGL not supported');
+            }
+        } catch (error) {
+            console.log('Falling back to CSS water system:', error.message);
+            this.waterReflectionTitleManager.init();
+        }
+    }
+
+    // WebGL対応チェック
+    isWebGLSupported() {
+        try {
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            return !!gl;
+        } catch (e) {
+            return false;
+        }
     }
 }
 

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update History - wine-5 Portfolio</title>
+    <meta name="description" content="wine-5のポートフォリオサイトの更新履歴を確認できます。">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/history.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <nav class="header__nav">
+            <div class="header__logo">
+                <h1 class="header__title">
+                    <a href="../index.html" class="header__title-link">wine-5</a>
+                </h1>
+            </div>
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    <a href="../index.html#home" class="header__nav-link">Home</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../index.html#games" class="header__nav-link">Games</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../index.html#skills" class="header__nav-link">Skills</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../index.html#about" class="header__nav-link">About</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../index.html#connect" class="header__nav-link">Contact</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="timeline.html" class="header__nav-link">Timeline</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../index.html#updates" class="header__nav-link">Updates</a>
+                </li>
+            </ul>
+            <div class="header__hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- History Hero Section -->
+        <section class="history-hero">
+            <div class="container">
+                <div class="history-hero__content">
+                    <h1 class="history-hero__title">Update History</h1>
+                    <p class="history-hero__subtitle">wine-5 ポートフォリオサイトの更新履歴</p>
+                    <a href="../index.html" class="btn btn--primary">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Timeline Section -->
+        <section class="history-timeline">
+            <div class="container">
+                <div class="history-timeline__content" id="history-timeline">
+                    <!-- 更新履歴はJavaScriptで動的生成 -->
+                    <div class="loading-message">Loading history...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__main">
+                    <div class="footer__brand">
+                        <h3 class="footer__title">wine-5</h3>
+                        <p class="footer__description">Game Developer</p>
+                    </div>
+                    <div class="footer__links">
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">ナビゲーション</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="../index.html#home" class="footer__link">Home</a></li>
+                                <li><a href="../index.html#games" class="footer__link">Games</a></li>
+                                <li><a href="../index.html#skills" class="footer__link">Skills</a></li>
+                                <li><a href="../index.html#about" class="footer__link">About</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">ソーシャル</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="https://github.com/wine-5" target="_blank" class="footer__link">GitHub</a>
+                                </li>
+                                <li><a href="https://x.com/wine_program" target="_blank" class="footer__link">X
+                                        (Twitter)</a></li>
+                                <li><a href="https://unityroom.com/users/wine-555" target="_blank"
+                                        class="footer__link">UnityRoom</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer__bottom">
+                    <p class="footer__text">&copy; 2025 wine-5. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../js/data/updates.js"></script>
+    <script src="../js/managers/HistoryManager.js"></script>
+    <script>
+        // Initialize managers (without animations)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Starting history page initialization...');
+            console.log('UPDATES_DATA available:', typeof UPDATES_DATA !== 'undefined');
+            console.log('History timeline element:', document.getElementById('history-timeline'));
+
+            // History page functionality
+            try {
+                const historyManager = new HistoryManager();
+                historyManager.init();
+            } catch (error) {
+                console.error('Failed to initialize HistoryManager:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>

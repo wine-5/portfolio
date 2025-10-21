@@ -3,7 +3,8 @@
    =================================== */
 class UpdatesManager {
     constructor() {
-        this.timelineContainer = document.getElementById('updates-timeline');
+        // 簡素化されたレイアウトでは更新履歴は表示しません
+        this.timelineContainer = null;
         this.lastUpdatedElement = document.getElementById('last-updated-date');
         
         // データの安全な取得
@@ -36,34 +37,17 @@ class UpdatesManager {
     }
 
     init() {
-        console.log('UpdatesManager init called');
-        console.log('Timeline container:', this.timelineContainer);
+        console.log('UpdatesManager init called (simplified version)');
         console.log('Last updated element:', this.lastUpdatedElement);
         console.log('Updates data:', this.updates);
-        
-        // DOM要素を再取得してみる
-        if (!this.timelineContainer) {
-            console.warn('Timeline container not found, retrying...');
-            this.timelineContainer = document.getElementById('updates-timeline');
-            console.log('Retry result:', this.timelineContainer);
-        }
-        
-        if (!this.timelineContainer) {
-            console.error('Updates timeline container not found even after retry');
-            // デバッグ用: 利用可能な要素を確認
-            console.log('Available elements with "updates" in ID:', 
-                Array.from(document.querySelectorAll('[id*="updates"]')).map(el => el.id));
-            return;
-        }
         
         if (!this.updates || this.updates.length === 0) {
             console.error('Updates data is empty');
             return;
         }
         
-        console.log('Starting update rendering...');
+        console.log('Updating last modified date...');
         this.updateLastModifiedDate();
-        this.renderUpdateHistory();
         
         console.log('UpdatesManager initialization completed');
         this.isInitialized = true;

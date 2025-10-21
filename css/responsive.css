@@ -116,17 +116,18 @@
         padding: 8rem 0;
     }
 
-    .updates__content {
-        grid-template-columns: 1fr;
-        gap: 4rem;
+    .updates__simple {
+        gap: 3rem;
+        max-width: 400px;
     }
 
     .updates__last-modified {
-        padding: 2.5rem;
+        padding: 2.5rem 3rem;
     }
 
-    .updates__timeline {
-        padding: 2.5rem;
+    .updates__action .btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.4rem;
     }
 
     .update-item {
@@ -533,5 +534,25 @@
     .form__textarea:focus {
         outline: 2px solid var(--primary-color);
         outline-offset: 2px;
+    }
+}
+
+/* Updates Header Responsive */
+@media (max-width: 768px) {
+    .updates__header {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+    
+    .updates__subtitle {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .updates__header {
+        align-items: center;
+        text-align: center;
     }
 }
