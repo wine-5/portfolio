@@ -85,7 +85,7 @@ const PROJECTS_DATA = [
         lockReason: 'UnityRoom公開準備中'
     },
     {
-        title: 'Split',
+        title: 'SPLIT',
         description: '初めてのチーム開発で作った2Dアクションゲーム。企画からデバッグまで全工程を経験。Git初体験作品。',
         detailedFeatures: `企画から開発、デバッグのすべてを初めて行いました。初めてGitに出会って、わちゃわちゃしていたのを思い出します。チーム開発の基礎を学び、バージョン管理の重要性を実感した貴重な経験でした。`,
         myResponsibilities: `ステージの何度調整、デバッグ作業`,
@@ -98,7 +98,7 @@ const PROJECTS_DATA = [
         playUrl: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ゲームに直接アクセス
         localPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ローカルゲームファイル
         webPath: 'web-game/Split/homepage/homepage/HTML/homepage.html', // ウェブ公開用パス
-        githubUrl: 'https://github.com/wine-5/Split',
+        githubUrl: 'https://github.com/wine-5/SPLIT',
         year: '1年次',
         category: 'web-game',
         teamSize: '3人（プログラマー3人）',
