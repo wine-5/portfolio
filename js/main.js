@@ -22,6 +22,7 @@ class PortfolioApp {
         // this.timelineManager = new TimelineManager(); // タイムラインは別ページでのみ表示
         this.contactForm = new ContactForm();
         this.updatesManager = new UpdatesManager();
+        this.footerAnimationManager = new FooterAnimationManager();
     }
 
     init() {
@@ -46,6 +47,9 @@ class PortfolioApp {
             console.log('Initializing UpdatesManager...');
             this.updatesManager.init();
         }, 100);
+        
+        // フッターアニメーションを初期化
+        this.footerAnimationManager.init();
     }
 
     setupEventListeners() {

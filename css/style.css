@@ -1154,6 +1154,17 @@ body {
     border-radius: var(--border-radius);
     transition: all var(--transition-normal);
     border-left: 4px solid var(--primary-color);
+    
+    /* 初期状態 - アニメーション前 */
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+}
+
+/* アニメーション適用後 */
+.skill.skill-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .skill:hover {
@@ -1732,18 +1743,6 @@ body {
 /* ===================================
    軽微なカードフリップアニメーション
    =================================== */
-.card-flip {
-    opacity: 0;
-    transform: rotateY(-30deg) translateY(20px) scale(0.95);
-    transition: all 0.5s ease-out;
-}
-
-.card-flip.flip-visible {
-    opacity: 1;
-    transform: rotateY(0deg) translateY(0) scale(1);
-}
-
-/* シンプルなホバー効果 */
 .work-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1754,14 +1753,6 @@ body {
         0 15px 30px rgba(0, 0, 0, 0.3),
         0 0 15px rgba(99, 102, 241, 0.1);
 }
-
-/* シンプルな段階的遅延 */
-.card-flip:nth-child(1) { transition-delay: 0.0s; }
-.card-flip:nth-child(2) { transition-delay: 0.1s; }
-.card-flip:nth-child(3) { transition-delay: 0.2s; }
-.card-flip:nth-child(4) { transition-delay: 0.3s; }
-.card-flip:nth-child(5) { transition-delay: 0.4s; }
-.card-flip:nth-child(6) { transition-delay: 0.5s; }
 
 /* ===================================
    タイムラインページ専用スタイル
@@ -2070,11 +2061,21 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
+    
+    /* 初期状態 - アニメーション前 */
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .footer__link i {
     font-size: 1.4rem;
     transition: transform 0.3s ease;
+}
+
+/* アニメーション適用後 */
+.footer__link.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .footer__link:hover {
@@ -2083,7 +2084,35 @@ body {
 }
 
 .footer__link:hover i {
-    transform: scale(1.2);
+    transform: scale(1.2) translateY(-3px);
+    animation: float 1s ease-in-out infinite;
+}
+
+/* SNSリンクのパルス効果 */
+.footer__section:last-child .footer__link.animate-in i {
+    animation: pulse-icon 2s ease-in-out infinite;
+}
+
+/* アイコンが浮き上がるアニメーション */
+@keyframes float {
+    0%, 100% {
+        transform: scale(1.2) translateY(-3px);
+    }
+    50% {
+        transform: scale(1.2) translateY(-8px);
+    }
+}
+
+/* パルスアニメーション */
+@keyframes pulse-icon {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
 }
 
 .footer__bottom {
