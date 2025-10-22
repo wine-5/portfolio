@@ -73,11 +73,19 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 6rem;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4, #10b981);
+    background-size: 300% 300%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
+    animation: gradientFlow 8s ease infinite;
+}
+
+/* グラデーション流れるアニメーション */
+@keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .section__title::after {
@@ -88,8 +96,21 @@ body {
     transform: translateX(-50%);
     width: 6rem;
     height: 0.3rem;
-    background: var(--gradient-primary);
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
     border-radius: 2rem;
+    animation: lineGlow 2s ease-in-out infinite;
+}
+
+/* ライン輝きアニメーション */
+@keyframes lineGlow {
+    0%, 100% { 
+        opacity: 0.5;
+        width: 6rem;
+    }
+    50% { 
+        opacity: 1;
+        width: 10rem;
+    }
 }
 
 /* ボタンスタイル */
@@ -165,7 +186,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-primary);
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,24 +204,64 @@ body {
 }
 
 .loading__spinner {
-    width: 6rem;
-    height: 6rem;
-    border: 0.4rem solid var(--bg-secondary);
-    border-top: 0.4rem solid var(--primary-color);
+    width: 8rem;
+    height: 8rem;
+    position: relative;
+    margin: 0 auto 3rem;
+}
+
+/* 3つの回転するリング */
+.loading__spinner::before,
+.loading__spinner::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 2rem;
+    border: 0.3rem solid transparent;
+}
+
+.loading__spinner::before {
+    border-top-color: var(--primary-color);
+    border-right-color: var(--primary-color);
+    animation: spinRing 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+.loading__spinner::after {
+    border-bottom-color: var(--accent-color);
+    border-left-color: var(--accent-color);
+    animation: spinRing 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite reverse;
 }
 
 .loading__text {
     font-family: var(--font-primary);
-    font-size: 1.8rem;
-    color: var(--text-secondary);
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 3s ease infinite, pulse 2s ease-in-out infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes spinRing {
+    0% { 
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: rotate(360deg) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
 }
 
 /* ===================================
@@ -1669,6 +1730,40 @@ body {
 }
 
 /* ===================================
+   軽微なカードフリップアニメーション
+   =================================== */
+.card-flip {
+    opacity: 0;
+    transform: rotateY(-30deg) translateY(20px) scale(0.95);
+    transition: all 0.5s ease-out;
+}
+
+.card-flip.flip-visible {
+    opacity: 1;
+    transform: rotateY(0deg) translateY(0) scale(1);
+}
+
+/* シンプルなホバー効果 */
+.work-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(99, 102, 241, 0.1);
+}
+
+/* シンプルな段階的遅延 */
+.card-flip:nth-child(1) { transition-delay: 0.0s; }
+.card-flip:nth-child(2) { transition-delay: 0.1s; }
+.card-flip:nth-child(3) { transition-delay: 0.2s; }
+.card-flip:nth-child(4) { transition-delay: 0.3s; }
+.card-flip:nth-child(5) { transition-delay: 0.4s; }
+.card-flip:nth-child(6) { transition-delay: 0.5s; }
+
+/* ===================================
    タイムラインページ専用スタイル
    =================================== */
 
@@ -1971,11 +2066,24 @@ body {
 .footer__link {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.footer__link i {
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
 }
 
 .footer__link:hover {
-    color: white;
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.footer__link:hover i {
+    transform: scale(1.2);
 }
 
 .footer__bottom {

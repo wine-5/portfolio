@@ -10,6 +10,7 @@ class GamesManager {
     init() {
         this.renderGames();
         this.setupImageSliders(); // スライダーイベント設定
+        this.setupScrollTriggeredAnimations(); // スクロール連動アニメーション
     }
 
     renderGames() {
@@ -20,8 +21,8 @@ class GamesManager {
         ).join('');
         this.worksGrid.innerHTML = projectsHtml;
         
-        // レンダリング後にアニメーション用のクラスを追加
-        this.setupGameAnimations();
+        // レンダリング後にアニメーション用のクラスを追加（スクロール連動の場合は不要）
+        // this.setupGameAnimations();
     }
     
     setupGameAnimations() {
@@ -29,12 +30,53 @@ class GamesManager {
         setTimeout(() => {
             const workCards = this.worksGrid.querySelectorAll('.work-card');
             workCards.forEach((card, index) => {
-                // 各カードに遅延を設定してアニメーション
+                // カードフリップアニメーション用のクラスを追加
+                card.classList.add('card-flip');
+                
+                // 各カードに遅延を設定してフリップアニメーション
                 setTimeout(() => {
-                    card.classList.add('fade-in', 'visible');
-                }, index * 150); // 150ms間隔でアニメーション
+                    card.classList.add('flip-visible');
+                    
+                    // カードフリップ完了後にキラキラエフェクトを追加
+                    setTimeout(() => {
+                        card.classList.add('sparkle-complete');
+                    }, 800); // フリップアニメーション完了後
+                    
+                }, index * 200); // 200ms間隔でアニメーション
             });
-        }, 50);
+        }, 100);
+    }
+
+    setupScrollTriggeredAnimations() {
+        // シンプルなスクロール連動アニメーション
+        const observerOptions = {
+            threshold: 0.2, // 20%見えたらトリガー
+            rootMargin: '0px 0px -20px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    
+                    // シンプルなフリップアニメーション
+                    card.classList.add('card-flip');
+                    
+                    setTimeout(() => {
+                        card.classList.add('flip-visible');
+                    }, 50);
+                    
+                    // 一度アニメーションしたら監視を停止
+                    observer.unobserve(card);
+                }
+            });
+        }, observerOptions);
+
+        // 各カードを監視対象に追加
+        const workCards = this.worksGrid.querySelectorAll('.work-card');
+        workCards.forEach(card => {
+            observer.observe(card);
+        });
     }
 
     createGameCard(project) {
