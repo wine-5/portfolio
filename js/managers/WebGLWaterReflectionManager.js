@@ -188,8 +188,25 @@ class WebGLWaterReflectionManager {
 
     // 文字配置テスト（まず一番左に配置）
     calculateCenterPosition(index) {
-        // 手動で中央配置 - 6文字を画面端まで広く配置
-        const positions = [
+        // モバイル対応: 画面サイズに応じて位置を調整
+        const screenWidth = window.innerWidth;
+        const isMobile = this.isMobileDevice();
+        
+        // 画面サイズに応じて文字間隔を調整
+        let positionScale = 1.0;
+        
+        if (screenWidth <= 360) {
+            positionScale = 0.4;
+        } else if (screenWidth <= 480) {
+            positionScale = 0.55;
+        } else if (screenWidth <= 768) {
+            positionScale = 0.7;
+        } else if (isMobile) {
+            positionScale = 0.8;
+        }
+        
+        // 基本位置を画面サイズに合わせてスケール
+        const basePositions = [
             -4.5,  // W (0)
             -2.7,  // I (1)
             -0.9,  // N (2)
@@ -199,13 +216,13 @@ class WebGLWaterReflectionManager {
         ];
         
         // インデックスの安全性チェック
-        if (!Number.isInteger(index) || index < 0 || index >= positions.length) {
+        if (!Number.isInteger(index) || index < 0 || index >= basePositions.length) {
             console.warn(`Invalid index ${index}, returning center position`);
             return { x: 0, y: 0.5, z: 0 };
         }
         
-        const x = positions[index];
-        console.log(`Letter ${index}: MANUAL CENTER position x=${x}`);
+        const x = basePositions[index] * positionScale;
+        console.log(`Letter ${index}: RESPONSIVE position x=${x} (scale=${positionScale}, screen=${screenWidth}px)`);
         
         return {
             x: x,
@@ -845,7 +862,22 @@ class WebGLWaterReflectionManager {
         // 初期位置設定（左の遠く）
         letterGroup.position.set(-20, 0.5, -2);
         letterGroup.rotation.set(0, -Math.PI / 4, 0); // 少し回転した状態で飛び込む
-        letterGroup.scale.set(0.3, 0.3, 0.3);
+        // モバイル対応: 初期スケールも画面サイズに応じて調整
+        const screenWidth = window.innerWidth;
+        const isMobile = this.isMobileDevice();
+        
+        let initialScale = 0.3;
+        if (screenWidth <= 360) {
+            initialScale = 0.15;
+        } else if (screenWidth <= 480) {
+            initialScale = 0.2;
+        } else if (screenWidth <= 768) {
+            initialScale = 0.25;
+        } else if (isMobile) {
+            initialScale = 0.28;
+        }
+        
+        letterGroup.scale.set(initialScale, initialScale, initialScale);
         
         // 飛び込みアニメーション
         this.animateCardFlyIn(letterGroup);
@@ -862,7 +894,20 @@ class WebGLWaterReflectionManager {
         
         const targetPos = userData.targetPosition; // 動的に計算された位置を使用
         const targetRot = { y: 0 };
-        const targetScale = 1.0;
+        // モバイル対応: 最終スケールも調整
+        const screenWidth = window.innerWidth;
+        const isMobile = this.isMobileDevice();
+        
+        let targetScale = 1.0;
+        if (screenWidth <= 360) {
+            targetScale = 0.5;
+        } else if (screenWidth <= 480) {
+            targetScale = 0.65;
+        } else if (screenWidth <= 768) {
+            targetScale = 0.8;
+        } else if (isMobile) {
+            targetScale = 0.9;
+        }
         
         const flyAnimate = () => {
             const elapsed = performance.now() - startTime;
@@ -1306,8 +1351,8 @@ class WebGLWaterReflectionManager {
             this.camera.aspect = screenWidth / screenHeight;
             this.camera.updateProjectionMatrix();
             
-            // 文字位置を再計算
-            this.updateLetterPositions();
+            // 文字位置とスケールを再計算
+            this.updateLetterPositionsAndScale();
         });
     }
 
@@ -1324,6 +1369,49 @@ class WebGLWaterReflectionManager {
         });
         
         // カメラの向きも更新 - 画面中央を見る
+        this.camera.lookAt(0, 0.5, 0);
+    }
+
+    updateLetterPositionsAndScale() {
+        const screenWidth = window.innerWidth;
+        const isMobile = this.isMobileDevice();
+        
+        // スケール計算
+        let targetScale = 1.0;
+        if (screenWidth <= 360) {
+            targetScale = 0.5;
+        } else if (screenWidth <= 480) {
+            targetScale = 0.65;
+        } else if (screenWidth <= 768) {
+            targetScale = 0.8;
+        } else if (isMobile) {
+            targetScale = 0.9;
+        }
+        
+        console.log(`Updating letter scale for screen ${screenWidth}px: ${targetScale}`);
+        
+        this.textMeshes.forEach((letterGroup, index) => {
+            // 位置を更新
+            const newPos = this.calculateCenterPosition(index);
+            
+            if (letterGroup.userData.animationState === 'completed') {
+                letterGroup.userData.targetPosition = newPos;
+                this.animateToNewPosition(letterGroup, newPos);
+                
+                // スケールを更新
+                letterGroup.scale.set(targetScale, targetScale, targetScale);
+                
+                // 反射文字も更新
+                const reflectionGroup = letterGroup.userData.reflectionGroup;
+                if (reflectionGroup) {
+                    reflectionGroup.position.copy(newPos);
+                    reflectionGroup.position.y = -4.5;
+                    reflectionGroup.scale.set(targetScale, -targetScale, targetScale);
+                }
+            }
+        });
+        
+        // カメラの向きも更新
         this.camera.lookAt(0, 0.5, 0);
     }
 

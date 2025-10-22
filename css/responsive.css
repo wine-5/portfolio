@@ -412,10 +412,15 @@
 
     .hero__title-container {
         padding: 0 0.5rem;
+        max-width: 100vw;
+        overflow: hidden;
     }
 
     .hero__title-letters {
         gap: clamp(0.1rem, 0.5vw, 0.3rem) !important;
+        max-width: 100%;
+        flex-wrap: nowrap;
+        justify-content: center;
     }
 
     .hero__content {
@@ -424,6 +429,48 @@
 
     .container {
         padding: 0 0.5rem;
+    }
+}
+
+/* ===================================
+   極小画面 (320px以下) - 最小スマートフォン対応
+   =================================== */
+@media screen and (max-width: 320px) {
+    /* 極極小画面での緊急調整 */
+    .letter {
+        font-size: clamp(2rem, 12vw, 3rem) !important;
+        letter-spacing: clamp(-0.4rem, -1vw, -0.2rem) !important;
+        transform: scaleX(0.8) !important; /* 横幅をさらに圧縮 */
+    }
+
+    .letter-reflection {
+        font-size: clamp(2rem, 12vw, 3rem) !important;
+        letter-spacing: clamp(-0.4rem, -1vw, -0.2rem) !important;
+        transform: scaleY(-1) scaleX(0.8) !important; /* 反転+横幅圧縮 */
+    }
+
+    .hero__title-container {
+        padding: 0 0.25rem;
+        transform: scale(0.9); /* コンテナ全体をわずかに縮小 */
+    }
+
+    .hero__title-letters {
+        gap: clamp(0.05rem, 0.3vw, 0.2rem) !important;
+        letter-spacing: -0.1rem;
+    }
+
+    /* WebGL Canvas のサイズ制限 */
+    #webgl-container {
+        transform: scale(0.85);
+        transform-origin: center center;
+    }
+
+    .hero__content {
+        padding: 0 0.25rem;
+    }
+
+    .container {
+        padding: 0 0.25rem;
     }
 }
 
