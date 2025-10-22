@@ -22,6 +22,12 @@ class WebGLWaterReflectionManager {
         this.windowHeight = window.innerHeight;
         this.letterSpacing = 1.2; // 間隔を広げる
         this.totalLetters = 6;
+        
+        // 定期波紋効果の管理
+        this.ambientRipples = [];
+        this.lastRippleTime = 0;
+        this.rippleInterval = 3000; // 3秒ごとに波紋
+        this.allAnimationsCompleted = false;
     }
 
     async init() {
@@ -810,6 +816,11 @@ class WebGLWaterReflectionManager {
             // 光の輪のアニメーション
             this.updateLightRings(time);
             
+            // 定期的な波紋効果（全アニメーション完了後）
+            if (this.allAnimationsCompleted) {
+                this.updateAmbientRipples(currentTime);
+            }
+            
             this.render();
         };
         
@@ -1003,6 +1014,9 @@ class WebGLWaterReflectionManager {
                 this.createParticleEffect(letterGroup.position);
                 
                 console.log(`Card disappeared for letter: ${userData.letter}`);
+                
+                // 全てのアニメーションが完了したかチェック
+                this.checkAllAnimationsCompleted();
             }
         };
         
@@ -1415,6 +1429,25 @@ class WebGLWaterReflectionManager {
         this.camera.lookAt(0, 0.5, 0);
     }
 
+    // 全アニメーション完了チェック
+    checkAllAnimationsCompleted() {
+        const allCompleted = this.textMeshes.every(letterGroup => 
+            letterGroup.userData.animationState === 'completed'
+        );
+        
+        if (allCompleted && !this.allAnimationsCompleted) {
+            this.allAnimationsCompleted = true;
+            console.log('All animations completed! Starting ambient ripple effects...');
+            this.startAmbientRipples();
+        }
+    }
+
+    // 定期的な波紋効果を開始
+    startAmbientRipples() {
+        this.lastRippleTime = performance.now();
+        console.log('Ambient ripple effects started');
+    }
+
     // 新しい位置へのアニメーション
     animateToNewPosition(letterGroup, targetPos) {
         const duration = 500;
@@ -1486,11 +1519,96 @@ class WebGLWaterReflectionManager {
 
 
 
+    // 定期波紋効果の更新
+    updateAmbientRipples(currentTime) {
+        // 定期的に新しい波紋を作成
+        if (currentTime - this.lastRippleTime > this.rippleInterval) {
+            this.createAmbientRipple();
+            this.lastRippleTime = currentTime;
+            
+            // 次の波紋までの間隔をランダムに調整（2-4秒）
+            this.rippleInterval = 2000 + Math.random() * 2000;
+        }
+        
+        // 既存の波紋をアニメーション
+        this.ambientRipples = this.ambientRipples.filter(ripple => {
+            const age = currentTime - ripple.startTime;
+            const duration = ripple.duration;
+            const progress = Math.min(age / duration, 1);
+            
+            if (progress >= 1) {
+                // 波紋を削除
+                this.scene.remove(ripple.mesh);
+                return false;
+            }
+            
+            // 波紋をアニメーション
+            const scale = progress * ripple.maxRadius;
+            const opacity = 1 - progress;
+            
+            ripple.mesh.scale.set(scale, scale, scale);
+            ripple.mesh.material.opacity = opacity * 0.6;
+            
+            return true;
+        });
+    }
+
+    // 環境波紋を作成
+    createAmbientRipple() {
+        // ランダムな文字の位置を選択
+        const randomIndex = Math.floor(Math.random() * this.textMeshes.length);
+        const letterGroup = this.textMeshes[randomIndex];
+        
+        if (!letterGroup || letterGroup.userData.animationState !== 'completed') {
+            return;
+        }
+        
+        const position = letterGroup.position.clone();
+        
+        // 位置に少しランダム性を加える
+        position.x += (Math.random() - 0.5) * 2;
+        position.z += (Math.random() - 0.5) * 2;
+        
+        // 波紋エフェクトを作成
+        const rippleGeometry = new THREE.RingGeometry(0.1, 0.15, 32);
+        const rippleMaterial = new THREE.MeshBasicMaterial({
+            color: 0x87CEEB,
+            transparent: true,
+            opacity: 0.6,
+            side: THREE.DoubleSide
+        });
+        
+        const rippleMesh = new THREE.Mesh(rippleGeometry, rippleMaterial);
+        rippleMesh.position.copy(position);
+        rippleMesh.position.y = -4.3; // 水面レベル
+        rippleMesh.rotation.x = -Math.PI / 2; // 水平に配置
+        
+        this.scene.add(rippleMesh);
+        
+        // 波紋データを記録
+        const rippleData = {
+            mesh: rippleMesh,
+            startTime: performance.now(),
+            duration: 2000 + Math.random() * 1000, // 2-3秒
+            maxRadius: 3 + Math.random() * 2 // 3-5の範囲
+        };
+        
+        this.ambientRipples.push(rippleData);
+        
+        console.log(`Created ambient ripple at position: ${position.x.toFixed(2)}, ${position.z.toFixed(2)}`);
+    }
+
     // クリーンアップ
     destroy() {
         if (this.animationId) {
             cancelAnimationFrame(this.animationId);
         }
+        
+        // 波紋効果もクリーンアップ
+        this.ambientRipples.forEach(ripple => {
+            this.scene.remove(ripple.mesh);
+        });
+        this.ambientRipples = [];
         
         if (this.renderer) {
             this.renderer.dispose();
