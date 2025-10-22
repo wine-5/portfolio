@@ -17,8 +17,6 @@ class PortfolioApp {
         // WebGL水面反射システム（フォールバック付き）
         this.webglWaterManager = new WebGLWaterReflectionManager();
         this.waterReflectionTitleManager = new WaterReflectionTitleManager();
-        
-        this.hero3DManager = new Hero3DManager();
         this.gamesManager = new GamesManager();
         this.skillsManager = new SkillsManager();
         // this.timelineManager = new TimelineManager(); // タイムラインは別ページでのみ表示
@@ -38,8 +36,6 @@ class PortfolioApp {
         
         // WebGL対応チェック後、適切なマネージャーを初期化
         this.initWaterReflectionSystem();
-        
-        this.hero3DManager.init();
         this.gamesManager.init();
         this.skillsManager.init();
         // this.timelineManager.init(); // タイムラインは別ページでのみ表示
