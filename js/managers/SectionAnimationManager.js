@@ -48,6 +48,9 @@ class SectionAnimationManager {
                         
                         // セクション内のタイトルアニメーションも実行
                         this.animateSectionTitle(entry.target);
+                        
+                        // 背景テキストのアニメーション
+                        this.animateBgText(entry.target);
                     }
                 });
             },
@@ -118,6 +121,16 @@ class SectionAnimationManager {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
         }, 100);
+    }
+
+    animateBgText(section) {
+        const bgText = section.querySelector('.section__bg-text');
+        if (bgText) {
+            // 少し遅延させて背景テキストをアニメーション
+            setTimeout(() => {
+                bgText.classList.add('visible');
+            }, 300); // セクションのフェードインより少し遅れて登場
+        }
     }
 
     destroy() {

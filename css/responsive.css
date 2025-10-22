@@ -17,6 +17,16 @@
         padding: 0 1.5rem;
     }
 
+    /* 背景テキスト - タブレット調整 */
+    .section__bg-text {
+        font-size: clamp(6rem, 15vw, 12rem);
+        transform: translate(-50%, -50%) rotate(-15deg) scale(0.8);
+    }
+    
+    .section__bg-text.visible {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+    }
+
     /* ヘッダー */
     .header__nav-list {
         position: fixed;
@@ -210,6 +220,17 @@
         padding: 0 1rem;
     }
 
+    /* 背景テキスト - スマートフォン調整 */
+    .section__bg-text {
+        font-size: clamp(4rem, 18vw, 8rem);
+        transform: translate(-50%, -50%) rotate(-12deg) scale(0.8);
+        letter-spacing: 0.05em;
+    }
+    
+    .section__bg-text.visible {
+        transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+    }
+
     /* ヘッダー */
     .header__nav {
         padding: 0 1rem;
@@ -399,6 +420,16 @@
    超小画面 (360px以下) - 小型スマートフォン対応
    =================================== */
 @media screen and (max-width: 360px) {
+    /* 背景テキスト - 小型スマートフォン調整 */
+    .section__bg-text {
+        font-size: clamp(3rem, 15vw, 6rem);
+        transform: translate(-50%, -50%) rotate(-10deg) scale(0.75);
+    }
+    
+    .section__bg-text.visible {
+        transform: translate(-50%, -50%) rotate(-10deg) scale(0.95);
+    }
+
     /* 極小画面での文字調整 */
     .letter {
         font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
@@ -699,6 +730,11 @@
    iPad・タブレット専用 (768px〜1024px)
    =================================== */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* 背景テキスト - iPad調整 */
+    .section__bg-text {
+        font-size: clamp(10rem, 18vw, 20rem);
+    }
+
     /* iPad対応: WebKitプレフィックス追加 */
     .section__title {
         -webkit-background-clip: text;

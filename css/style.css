@@ -2839,3 +2839,62 @@ body {
     display: block !important;
     transform: translateY(0) !important;
 }
+
+/* ===================================
+   セクション背景テキスト装飾
+   =================================== */
+.section__bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-20deg);
+    font-family: var(--font-primary);
+    font-size: clamp(8rem, 20vw, 25rem);
+    font-weight: 900;
+    color: rgba(99, 102, 241, 0.03);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+    
+    /* デフォルト: フェードイン + スケール */
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-20deg) scale(0.8);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.section__bg-text.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-20deg) scale(1);
+}
+
+/* オプション2: ブラー効果版（コメントを外すと有効化）*/
+/*
+.section__bg-text {
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-50%, -50%) rotate(-20deg);
+    transition: opacity 1.2s ease-out, filter 1.2s ease-out;
+}
+
+.section__bg-text.visible {
+    opacity: 1;
+    filter: blur(0px);
+}
+*/
+
+/* セクションに相対位置を設定 */
+.works,
+.skills,
+.about,
+.contact,
+.updates {
+    position: relative;
+    overflow: hidden;
+}
+
+/* data属性から文字列を取得して表示 */
+.section__bg-text::before {
+    content: attr(data-text);
+}
