@@ -59,6 +59,22 @@
         font-size: 4.5rem;
     }
 
+    /* タブレット向け文字調整 */
+    .letter {
+        font-size: clamp(4rem, 8vw, 5.5rem) !important;
+        letter-spacing: clamp(-0.1rem, -0.3vw, 0rem) !important;
+    }
+
+    .letter-reflection {
+        font-size: clamp(4rem, 8vw, 5.5rem) !important;
+        letter-spacing: clamp(-0.1rem, -0.3vw, 0rem) !important;
+    }
+
+    .hero__title-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
     .hero__subtitle {
         font-size: 2rem;
     }
@@ -216,17 +232,30 @@
         font-size: 1.8rem;
     }
 
-    /* モバイル向け文字調整 */
+    /* モバイル向け文字調整 - ビューポート幅に基づく柔軟なサイズ */
     .letter {
-        font-size: 4rem !important;
+        font-size: clamp(3rem, 12vw, 4.5rem) !important;
+        letter-spacing: clamp(-0.2rem, -0.5vw, -0.1rem) !important;
     }
 
     .letter-reflection {
-        font-size: 4rem !important;
+        font-size: clamp(3rem, 12vw, 4.5rem) !important;
+        letter-spacing: clamp(-0.2rem, -0.5vw, -0.1rem) !important;
     }
 
     .hero__title-container {
-        transform: scale(0.8);
+        transform: scale(1);
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    .hero__title-letters {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
     }
 
     .hero__description {
@@ -363,6 +392,55 @@
     .form__textarea {
         padding: 1.2rem;
         font-size: 1.4rem;
+    }
+}
+
+/* ===================================
+   超小画面 (360px以下) - 小型スマートフォン対応
+   =================================== */
+@media screen and (max-width: 360px) {
+    /* 極小画面での文字調整 */
+    .letter {
+        font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+        letter-spacing: clamp(-0.3rem, -0.8vw, -0.1rem) !important;
+    }
+
+    .letter-reflection {
+        font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+        letter-spacing: clamp(-0.3rem, -0.8vw, -0.1rem) !important;
+    }
+
+    .hero__title-container {
+        padding: 0 0.5rem;
+    }
+
+    .hero__title-letters {
+        gap: clamp(0.1rem, 0.5vw, 0.3rem) !important;
+    }
+
+    .hero__content {
+        padding: 0 0.5rem;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+    }
+}
+
+/* ===================================
+   横向き小画面対応 (高さ500px以下で横向き)
+   =================================== */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .letter {
+        font-size: clamp(2rem, 8vh, 3.5rem) !important;
+    }
+
+    .letter-reflection {
+        font-size: clamp(2rem, 8vh, 3.5rem) !important;
+    }
+
+    .hero__title-container {
+        margin: 1rem 0;
     }
 }
 
