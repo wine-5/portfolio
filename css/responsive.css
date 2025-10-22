@@ -694,3 +694,68 @@
         text-align: center;
     }
 }
+
+/* ===================================
+   iPad・タブレット専用 (768px〜1024px)
+   =================================== */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* iPad対応: WebKitプレフィックス追加 */
+    .section__title {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: gradientFlow 8s ease infinite;
+        animation: gradientFlow 8s ease infinite;
+    }
+
+    .loading__text {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: gradientFlow 3s ease infinite, pulse 2s ease-in-out infinite;
+        animation: gradientFlow 3s ease infinite, pulse 2s ease-in-out infinite;
+    }
+
+    /* カードフリップアニメーション強化 */
+    .card-flip {
+        -webkit-transform: rotateY(-30deg) translateY(20px) scale(0.95);
+        transform: rotateY(-30deg) translateY(20px) scale(0.95);
+        -webkit-transition: all 0.5s ease-out;
+        transition: all 0.5s ease-out;
+    }
+
+    .card-flip.flip-visible {
+        -webkit-transform: rotateY(0deg) translateY(0) scale(1);
+        transform: rotateY(0deg) translateY(0) scale(1);
+    }
+
+    /* ホバーエフェクト調整（タッチデバイス対応） */
+    .work-card:active {
+        -webkit-transform: translateY(-5px) scale(1.02);
+        transform: translateY(-5px) scale(1.02);
+    }
+
+    .footer__link:active {
+        color: var(--primary-color);
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+}
+
+/* ===================================
+   iPad Pro専用 (1024px〜1366px)
+   =================================== */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    /* より大きなiPadでも同様の対応 */
+    .section__title {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .loading__text {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
