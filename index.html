@@ -29,8 +29,22 @@
     <!-- ローディング画面 -->
     <div id="loading" class="loading">
         <div class="loading__content">
-            <div class="loading__spinner"></div>
-            <p class="loading__text">Loading Portfolio...</p>
+            <div class="loading__logo">
+                <div class="logo-ring logo-ring-1"></div>
+                <div class="logo-ring logo-ring-2"></div>
+                <div class="logo-ring logo-ring-3"></div>
+                <div class="logo-center">
+                    <span class="logo-text">W5</span>
+                </div>
+            </div>
+            <div class="loading__progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="loading__text">Loading Portfolio...</p>
+                <div class="loading__percentage">0%</div>
+            </div>
+            <div class="loading__particles"></div>
         </div>
     </div>
 
@@ -355,6 +369,8 @@
     <!-- JavaScript -->
     <!-- 1. ユーティリティ & データ -->
     <script src="js/utils/functions.js"></script>
+    <script src="js/utils/skillExperience.js"></script>
+    <script src="js/utils/skillDetails.js"></script>
     <script src="js/data/projects.js"></script>
     <script src="js/data/updates.js"></script>
     <script src="js/config/logger.js"></script>
@@ -373,6 +389,7 @@
     <script src="js/managers/SkillParticleManager.js"></script>
     <script src="js/managers/GameUIManager.js"></script>
     <script src="js/managers/EasterEggManager.js"></script>
+    <script src="js/managers/SkillCardExpandManager.js"></script>
     <script src="js/managers/ManagerFactory.js"></script>
     
     <!-- 3. アニメーション & メイン -->

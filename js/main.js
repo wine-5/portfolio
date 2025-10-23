@@ -16,7 +16,7 @@ class PortfolioApp {
 
     init() {
         this.setupEventListeners();
-        this.hideLoading();
+        this.animateLoading();
         
         // マネージャーの一括初期化
         this.managerFactory.initAll();
@@ -90,15 +90,81 @@ class PortfolioApp {
         }
     }
 
-    hideLoading() {
-        setTimeout(() => {
-            if (this.loading) {
-                this.loading.style.opacity = '0';
-                setTimeout(() => {
-                    this.loading.style.display = 'none';
-                }, 300);
+    animateLoading() {
+        const percentageElement = document.querySelector('.loading__percentage');
+        const particlesContainer = document.querySelector('.loading__particles');
+        
+        // パーティクルエフェクト生成
+        this.createLoadingParticles(particlesContainer);
+        
+        // プログレス表示
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(progressInterval);
+                setTimeout(() => this.hideLoading(), 500);
             }
-        }, 1000);
+            if (percentageElement) {
+                percentageElement.textContent = Math.floor(progress) + '%';
+            }
+        }, 200);
+    }
+
+    createLoadingParticles(container) {
+        if (!container) return;
+        
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 6 + 2}px;
+                    height: ${Math.random() * 6 + 2}px;
+                    background: radial-gradient(circle, 
+                        rgba(99, 102, 241, ${Math.random() * 0.8 + 0.2}), 
+                        transparent);
+                    border-radius: 50%;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation: floatParticle ${Math.random() * 3 + 2}s linear infinite;
+                    animation-delay: ${Math.random() * 2}s;
+                `;
+                container.appendChild(particle);
+            }, i * 50);
+        }
+        
+        // アニメーション定義
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatParticle {
+                0% {
+                    transform: translateY(0) scale(0);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) scale(1);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    hideLoading() {
+        if (this.loading) {
+            this.loading.style.opacity = '0';
+            setTimeout(() => {
+                this.loading.style.display = 'none';
+            }, 500);
+        }
     }
 }
 
