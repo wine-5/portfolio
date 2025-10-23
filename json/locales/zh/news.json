@@ -1,0 +1,36 @@
+[
+  {
+    "id": "maintenance-example",
+    "type": "maintenance",
+    "priority": "high",
+    "publishDate": "2025-10-23",
+    "expireDate": "2025-10-24",
+    "title": "服务器维护通知",
+    "description": "由于服务器维护，网站将在2025年10月24日凌晨2点至4点暂时无法访问。",
+    "icon": "🔧",
+    "showBanner": true
+  },
+  {
+    "id": "new-game-release",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2025-10-20",
+    "expireDate": null,
+    "title": "新游戏「蝴蝶叛乱」已添加",
+    "description": "已将在Sapporo Game Camp 2025制作的动作游戏「蝴蝶叛乱」添加到作品集中。",
+    "icon": "🎮",
+    "showBanner": false,
+    "link": "#games"
+  },
+  {
+    "id": "site-redesign",
+    "type": "announcement",
+    "priority": "low",
+    "publishDate": "2025-10-15",
+    "expireDate": null,
+    "title": "网站设计更新",
+    "description": "重新设计了作品集网站。添加了多语言支持和深色模式切换功能。",
+    "icon": "✨",
+    "showBanner": false
+  }
+]

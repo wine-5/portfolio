@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "title": "Welcome to Game Development World",
+    "subtitle": "Creating Games with Unity & C#"
+  },
+  "games": {
+    "title": "Works",
+    "subtitle": "Check out my game projects",
+    "viewAll": "View All Works"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and Tools",
+    "experience": "Experience",
+    "years": "years",
+    "months": "months"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "About Me",
+    "name": "wine-5",
+    "role": "Game Developer",
+    "description": "I'm studying game development at a vocational school. I specialize in game development using Unity and C#."
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Feel free to reach out for questions or inquiries",
+    "sendSuccess": "Message sent successfully!",
+    "sendError": "Failed to send message. Please try again."
+  },
+  "updates": {
+    "title": "Updates",
+    "subtitle": "Latest site information",
+    "noUpdates": "No updates available"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "title": "ゲーム開発の世界へようこそ",
+    "subtitle": "Unity & C# でゲームを創造"
+  },
+  "games": {
+    "title": "作品",
+    "subtitle": "これまでに制作したゲームをご覧ください",
+    "viewAll": "すべての作品を見る"
+  },
+  "skills": {
+    "title": "スキル",
+    "subtitle": "使用技術とツール",
+    "experience": "経験",
+    "years": "年",
+    "months": "ヶ月"
+  },
+  "about": {
+    "title": "プロフィール",
+    "subtitle": "私について",
+    "name": "wine-5",
+    "role": "ゲーム開発者",
+    "description": "専門学校でゲーム開発を学んでいます。Unity と C# を使用したゲーム開発が専門です。"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "ご質問やご依頼がございましたら、お気軽にお問い合わせください",
+    "sendSuccess": "メッセージを送信しました!",
+    "sendError": "送信に失敗しました。もう一度お試しください。"
+  },
+  "updates": {
+    "title": "更新履歴",
+    "subtitle": "サイトの最新情報",
+    "noUpdates": "更新情報はありません"
+  }
+}

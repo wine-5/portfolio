@@ -1,0 +1,84 @@
+{
+  "header": {
+    "home": "ホーム",
+    "games": "作品",
+    "skills": "スキル",
+    "about": "プロフィール",
+    "contact": "お問い合わせ",
+    "timeline": "タイムライン",
+    "updates": "更新履歴"
+  },
+  "hero": {
+    "greeting": "こんにちは、私は",
+    "name": "wine-5",
+    "title": "ゲーム開発者",
+    "description": "Unityと C# を使用したゲーム開発を行っています",
+    "viewWorks": "作品を見る",
+    "contactMe": "お問い合わせ"
+  },
+  "section": {
+    "games": "作品",
+    "skills": "スキル",
+    "about": "プロフィール",
+    "contact": "お問い合わせ",
+    "updates": "更新履歴"
+  },
+  "button": {
+    "viewMore": "詳細を見る",
+    "playNow": "プレイする",
+    "viewCode": "コードを見る",
+    "close": "閉じる",
+    "send": "送信",
+    "loading": "読み込み中...",
+    "previous": "前へ",
+    "next": "次へ"
+  },
+  "form": {
+    "name": "お名前",
+    "email": "メールアドレス",
+    "subject": "件名",
+    "message": "メッセージ",
+    "namePlaceholder": "山田太郎",
+    "emailPlaceholder": "example@email.com",
+    "subjectPlaceholder": "お問い合わせ内容",
+    "messagePlaceholder": "メッセージを入力してください",
+    "required": "必須",
+    "sending": "送信中...",
+    "success": "メッセージを送信しました",
+    "error": "送信に失敗しました。もう一度お試しください。"
+  },
+  "footer": {
+    "navigation": "ナビゲーション",
+    "social": "ソーシャル",
+    "copyright": "© 2025 wine-5. All rights reserved.",
+    "privacyPolicy": "プライバシーポリシー",
+    "terms": "利用規約"
+  },
+  "theme": {
+    "dark": "ダークモード",
+    "light": "ライトモード",
+    "toggle": "テーマ切り替え"
+  },
+  "language": {
+    "ja": "日本語",
+    "en": "English",
+    "zh": "中文",
+    "select": "言語を選択"
+  },
+  "loading": {
+    "message": "読み込み中...",
+    "portfolio": "ポートフォリオを読み込んでいます..."
+  },
+  "error": {
+    "notFound": "ページが見つかりません",
+    "serverError": "サーバーエラーが発生しました",
+    "tryAgain": "もう一度お試しください"
+  },
+  "news": {
+    "title": "お知らせ",
+    "maintenance": "メンテナンス",
+    "release": "リリース",
+    "announcement": "アナウンス",
+    "readMore": "続きを読む"
+  }
+}

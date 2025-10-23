@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "title": "欢迎来到游戏开发世界",
+    "subtitle": "使用Unity & C#创作游戏"
+  },
+  "games": {
+    "title": "作品",
+    "subtitle": "查看我的游戏项目",
+    "viewAll": "查看所有作品"
+  },
+  "skills": {
+    "title": "技能",
+    "subtitle": "技术和工具",
+    "experience": "经验",
+    "years": "年",
+    "months": "个月"
+  },
+  "about": {
+    "title": "关于",
+    "subtitle": "关于我",
+    "name": "wine-5",
+    "role": "游戏开发者",
+    "description": "我在职业学校学习游戏开发。我专注于使用Unity和C#进行游戏开发。"
+  },
+  "contact": {
+    "title": "联系",
+    "subtitle": "如有问题或咨询，请随时联系我",
+    "sendSuccess": "消息已成功发送！",
+    "sendError": "发送失败。请再试一次。"
+  },
+  "updates": {
+    "title": "更新",
+    "subtitle": "最新网站信息",
+    "noUpdates": "暂无更新"
+  }
+}

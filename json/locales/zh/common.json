@@ -1,0 +1,84 @@
+{
+  "header": {
+    "home": "首页",
+    "games": "作品",
+    "skills": "技能",
+    "about": "关于",
+    "contact": "联系",
+    "timeline": "时间线",
+    "updates": "更新"
+  },
+  "hero": {
+    "greeting": "你好，我是",
+    "name": "wine-5",
+    "title": "游戏开发者",
+    "description": "使用Unity和C#创作游戏",
+    "viewWorks": "查看作品",
+    "contactMe": "联系我"
+  },
+  "section": {
+    "games": "作品",
+    "skills": "技能",
+    "about": "关于",
+    "contact": "联系",
+    "updates": "更新"
+  },
+  "button": {
+    "viewMore": "查看更多",
+    "playNow": "立即游玩",
+    "viewCode": "查看代码",
+    "close": "关闭",
+    "send": "发送",
+    "loading": "加载中...",
+    "previous": "上一个",
+    "next": "下一个"
+  },
+  "form": {
+    "name": "姓名",
+    "email": "电子邮件",
+    "subject": "主题",
+    "message": "消息",
+    "namePlaceholder": "张三",
+    "emailPlaceholder": "example@email.com",
+    "subjectPlaceholder": "主题",
+    "messagePlaceholder": "请输入您的消息",
+    "required": "必填",
+    "sending": "发送中...",
+    "success": "消息已成功发送",
+    "error": "发送失败。请再试一次。"
+  },
+  "footer": {
+    "navigation": "导航",
+    "social": "社交",
+    "copyright": "© 2025 wine-5. 保留所有权利。",
+    "privacyPolicy": "隐私政策",
+    "terms": "服务条款"
+  },
+  "theme": {
+    "dark": "深色模式",
+    "light": "浅色模式",
+    "toggle": "切换主题"
+  },
+  "language": {
+    "ja": "日本語",
+    "en": "English",
+    "zh": "中文",
+    "select": "选择语言"
+  },
+  "loading": {
+    "message": "加载中...",
+    "portfolio": "正在加载作品集..."
+  },
+  "error": {
+    "notFound": "页面未找到",
+    "serverError": "服务器错误",
+    "tryAgain": "重试"
+  },
+  "news": {
+    "title": "新闻",
+    "maintenance": "维护",
+    "release": "发布",
+    "announcement": "公告",
+    "readMore": "阅读更多"
+  }
+}

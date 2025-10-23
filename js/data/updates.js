@@ -1,25 +1,53 @@
-/* ===================================
-   更新履歴データ
-   =================================== */
-const UPDATES_DATA = [
-    {
-        date: '2025-10-23',
-        title: 'モバイル表示の改善と定期波紋エフェクト追加',
-        description: 'スマートフォンでのタイトル表示を最適化し、アニメーション後の定期的な波紋効果を追加しました。'
-    },
-    {
-        date: '2025-10-21',
-        title: '3D水面反射タイトルとゲーム画像スライダー追加',
-        description: 'トップページに3D水面反射エフェクトを実装し、ゲーム作品に複数画像スライダー機能を追加しました。'
-    },
-    {
-        date: '2025-10-20',
-        title: 'ポートフォリオサイト公開',
-        description: 'wine-5のポートフォリオサイトを公開しました。'
+class UpdatesData {
+    constructor() {
+        this.updatesData = null;
+        this.isLoaded = false;
     }
-];
 
-// 更新履歴データのエクスポート
+    async load(lang = 'ja') {
+        if (this.isLoaded) return this.updatesData;
+
+        try {
+            const response = await fetch(`json/locales/${lang}/updates.json`);
+            if (!response.ok) {
+                throw new Error(`Failed to load updates: ${response.status}`);
+            }
+            this.updatesData = await response.json();
+            this.isLoaded = true;
+            console.log('Updates loaded:', this.updatesData.length, 'items');
+            return this.updatesData;
+        } catch (error) {
+            console.error('Error loading updates:', error);
+            this.updatesData = [];
+            this.isLoaded = true;
+            return this.updatesData;
+        }
+    }
+
+    getAllUpdates() {
+        return this.updatesData || [];
+    }
+
+    getRecentUpdates(count = 5) {
+        if (!this.updatesData) return [];
+        return this.updatesData.slice(0, count);
+    }
+
+    isReady() {
+        return this.isLoaded;
+    }
+}
+
+const updatesData = new UpdatesData();
+window.updatesData = updatesData;
+
+// UPDATES_DATAは動的に取得されるように変更
+Object.defineProperty(window, 'UPDATES_DATA', {
+    get() {
+        return updatesData.getAllUpdates();
+    }
+});
+
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = UPDATES_DATA;
+    module.exports = updatesData;
 }
