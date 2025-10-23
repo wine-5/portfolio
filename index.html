@@ -82,7 +82,12 @@
                 </li>
             </ul>
             <!-- テーマ切り替え & 言語切り替えボタン -->
-            <div class="header__controls" id="header-controls"></div>
+            <div class="header__controls" id="header-controls">
+                <!-- デバッグコンソールトリガー -->
+                <button class="debug-console-trigger" id="debug-console-trigger" title="デバッグコンソールを開く">
+                    <i class="fas fa-terminal"></i>
+                </button>
+            </div>
             <div class="header__hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -355,6 +360,7 @@
     <script src="js/data/updates.js"></script>
     <script src="js/data/timeline.js"></script>
     <script src="js/config/debug-config.js"></script>
+    <script src="js/utils/mobile-console.js"></script>
     <script src="js/config/logger.js"></script>
     <script src="js/config/email-config.js"></script>
     
@@ -382,9 +388,32 @@
     <script src="assets/js/managers/ui/FooterAnimationManager.js"></script>
     <script src="assets/js/managers/ui/SectionAnimationManager.js"></script>
     <script src="assets/js/managers/ui/EasterEggManager.js"></script>
+    <script src="js/managers/ui/DebugConsoleManager.js"></script>
     
     <!-- 6. アニメーション & メイン -->
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- デバッグコンソールモーダル -->
+    <div class="console-modal" id="console-modal">
+        <div class="console-container">
+            <div class="console-header">
+                <h3 class="console-title">
+                    <i class="fas fa-terminal"></i>
+                    Debug Console
+                </h3>
+                <button class="console-close" id="console-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="console-output" id="console-output">
+                <div class="console-line info">コマンドを入力してください</div>
+            </div>
+            <div class="console-input-wrapper">
+                <span class="console-prompt">$</span>
+                <input type="text" class="console-input" id="console-input" placeholder="コマンドを入力..." autocomplete="off">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
