@@ -13,24 +13,53 @@ class GameUIManager {
         const skills = document.querySelectorAll('.skill');
         
         skills.forEach((skill, index) => {
-            const level = Math.floor(Math.random() * 50) + 50; // 50-100
-            const exp = Math.floor(Math.random() * 100);
+            const skillName = skill.querySelector('.skill__name').textContent;
             
-            // レベル表示を追加
+            // 経験値計算ユーティリティを使用
+            const experience = window.skillExpCalculator.getSkillExperience(skillName);
+            const expPercentage = window.skillExpCalculator.getExperiencePercentage(experience.totalMonths);
+            const level = Math.floor(experience.totalMonths / 2) + 1; // 2ヶ月で1レベル
+            
+            // レベル表示を追加（初期状態は非表示）
             const levelBadge = document.createElement('div');
             levelBadge.className = 'skill-level-badge';
+            levelBadge.style.opacity = '0';
+            levelBadge.style.transform = 'translateY(20px)';
             levelBadge.innerHTML = `
                 <span class="level-number">Lv.${level}</span>
                 <div class="exp-bar">
-                    <div class="exp-fill" style="width: ${exp}%"></div>
+                    <div class="exp-fill" style="width: 0%"></div>
                 </div>
-                <span class="exp-text">${exp}/100 EXP</span>
+                <span class="exp-text">${experience.text}</span>
             `;
             
             const header = skill.querySelector('.skill__header');
             if (header) {
                 header.appendChild(levelBadge);
             }
+            
+            // スクロールで表示アニメーション
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            levelBadge.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                            levelBadge.style.opacity = '1';
+                            levelBadge.style.transform = 'translateY(0)';
+                            
+                            // EXPバーアニメーション
+                            const expFill = levelBadge.querySelector('.exp-fill');
+                            setTimeout(() => {
+                                expFill.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                                expFill.style.width = `${expPercentage}%`;
+                            }, 500);
+                        }, index * 150); // 順番に表示
+                        observer.unobserve(skill);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            observer.observe(skill);
             
             // ホバー時にレベルアップアニメーション（30%の確率）
             skill.addEventListener('mouseenter', () => {
@@ -104,8 +133,8 @@ class GameUIManager {
                     <span>HP (開発体力)</span>
                 </div>
                 <div class="stat-bar-container">
-                    <div class="stat-bar-fill hp-fill" data-value="85"></div>
-                    <span class="stat-value">850/1000</span>
+                    <div class="stat-bar-fill hp-fill" data-value="90"></div>
+                    <span class="stat-value">900/1000</span>
                 </div>
             </div>
             <div class="stat-bar mp-bar">
@@ -114,8 +143,8 @@ class GameUIManager {
                     <span>MP (創造力)</span>
                 </div>
                 <div class="stat-bar-container">
-                    <div class="stat-bar-fill mp-fill" data-value="95"></div>
-                    <span class="stat-value">950/1000</span>
+                    <div class="stat-bar-fill mp-fill" data-value="0"></div>
+                    <span class="stat-value">0/1000</span>
                 </div>
             </div>
             <div class="stat-bar exp-bar-game">
@@ -124,13 +153,17 @@ class GameUIManager {
                     <span>EXP (開発経験値)</span>
                 </div>
                 <div class="stat-bar-container">
-                    <div class="stat-bar-fill exp-fill" data-value="75"></div>
-                    <span class="stat-value">7500/10000</span>
+                    <div class="stat-bar-fill exp-fill" data-value="0"></div>
+                    <span class="stat-value">0/10000</span>
                 </div>
             </div>
         `;
         
-        aboutSection.insertBefore(hpMpBars, aboutSection.firstChild);
+        // 左下に配置（grid-areaで制御）
+        hpMpBars.style.gridColumn = '1';
+        hpMpBars.style.gridRow = '2';
+        
+        aboutSection.appendChild(hpMpBars);
         
         // バーアニメーション
         this.animateStatBars();

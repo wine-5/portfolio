@@ -4,11 +4,9 @@ class EasterEggManager {
         this.userInput = [];
         this.gameDevCode = ['g', 'a', 'm', 'e', 'd', 'e', 'v'];
         this.unityCode = ['u', 'n', 'i', 't', 'y'];
-        this.activated = {
-            wine: false,
-            gameDev: false,
-            unity: false
-        };
+        this.debugCode = ['d', 'e', 'b', 'u', 'g'];
+        this.debugMode = false;
+        // activated フラグを削除（複数回発動可能に）
     }
 
     init() {
@@ -17,9 +15,16 @@ class EasterEggManager {
         console.log('%c1. "wine-5" とタイプしてみよう！', 'color: #8b5cf6;');
         console.log('%c2. "gamedev" とタイプしてみよう！', 'color: #8b5cf6;');
         console.log('%c3. "unity" とタイプしてみよう！', 'color: #8b5cf6;');
+        console.log('%c4. "debug" とタイプしてデバッグモードへ！', 'color: #ff6b6b;');
     }
 
     handleKeyPress(e) {
+        // デバッグモード中はESCで解除
+        if (this.debugMode && e.key === 'Escape') {
+            this.deactivateDebugMode();
+            return;
+        }
+
         this.userInput.push(e.key);
         
         // 最新の入力のみ保持
@@ -30,52 +35,233 @@ class EasterEggManager {
         this.checkWineCode();
         this.checkGameDevCode();
         this.checkUnityCode();
+        this.checkDebugCode();
     }
 
     checkWineCode() {
-        if (this.activated.wine) return;
-        
         const recentInput = this.userInput.slice(-this.wineCode.length).join('');
         const code = this.wineCode.join('');
 
         if (recentInput === code) {
-            this.activated.wine = true;
             this.activateWineEffect();
+            this.userInput = []; // 入力履歴をクリア
         }
     }
 
     checkGameDevCode() {
-        if (this.activated.gameDev) return;
-        
         const recentInput = this.userInput.slice(-this.gameDevCode.length).join('');
         const code = this.gameDevCode.join('');
 
         if (recentInput === code) {
-            this.activated.gameDev = true;
             this.activateGameDevEffect();
+            this.userInput = []; // 入力履歴をクリア
         }
     }
 
     checkUnityCode() {
-        if (this.activated.unity) return;
-        
         const recentInput = this.userInput.slice(-this.unityCode.length).join('');
         const code = this.unityCode.join('');
 
         if (recentInput === code) {
-            this.activated.unity = true;
             this.activateUnityEffect();
+            this.userInput = []; // 入力履歴をクリア
+        }
+    }
+
+    checkDebugCode() {
+        if (this.debugMode) return;
+        
+        const recentInput = this.userInput.slice(-this.debugCode.length).join('');
+        const code = this.debugCode.join('');
+
+        if (recentInput === code) {
+            this.activateDebugMode();
+            this.userInput = []; // 入力履歴をクリア
+        }
+    }
+
+    activateDebugMode() {
+        this.debugMode = true;
+        console.log('%c🔧 DEBUG MODE ACTIVATED', 'color: #ff6b6b; font-size: 24px; font-weight: bold; background: #000; padding: 10px;');
+        console.log('%cPress ESC to exit debug mode', 'color: #ffa500;');
+        
+        // デバッグモードUI
+        this.createDebugModeUI();
+        
+        // 通知表示
+        this.showNotification('🔧 DEBUG MODE', 'Press ESC to exit', '#ff6b6b');
+        
+        // デバッグ視覚エフェクト
+        this.applyDebugVisuals();
+    }
+
+    deactivateDebugMode() {
+        this.debugMode = false;
+        console.log('%c✓ Debug mode deactivated', 'color: #10b981; font-size: 16px;');
+        
+        // デバッグUIを削除
+        const debugUI = document.querySelector('.debug-mode-ui');
+        if (debugUI) {
+            debugUI.style.opacity = '0';
+            setTimeout(() => debugUI.remove(), 300);
+        }
+        
+        // 視覚エフェクトを削除
+        this.removeDebugVisuals();
+        
+        // 通知表示
+        this.showNotification('✓ Normal Mode', 'Debug mode disabled', '#10b981');
+    }
+
+    createDebugModeUI() {
+        const debugUI = document.createElement('div');
+        debugUI.className = 'debug-mode-ui';
+        debugUI.style.cssText = `
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 20px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            z-index: 10000;
+            min-width: 300px;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            animation: debugUIFadeIn 0.3s ease-out;
+        `;
+        
+        const updateDebugInfo = () => {
+            const now = new Date();
+            const fps = this.calculateFPS();
+            const memoryInfo = performance.memory ? 
+                `${(performance.memory.usedJSHeapSize / 1048576).toFixed(2)} MB` : 
+                'N/A';
+            
+            debugUI.innerHTML = `
+                <div style="border-bottom: 1px solid #ff6b6b; margin-bottom: 10px; padding-bottom: 10px;">
+                    <div style="color: #ff6b6b; font-weight: bold; font-size: 16px;">🔧 DEBUG MODE</div>
+                    <div style="color: #ffa500; font-size: 12px;">Press ESC to exit</div>
+                </div>
+                <div style="line-height: 1.8;">
+                    <div>⏰ Time: ${now.toLocaleTimeString()}</div>
+                    <div>📊 FPS: ${fps}</div>
+                    <div>💾 Memory: ${memoryInfo}</div>
+                    <div>📐 Viewport: ${window.innerWidth}x${window.innerHeight}</div>
+                    <div>🖱️ Mouse: (${this.mouseX || 0}, ${this.mouseY || 0})</div>
+                    <div>📜 Scroll: ${Math.round(window.scrollY)}px</div>
+                </div>
+            `;
+        };
+        
+        // マウス位置を追跡
+        document.addEventListener('mousemove', (e) => {
+            if (this.debugMode) {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+            }
+        });
+        
+        // 定期的に更新
+        this.debugInterval = setInterval(updateDebugInfo, 100);
+        
+        // スタイル定義
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes debugUIFadeIn {
+                from { opacity: 0; transform: translateX(20px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(debugUI);
+        updateDebugInfo();
+    }
+
+    calculateFPS() {
+        if (!this.lastFrameTime) {
+            this.lastFrameTime = performance.now();
+            this.frameCount = 0;
+            return 60;
+        }
+        
+        this.frameCount++;
+        const currentTime = performance.now();
+        const delta = currentTime - this.lastFrameTime;
+        
+        if (delta >= 1000) {
+            const fps = Math.round((this.frameCount * 1000) / delta);
+            this.frameCount = 0;
+            this.lastFrameTime = currentTime;
+            this.currentFPS = fps;
+        }
+        
+        return this.currentFPS || 60;
+    }
+
+    applyDebugVisuals() {
+        // グリッド表示
+        const grid = document.createElement('div');
+        grid.className = 'debug-grid';
+        grid.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                repeating-linear-gradient(0deg, rgba(255, 107, 107, 0.1) 0px, transparent 1px, transparent 50px, rgba(255, 107, 107, 0.1) 51px),
+                repeating-linear-gradient(90deg, rgba(255, 107, 107, 0.1) 0px, transparent 1px, transparent 50px, rgba(255, 107, 107, 0.1) 51px);
+            pointer-events: none;
+            z-index: 9998;
+        `;
+        document.body.appendChild(grid);
+        
+        // すべての要素にアウトライン
+        const style = document.createElement('style');
+        style.id = 'debug-outline-style';
+        style.textContent = `
+            .debug-mode-active * {
+                outline: 1px solid rgba(255, 107, 107, 0.3) !important;
+            }
+            .debug-mode-active *:hover {
+                outline: 2px solid rgba(255, 107, 107, 0.8) !important;
+                background: rgba(255, 107, 107, 0.1) !important;
+            }
+        `;
+        document.head.appendChild(style);
+        document.body.classList.add('debug-mode-active');
+    }
+
+    removeDebugVisuals() {
+        // グリッドを削除
+        const grid = document.querySelector('.debug-grid');
+        if (grid) grid.remove();
+        
+        // アウトラインスタイルを削除
+        const style = document.getElementById('debug-outline-style');
+        if (style) style.remove();
+        
+        document.body.classList.remove('debug-mode-active');
+        
+        // インターバルをクリア
+        if (this.debugInterval) {
+            clearInterval(this.debugInterval);
+            this.debugInterval = null;
         }
     }
 
     activateWineEffect() {
-        console.log('%c� wine-5コマンド発動！', 'color: #ffd700; font-size: 20px; font-weight: bold;');
+        console.log('%c🍷 WINE-5 Portfolio Master Unlocked!', 'color: #ffd700; font-size: 20px; font-weight: bold;');
         
         // 画面全体にマトリックス風エフェクト
         this.createMatrixRain();
         
         // 通知表示
-        this.showNotification('� wine-5 コマンド発動！', 'Portfolio Master Unlocked!', '#ffd700');
+        this.showNotification('🍷 Portfolio Master Unlocked!', 'WINE-5 Mode Activated!', '#ffd700');
         
         // 全カードを虹色に
         this.rainbowCards();

@@ -31,6 +31,7 @@ class ManagerFactory {
         this.managers.skillParticle = new SkillParticleManager();
         this.managers.gameUI = new GameUIManager();
         this.managers.easterEgg = new EasterEggManager();
+        this.managers.skillCardExpand = new SkillCardExpandManager();
         
         return this.managers;
     }
@@ -54,6 +55,7 @@ class ManagerFactory {
         this.managers.skillParticle.init();
         this.managers.gameUI.init();
         this.managers.easterEgg.init();
+        this.managers.skillCardExpand.init();
         
         // UpdatesManagerは遅延初期化
         setTimeout(() => {

@@ -48,10 +48,10 @@ class SkillParticleManager {
         this.activeSkill = skillType;
         this.particles = [];
         
-        // スキル別パーティクル生成（15個に削減）
+        // スキル別パーティクル生成（5個に削減し、薄く表示）
         const particleConfig = this.getParticleConfig(skillType);
         
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 5; i++) {
             this.particles.push(this.createParticle(particleConfig, rect));
         }
         
@@ -61,57 +61,60 @@ class SkillParticleManager {
     getParticleConfig(skillType) {
         const configs = {
             'unity': {
-                shape: 'cube',
+                shape: 'icon',
+                icon: '⬛', // Unity立方体アイコン
                 colors: ['#000000', '#FFFFFF'],
-                size: { min: 5, max: 15 },
-                speed: { min: 1, max: 3 }
+                size: { min: 16, max: 24 },
+                speed: { min: 0.5, max: 1.5 }
             },
             'c#': {
-                shape: 'code',
+                shape: 'icon',
+                icon: 'C#', // C#テキスト
                 colors: ['#68217A', '#9B4F96'],
-                symbols: ['{', '}', '(', ')', ';', '=', '>', '<'],
-                size: { min: 8, max: 16 },
-                speed: { min: 0.5, max: 2 }
+                size: { min: 14, max: 20 },
+                speed: { min: 0.4, max: 1.2 }
             },
             'c++': {
-                shape: 'code',
+                shape: 'icon',
+                icon: 'C++', // C++テキスト
                 colors: ['#00599C', '#659AD2'],
-                symbols: ['{', '}', '(', ')', ';', '=', '>', '<', '*', '&'],
-                size: { min: 8, max: 16 },
-                speed: { min: 0.5, max: 2 }
+                size: { min: 14, max: 20 },
+                speed: { min: 0.4, max: 1.2 }
             },
             'git': {
-                shape: 'branch',
-                colors: ['#F05032', '#FFFFFF'],
-                size: { min: 8, max: 14 },
-                speed: { min: 1, max: 2 }
+                shape: 'icon',
+                icon: '⎇', // Git分岐アイコン
+                colors: ['#F05032', '#FF6B6B'],
+                size: { min: 16, max: 22 },
+                speed: { min: 0.5, max: 1.3 }
             },
             'html': {
-                shape: 'code',
+                shape: 'icon',
+                icon: '</>',
                 colors: ['#E34F26', '#F06529'],
-                symbols: ['<', '>', '/', '=', '"'],
-                size: { min: 8, max: 16 },
-                speed: { min: 0.5, max: 2 }
+                size: { min: 14, max: 20 },
+                speed: { min: 0.4, max: 1.2 }
             },
             'css': {
-                shape: 'code',
+                shape: 'icon',
+                icon: '#{ }',
                 colors: ['#1572B6', '#33A9DC'],
-                symbols: ['{', '}', ':', ';', '#', '.'],
-                size: { min: 8, max: 16 },
-                speed: { min: 0.5, max: 2 }
+                size: { min: 14, max: 20 },
+                speed: { min: 0.4, max: 1.2 }
             },
             'js': {
-                shape: 'code',
+                shape: 'icon',
+                icon: 'JS',
                 colors: ['#F7DF1E', '#F0DB4F'],
-                symbols: ['{', '}', '(', ')', '=>', 'const', 'let'],
-                size: { min: 8, max: 16 },
-                speed: { min: 0.5, max: 2 }
+                size: { min: 14, max: 20 },
+                speed: { min: 0.4, max: 1.2 }
             },
             'default': {
-                shape: 'circle',
+                shape: 'icon',
+                icon: '●',
                 colors: ['#6366f1', '#8b5cf6'],
-                size: { min: 4, max: 10 },
-                speed: { min: 0.8, max: 2 }
+                size: { min: 12, max: 18 },
+                speed: { min: 0.5, max: 1.2 }
             }
         };
 
@@ -133,11 +136,11 @@ class SkillParticleManager {
             vy: (Math.random() - 0.5) * config.speed.max,
             size: config.size.min + Math.random() * (config.size.max - config.size.min),
             color: config.colors[Math.floor(Math.random() * config.colors.length)],
-            alpha: Math.random() * 0.5 + 0.5,
+            alpha: Math.random() * 0.15 + 0.1, // 0.1〜0.25の薄さ
             rotation: Math.random() * Math.PI * 2,
-            rotationSpeed: (Math.random() - 0.5) * 0.1,
+            rotationSpeed: (Math.random() - 0.5) * 0.05,
             shape: config.shape,
-            symbol: config.symbols ? config.symbols[Math.floor(Math.random() * config.symbols.length)] : null
+            icon: config.icon
         };
     }
 
@@ -151,7 +154,7 @@ class SkillParticleManager {
             particle.x += particle.vx;
             particle.y += particle.vy;
             particle.rotation += particle.rotationSpeed;
-            particle.alpha -= 0.01;
+            particle.alpha -= 0.002; // よりゆっくり消える
 
             // 範囲外チェック
             if (particle.x < 0 || particle.x > this.canvas.width ||
@@ -183,9 +186,11 @@ class SkillParticleManager {
     drawParticle(particle) {
         this.ctx.fillStyle = particle.color;
         this.ctx.strokeStyle = particle.color;
-        this.ctx.lineWidth = 2;
 
         switch (particle.shape) {
+            case 'icon':
+                this.drawIcon(particle.icon, particle.size);
+                break;
             case 'cube':
                 this.drawCube(particle.size);
                 break;
@@ -198,6 +203,21 @@ class SkillParticleManager {
             default:
                 this.drawCircle(particle.size);
         }
+    }
+
+    drawIcon(icon, size) {
+        this.ctx.font = `bold ${size}px Arial, sans-serif`;
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        
+        // 文字の背景に薄いグローを追加
+        this.ctx.shadowBlur = 5;
+        this.ctx.shadowColor = this.ctx.fillStyle;
+        
+        this.ctx.fillText(icon, 0, 0);
+        
+        // シャドウをリセット
+        this.ctx.shadowBlur = 0;
     }
 
     drawCube(size) {
