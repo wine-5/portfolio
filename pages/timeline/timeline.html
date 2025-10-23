@@ -16,6 +16,20 @@
     <link rel="stylesheet" href="../../assets/css/sections/timeline.css">
     <link rel="stylesheet" href="timeline-page.css">
     
+    <style>
+        /* 言語切り替えドロップダウンを確実に非表示 */
+        .language-switcher__dropdown {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        .language-switcher.active .language-switcher__dropdown {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+    </style>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,25 +71,25 @@
             </div>
             <ul class="header__nav-list">
                 <li class="header__nav-item">
-                    <a href="../../index.html#home" class="header__nav-link">Home</a>
+                    <a href="../../index.html#home" class="header__nav-link" data-i18n="common.header.home">Home</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="../../index.html#games" class="header__nav-link">Games</a>
+                    <a href="../../index.html#games" class="header__nav-link" data-i18n="common.header.games">Games</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="../../index.html#skills" class="header__nav-link">Skills</a>
+                    <a href="../../index.html#skills" class="header__nav-link" data-i18n="common.header.skills">Skills</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="../../index.html#about" class="header__nav-link">About</a>
+                    <a href="../../index.html#about" class="header__nav-link" data-i18n="common.header.about">About</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="../../index.html#connect" class="header__nav-link">Contact</a>
+                    <a href="../../index.html#connect" class="header__nav-link" data-i18n="common.header.contact">Contact</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="timeline.html" class="header__nav-link header__nav-link--active">Timeline</a>
+                    <a href="timeline.html" class="header__nav-link header__nav-link--active" data-i18n="common.header.timeline">Timeline</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="../../index.html#updates" class="header__nav-link">Updates</a>
+                    <a href="../../index.html#updates" class="header__nav-link" data-i18n="common.header.updates">Updates</a>
                 </li>
             </ul>
             <!-- テーマ切り替え & 言語切り替えボタン -->
@@ -151,19 +165,19 @@
                     </div>
                     <div class="footer__links">
                         <div class="footer__section">
-                            <h4 class="footer__section-title">ナビゲーション</h4>
+                            <h4 class="footer__section-title" data-i18n="common.footer.navigation">ナビゲーション</h4>
                             <ul class="footer__link-list">
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-home"></i> Home</a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-gamepad"></i> Games</a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-code"></i> Skills</a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-user"></i> About</a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-envelope"></i> Contact</a></li>
-                                <li><a href="timeline.html" class="footer__link"><i class="fas fa-timeline"></i> Timeline</a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> Updates</a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-home"></i> <span data-i18n="common.header.home">Home</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-gamepad"></i> <span data-i18n="common.header.games">Games</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-code"></i> <span data-i18n="common.header.skills">Skills</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-user"></i> <span data-i18n="common.header.about">About</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-envelope"></i> <span data-i18n="common.header.contact">Contact</span></a></li>
+                                <li><a href="timeline.html" class="footer__link"><i class="fas fa-timeline"></i> <span data-i18n="common.header.timeline">Timeline</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
                             </ul>
                         </div>
                         <div class="footer__section">
-                            <h4 class="footer__section-title">ソーシャル</h4>
+                            <h4 class="footer__section-title" data-i18n="common.footer.social">ソーシャル</h4>
                             <ul class="footer__link-list">
                                 <li><a href="https://github.com/wine-5" target="_blank" class="footer__link"><i class="fab fa-github"></i> GitHub</a></li>
                                 <li><a href="https://x.com/wine_program" target="_blank" class="footer__link"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
@@ -173,7 +187,7 @@
                         <div class="footer__section">
                             <h4 class="footer__section-title">法務</h4>
                             <ul class="footer__link-list">
-                                <li><a href="../legal/privacy.html" class="footer__link"><i class="fas fa-shield-halved"></i> プライバシーポリシー</a></li>
+                                <li><a href="../legal/privacy.html" class="footer__link"><i class="fas fa-shield-halved"></i> <span data-i18n="common.footer.privacyPolicy">プライバシーポリシー</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -206,7 +220,7 @@
     
     <script>
         // Initialize theme and language
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             // Initialize theme
             if (window.themeManager) {
                 window.themeManager.init();
@@ -220,7 +234,9 @@
             
             // Initialize i18n
             if (window.i18n) {
-                window.i18n.init();
+                const currentLang = window.i18n.getCurrentLanguage();
+                await window.i18n.loadTranslations(currentLang);
+                window.i18n.applyTranslations();
                 
                 // Create language switcher
                 const headerControls = document.getElementById('header-controls');
@@ -228,6 +244,17 @@
                     window.i18n.createLanguageSwitcher(headerControls);
                 }
             }
+            
+            // Hide loading screen after initialization
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.style.opacity = '0';
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
         });
     </script>
 </body>
