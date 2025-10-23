@@ -1,5 +1,10 @@
 [
   {
+    "date": "2025-10-24",
+    "title": "Major UI Renewal and Multi-language Support",
+    "description": "Completely renewed the site UI and implemented support for 3 languages (Japanese, English, Chinese). Also improved code readability and maintainability."
+  },
+  {
     "date": "2025-10-23",
     "title": "Mobile Display Improvements and Regular Ripple Effect Added",
     "description": "Optimized title display on smartphones and added periodic ripple effects after animation."
