@@ -4,33 +4,41 @@
     "subtitle": "使用Unity & C#创作游戏"
   },
   "games": {
-    "title": "作品",
+    "title": "Games",
     "subtitle": "查看我的游戏项目",
     "viewAll": "查看所有作品"
   },
   "skills": {
-    "title": "技能",
+    "title": "Skills",
     "subtitle": "技术和工具",
+    "note": "技能等级表示从开始学习以来的经验月数（最大：4年/学生期间）",
     "experience": "经验",
     "years": "年",
-    "months": "个月"
+    "months": "月"
   },
   "about": {
-    "title": "关于",
+    "title": "About",
     "subtitle": "关于我",
     "name": "wine-5",
     "role": "游戏开发者",
-    "description": "我在职业学校学习游戏开发。我专注于使用Unity和C#进行游戏开发。"
+    "description": "我在专门学校学习游戏开发。专门使用Unity和C#进行游戏开发。",
+    "fullDescription": "我是一名以游戏行业为目标的游戏开发者。\n使用Unity和C#进行游戏开发，\n致力于遵循SOLID原则的设计。\n有在UnityRoom上发布的经验，\n追求为玩家带来快乐的游戏制作。\n我的优势是比任何人都更享受编程，并持续追求。",
+    "socialText": "也在X（Twitter）上活动：@wine_program！",
+    "timelineButton": "查看开发轨迹",
+    "timelineDescription": "您可以查看从入学到现在的详细开发历史和项目轨迹"
   },
   "contact": {
-    "title": "联系",
-    "subtitle": "如有问题或咨询，请随时联系我",
+    "title": "Contact",
+    "subtitle": "Get In Touch",
+    "description": "如果您对游戏开发有任何疑问或意见，\n请随时与我们联系。",
     "sendSuccess": "消息已成功发送！",
     "sendError": "发送失败。请再试一次。"
   },
   "updates": {
-    "title": "更新",
+    "title": "Updates",
     "subtitle": "最新网站信息",
-    "noUpdates": "暂无更新"
+    "noUpdates": "没有更新",
+    "lastUpdated": "最后更新",
+    "viewAllHistory": "查看所有历史"
   }
 }
