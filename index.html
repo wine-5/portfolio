@@ -11,9 +11,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     
     <!-- CSS -->
+    <!-- New Structure -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Legacy Styles (移行中) -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/skill-card-expand.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,12 +75,14 @@
                     <a href="#connect" class="header__nav-link">Contact</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="pages/timeline.html" class="header__nav-link">Timeline</a>
+                    <a href="pages/timeline/timeline.html" class="header__nav-link">Timeline</a>
                 </li>
                 <li class="header__nav-item">
                     <a href="#updates" class="header__nav-link">Updates</a>
                 </li>
             </ul>
+            <!-- テーマ切り替え & 言語切り替えボタン -->
+            <div class="header__controls" id="header-controls"></div>
             <div class="header__hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -162,7 +165,7 @@
         <section class="works" id="games">
             <div class="section__bg-text" data-text="Games"></div>
             <div class="container">
-                <h2 class="section__title">Games</h2>
+                <h2 class="section__title" data-i18n="sections.games.title">Games</h2>
                 <div class="works__grid" id="works-grid">
                     <!-- 作品カードはJavaScriptで動的生成 -->
                 </div>
@@ -173,7 +176,7 @@
         <section class="skills" id="skills">
             <div class="section__bg-text" data-text="Skills"></div>
             <div class="container">
-                <h2 class="section__title">Skills</h2>
+                <h2 class="section__title" data-i18n="sections.skills.title">Skills</h2>
                 <p class="skills__note">
                     <i class="fas fa-info-circle"></i>
                     各スキルのレベルは学習開始からの経験月数を表示しています（最大: 4年 / 学生期間）
@@ -227,7 +230,7 @@
         <section class="about" id="about">
             <div class="section__bg-text" data-text="About"></div>
             <div class="container">
-                <h2 class="section__title">About</h2>
+                <h2 class="section__title" data-i18n="sections.about.title">About</h2>
                 <div class="about__content">
                     <div class="about__text">
                         <h3 class="about__subtitle">wine-5</h3>
@@ -259,7 +262,7 @@
                         
                         <!-- タイムラインページへのリンク -->
                         <div class="about__timeline-link">
-                            <a href="pages/timeline.html" class="btn btn--primary about__timeline-button">
+                            <a href="pages/timeline/timeline.html" class="btn btn--primary about__timeline-button">
                                 <i class="fas fa-history"></i>
                                 開発の軌跡を見る
                             </a>
@@ -292,7 +295,7 @@
                             <p class="updates__date" id="last-updated-date">2025年10月23日</p>
                         </div>
                         <div class="updates__action">
-                            <a href="pages/history.html" class="btn btn--primary">
+                            <a href="pages/history/history.html" class="btn btn--primary">
                                 <i class="fas fa-history"></i>
                                 View All History
                             </a>
@@ -350,7 +353,7 @@
                                 <li><a href="#skills" class="footer__link"><i class="fas fa-code"></i> Skills</a></li>
                                 <li><a href="#about" class="footer__link"><i class="fas fa-user"></i> About</a></li>
                                 <li><a href="#contact" class="footer__link"><i class="fas fa-envelope"></i> Contact</a></li>
-                                <li><a href="pages/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> Timeline</a></li>
+                                <li><a href="pages/timeline/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> Timeline</a></li>
                                 <li><a href="#updates" class="footer__link"><i class="fas fa-clock-rotate-left"></i> Updates</a></li>
                             </ul>
                         </div>
@@ -360,6 +363,12 @@
                                 <li><a href="https://github.com/wine-5" target="_blank" class="footer__link"><i class="fab fa-github"></i> GitHub</a></li>
                                 <li><a href="https://x.com/wine_program" target="_blank" class="footer__link"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                                 <li><a href="https://unityroom.com/users/wine-555" target="_blank" class="footer__link"><i class="fas fa-dice-d6"></i> UnityRoom</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">法務</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="pages/legal/privacy.html" class="footer__link"><i class="fas fa-shield-halved"></i> プライバシーポリシー</a></li>
                             </ul>
                         </div>
                     </div>
@@ -373,32 +382,46 @@
     </footer>
 
     <!-- JavaScript -->
+    <!-- 0. Core Systems (First!) -->
+    <script src="assets/js/managers/ui/ThemeManager.js"></script>
+    <script src="assets/js/managers/ui/I18nManager.js"></script>
+    
     <!-- 1. ユーティリティ & データ -->
     <script src="js/utils/functions.js"></script>
     <script src="js/utils/skillExperience.js"></script>
-    <script src="js/utils/skillDetails.js"></script>
+    <script src="js/data/skillDetails.js"></script>
     <script src="js/data/projects.js"></script>
     <script src="js/data/updates.js"></script>
+    <script src="js/data/timeline.js"></script>
     <script src="js/config/logger.js"></script>
     <script src="js/config/email-config.js"></script>
     
-    <!-- 2. マネージャークラス -->
-    <script src="js/managers/ScrollManager.js"></script>
-    <script src="js/managers/SectionAnimationManager.js"></script>
-    <script src="js/managers/GamesManager.js"></script>
-    <script src="js/managers/SkillsManager.js"></script>
-    <script src="js/managers/UpdatesManager.js"></script>
-    <script src="js/managers/ContactForm.js"></script>
-    <script src="js/managers/FooterAnimationManager.js"></script>
-    <script src="js/managers/WaterReflectionTitleManager.js"></script>
-    <script src="js/managers/WebGLWaterReflectionManager.js"></script>
-    <script src="js/managers/SkillParticleManager.js"></script>
-    <script src="js/managers/GameUIManager.js"></script>
-    <script src="js/managers/EasterEggManager.js"></script>
-    <script src="js/managers/SkillCardExpandManager.js"></script>
-    <script src="js/managers/ManagerFactory.js"></script>
+    <!-- 2. Core Factory -->
+    <script src="assets/js/core/ManagerFactory.js"></script>
     
-    <!-- 3. アニメーション & メイン -->
+    <!-- 3. Animation Managers -->
+    <script src="assets/js/managers/animation/ScrollManager.js"></script>
+    <script src="assets/js/managers/animation/SkillParticleManager.js"></script>
+    <script src="assets/js/managers/animation/WaterReflectionTitleManager.js"></script>
+    <script src="assets/js/managers/animation/WebGLWaterReflectionManager.js"></script>
+    
+    <!-- 4. Section Managers -->
+    <script src="assets/js/managers/sections/GamesManager.js"></script>
+    <script src="assets/js/managers/sections/SkillsManager.js"></script>
+    <script src="assets/js/managers/sections/UpdatesManager.js"></script>
+    <script src="assets/js/managers/sections/TimelineManager.js"></script>
+    <script src="assets/js/managers/sections/HistoryManager.js"></script>
+    <script src="assets/js/managers/sections/NewsManager.js"></script>
+    
+    <!-- 5. UI Managers -->
+    <script src="assets/js/managers/ui/ContactForm.js"></script>
+    <script src="assets/js/managers/ui/SkillCardExpandManager.js"></script>
+    <script src="assets/js/managers/ui/GameUIManager.js"></script>
+    <script src="assets/js/managers/ui/FooterAnimationManager.js"></script>
+    <script src="assets/js/managers/ui/SectionAnimationManager.js"></script>
+    <script src="assets/js/managers/ui/EasterEggManager.js"></script>
+    
+    <!-- 6. アニメーション & メイン -->
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
 </body>

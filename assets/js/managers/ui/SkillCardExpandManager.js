@@ -34,12 +34,15 @@ class SkillCardExpandManager {
         this.expandedCard = null;
         this.newPanel = null;
         this.isAnimating = false;
+        this.allSkills = []; // 全スキルカードの配列
+        this.currentIndex = -1; // 現在表示中のスキルのインデックス
     }
 
     init() {
-        const skills = document.querySelectorAll('.skill');
+        // 全スキルカードを配列として保存
+        this.allSkills = Array.from(document.querySelectorAll('.skill'));
         
-        skills.forEach(skill => {
+        this.allSkills.forEach(skill => {
             skill.style.cursor = 'pointer';
             skill.addEventListener('click', (e) => {
                 // パーティクルキャンバスをクリックした場合は無視
@@ -54,11 +57,22 @@ class SkillCardExpandManager {
             if (e.key === 'Escape' && this.expandedCard) {
                 this.closeExpandedCard();
             }
+            // 左右矢印キーでナビゲーション
+            if (this.expandedCard && !this.isAnimating) {
+                if (e.key === 'ArrowLeft') {
+                    this.navigateToPrevious();
+                } else if (e.key === 'ArrowRight') {
+                    this.navigateToNext();
+                }
+            }
         });
     }
 
     handleSkillClick(skillElement) {
         if (this.isAnimating) return;
+
+        // 現在のスキルのインデックスを取得
+        this.currentIndex = this.allSkills.indexOf(skillElement);
 
         // 既に展開されている場合は閉じる
         if (this.expandedCard === skillElement) {
@@ -134,6 +148,9 @@ class SkillCardExpandManager {
         detailsContent.style.opacity = '0';
         newPanel.appendChild(detailsContent);
 
+        // ナビゲーションボタンを追加
+        this.addNavigationButtons(newPanel);
+
         document.body.appendChild(newPanel);
         this.newPanel = newPanel;
 
@@ -205,6 +222,151 @@ class SkillCardExpandManager {
         return content;
     }
 
+    addNavigationButtons(panel) {
+        // 前へボタン
+        const prevButton = document.createElement('button');
+        prevButton.className = 'skill-nav-button skill-nav-prev';
+        prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevButton.onclick = (e) => {
+            e.stopPropagation();
+            this.navigateToPrevious();
+        };
+        
+        // 次へボタン
+        const nextButton = document.createElement('button');
+        nextButton.className = 'skill-nav-button skill-nav-next';
+        nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextButton.onclick = (e) => {
+            e.stopPropagation();
+            this.navigateToNext();
+        };
+
+        // ボタンの表示/非表示を制御
+        if (this.currentIndex <= 0) {
+            prevButton.style.opacity = '0.3';
+            prevButton.style.cursor = 'not-allowed';
+            prevButton.disabled = true;
+        }
+        if (this.currentIndex >= this.allSkills.length - 1) {
+            nextButton.style.opacity = '0.3';
+            nextButton.style.cursor = 'not-allowed';
+            nextButton.disabled = true;
+        }
+
+        // ボタンをbodyに直接追加（固定位置）
+        document.body.appendChild(prevButton);
+        document.body.appendChild(nextButton);
+        
+        // 参照を保存（削除用）
+        this.prevButton = prevButton;
+        this.nextButton = nextButton;
+    }
+
+    navigateToPrevious() {
+        if (this.currentIndex > 0 && !this.isAnimating) {
+            const prevSkill = this.allSkills[this.currentIndex - 1];
+            this.switchToSkill(prevSkill);
+        }
+    }
+
+    navigateToNext() {
+        if (this.currentIndex < this.allSkills.length - 1 && !this.isAnimating) {
+            const nextSkill = this.allSkills[this.currentIndex + 1];
+            this.switchToSkill(nextSkill);
+        }
+    }
+
+    switchToSkill(newSkillElement) {
+        this.isAnimating = true;
+        const currentPanel = this.newPanel;
+        
+        // 現在のナビゲーションボタンを削除
+        if (this.prevButton) this.prevButton.remove();
+        if (this.nextButton) this.nextButton.remove();
+        
+        // 現在のパネルをフェードアウト
+        if (currentPanel) {
+            currentPanel.style.opacity = '0';
+            currentPanel.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        }
+
+        setTimeout(() => {
+            // 現在のパネルを削除
+            if (currentPanel) {
+                currentPanel.remove();
+            }
+            
+            // 新しいスキルを表示
+            this.expandedCard = newSkillElement;
+            this.currentIndex = this.allSkills.indexOf(newSkillElement);
+            
+            const skillName = newSkillElement.querySelector('.skill__name').textContent;
+            const skillDetails = window.getSkillDetails ? window.getSkillDetails(skillName) : null;
+            
+            if (!skillDetails) {
+                this.isAnimating = false;
+                return;
+            }
+
+            // 新しいパネルを作成
+            const newPanel = document.createElement('div');
+            newPanel.className = 'skill-expanded-panel';
+            const config = SkillCardExpandManager.ANIMATION_CONFIG;
+            
+            newPanel.style.transform = `translate(-50%, -50%) scale(${config.INITIAL_SCALE})`;
+            newPanel.style.width = `min(${config.PANEL_WIDTH_VW}vw, ${config.PANEL_MAX_WIDTH}px)`;
+            newPanel.style.maxHeight = `${config.PANEL_MAX_HEIGHT_VH}vh`;
+            newPanel.style.zIndex = config.Z_INDEX;
+            newPanel.style.borderRadius = SkillCardExpandManager.STYLE_CONFIG.BORDER_RADIUS;
+            newPanel.style.boxShadow = SkillCardExpandManager.STYLE_CONFIG.BOX_SHADOW;
+            newPanel.style.transition = `all ${config.TRANSITION_DURATION} ${config.TRANSITION_TIMING}`;
+            newPanel.style.opacity = '0';
+
+            // ヘッダーをコピー
+            const headerClone = newSkillElement.querySelector('.skill__header');
+            const descClone = newSkillElement.querySelector('.skill__description');
+            
+            if (headerClone) {
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'skill-expanded-panel-header';
+                headerDiv.innerHTML = headerClone.innerHTML;
+                newPanel.appendChild(headerDiv);
+            }
+            
+            if (descClone) {
+                const descDiv = document.createElement('div');
+                descDiv.className = 'skill-expanded-panel-desc';
+                descDiv.textContent = descClone.textContent;
+                newPanel.appendChild(descDiv);
+            }
+
+            // 詳細コンテンツを作成
+            const detailsContent = this.createDetailsContent(skillDetails);
+            detailsContent.style.opacity = '0';
+            newPanel.appendChild(detailsContent);
+
+            // ナビゲーションボタンを追加
+            this.addNavigationButtons(newPanel);
+
+            document.body.appendChild(newPanel);
+            this.newPanel = newPanel;
+
+            // アニメーション開始
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    newPanel.style.transform = `translate(-50%, -50%) scale(${config.FINAL_SCALE})`;
+                    newPanel.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        detailsContent.style.transition = 'opacity 0.4s ease';
+                        detailsContent.style.opacity = '1';
+                        this.isAnimating = false;
+                    }, config.DETAILS_FADE_DELAY);
+                });
+            });
+        }, 300);
+    }
+
     closeExpandedCard() {
         if (!this.expandedCard || this.isAnimating) return;
 
@@ -212,6 +374,10 @@ class SkillCardExpandManager {
         const overlay = document.querySelector('.skill-expand-overlay');
         const newPanel = this.newPanel;
         const config = SkillCardExpandManager.ANIMATION_CONFIG;
+
+        // ナビゲーションボタンを削除
+        if (this.prevButton) this.prevButton.remove();
+        if (this.nextButton) this.nextButton.remove();
 
         // 新しいパネルをフェードアウト
         if (newPanel) {

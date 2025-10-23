@@ -30,6 +30,45 @@
     overflow-y: auto;
 }
 
+/* ナビゲーションボタン */
+.skill-nav-button {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(99, 102, 241, 0.9);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10002;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.skill-nav-button:hover {
+    background: rgba(99, 102, 241, 1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+.skill-nav-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.skill-nav-prev {
+    left: 20px;
+}
+
+.skill-nav-next {
+    right: 20px;
+}
+
 .skill-expanded-panel::-webkit-scrollbar {
     width: 8px;
 }
@@ -223,6 +262,21 @@
     .skill-details-content {
         padding: 15px;
     }
+
+    /* ナビゲーションボタンをパネル内に配置 */
+    .skill-nav-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .skill-nav-prev {
+        left: 10px;
+    }
+
+    .skill-nav-next {
+        right: 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -234,5 +288,12 @@
     
     .skill-details-close {
         align-self: flex-end;
+    }
+
+    /* ナビゲーションボタンをさらに小さく */
+    .skill-nav-button {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
     }
 }

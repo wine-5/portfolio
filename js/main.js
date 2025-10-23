@@ -14,16 +14,71 @@ class PortfolioApp {
         this.managers = this.managerFactory.createAll();
     }
 
-    init() {
+    async init() {
+        // テーマとi18nの初期化
+        this.initializeCoreSystems();
+        
         this.setupEventListeners();
         this.animateLoading();
         this.setupW5ClickAnimation();
         
-        // マネージャーの一括初期化
-        this.managerFactory.initAll();
+        // スキルデータの読み込み（awaitで待機）
+        await this.loadSkillData();
+        
+        // マネージャーの一括初期化（データ読み込み後）
+        await this.managerFactory.initAll();
         
         // WebGL水面反射システムの初期化
         this.managerFactory.initWaterReflection();
+    }
+
+    initializeCoreSystems() {
+        // テーママネージャーの初期化とボタン追加
+        if (window.themeManager) {
+            window.themeManager.init();
+            const headerControls = document.getElementById('header-controls');
+            if (headerControls) {
+                window.themeManager.createToggleButton(headerControls);
+            }
+        }
+        
+        // 多言語マネージャーの初期化とボタン追加
+        if (window.i18n) {
+            const currentLang = window.i18n.getCurrentLanguage();
+            window.i18n.loadTranslations(currentLang).then(() => {
+                // 翻訳データ読み込み後に翻訳を適用
+                window.i18n.applyTranslations();
+            });
+            
+            const headerControls = document.getElementById('header-controls');
+            if (headerControls) {
+                window.i18n.createLanguageSwitcher(headerControls);
+            }
+        }
+    }
+
+    async loadSkillData() {
+        const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+        
+        // スキル詳細データを読み込む
+        if (window.skillDetailsData) {
+            await window.skillDetailsData.load(lang);
+        }
+        
+        // プロジェクトデータを読み込む
+        if (window.projectsData) {
+            await window.projectsData.load(lang);
+        }
+        
+        // 更新履歴データを読み込む
+        if (window.updatesData) {
+            await window.updatesData.load(lang);
+        }
+        
+        // タイムラインデータを読み込む
+        if (window.timelineData) {
+            await window.timelineData.load(lang);
+        }
     }
 
     setupEventListeners() {
@@ -301,11 +356,11 @@ class PortfolioApp {
    =================================== */
 let isInitialized = false;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     if (isInitialized) return;
     
     const app = new PortfolioApp();
-    app.init();
+    await app.init(); // awaitを追加
     
     isInitialized = true;
 });

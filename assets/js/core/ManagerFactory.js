@@ -37,16 +37,16 @@ class ManagerFactory {
     }
 
     /**
-     * 全マネージャーを初期化（WebGL以外）
+     * 全マネージャーを初期化(WebGL以外)
      */
-    initAll() {
+    async initAll() {
         // コアマネージャーの初期化
         this.managers.scroll.init();
         this.managers.animation.init();
         this.managers.sectionAnimation.init();
         
-        // コンテンツマネージャーの初期化
-        this.managers.games.init();
+        // コンテンツマネージャーの初期化（非同期のものはawaitで待つ）
+        await this.managers.games.init();
         this.managers.skills.init();
         this.managers.contact.init();
         this.managers.footerAnimation.init();
@@ -57,10 +57,8 @@ class ManagerFactory {
         this.managers.easterEgg.init();
         this.managers.skillCardExpand.init();
         
-        // UpdatesManagerは遅延初期化
-        setTimeout(() => {
-            this.managers.updates.init();
-        }, 100);
+        // UpdatesManagerは非同期で初期化（データロードを待つ）
+        await this.managers.updates.init();
     }
 
     /**

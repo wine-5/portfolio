@@ -4,17 +4,56 @@
 class GamesManager {
     constructor() {
         this.worksGrid = document.getElementById('works-grid');
-        this.projects = PROJECTS_DATA; // 外部データを参照
+        this.projects = [];
     }
 
-    init() {
+    async init() {
+        console.log('GamesManager init called');
+        
+        // projectsDataがまだロードされていない場合はロードを待つ
+        if (window.projectsData && !window.projectsData.isReady()) {
+            console.log('Waiting for projects data to load...');
+            const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+            await window.projectsData.load(lang);
+        }
+        
+        // プロジェクトデータを取得
+        this.projects = PROJECTS_DATA || [];
+        console.log('Projects loaded:', this.projects.length, 'items');
+        
+        if (this.projects.length === 0) {
+            console.warn('No projects data available');
+            return;
+        }
+        
         this.renderGames();
         this.setupImageSliders(); // スライダーイベント設定
-        // スクロール連動アニメーションは削除
+        this.setupLanguageListener(); // 言語変更リスナー
+        console.log('GamesManager initialization completed');
+    }
+
+    /**
+     * 言語変更リスナーを設定
+     */
+    setupLanguageListener() {
+        window.addEventListener('languageChanged', async (e) => {
+            const newLang = e.detail.language;
+            console.log('GamesManager: Language changed to', newLang);
+            
+            // 新しい言語でデータを再読み込み
+            if (window.projectsData) {
+                await window.projectsData.load(newLang);
+                this.projects = PROJECTS_DATA || [];
+                this.renderGames();
+            }
+        });
     }
 
     renderGames() {
-        if (!this.worksGrid) return;
+        if (!this.worksGrid) {
+            console.error('works-grid element not found');
+            return;
+        }
 
         const projectsHtml = this.projects.map(project => 
             this.createGameCard(project)

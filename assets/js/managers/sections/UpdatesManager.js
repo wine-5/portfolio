@@ -6,40 +6,38 @@ class UpdatesManager {
         // 簡素化されたレイアウトでは更新履歴は表示しません
         this.timelineContainer = null;
         this.lastUpdatedElement = document.getElementById('last-updated-date');
+        this.updates = [];
+        this.isInitialized = false;
+    }
+
+    async init() {
+        console.log('UpdatesManager init called (simplified version)');
+        console.log('Last updated element:', this.lastUpdatedElement);
         
-        // データの安全な取得
-        if (typeof UPDATES_DATA !== 'undefined') {
+        // updatesDataがまだロードされていない場合はロードを待つ
+        if (window.updatesData && !window.updatesData.isReady()) {
+            console.log('Waiting for updates data to load...');
+            const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+            await window.updatesData.load(lang);
+        }
+        
+        // updatesDataから直接取得
+        if (window.updatesData && window.updatesData.isReady()) {
+            this.updates = window.updatesData.getAllUpdates();
+            console.log('Updates data loaded from updatesData:', this.updates.length, 'items');
+        } else if (typeof UPDATES_DATA !== 'undefined' && UPDATES_DATA.length > 0) {
             this.updates = UPDATES_DATA;
+            console.log('Updates data loaded from UPDATES_DATA:', this.updates.length, 'items');
         } else {
-            console.warn('UPDATES_DATA not found, using fallback data');
+            console.warn('No updates data available, using fallback');
             this.updates = [
                 {
-                    date: '2025-10-21',
+                    date: '2025-10-23',
                     title: 'ポートフォリオサイト更新',
                     description: 'サイト機能の改善と新機能の実装を行いました。'
                 }
             ];
         }
-        
-        console.log('UpdatesManager constructor - Updates count:', this.updates.length);
-        
-        // 緊急対応: DOM読み込み完了後に再初期化を試行
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                if (!this.isInitialized) {
-                    console.log('Forcing UpdatesManager initialization...');
-                    this.forceInit();
-                }
-            }, 500);
-        });
-        
-        this.isInitialized = false;
-    }
-
-    init() {
-        console.log('UpdatesManager init called (simplified version)');
-        console.log('Last updated element:', this.lastUpdatedElement);
-        console.log('Updates data:', this.updates);
         
         if (!this.updates || this.updates.length === 0) {
             console.error('Updates data is empty');
@@ -51,45 +49,6 @@ class UpdatesManager {
         
         console.log('UpdatesManager initialization completed');
         this.isInitialized = true;
-    }
-
-    forceInit() {
-        console.log('Force initialization of UpdatesManager');
-        
-        // DOM要素を強制的に再取得
-        this.timelineContainer = document.getElementById('updates-timeline');
-        this.lastUpdatedElement = document.getElementById('last-updated-date');
-        
-        if (!this.timelineContainer) {
-            console.error('Still cannot find updates-timeline element');
-            
-            // 最後の手段: 既存のHTMLコンテンツをそのまま残す
-            const existingContainer = document.querySelector('.updates__timeline');
-            if (existingContainer && existingContainer.innerHTML.trim() !== '') {
-                console.log('Found existing HTML content, keeping it');
-                return;
-            }
-            
-            // それでもダメな場合は、手動でHTML挿入
-            const updatesSection = document.querySelector('.updates__history');
-            if (updatesSection) {
-                console.log('Manually inserting updates HTML');
-                const timelineDiv = updatesSection.querySelector('.updates__timeline') || 
-                                  updatesSection.appendChild(document.createElement('div'));
-                timelineDiv.className = 'updates__timeline';
-                timelineDiv.id = 'updates-timeline';
-                this.timelineContainer = timelineDiv;
-            }
-        }
-        
-        if (this.timelineContainer) {
-            this.updateLastModifiedDate();
-            this.renderUpdateHistory();
-            this.isInitialized = true;
-            console.log('Force initialization completed successfully');
-        } else {
-            console.error('Force initialization failed - no container found');
-        }
     }
 
     updateLastModifiedDate() {
