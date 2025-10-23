@@ -45,6 +45,8 @@ class GamesManager {
                 await window.projectsData.load(newLang);
                 this.projects = PROJECTS_DATA || [];
                 this.renderGames();
+                // スライダーの再初期化は不要（renderGames内でHTMLが再生成されるため）
+                console.log('GamesManager: Games re-rendered with new language');
             }
         });
     }

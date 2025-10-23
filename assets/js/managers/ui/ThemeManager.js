@@ -61,6 +61,7 @@ class ThemeManager {
      */
     toggleTheme() {
         const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+        console.log('Theme toggled from', this.currentTheme, 'to', newTheme);
         this.applyTheme(newTheme);
         return newTheme;
     }
@@ -118,6 +119,8 @@ class ThemeManager {
      * テーマトグルボタンを作成
      */
     createToggleButton(container) {
+        console.log('Creating theme toggle button in container:', container);
+        
         const wrapper = document.createElement('div');
         wrapper.className = 'theme-toggle';
         
@@ -127,6 +130,7 @@ class ThemeManager {
         button.innerHTML = this.getButtonIcon();
 
         button.addEventListener('click', () => {
+            console.log('Theme toggle button clicked');
             this.toggleTheme();
             button.innerHTML = this.getButtonIcon();
         });
@@ -140,10 +144,14 @@ class ThemeManager {
         
         if (container instanceof HTMLElement) {
             container.appendChild(wrapper);
+            console.log('Theme toggle button added to container');
         } else if (typeof container === 'string') {
             const target = document.querySelector(container);
             if (target) {
                 target.appendChild(wrapper);
+                console.log('Theme toggle button added to:', container);
+            } else {
+                console.error('Container not found:', container);
             }
         }
 

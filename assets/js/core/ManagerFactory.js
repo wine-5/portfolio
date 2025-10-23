@@ -47,7 +47,7 @@ class ManagerFactory {
         
         // コンテンツマネージャーの初期化（非同期のものはawaitで待つ）
         await this.managers.games.init();
-        this.managers.skills.init();
+        await this.managers.skills.init();
         this.managers.contact.init();
         this.managers.footerAnimation.init();
         

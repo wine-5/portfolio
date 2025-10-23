@@ -2,10 +2,17 @@ class UpdatesData {
     constructor() {
         this.updatesData = null;
         this.isLoaded = false;
+        this.currentLang = null;
     }
 
     async load(lang = 'ja') {
-        if (this.isLoaded) return this.updatesData;
+        // 同じ言語ならスキップ
+        if (this.isLoaded && this.currentLang === lang) {
+            console.log(`Updates already loaded for language: ${lang}`);
+            return this.updatesData;
+        }
+
+        console.log(`Loading updates for language: ${lang}`);
 
         try {
             const response = await fetch(`json/locales/${lang}/updates.json`);
@@ -14,12 +21,14 @@ class UpdatesData {
             }
             this.updatesData = await response.json();
             this.isLoaded = true;
+            this.currentLang = lang;
             console.log('Updates loaded:', this.updatesData.length, 'items');
             return this.updatesData;
         } catch (error) {
             console.error('Error loading updates:', error);
             this.updatesData = [];
             this.isLoaded = true;
+            this.currentLang = lang;
             return this.updatesData;
         }
     }

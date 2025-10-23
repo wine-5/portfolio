@@ -183,22 +183,118 @@ class I18nManager {
                 }
             }
         });
+        
+        // Aboutセクションの詳細な説明を更新
+        this.updateAboutSection();
+    }
+
+    /**
+     * Aboutセクションの内容を更新
+     */
+    updateAboutSection() {
+        const aboutSection = document.getElementById('about');
+        if (!aboutSection) return;
+
+        // 説明文を更新
+        const descriptionElement = aboutSection.querySelector('.about__description');
+        if (descriptionElement) {
+            const fullDesc = this.t('sections.about.fullDescription');
+            const socialText = this.t('sections.about.socialText');
+            
+            if (fullDesc && fullDesc !== 'sections.about.fullDescription') {
+                // 改行を<br>に変換
+                const lines = fullDesc.split('\n');
+                descriptionElement.innerHTML = lines.map(line => line).join('<br>') + 
+                                              '<br><br>' + socialText;
+            }
+        }
+
+        // タイムラインボタンのテキストを更新
+        const timelineButton = aboutSection.querySelector('.about__timeline-button');
+        if (timelineButton) {
+            const buttonText = this.t('sections.about.timelineButton');
+            if (buttonText && buttonText !== 'sections.about.timelineButton') {
+                const icon = timelineButton.querySelector('i');
+                timelineButton.innerHTML = '';
+                if (icon) timelineButton.appendChild(icon.cloneNode(true));
+                timelineButton.appendChild(document.createTextNode('\n                                ' + buttonText + '\n                            '));
+            }
+        }
+
+        // タイムラインの説明を更新
+        const timelineDesc = aboutSection.querySelector('.about__timeline-description');
+        if (timelineDesc) {
+            const descText = this.t('sections.about.timelineDescription');
+            if (descText && descText !== 'sections.about.timelineDescription') {
+                timelineDesc.textContent = descText;
+            }
+        }
+        
+        // Contactセクションの説明を更新
+        this.updateContactSection();
+    }
+
+    /**
+     * Contactセクションの内容を更新
+     */
+    updateContactSection() {
+        const contactSection = document.getElementById('connect');
+        if (!contactSection) return;
+
+        // 説明文を更新
+        const descriptionElement = contactSection.querySelector('.contact__description');
+        if (descriptionElement) {
+            const desc = this.t('sections.contact.description');
+            
+            if (desc && desc !== 'sections.contact.description') {
+                // 改行を<br>に変換
+                const lines = desc.split('\n');
+                descriptionElement.innerHTML = lines.map(line => line).join('<br>');
+            }
+        }
     }
 
     /**
      * 翻訳テキストを取得
-     * @param {string} key - 'module.key' 形式
+     * @param {string} key - 'module.key' または 'module.key.subkey' 形式
      * @param {object} params - 置換パラメータ
      */
     t(key, params = {}) {
-        const [module, ...keyParts] = key.split('.');
-        const actualKey = keyParts.join('.');
+        const parts = key.split('.');
+        
+        if (parts.length < 2) {
+            console.warn(`Invalid translation key format: ${key}`);
+            return key;
+        }
 
-        let text = this.translations[this.currentLang]?.[module]?.[actualKey];
+        const module = parts[0]; // 'sections', 'common', etc.
+        const keyPath = parts.slice(1); // ['games', 'title'] など
+
+        // 翻訳データを取得
+        let text = this.translations[this.currentLang]?.[module];
+        
+        // キーパスを辿る
+        for (const k of keyPath) {
+            if (text && typeof text === 'object') {
+                text = text[k];
+            } else {
+                text = undefined;
+                break;
+            }
+        }
         
         // フォールバック: デフォルト言語を試す
         if (!text && this.currentLang !== this.defaultLanguage) {
-            text = this.translations[this.defaultLanguage]?.[module]?.[actualKey];
+            let fallbackText = this.translations[this.defaultLanguage]?.[module];
+            for (const k of keyPath) {
+                if (fallbackText && typeof fallbackText === 'object') {
+                    fallbackText = fallbackText[k];
+                } else {
+                    fallbackText = undefined;
+                    break;
+                }
+            }
+            text = fallbackText;
         }
 
         // フォールバック: キーをそのまま返す

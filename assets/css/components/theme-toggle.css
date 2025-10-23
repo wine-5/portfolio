@@ -45,13 +45,13 @@
 
 /* ライトモード対応 */
 [data-theme="light"] .theme-toggle__button {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
     color: var(--color-text-primary);
 }
 
 [data-theme="light"] .theme-toggle__button:hover {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(99, 102, 241, 0.2);
     border-color: var(--color-primary);
 }
 

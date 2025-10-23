@@ -7,6 +7,7 @@ class SkillDetailsData {
     constructor() {
         this.skillsData = null;
         this.isLoaded = false;
+        this.currentLang = null;
     }
 
     /**
@@ -14,19 +15,28 @@ class SkillDetailsData {
      * @returns {Promise<void>}
      */
     async load(lang = 'ja') {
-        if (this.isLoaded) return;
+        // 同じ言語ならスキップ
+        if (this.isLoaded && this.currentLang === lang) {
+            console.log(`Skill details already loaded for language: ${lang}`);
+            return;
+        }
+
+        console.log(`Loading skill details for language: ${lang}`);
 
         try {
             const response = await fetch(`json/locales/${lang}/skillDetails.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load skill details: ${response.status}`);
             }
-            this.skillDetailsData = await response.json();
+            this.skillsData = await response.json();
             this.isLoaded = true;
+            this.currentLang = lang;
+            console.log('SkillDetailsData loaded successfully:', Object.keys(this.skillsData));
         } catch (error) {
             console.error('Error loading skill details:', error);
-            this.skillDetailsData = {};
+            this.skillsData = {};
             this.isLoaded = true;
+            this.currentLang = lang;
         }
     }
 
