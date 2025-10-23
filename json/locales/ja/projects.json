@@ -65,14 +65,14 @@
       "images/game/under-over/UnderOver-title.png",
       "images/game/under-over/UnderOver-in-game.png"
     ],
-    "playUrl": "https://github.com/wine-5/UnderOver",
+    "playUrl": "https://unityroom.com/games/underover",
     "githubUrl": "https://github.com/wine-5/UnderOver",
     "year": "1年次",
     "category": "game",
     "teamSize": "1人",
     "period": "2〜3ヶ月",
     "note": "UnityRoom公開予定",
-    "locked": true,
+    "locked": false,
     "lockReason": "UnityRoom公開準備中"
   },
   {
