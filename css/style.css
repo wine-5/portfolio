@@ -301,7 +301,6 @@ body {
 .loading-hint {
     position: absolute;
     top: 50%;
-    left: 50%;
     font-family: var(--font-primary);
     font-size: 1rem;
     font-weight: 600;
@@ -309,19 +308,40 @@ body {
     text-transform: lowercase;
     white-space: nowrap;
     text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-    animation: rotateAroundLogo 8s linear infinite;
-    transform-origin: 0 0;
+    transform-origin: center center;
 }
 
+/* wine-5を左側に配置 */
 .loading-hint:nth-child(1) {
-    animation-delay: 0s;
+    left: calc(50% - 150px);
+    animation: rotateLeftSide 8s linear infinite;
 }
 
+/* debugを右側に配置 */
 .loading-hint:nth-child(2) {
+    left: calc(50% + 150px);
+    animation: rotateRightSide 8s linear infinite;
     animation-delay: 4s;
 }
 
-@keyframes rotateAroundLogo {
+@keyframes rotateLeftSide {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(-80px) rotate(0deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(-80px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes rotateRightSide {
     0% {
         transform: translate(-50%, -50%) rotate(0deg) translateX(80px) rotate(0deg);
         opacity: 0;

@@ -15,6 +15,12 @@ class EasterEggManager {
     }
 
     handleKeyPress(e) {
+        // wine-5モード中はESCで解除
+        if (this.wineMode && e.key === 'Escape') {
+            this.deactivateWineMode();
+            return;
+        }
+        
         // デバッグモード中はESCで解除
         if (this.debugMode && e.key === 'Escape') {
             this.deactivateDebugMode();
@@ -230,16 +236,350 @@ class EasterEggManager {
     }
 
     activateWineEffect() {
+        this.wineMode = true;
         console.log('%c🍷 WINE-5 Portfolio Master Unlocked!', 'color: #ffd700; font-size: 20px; font-weight: bold;');
+        console.log('%cPress ESC to exit wine-5 mode', 'color: #ffa500;');
         
         // 画面全体にマトリックス風エフェクト
         this.createMatrixRain();
         
         // 通知表示
-        this.showNotification('🍷 Portfolio Master Unlocked!', 'WINE-5 Mode Activated!', '#ffd700');
+        this.showNotification('🍷 Portfolio Master Unlocked!', 'Press ESC to exit', '#ffd700');
         
         // 全カードを虹色に
         this.rainbowCards();
+        
+        // wine-5専用の特別な機能を追加
+        this.addWineSpecialFeatures();
+    }
+
+    deactivateWineMode() {
+        this.wineMode = false;
+        console.log('%c✓ Wine-5 mode deactivated', 'color: #10b981; font-size: 16px;');
+        
+        // 虹色エフェクトを削除
+        const cards = document.querySelectorAll('.work-card, .skill');
+        cards.forEach(card => {
+            card.style.animation = '';
+            card.style.filter = '';
+        });
+        
+        // レインボースタイルを削除
+        const rainbowStyle = document.querySelector('style[data-wine-rainbow]');
+        if (rainbowStyle) rainbowStyle.remove();
+        
+        // wine-5専用機能を削除
+        this.removeWineSpecialFeatures();
+        
+        // 通知表示
+        this.showNotification('✓ Normal Mode', 'Wine-5 mode disabled', '#10b981');
+    }
+
+    addWineSpecialFeatures() {
+        // 管理者専用の特別な操作パネルを作成
+        const controlPanel = document.createElement('div');
+        controlPanel.className = 'wine-control-panel';
+        controlPanel.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.95), rgba(218, 165, 32, 0.95));
+            border: 3px solid #ffd700;
+            border-radius: 15px;
+            padding: 20px;
+            z-index: 10000;
+            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+            animation: winePanelSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        `;
+        
+        controlPanel.innerHTML = `
+            <div style="text-align: center; margin-bottom: 15px;">
+                <div style="font-size: 24px; font-weight: bold; color: #000; font-family: var(--font-primary);">
+                    🍷 WINE-5 MASTER PANEL
+                </div>
+                <div style="font-size: 12px; color: #333; margin-top: 5px;">
+                    管理者専用コントロール
+                </div>
+            </div>
+            <div style="display: grid; gap: 10px;">
+                <button class="wine-btn" data-action="spinAll" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    🌀 全カード回転
+                </button>
+                <button class="wine-btn" data-action="particleExplosion" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    💥 パーティクル爆発
+                </button>
+                <button class="wine-btn" data-action="massLevelUp" style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    ⬆️ 全レベルアップ
+                </button>
+                <button class="wine-btn" data-action="secretMessage" style="background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    💌 シークレットメッセージ
+                </button>
+            </div>
+            <div style="text-align: center; margin-top: 15px; font-size: 12px; color: #333;">
+                Press ESC to exit
+            </div>
+        `;
+        
+        // アニメーション定義
+        const style = document.createElement('style');
+        style.setAttribute('data-wine-panel', 'true');
+        style.textContent = `
+            @keyframes winePanelSlideIn {
+                from { transform: translateX(-100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            .wine-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .wine-btn:active {
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // ボタンイベントを設定
+        document.body.appendChild(controlPanel);
+        
+        controlPanel.querySelectorAll('.wine-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const action = e.target.dataset.action;
+                this.executeWineAction(action);
+            });
+        });
+    }
+
+    removeWineSpecialFeatures() {
+        const panel = document.querySelector('.wine-control-panel');
+        if (panel) {
+            panel.style.transform = 'translateX(-100%)';
+            panel.style.opacity = '0';
+            panel.style.transition = 'all 0.3s';
+            setTimeout(() => panel.remove(), 300);
+        }
+        
+        const style = document.querySelector('style[data-wine-panel]');
+        if (style) style.remove();
+    }
+
+    executeWineAction(action) {
+        switch(action) {
+            case 'spinAll':
+                this.spinAllCards();
+                break;
+            case 'particleExplosion':
+                this.createParticleExplosion();
+                break;
+            case 'massLevelUp':
+                this.massLevelUp();
+                break;
+            case 'secretMessage':
+                this.showSecretMessage();
+                break;
+        }
+    }
+
+    spinAllCards() {
+        const cards = document.querySelectorAll('.work-card, .skill');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                card.style.transform = 'rotateY(720deg) scale(1.1)';
+                
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 1000);
+            }, index * 50);
+        });
+        
+        this.showMiniNotification('🌀 全カード回転中！', '#667eea');
+    }
+
+    createParticleExplosion() {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                const angle = (Math.PI * 2 * i) / 50;
+                const velocity = 5 + Math.random() * 10;
+                
+                particle.style.cssText = `
+                    position: fixed;
+                    left: ${centerX}px;
+                    top: ${centerY}px;
+                    width: 10px;
+                    height: 10px;
+                    background: hsl(${Math.random() * 360}, 100%, 50%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 10001;
+                `;
+                
+                document.body.appendChild(particle);
+                
+                let posX = centerX;
+                let posY = centerY;
+                let velocityX = Math.cos(angle) * velocity;
+                let velocityY = Math.sin(angle) * velocity;
+                
+                const animate = () => {
+                    posX += velocityX;
+                    posY += velocityY;
+                    velocityY += 0.5; // 重力
+                    
+                    particle.style.left = posX + 'px';
+                    particle.style.top = posY + 'px';
+                    particle.style.opacity = parseFloat(particle.style.opacity || 1) - 0.02;
+                    
+                    if (parseFloat(particle.style.opacity) > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        particle.remove();
+                    }
+                };
+                
+                requestAnimationFrame(animate);
+            }, i * 20);
+        }
+        
+        this.showMiniNotification('💥 パーティクル爆発！', '#f5576c');
+    }
+
+    massLevelUp() {
+        const levelBadges = document.querySelectorAll('.skill-level-badge');
+        levelBadges.forEach((badge, index) => {
+            setTimeout(() => {
+                // レベルアップアニメーション
+                badge.style.animation = 'levelUpPulse 0.5s ease-out';
+                
+                // 数値を一時的に増加
+                const currentLevel = parseInt(badge.textContent.match(/\d+/)[0]);
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: absolute;
+                    top: -30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: #ffd700;
+                    font-size: 24px;
+                    font-weight: bold;
+                    animation: levelUpFloat 1s ease-out forwards;
+                    pointer-events: none;
+                    z-index: 100;
+                `;
+                overlay.textContent = '+1 LEVEL UP!';
+                badge.style.position = 'relative';
+                badge.appendChild(overlay);
+                
+                setTimeout(() => overlay.remove(), 1000);
+            }, index * 100);
+        });
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes levelUpPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.3); box-shadow: 0 0 30px #ffd700; }
+            }
+            @keyframes levelUpFloat {
+                0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+                100% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        setTimeout(() => style.remove(), 2000);
+        
+        this.showMiniNotification('⬆️ 全レベルアップ！', '#00f2fe');
+    }
+
+    showSecretMessage() {
+        const messages = [
+            '🎮 本気でゲーム開発を楽しんでいます！',
+            '💻 コードを書く時間が一番幸せです',
+            '🌟 毎日が新しい学びの連続',
+            '🚀 次のプロジェクトが待ち遠しい！',
+            '✨ クリエイティブな挑戦を続けます'
+        ];
+        
+        const message = messages[Math.floor(Math.random() * messages.length)];
+        
+        const messageBox = document.createElement('div');
+        messageBox.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px 60px;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 10002;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: secretMessagePop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        `;
+        messageBox.textContent = message;
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes secretMessagePop {
+                0% { transform: translate(-50%, -50%) scale(0) rotate(-180deg); opacity: 0; }
+                100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(messageBox);
+        
+        setTimeout(() => {
+            messageBox.style.transform = 'translate(-50%, -50%) scale(0) rotate(180deg)';
+            messageBox.style.opacity = '0';
+            messageBox.style.transition = 'all 0.5s';
+            setTimeout(() => {
+                messageBox.remove();
+                style.remove();
+            }, 500);
+        }, 3000);
+    }
+
+    showMiniNotification(text, color) {
+        const notif = document.createElement('div');
+        notif.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100%);
+            background: ${color};
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 10003;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            animation: miniNotifSlide 2s ease-out forwards;
+        `;
+        notif.textContent = text;
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes miniNotifSlide {
+                0% { transform: translateX(-50%) translateY(-100%); }
+                10%, 90% { transform: translateX(-50%) translateY(0); }
+                100% { transform: translateX(-50%) translateY(-100%); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(notif);
+        setTimeout(() => {
+            notif.remove();
+            style.remove();
+        }, 2000);
     }
 
     createMatrixRain() {
@@ -350,6 +690,7 @@ class EasterEggManager {
         });
 
         const style = document.createElement('style');
+        style.setAttribute('data-wine-rainbow', 'true');
         style.textContent = `
             @keyframes rainbow {
                 0% { filter: hue-rotate(0deg); }
@@ -357,10 +698,5 @@ class EasterEggManager {
             }
         `;
         document.head.appendChild(style);
-
-        setTimeout(() => {
-            cards.forEach(card => card.style.animation = '');
-            style.remove();
-        }, 10000);
     }
 }

@@ -1,0 +1,7 @@
+/* ヒストリーページ専用スタイル */
+
+/* フッターのリンクを即座に表示 */
+.footer__link {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
