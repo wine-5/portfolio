@@ -6,39 +6,34 @@ class HistoryManager {
         this.timelineContainer = null;
     }
 
-    init() {
-        console.log('HistoryManager: Initializing...');
-        console.log('HistoryManager: Looking for element with ID "history-timeline"');
-        
+    async init() {
         this.timelineContainer = document.getElementById('history-timeline');
-        console.log('HistoryManager: Timeline container found:', !!this.timelineContainer);
         
         if (!this.timelineContainer) {
             console.error('HistoryManager: Timeline container not found');
-            // デバッグ用: 利用可能な要素を確認
-            const allElements = document.querySelectorAll('[id]');
-            console.log('Available elements with IDs:', Array.from(allElements).map(el => el.id));
             return;
         }
         
-        if (typeof UPDATES_DATA === 'undefined') {
-            console.error('HistoryManager: UPDATES_DATA not found');
-            console.log('HistoryManager: Available global variables:', Object.keys(window));
+        // updatesDataの読み込みを待つ
+        if (window.updatesData && !window.updatesData.isLoaded) {
+            const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+            await window.updatesData.load(currentLang);
+        }
+        
+        // UPDATES_DATAの確認
+        const updates = window.UPDATES_DATA;
+        if (!updates || updates.length === 0) {
+            console.error('HistoryManager: No updates data available');
             return;
         }
         
-        console.log('HistoryManager: UPDATES_DATA found, length:', UPDATES_DATA.length);
-        console.log('HistoryManager: First update:', UPDATES_DATA[0]);
         this.renderHistoryTimeline();
     }
 
     renderHistoryTimeline() {
         try {
-            console.log('HistoryManager: Rendering timeline...');
-            
             // 更新履歴データを日付順（新しい順）でソート
-            const sortedUpdates = [...UPDATES_DATA].sort((a, b) => new Date(b.date) - new Date(a.date));
-            console.log('HistoryManager: Sorted updates:', sortedUpdates.length);
+            const sortedUpdates = [...window.UPDATES_DATA].sort((a, b) => new Date(b.date) - new Date(a.date));
             
             const timelineHTML = sortedUpdates.map((update, index) => {
                 const formattedDate = this.formatDate(update.date);
