@@ -875,20 +875,75 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
     gap: 3rem;
+    perspective: 2000px;
+    perspective-origin: center;
 }
 
 .work-card {
     background: var(--bg-card);
     border-radius: var(--border-radius);
     overflow: hidden;
-    transition: all var(--transition-normal);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     cursor: pointer;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
 }
 
 .work-card:hover {
-    transform: translateY(-1rem);
-    box-shadow: var(--box-shadow);
+    transform: translateZ(100px) translateY(-20px) rotateX(5deg) scale(1.05);
+    box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(99, 102, 241, 0.3),
+        0 0 100px rgba(99, 102, 241, 0.1);
+    z-index: 100;
+}
+
+/* 3D光沢エフェクト */
+.work-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.work-card:hover::before {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+/* 3D深度シャドウ */
+.work-card::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.5) 0%,
+        transparent 70%
+    );
+    transform: translateY(0) scaleX(1);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.work-card:hover::after {
+    transform: translateY(20px) scaleX(1.2);
+    opacity: 1;
 }
 
 .work-card__award {
@@ -1312,6 +1367,331 @@ body {
 }
 
 /* ===================================
+   ゲーム的UIエフェクト
+   =================================== */
+/* スキルレベルシステム */
+.skill-level-badge {
+    margin-top: 1rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.level-number {
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.exp-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.exp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 3px;
+    transition: width 1s ease-out;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    position: relative;
+}
+
+.exp-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.exp-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+/* レベルアップアニメーション */
+.level-up-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: levelUpFade 2s ease-out;
+    pointer-events: none;
+}
+
+@keyframes levelUpFade {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.level-up-content {
+    position: relative;
+    text-align: center;
+}
+
+.level-up-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+    animation: flashExpand 0.5s ease-out;
+}
+
+@keyframes flashExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+.level-up-text {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: 900;
+    color: #FFD700;
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: levelUpBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    letter-spacing: 0.2em;
+}
+
+@keyframes levelUpBounce {
+    0% {
+        transform: scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.level-up-number {
+    font-family: var(--font-primary);
+    font-size: 6rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 
+        0 0 30px rgba(99, 102, 241, 1),
+        0 0 60px rgba(99, 102, 241, 0.7),
+        4px 4px 8px rgba(0, 0, 0, 0.8);
+    animation: levelUpNumber 0.8s ease-out 0.3s backwards;
+}
+
+@keyframes levelUpNumber {
+    0% {
+        transform: translateY(50px) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.level-up-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.level-up-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #FFD700, transparent);
+    border-radius: 50%;
+    animation: particleBurst 1.5s ease-out forwards;
+    top: 50%;
+    left: 50%;
+}
+
+@keyframes particleBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(
+            calc(-50% + var(--tx, 100px)),
+            calc(-50% + var(--ty, -100px))
+        ) scale(0);
+        opacity: 0;
+    }
+}
+
+/* HP/MPバー */
+.game-stats {
+    margin-bottom: 3rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.stat-bar {
+    margin-bottom: 1.5rem;
+}
+
+.stat-bar:last-child {
+    margin-bottom: 0;
+}
+
+.stat-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.stat-label i {
+    font-size: 1.6rem;
+}
+
+.hp-bar .stat-label {
+    color: #ff4444;
+}
+
+.hp-bar .stat-label i {
+    color: #ff4444;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.2); }
+    20%, 40% { transform: scale(1); }
+}
+
+.mp-bar .stat-label {
+    color: #44aaff;
+}
+
+.mp-bar .stat-label i {
+    color: #ff6600;
+}
+
+.exp-bar-game .stat-label {
+    color: #ffd700;
+}
+
+.exp-bar-game .stat-label i {
+    color: #ffd700;
+}
+
+.stat-bar-container {
+    position: relative;
+    width: 100%;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-bar-fill {
+    height: 100%;
+    width: 0;
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 12px;
+}
+
+.hp-fill {
+    background: linear-gradient(90deg, #ff0000, #ff6666);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.mp-fill {
+    background: linear-gradient(90deg, #0066ff, #66aaff);
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+}
+
+.exp-fill {
+    background: linear-gradient(90deg, #ffa500, #ffd700);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.stat-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+.stat-value {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+/* ===================================
    Aboutセクション
    =================================== */
 .about {
@@ -1689,7 +2069,7 @@ body {
    =================================== */
 .updates {
     padding: 10rem 0;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
 }
 
 .updates__content {

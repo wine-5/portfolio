@@ -27,6 +27,11 @@ class ManagerFactory {
         this.managers.webglWater = new WebGLWaterReflectionManager();
         this.managers.waterReflectionTitle = new WaterReflectionTitleManager();
         
+        // ゲーム的UIエフェクト
+        this.managers.skillParticle = new SkillParticleManager();
+        this.managers.gameUI = new GameUIManager();
+        this.managers.easterEgg = new EasterEggManager();
+        
         return this.managers;
     }
 
@@ -44,6 +49,11 @@ class ManagerFactory {
         this.managers.skills.init();
         this.managers.contact.init();
         this.managers.footerAnimation.init();
+        
+        // ゲーム的UIエフェクトの初期化
+        this.managers.skillParticle.init();
+        this.managers.gameUI.init();
+        this.managers.easterEgg.init();
         
         // UpdatesManagerは遅延初期化
         setTimeout(() => {
