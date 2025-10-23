@@ -28,8 +28,22 @@
     <!-- ローディング画面 -->
     <div id="loading" class="loading">
         <div class="loading__content">
-            <div class="loading__spinner"></div>
-            <p class="loading__text">Loading Timeline...</p>
+            <div class="loading__logo">
+                <div class="logo-ring logo-ring-1"></div>
+                <div class="logo-ring logo-ring-2"></div>
+                <div class="logo-ring logo-ring-3"></div>
+                <div class="logo-center">
+                    <span class="logo-text">W5</span>
+                </div>
+            </div>
+            <div class="loading__progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="loading__text">Loading Timeline...</p>
+                <div class="loading__percentage">0%</div>
+            </div>
+            <div class="loading__particles"></div>
         </div>
     </div>
 
@@ -55,7 +69,7 @@
                     <a href="../../index.html#about" class="header__nav-link">About</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="../../index.html#contact" class="header__nav-link">Contact</a>
+                    <a href="../../index.html#connect" class="header__nav-link">Contact</a>
                 </li>
                 <li class="header__nav-item">
                     <a href="timeline.html" class="header__nav-link header__nav-link--active">Timeline</a>
@@ -64,6 +78,8 @@
                     <a href="../../index.html#updates" class="header__nav-link">Updates</a>
                 </li>
             </ul>
+            <!-- テーマ切り替え & 言語切り替えボタン -->
+            <div class="header__controls" id="header-controls"></div>
             <div class="header__hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -115,7 +131,7 @@
         <section class="timeline-navigation">
             <div class="container">
                 <div class="timeline-navigation__content">
-                    <a href="../index.html" class="btn btn--secondary timeline-navigation__back">
+                    <a href="../../index.html" class="btn btn--secondary timeline-navigation__back">
                         <i class="fas fa-arrow-left"></i>
                         ポートフォリオに戻る
                     </a>
@@ -137,13 +153,13 @@
                         <div class="footer__section">
                             <h4 class="footer__section-title">ナビゲーション</h4>
                             <ul class="footer__link-list">
-                                <li><a href="../../index.html#home" class="footer__link"><i class="fas fa-home"></i> Home</a></li>
-                                <li><a href="../../index.html#games" class="footer__link"><i class="fas fa-gamepad"></i> Games</a></li>
-                                <li><a href="../../index.html#skills" class="footer__link"><i class="fas fa-code"></i> Skills</a></li>
-                                <li><a href="../../index.html#about" class="footer__link"><i class="fas fa-user"></i> About</a></li>
-                                <li><a href="../../index.html#contact" class="footer__link"><i class="fas fa-envelope"></i> Contact</a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-home"></i> Home</a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-gamepad"></i> Games</a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-code"></i> Skills</a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-user"></i> About</a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-envelope"></i> Contact</a></li>
                                 <li><a href="timeline.html" class="footer__link"><i class="fas fa-timeline"></i> Timeline</a></li>
-                                <li><a href="../../index.html#updates" class="footer__link"><i class="fas fa-clock-rotate-left"></i> Updates</a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> Updates</a></li>
                             </ul>
                         </div>
                         <div class="footer__section">
@@ -152,6 +168,12 @@
                                 <li><a href="https://github.com/wine-5" target="_blank" class="footer__link"><i class="fab fa-github"></i> GitHub</a></li>
                                 <li><a href="https://x.com/wine_program" target="_blank" class="footer__link"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                                 <li><a href="https://unityroom.com/users/wine-555" target="_blank" class="footer__link"><i class="fas fa-dice-d6"></i> UnityRoom</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">法務</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="../legal/privacy.html" class="footer__link"><i class="fas fa-shield-halved"></i> プライバシーポリシー</a></li>
                             </ul>
                         </div>
                     </div>
@@ -164,6 +186,10 @@
     </footer>
 
     <!-- JavaScript -->
+    <!-- Core Systems -->
+    <script src="../../assets/js/managers/ui/ThemeManager.js"></script>
+    <script src="../../assets/js/managers/ui/I18nManager.js"></script>
+    
     <!-- ユーティリティ関数 -->
     <script src="../../js/utils/functions.js"></script>
     
@@ -177,5 +203,32 @@
     
     <!-- タイムラインページ専用スクリプト -->
     <script src="../../js/timeline-page.js"></script>
+    
+    <script>
+        // Initialize theme and language
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize theme
+            if (window.themeManager) {
+                window.themeManager.init();
+                
+                // Create theme toggle button
+                const headerControls = document.getElementById('header-controls');
+                if (headerControls) {
+                    window.themeManager.createToggleButton(headerControls);
+                }
+            }
+            
+            // Initialize i18n
+            if (window.i18n) {
+                window.i18n.init();
+                
+                // Create language switcher
+                const headerControls = document.getElementById('header-controls');
+                if (headerControls) {
+                    window.i18n.createLanguageSwitcher(headerControls);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

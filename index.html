@@ -165,7 +165,7 @@
         <section class="works" id="games">
             <div class="section__bg-text" data-text="Games"></div>
             <div class="container">
-                <h2 class="section__title" data-i18n="sections.games.title">Games</h2>
+                <h2 class="section__title">Games</h2>
                 <div class="works__grid" id="works-grid">
                     <!-- 作品カードはJavaScriptで動的生成 -->
                 </div>
@@ -176,52 +176,13 @@
         <section class="skills" id="skills">
             <div class="section__bg-text" data-text="Skills"></div>
             <div class="container">
-                <h2 class="section__title" data-i18n="sections.skills.title">Skills</h2>
+                <h2 class="section__title">Skills</h2>
                 <p class="skills__note">
                     <i class="fas fa-info-circle"></i>
-                    各スキルのレベルは学習開始からの経験月数を表示しています（最大: 4年 / 学生期間）
+                    <span data-i18n="sections.skills.note">各スキルのレベルは学習開始からの経験月数を表示しています（最大: 4年 / 学生期間）</span>
                 </p>
                 <div class="skills__grid">
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">Unity</span>
-                        </div>
-                        <div class="skill__description">
-                            3D/2Dゲーム開発、アニメーション、物理演算
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">C#</span>
-                        </div>
-                        <div class="skill__description">
-                            オブジェクト指向設計、SOLID原則、デザインパターン
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">C++</span>
-                        </div>
-                        <div class="skill__description">
-                            ポインタ操作
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">Git</span>
-                        </div>
-                        <div class="skill__description">
-                            バージョン管理、ブランチ戦略、チーム開発
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">HTML/CSS/JS</span>
-                        </div>
-                        <div class="skill__description">
-                            Webページの作成、実際にWebページを公開
-                        </div>
-                    </div>
+                    <!-- スキルカードはJavaScriptで動的生成 -->
                 </div>
             </div>
         </section>
@@ -230,7 +191,7 @@
         <section class="about" id="about">
             <div class="section__bg-text" data-text="About"></div>
             <div class="container">
-                <h2 class="section__title" data-i18n="sections.about.title">About</h2>
+                <h2 class="section__title">About</h2>
                 <div class="about__content">
                     <div class="about__text">
                         <h3 class="about__subtitle">wine-5</h3>
@@ -291,13 +252,13 @@
                 <div class="updates__content">
                     <div class="updates__simple">
                         <div class="updates__last-modified">
-                            <h3 class="updates__subtitle">Last Updated</h3>
+                            <h3 class="updates__subtitle" data-i18n="sections.updates.lastUpdated">Last Updated</h3>
                             <p class="updates__date" id="last-updated-date">2025年10月23日</p>
                         </div>
                         <div class="updates__action">
                             <a href="pages/history/history.html" class="btn btn--primary">
                                 <i class="fas fa-history"></i>
-                                View All History
+                                <span data-i18n="sections.updates.viewAllHistory">View All History</span>
                             </a>
                         </div>
                     </div>
@@ -312,23 +273,23 @@
                 <h2 class="section__title">Contact</h2>
                 <div class="contact__content">
                     <div class="contact__info">
-                        <h3 class="contact__subtitle">Get In Touch</h3>
-                        <p class="contact__description">
+                        <h3 class="contact__subtitle" data-i18n="sections.contact.subtitle">Get In Touch</h3>
+                        <p class="contact__description" data-i18n="sections.contact.description">
                             ゲーム開発に関する質問やご意見等がございましたら、<br>
                             お気軽にお問い合わせください。
                         </p>
                     </div>
                     <form class="contact__form" id="contact-form">
                         <div class="form__group">
-                            <input type="text" class="form__input" id="name" name="name" placeholder="お名前" required>
+                            <input type="text" class="form__input" id="name" name="name" placeholder="お名前" data-i18n-placeholder="common.form.namePlaceholder" required>
                         </div>
                         <div class="form__group">
-                            <input type="email" class="form__input" id="email" name="email" placeholder="メールアドレス" required>
+                            <input type="email" class="form__input" id="email" name="email" placeholder="メールアドレス" data-i18n-placeholder="common.form.emailPlaceholder" required>
                         </div>
                         <div class="form__group">
-                            <textarea class="form__textarea" id="message" name="message" placeholder="メッセージ" rows="5" required></textarea>
+                            <textarea class="form__textarea" id="message" name="message" placeholder="メッセージ" data-i18n-placeholder="common.form.messagePlaceholder" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                        <button type="submit" class="btn btn--primary btn--full" data-i18n="common.button.send">Send Message</button>
                     </form>
                 </div>
             </div>
