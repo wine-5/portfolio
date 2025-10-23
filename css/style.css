@@ -1532,6 +1532,23 @@ body {
     padding: 10rem 0;
 }
 
+.skills__note {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    margin: -2rem auto 4rem;
+    max-width: 60rem;
+    padding: 1.5rem 2rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
+}
+
+.skills__note i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
 .skills__grid {
     display: grid;
     gap: 3rem;
@@ -1913,6 +1930,63 @@ body {
     color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     z-index: 10;
+}
+
+/* 経験言語タグ表示 */
+.exp-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.exp-lang {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 215, 0, 0.2));
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: expLangFadeIn 0.5s ease forwards;
+}
+
+.exp-lang:nth-child(1) { animation-delay: 0.1s; }
+.exp-lang:nth-child(2) { animation-delay: 0.2s; }
+.exp-lang:nth-child(3) { animation-delay: 0.3s; }
+.exp-lang:nth-child(4) { animation-delay: 0.4s; }
+.exp-lang:nth-child(5) { animation-delay: 0.5s; }
+.exp-lang:nth-child(6) { animation-delay: 0.6s; }
+.exp-lang:nth-child(7) { animation-delay: 0.7s; }
+.exp-lang:nth-child(8) { animation-delay: 0.8s; }
+
+.exp-lang:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.4), rgba(255, 215, 0, 0.4));
+    border-color: rgba(255, 215, 0, 0.8);
+}
+
+@keyframes expLangFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 /* ===================================
@@ -3725,6 +3799,16 @@ body {
     -moz-osx-font-smoothing: grayscale;
     image-rendering: crisp-edges;
     transform-style: preserve-3d;
+}
+
+/* 展開時にレベルバッジを非表示 */
+.skill--expanded .skill-level-badge {
+    display: none !important;
+}
+
+/* 展開時に元のdescriptionを非表示 */
+.skill--expanded .skill__description {
+    display: none !important;
 }
 
 /* 詳細コンテンツ */

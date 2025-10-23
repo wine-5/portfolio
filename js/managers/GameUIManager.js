@@ -6,7 +6,8 @@ class GameUIManager {
     init() {
         this.addSkillLevelSystem();
         this.addProgressBars();
-        this.setupLevelUpAnimations();
+        // レベルアップアニメーションは一旦無効化（将来の実装用に保持）
+        // this.setupLevelUpAnimations();
     }
 
     addSkillLevelSystem() {
@@ -61,15 +62,22 @@ class GameUIManager {
             
             observer.observe(skill);
             
-            // ホバー時にレベルアップアニメーション（30%の確率）
+            // ホバー時のレベルアップアニメーションは一旦無効化（将来の実装用に保持）
+            /*
             skill.addEventListener('mouseenter', () => {
                 if (Math.random() > 0.7) {
                     this.showLevelUpAnimation(skill, level + 1);
                 }
             });
+            */
         });
     }
 
+    /* ===== レベルアップアニメーション機能（将来の実装用に保持） =====
+     * 以下の機能は現在無効化されていますが、将来の拡張用に残しています
+     */
+    
+    /*
     showLevelUpAnimation(skillElement, newLevel) {
         // 既にレベルアップアニメーション中なら無視
         if (skillElement.querySelector('.level-up-overlay')) return;
@@ -119,6 +127,9 @@ class GameUIManager {
             container.appendChild(particle);
         }
     }
+    */
+    
+    /* ===== レベルアップアニメーション機能ここまで ===== */
 
     addProgressBars() {
         const aboutSection = document.querySelector('.about__content');
@@ -130,7 +141,7 @@ class GameUIManager {
             <div class="stat-bar hp-bar">
                 <div class="stat-label">
                     <i class="fas fa-heart"></i>
-                    <span>HP (開発体力)</span>
+                    <span>HP (体力・やる気)</span>
                 </div>
                 <div class="stat-bar-container">
                     <div class="stat-bar-fill hp-fill" data-value="90"></div>
@@ -139,22 +150,28 @@ class GameUIManager {
             </div>
             <div class="stat-bar mp-bar">
                 <div class="stat-label">
-                    <i class="fas fa-fire"></i>
-                    <span>MP (創造力)</span>
+                    <i class="fas fa-lightbulb"></i>
+                    <span>MP (想像力)</span>
                 </div>
                 <div class="stat-bar-container">
-                    <div class="stat-bar-fill mp-fill" data-value="0"></div>
-                    <span class="stat-value">0/1000</span>
+                    <div class="stat-bar-fill mp-fill" data-value="70"></div>
+                    <span class="stat-value">700/1000</span>
                 </div>
             </div>
             <div class="stat-bar exp-bar-game">
                 <div class="stat-label">
-                    <i class="fas fa-star"></i>
-                    <span>EXP (開発経験値)</span>
+                    <i class="fas fa-code"></i>
+                    <span>EXP (経験言語)</span>
                 </div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar-fill exp-fill" data-value="0"></div>
-                    <span class="stat-value">0/10000</span>
+                <div class="exp-languages">
+                    <span class="exp-lang">C</span>
+                    <span class="exp-lang">C++</span>
+                    <span class="exp-lang">C#</span>
+                    <span class="exp-lang">PHP</span>
+                    <span class="exp-lang">HTML</span>
+                    <span class="exp-lang">CSS</span>
+                    <span class="exp-lang">JS</span>
+                    <span class="exp-lang">Python</span>
                 </div>
             </div>
         `;
@@ -189,6 +206,8 @@ class GameUIManager {
         if (statBars) observer.observe(statBars);
     }
 
+    /* ===== 以下、レベルアップ関連機能（将来の実装用に保持） =====
+    
     setupLevelUpAnimations() {
         // スキルセクションが表示されたときにランダムでレベルアップ演出
         const skillsSection = document.querySelector('.skills');
@@ -234,4 +253,6 @@ class GameUIManager {
             // Audio APIが使えない場合は無視
         }
     }
+    
+    ===== レベルアップ関連機能ここまで ===== */
 }

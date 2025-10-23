@@ -134,7 +134,29 @@ class EasterEggManager {
                     <div>🖱️ Mouse: (${this.mouseX || 0}, ${this.mouseY || 0})</div>
                     <div>📜 Scroll: ${Math.round(window.scrollY)}px</div>
                 </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ff6b6b;">
+                    <button id="debug-secret-msg" style="
+                        width: 100%;
+                        padding: 10px;
+                        background: linear-gradient(135deg, #ff6b6b, #ff4757);
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-weight: bold;
+                        font-size: 13px;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(255,107,107,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                        💌 開発者メッセージ
+                    </button>
+                </div>
             `;
+            
+            // ボタンのイベントリスナーを再設定
+            const msgBtn = document.getElementById('debug-secret-msg');
+            if (msgBtn) {
+                msgBtn.addEventListener('click', () => this.showSecretMessage());
+            }
         };
         
         // マウス位置を追跡
@@ -237,14 +259,14 @@ class EasterEggManager {
 
     activateWineEffect() {
         this.wineMode = true;
-        console.log('%c🍷 WINE-5 Portfolio Master Unlocked!', 'color: #ffd700; font-size: 20px; font-weight: bold;');
+        console.log('%cWINE-5 Portfolio Master Unlocked!', 'color: #ffd700; font-size: 20px; font-weight: bold;');
         console.log('%cPress ESC to exit wine-5 mode', 'color: #ffa500;');
         
         // 画面全体にマトリックス風エフェクト
         this.createMatrixRain();
         
         // 通知表示
-        this.showNotification('🍷 Portfolio Master Unlocked!', 'Press ESC to exit', '#ffd700');
+        this.showNotification('WINE-5 Portfolio Master Unlocked!', 'Press ESC to exit', '#ffd700');
         
         // 全カードを虹色に
         this.rainbowCards();
@@ -296,7 +318,7 @@ class EasterEggManager {
         controlPanel.innerHTML = `
             <div style="text-align: center; margin-bottom: 15px;">
                 <div style="font-size: 24px; font-weight: bold; color: #000; font-family: var(--font-primary);">
-                    🍷 WINE-5 MASTER PANEL
+                    WINE-5 MASTER PANEL
                 </div>
                 <div style="font-size: 12px; color: #333; margin-top: 5px;">
                     管理者専用コントロール
@@ -312,8 +334,17 @@ class EasterEggManager {
                 <button class="wine-btn" data-action="massLevelUp" style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
                     ⬆️ 全レベルアップ
                 </button>
+                <button class="wine-btn" data-action="matrixRain" style="background: linear-gradient(135deg, #11998e, #38ef7d); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    🌧️ マトリックスレイン
+                </button>
+                <button class="wine-btn" data-action="rainbowMode" style="background: linear-gradient(135deg, #ee0979, #ff6a00); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    🌈 レインボーモード
+                </button>
+                <button class="wine-btn" data-action="glitchEffect" style="background: linear-gradient(135deg, #8e2de2, #4a00e0); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    ⚡ グリッチエフェクト
+                </button>
                 <button class="wine-btn" data-action="secretMessage" style="background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    💌 シークレットメッセージ
+                    💌 開発者メッセージ
                 </button>
             </div>
             <div style="text-align: center; margin-top: 15px; font-size: 12px; color: #333;">
@@ -374,6 +405,16 @@ class EasterEggManager {
             case 'massLevelUp':
                 this.massLevelUp();
                 break;
+            case 'matrixRain':
+                this.createMatrixRain();
+                this.showMiniNotification('🌧️ マトリックスレイン発動！', '#11998e');
+                break;
+            case 'rainbowMode':
+                this.activateRainbowMode();
+                break;
+            case 'glitchEffect':
+                this.activateGlitchEffect();
+                break;
             case 'secretMessage':
                 this.showSecretMessage();
                 break;
@@ -384,11 +425,15 @@ class EasterEggManager {
         const cards = document.querySelectorAll('.work-card, .skill');
         cards.forEach((card, index) => {
             setTimeout(() => {
+                // 元のtransformを保存
+                const originalTransform = card.style.transform || '';
+                
                 card.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
                 card.style.transform = 'rotateY(720deg) scale(1.1)';
                 
                 setTimeout(() => {
-                    card.style.transform = '';
+                    // 元のtransformに戻す
+                    card.style.transform = originalTransform;
                 }, 1000);
             }, index * 50);
         });
@@ -400,63 +445,149 @@ class EasterEggManager {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         
-        for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-                const particle = document.createElement('div');
-                const angle = (Math.PI * 2 * i) / 50;
-                const velocity = 5 + Math.random() * 10;
-                
-                particle.style.cssText = `
-                    position: fixed;
-                    left: ${centerX}px;
-                    top: ${centerY}px;
-                    width: 10px;
-                    height: 10px;
-                    background: hsl(${Math.random() * 360}, 100%, 50%);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 10001;
-                `;
-                
-                document.body.appendChild(particle);
-                
-                let posX = centerX;
-                let posY = centerY;
-                let velocityX = Math.cos(angle) * velocity;
-                let velocityY = Math.sin(angle) * velocity;
-                
-                const animate = () => {
-                    posX += velocityX;
-                    posY += velocityY;
-                    velocityY += 0.5; // 重力
-                    
-                    particle.style.left = posX + 'px';
-                    particle.style.top = posY + 'px';
-                    particle.style.opacity = parseFloat(particle.style.opacity || 1) - 0.02;
-                    
-                    if (parseFloat(particle.style.opacity) > 0) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        particle.remove();
-                    }
-                };
-                
-                requestAnimationFrame(animate);
-            }, i * 20);
-        }
+        // 3波に分けて爆発（合計300個）
+        const waves = [
+            { count: 100, delay: 0, sizeRange: [20, 40], velocityMult: 1.5 },
+            { count: 100, delay: 200, sizeRange: [15, 30], velocityMult: 1.2 },
+            { count: 100, delay: 400, sizeRange: [10, 25], velocityMult: 1.0 }
+        ];
         
-        this.showMiniNotification('💥 パーティクル爆発！', '#f5576c');
+        waves.forEach(wave => {
+            setTimeout(() => {
+                for (let i = 0; i < wave.count; i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        const angle = (Math.PI * 2 * i) / wave.count + Math.random() * 0.3;
+                        const velocity = (8 + Math.random() * 15) * wave.velocityMult;
+                        const size = wave.sizeRange[0] + Math.random() * (wave.sizeRange[1] - wave.sizeRange[0]);
+                        const hue = Math.random() * 360;
+                        
+                        particle.style.cssText = `
+                            position: fixed;
+                            left: ${centerX}px;
+                            top: ${centerY}px;
+                            width: ${size}px;
+                            height: ${size}px;
+                            background: radial-gradient(circle, hsl(${hue}, 100%, 60%), hsl(${hue}, 100%, 40%));
+                            border-radius: 50%;
+                            pointer-events: none;
+                            z-index: 10001;
+                            box-shadow: 
+                                0 0 ${size}px hsl(${hue}, 100%, 50%),
+                                0 0 ${size * 2}px hsl(${hue}, 100%, 50%),
+                                inset 0 0 ${size/2}px rgba(255, 255, 255, 0.8);
+                            filter: blur(1px);
+                        `;
+                        
+                        document.body.appendChild(particle);
+                        
+                        let posX = centerX;
+                        let posY = centerY;
+                        let velocityX = Math.cos(angle) * velocity;
+                        let velocityY = Math.sin(angle) * velocity;
+                        let rotation = 0;
+                        let rotationSpeed = (Math.random() - 0.5) * 20;
+                        
+                        const animate = () => {
+                            posX += velocityX;
+                            posY += velocityY;
+                            velocityY += 0.8; // 重力強化
+                            velocityX *= 0.99; // 空気抵抗
+                            rotation += rotationSpeed;
+                            
+                            particle.style.left = posX + 'px';
+                            particle.style.top = posY + 'px';
+                            particle.style.transform = `rotate(${rotation}deg) scale(${1 + Math.sin(rotation * 0.1) * 0.2})`;
+                            particle.style.opacity = parseFloat(particle.style.opacity || 1) - 0.015;
+                            
+                            if (parseFloat(particle.style.opacity) > 0 && posY < window.innerHeight + 100) {
+                                requestAnimationFrame(animate);
+                            } else {
+                                particle.remove();
+                            }
+                        };
+                        
+                        requestAnimationFrame(animate);
+                    }, i * 5);
+                }
+            }, wave.delay);
+        });
+        
+        // 中央に衝撃波エフェクト
+        this.createShockwave(centerX, centerY);
+        
+        this.showMiniNotification('💥 豪華パーティクル爆発！', '#f5576c');
+    }
+
+    createShockwave(x, y) {
+        const shockwave = document.createElement('div');
+        shockwave.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            width: 0;
+            height: 0;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(99, 102, 241, 0.6),
+                0 0 60px rgba(139, 92, 246, 0.4);
+        `;
+        document.body.appendChild(shockwave);
+        
+        let size = 0;
+        const maxSize = Math.max(window.innerWidth, window.innerHeight) * 1.5;
+        
+        const animate = () => {
+            size += 30;
+            const opacity = 1 - (size / maxSize);
+            
+            shockwave.style.width = size + 'px';
+            shockwave.style.height = size + 'px';
+            shockwave.style.opacity = opacity;
+            shockwave.style.borderWidth = (10 * opacity) + 'px';
+            
+            if (opacity > 0) {
+                requestAnimationFrame(animate);
+            } else {
+                shockwave.remove();
+            }
+        };
+        
+        requestAnimationFrame(animate);
     }
 
     massLevelUp() {
+        // スキルレベルを999に変更
         const levelBadges = document.querySelectorAll('.skill-level-badge');
         levelBadges.forEach((badge, index) => {
             setTimeout(() => {
                 // レベルアップアニメーション
                 badge.style.animation = 'levelUpPulse 0.5s ease-out';
                 
-                // 数値を一時的に増加
-                const currentLevel = parseInt(badge.textContent.match(/\d+/)[0]);
+                // レベル表示を999に変更
+                const levelNumber = badge.querySelector('.level-number');
+                if (levelNumber) {
+                    levelNumber.textContent = 'Lv.999';
+                }
+                
+                // EXPバーを100%に
+                const expFill = badge.querySelector('.exp-fill');
+                if (expFill) {
+                    expFill.style.width = '100%';
+                }
+                
+                // 経験値テキストも更新
+                const expText = badge.querySelector('.exp-text');
+                if (expText) {
+                    expText.textContent = 'MAX!';
+                }
+                
+                // レベルアップエフェクト
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
                     position: absolute;
@@ -464,19 +595,90 @@ class EasterEggManager {
                     left: 50%;
                     transform: translateX(-50%);
                     color: #ffd700;
-                    font-size: 24px;
+                    font-size: 28px;
                     font-weight: bold;
-                    animation: levelUpFloat 1s ease-out forwards;
+                    animation: levelUpFloat 1.5s ease-out forwards;
                     pointer-events: none;
                     z-index: 100;
+                    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
                 `;
-                overlay.textContent = '+1 LEVEL UP!';
+                overlay.textContent = 'LEVEL 999!';
                 badge.style.position = 'relative';
                 badge.appendChild(overlay);
                 
-                setTimeout(() => overlay.remove(), 1000);
+                setTimeout(() => overlay.remove(), 1500);
             }, index * 100);
         });
+        
+        // AboutセクションのHP/MPを100%に
+        setTimeout(() => {
+            const hpFill = document.querySelector('.hp-fill');
+            const mpFill = document.querySelector('.mp-fill');
+            const hpValue = document.querySelector('.hp-bar .stat-value');
+            const mpValue = document.querySelector('.mp-bar .stat-value');
+            
+            if (hpFill) {
+                hpFill.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                hpFill.style.width = '100%';
+                hpFill.setAttribute('data-value', '100');
+            }
+            if (mpFill) {
+                mpFill.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                mpFill.style.width = '100%';
+                mpFill.setAttribute('data-value', '100');
+            }
+            if (hpValue) {
+                hpValue.textContent = '1000/1000';
+            }
+            if (mpValue) {
+                mpValue.textContent = '1000/1000';
+            }
+            
+            // 経験言語を全言語に拡張
+            const expLanguages = document.querySelector('.exp-languages');
+            if (expLanguages) {
+                const allLanguages = [
+                    'C', 'C++', 'C#', 'Java', 'Python', 'JavaScript', 'TypeScript',
+                    'PHP', 'Ruby', 'Go', 'Rust', 'Swift', 'Kotlin', 'Scala',
+                    'HTML', 'CSS', 'SQL', 'R', 'MATLAB', 'Perl', 'Lua',
+                    'Haskell', 'Dart', 'Elixir', 'F#', 'Objective-C', 'Shell',
+                    'Assembly', 'COBOL', 'Fortran', 'Lisp', 'Prolog', 'Julia'
+                ];
+                
+                expLanguages.innerHTML = '';
+                allLanguages.forEach((lang, index) => {
+                    const langTag = document.createElement('span');
+                    langTag.className = 'exp-lang';
+                    langTag.textContent = lang;
+                    langTag.style.animationDelay = `${index * 0.05}s`;
+                    expLanguages.appendChild(langTag);
+                });
+            }
+            
+            // MAXエフェクト
+            const gameStats = document.querySelector('.game-stats');
+            if (gameStats) {
+                const maxOverlay = document.createElement('div');
+                maxOverlay.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(0);
+                    color: #ffd700;
+                    font-size: 48px;
+                    font-weight: bold;
+                    text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700;
+                    animation: maxBurst 1s ease-out forwards;
+                    pointer-events: none;
+                    z-index: 1000;
+                `;
+                maxOverlay.textContent = 'ALL MAX!';
+                gameStats.style.position = 'relative';
+                gameStats.appendChild(maxOverlay);
+                
+                setTimeout(() => maxOverlay.remove(), 1000);
+            }
+        }, 500);
         
         const style = document.createElement('style');
         style.textContent = `
@@ -488,20 +690,25 @@ class EasterEggManager {
                 0% { transform: translateX(-50%) translateY(0); opacity: 1; }
                 100% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
             }
+            @keyframes maxBurst {
+                0% { transform: translate(-50%, -50%) scale(0) rotate(-180deg); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.5) rotate(0deg); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0; }
+            }
         `;
         document.head.appendChild(style);
-        setTimeout(() => style.remove(), 2000);
+        setTimeout(() => style.remove(), 3000);
         
-        this.showMiniNotification('⬆️ 全レベルアップ！', '#00f2fe');
+        this.showMiniNotification('⬆️ 全レベル999＆ALL MAX！', '#00f2fe');
     }
 
     showSecretMessage() {
         const messages = [
+            '隠しコマンドを見つけてくださりありがとうございます。',
+            'ほかにも１つあるのでぜひ見つけてみてください！',
             '🎮 本気でゲーム開発を楽しんでいます！',
             '💻 コードを書く時間が一番幸せです',
-            '🌟 毎日が新しい学びの連続',
-            '🚀 次のプロジェクトが待ち遠しい！',
-            '✨ クリエイティブな挑戦を続けます'
+            '🌟 毎日が新しい学びの連続'
         ];
         
         const message = messages[Math.floor(Math.random() * messages.length)];
@@ -698,5 +905,65 @@ class EasterEggManager {
             }
         `;
         document.head.appendChild(style);
+    }
+
+    activateRainbowMode() {
+        this.rainbowCards();
+        
+        // 10秒後に自動解除
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.work-card, .skill');
+            cards.forEach(card => card.style.animation = '');
+            const rainbowStyle = document.querySelector('style[data-wine-rainbow]');
+            if (rainbowStyle) rainbowStyle.remove();
+        }, 10000);
+        
+        this.showMiniNotification('🌈 レインボーモード発動！', '#ee0979');
+    }
+
+    activateGlitchEffect() {
+        const elements = document.querySelectorAll('.section__title, .work-card__title, .skill__name');
+        
+        elements.forEach((el, index) => {
+            setTimeout(() => {
+                el.style.animation = 'glitch 0.5s infinite';
+            }, index * 50);
+        });
+
+        const style = document.createElement('style');
+        style.setAttribute('data-glitch', 'true');
+        style.textContent = `
+            @keyframes glitch {
+                0%, 100% { 
+                    transform: translate(0);
+                    text-shadow: 0 0 10px currentColor;
+                }
+                20% { 
+                    transform: translate(-5px, 5px);
+                    text-shadow: -5px 0 10px #ff00de, 5px 0 10px #00ffff;
+                }
+                40% { 
+                    transform: translate(5px, -5px);
+                    text-shadow: 5px 0 10px #00ffff, -5px 0 10px #ff00de;
+                }
+                60% { 
+                    transform: translate(-5px, -5px);
+                    text-shadow: -5px 0 10px #ff00de, 5px 0 10px #00ffff;
+                }
+                80% { 
+                    transform: translate(5px, 5px);
+                    text-shadow: 5px 0 10px #00ffff, -5px 0 10px #ff00de;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 5秒後に自動解除
+        setTimeout(() => {
+            elements.forEach(el => el.style.animation = '');
+            style.remove();
+        }, 5000);
+        
+        this.showMiniNotification('⚡ グリッチエフェクト発動！', '#8e2de2');
     }
 }
