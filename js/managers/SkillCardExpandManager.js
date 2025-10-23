@@ -73,6 +73,11 @@ class SkillCardExpandManager {
         skillElement.style.height = `${rect.height}px`;
         skillElement.style.zIndex = '10000';
         skillElement.style.margin = '0';
+        
+        // 画質改善のための設定
+        skillElement.style.willChange = 'transform';
+        skillElement.style.backfaceVisibility = 'hidden';
+        skillElement.style.perspective = '1000px';
 
         // 詳細コンテンツを作成（非表示）
         const detailsContent = this.createDetailsContent(skillDetails);

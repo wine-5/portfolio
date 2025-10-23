@@ -2,20 +2,16 @@ class EasterEggManager {
     constructor() {
         this.wineCode = ['w', 'i', 'n', 'e', '-', '5'];
         this.userInput = [];
-        this.gameDevCode = ['g', 'a', 'm', 'e', 'd', 'e', 'v'];
-        this.unityCode = ['u', 'n', 'i', 't', 'y'];
         this.debugCode = ['d', 'e', 'b', 'u', 'g'];
         this.debugMode = false;
-        // activated フラグを削除（複数回発動可能に）
+        this.wineMode = false;
     }
 
     init() {
         document.addEventListener('keydown', (e) => this.handleKeyPress(e));
         console.log('%c🎮 イースターエッグのヒント:', 'color: #6366f1; font-size: 16px; font-weight: bold;');
         console.log('%c1. "wine-5" とタイプしてみよう！', 'color: #8b5cf6;');
-        console.log('%c2. "gamedev" とタイプしてみよう！', 'color: #8b5cf6;');
-        console.log('%c3. "unity" とタイプしてみよう！', 'color: #8b5cf6;');
-        console.log('%c4. "debug" とタイプしてデバッグモードへ！', 'color: #ff6b6b;');
+        console.log('%c2. "debug" とタイプしてデバッグモードへ！', 'color: #ff6b6b;');
     }
 
     handleKeyPress(e) {
@@ -25,7 +21,8 @@ class EasterEggManager {
             return;
         }
 
-        this.userInput.push(e.key);
+        // 大文字小文字を区別せずに入力を記録
+        this.userInput.push(e.key.toLowerCase());
         
         // 最新の入力のみ保持
         if (this.userInput.length > 10) {
@@ -33,8 +30,6 @@ class EasterEggManager {
         }
 
         this.checkWineCode();
-        this.checkGameDevCode();
-        this.checkUnityCode();
         this.checkDebugCode();
     }
 
@@ -44,26 +39,6 @@ class EasterEggManager {
 
         if (recentInput === code) {
             this.activateWineEffect();
-            this.userInput = []; // 入力履歴をクリア
-        }
-    }
-
-    checkGameDevCode() {
-        const recentInput = this.userInput.slice(-this.gameDevCode.length).join('');
-        const code = this.gameDevCode.join('');
-
-        if (recentInput === code) {
-            this.activateGameDevEffect();
-            this.userInput = []; // 入力履歴をクリア
-        }
-    }
-
-    checkUnityCode() {
-        const recentInput = this.userInput.slice(-this.unityCode.length).join('');
-        const code = this.unityCode.join('');
-
-        if (recentInput === code) {
-            this.activateUnityEffect();
             this.userInput = []; // 入力履歴をクリア
         }
     }
@@ -267,32 +242,6 @@ class EasterEggManager {
         this.rainbowCards();
     }
 
-    activateGameDevEffect() {
-        console.log('%c🎮 ゲームデベロッパーモード発動！', 'color: #6366f1; font-size: 20px; font-weight: bold;');
-        
-        // レベルアップエフェクト連発
-        this.massLevelUp();
-        
-        // 通知表示
-        this.showNotification('🎮 Game Developer Mode', 'All Skills MAX Level!', '#6366f1');
-        
-        // パーティクル爆発
-        this.particleExplosion();
-    }
-
-    activateUnityEffect() {
-        console.log('%c⚡ Unity Power発動！', 'color: #000000; font-size: 20px; font-weight: bold;');
-        
-        // 3D回転エフェクト
-        this.unity3DRotation();
-        
-        // 通知表示
-        this.showNotification('⚡ Unity Power!', 'Everything is a GameObject!', '#000000');
-        
-        // 立方体パーティクル大量発生
-        this.cubeExplosion();
-    }
-
     createMatrixRain() {
         const canvas = document.createElement('canvas');
         canvas.style.cssText = `
@@ -413,129 +362,5 @@ class EasterEggManager {
             cards.forEach(card => card.style.animation = '');
             style.remove();
         }, 10000);
-    }
-
-    massLevelUp() {
-        const skills = document.querySelectorAll('.skill');
-        skills.forEach((skill, index) => {
-            setTimeout(() => {
-                const event = new Event('mouseenter');
-                skill.dispatchEvent(event);
-            }, index * 500);
-        });
-    }
-
-    particleExplosion() {
-        const colors = ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
-        const container = document.createElement('div');
-        container.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
-        `;
-        document.body.appendChild(container);
-
-        for (let i = 0; i < 100; i++) {
-            setTimeout(() => {
-                const particle = document.createElement('div');
-                particle.style.cssText = `
-                    position: absolute;
-                    width: 10px;
-                    height: 10px;
-                    background: ${colors[Math.floor(Math.random() * colors.length)]};
-                    border-radius: 50%;
-                    top: 50%;
-                    left: 50%;
-                    animation: explode ${1 + Math.random()}s ease-out forwards;
-                `;
-                container.appendChild(particle);
-            }, i * 20);
-        }
-
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes explode {
-                to {
-                    transform: translate(
-                        ${Math.random() * 200 - 100}vw,
-                        ${Math.random() * 200 - 100}vh
-                    ) scale(0);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        setTimeout(() => {
-            container.remove();
-            style.remove();
-        }, 3000);
-    }
-
-    unity3DRotation() {
-        const sections = document.querySelectorAll('section');
-        sections.forEach((section, index) => {
-            setTimeout(() => {
-                section.style.transform = 'rotateY(360deg)';
-                section.style.transition = 'transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                setTimeout(() => {
-                    section.style.transform = '';
-                }, 2000);
-            }, index * 200);
-        });
-    }
-
-    cubeExplosion() {
-        const container = document.createElement('div');
-        container.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
-        `;
-        document.body.appendChild(container);
-
-        for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-                const cube = document.createElement('div');
-                cube.style.cssText = `
-                    position: absolute;
-                    width: 20px;
-                    height: 20px;
-                    background: linear-gradient(135deg, #000, #fff);
-                    top: 50%;
-                    left: 50%;
-                    animation: cubeExplode ${1 + Math.random()}s ease-out forwards;
-                    transform-style: preserve-3d;
-                `;
-                container.appendChild(cube);
-            }, i * 30);
-        }
-
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes cubeExplode {
-                to {
-                    transform: translate(
-                        ${Math.random() * 150 - 75}vw,
-                        ${Math.random() * 150 - 75}vh
-                    ) rotateX(${Math.random() * 720}deg) rotateY(${Math.random() * 720}deg) scale(0);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        setTimeout(() => {
-            container.remove();
-            style.remove();
-        }, 3000);
     }
 }

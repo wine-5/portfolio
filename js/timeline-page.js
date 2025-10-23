@@ -12,6 +12,7 @@ class TimelinePageApp {
         // マネージャーの初期化
         this.scrollManager = new ScrollManager();
         this.timelineManager = new TimelineManager();
+        this.footerAnimationManager = new FooterAnimationManager();
     }
 
     init() {
@@ -21,6 +22,7 @@ class TimelinePageApp {
         // マネージャーを初期化
         this.scrollManager.init();
         this.timelineManager.init();
+        this.footerAnimationManager.init();
         
         // スムーズスクロールの初期化
         this.initSmoothScrolling();

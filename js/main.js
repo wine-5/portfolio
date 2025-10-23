@@ -93,9 +93,13 @@ class PortfolioApp {
     animateLoading() {
         const percentageElement = document.querySelector('.loading__percentage');
         const particlesContainer = document.querySelector('.loading__particles');
+        const logoCenter = document.querySelector('.logo-center');
         
         // パーティクルエフェクト生成
         this.createLoadingParticles(particlesContainer);
+        
+        // ヒントテキストを回転させて表示
+        this.createRotatingHints(logoCenter);
         
         // プログレス表示
         let progress = 0;
@@ -110,6 +114,24 @@ class PortfolioApp {
                 percentageElement.textContent = Math.floor(progress) + '%';
             }
         }, 200);
+    }
+
+    createRotatingHints(logoCenter) {
+        if (!logoCenter) return;
+        
+        const hints = ['wine-5', 'debug'];
+        const hintsContainer = document.createElement('div');
+        hintsContainer.className = 'loading-hints-container';
+        
+        hints.forEach((hint, index) => {
+            const hintElement = document.createElement('div');
+            hintElement.className = 'loading-hint';
+            hintElement.textContent = hint;
+            hintElement.style.animationDelay = `${index * 0.5}s`;
+            hintsContainer.appendChild(hintElement);
+        });
+        
+        logoCenter.appendChild(hintsContainer);
     }
 
     createLoadingParticles(container) {
