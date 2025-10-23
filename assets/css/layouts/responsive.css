@@ -672,15 +672,15 @@
 /* ハイコントラストモード */
 @media (prefers-contrast: high) {
     :root {
-        --bg-primary: #000000;
-        --bg-secondary: #111111;
-        --bg-card: #222222;
-        --text-primary: #ffffff;
-        --text-secondary: #ffffff;
-        --text-muted: #cccccc;
-        --primary-color: #ffffff;
-        --secondary-color: #ffffff;
-        --accent-color: #ffffff;
+        --color-bg-primary: #000000;
+        --color-bg-secondary: #111111;
+        --color-bg-tertiary: #222222;
+        --color-text-primary: #ffffff;
+        --color-text-secondary: #ffffff;
+        --color-text-tertiary: #cccccc;
+        --color-primary: #ffffff;
+        --color-secondary: #ffffff;
+        --color-accent: #ffffff;
     }
 
     .btn--secondary {

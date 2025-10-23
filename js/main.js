@@ -15,6 +15,11 @@ class PortfolioApp {
     }
 
     async init() {
+        // デバッグコントローラーの初期化
+        if (window.debugController) {
+            window.debugController.init();
+        }
+        
         // テーマとi18nの初期化
         this.initializeCoreSystems();
         

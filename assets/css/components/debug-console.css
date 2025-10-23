@@ -69,8 +69,8 @@
     border: 2px solid var(--color-primary);
     border-radius: 1rem;
     width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
+    max-width: 900px;
+    max-height: 85vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -132,13 +132,13 @@
 /* コンソール出力エリア */
 .console-output {
     padding: 1.5rem;
-    min-height: 200px;
-    max-height: 400px;
+    min-height: 300px;
+    max-height: 500px;
     overflow-y: auto;
     background: var(--color-bg-primary);
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.8;
 }
 
 .console-output::-webkit-scrollbar {
@@ -155,9 +155,10 @@
 }
 
 .console-line {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
+    margin-bottom: 0.8rem;
+    padding: 0.8rem;
     border-left: 3px solid transparent;
+    font-size: 0.95rem;
 }
 
 .console-line.info {
@@ -183,7 +184,7 @@
 /* コンソール入力エリア */
 .console-input-wrapper {
     display: flex;
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     background: var(--color-bg-secondary);
     border-radius: 0 0 0.8rem 0.8rem;
     border-top: 1px solid var(--color-border-primary);
@@ -193,9 +194,10 @@
     color: var(--color-primary);
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    margin-right: 0.5rem;
+    margin-right: 0.8rem;
     display: flex;
     align-items: center;
+    font-size: 1.1rem;
 }
 
 .console-input {
@@ -205,7 +207,7 @@
     outline: none;
     color: var(--color-text-primary);
     font-family: 'Courier New', monospace;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .console-input::placeholder {

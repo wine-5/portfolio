@@ -14,10 +14,10 @@
 @import url('./layouts/responsive.css');
 
 /* Components */
-/* Components */
 @import 'components/skill-card-expand.css';
 @import 'components/language-switcher.css';
 @import 'components/theme-toggle.css';
+@import 'components/debug-console.css';
 
 /* Sections */
 @import url('./sections/news.css');

@@ -16,47 +16,15 @@ class TimelineManager {
             this.timelineContainer = document.getElementById('timeline-container');
         }
         
-        // データの確認とフォールバック
-        if ((!this.timelineData || this.timelineData.length === 0) && typeof TIMELINE_DATA !== 'undefined') {
-            this.timelineData = TIMELINE_DATA;
+        // データの確認
+        // 1. timelineDataオブジェクトから取得を試みる
+        if ((!this.timelineData || this.timelineData.length === 0) && window.timelineData) {
+            this.timelineData = window.timelineData.getAllItems();
         }
         
-        // データがまだ空の場合はフォールバックデータを使用
-        if (!this.timelineData || this.timelineData.length === 0) {
-            this.timelineData = [
-                {
-                    id: 'school-start',
-                    title: '専門学校入学',
-                    type: 'milestone',
-                    date: '2024-04-01',
-                    description: 'ゲーム開発の学習を開始',
-                    color: '#10b981',
-                    icon: '🎓'
-                },
-                {
-                    id: 'element-battle',
-                    title: 'ElementBattle',
-                    type: 'project',
-                    date: '2025-01-16',
-                    duration: 30,
-                    description: '記念すべき初作品のカードゲーム',
-                    technologies: ['HTML', 'CSS', 'JavaScript'],
-                    color: '#6366f1',
-                    icon: '🃏'
-                },
-                {
-                    id: 'takashi',
-                    title: 'たかし、人生ベット中',
-                    type: 'project',
-                    date: '2025-08-01',
-                    duration: 3,
-                    description: '学内ゲームジャム優勝作品',
-                    technologies: ['Unity', 'C#'],
-                    color: '#ef4444',
-                    icon: '🏆',
-                    award: '株式会社インフィニットループ堀川賞'
-                }
-            ];
+        // 2. グローバルTIMELINE_DATAから取得を試みる
+        if ((!this.timelineData || this.timelineData.length === 0) && typeof TIMELINE_DATA !== 'undefined') {
+            this.timelineData = TIMELINE_DATA;
         }
         
         return this.timelineContainer && this.timelineData && this.timelineData.length > 0;

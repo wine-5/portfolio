@@ -72,6 +72,7 @@
     --font-display: 'Orbitron', monospace;
     
     /* ボーダー半径 */
+    --border-radius: 8px;
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
