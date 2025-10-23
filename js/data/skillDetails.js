@@ -29,11 +29,8 @@ class SkillDetailsData {
     async load(lang = 'ja') {
         // 同じ言語ならスキップ
         if (this.isLoaded && this.currentLang === lang) {
-            console.log(`Skill details already loaded for language: ${lang}`);
             return;
         }
-
-        console.log(`Loading skill details for language: ${lang}`);
 
         try {
             const response = await fetch(`${this.basePath}json/locales/${lang}/skillDetails.json`);
@@ -43,7 +40,6 @@ class SkillDetailsData {
             this.skillsData = await response.json();
             this.isLoaded = true;
             this.currentLang = lang;
-            console.log('SkillDetailsData loaded successfully:', Object.keys(this.skillsData));
         } catch (error) {
             console.error('Error loading skill details:', error);
             this.skillsData = {};

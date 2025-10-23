@@ -8,24 +8,9 @@
     <meta name="description" content="wine-5のポートフォリオサイトの更新履歴を確認できます。">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../assets/css/layouts/responsive.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/sections/history.css">
     <link rel="stylesheet" href="history-page.css">
-    
-    <style>
-        /* 言語切り替えドロップダウンを確実に非表示 */
-        .language-switcher__dropdown {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
-        .language-switcher.active .language-switcher__dropdown {
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: auto !important;
-        }
-    </style>
 
     <!-- Google Fonts -->
     <link
@@ -183,8 +168,6 @@
     <script>
         // Initialize managers
         document.addEventListener('DOMContentLoaded', async () => {
-            console.log('Starting history page initialization...');
-            
             // Initialize theme
             if (window.themeManager) {
                 window.themeManager.init();
@@ -213,11 +196,7 @@
             if (window.updatesData) {
                 const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
                 await window.updatesData.load(currentLang);
-                console.log('Updates data loaded:', UPDATES_DATA ? UPDATES_DATA.length : 0, 'items');
             }
-            
-            console.log('UPDATES_DATA available:', typeof UPDATES_DATA !== 'undefined');
-            console.log('History timeline element:', document.getElementById('history-timeline'));
 
             // History page functionality
             try {

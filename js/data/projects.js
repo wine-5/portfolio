@@ -20,11 +20,8 @@ class ProjectsData {
     async load(lang = 'ja') {
         // 同じ言語ならスキップ
         if (this.isLoaded && this.currentLang === lang) {
-            console.log(`Projects already loaded for language: ${lang}`);
             return;
         }
-
-        console.log(`Loading projects for language: ${lang}`);
         
         try {
             const response = await fetch(`${this.basePath}json/locales/${lang}/projects.json`);
@@ -34,7 +31,6 @@ class ProjectsData {
             this.projectsData = await response.json();
             this.isLoaded = true;
             this.currentLang = lang;
-            console.log(`Projects loaded successfully: ${this.projectsData.length} items`);
         } catch (error) {
             console.error('Error loading projects:', error);
             this.projectsData = [];

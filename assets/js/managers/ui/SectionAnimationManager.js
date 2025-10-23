@@ -3,6 +3,10 @@
    =================================== */
 class SectionAnimationManager {
     constructor() {
+        // 定数定義
+        this.INTERSECTION_THRESHOLD = 0.2; // セクションが表示されたと判定する割合（20%）
+        this.INTERSECTION_ROOT_MARGIN = '0px 0px -100px 0px'; // 少し早めにトリガー
+        
         this.observer = null;
         this.animatedSections = new Set();
     }
@@ -55,8 +59,8 @@ class SectionAnimationManager {
                 });
             },
             {
-                threshold: 0.2, // セクションの20%が見えたらトリガー
-                rootMargin: '0px 0px -100px 0px' // 少し早めにトリガー
+                threshold: this.INTERSECTION_THRESHOLD,
+                rootMargin: this.INTERSECTION_ROOT_MARGIN
             }
         );
 

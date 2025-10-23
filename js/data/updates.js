@@ -20,11 +20,8 @@ class UpdatesData {
     async load(lang = 'ja') {
         // 同じ言語ならスキップ
         if (this.isLoaded && this.currentLang === lang) {
-            console.log(`Updates already loaded for language: ${lang}`);
             return this.updatesData;
         }
-
-        console.log(`Loading updates for language: ${lang}`);
 
         try {
             const response = await fetch(`${this.basePath}json/locales/${lang}/updates.json`);
@@ -34,7 +31,6 @@ class UpdatesData {
             this.updatesData = await response.json();
             this.isLoaded = true;
             this.currentLang = lang;
-            console.log('Updates loaded:', this.updatesData.length, 'items');
             return this.updatesData;
         } catch (error) {
             console.error('Error loading updates:', error);

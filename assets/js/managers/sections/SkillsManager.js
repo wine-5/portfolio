@@ -9,11 +9,8 @@ class SkillsManager {
     }
 
     async init() {
-        console.log('SkillsManager init called');
-        
         // skillDetailsDataがまだロードされていない場合はロードを待つ
         if (window.skillDetailsData && !window.skillDetailsData.isReady()) {
-            console.log('Waiting for skill details data to load...');
             const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
             await window.skillDetailsData.load(lang);
         }
@@ -21,12 +18,7 @@ class SkillsManager {
         // スキルデータを取得
         this.skillsData = window.skillDetailsData ? window.skillDetailsData.getAllSkills() : null;
         
-        console.log('SkillsData received:', this.skillsData);
-        console.log('SkillsData type:', typeof this.skillsData);
-        console.log('SkillsData is null?', this.skillsData === null);
-        
         if (this.skillsData) {
-            console.log('Calling renderSkills()...');
             this.renderSkills();
         } else {
             console.error('SkillsData is null or undefined!');
@@ -34,7 +26,6 @@ class SkillsManager {
         
         this.setupSkillAnimation();
         this.setupLanguageListener();
-        console.log('SkillsManager initialization completed');
     }
 
     /**
@@ -53,9 +44,6 @@ class SkillsManager {
 
         // 表示するスキルのキー（HTMLに表示されている順序）
         const skillKeys = ['unity', 'c#', 'c++', 'git', 'html'];
-        
-        console.log('Rendering skills for keys:', skillKeys);
-        console.log('Available skill data:', Object.keys(this.skillsData));
         
         const skillsHTML = skillKeys.map(key => {
             const skill = this.skillsData[key] || this.skillsData[key.toLowerCase()];
@@ -76,30 +64,33 @@ class SkillsManager {
             `;
         }).join('');
         
-        console.log('Generated skills HTML length:', skillsHTML.length);
         this.skillsGrid.innerHTML = skillsHTML;
         
         // 新しく生成された要素を取得
         this.skills = document.querySelectorAll('.skill');
-        console.log('Skills rendered:', this.skills.length, 'items');
+        
+        const INITIAL_ANIMATION_DELAY = 100; // 初期アニメーション開始の遅延時間（ミリ秒）
+        const SKILL_ANIMATION_STAGGER = 100; // スキルアニメーションの遅延時間（ミリ秒）
         
         // 即座に表示（IntersectionObserverを待たない）
         setTimeout(() => {
             this.skills.forEach((skill, index) => {
                 setTimeout(() => {
                     skill.classList.add('skill-visible');
-                }, index * 100);
+                }, index * SKILL_ANIMATION_STAGGER);
             });
-        }, 100);
+        }, INITIAL_ANIMATION_DELAY);
     }
 
     /**
      * スキルの説明を取得
      */
     getSkillDescription(key, skill) {
+        const MAX_DISPLAYED_SKILLS = 3; // 表示する追加スキルの最大数
+        
         // 簡潔な説明を生成（additionalSkillsの最初の3つを使用）
         if (skill.additionalSkills && skill.additionalSkills.length > 0) {
-            return skill.additionalSkills.slice(0, 3).join('、');
+            return skill.additionalSkills.slice(0, MAX_DISPLAYED_SKILLS).join('、');
         }
         
         // フォールバック: デフォルトの説明
@@ -120,7 +111,6 @@ class SkillsManager {
     setupLanguageListener() {
         window.addEventListener('languageChanged', async (e) => {
             const newLang = e.detail.language;
-            console.log('SkillsManager: Language changed to', newLang);
             
             // 新しい言語でデータを再読み込み
             if (window.skillDetailsData) {
@@ -133,6 +123,10 @@ class SkillsManager {
     }
 
     setupSkillAnimation() {
+        const ANIMATION_STAGGER_DELAY = 100; // 連鎖アニメーションの遅延時間（ミリ秒）
+        const INTERSECTION_THRESHOLD = 0.2; // 要素が表示されたと判定する割合（20%）
+        const INTERSECTION_ROOT_MARGIN = '0px 0px -50px 0px'; // 交差判定の余白
+        
         // 既存の要素を取得（動的に生成された場合も対応）
         this.skills = document.querySelectorAll('.skill');
         
@@ -143,10 +137,10 @@ class SkillsManager {
                 if (entry.isIntersecting) {
                     const skill = entry.target;
                     
-                    // 連鎖アニメーション（0.1秒ずつ遅延）
+                    // 連鎖アニメーション
                     setTimeout(() => {
                         skill.classList.add('skill-visible');
-                    }, animatedCount * 100);
+                    }, animatedCount * ANIMATION_STAGGER_DELAY);
                     
                     animatedCount++;
                     
@@ -155,8 +149,8 @@ class SkillsManager {
                 }
             });
         }, { 
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: INTERSECTION_THRESHOLD,
+            rootMargin: INTERSECTION_ROOT_MARGIN
         });
 
         this.skills.forEach(skill => {

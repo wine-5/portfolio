@@ -52,6 +52,9 @@ class TimelinePageApp {
     }
 
     showScrollHint() {
+        const HINT_FADE_DURATION = 500; // ヒントのフェードアウト時間（ミリ秒）
+        const HINT_AUTO_REMOVE_DELAY = 4000; // ヒント自動削除までの時間（ミリ秒）
+        
         // 初回訪問時のスクロールヒント
         const hint = document.createElement('div');
         hint.className = 'scroll-hint';
@@ -70,11 +73,11 @@ class TimelinePageApp {
         // 3秒後にフェードアウト、またはスクロール開始で消去
         const removeHint = () => {
             hint.style.opacity = '0';
-            setTimeout(() => hint.remove(), 500);
+            setTimeout(() => hint.remove(), HINT_FADE_DURATION);
             window.removeEventListener('scroll', removeHint);
         };
         
-        setTimeout(removeHint, 4000);
+        setTimeout(removeHint, HINT_AUTO_REMOVE_DELAY);
         window.addEventListener('scroll', removeHint, { once: true });
     }
 
@@ -144,8 +147,6 @@ let isTimelinePageInitialized = false;
 function initializeTimelinePage() {
     if (isTimelinePageInitialized) return;
     
-    console.log('Timeline page initialization started');
-    
     // 必要なクラスが読み込まれているかチェック
     if (typeof ScrollManager === 'undefined') {
         console.error('ScrollManager is not loaded');
@@ -162,14 +163,11 @@ function initializeTimelinePage() {
         return;
     }
     
-    console.log('All required classes and data loaded');
-    
     try {
         // タイムラインページアプリケーションを初期化
         const app = new TimelinePageApp();
         app.init();
         isTimelinePageInitialized = true;
-        console.log('Timeline page initialization completed');
     } catch (error) {
         console.error('Error initializing timeline page:', error);
     }
@@ -180,8 +178,9 @@ document.addEventListener('DOMContentLoaded', initializeTimelinePage);
 
 // DOM読み込み完了後にもう一度試行
 window.addEventListener('load', () => {
+    const INIT_RETRY_DELAY = 100; // 初期化リトライの遅延時間（ミリ秒）
+    
     if (!isTimelinePageInitialized) {
-        console.log('Retrying timeline initialization after window load');
-        setTimeout(initializeTimelinePage, 100);
+        setTimeout(initializeTimelinePage, INIT_RETRY_DELAY);
     }
 });

@@ -20,11 +20,8 @@ class TimelineData {
     async load(lang = 'ja') {
         // 同じ言語ならスキップ
         if (this.isLoaded && this.currentLang === lang) {
-            console.log(`Timeline already loaded for language: ${lang}`);
             return;
         }
-
-        console.log(`Loading timeline for language: ${lang}`);
 
         try {
             const response = await fetch(`${this.basePath}json/locales/${lang}/timeline.json`);
@@ -34,7 +31,6 @@ class TimelineData {
             this.timelineData = await response.json();
             this.isLoaded = true;
             this.currentLang = lang;
-            console.log('Timeline loaded:', this.timelineData.length, 'items');
         } catch (error) {
             console.error('Error loading timeline:', error);
             this.timelineData = [];

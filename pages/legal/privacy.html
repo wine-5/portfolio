@@ -17,91 +17,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="../../assets/css/base/variables.css">
-    <link rel="stylesheet" href="../../assets/css/themes/dark.css">
-    <link rel="stylesheet" href="../../assets/css/themes/light.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-primary, 'Roboto', sans-serif);
-            background: var(--color-bg-primary, #0a0a0a);
-            color: var(--color-text-primary, #ffffff);
-            line-height: 1.6;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--color-primary, #6366f1);
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--color-primary-light, #818cf8);
-        }
-
-        h3 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        ul {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        a {
-            color: var(--color-primary, #6366f1);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.5rem 1rem;
-            background: var(--color-primary, #6366f1);
-            color: white;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .back-link:hover {
-            background: var(--color-primary-dark, #4f46e5);
-            text-decoration: none;
-        }
-
-        .updated-date {
-            color: var(--color-text-secondary, #a0a0a0);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="privacy.css">
 </head>
 <body>
     <!-- ローディング画面 -->
@@ -157,8 +74,6 @@
                     <a href="../../index.html#updates" class="header__nav-link" data-i18n="common.header.updates">Updates</a>
                 </li>
             </ul>
-            <!-- テーマ切り替え & 言語切り替えボタン -->
-            <div class="header__controls" id="header-controls"></div>
             <div class="header__hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -166,8 +81,11 @@
             </div>
         </nav>
     </header>
-    
-    <div class="container">
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+        <section class="privacy-section">
+            <div class="container">
         <h1>プライバシーポリシー</h1>
         <p class="updated-date">最終更新日: 2025年10月23日</p>
 
@@ -250,7 +168,9 @@
         </ul>
 
         <a href="../../index.html" class="back-link">トップページに戻る</a>
-    </div>
+            </div>
+        </section>
+    </main>
 
     <!-- フッター -->
     <footer class="footer">
@@ -265,13 +185,13 @@
                         <div class="footer__section">
                             <h4 class="footer__section-title" data-i18n="common.footer.navigation">ナビゲーション</h4>
                             <ul class="footer__link-list">
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-home"></i> <span data-i18n="common.header.home">Home</span></a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-gamepad"></i> <span data-i18n="common.header.games">Games</span></a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-code"></i> <span data-i18n="common.header.skills">Skills</span></a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-user"></i> <span data-i18n="common.header.about">About</span></a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-envelope"></i> <span data-i18n="common.header.contact">Contact</span></a></li>
+                                <li><a href="../../index.html#home" class="footer__link"><i class="fas fa-home"></i> <span data-i18n="common.header.home">Home</span></a></li>
+                                <li><a href="../../index.html#games" class="footer__link"><i class="fas fa-gamepad"></i> <span data-i18n="common.header.games">Games</span></a></li>
+                                <li><a href="../../index.html#skills" class="footer__link"><i class="fas fa-code"></i> <span data-i18n="common.header.skills">Skills</span></a></li>
+                                <li><a href="../../index.html#about" class="footer__link"><i class="fas fa-user"></i> <span data-i18n="common.header.about">About</span></a></li>
+                                <li><a href="../../index.html#connect" class="footer__link"><i class="fas fa-envelope"></i> <span data-i18n="common.header.contact">Contact</span></a></li>
                                 <li><a href="../timeline/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> <span data-i18n="common.header.timeline">Timeline</span></a></li>
-                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
+                                <li><a href="../../index.html#updates" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
                             </ul>
                         </div>
                         <div class="footer__section">
@@ -307,12 +227,6 @@
             // Initialize theme
             if (window.themeManager) {
                 window.themeManager.init();
-                
-                // Create theme toggle button
-                const headerControls = document.getElementById('header-controls');
-                if (headerControls) {
-                    window.themeManager.createToggleButton(headerControls);
-                }
             }
             
             // Initialize i18n
@@ -320,12 +234,6 @@
                 const currentLang = window.i18n.getCurrentLanguage();
                 await window.i18n.loadTranslations(currentLang);
                 window.i18n.applyTranslations();
-                
-                // Create language switcher
-                const headerControls = document.getElementById('header-controls');
-                if (headerControls) {
-                    window.i18n.createLanguageSwitcher(headerControls);
-                }
             }
             
             // Hide loading screen after initialization
