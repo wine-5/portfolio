@@ -15,6 +15,9 @@ class EasterEggManager {
         console.log('%c🎮 イースターエッグのヒント:', 'color: #6366f1; font-size: 16px; font-weight: bold;');
         console.log('%c1. "wine-5" とタイプしてみよう！', 'color: #8b5cf6;');
         console.log('%c2. "debug" とタイプしてデバッグモードへ！', 'color: #ff6b6b;');
+        
+        // ヘッダー下の演出を常に表示
+        this.createHeaderWebGLEffect();
     }
 
     handleKeyPress(e) {
@@ -658,6 +661,286 @@ class EasterEggManager {
                 if (this.wineWebGLCanvas) {
                     this.wineWebGLCanvas.remove();
                     this.wineWebGLCanvas = null;
+                }
+            }, 500);
+        }
+    }
+
+    createHeaderWebGLEffect() {
+        // ヘッダー下にWebGLキャンバス作成（青系）
+        const canvas = document.createElement('canvas');
+        canvas.className = 'wine-header-webgl-canvas';
+        canvas.style.cssText = `
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 400px;
+            pointer-events: none;
+            z-index: 99;
+        `;
+        document.body.appendChild(canvas);
+
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
+        if (!gl) {
+            // WebGL非対応の場合はCanvas 2Dにフォールバック
+            this.createHeaderCanvas2DEffect(canvas);
+            return;
+        }
+
+        // WebGLシェーダープログラム（青系）
+        const vertexShaderSource = `
+            attribute vec2 a_position;
+            attribute vec2 a_texCoord;
+            varying vec2 v_texCoord;
+            
+            void main() {
+                gl_Position = vec4(a_position, 0.0, 1.0);
+                v_texCoord = a_texCoord;
+            }
+        `;
+
+        const fragmentShaderSource = `
+            precision mediump float;
+            varying vec2 v_texCoord;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            
+            void main() {
+                vec2 uv = v_texCoord;
+                vec2 center = vec2(0.5, 0.3);
+                float dist = distance(uv, center);
+                
+                // 回転するリング（3つ）
+                float ring1 = smoothstep(0.25, 0.26, dist) - smoothstep(0.27, 0.28, dist);
+                float ring2 = smoothstep(0.30, 0.31, dist) - smoothstep(0.32, 0.33, dist);
+                float ring3 = smoothstep(0.35, 0.36, dist) - smoothstep(0.37, 0.38, dist);
+                
+                // 色の変化（青系）
+                float angle = atan(uv.y - center.y, uv.x - center.x);
+                float hue1 = sin(angle * 4.0 + u_time * 2.5) * 0.5 + 0.5;
+                float hue2 = sin(angle * 6.0 - u_time * 3.5) * 0.5 + 0.5;
+                float hue3 = sin(angle * 8.0 + u_time * 4.5) * 0.5 + 0.5;
+                
+                vec3 color1 = vec3(0.2, 0.4, 1.0) * hue1; // ブライトブルー
+                vec3 color2 = vec3(0.4, 0.6, 1.0) * hue2; // ライトブルー
+                vec3 color3 = vec3(0.1, 0.3, 0.9) * hue3; // ディープブルー
+                
+                vec3 finalColor = color1 * ring1 + color2 * ring2 + color3 * ring3;
+                
+                // グロー効果（青系）
+                float glow = exp(-dist * 2.5) * 0.4;
+                finalColor += vec3(0.3, 0.5, 1.0) * glow;
+                
+                // エネルギーパーティクル
+                float particles = 0.0;
+                for(float i = 0.0; i < 30.0; i++) {
+                    float particleAngle = i * 0.209 + u_time * 0.7;
+                    float orbitRadius = 0.28 + sin(u_time * 1.5 + i * 0.5) * 0.08;
+                    vec2 particlePos = center + vec2(cos(particleAngle), sin(particleAngle)) * orbitRadius;
+                    float particleDist = distance(uv, particlePos);
+                    particles += smoothstep(0.015, 0.0, particleDist);
+                }
+                finalColor += vec3(0.6, 0.8, 1.0) * particles * 1.2;
+                
+                // 波紋エフェクト
+                float wave = sin(dist * 20.0 - u_time * 3.0) * 0.5 + 0.5;
+                wave = smoothstep(0.3, 0.5, wave) * 0.15;
+                finalColor += vec3(0.2, 0.5, 1.0) * wave;
+                
+                // 上部へのグラデーションフェード
+                float fade = smoothstep(0.0, 0.3, uv.y) * smoothstep(1.0, 0.7, uv.y);
+                
+                gl_FragColor = vec4(finalColor * fade, length(finalColor) * fade * 0.85);
+            }
+        `;
+
+        // シェーダーコンパイル
+        function createShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+        const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error('Program link error:', gl.getProgramInfoLog(program));
+            return;
+        }
+
+        // 頂点バッファ設定
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        const positions = new Float32Array([
+            -1, -1,  1, -1,  -1, 1,
+            -1, 1,   1, -1,   1, 1
+        ]);
+        gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+        const texCoordBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+        const texCoords = new Float32Array([
+            0, 0,  1, 0,  0, 1,
+            0, 1,  1, 0,  1, 1
+        ]);
+        gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
+
+        // アニメーションループ
+        let startTime = Date.now();
+        this.headerAnimationFrame = null;
+
+        const render = () => {
+            const currentTime = (Date.now() - startTime) * 0.001;
+            
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.clearColor(0, 0, 0, 0);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            
+            gl.useProgram(program);
+            
+            // 属性とユニフォームの設定
+            const positionLocation = gl.getAttribLocation(program, 'a_position');
+            const texCoordLocation = gl.getAttribLocation(program, 'a_texCoord');
+            const timeLocation = gl.getUniformLocation(program, 'u_time');
+            const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+            
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.enableVertexAttribArray(positionLocation);
+            gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+            
+            gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+            gl.enableVertexAttribArray(texCoordLocation);
+            gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
+            
+            gl.uniform1f(timeLocation, currentTime);
+            gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+            
+            // ブレンディング設定
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+            
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            
+            this.headerAnimationFrame = requestAnimationFrame(render);
+        };
+
+        canvas.width = window.innerWidth;
+        canvas.height = 400;
+        render();
+        
+        this.headerWebGLCanvas = canvas;
+    }
+
+    createHeaderCanvas2DEffect(canvas) {
+        // WebGL非対応時のCanvas 2Dフォールバック（青系）
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = 400;
+        
+        const centerX = canvas.width / 2;
+        const centerY = 120;
+        let rotation = 0;
+        
+        const render = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            rotation += 0.015;
+            
+            // 回転するリング3つ（青系）
+            for (let i = 0; i < 3; i++) {
+                const radius = 80 + i * 35;
+                const lineWidth = 3;
+                const rotationOffset = rotation * (i % 2 === 0 ? 1 : -1) * (1 + i * 0.3);
+                
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(rotationOffset);
+                
+                // グラデーション（青系）
+                const gradient = ctx.createLinearGradient(-radius, 0, radius, 0);
+                gradient.addColorStop(0, `hsla(${210 + i * 15}, 90%, 55%, 0.7)`);
+                gradient.addColorStop(0.5, `hsla(${220 + i * 15}, 95%, 65%, 0.9)`);
+                gradient.addColorStop(1, `hsla(${210 + i * 15}, 90%, 55%, 0.7)`);
+                
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = lineWidth;
+                ctx.shadowBlur = 25;
+                ctx.shadowColor = '#4facfe';
+                
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+            
+            // エネルギーパーティクル（青系）
+            for (let i = 0; i < 30; i++) {
+                const angle = (i / 30) * Math.PI * 2 + rotation * 2.5;
+                const radius = 95 + Math.sin(rotation * 4 + i * 0.5) * 20;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                const alpha = 0.5 + Math.sin(rotation * 5 + i) * 0.4;
+                ctx.fillStyle = `hsla(${200 + (i * 5)}, 95%, 70%, ${alpha})`;
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = '#00f2fe';
+                ctx.beginPath();
+                ctx.arc(x, y, 3 + Math.sin(rotation * 3 + i) * 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // 波紋エフェクト
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            for (let i = 0; i < 3; i++) {
+                const waveRadius = (rotation * 50 + i * 40) % 200;
+                const alpha = 1 - (waveRadius / 200);
+                ctx.strokeStyle = `hsla(210, 90%, 60%, ${alpha * 0.4})`;
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#4facfe';
+                ctx.beginPath();
+                ctx.arc(0, 0, waveRadius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            ctx.restore();
+            
+            this.headerAnimationFrame = requestAnimationFrame(render);
+        };
+        
+        render();
+        this.headerWebGLCanvas = canvas;
+    }
+
+    stopHeaderWebGLEffect() {
+        if (this.headerAnimationFrame) {
+            cancelAnimationFrame(this.headerAnimationFrame);
+            this.headerAnimationFrame = null;
+        }
+        
+        if (this.headerWebGLCanvas) {
+            this.headerWebGLCanvas.style.opacity = '0';
+            this.headerWebGLCanvas.style.transition = 'opacity 0.5s';
+            setTimeout(() => {
+                if (this.headerWebGLCanvas) {
+                    this.headerWebGLCanvas.remove();
+                    this.headerWebGLCanvas = null;
                 }
             }, 500);
         }
