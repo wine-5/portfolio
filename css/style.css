@@ -14,17 +14,17 @@
     --text-muted: #6b7280;
     --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-    
+
     /* フォント */
     --font-primary: 'Orbitron', monospace;
     --font-secondary: 'Roboto', sans-serif;
-    
+
     /* サイズ */
     --header-height: 80px;
     --container-max-width: 1200px;
     --border-radius: 12px;
     --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    
+
     /* アニメーション */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
@@ -42,7 +42,8 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 62.5%; /* 1rem = 10px */
+    font-size: 62.5%;
+    /* 1rem = 10px */
     height: 100%;
     overflow-y: auto;
 }
@@ -53,7 +54,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     font-size: 1.6rem;
-    overflow-x: hidden;
+    overflow-x: clip;
     overflow-y: auto;
     min-height: 100vh;
 }
@@ -84,8 +85,15 @@ body {
 
 /* グラデーション流れるアニメーション */
 @keyframes gradientFlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .section__title::after {
@@ -103,11 +111,14 @@ body {
 
 /* ライン輝きアニメーション */
 @keyframes lineGlow {
-    0%, 100% { 
+
+    0%,
+    100% {
         opacity: 0.5;
         width: 6rem;
     }
-    50% { 
+
+    50% {
         opacity: 1;
         width: 10rem;
     }
@@ -245,23 +256,32 @@ body {
 }
 
 @keyframes spinRing {
-    0% { 
+    0% {
         transform: rotate(0deg) scale(1);
         opacity: 1;
     }
+
     50% {
         transform: rotate(180deg) scale(1.1);
         opacity: 0.8;
     }
-    100% { 
+
+    100% {
         transform: rotate(360deg) scale(1);
         opacity: 1;
     }
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
 }
 
 /* ===================================
@@ -363,7 +383,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero__background {
@@ -397,19 +417,22 @@ body {
    水たまり・水面エフェクト
    =================================== */
 .water-surface {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
-    width: 100vw;
+    right: 0;
     height: 40vh;
     pointer-events: none;
-    overflow: hidden;
-    margin-left: -50vw;
-    left: 50%;
+    overflow: visible;
+    z-index: 1;
 }
 
 .water-svg {
-    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 300vh; /* 値を大きくして強制的に右側まで行くように */
     height: 100%;
     animation: waterFlow 8s ease-in-out infinite;
 }
@@ -420,24 +443,32 @@ body {
 }
 
 @keyframes waterFlow {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0px);
     }
+
     50% {
         transform: translateX(-20px);
     }
 }
 
 @keyframes waterRipple {
-    0%, 100% {
+
+    0%,
+    100% {
         d: path("M0,150 Q300,130 600,150 T1200,150 L1200,300 L0,300 Z");
     }
+
     25% {
         d: path("M0,150 Q300,140 600,145 T1200,155 L1200,300 L0,300 Z");
     }
+
     50% {
         d: path("M0,150 Q300,135 600,155 T1200,145 L1200,300 L0,300 Z");
     }
+
     75% {
         d: path("M0,150 Q300,145 600,140 T1200,150 L1200,300 L0,300 Z");
     }
@@ -484,15 +515,20 @@ body {
 }
 
 @keyframes floatingCube {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px) rotateX(0deg) rotateY(0deg) translateZ(0px);
     }
+
     25% {
         transform: translateY(-30px) rotateX(90deg) rotateY(45deg) translateZ(50px);
     }
+
     50% {
         transform: translateY(-60px) rotateX(180deg) rotateY(90deg) translateZ(100px);
     }
+
     75% {
         transform: translateY(-30px) rotateX(270deg) rotateY(135deg) translateZ(50px);
     }
@@ -528,11 +564,13 @@ body {
         transform: translateY(100px) rotateX(-90deg) translateZ(-200px);
         filter: blur(10px);
     }
+
     50% {
         opacity: 0.7;
         transform: translateY(20px) rotateX(-15deg) translateZ(-50px);
         filter: blur(2px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0) rotateX(0deg) translateZ(0px);
@@ -546,18 +584,22 @@ body {
         background-position: 0% 50%;
         filter: hue-rotate(0deg) brightness(1) saturate(1);
     }
+
     25% {
         background-position: 100% 100%;
         filter: hue-rotate(90deg) brightness(1.2) saturate(1.3);
     }
+
     50% {
         background-position: 100% 0%;
         filter: hue-rotate(180deg) brightness(1) saturate(1.5);
     }
+
     75% {
         background-position: 0% 100%;
         filter: hue-rotate(270deg) brightness(1.2) saturate(1.2);
     }
+
     100% {
         background-position: 0% 50%;
         filter: hue-rotate(360deg) brightness(1) saturate(1);
@@ -605,7 +647,7 @@ body {
     opacity: 0;
     transform: translateX(-400px) rotateY(-90deg) scale(0.2) translateZ(-200px) rotateZ(-180deg);
     transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    text-shadow: 
+    text-shadow:
         0 8px 25px rgba(99, 102, 241, 0.6),
         0 15px 50px rgba(139, 92, 246, 0.4),
         0 0 30px rgba(6, 182, 212, 0.3);
@@ -622,27 +664,35 @@ body {
 }
 
 @keyframes letterPulse {
-    0%, 100% { 
+
+    0%,
+    100% {
         transform: translateX(0) rotateY(0deg) scale(1.1) translateZ(20px) rotateZ(0deg);
         filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
     }
-    50% { 
+
+    50% {
         transform: translateX(0) rotateY(0deg) scale(1.15) translateZ(25px) rotateZ(0deg);
         filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8));
     }
 }
 
 @keyframes letterFloat {
-    0%, 100% { 
+
+    0%,
+    100% {
         transform: translateX(0) rotateY(0deg) scale(1.1) translateZ(20px) rotateZ(0deg) translateY(0px);
     }
-    25% { 
+
+    25% {
         transform: translateX(0) rotateY(2deg) scale(1.1) translateZ(20px) rotateZ(1deg) translateY(-3px);
     }
-    50% { 
+
+    50% {
         transform: translateX(0) rotateY(0deg) scale(1.1) translateZ(20px) rotateZ(0deg) translateY(-5px);
     }
-    75% { 
+
+    75% {
         transform: translateX(0) rotateY(-2deg) scale(1.1) translateZ(20px) rotateZ(-1deg) translateY(-3px);
     }
 }
@@ -680,29 +730,37 @@ body {
 }
 
 @keyframes reflectionDistort {
-    0%, 100% { 
+
+    0%,
+    100% {
         filter: blur(1px) brightness(0.7);
         transform: translateX(0) rotateY(0deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(0deg);
     }
-    25% { 
+
+    25% {
         filter: blur(2px) brightness(0.6);
         transform: translateX(1px) rotateY(1deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(1deg);
     }
-    50% { 
+
+    50% {
         filter: blur(1.5px) brightness(0.8);
         transform: translateX(-1px) rotateY(0deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(0deg);
     }
-    75% { 
+
+    75% {
         filter: blur(2px) brightness(0.6);
         transform: translateX(1px) rotateY(-1deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(-1deg);
     }
 }
 
 @keyframes reflectionWave {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0) scaleX(1);
         filter: blur(1px);
     }
+
     50% {
         transform: translateX(2px) scaleX(0.98);
         filter: blur(1.5px);
@@ -779,6 +837,7 @@ body {
         opacity: 0;
         transform: translateY(3rem);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -786,12 +845,19 @@ body {
 }
 
 @keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateX(-50%) translateY(0);
     }
+
     40% {
         transform: translateX(-50%) translateY(1rem);
     }
+
     60% {
         transform: translateX(-50%) translateY(0.5rem);
     }
@@ -882,6 +948,8 @@ body {
 .detail-label {
     color: var(--text-secondary);
     font-size: 1.3rem;
+    white-space: nowrap;
+    padding-right: 1em;
 }
 
 .detail-value {
@@ -1066,7 +1134,7 @@ body {
 }
 
 /* 詳細説明セクション */
-.work-card__details-content > .work-card__features-section:first-child {
+.work-card__details-content>.work-card__features-section:first-child {
     padding-top: 0;
     border-top: none;
 }
@@ -1090,6 +1158,7 @@ body {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1154,7 +1223,7 @@ body {
     border-radius: var(--border-radius);
     transition: all var(--transition-normal);
     border-left: 4px solid var(--primary-color);
-    
+
     /* 初期状態 - アニメーション前 */
     opacity: 0;
     transform: translateY(30px) scale(0.95);
@@ -1490,19 +1559,19 @@ body {
         height: 300px;
         padding: 2rem;
     }
-    
+
     .timeline-card {
         width: 250px;
         left: -75px;
         padding: 1.5rem;
     }
-    
+
     .timeline-node {
         width: 40px;
         height: 40px;
         font-size: 1.4rem;
     }
-    
+
     .about__timeline-title {
         font-size: 2.4rem;
     }
@@ -1749,7 +1818,7 @@ body {
 
 .work-card:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 
+    box-shadow:
         0 15px 30px rgba(0, 0, 0, 0.3),
         0 0 15px rgba(99, 102, 241, 0.1);
 }
@@ -1821,9 +1890,11 @@ body {
 
 /* タイムラインセクション */
 .timeline-section {
-    padding: 80px 0 120px 0; /* 下部パディングを適切なサイズに調整 */
+    padding: 80px 0 120px 0;
+    /* 下部パディングを適切なサイズに調整 */
     background: var(--bg-primary);
-    min-height: 100vh; /* 通常の高さに調整 */
+    min-height: 100vh;
+    /* 通常の高さに調整 */
 }
 
 .timeline-section .section__subtitle {
@@ -2061,7 +2132,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    
+
     /* 初期状態 - アニメーション前 */
     opacity: 0;
     transform: translateY(20px);
@@ -2095,9 +2166,12 @@ body {
 
 /* アイコンが浮き上がるアニメーション */
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1.2) translateY(-3px);
     }
+
     50% {
         transform: scale(1.2) translateY(-8px);
     }
@@ -2105,10 +2179,13 @@ body {
 
 /* パルスアニメーション */
 @keyframes pulse-icon {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         opacity: 1;
     }
+
     50% {
         transform: scale(1.1);
         opacity: 0.8;
@@ -2131,28 +2208,28 @@ body {
     .timeline-hero {
         padding: 100px 0 60px;
     }
-    
+
     .timeline-hero__title {
         font-size: 2.5rem;
     }
-    
+
     .timeline-hero__stats {
         gap: 2rem;
     }
-    
+
     .timeline-stat__number {
         font-size: 2rem;
     }
-    
+
     .footer__main {
         flex-direction: column;
         gap: 2rem;
     }
-    
+
     .footer__links {
         gap: 2rem;
     }
-    
+
     .about__timeline-link {
         padding: 1.5rem;
     }
@@ -2167,8 +2244,10 @@ body {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 4rem 0 8rem 0; /* 下部マージンを適切なサイズに調整 */
-    min-height: auto; /* 自動高さに変更 */
+    padding: 4rem 0 8rem 0;
+    /* 下部マージンを適切なサイズに調整 */
+    min-height: auto;
+    /* 自動高さに変更 */
 }
 
 /* プログレスライン */
@@ -2176,7 +2255,8 @@ body {
     position: fixed;
     left: 50%;
     top: 120px;
-    bottom: 200px; /* 下部マージンを増加 */
+    bottom: 200px;
+    /* 下部マージンを増加 */
     width: 4px;
     background: rgba(99, 102, 241, 0.2);
     transform: translateX(-50%);
@@ -2190,12 +2270,12 @@ body {
     left: 0;
     width: 100%;
     height: 0%;
-    background: linear-gradient(to bottom, 
-        #10b981 0%, 
-        #6366f1 25%, 
-        #06b6d4 50%, 
-        #f59e0b 75%, 
-        #ec4899 100%);
+    background: linear-gradient(to bottom,
+            #10b981 0%,
+            #6366f1 25%,
+            #06b6d4 50%,
+            #f59e0b 75%,
+            #ec4899 100%);
     border-radius: 2px;
     transition: height 0.1s ease-out;
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
@@ -2204,7 +2284,8 @@ body {
 /* タイムラインアイテム */
 .scroll-timeline-item {
     position: relative;
-    margin: 6rem 0; /* アイテム間のスペースを適切に調整 */
+    margin: 6rem 0;
+    /* アイテム間のスペースを適切に調整 */
     opacity: 0;
     transform: translateY(60px) scale(0.9);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2212,7 +2293,8 @@ body {
 
 /* 最後のアイテムには追加のマージン */
 .scroll-timeline-item:last-child {
-    margin-bottom: 8rem; /* 最後のアイテムのマージンを適切に調整 */
+    margin-bottom: 8rem;
+    /* 最後のアイテムのマージンを適切に調整 */
 }
 
 /* タイムラインエラー表示 */
@@ -2307,10 +2389,12 @@ body {
         transform: scale(1);
         opacity: 0.7;
     }
+
     50% {
         transform: scale(1.5);
         opacity: 0.3;
     }
+
     100% {
         transform: scale(2);
         opacity: 0;
@@ -2353,7 +2437,7 @@ body {
 
 /* カードコンテンツ */
 .timeline-card-content {
-    padding: 2rem;
+    padding: 2rem 5em;
 }
 
 .timeline-card__header {
@@ -2484,33 +2568,33 @@ body {
     .timeline-progress-line {
         left: 3rem;
     }
-    
+
     .scroll-timeline-item--left,
     .scroll-timeline-item--right {
         padding-left: 5rem;
         padding-right: 1rem;
         text-align: left;
     }
-    
+
     .scroll-timeline-node {
         left: calc(3rem - 30px) !important;
         right: auto !important;
     }
-    
+
     .timeline-card__date,
     .timeline-card__tech,
     .timeline-detail {
         justify-content: flex-start !important;
     }
-    
+
     .scroll-timeline-item {
         margin: 6rem 0;
     }
-    
+
     .timeline-card-content {
         padding: 1.5rem;
     }
-    
+
     .scroll-indicator {
         display: none;
     }
@@ -2520,31 +2604,31 @@ body {
     .scroll-timeline {
         padding: 2rem 0 4rem 0;
     }
-    
+
     .timeline-progress-line {
         left: 2rem;
     }
-    
+
     .scroll-timeline-item--left,
     .scroll-timeline-item--right {
         padding-left: 4rem;
         margin: 4rem 0;
     }
-    
+
     .scroll-timeline-node {
         left: calc(2rem - 25px) !important;
         width: 50px;
         height: 50px;
     }
-    
+
     .scroll-timeline-node i {
         font-size: 1.2rem;
     }
-    
+
     .timeline-card__title {
         font-size: 1.3rem;
     }
-    
+
     .timeline-card__description {
         font-size: 1rem;
     }
@@ -2755,44 +2839,45 @@ body {
         opacity: 1;
         pointer-events: auto;
     }
-    
+
     .slider-indicators {
         opacity: 1;
     }
-    
+
     .play-hint {
         opacity: 1;
         font-size: 0.8rem;
         padding: 0.4rem 0.8rem;
     }
-    
+
     .lock-overlay {
         opacity: 1;
         font-size: 0.8rem;
         padding: 0.8rem 1.2rem;
     }
-    
+
     .lock-overlay i {
         font-size: 1.2rem;
     }
-    
+
     .slider-btn {
         width: 35px;
         height: 35px;
     }
-    
+
     .clickable-image:hover {
         transform: none;
     }
-    
+
     .slider-image:hover {
         transform: none;
     }
-    
+
     .locked-image:hover .clickable-image {
         transform: none;
     }
 }
+
 .scroll-hint {
     position: fixed;
     bottom: 3rem;
@@ -2824,12 +2909,19 @@ body {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-10px);
     }
+
     60% {
         transform: translateY(-5px);
     }
@@ -2843,18 +2935,18 @@ body {
         gap: 1rem;
         padding: 1rem;
     }
-    
+
     .simple-timeline-icon {
         align-self: center;
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    
+
     .simple-timeline-title {
         font-size: 1.1rem;
     }
-    
+
     .timeline-section {
         padding: 60px 0;
     }
@@ -2886,7 +2978,7 @@ body {
     z-index: 0;
     white-space: nowrap;
     letter-spacing: 0.1em;
-    
+
     /* デフォルト: フェードイン + スケール */
     opacity: 0;
     transform: translate(-50%, -50%) rotate(-20deg) scale(0.8);
