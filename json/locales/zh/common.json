@@ -80,5 +80,17 @@
     "release": "发布",
     "announcement": "公告",
     "readMore": "阅读更多"
+  },
+  "timeline": {
+    "hero": {
+      "title": "开发轨迹",
+      "subtitle": "从入学到现在的游戏开发之旅",
+      "description": "在学校的学习和成长，过去制作的游戏等。\n按时间顺序回顾作为游戏开发者的历程。"
+    },
+    "stats": {
+      "projects": "项目",
+      "awards": "获奖",
+      "years": "年"
+    }
   }
 }

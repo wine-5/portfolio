@@ -82,6 +82,15 @@ class SkillsManager {
         // 新しく生成された要素を取得
         this.skills = document.querySelectorAll('.skill');
         console.log('Skills rendered:', this.skills.length, 'items');
+        
+        // 即座に表示（IntersectionObserverを待たない）
+        setTimeout(() => {
+            this.skills.forEach((skill, index) => {
+                setTimeout(() => {
+                    skill.classList.add('skill-visible');
+                }, index * 100);
+            });
+        }, 100);
     }
 
     /**

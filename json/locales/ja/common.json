@@ -80,5 +80,17 @@
     "release": "リリース",
     "announcement": "アナウンス",
     "readMore": "続きを読む"
+  },
+  "timeline": {
+    "hero": {
+      "title": "開発の軌跡",
+      "subtitle": "入学から現在までのゲーム開発ジャーニー",
+      "description": "学校での学びと成長、過去に制作してきたゲームなど。\nゲーム開発者としての歩みを時系列で振り返ります。"
+    },
+    "stats": {
+      "projects": "プロジェクト",
+      "awards": "受賞歴",
+      "years": "年間"
+    }
   }
 }
