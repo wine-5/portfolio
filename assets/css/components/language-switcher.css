@@ -54,6 +54,7 @@
     box-shadow: var(--shadow-lg, 0 8px 16px rgba(0, 0, 0, 0.3));
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transform: translateY(-10px);
     transition: all var(--transition-base, 300ms);
     z-index: var(--z-dropdown, 1000);
@@ -63,6 +64,7 @@
 .language-switcher.active .language-switcher__dropdown {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
 }
 

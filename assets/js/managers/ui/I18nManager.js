@@ -9,6 +9,26 @@ class I18nManager {
         this.supportedLanguages = ['ja', 'en', 'zh'];
         this.defaultLanguage = 'ja';
         this.currentLang = this.detectLanguage();
+        this.basePath = this.detectBasePath();
+    }
+
+    /**
+     * ベースパスを検出（サブディレクトリからの相対パス調整）
+     */
+    detectBasePath() {
+        const path = window.location.pathname;
+        
+        // index.htmlまたはルートディレクトリの場合
+        if (path === '/' || path.endsWith('/index.html') || path.endsWith('/Portfolio/')) {
+            return '';
+        }
+        
+        // pages/timeline/, pages/history/, pages/legal/ などのサブディレクトリの場合
+        if (path.includes('/pages/')) {
+            return '../../';
+        }
+        
+        return '';
     }
 
     /**
@@ -66,7 +86,7 @@ class I18nManager {
 
             const promises = modules.map(async (module) => {
                 try {
-                    const response = await fetch(`json/locales/${lang}/${module}.json`);
+                    const response = await fetch(`${this.basePath}json/locales/${lang}/${module}.json`);
                     if (!response.ok) {
                         throw new Error(`Failed to load ${module}: ${response.status}`);
                     }
