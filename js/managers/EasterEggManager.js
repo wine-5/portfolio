@@ -5,6 +5,9 @@ class EasterEggManager {
         this.debugCode = ['d', 'e', 'b', 'u', 'g'];
         this.debugMode = false;
         this.wineMode = false;
+        this.rainbowActive = false;
+        this.glitchActive = false;
+        this.virusActive = false;
     }
 
     init() {
@@ -15,6 +18,12 @@ class EasterEggManager {
     }
 
     handleKeyPress(e) {
+        // ウイルスモード中はESCで回避
+        if (this.virusActive && e.key === 'Escape') {
+            this.deactivateVirusMode();
+            return;
+        }
+        
         // wine-5モード中はESCで解除
         if (this.wineMode && e.key === 'Escape') {
             this.deactivateWineMode();
@@ -108,10 +117,11 @@ class EasterEggManager {
             color: #00ff00;
             font-family: 'Courier New', monospace;
             font-size: 14px;
-            z-index: 10000;
+            z-index: 10005;
             min-width: 300px;
             box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
             animation: debugUIFadeIn 0.3s ease-out;
+            pointer-events: auto;
         `;
         
         const updateDebugInfo = () => {
@@ -298,6 +308,9 @@ class EasterEggManager {
     }
 
     addWineSpecialFeatures() {
+        // WebGLキャンバスで豪華なエフェクトを作成
+        this.createWineWebGLEffect();
+        
         // 管理者専用の特別な操作パネルを作成
         const controlPanel = document.createElement('div');
         controlPanel.className = 'wine-control-panel';
@@ -309,7 +322,7 @@ class EasterEggManager {
             border: 3px solid #ffd700;
             border-radius: 15px;
             padding: 20px;
-            z-index: 10000;
+            z-index: 10001;
             min-width: 280px;
             box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
             animation: winePanelSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -325,26 +338,26 @@ class EasterEggManager {
                 </div>
             </div>
             <div style="display: grid; gap: 10px;">
-                <button class="wine-btn" data-action="spinAll" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    🌀 全カード回転
-                </button>
-                <button class="wine-btn" data-action="particleExplosion" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    💥 パーティクル爆発
+                <button class="wine-btn" data-action="timeFreeze" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    TIME FREEZE
                 </button>
                 <button class="wine-btn" data-action="massLevelUp" style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    ⬆️ 全レベルアップ
+                    MAX LEVEL
                 </button>
                 <button class="wine-btn" data-action="matrixRain" style="background: linear-gradient(135deg, #11998e, #38ef7d); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    🌧️ マトリックスレイン
+                    MATRIX RAIN
                 </button>
                 <button class="wine-btn" data-action="rainbowMode" style="background: linear-gradient(135deg, #ee0979, #ff6a00); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    🌈 レインボーモード
+                    RAINBOW MODE
                 </button>
                 <button class="wine-btn" data-action="glitchEffect" style="background: linear-gradient(135deg, #8e2de2, #4a00e0); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    ⚡ グリッチエフェクト
+                    GLITCH EFFECT
+                </button>
+                <button class="wine-btn" data-action="virusMode" style="background: linear-gradient(135deg, #d31027, #ea384d); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
+                    VIRUS MODE
                 </button>
                 <button class="wine-btn" data-action="secretMessage" style="background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.3s;">
-                    💌 開発者メッセージ
+                    SECRET MESSAGE
                 </button>
             </div>
             <div style="text-align: center; margin-top: 15px; font-size: 12px; color: #333;">
@@ -392,28 +405,284 @@ class EasterEggManager {
         
         const style = document.querySelector('style[data-wine-panel]');
         if (style) style.remove();
+        
+        // WebGLエフェクトを停止・削除
+        this.stopWineWebGLEffect();
+    }
+
+    createWineWebGLEffect() {
+        // WebGLキャンバス作成
+        const canvas = document.createElement('canvas');
+        canvas.className = 'wine-webgl-canvas';
+        canvas.style.cssText = `
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 500px;
+            height: 500px;
+            pointer-events: none;
+            z-index: 9999;
+        `;
+        document.body.appendChild(canvas);
+
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
+        if (!gl) {
+            // WebGL非対応の場合はCanvas 2Dにフォールバック
+            this.createWineCanvas2DEffect(canvas);
+            return;
+        }
+
+        // WebGLシェーダープログラム
+        const vertexShaderSource = `
+            attribute vec2 a_position;
+            attribute vec2 a_texCoord;
+            varying vec2 v_texCoord;
+            
+            void main() {
+                gl_Position = vec4(a_position, 0.0, 1.0);
+                v_texCoord = a_texCoord;
+            }
+        `;
+
+        const fragmentShaderSource = `
+            precision mediump float;
+            varying vec2 v_texCoord;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            
+            void main() {
+                vec2 uv = v_texCoord;
+                vec2 center = vec2(0.3, 0.3);
+                float dist = distance(uv, center);
+                
+                // 回転するリング
+                float ring1 = smoothstep(0.30, 0.31, dist) - smoothstep(0.32, 0.33, dist);
+                float ring2 = smoothstep(0.35, 0.36, dist) - smoothstep(0.37, 0.38, dist);
+                float ring3 = smoothstep(0.40, 0.41, dist) - smoothstep(0.42, 0.43, dist);
+                
+                // 色の変化
+                float angle = atan(uv.y - center.y, uv.x - center.x);
+                float hue1 = sin(angle * 3.0 + u_time * 2.0) * 0.5 + 0.5;
+                float hue2 = sin(angle * 5.0 - u_time * 3.0) * 0.5 + 0.5;
+                float hue3 = sin(angle * 7.0 + u_time * 4.0) * 0.5 + 0.5;
+                
+                vec3 color1 = vec3(1.0, 0.84, 0.0) * hue1; // ゴールド
+                vec3 color2 = vec3(1.0, 0.65, 0.0) * hue2; // オレンジ
+                vec3 color3 = vec3(0.85, 0.65, 0.13) * hue3; // ダークゴールド
+                
+                vec3 finalColor = color1 * ring1 + color2 * ring2 + color3 * ring3;
+                
+                // グロー効果
+                float glow = exp(-dist * 3.0) * 0.3;
+                finalColor += vec3(1.0, 0.84, 0.0) * glow;
+                
+                // パーティクル
+                float particles = 0.0;
+                for(float i = 0.0; i < 20.0; i++) {
+                    float particleAngle = i * 0.314 + u_time * 0.5;
+                    vec2 particlePos = center + vec2(cos(particleAngle), sin(particleAngle)) * (0.35 + sin(u_time + i) * 0.05);
+                    float particleDist = distance(uv, particlePos);
+                    particles += smoothstep(0.02, 0.0, particleDist);
+                }
+                finalColor += vec3(1.0, 1.0, 0.5) * particles * 0.8;
+                
+                gl_FragColor = vec4(finalColor, length(finalColor) * 0.8);
+            }
+        `;
+
+        // シェーダーコンパイル
+        function createShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+        const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error('Program link error:', gl.getProgramInfoLog(program));
+            return;
+        }
+
+        // 頂点バッファ設定
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        const positions = new Float32Array([
+            -1, -1,  1, -1,  -1, 1,
+            -1, 1,   1, -1,   1, 1
+        ]);
+        gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+        const texCoordBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+        const texCoords = new Float32Array([
+            0, 0,  1, 0,  0, 1,
+            0, 1,  1, 0,  1, 1
+        ]);
+        gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
+
+        // アニメーションループ
+        let startTime = Date.now();
+        this.wineAnimationFrame = null;
+
+        const render = () => {
+            const currentTime = (Date.now() - startTime) * 0.001;
+            
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.clearColor(0, 0, 0, 0);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            
+            gl.useProgram(program);
+            
+            // 属性とユニフォームの設定
+            const positionLocation = gl.getAttribLocation(program, 'a_position');
+            const texCoordLocation = gl.getAttribLocation(program, 'a_texCoord');
+            const timeLocation = gl.getUniformLocation(program, 'u_time');
+            const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+            
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.enableVertexAttribArray(positionLocation);
+            gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+            
+            gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+            gl.enableVertexAttribArray(texCoordLocation);
+            gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
+            
+            gl.uniform1f(timeLocation, currentTime);
+            gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+            
+            // ブレンディング設定
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+            
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            
+            this.wineAnimationFrame = requestAnimationFrame(render);
+        };
+
+        canvas.width = 500;
+        canvas.height = 500;
+        render();
+        
+        this.wineWebGLCanvas = canvas;
+    }
+
+    createWineCanvas2DEffect(canvas) {
+        // WebGL非対応時のCanvas 2Dフォールバック
+        const ctx = canvas.getContext('2d');
+        canvas.width = 500;
+        canvas.height = 500;
+        
+        const centerX = 150;
+        const centerY = 350;
+        let rotation = 0;
+        
+        const render = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            rotation += 0.02;
+            
+            // 回転するリング3つ
+            for (let i = 0; i < 3; i++) {
+                const radius = 100 + i * 30;
+                const lineWidth = 3;
+                const rotationOffset = rotation * (i % 2 === 0 ? 1 : -1) * (1 + i * 0.5);
+                
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(rotationOffset);
+                
+                // グラデーション
+                const gradient = ctx.createLinearGradient(-radius, 0, radius, 0);
+                gradient.addColorStop(0, `hsla(${45 + i * 10}, 100%, 50%, 0.8)`);
+                gradient.addColorStop(0.5, `hsla(${55 + i * 10}, 100%, 60%, 1)`);
+                gradient.addColorStop(1, `hsla(${45 + i * 10}, 100%, 50%, 0.8)`);
+                
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = lineWidth;
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = '#ffd700';
+                
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+            
+            // パーティクル
+            for (let i = 0; i < 20; i++) {
+                const angle = (i / 20) * Math.PI * 2 + rotation * 2;
+                const radius = 120 + Math.sin(rotation * 3 + i) * 15;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                ctx.fillStyle = `hsla(${45 + (i * 10)}, 100%, 70%, ${0.6 + Math.sin(rotation * 4 + i) * 0.4})`;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#ffd700';
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            this.wineAnimationFrame = requestAnimationFrame(render);
+        };
+        
+        render();
+        this.wineWebGLCanvas = canvas;
+    }
+
+    stopWineWebGLEffect() {
+        if (this.wineAnimationFrame) {
+            cancelAnimationFrame(this.wineAnimationFrame);
+            this.wineAnimationFrame = null;
+        }
+        
+        if (this.wineWebGLCanvas) {
+            this.wineWebGLCanvas.style.opacity = '0';
+            this.wineWebGLCanvas.style.transition = 'opacity 0.5s';
+            setTimeout(() => {
+                if (this.wineWebGLCanvas) {
+                    this.wineWebGLCanvas.remove();
+                    this.wineWebGLCanvas = null;
+                }
+            }, 500);
+        }
     }
 
     executeWineAction(action) {
         switch(action) {
-            case 'spinAll':
-                this.spinAllCards();
-                break;
-            case 'particleExplosion':
-                this.createParticleExplosion();
+            case 'timeFreeze':
+                this.activateTimeFreeze();
                 break;
             case 'massLevelUp':
                 this.massLevelUp();
                 break;
             case 'matrixRain':
                 this.createMatrixRain();
-                this.showMiniNotification('🌧️ マトリックスレイン発動！', '#11998e');
+                this.showMiniNotification('MATRIX RAIN ACTIVATED', '#11998e');
                 break;
             case 'rainbowMode':
-                this.activateRainbowMode();
+                this.toggleRainbowMode();
                 break;
             case 'glitchEffect':
-                this.activateGlitchEffect();
+                this.toggleGlitchEffect();
+                break;
+            case 'virusMode':
+                this.activateVirusMode();
                 break;
             case 'secretMessage':
                 this.showSecretMessage();
@@ -438,9 +707,122 @@ class EasterEggManager {
             }, index * 50);
         });
         
-        this.showMiniNotification('🌀 全カード回転中！', '#667eea');
+        this.showMiniNotification('SPIN ALL CARDS', '#667eea');
     }
 
+    activateTimeFreeze() {
+        // 時間停止エフェクト - すべての要素をグレースケール＋スローモーション
+        const body = document.body;
+        
+        // 時間停止オーバーレイ
+        const overlay = document.createElement('div');
+        overlay.className = 'time-freeze-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+            pointer-events: none;
+            z-index: 9997;
+            animation: timeFreezeIn 0.5s ease-out;
+        `;
+        
+        // 時間停止リング
+        const rings = [];
+        for (let i = 0; i < 3; i++) {
+            const ring = document.createElement('div');
+            ring.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: ${200 + i * 150}px;
+                height: ${200 + i * 150}px;
+                border: 3px solid rgba(139, 92, 246, ${0.6 - i * 0.2});
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9998;
+                animation: timeRingExpand 2s ease-out infinite;
+                animation-delay: ${i * 0.3}s;
+            `;
+            rings.push(ring);
+            document.body.appendChild(ring);
+        }
+        
+        // スタイル追加
+        const style = document.createElement('style');
+        style.setAttribute('data-time-freeze', 'true');
+        style.textContent = `
+            @keyframes timeFreezeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes timeRingExpand {
+                0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+                50% { opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+            }
+            .time-frozen * {
+                filter: grayscale(0.7) !important;
+                animation-play-state: paused !important;
+                transition: all 3s ease !important;
+            }
+            .time-frozen .work-card,
+            .time-frozen .skill {
+                transform: scale(0.98) !important;
+            }
+        `;
+        document.head.appendChild(style);
+        document.body.appendChild(overlay);
+        
+        // 時間停止適用
+        body.classList.add('time-frozen');
+        
+        // 中央テキスト
+        const freezeText = document.createElement('div');
+        freezeText.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-primary);
+            font-size: 48px;
+            font-weight: bold;
+            color: #8b5cf6;
+            text-shadow: 0 0 20px #8b5cf6, 0 0 40px #8b5cf6;
+            z-index: 9999;
+            animation: freezeTextPulse 1s ease-in-out infinite;
+            pointer-events: none;
+        `;
+        freezeText.textContent = 'TIME FREEZE';
+        document.body.appendChild(freezeText);
+        
+        const pulseStyle = document.createElement('style');
+        pulseStyle.textContent = `
+            @keyframes freezeTextPulse {
+                0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+                50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            }
+        `;
+        document.head.appendChild(pulseStyle);
+        
+        // 5秒後に解除
+        setTimeout(() => {
+            body.classList.remove('time-frozen');
+            overlay.remove();
+            rings.forEach(ring => ring.remove());
+            freezeText.remove();
+            style.remove();
+            pulseStyle.remove();
+            this.showMiniNotification('TIME RESUMED', '#8b5cf6');
+        }, 5000);
+        
+        this.showMiniNotification('TIME FREEZE ACTIVATED', '#f5576c');
+    }
+
+    /* パーティクル爆発機能（将来の実装用に保持）
     createParticleExplosion() {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
@@ -560,6 +942,7 @@ class EasterEggManager {
         
         requestAnimationFrame(animate);
     }
+    */ // パーティクル爆発機能ここまで
 
     massLevelUp() {
         // スキルレベルを999に変更
@@ -628,10 +1011,10 @@ class EasterEggManager {
                 mpFill.setAttribute('data-value', '100');
             }
             if (hpValue) {
-                hpValue.textContent = '1000/1000';
+                hpValue.textContent = '9999/9999';
             }
             if (mpValue) {
-                mpValue.textContent = '1000/1000';
+                mpValue.textContent = '9999/9999';
             }
             
             // 経験言語を全言語に拡張
@@ -699,16 +1082,13 @@ class EasterEggManager {
         document.head.appendChild(style);
         setTimeout(() => style.remove(), 3000);
         
-        this.showMiniNotification('⬆️ 全レベル999＆ALL MAX！', '#00f2fe');
+        this.showMiniNotification('ALL STATS MAXED', '#00f2fe');
     }
 
     showSecretMessage() {
         const messages = [
             '隠しコマンドを見つけてくださりありがとうございます。',
-            'ほかにも１つあるのでぜひ見つけてみてください！',
-            '🎮 本気でゲーム開発を楽しんでいます！',
-            '💻 コードを書く時間が一番幸せです',
-            '🌟 毎日が新しい学びの連続'
+            'ほかにも１つあるのでぜひ見つけてみてください！'
         ];
         
         const message = messages[Math.floor(Math.random() * messages.length)];
@@ -907,63 +1287,260 @@ class EasterEggManager {
         document.head.appendChild(style);
     }
 
-    activateRainbowMode() {
-        this.rainbowCards();
-        
-        // 10秒後に自動解除
-        setTimeout(() => {
+    toggleRainbowMode() {
+        if (this.rainbowActive) {
+            // レインボーモード解除
             const cards = document.querySelectorAll('.work-card, .skill');
             cards.forEach(card => card.style.animation = '');
             const rainbowStyle = document.querySelector('style[data-wine-rainbow]');
             if (rainbowStyle) rainbowStyle.remove();
-        }, 10000);
-        
-        this.showMiniNotification('🌈 レインボーモード発動！', '#ee0979');
+            this.rainbowActive = false;
+            this.showMiniNotification('RAINBOW MODE OFF', '#ee0979');
+        } else {
+            // レインボーモード有効化
+            this.rainbowCards();
+            this.rainbowActive = true;
+            this.showMiniNotification('RAINBOW MODE ON', '#ee0979');
+        }
     }
 
-    activateGlitchEffect() {
-        const elements = document.querySelectorAll('.section__title, .work-card__title, .skill__name');
-        
-        elements.forEach((el, index) => {
-            setTimeout(() => {
-                el.style.animation = 'glitch 0.5s infinite';
-            }, index * 50);
-        });
+    toggleGlitchEffect() {
+        if (this.glitchActive) {
+            // グリッチエフェクト解除
+            const elements = document.querySelectorAll('.section__title, .work-card__title, .skill__name');
+            elements.forEach(el => el.style.animation = '');
+            const style = document.querySelector('style[data-glitch]');
+            if (style) style.remove();
+            this.glitchActive = false;
+            this.showMiniNotification('GLITCH EFFECT OFF', '#8e2de2');
+        } else {
+            // グリッチエフェクト有効化
+            const elements = document.querySelectorAll('.section__title, .work-card__title, .skill__name');
+            
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.animation = 'glitch 0.5s infinite';
+                }, index * 50);
+            });
 
+            const style = document.createElement('style');
+            style.setAttribute('data-glitch', 'true');
+            style.textContent = `
+                @keyframes glitch {
+                    0%, 100% { 
+                        transform: translate(0);
+                        text-shadow: 0 0 10px currentColor;
+                    }
+                    20% { 
+                        transform: translate(-5px, 5px);
+                        text-shadow: -5px 0 10px #ff00de, 5px 0 10px #00ffff;
+                    }
+                    40% { 
+                        transform: translate(5px, -5px);
+                        text-shadow: 5px 0 10px #00ffff, -5px 0 10px #ff00de;
+                    }
+                    60% { 
+                        transform: translate(-5px, -5px);
+                        text-shadow: -5px 0 10px #ff00de, 5px 0 10px #00ffff;
+                    }
+                    80% { 
+                        transform: translate(5px, 5px);
+                        text-shadow: 5px 0 10px #00ffff, -5px 0 10px #ff00de;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            this.glitchActive = true;
+            this.showMiniNotification('GLITCH EFFECT ON', '#8e2de2');
+        }
+    }
+
+    activateVirusMode() {
+        if (this.virusActive) return;
+        
+        this.virusActive = true;
+        
+        // ウイルス感染画面オーバーレイ
+        const virusOverlay = document.createElement('div');
+        virusOverlay.className = 'virus-overlay';
+        virusOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 0, 0, 0.3);
+            z-index: 10010;
+            pointer-events: none;
+            animation: virusFlash 0.3s infinite;
+        `;
+        document.body.appendChild(virusOverlay);
+        
+        // ウイルス警告画面
+        const virusAlert = document.createElement('div');
+        virusAlert.className = 'virus-alert';
+        virusAlert.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #d31027, #ea384d);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            z-index: 10011;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(211, 16, 39, 0.8);
+            border: 5px solid #ff0000;
+            animation: virusShake 0.5s infinite;
+            max-width: 600px;
+        `;
+        virusAlert.innerHTML = `
+            <div style="font-size: 80px; margin-bottom: 20px;">⚠️</div>
+            <div style="font-size: 36px; font-weight: bold; margin-bottom: 20px;">VIRUS DETECTED!</div>
+            <div style="font-size: 24px; margin-bottom: 30px;">システムが感染しました</div>
+            <div style="font-size: 18px; color: #ffcccc; margin-bottom: 20px;">
+                Press ESC to remove virus<br>
+                または画面をクリックして回避
+            </div>
+            <div class="virus-progress" style="width: 100%; height: 30px; background: rgba(0,0,0,0.3); border-radius: 15px; overflow: hidden; margin-top: 20px;">
+                <div class="virus-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #ff0000, #ff6666); animation: virusProgress 10s linear forwards;"></div>
+            </div>
+            <div style="font-size: 14px; margin-top: 15px; color: #ffcccc;">
+                Virus spreading... <span class="virus-percentage">0%</span>
+            </div>
+        `;
+        document.body.appendChild(virusAlert);
+        
+        // クリックで回避
+        virusAlert.style.pointerEvents = 'auto';
+        virusAlert.style.cursor = 'pointer';
+        virusAlert.addEventListener('click', () => this.deactivateVirusMode());
+        
+        // パーセンテージ更新
+        let percentage = 0;
+        const percentageInterval = setInterval(() => {
+            percentage += 1;
+            const percentageEl = document.querySelector('.virus-percentage');
+            if (percentageEl) {
+                percentageEl.textContent = `${percentage}%`;
+            }
+            if (percentage >= 100 || !this.virusActive) {
+                clearInterval(percentageInterval);
+                if (percentage >= 100) {
+                    this.virusFullInfection();
+                }
+            }
+        }, 100);
+        
+        // ウイルスパーティクル
+        this.createVirusParticles();
+        
+        // スタイル追加
         const style = document.createElement('style');
-        style.setAttribute('data-glitch', 'true');
+        style.setAttribute('data-virus', 'true');
         style.textContent = `
-            @keyframes glitch {
-                0%, 100% { 
-                    transform: translate(0);
-                    text-shadow: 0 0 10px currentColor;
-                }
-                20% { 
-                    transform: translate(-5px, 5px);
-                    text-shadow: -5px 0 10px #ff00de, 5px 0 10px #00ffff;
-                }
-                40% { 
-                    transform: translate(5px, -5px);
-                    text-shadow: 5px 0 10px #00ffff, -5px 0 10px #ff00de;
-                }
-                60% { 
-                    transform: translate(-5px, -5px);
-                    text-shadow: -5px 0 10px #ff00de, 5px 0 10px #00ffff;
-                }
-                80% { 
-                    transform: translate(5px, 5px);
-                    text-shadow: 5px 0 10px #00ffff, -5px 0 10px #ff00de;
-                }
+            @keyframes virusFlash {
+                0%, 100% { opacity: 0.3; }
+                50% { opacity: 0.6; }
+            }
+            @keyframes virusShake {
+                0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+                25% { transform: translate(-48%, -50%) rotate(-2deg); }
+                50% { transform: translate(-50%, -48%) rotate(0deg); }
+                75% { transform: translate(-52%, -50%) rotate(2deg); }
+            }
+            @keyframes virusProgress {
+                0% { width: 0%; }
+                100% { width: 100%; }
+            }
+            @keyframes virusParticleFall {
+                0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
             }
         `;
         document.head.appendChild(style);
         
-        // 5秒後に自動解除
-        setTimeout(() => {
-            elements.forEach(el => el.style.animation = '');
-            style.remove();
-        }, 5000);
+        this.showMiniNotification('VIRUS MODE ACTIVATED', '#d31027');
         
-        this.showMiniNotification('⚡ グリッチエフェクト発動！', '#8e2de2');
+        // コンソールログ
+        console.log('%c⚠️ WARNING: VIRUS DETECTED', 'color: #ff0000; font-size: 24px; font-weight: bold; background: #000; padding: 10px;');
+        console.log('%cPress ESC to remove virus', 'color: #ff6666; font-size: 16px;');
+    }
+
+    createVirusParticles() {
+        for (let i = 0; i < 30; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                particle.className = 'virus-particle';
+                particle.style.cssText = `
+                    position: fixed;
+                    left: ${Math.random() * 100}vw;
+                    top: -50px;
+                    width: 30px;
+                    height: 30px;
+                    background: radial-gradient(circle, #ff0000, #d31027);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 10009;
+                    animation: virusParticleFall ${3 + Math.random() * 4}s linear infinite;
+                    animation-delay: ${Math.random() * 2}s;
+                    opacity: 0.8;
+                    box-shadow: 0 0 20px #ff0000;
+                `;
+                particle.textContent = '☠️';
+                particle.style.fontSize = '20px';
+                particle.style.display = 'flex';
+                particle.style.alignItems = 'center';
+                particle.style.justifyContent = 'center';
+                document.body.appendChild(particle);
+            }, i * 100);
+        }
+    }
+
+    virusFullInfection() {
+        // 完全感染演出
+        const fullScreen = document.createElement('div');
+        fullScreen.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #d31027, #000000);
+            z-index: 10012;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            animation: virusFlash 0.5s infinite;
+        `;
+        fullScreen.innerHTML = `
+            <div style="font-size: 100px; margin-bottom: 30px;">💀</div>
+            <div style="font-size: 48px; font-weight: bold; margin-bottom: 20px;">SYSTEM INFECTED</div>
+            <div style="font-size: 24px;">Press ESC to restart...</div>
+        `;
+        document.body.appendChild(fullScreen);
+    }
+
+    deactivateVirusMode() {
+        if (!this.virusActive) return;
+        
+        this.virusActive = false;
+        
+        // すべてのウイルス要素を削除
+        document.querySelectorAll('.virus-overlay, .virus-alert, .virus-particle').forEach(el => {
+            el.style.transition = 'all 0.5s';
+            el.style.opacity = '0';
+            setTimeout(() => el.remove(), 500);
+        });
+        
+        const virusStyle = document.querySelector('style[data-virus]');
+        if (virusStyle) virusStyle.remove();
+        
+        this.showMiniNotification('VIRUS REMOVED ✓', '#10b981');
+        console.log('%c✓ Virus removed successfully', 'color: #10b981; font-size: 18px; font-weight: bold;');
     }
 }
