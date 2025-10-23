@@ -122,7 +122,7 @@ const PROJECTS_DATA = [
         year: '1年次',
         category: 'web-game',
         teamSize: '1人',
-        period: '約1ヶ月（2025年1月〜2月）',
+        period: '約1ヶ月',
         note: '記念すべき初作品'
     }
 ];

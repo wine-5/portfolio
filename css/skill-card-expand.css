@@ -1,0 +1,238 @@
+/**
+ * スキルカード展開パネルのスタイル
+ */
+
+/* オーバーレイ */
+.skill-expand-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.skill-expand-overlay.active {
+    opacity: 1;
+}
+
+/* 展開パネル */
+.skill-expanded-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    overflow-y: auto;
+}
+
+.skill-expanded-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.skill-expanded-panel::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.skill-expanded-panel::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.skill-expanded-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}
+
+/* パネルヘッダー */
+.skill-expanded-panel-header {
+    padding: 30px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* パネル説明 */
+.skill-expanded-panel-desc {
+    padding: 15px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* 詳細コンテンツ */
+.skill-details-content {
+    padding: 20px;
+}
+
+/* 詳細ヘッダー */
+.skill-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.skill-details-title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+}
+
+.skill-details-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: all 0.3s;
+}
+
+.skill-details-close:hover {
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+/* 統計情報 */
+.skill-details-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.skill-stat {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-stat i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.skill-stat span {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+/* セクション */
+.skill-details-section {
+    margin-bottom: 25px;
+}
+
+.skill-details-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-details-subtitle i {
+    color: var(--primary-color);
+}
+
+/* グリッド */
+.skill-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.skill-detail-item {
+    padding: 12px 15px;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.skill-detail-item:hover {
+    background: rgba(99, 102, 241, 0.15);
+    transform: translateX(5px);
+}
+
+.skill-detail-item i {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.skill-detail-item span {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+/* フッター */
+.skill-details-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.skill-details-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.skill-details-note i {
+    color: var(--primary-color);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .skill-details-stats {
+        flex-direction: column;
+    }
+    
+    .skill-stat {
+        min-width: 100%;
+    }
+    
+    .skill-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-details-title {
+        font-size: 1.2rem;
+    }
+    
+    .skill-expanded-panel-header {
+        padding: 20px 15px 15px;
+    }
+    
+    .skill-details-content {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skill-details-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .skill-details-close {
+        align-self: flex-end;
+    }
+}

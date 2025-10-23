@@ -1,9 +1,35 @@
 /**
  * スキルカード展開マネージャー
- * クリックでカードを回転拡大して詳細情報を表示
+ * クリックでカードを拡大して詳細情報を表示
  */
 
 class SkillCardExpandManager {
+    // 定数定義
+    static ANIMATION_CONFIG = {
+        INITIAL_SCALE: 0.3,
+        FINAL_SCALE: 1,
+        CLOSE_SCALE: 0.8,
+        PANEL_MAX_WIDTH: 700,
+        PANEL_WIDTH_VW: 90,
+        PANEL_MAX_HEIGHT_VH: 80,
+        TRANSITION_DURATION: '0.6s',
+        TRANSITION_TIMING: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+        DETAILS_FADE_DELAY: 400,
+        OVERLAY_REMOVE_DELAY: 300,
+        PANEL_REMOVE_DELAY: 500,
+        REOPEN_DELAY: 600,
+        Z_INDEX: 10001
+    };
+
+    static STYLE_CONFIG = {
+        HEADER_PADDING: '30px 20px 20px',
+        DESC_PADDING: '15px 20px',
+        DESC_FONT_SIZE: '0.95rem',
+        BORDER_RADIUS: '15px',
+        BOX_SHADOW: '0 10px 40px rgba(0, 0, 0, 0.3)',
+        BORDER_COLOR: 'rgba(99, 102, 241, 0.2)'
+    };
+
     constructor() {
         this.expandedCard = null;
         this.newPanel = null;
@@ -43,25 +69,20 @@ class SkillCardExpandManager {
         // 他のカードが展開されている場合は先に閉じる
         if (this.expandedCard) {
             this.closeExpandedCard();
-            setTimeout(() => this.expandCard(skillElement), 600);
+            setTimeout(() => this.expandCard(skillElement), SkillCardExpandManager.ANIMATION_CONFIG.REOPEN_DELAY);
         } else {
             this.expandCard(skillElement);
         }
     }
 
     expandCard(skillElement) {
-        console.log('expandCard called', skillElement);
         this.isAnimating = true;
         this.expandedCard = skillElement;
 
         const skillName = skillElement.querySelector('.skill__name').textContent;
-        console.log('skillName:', skillName);
-        
         const skillDetails = window.getSkillDetails ? window.getSkillDetails(skillName) : null;
-        console.log('skillDetails:', skillDetails);
         
         if (!skillDetails) {
-            console.error('skillDetails not found for:', skillName);
             this.isAnimating = false;
             return;
         }
@@ -78,22 +99,17 @@ class SkillCardExpandManager {
         // 新しいパネルを作成
         const newPanel = document.createElement('div');
         newPanel.className = 'skill-expanded-panel';
-        newPanel.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.3);
-            width: min(90vw, 700px);
-            max-height: 80vh;
-            background: var(--card-bg);
-            border: 2px solid var(--primary-color);
-            border-radius: 15px;
-            z-index: 10001;
-            overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            opacity: 0;
-        `;
+        const config = SkillCardExpandManager.ANIMATION_CONFIG;
+        
+        // アニメーション用のインラインスタイル（動的な値のみ）
+        newPanel.style.transform = `translate(-50%, -50%) scale(${config.INITIAL_SCALE})`;
+        newPanel.style.width = `min(${config.PANEL_WIDTH_VW}vw, ${config.PANEL_MAX_WIDTH}px)`;
+        newPanel.style.maxHeight = `${config.PANEL_MAX_HEIGHT_VH}vh`;
+        newPanel.style.zIndex = config.Z_INDEX;
+        newPanel.style.borderRadius = SkillCardExpandManager.STYLE_CONFIG.BORDER_RADIUS;
+        newPanel.style.boxShadow = SkillCardExpandManager.STYLE_CONFIG.BOX_SHADOW;
+        newPanel.style.transition = `all ${config.TRANSITION_DURATION} ${config.TRANSITION_TIMING}`;
+        newPanel.style.opacity = '0';
 
         // 元のカードのヘッダーをコピー
         const headerClone = skillElement.querySelector('.skill__header');
@@ -101,23 +117,14 @@ class SkillCardExpandManager {
         
         if (headerClone) {
             const headerDiv = document.createElement('div');
-            headerDiv.style.cssText = `
-                padding: 30px 20px 20px;
-                text-align: center;
-                border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-            `;
+            headerDiv.className = 'skill-expanded-panel-header';
             headerDiv.innerHTML = headerClone.innerHTML;
             newPanel.appendChild(headerDiv);
         }
         
         if (descClone) {
             const descDiv = document.createElement('div');
-            descDiv.style.cssText = `
-                padding: 15px 20px;
-                text-align: center;
-                color: var(--text-secondary);
-                font-size: 0.95rem;
-            `;
+            descDiv.className = 'skill-expanded-panel-desc';
             descDiv.textContent = descClone.textContent;
             newPanel.appendChild(descDiv);
         }
@@ -136,7 +143,7 @@ class SkillCardExpandManager {
             
             // パネルを拡大表示
             requestAnimationFrame(() => {
-                newPanel.style.transform = 'translate(-50%, -50%) scale(1)';
+                newPanel.style.transform = `translate(-50%, -50%) scale(${SkillCardExpandManager.ANIMATION_CONFIG.FINAL_SCALE})`;
                 newPanel.style.opacity = '1';
                 
                 // 詳細を表示
@@ -144,7 +151,7 @@ class SkillCardExpandManager {
                     detailsContent.style.transition = 'opacity 0.4s ease';
                     detailsContent.style.opacity = '1';
                     this.isAnimating = false;
-                }, 400);
+                }, SkillCardExpandManager.ANIMATION_CONFIG.DETAILS_FADE_DELAY);
             });
         });
     }
@@ -204,17 +211,18 @@ class SkillCardExpandManager {
         this.isAnimating = true;
         const overlay = document.querySelector('.skill-expand-overlay');
         const newPanel = this.newPanel;
+        const config = SkillCardExpandManager.ANIMATION_CONFIG;
 
         // 新しいパネルをフェードアウト
         if (newPanel) {
             newPanel.style.opacity = '0';
-            newPanel.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            newPanel.style.transform = `translate(-50%, -50%) scale(${config.CLOSE_SCALE})`;
         }
 
         // オーバーレイを削除
         if (overlay) {
             overlay.classList.remove('active');
-            setTimeout(() => overlay.remove(), 300);
+            setTimeout(() => overlay.remove(), config.OVERLAY_REMOVE_DELAY);
         }
 
         // パネルを削除
@@ -225,7 +233,7 @@ class SkillCardExpandManager {
             this.newPanel = null;
             this.expandedCard = null;
             this.isAnimating = false;
-        }, 500);
+        }, config.PANEL_REMOVE_DELAY);
     }
 }
 
