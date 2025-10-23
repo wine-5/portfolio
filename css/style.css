@@ -1095,7 +1095,50 @@ body {
 .work-card__details-content {
     padding: 1.5rem;
     background: rgba(255, 255, 255, 0.02);
-    animation: slideDown 0.3s ease;
+    animation: detailsSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top;
+}
+
+@keyframes detailsSlideIn {
+    0% {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        max-height: 500px;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        transform: translateY(0);
+    }
+}
+
+.work-card__responsibilities,
+.work-card__features-section {
+    animation: detailsFadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+.work-card__responsibilities {
+    animation-delay: 0.1s;
+}
+
+.work-card__features-section {
+    animation-delay: 0.2s;
+}
+
+@keyframes detailsFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .work-card__features {
