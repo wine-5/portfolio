@@ -4,12 +4,12 @@
     "subtitle": "使用Unity & C#创作游戏"
   },
   "games": {
-    "title": "Games",
+    "title": "游戏作品",
     "subtitle": "查看我的游戏项目",
     "viewAll": "查看所有作品"
   },
   "skills": {
-    "title": "Skills",
+    "title": "技能",
     "subtitle": "技术和工具",
     "note": "技能等级表示从开始学习以来的经验月数（最大：4年/学生期间）",
     "experience": "经验",
@@ -17,7 +17,7 @@
     "months": "月"
   },
   "about": {
-    "title": "About",
+    "title": "关于",
     "subtitle": "关于我",
     "name": "wine-5",
     "role": "游戏开发者",
@@ -28,14 +28,14 @@
     "timelineDescription": "您可以查看从入学到现在的详细开发历史和项目轨迹"
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Get In Touch",
+    "title": "联系方式",
+    "subtitle": "保持联系",
     "description": "如果您对游戏开发有任何疑问或意见，\n请随时与我们联系。",
     "sendSuccess": "消息已成功发送！",
     "sendError": "发送失败。请再试一次。"
   },
   "updates": {
-    "title": "Updates",
+    "title": "更新记录",
     "subtitle": "最新网站信息",
     "noUpdates": "没有更新",
     "lastUpdated": "最后更新",

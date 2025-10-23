@@ -3,6 +3,18 @@ class UpdatesData {
         this.updatesData = null;
         this.isLoaded = false;
         this.currentLang = null;
+        this.basePath = this.detectBasePath();
+    }
+
+    detectBasePath() {
+        const path = window.location.pathname;
+        if (path === '/' || path.endsWith('/index.html') || path.endsWith('/Portfolio/')) {
+            return '';
+        }
+        if (path.includes('/pages/')) {
+            return '../../';
+        }
+        return '';
     }
 
     async load(lang = 'ja') {
@@ -15,7 +27,7 @@ class UpdatesData {
         console.log(`Loading updates for language: ${lang}`);
 
         try {
-            const response = await fetch(`json/locales/${lang}/updates.json`);
+            const response = await fetch(`${this.basePath}json/locales/${lang}/updates.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load updates: ${response.status}`);
             }

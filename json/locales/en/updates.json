@@ -1,48 +1,13 @@
 [
   {
     "date": "2025-10-23",
-    "title": "Multi-language Support and Page Structure Improvements",
-    "description": "Implemented support for 3 languages (Japanese, English, Chinese). Added Timeline, History, and Privacy pages to improve overall site structure."
-  },
-  {
-    "date": "2025-10-23",
     "title": "Mobile Display Improvements and Regular Ripple Effect Added",
     "description": "Optimized title display on smartphones and added periodic ripple effects after animation."
-  },
-  {
-    "date": "2025-10-22",
-    "title": "UnderOver Released on UnityRoom",
-    "description": "Published 'UnderOver', a 2D action game developed as the culmination of Unity learning, on UnityRoom."
   },
   {
     "date": "2025-10-21",
     "title": "3D Water Reflection Title and Game Image Slider Added",
     "description": "Implemented 3D water reflection effect on homepage and added multi-image slider functionality for game works."
-  },
-  {
-    "date": "2025-10-20",
-    "title": "Skill Section Detail Display Feature Added",
-    "description": "Implemented feature to display detailed information when clicking skill cards. Visualized experience and proficiency levels."
-  },
-  {
-    "date": "2025-10-19",
-    "title": "Dark Mode/Light Mode Toggle Implementation",
-    "description": "Added theme toggle button allowing users to choose between dark mode and light mode according to preference."
-  },
-  {
-    "date": "2025-10-18",
-    "title": "Game Section Dynamic Rendering Implementation",
-    "description": "Implemented functionality to dynamically load and display game works from JSON data. Improved manageability and scalability."
-  },
-  {
-    "date": "2025-10-17",
-    "title": "Contact Form Implementation",
-    "description": "Implemented contact form using EmailJS. Added validation functionality and loading display."
-  },
-  {
-    "date": "2025-10-15",
-    "title": "Responsive Design Improvements",
-    "description": "Implemented layouts optimized for mobile, tablet, and PC screen sizes."
   },
   {
     "date": "2025-10-20",

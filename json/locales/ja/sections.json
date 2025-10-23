@@ -4,12 +4,12 @@
     "subtitle": "Unity & C# でゲームを創造"
   },
   "games": {
-    "title": "Games",
+    "title": "ゲーム",
     "subtitle": "これまでに制作したゲームをご覧ください",
     "viewAll": "すべての作品を見る"
   },
   "skills": {
-    "title": "Skills",
+    "title": "スキル",
     "subtitle": "使用技術とツール",
     "note": "各スキルのレベルは学習開始からの経験月数を表示しています（最大: 4年 / 学生期間）",
     "experience": "経験",
@@ -17,7 +17,7 @@
     "months": "ヶ月"
   },
   "about": {
-    "title": "About",
+    "title": "自己紹介",
     "subtitle": "私について",
     "name": "wine-5",
     "role": "ゲーム開発者",
@@ -28,17 +28,17 @@
     "timelineDescription": "入学から現在までの詳細な開発履歴とプロジェクトの軌跡をご覧いただけます"
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Get In Touch",
+    "title": "お問い合わせ",
+    "subtitle": "ご連絡ください",
     "description": "ゲーム開発に関する質問やご意見等がございましたら、\nお気軽にお問い合わせください。",
     "sendSuccess": "メッセージを送信しました!",
     "sendError": "送信に失敗しました。もう一度お試しください。"
   },
   "updates": {
-    "title": "Updates",
+    "title": "更新履歴",
     "subtitle": "サイトの最新情報",
     "noUpdates": "更新情報はありません",
-    "lastUpdated": "Last Updated",
-    "viewAllHistory": "View All History"
+    "lastUpdated": "最終更新",
+    "viewAllHistory": "すべての履歴を見る"
   }
 }

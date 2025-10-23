@@ -3,6 +3,18 @@ class ProjectsData {
         this.projectsData = null;
         this.isLoaded = false;
         this.currentLang = null;
+        this.basePath = this.detectBasePath();
+    }
+
+    detectBasePath() {
+        const path = window.location.pathname;
+        if (path === '/' || path.endsWith('/index.html') || path.endsWith('/Portfolio/')) {
+            return '';
+        }
+        if (path.includes('/pages/')) {
+            return '../../';
+        }
+        return '';
     }
 
     async load(lang = 'ja') {
@@ -15,7 +27,7 @@ class ProjectsData {
         console.log(`Loading projects for language: ${lang}`);
         
         try {
-            const response = await fetch(`json/locales/${lang}/projects.json`);
+            const response = await fetch(`${this.basePath}json/locales/${lang}/projects.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load projects: ${response.status}`);
             }

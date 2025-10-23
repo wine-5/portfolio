@@ -8,6 +8,18 @@ class SkillDetailsData {
         this.skillsData = null;
         this.isLoaded = false;
         this.currentLang = null;
+        this.basePath = this.detectBasePath();
+    }
+
+    detectBasePath() {
+        const path = window.location.pathname;
+        if (path === '/' || path.endsWith('/index.html') || path.endsWith('/Portfolio/')) {
+            return '';
+        }
+        if (path.includes('/pages/')) {
+            return '../../';
+        }
+        return '';
     }
 
     /**
@@ -24,7 +36,7 @@ class SkillDetailsData {
         console.log(`Loading skill details for language: ${lang}`);
 
         try {
-            const response = await fetch(`json/locales/${lang}/skillDetails.json`);
+            const response = await fetch(`${this.basePath}json/locales/${lang}/skillDetails.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load skill details: ${response.status}`);
             }

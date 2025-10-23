@@ -3,6 +3,18 @@ class TimelineData {
         this.timelineData = null;
         this.isLoaded = false;
         this.currentLang = null;
+        this.basePath = this.detectBasePath();
+    }
+
+    detectBasePath() {
+        const path = window.location.pathname;
+        if (path === '/' || path.endsWith('/index.html') || path.endsWith('/Portfolio/')) {
+            return '';
+        }
+        if (path.includes('/pages/')) {
+            return '../../';
+        }
+        return '';
     }
 
     async load(lang = 'ja') {
@@ -15,7 +27,7 @@ class TimelineData {
         console.log(`Loading timeline for language: ${lang}`);
 
         try {
-            const response = await fetch(`json/locales/${lang}/timeline.json`);
+            const response = await fetch(`${this.basePath}json/locales/${lang}/timeline.json`);
             if (!response.ok) {
                 throw new Error(`Failed to load timeline: ${response.status}`);
             }
