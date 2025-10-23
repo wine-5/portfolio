@@ -1,13 +1,24 @@
-[
-    {
-        "id": "school-start",
-        "title": "Enrolled in Vocational School",
-        "type": "milestone",
-        "date": "2024-04-01",
-        "description": "Started learning game development",
-        "color": "#10b981",
-        "icon": "🎓"
+{
+    "hero": {
+        "title": "Development Journey",
+        "subtitle": "Game Development Journey from Enrollment to Present",
+        "description": "A chronological showcase of each project from vocational school enrollment to the present, including development period, technologies used, and achievements."
     },
+    "stats": {
+        "projects": "Projects",
+        "awards": "Awards",
+        "years": "Years"
+    },
+    "items": [
+        {
+            "id": "school-start",
+            "title": "Enrolled in Vocational School",
+            "type": "milestone",
+            "date": "2024-04-01",
+            "description": "Started learning game development",
+            "color": "#10b981",
+            "icon": "🎓"
+        },
     {
         "id": "element-battle",
         "title": "ElementBattle",
@@ -63,6 +74,7 @@
         "technologies": ["Unity", "C#", "Design Patterns", "Team Development"],
         "color": "#06b6d4",
         "icon": "🦋",
-        "status": "Being Polished"
-    }
-]
+            "status": "Being Polished"
+        }
+    ]
+}

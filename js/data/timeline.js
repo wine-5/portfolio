@@ -28,7 +28,9 @@ class TimelineData {
             if (!response.ok) {
                 throw new Error(`Failed to load timeline: ${response.status}`);
             }
-            this.timelineData = await response.json();
+            const data = await response.json();
+            // 新しいJSON構造に対応（itemsプロパティを持つ）
+            this.timelineData = data.items || data;
             this.isLoaded = true;
             this.currentLang = lang;
         } catch (error) {

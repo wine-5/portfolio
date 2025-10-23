@@ -231,6 +231,12 @@
                 }
             }
             
+            // Load timeline data
+            if (window.timelineData) {
+                const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+                await window.timelineData.load(currentLang);
+            }
+            
             // Hide loading screen after initialization
             setTimeout(() => {
                 const loading = document.getElementById('loading');
