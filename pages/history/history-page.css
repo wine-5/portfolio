@@ -1,5 +1,11 @@
 /* ヒストリーページ専用スタイル */
 
+/* ボディ背景 - index.htmlと統一 */
+body {
+    background-color: var(--bg-primary, #0a0a0a);
+    color: var(--text-primary, #ffffff);
+}
+
 /* ヘッダー調整 */
 .header {
     position: fixed;

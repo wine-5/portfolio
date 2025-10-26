@@ -4,7 +4,7 @@
 
 /* History Hero Section */
 .history-hero {
-    background: var(--gradient-bg);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     padding: 12rem 0 8rem;
     text-align: center;
     position: relative;
@@ -18,8 +18,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%234f46e5" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.1;
+    background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .history-hero__content {
@@ -48,8 +49,22 @@
 /* History Timeline */
 .history-timeline {
     padding: 8rem 0;
-    background: var(--color-bg-primary, #0a0a0a);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     min-height: 50vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.history-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .history-timeline__content {
@@ -133,13 +148,15 @@
 
 .history-item__description {
     font-size: 1.6rem;
-    color: var(--color-text-secondary, #a0a0a0);
+    color: var(--color-text-secondary, #94a3b8);
     line-height: 1.6;
-    background: var(--color-bg-secondary, #1a1a1a);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: var(--border-radius, 8px);
     border-left: 4px solid var(--color-primary, #6366f1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(99, 102, 241, 0.1);
 }
 
 /* Responsive Design */

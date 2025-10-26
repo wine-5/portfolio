@@ -9,11 +9,11 @@ class ThemeManager {
         this.defaultTheme = 'dark';
         this.currentTheme = this.detectTheme();
     }
-
+    
     /**
      * ユーザーのテーマ設定を検出
      * 優先順位: LocalStorage > システム設定 > デフォルト
-     */
+    */
     detectTheme() {
         // LocalStorageから取得
         const stored = localStorage.getItem('theme');
@@ -119,43 +119,43 @@ class ThemeManager {
      * テーマトグルボタンを作成
      */
     createToggleButton(container) {
-        console.log('Creating theme toggle button in container:', container);
+        // console.log('Creating theme toggle button in container:', container);
         
-        const wrapper = document.createElement('div');
-        wrapper.className = 'theme-toggle';
+        // const wrapper = document.createElement('div');
+        // wrapper.className = 'theme-toggle';
         
-        const button = document.createElement('button');
-        button.className = 'theme-toggle__button';
-        button.setAttribute('aria-label', 'テーマ切り替え');
-        button.innerHTML = this.getButtonIcon();
+        // const button = document.createElement('button');
+        // button.className = 'theme-toggle__button';
+        // button.setAttribute('aria-label', 'テーマ切り替え');
+        // button.innerHTML = this.getButtonIcon();
 
-        button.addEventListener('click', () => {
-            console.log('Theme toggle button clicked');
-            this.toggleTheme();
-            button.innerHTML = this.getButtonIcon();
-        });
+        // button.addEventListener('click', () => {
+        //     console.log('Theme toggle button clicked');
+        //     this.toggleTheme();
+        //     button.innerHTML = this.getButtonIcon();
+        // });
 
-        // テーマ変更時にアイコンを更新
-        window.addEventListener('themeChanged', () => {
-            button.innerHTML = this.getButtonIcon();
-        });
+        // // テーマ変更時にアイコンを更新
+        // window.addEventListener('themeChanged', () => {
+        //     button.innerHTML = this.getButtonIcon();
+        // });
 
-        wrapper.appendChild(button);
+        // wrapper.appendChild(button);
         
-        if (container instanceof HTMLElement) {
-            container.appendChild(wrapper);
-            console.log('Theme toggle button added to container');
-        } else if (typeof container === 'string') {
-            const target = document.querySelector(container);
-            if (target) {
-                target.appendChild(wrapper);
-                console.log('Theme toggle button added to:', container);
-            } else {
-                console.error('Container not found:', container);
-            }
-        }
+        // if (container instanceof HTMLElement) {
+        //     container.appendChild(wrapper);
+        //     console.log('Theme toggle button added to container');
+        // } else if (typeof container === 'string') {
+        //     const target = document.querySelector(container);
+        //     if (target) {
+        //         target.appendChild(wrapper);
+        //         console.log('Theme toggle button added to:', container);
+        //     } else {
+        //         console.error('Container not found:', container);
+        //     }
+        // }
 
-        return wrapper;
+        // return wrapper;
     }
 
     /**
