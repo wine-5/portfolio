@@ -8,28 +8,70 @@ class GamesManager {
     }
 
     async init() {
-        console.log('GamesManager init called');
+        // iOS Safari用のデバッグ情報
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+            console.log('[iOS Debug] GamesManager init started');
+            console.log('[iOS Debug] projectsData exists:', !!window.projectsData);
+            console.log('[iOS Debug] PROJECTS_DATA exists:', !!window.PROJECTS_DATA);
+            console.log('[iOS Debug] worksGrid element:', !!this.worksGrid);
+        }
+        
+        if (!this.worksGrid) {
+            console.error('GamesManager: works-grid element not found in DOM');
+            return;
+        }
+        
+        // 一時的なローディング表示
+        this.worksGrid.innerHTML = `
+            <div style="color: white; padding: 2rem; text-align: center;">
+                <p>🔄 データを読み込んでいます...</p>
+            </div>
+        `;
         
         // projectsDataがまだロードされていない場合はロードを待つ
         if (window.projectsData && !window.projectsData.isReady()) {
-            console.log('Waiting for projects data to load...');
             const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+            console.log('GamesManager: Loading projects data for lang:', lang);
             await window.projectsData.load(lang);
         }
         
         // プロジェクトデータを取得
-        this.projects = PROJECTS_DATA || [];
-        console.log('Projects loaded:', this.projects.length, 'items');
+        this.projects = window.PROJECTS_DATA || [];
+        
+        console.log('GamesManager: Projects loaded:', this.projects.length);
+        if (isIOS) {
+            console.log('[iOS Debug] Projects loaded:', this.projects.length);
+        }
         
         if (this.projects.length === 0) {
-            console.warn('No projects data available');
+            console.error('GamesManager: No projects data available');
+            // データがない場合の詳細エラー表示
+            this.worksGrid.innerHTML = `
+                <div style="color: white; padding: 2rem; text-align: center; background: rgba(255, 0, 0, 0.1); border: 2px solid red; border-radius: 8px;">
+                    <p style="font-size: 1.5rem; margin-bottom: 1rem;">⚠️ プロジェクトデータが読み込めませんでした</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">
+                        window.PROJECTS_DATA: ${!!window.PROJECTS_DATA}<br>
+                        window.projectsData: ${!!window.projectsData}<br>
+                        projectsData.isReady(): ${window.projectsData?.isReady() || 'N/A'}<br>
+                        Array length: ${this.projects.length}
+                    </p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #6366f1; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                        リロードする
+                    </button>
+                </div>
+            `;
             return;
         }
         
         this.renderGames();
         this.setupImageSliders(); // スライダーイベント設定
         this.setupLanguageListener(); // 言語変更リスナー
-        console.log('GamesManager initialization completed');
+        
+        if (isIOS) {
+            console.log('[iOS Debug] GamesManager init completed');
+        }
+        console.log('GamesManager: Initialization completed successfully');
     }
 
     /**
@@ -38,15 +80,13 @@ class GamesManager {
     setupLanguageListener() {
         window.addEventListener('languageChanged', async (e) => {
             const newLang = e.detail.language;
-            console.log('GamesManager: Language changed to', newLang);
             
             // 新しい言語でデータを再読み込み
             if (window.projectsData) {
                 await window.projectsData.load(newLang);
-                this.projects = PROJECTS_DATA || [];
+                this.projects = window.PROJECTS_DATA || [];
                 this.renderGames();
-                // スライダーの再初期化は不要（renderGames内でHTMLが再生成されるため）
-                console.log('GamesManager: Games re-rendered with new language');
+                // スライダーの再初期化は不要(renderGames内でHTMLが再生成されるため)
             }
         });
     }
@@ -57,10 +97,41 @@ class GamesManager {
             return;
         }
 
+        console.log('GamesManager: Starting render with', this.projects.length, 'projects');
+        
         const projectsHtml = this.projects.map(project => 
             this.createGameCard(project)
         ).join('');
+        
+        console.log('GamesManager: HTML generated, length:', projectsHtml.length);
+        
         this.worksGrid.innerHTML = projectsHtml;
+        
+        // レンダリング後の確認
+        const renderedCards = this.worksGrid.querySelectorAll('.work-card');
+        console.log('GamesManager: Rendered cards count:', renderedCards.length);
+        
+        // iOS用: レンダリング完了ログ
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+            console.log('[iOS Debug] Games rendered:', this.projects.length, 'cards');
+            console.log('[iOS Debug] Cards in DOM:', renderedCards.length);
+            
+            // 画面上にもデバッグ情報を表示
+            const debugDiv = document.createElement('div');
+            debugDiv.style.cssText = 'position: fixed; top: 100px; left: 10px; background: rgba(0,0,0,0.9); color: white; padding: 1rem; z-index: 9999; font-size: 12px; max-width: 300px;';
+            debugDiv.innerHTML = `
+                <strong>Debug Info:</strong><br>
+                Projects: ${this.projects.length}<br>
+                Cards rendered: ${renderedCards.length}<br>
+                worksGrid exists: ${!!this.worksGrid}<br>
+                Grid innerHTML length: ${this.worksGrid.innerHTML.length}
+            `;
+            document.body.appendChild(debugDiv);
+            
+            // 5秒後に削除
+            setTimeout(() => debugDiv.remove(), 5000);
+        }
     }
 
     createGameCard(project) {

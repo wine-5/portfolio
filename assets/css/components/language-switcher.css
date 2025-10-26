@@ -123,6 +123,12 @@
 @media (max-width: 768px) {
     .language-switcher__button {
         padding: var(--spacing-xs, 0.25rem);
+        /* モバイルで確実に表示されるように */
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        min-width: 40px;
+        min-height: 40px;
+        justify-content: center;
     }
 
     .language-switcher__current {
@@ -131,5 +137,26 @@
 
     .language-switcher__dropdown {
         min-width: 120px;
+    }
+    
+    /* ライトモード時のモバイル */
+    [data-theme="light"] .language-switcher__button {
+        background: rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* iOS Safari専用の調整 */
+@supports (-webkit-touch-callout: none) {
+    .language-switcher__button {
+        -webkit-tap-highlight-color: transparent;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    [data-theme="light"] .language-switcher__button {
+        background: rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.2);
+        color: #0a0a0a;
     }
 }

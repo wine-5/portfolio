@@ -67,6 +67,25 @@ class DebugConsoleManager {
             }
         });
         
+        // タッチデバイス用: スワイプダウンで閉じる
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        const modalContent = this.modal.querySelector('.console-content');
+        if (modalContent) {
+            modalContent.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+            
+            modalContent.addEventListener('touchend', (e) => {
+                touchEndY = e.changedTouches[0].clientY;
+                // 下方向に100px以上スワイプで閉じる
+                if (touchEndY - touchStartY > 100) {
+                    this.close();
+                }
+            }, { passive: true });
+        }
+        
         // コマンド入力
         this.input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {

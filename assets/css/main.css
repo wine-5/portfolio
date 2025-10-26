@@ -20,9 +20,13 @@
 @import 'components/debug-console.css';
 
 /* Sections */
+@import url('./sections/games.css');
 @import url('./sections/news.css');
 @import url('./sections/timeline.css');
 @import url('./sections/history.css');
+
+/* iOS Safari Fixes (最後に読み込み) */
+@import url('./ios-fixes.css');
 
 /* Legacy (移行中) */
 /* 将来的には削除予定 */

@@ -1,0 +1,288 @@
+/**
+ * iOS Safari専用の修正CSS
+ * iPhoneでの表示問題を解決
+ */
+
+/* 全モバイルデバイス向けの基本修正 */
+@media (max-width: 768px) {
+    
+    /* ===================================
+       ゲームセクション - モバイル最適化
+       =================================== */
+    
+    /* worksセクション全体 */
+    .works {
+        -webkit-overflow-scrolling: touch;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+        min-height: 400px !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* グリッドレイアウトの強制 */
+    .works__grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        -webkit-transform: translateZ(0) !important;
+        transform: translateZ(0) !important;
+        min-height: 200px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* カード表示の確実化 */
+    .work-card {
+        display: flex !important;
+        flex-direction: column !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        -webkit-transform: none !important;
+        transform: none !important;
+        transform-style: flat !important;
+        perspective: none !important;
+        min-height: 400px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+        background: rgba(20, 20, 30, 0.8) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    /* ホバー効果を無効化(モバイル用) */
+    .work-card:hover {
+        transform: scale(1.02) !important;
+    }
+    
+    /* 疑似要素を無効化 */
+    .work-card::before,
+    .work-card::after {
+        display: none !important;
+    }
+    
+    /* カード内部の要素も強制表示 */
+    .work-card__image,
+    .work-card__content,
+    .work-card__title,
+    .work-card__description {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .work-card__image {
+        width: 100% !important;
+        height: 200px !important;
+        position: relative !important;
+    }
+    
+    .work-card__content {
+        padding: 1.5rem !important;
+        width: 100% !important;
+    }
+    
+    .work-card__title {
+        font-size: 1.5rem !important;
+        color: white !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .work-card__description {
+        font-size: 1rem !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    /* 画像を確実に表示 */
+    .work-card__image img,
+    .slider-image,
+    .work-card__main-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+        opacity: 1 !important;
+    }
+    
+    /* バッジ類 */
+    .work-card__award,
+    .work-card__year-badge,
+    .work-card__note {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+/* iOS Safari検出用 (@supports使用) */
+@supports (-webkit-touch-callout: none) {
+    
+    .work-card:hover {
+        transform: scale(1.02) !important;
+    }
+    
+    /* 画像表示の最適化 */
+    .work-card__image {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    .slider-image,
+    .work-card__image img {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        image-rendering: -webkit-optimize-contrast;
+    }
+    
+    /* 疑似要素の最適化 */
+    .work-card::before,
+    .work-card::after {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    /* タッチ操作の最適化 */
+    .work-card,
+    .slider-btn,
+    .indicator {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    /* スライダーコントロールを常に表示 */
+    .slider-controls,
+    .slider-indicators {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    
+    /* ===================================
+       言語切り替えボタン - iOS最適化
+       =================================== */
+    
+    .language-switcher__button {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-appearance: none;
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+        color: #ffffff !important;
+    }
+    
+    .language-switcher__icon {
+        stroke: currentColor !important;
+    }
+    
+    /* ライトモード */
+    [data-theme="light"] .language-switcher__button {
+        background: rgba(0, 0, 0, 0.15) !important;
+        border-color: rgba(0, 0, 0, 0.25) !important;
+        color: #0a0a0a !important;
+    }
+    
+    /* ===================================
+       デバッグコンソール - iOS最適化
+       =================================== */
+    
+    #console-modal {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .console-content {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+    
+    /* ===================================
+       一般的なiOS修正
+       =================================== */
+    
+    /* スムーススクロール */
+    html {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* 選択テキストの色 */
+    ::selection {
+        background: rgba(99, 102, 241, 0.3);
+    }
+    
+    /* フォーカス時の輪郭 */
+    button:focus,
+    input:focus {
+        outline: 2px solid var(--color-primary, #6366f1);
+        outline-offset: 2px;
+    }
+    
+    /* タッチ遅延の除去 */
+    a,
+    button,
+    input,
+    select,
+    textarea {
+        touch-action: manipulation;
+    }
+}
+
+/* ===================================
+   モバイルビューポート対応
+   =================================== */
+
+@media (max-width: 768px) {
+    @supports (-webkit-touch-callout: none) {
+        
+        /* ゲームセクション */
+        .works__grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+        }
+        
+        .work-card {
+            max-width: 100% !important;
+        }
+        
+        .work-card__image {
+            height: 220px !important;
+        }
+        
+        /* ヘッダー */
+        .header__controls {
+            display: flex !important;
+            gap: 0.5rem !important;
+        }
+        
+        .language-switcher {
+            display: inline-flex !important;
+        }
+    }
+}
+
+/* ===================================
+   小画面iPhone対応 (SE, Mini等)
+   =================================== */
+
+@media (max-width: 390px) {
+    @supports (-webkit-touch-callout: none) {
+        
+        .works__grid {
+            gap: 1rem !important;
+        }
+        
+        .work-card__image {
+            height: 200px !important;
+        }
+        
+        .work-card__content {
+            padding: 1.25rem !important;
+        }
+        
+        .work-card__title {
+            font-size: 1.5rem !important;
+        }
+    }
+}
