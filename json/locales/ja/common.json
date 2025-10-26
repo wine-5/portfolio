@@ -92,5 +92,13 @@
       "awards": "受賞歴",
       "years": "年間"
     }
+  },
+  "history": {
+    "hero": {
+      "title": "更新履歴",
+      "subtitle": "wine-5 ポートフォリオサイトの更新履歴",
+      "backToHome": "ホームに戻る"
+    },
+    "loading": "読み込み中..."
   }
 }
