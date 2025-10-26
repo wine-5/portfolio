@@ -116,6 +116,237 @@
         opacity: 1 !important;
         visibility: visible !important;
     }
+    
+    /* ===================================
+       スキルセクション - モバイル最適化
+       =================================== */
+    
+    .skill {
+        padding: 2rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+    
+    .skill__header {
+        margin-bottom: 0 !important;
+    }
+    
+    .skill__name {
+        font-size: 1.6rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .skill__description {
+        font-size: 1.1rem !important;
+        line-height: 1.6 !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+    }
+    
+    /* スキルレベルバッジ */
+    .skill-level-badge {
+        margin-top: 0 !important;
+        padding: 1rem !important;
+    }
+    
+    .level-number {
+        font-size: 1.2rem !important;
+    }
+    
+    .exp-bar {
+        height: 8px !important;
+        margin: 0.75rem 0 !important;
+    }
+    
+    /* 経験値の詳細 */
+    .skill__stats {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .stat-item {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.75rem !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-radius: 6px !important;
+    }
+    
+    .stat-item__label {
+        font-size: 1rem !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+    
+    .stat-item__value {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        color: #6366f1 !important;
+    }
+    
+    /* ===================================
+       コンタクトセクション - モバイル縦並び
+       =================================== */
+    
+    .contact__content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 3rem !important;
+        text-align: center !important;
+        align-items: center !important;
+    }
+    
+    .contact__info {
+        order: 1 !important;
+        padding: 0 1.5rem !important;
+        width: 100% !important;
+    }
+    
+    .contact__subtitle {
+        font-size: 2rem !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .contact__description {
+        font-size: 1.1rem !important;
+        line-height: 1.7 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .contact__form {
+        order: 2 !important;
+        padding: 2.5rem !important;
+        margin-top: 1rem !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .form__group {
+        margin-bottom: 2rem !important;
+    }
+    
+    .form__input,
+    .form__textarea {
+        padding: 1.2rem !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+    }
+    
+    .form__textarea {
+        min-height: 120px !important;
+    }
+    
+    .btn--full {
+        padding: 1.2rem 2rem !important;
+        font-size: 1.1rem !important;
+        margin-top: 0.5rem !important;
+        width: 100% !important;
+    }
+    
+    /* ===================================
+       Aboutセクション - モバイル縦並び
+       =================================== */
+    
+    .about__content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2.5rem !important;
+        text-align: center !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    
+    /* アイコンを最初に */
+    .about__image {
+        order: 1 !important;
+        margin: 0 auto !important;
+        width: 180px !important;
+    }
+    
+    .about__avatar {
+        width: 180px !important;
+        height: 180px !important;
+        margin: 0 auto !important;
+    }
+    
+    .about__avatar-image {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    /* テキストを2番目に */
+    .about__text {
+        order: 2 !important;
+        padding: 0 1.5rem !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .about__subtitle {
+        font-size: 2rem !important;
+        margin-bottom: 1.5rem !important;
+        text-align: center !important;
+    }
+    
+    .about__description {
+        font-size: 1rem !important;
+        line-height: 1.7 !important;
+        margin-bottom: 2rem !important;
+        text-align: center !important;
+    }
+    
+    .about__links {
+        justify-content: center !important;
+        gap: 1rem !important;
+        margin-bottom: 2rem !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .about__link {
+        padding: 0.8rem 1.5rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* ステータスバーを3番目に */
+    .game-stats {
+        order: 3 !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+        padding: 1.5rem !important;
+    }
+    
+    /* タイムラインリンクを最後に */
+    .about__timeline-link {
+        order: 4 !important;
+        margin-top: 1rem !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+    
+    .about__timeline-button {
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .about__timeline-description {
+        font-size: 0.85rem !important;
+        margin-top: 1rem !important;
+        text-align: center !important;
+    }
 }
 
 /* iOS Safari検出用 (@supports使用) */
