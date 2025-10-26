@@ -11,12 +11,8 @@ class UpdatesManager {
     }
 
     async init() {
-        console.log('UpdatesManager init called (simplified version)');
-        console.log('Last updated element:', this.lastUpdatedElement);
-        
         // updatesDataがまだロードされていない場合はロードを待つ
         if (window.updatesData && !window.updatesData.isReady()) {
-            console.log('Waiting for updates data to load...');
             const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
             await window.updatesData.load(lang);
         }
@@ -24,12 +20,9 @@ class UpdatesManager {
         // updatesDataから直接取得
         if (window.updatesData && window.updatesData.isReady()) {
             this.updates = window.updatesData.getAllUpdates();
-            console.log('Updates data loaded from updatesData:', this.updates.length, 'items');
         } else if (typeof UPDATES_DATA !== 'undefined' && UPDATES_DATA.length > 0) {
             this.updates = UPDATES_DATA;
-            console.log('Updates data loaded from UPDATES_DATA:', this.updates.length, 'items');
         } else {
-            console.warn('No updates data available, using fallback');
             this.updates = [
                 {
                     date: '2025-10-23',
@@ -44,10 +37,7 @@ class UpdatesManager {
             return;
         }
         
-        console.log('Updating last modified date...');
         this.updateLastModifiedDate();
-        
-        console.log('UpdatesManager initialization completed');
         this.isInitialized = true;
     }
 
@@ -72,20 +62,12 @@ class UpdatesManager {
             return;
         }
 
-        console.log('Rendering', this.updates.length, 'update items');
-        
         try {
             const updatesHTML = this.updates.map(update => 
                 this.createUpdateItem(update)
             ).join('');
             
-            console.log('Generated updates HTML length:', updatesHTML.length);
             this.timelineContainer.innerHTML = updatesHTML;
-            
-            // DOM更新後にコンテナの状態を確認
-            setTimeout(() => {
-                console.log('Updates container after render:', this.timelineContainer.innerHTML.length > 0 ? 'Has content' : 'Empty');
-            }, 100);
             
         } catch (error) {
             console.error('Error rendering update history:', error);

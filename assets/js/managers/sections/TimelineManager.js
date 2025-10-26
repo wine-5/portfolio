@@ -32,11 +32,8 @@ class TimelineManager {
 
     init() {
         if (this.isInitialized) {
-            console.log('TimelineManager already initialized');
             return;
         }
-        
-        console.log('TimelineManager init called');
         
         // データとDOMの確認
         if (!this.ensureDataAndDOM()) {
@@ -45,24 +42,18 @@ class TimelineManager {
             return;
         }
         
-        console.log('Timeline container found:', !!this.timelineContainer);
-        console.log('Timeline data length:', this.timelineData.length);
-        
         // メインページかタイムライン専用ページかを判定
         const isMainPage = document.getElementById('games') !== null;
         
         try {
             if (isMainPage) {
-                console.log('Rendering simple timeline for main page');
                 this.renderSimpleTimeline();
             } else {
-                console.log('Rendering scroll timeline for timeline page');
                 this.renderScrollTimeline();
                 this.setupScrollTriggers();
             }
             
             this.isInitialized = true;
-            console.log('Timeline initialization completed successfully');
             
         } catch (error) {
             console.error('Error during timeline initialization:', error);
@@ -82,8 +73,6 @@ class TimelineManager {
     }
 
     renderSimpleTimeline() {
-        console.log('renderSimpleTimeline called, data length:', this.timelineData.length);
-        
         // 実際のタイムラインデータを使用し、フォールバックデータも用意
         const fallbackData = [
             {
@@ -117,14 +106,11 @@ class TimelineManager {
         ];
         
         const dataToUse = this.timelineData.length > 0 ? this.timelineData : fallbackData;
-        console.log('Using data:', dataToUse);
         
         // 重要なマイルストーンのみを表示（最新4つ）
         const importantEvents = [...dataToUse]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 4);
-        
-        console.log('Important events:', importantEvents);
         
         const timelineHTML = `
             <div class="simple-timeline">
@@ -132,7 +118,6 @@ class TimelineManager {
             </div>
         `;
         
-        console.log('Setting timeline HTML');
         this.timelineContainer.innerHTML = timelineHTML;
     }
 
@@ -176,12 +161,9 @@ class TimelineManager {
     }
 
     renderScrollTimeline() {
-        console.log('Starting renderScrollTimeline');
-        
         // データが空の場合はフォールバックデータを使用
         let dataToUse = this.timelineData;
         if (!dataToUse || dataToUse.length === 0) {
-            console.warn('Using fallback timeline data');
             dataToUse = [
                 {
                     id: 'school-start',
@@ -207,7 +189,6 @@ class TimelineManager {
         }
         
         const sortedData = [...dataToUse].sort((a, b) => new Date(a.date) - new Date(b.date));
-        console.log('Sorted timeline data:', sortedData);
         
         try {
             const timelineHTML = `
@@ -222,9 +203,7 @@ class TimelineManager {
                 </div>
             `;
             
-            console.log('Generated timeline HTML length:', timelineHTML.length);
             this.timelineContainer.innerHTML = timelineHTML;
-            console.log('Timeline HTML inserted into container');
             
         } catch (error) {
             console.error('Error generating timeline HTML:', error);
@@ -332,12 +311,6 @@ class TimelineManager {
             this.timelineTop = this.timelineElement.offsetTop;
             this.timelineHeight = this.timelineElement.offsetHeight;
             this.timelineBottom = this.timelineTop + this.timelineHeight;
-            
-            // デバッグ情報を出力
-            console.log('Timeline bounds updated:');
-            console.log(`Timeline top: ${this.timelineTop}`);
-            console.log(`Timeline height: ${this.timelineHeight}`);
-            console.log(`Timeline bottom: ${this.timelineBottom}`);
         }
     }
 
@@ -439,17 +412,6 @@ class TimelineManager {
             scrollProgress = 1;
         }
         
-        // デバッグ情報をコンソールに出力（開発時のみ）
-        if ((scrollProgress > 0.1 && scrollProgress % 0.1 < 0.02) || scrollProgress === 1) {
-            console.log(`Timeline scroll progress: ${(scrollProgress * 100).toFixed(1)}%`);
-            console.log(`Section range: ${sectionTop} - ${sectionBottom} (height: ${sectionHeight})`);
-            console.log(`Effective range: ${effectiveStart} - ${effectiveEnd}`);
-            console.log(`Current viewport: ${viewportTop}`);
-            console.log(`Force 100% threshold: ${sectionBottom - windowHeight * 0.5}`);
-            if (scrollProgress === 1) {
-                console.log('🎉 Timeline reached 100%!');
-            }
-        }
         
         this.progressLine.style.height = `${scrollProgress * 100}%`;
         

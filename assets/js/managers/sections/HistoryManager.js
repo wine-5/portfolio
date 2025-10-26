@@ -35,9 +35,8 @@ class HistoryManager {
             // 更新履歴データを日付順（新しい順）でソート
             const sortedUpdates = [...window.UPDATES_DATA].sort((a, b) => new Date(b.date) - new Date(a.date));
             
-            const timelineHTML = sortedUpdates.map((update, index) => {
+            const timelineHTML = sortedUpdates.map((update) => {
                 const formattedDate = this.formatDate(update.date);
-                console.log(`HistoryManager: Processing update ${index + 1}:`, update.title);
                 
                 return `
                     <div class="history-item">
@@ -49,7 +48,6 @@ class HistoryManager {
             }).join('');
             
             this.timelineContainer.innerHTML = timelineHTML;
-            console.log('HistoryManager: Timeline rendered successfully');
             
         } catch (error) {
             console.error('HistoryManager: Error rendering timeline:', error);

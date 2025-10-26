@@ -61,7 +61,6 @@ class ThemeManager {
      */
     toggleTheme() {
         const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
-        console.log('Theme toggled from', this.currentTheme, 'to', newTheme);
         this.applyTheme(newTheme);
         return newTheme;
     }
