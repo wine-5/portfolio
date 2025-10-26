@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "title": "Welcome to Game Development World",
+    "subtitle": "Creating Games with Unity & C#"
+  },
+  "games": {
+    "title": "Games",
+    "subtitle": "Check out my game projects",
+    "viewAll": "View All Games"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and Tools",
+    "note": "Skill levels represent months of experience since learning began (Max: 4 years / Student period)",
+    "experience": "Experience",
+    "years": "years",
+    "months": "months"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "About Me",
+    "name": "wine-5",
+    "role": "Game Developer",
+    "description": "I'm studying game development at a vocational school. I specialize in game development using Unity and C#.",
+    "fullDescription": "I'm a game developer aiming for the game industry.\nI develop games using Unity and C#,\nand strive for design that follows SOLID principles.\nI have experience publishing on UnityRoom,\nand pursue game development that brings joy to players.\nMy strength is enjoying programming more than anyone and continuously pursuing it.",
+    "socialText": "Also active on X (Twitter): @wine_program!",
+    "timelineButton": "View Development Journey",
+    "timelineDescription": "You can view detailed development history and project trajectory from enrollment to present"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get In Touch",
+    "description": "If you have any questions or comments about game development,\nplease feel free to contact us.",
+    "sendSuccess": "Message sent successfully!",
+    "sendError": "Failed to send message. Please try again."
+  },
+  "updates": {
+    "title": "Updates",
+    "subtitle": "Latest site information",
+    "noUpdates": "No updates available",
+    "lastUpdated": "Last Updated",
+    "viewAllHistory": "View All History"
+  }
+}

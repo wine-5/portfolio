@@ -12,6 +12,7 @@ class TimelinePageApp {
         // マネージャーの初期化
         this.scrollManager = new ScrollManager();
         this.timelineManager = new TimelineManager();
+        this.footerAnimationManager = new FooterAnimationManager();
     }
 
     init() {
@@ -21,6 +22,7 @@ class TimelinePageApp {
         // マネージャーを初期化
         this.scrollManager.init();
         this.timelineManager.init();
+        this.footerAnimationManager.init();
         
         // スムーズスクロールの初期化
         this.initSmoothScrolling();
@@ -50,6 +52,9 @@ class TimelinePageApp {
     }
 
     showScrollHint() {
+        const HINT_FADE_DURATION = 500; // ヒントのフェードアウト時間（ミリ秒）
+        const HINT_AUTO_REMOVE_DELAY = 4000; // ヒント自動削除までの時間（ミリ秒）
+        
         // 初回訪問時のスクロールヒント
         const hint = document.createElement('div');
         hint.className = 'scroll-hint';
@@ -68,11 +73,11 @@ class TimelinePageApp {
         // 3秒後にフェードアウト、またはスクロール開始で消去
         const removeHint = () => {
             hint.style.opacity = '0';
-            setTimeout(() => hint.remove(), 500);
+            setTimeout(() => hint.remove(), HINT_FADE_DURATION);
             window.removeEventListener('scroll', removeHint);
         };
         
-        setTimeout(removeHint, 4000);
+        setTimeout(removeHint, HINT_AUTO_REMOVE_DELAY);
         window.addEventListener('scroll', removeHint, { once: true });
     }
 
@@ -139,10 +144,8 @@ class TimelinePageApp {
 let isTimelinePageInitialized = false;
 
 // より確実な初期化関数
-function initializeTimelinePage() {
+async function initializeTimelinePage() {
     if (isTimelinePageInitialized) return;
-    
-    console.log('Timeline page initialization started');
     
     // 必要なクラスが読み込まれているかチェック
     if (typeof ScrollManager === 'undefined') {
@@ -155,31 +158,44 @@ function initializeTimelinePage() {
         return;
     }
     
-    if (typeof TIMELINE_DATA === 'undefined') {
-        console.error('TIMELINE_DATA is not loaded');
+    // timelineDataオブジェクトが存在し、データが読み込まれるまで待機
+    if (!window.timelineData) {
+        console.error('timelineData object is not loaded');
         return;
     }
     
-    console.log('All required classes and data loaded');
+    // データが読み込まれているか確認
+    const data = window.timelineData.getAllItems();
+    if (!data || data.length === 0) {
+        // データがまだ読み込まれていない場合は少し待つ
+        setTimeout(initializeTimelinePage, 100);
+        return;
+    }
     
     try {
         // タイムラインページアプリケーションを初期化
         const app = new TimelinePageApp();
         app.init();
         isTimelinePageInitialized = true;
-        console.log('Timeline page initialization completed');
     } catch (error) {
         console.error('Error initializing timeline page:', error);
     }
 }
 
-// 複数のイベントで初期化を試行
-document.addEventListener('DOMContentLoaded', initializeTimelinePage);
+// timelineDataLoaded イベントを待機して初期化
+window.addEventListener('timelineDataLoaded', initializeTimelinePage);
 
-// DOM読み込み完了後にもう一度試行
+// フォールバック: DOMContentLoaded でも試行
+document.addEventListener('DOMContentLoaded', () => {
+    // 少し遅延させてデータ読み込みを待つ
+    setTimeout(initializeTimelinePage, 500);
+});
+
+// 最終フォールバック: window.load
 window.addEventListener('load', () => {
+    const INIT_RETRY_DELAY = 100;
+    
     if (!isTimelinePageInitialized) {
-        console.log('Retrying timeline initialization after window load');
-        setTimeout(initializeTimelinePage, 100);
+        setTimeout(initializeTimelinePage, INIT_RETRY_DELAY);
     }
 });

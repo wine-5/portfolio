@@ -29,7 +29,6 @@ class EmailService {
             if (typeof emailjs !== 'undefined') {
                 emailjs.init(EMAIL_CONFIG.publicKey);
                 this.isInitialized = true;
-                console.log('EmailJS initialized successfully');
             } else {
                 console.error('EmailJS library not loaded');
             }
@@ -44,8 +43,6 @@ class EmailService {
         }
 
         try {
-            console.log('Sending emails with params:', templateParams);
-
             // 通知メール送信（wine-5受信用）- ForMe Template
             const notificationData = {
                 user_name: templateParams.name,
@@ -59,8 +56,6 @@ class EmailService {
                 EMAIL_CONFIG.notificationTemplateId,
                 notificationData
             );
-            
-            console.log('Notification email sent:', notificationResponse);
 
             // 自動返信メール送信（お問い合わせ者向け）- ForOpponent Template
             const autoReplyData = {
@@ -76,8 +71,6 @@ class EmailService {
                 EMAIL_CONFIG.autoReplyTemplateId,
                 autoReplyData
             );
-            
-            console.log('Auto-reply email sent:', autoReplyResponse);
             
             return { notificationResponse, autoReplyResponse };
         } catch (error) {

@@ -1,0 +1,104 @@
+{
+  "header": {
+    "home": "Home",
+    "games": "Works",
+    "skills": "Skills",
+    "about": "About",
+    "contact": "Contact",
+    "timeline": "Timeline",
+    "updates": "Updates"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "wine-5",
+    "title": "Game Developer",
+    "description": "Creating games with Unity and C#",
+    "viewWorks": "View Works",
+    "contactMe": "Contact Me"
+  },
+  "section": {
+    "games": "Works",
+    "skills": "Skills",
+    "about": "About",
+    "contact": "Contact",
+    "updates": "Updates"
+  },
+  "button": {
+    "viewMore": "View More",
+    "playNow": "Play Now",
+    "viewCode": "View Code",
+    "close": "Close",
+    "send": "Send",
+    "loading": "Loading...",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "namePlaceholder": "John Doe",
+    "emailPlaceholder": "example@email.com",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Enter your message",
+    "required": "Required",
+    "sending": "Sending...",
+    "success": "Message sent successfully",
+    "error": "Failed to send message. Please try again."
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "social": "Social",
+    "copyright": "© 2025 wine-5. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "theme": {
+    "dark": "Dark Mode",
+    "light": "Light Mode",
+    "toggle": "Toggle Theme"
+  },
+  "language": {
+    "ja": "日本語",
+    "en": "English",
+    "zh": "中文",
+    "select": "Select Language"
+  },
+  "loading": {
+    "message": "Loading...",
+    "portfolio": "Loading Portfolio..."
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "serverError": "Server Error",
+    "tryAgain": "Try Again"
+  },
+  "news": {
+    "title": "News",
+    "maintenance": "Maintenance",
+    "release": "Release",
+    "announcement": "Announcement",
+    "readMore": "Read More"
+  },
+  "timeline": {
+    "hero": {
+      "title": "Development Journey",
+      "subtitle": "Game Development Journey from Enrollment to Present",
+      "description": "Learning and growth at school, games created in the past.\nLooking back at my journey as a game developer in chronological order."
+    },
+    "stats": {
+      "projects": "Projects",
+      "awards": "Awards",
+      "years": "Years"
+    }
+  },
+  "history": {
+    "hero": {
+      "title": "Update History",
+      "subtitle": "Update history of wine-5 portfolio site",
+      "backToHome": "Back to Home"
+    },
+    "loading": "Loading history..."
+  }
+}

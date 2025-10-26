@@ -1,0 +1,28 @@
+/* ===================================
+   Portfolio Main CSS
+   統合CSSファイル - 新しい階層構造
+   =================================== */
+
+/* Base Styles */
+@import url('./base/variables.css');
+
+/* Themes */
+@import url('./themes/dark.css');
+@import url('./themes/light.css');
+
+/* Layouts */
+@import url('./layouts/responsive.css');
+
+/* Components */
+@import 'components/skill-card-expand.css';
+@import 'components/language-switcher.css';
+@import 'components/theme-toggle.css';
+@import 'components/debug-console.css';
+
+/* Sections */
+@import url('./sections/news.css');
+@import url('./sections/timeline.css');
+@import url('./sections/history.css');
+
+/* Legacy (移行中) */
+/* 将来的には削除予定 */

@@ -1,0 +1,122 @@
+{
+  "unity": {
+    "title": "Unity",
+    "additionalSkills": [
+      "Unity Editor Extensions",
+      "Shader Graph",
+      "Particle System",
+      "Physics & Collision",
+      "UI Toolkit",
+      "Timeline & Cinemachine",
+      "Asset Bundle Management",
+      "Performance Optimization"
+    ],
+    "projects": "10+ Projects",
+    "proficiency": "85%"
+  },
+  "c#": {
+    "title": "C#",
+    "additionalSkills": [
+      "LINQ & Lambda Expressions",
+      "async/await Async Processing",
+      "Delegates & Events",
+      "Generic Types",
+      "Reflection",
+      "Attribute Usage",
+      "Design Pattern Implementation",
+      "Unity Scripting API"
+    ],
+    "projects": "15+ Projects",
+    "proficiency": "80%"
+  },
+  "c++": {
+    "title": "C++",
+    "additionalSkills": [
+      "STL Container Usage",
+      "Smart Pointers",
+      "Template Programming",
+      "Multithreading",
+      "Memory Management Optimization",
+      "OpenGL Integration",
+      "CMake Build Configuration",
+      "Debugging & Profiling"
+    ],
+    "projects": "8+ Projects",
+    "proficiency": "70%"
+  },
+  "git": {
+    "title": "Git",
+    "additionalSkills": [
+      "Branch Strategy Design",
+      "Rebase & Merge",
+      "Conflict Resolution",
+      "GitHub Actions CI/CD",
+      "Git Hooks Usage",
+      "Submodule Management",
+      "Team Development Flow",
+      "Commit Convention Management"
+    ],
+    "projects": "Used in All Projects",
+    "proficiency": "75%"
+  },
+  "html": {
+    "title": "HTML",
+    "additionalSkills": [
+      "Semantic HTML",
+      "Accessibility Support",
+      "SEO Optimization",
+      "Open Graph Configuration",
+      "HTML5 API Usage",
+      "Responsive Images",
+      "Form Validation",
+      "Web Components"
+    ],
+    "projects": "20+ Websites",
+    "proficiency": "90%"
+  },
+  "css": {
+    "title": "CSS",
+    "additionalSkills": [
+      "CSS Grid & Flexbox",
+      "Animation Design",
+      "CSS Variables Usage",
+      "Responsive Design",
+      "BEM Naming Convention",
+      "Performance Optimization",
+      "Cross-browser Support",
+      "Custom Properties"
+    ],
+    "projects": "20+ Websites",
+    "proficiency": "85%"
+  },
+  "javascript": {
+    "title": "JavaScript",
+    "additionalSkills": [
+      "ES6+ Modern Syntax",
+      "Promise & async/await",
+      "DOM Manipulation & Events",
+      "Fetch API & AJAX",
+      "Closure Usage",
+      "Prototype Chain",
+      "Design Patterns",
+      "Performance Optimization"
+    ],
+    "projects": "25+ Applications",
+    "proficiency": "85%"
+  },
+  "js": {
+    "title": "JavaScript",
+    "additionalSkills": [
+      "ES6+ Modern Syntax",
+      "Promise & async/await",
+      "DOM Manipulation & Events",
+      "Fetch API & AJAX",
+      "Closure Usage",
+      "Prototype Chain",
+      "Design Patterns",
+      "Performance Optimization"
+    ],
+    "projects": "25+ Applications",
+    "proficiency": "85%"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "title": "ゲーム開発の世界へようこそ",
+    "subtitle": "Unity & C# でゲームを創造"
+  },
+  "games": {
+    "title": "ゲーム",
+    "subtitle": "これまでに制作したゲームをご覧ください",
+    "viewAll": "すべての作品を見る"
+  },
+  "skills": {
+    "title": "スキル",
+    "subtitle": "使用技術とツール",
+    "note": "各スキルのレベルは学習開始からの経験月数を表示しています（最大: 4年 / 学生期間）",
+    "experience": "経験",
+    "years": "年",
+    "months": "ヶ月"
+  },
+  "about": {
+    "title": "自己紹介",
+    "subtitle": "私について",
+    "name": "wine-5",
+    "role": "ゲーム開発者",
+    "description": "専門学校でゲーム開発を学んでいます。Unity と C# を使用したゲーム開発が専門です。",
+    "fullDescription": "ゲーム業界を目指すゲーム開発者です。\nUnityとC#を使用したゲーム開発を行っており、\nSOLID原則を意識した設計を心がけています。\nUnityRoomでの公開経験があり、\nプレイヤーに喜びを届けるゲーム作りを追求しています。\nプログラミングを誰よりの楽しく、追求し続ける自身は私の強みです。",
+    "socialText": "X（Twitter）: @wine_program でも活動中！",
+    "timelineButton": "開発の軌跡を見る",
+    "timelineDescription": "入学から現在までの詳細な開発履歴とプロジェクトの軌跡をご覧いただけます"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "ご連絡ください",
+    "description": "ゲーム開発に関する質問やご意見等がございましたら、\nお気軽にお問い合わせください。",
+    "sendSuccess": "メッセージを送信しました!",
+    "sendError": "送信に失敗しました。もう一度お試しください。"
+  },
+  "updates": {
+    "title": "更新履歴",
+    "subtitle": "サイトの最新情報",
+    "noUpdates": "更新情報はありません",
+    "lastUpdated": "最終更新",
+    "viewAllHistory": "すべての履歴を見る"
+  }
+}

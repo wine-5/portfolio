@@ -14,17 +14,17 @@
     --text-muted: #6b7280;
     --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-    
+
     /* フォント */
     --font-primary: 'Orbitron', monospace;
     --font-secondary: 'Roboto', sans-serif;
-    
+
     /* サイズ */
     --header-height: 80px;
     --container-max-width: 1200px;
     --border-radius: 12px;
     --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    
+
     /* アニメーション */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
@@ -42,7 +42,8 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 62.5%; /* 1rem = 10px */
+    font-size: 62.5%;
+    /* 1rem = 10px */
     height: 100%;
     overflow-y: auto;
 }
@@ -53,7 +54,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     font-size: 1.6rem;
-    overflow-x: hidden;
+    overflow-x: clip;
     overflow-y: auto;
     min-height: 100vh;
 }
@@ -61,6 +62,18 @@ body {
 /* ===================================
    共通コンポーネント
    =================================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 .container {
     max-width: var(--container-max-width);
     margin: 0 auto;
@@ -84,8 +97,15 @@ body {
 
 /* グラデーション流れるアニメーション */
 @keyframes gradientFlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .section__title::after {
@@ -103,11 +123,14 @@ body {
 
 /* ライン輝きアニメーション */
 @keyframes lineGlow {
-    0%, 100% { 
+
+    0%,
+    100% {
         opacity: 0.5;
         width: 6rem;
     }
-    50% { 
+
+    50% {
         opacity: 1;
         width: 10rem;
     }
@@ -186,12 +209,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f23 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     transition: opacity var(--transition-slow);
+    overflow: hidden;
 }
 
 .loading.hidden {
@@ -201,36 +225,222 @@ body {
 
 .loading__content {
     text-align: center;
-}
-
-.loading__spinner {
-    width: 8rem;
-    height: 8rem;
     position: relative;
-    margin: 0 auto 3rem;
+    z-index: 2;
 }
 
-/* 3つの回転するリング */
-.loading__spinner::before,
-.loading__spinner::after {
-    content: '';
+/* ロゴアニメーション */
+.loading__logo {
+    width: 20rem;
+    height: 20rem;
+    position: relative;
+    margin: 0 auto 4rem;
+    perspective: 1000px;
+}
+
+.logo-ring {
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     border: 0.3rem solid transparent;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
 }
 
-.loading__spinner::before {
+.logo-ring-1 {
     border-top-color: var(--primary-color);
     border-right-color: var(--primary-color);
-    animation: spinRing 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    animation: rotate3D 3s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    transform-origin: center;
 }
 
-.loading__spinner::after {
+.logo-ring-2 {
+    border-bottom-color: var(--secondary-color);
+    border-left-color: var(--secondary-color);
+    animation: rotate3D 4s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite reverse;
+    transform-origin: center;
+}
+
+.logo-ring-3 {
+    border-top-color: var(--accent-color);
     border-bottom-color: var(--accent-color);
-    border-left-color: var(--accent-color);
-    animation: spinRing 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite reverse;
+    animation: rotate3D 5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    transform-origin: center;
+}
+
+.logo-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10rem;
+    height: 10rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 
+        0 0 40px rgba(99, 102, 241, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    animation: pulse 2s ease-in-out infinite, glow 3s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.logo-center:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.logo-center:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+.logo-center.w5-clicked {
+    animation: w5Click 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes w5Click {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        filter: brightness(1) saturate(1);
+    }
+    25% {
+        transform: translate(-50%, -50%) scale(1.3) rotate(180deg);
+        filter: brightness(1.5) saturate(2);
+        box-shadow: 
+            0 0 60px rgba(99, 102, 241, 1),
+            0 0 100px rgba(99, 102, 241, 0.8),
+            inset 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(360deg);
+        filter: brightness(1.3) saturate(1.5);
+    }
+    75% {
+        transform: translate(-50%, -50%) scale(1.15) rotate(450deg);
+        filter: brightness(1.2) saturate(1.3);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(540deg);
+        filter: brightness(1) saturate(1);
+    }
+}
+
+.logo-text {
+    font-family: var(--font-primary);
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(99, 102, 241, 0.6);
+    animation: logoTextPulse 2s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+/* ヒントテキスト回転 */
+.loading-hints-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.loading-hint {
+    position: absolute;
+    top: 50%;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: lowercase;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    transform-origin: center center;
+}
+
+/* wine-5を左側に配置 */
+.loading-hint:nth-child(1) {
+    left: calc(50% - 150px);
+    animation: rotateLeftSide 8s linear infinite;
+}
+
+/* debugを右側に配置 */
+.loading-hint:nth-child(2) {
+    left: calc(50% + 150px);
+    animation: rotateRightSide 8s linear infinite;
+    animation-delay: 4s;
+}
+
+@keyframes rotateLeftSide {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(-80px) rotate(0deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(-80px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes rotateRightSide {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(80px) rotate(0deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(80px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+/* プログレスバー */
+.loading__progress {
+    position: relative;
+    margin-top: 3rem;
+}
+
+.progress-bar {
+    width: 30rem;
+    height: 0.6rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto 2rem;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        var(--primary-color) 0%, 
+        var(--secondary-color) 50%, 
+        var(--accent-color) 100%);
+    background-size: 200% 100%;
+    border-radius: 1rem;
+    animation: progressFlow 2s ease-in-out infinite, progressWidth 3s ease-out forwards;
+    box-shadow: 
+        0 0 10px var(--primary-color),
+        0 0 20px var(--secondary-color);
 }
 
 .loading__text {
@@ -241,27 +451,115 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradientFlow 3s ease infinite, pulse 2s ease-in-out infinite;
+    animation: gradientFlow 3s ease infinite;
+    margin-bottom: 1rem;
+}
+
+.loading__percentage {
+    font-family: 'Courier New', monospace;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* パーティクルエフェクト */
+.loading__particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* アニメーション定義 */
+@keyframes rotate3D {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+        opacity: 1;
+    }
+}
+
+@keyframes logoTextPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.1);
+        filter: brightness(1.3);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 
+            0 0 40px rgba(99, 102, 241, 0.6),
+            inset 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 60px rgba(139, 92, 246, 0.8),
+            inset 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes progressFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes progressWidth {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
 }
 
 @keyframes spinRing {
-    0% { 
+    0% {
         transform: rotate(0deg) scale(1);
         opacity: 1;
     }
+
     50% {
         transform: rotate(180deg) scale(1.1);
         opacity: 0.8;
     }
-    100% { 
+
+    100% {
         transform: rotate(360deg) scale(1);
         opacity: 1;
     }
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
 }
 
 /* ===================================
@@ -339,6 +637,13 @@ body {
     width: 100%;
 }
 
+.header__controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 2rem;
+}
+
 .header__hamburger {
     display: none;
     flex-direction: column;
@@ -363,7 +668,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero__background {
@@ -399,16 +704,19 @@ body {
 .water-surface {
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200vw; /* 強制的に右端まで */
     height: 40vh;
     pointer-events: none;
-    overflow: hidden;
-    margin-left: -50vw;
-    left: 50%;
+    overflow: visible;
+    z-index: 1;
 }
 
 .water-svg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     animation: waterFlow 8s ease-in-out infinite;
@@ -420,24 +728,32 @@ body {
 }
 
 @keyframes waterFlow {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0px);
     }
+
     50% {
         transform: translateX(-20px);
     }
 }
 
 @keyframes waterRipple {
-    0%, 100% {
+
+    0%,
+    100% {
         d: path("M0,150 Q300,130 600,150 T1200,150 L1200,300 L0,300 Z");
     }
+
     25% {
         d: path("M0,150 Q300,140 600,145 T1200,155 L1200,300 L0,300 Z");
     }
+
     50% {
         d: path("M0,150 Q300,135 600,155 T1200,145 L1200,300 L0,300 Z");
     }
+
     75% {
         d: path("M0,150 Q300,145 600,140 T1200,150 L1200,300 L0,300 Z");
     }
@@ -484,15 +800,20 @@ body {
 }
 
 @keyframes floatingCube {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px) rotateX(0deg) rotateY(0deg) translateZ(0px);
     }
+
     25% {
         transform: translateY(-30px) rotateX(90deg) rotateY(45deg) translateZ(50px);
     }
+
     50% {
         transform: translateY(-60px) rotateX(180deg) rotateY(90deg) translateZ(100px);
     }
+
     75% {
         transform: translateY(-30px) rotateX(270deg) rotateY(135deg) translateZ(50px);
     }
@@ -528,11 +849,13 @@ body {
         transform: translateY(100px) rotateX(-90deg) translateZ(-200px);
         filter: blur(10px);
     }
+
     50% {
         opacity: 0.7;
         transform: translateY(20px) rotateX(-15deg) translateZ(-50px);
         filter: blur(2px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0) rotateX(0deg) translateZ(0px);
@@ -546,18 +869,22 @@ body {
         background-position: 0% 50%;
         filter: hue-rotate(0deg) brightness(1) saturate(1);
     }
+
     25% {
         background-position: 100% 100%;
         filter: hue-rotate(90deg) brightness(1.2) saturate(1.3);
     }
+
     50% {
         background-position: 100% 0%;
         filter: hue-rotate(180deg) brightness(1) saturate(1.5);
     }
+
     75% {
         background-position: 0% 100%;
         filter: hue-rotate(270deg) brightness(1.2) saturate(1.2);
     }
+
     100% {
         background-position: 0% 50%;
         filter: hue-rotate(360deg) brightness(1) saturate(1);
@@ -605,7 +932,7 @@ body {
     opacity: 0;
     transform: translateX(-400px) rotateY(-90deg) scale(0.2) translateZ(-200px) rotateZ(-180deg);
     transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    text-shadow: 
+    text-shadow:
         0 8px 25px rgba(99, 102, 241, 0.6),
         0 15px 50px rgba(139, 92, 246, 0.4),
         0 0 30px rgba(6, 182, 212, 0.3);
@@ -622,27 +949,35 @@ body {
 }
 
 @keyframes letterPulse {
-    0%, 100% { 
+
+    0%,
+    100% {
         transform: translateX(0) rotateY(0deg) scale(1.1) translateZ(20px) rotateZ(0deg);
         filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
     }
-    50% { 
+
+    50% {
         transform: translateX(0) rotateY(0deg) scale(1.15) translateZ(25px) rotateZ(0deg);
         filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8));
     }
 }
 
 @keyframes letterFloat {
-    0%, 100% { 
+
+    0%,
+    100% {
         transform: translateX(0) rotateY(0deg) scale(1.1) translateZ(20px) rotateZ(0deg) translateY(0px);
     }
-    25% { 
+
+    25% {
         transform: translateX(0) rotateY(2deg) scale(1.1) translateZ(20px) rotateZ(1deg) translateY(-3px);
     }
-    50% { 
+
+    50% {
         transform: translateX(0) rotateY(0deg) scale(1.1) translateZ(20px) rotateZ(0deg) translateY(-5px);
     }
-    75% { 
+
+    75% {
         transform: translateX(0) rotateY(-2deg) scale(1.1) translateZ(20px) rotateZ(-1deg) translateY(-3px);
     }
 }
@@ -680,29 +1015,37 @@ body {
 }
 
 @keyframes reflectionDistort {
-    0%, 100% { 
+
+    0%,
+    100% {
         filter: blur(1px) brightness(0.7);
         transform: translateX(0) rotateY(0deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(0deg);
     }
-    25% { 
+
+    25% {
         filter: blur(2px) brightness(0.6);
         transform: translateX(1px) rotateY(1deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(1deg);
     }
-    50% { 
+
+    50% {
         filter: blur(1.5px) brightness(0.8);
         transform: translateX(-1px) rotateY(0deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(0deg);
     }
-    75% { 
+
+    75% {
         filter: blur(2px) brightness(0.6);
         transform: translateX(1px) rotateY(-1deg) translateZ(0px) rotateX(180deg) scaleY(-1) skewX(-1deg);
     }
 }
 
 @keyframes reflectionWave {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0) scaleX(1);
         filter: blur(1px);
     }
+
     50% {
         transform: translateX(2px) scaleX(0.98);
         filter: blur(1.5px);
@@ -779,6 +1122,7 @@ body {
         opacity: 0;
         transform: translateY(3rem);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -786,12 +1130,19 @@ body {
 }
 
 @keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateX(-50%) translateY(0);
     }
+
     40% {
         transform: translateX(-50%) translateY(1rem);
     }
+
     60% {
         transform: translateX(-50%) translateY(0.5rem);
     }
@@ -809,20 +1160,75 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
     gap: 3rem;
+    perspective: 2000px;
+    perspective-origin: center;
 }
 
 .work-card {
     background: var(--bg-card);
     border-radius: var(--border-radius);
     overflow: hidden;
-    transition: all var(--transition-normal);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     cursor: pointer;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
 }
 
 .work-card:hover {
-    transform: translateY(-1rem);
-    box-shadow: var(--box-shadow);
+    transform: translateZ(100px) translateY(-20px) rotateX(5deg) scale(1.05);
+    box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(99, 102, 241, 0.3),
+        0 0 100px rgba(99, 102, 241, 0.1);
+    z-index: 100;
+}
+
+/* 3D光沢エフェクト */
+.work-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.work-card:hover::before {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+/* 3D深度シャドウ */
+.work-card::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.5) 0%,
+        transparent 70%
+    );
+    transform: translateY(0) scaleX(1);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.work-card:hover::after {
+    transform: translateY(20px) scaleX(1.2);
+    opacity: 1;
 }
 
 .work-card__award {
@@ -882,6 +1288,8 @@ body {
 .detail-label {
     color: var(--text-secondary);
     font-size: 1.3rem;
+    white-space: nowrap;
+    padding-right: 1em;
 }
 
 .detail-value {
@@ -1027,7 +1435,50 @@ body {
 .work-card__details-content {
     padding: 1.5rem;
     background: rgba(255, 255, 255, 0.02);
-    animation: slideDown 0.3s ease;
+    animation: detailsSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top;
+}
+
+@keyframes detailsSlideIn {
+    0% {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        max-height: 500px;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        transform: translateY(0);
+    }
+}
+
+.work-card__responsibilities,
+.work-card__features-section {
+    animation: detailsFadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+.work-card__responsibilities {
+    animation-delay: 0.1s;
+}
+
+.work-card__features-section {
+    animation-delay: 0.2s;
+}
+
+@keyframes detailsFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .work-card__features {
@@ -1066,7 +1517,7 @@ body {
 }
 
 /* 詳細説明セクション */
-.work-card__details-content > .work-card__features-section:first-child {
+.work-card__details-content>.work-card__features-section:first-child {
     padding-top: 0;
     border-top: none;
 }
@@ -1090,6 +1541,7 @@ body {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1141,6 +1593,23 @@ body {
     padding: 10rem 0;
 }
 
+.skills__note {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    margin: -2rem auto 4rem;
+    max-width: 60rem;
+    padding: 1.5rem 2rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
+}
+
+.skills__note i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
 .skills__grid {
     display: grid;
     gap: 3rem;
@@ -1154,6 +1623,17 @@ body {
     border-radius: var(--border-radius);
     transition: all var(--transition-normal);
     border-left: 4px solid var(--primary-color);
+
+    /* 初期状態 - アニメーション前 */
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+}
+
+/* アニメーション適用後 */
+.skill.skill-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .skill:hover {
@@ -1189,6 +1669,388 @@ body {
 }
 
 /* ===================================
+   ゲーム的UIエフェクト
+   =================================== */
+/* スキルレベルシステム */
+.skill-level-badge {
+    margin-top: 1rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.level-number {
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.exp-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.exp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 3px;
+    transition: width 1s ease-out;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    position: relative;
+}
+
+.exp-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.exp-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+/* レベルアップアニメーション */
+.level-up-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: levelUpFade 2s ease-out;
+    pointer-events: none;
+}
+
+@keyframes levelUpFade {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.level-up-content {
+    position: relative;
+    text-align: center;
+}
+
+.level-up-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+    animation: flashExpand 0.5s ease-out;
+}
+
+@keyframes flashExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+.level-up-text {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: 900;
+    color: #FFD700;
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: levelUpBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    letter-spacing: 0.2em;
+}
+
+@keyframes levelUpBounce {
+    0% {
+        transform: scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.level-up-number {
+    font-family: var(--font-primary);
+    font-size: 6rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 
+        0 0 30px rgba(99, 102, 241, 1),
+        0 0 60px rgba(99, 102, 241, 0.7),
+        4px 4px 8px rgba(0, 0, 0, 0.8);
+    animation: levelUpNumber 0.8s ease-out 0.3s backwards;
+}
+
+@keyframes levelUpNumber {
+    0% {
+        transform: translateY(50px) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.level-up-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.level-up-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #FFD700, transparent);
+    border-radius: 50%;
+    animation: particleBurst 1.5s ease-out forwards;
+    top: 50%;
+    left: 50%;
+}
+
+@keyframes particleBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(
+            calc(-50% + var(--tx, 100px)),
+            calc(-50% + var(--ty, -100px))
+        ) scale(0);
+        opacity: 0;
+    }
+}
+
+/* HP/MPバー */
+.game-stats {
+    margin-bottom: 3rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.stat-bar {
+    margin-bottom: 1.5rem;
+}
+
+.stat-bar:last-child {
+    margin-bottom: 0;
+}
+
+.stat-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.stat-label i {
+    font-size: 1.6rem;
+}
+
+.hp-bar .stat-label {
+    color: #ff4444;
+}
+
+.hp-bar .stat-label i {
+    color: #ff4444;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.2); }
+    20%, 40% { transform: scale(1); }
+}
+
+.mp-bar .stat-label {
+    color: #44aaff;
+}
+
+.mp-bar .stat-label i {
+    color: #ff6600;
+}
+
+.exp-bar-game .stat-label {
+    color: #ffd700;
+}
+
+.exp-bar-game .stat-label i {
+    color: #ffd700;
+}
+
+.stat-bar-container {
+    position: relative;
+    width: 100%;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-bar-fill {
+    height: 100%;
+    width: 0;
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 12px;
+}
+
+.hp-fill {
+    background: linear-gradient(90deg, #ff0000, #ff6666);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.mp-fill {
+    background: linear-gradient(90deg, #0066ff, #66aaff);
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+}
+
+.exp-fill {
+    background: linear-gradient(90deg, #ffa500, #ffd700);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.stat-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+.stat-value {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+/* 経験言語タグ表示 */
+.exp-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.exp-lang {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 215, 0, 0.2));
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 6px;
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: expLangFadeIn 0.5s ease forwards;
+}
+
+.exp-lang:nth-child(1) { animation-delay: 0.1s; }
+.exp-lang:nth-child(2) { animation-delay: 0.2s; }
+.exp-lang:nth-child(3) { animation-delay: 0.3s; }
+.exp-lang:nth-child(4) { animation-delay: 0.4s; }
+.exp-lang:nth-child(5) { animation-delay: 0.5s; }
+.exp-lang:nth-child(6) { animation-delay: 0.6s; }
+.exp-lang:nth-child(7) { animation-delay: 0.7s; }
+.exp-lang:nth-child(8) { animation-delay: 0.8s; }
+
+.exp-lang:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.4), rgba(255, 215, 0, 0.4));
+    border-color: rgba(255, 215, 0, 0.8);
+}
+
+@keyframes expLangFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ===================================
    Aboutセクション
    =================================== */
 .about {
@@ -1199,8 +2061,28 @@ body {
 .about__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
+    grid-template-rows: auto auto;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* 左上: アイコン */
+.about__image {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+}
+
+/* 右上・右下: テキスト（2行分） */
+.about__text {
+    grid-column: 2;
+    grid-row: 1 / 3;
+}
+
+/* 左下: ステータスバー（JavaScriptで追加） */
+.game-stats {
+    grid-column: 1;
+    grid-row: 2;
 }
 
 .about__subtitle {
@@ -1242,12 +2124,14 @@ body {
 }
 
 .about__image {
+    grid-column: 1;
+    grid-row: 1;
     text-align: center;
 }
 
 .about__avatar {
-    width: 30rem;
-    height: 30rem;
+    width: 20rem;
+    height: 20rem;
     margin: 0 auto;
     border-radius: 50%;
     background: var(--gradient-primary);
@@ -1256,10 +2140,19 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5),
+                0 0 60px rgba(168, 85, 247, 0.3);
+}
+
+.about__avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .about__avatar-placeholder {
-    font-size: 8rem;
+    font-size: 6rem;
     color: var(--text-primary);
 }
 
@@ -1479,19 +2372,19 @@ body {
         height: 300px;
         padding: 2rem;
     }
-    
+
     .timeline-card {
         width: 250px;
         left: -75px;
         padding: 1.5rem;
     }
-    
+
     .timeline-node {
         width: 40px;
         height: 40px;
         font-size: 1.4rem;
     }
-    
+
     .about__timeline-title {
         font-size: 2.4rem;
     }
@@ -1502,6 +2395,7 @@ body {
    =================================== */
 .contact {
     padding: 10rem 0;
+    background: var(--bg-secondary);
 }
 
 .contact__content {
@@ -1566,7 +2460,7 @@ body {
    =================================== */
 .updates {
     padding: 10rem 0;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
 }
 
 .updates__content {
@@ -1704,7 +2598,7 @@ body {
    フッター
    =================================== */
 .footer {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: 3rem 0;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -1732,36 +2626,16 @@ body {
 /* ===================================
    軽微なカードフリップアニメーション
    =================================== */
-.card-flip {
-    opacity: 0;
-    transform: rotateY(-30deg) translateY(20px) scale(0.95);
-    transition: all 0.5s ease-out;
-}
-
-.card-flip.flip-visible {
-    opacity: 1;
-    transform: rotateY(0deg) translateY(0) scale(1);
-}
-
-/* シンプルなホバー効果 */
 .work-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .work-card:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 
+    box-shadow:
         0 15px 30px rgba(0, 0, 0, 0.3),
         0 0 15px rgba(99, 102, 241, 0.1);
 }
-
-/* シンプルな段階的遅延 */
-.card-flip:nth-child(1) { transition-delay: 0.0s; }
-.card-flip:nth-child(2) { transition-delay: 0.1s; }
-.card-flip:nth-child(3) { transition-delay: 0.2s; }
-.card-flip:nth-child(4) { transition-delay: 0.3s; }
-.card-flip:nth-child(5) { transition-delay: 0.4s; }
-.card-flip:nth-child(6) { transition-delay: 0.5s; }
 
 /* ===================================
    タイムラインページ専用スタイル
@@ -1830,9 +2704,11 @@ body {
 
 /* タイムラインセクション */
 .timeline-section {
-    padding: 80px 0 120px 0; /* 下部パディングを適切なサイズに調整 */
+    padding: 80px 0 120px 0;
+    /* 下部パディングを適切なサイズに調整 */
     background: var(--bg-primary);
-    min-height: 100vh; /* 通常の高さに調整 */
+    min-height: 100vh;
+    /* 通常の高さに調整 */
 }
 
 .timeline-section .section__subtitle {
@@ -2070,11 +2946,21 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
+
+    /* 初期状態 - アニメーション前 */
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .footer__link i {
     font-size: 1.4rem;
     transition: transform 0.3s ease;
+}
+
+/* アニメーション適用後 */
+.footer__link.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .footer__link:hover {
@@ -2083,7 +2969,41 @@ body {
 }
 
 .footer__link:hover i {
-    transform: scale(1.2);
+    transform: scale(1.2) translateY(-3px);
+    animation: float 1s ease-in-out infinite;
+}
+
+/* SNSリンクのパルス効果 */
+.footer__section:last-child .footer__link.animate-in i {
+    animation: pulse-icon 2s ease-in-out infinite;
+}
+
+/* アイコンが浮き上がるアニメーション */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: scale(1.2) translateY(-3px);
+    }
+
+    50% {
+        transform: scale(1.2) translateY(-8px);
+    }
+}
+
+/* パルスアニメーション */
+@keyframes pulse-icon {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
 }
 
 .footer__bottom {
@@ -2102,28 +3022,28 @@ body {
     .timeline-hero {
         padding: 100px 0 60px;
     }
-    
+
     .timeline-hero__title {
         font-size: 2.5rem;
     }
-    
+
     .timeline-hero__stats {
         gap: 2rem;
     }
-    
+
     .timeline-stat__number {
         font-size: 2rem;
     }
-    
+
     .footer__main {
         flex-direction: column;
         gap: 2rem;
     }
-    
+
     .footer__links {
         gap: 2rem;
     }
-    
+
     .about__timeline-link {
         padding: 1.5rem;
     }
@@ -2138,8 +3058,10 @@ body {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 4rem 0 8rem 0; /* 下部マージンを適切なサイズに調整 */
-    min-height: auto; /* 自動高さに変更 */
+    padding: 4rem 0 8rem 0;
+    /* 下部マージンを適切なサイズに調整 */
+    min-height: auto;
+    /* 自動高さに変更 */
 }
 
 /* プログレスライン */
@@ -2147,7 +3069,8 @@ body {
     position: fixed;
     left: 50%;
     top: 120px;
-    bottom: 200px; /* 下部マージンを増加 */
+    bottom: 200px;
+    /* 下部マージンを増加 */
     width: 4px;
     background: rgba(99, 102, 241, 0.2);
     transform: translateX(-50%);
@@ -2161,12 +3084,12 @@ body {
     left: 0;
     width: 100%;
     height: 0%;
-    background: linear-gradient(to bottom, 
-        #10b981 0%, 
-        #6366f1 25%, 
-        #06b6d4 50%, 
-        #f59e0b 75%, 
-        #ec4899 100%);
+    background: linear-gradient(to bottom,
+            #10b981 0%,
+            #6366f1 25%,
+            #06b6d4 50%,
+            #f59e0b 75%,
+            #ec4899 100%);
     border-radius: 2px;
     transition: height 0.1s ease-out;
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
@@ -2175,7 +3098,8 @@ body {
 /* タイムラインアイテム */
 .scroll-timeline-item {
     position: relative;
-    margin: 6rem 0; /* アイテム間のスペースを適切に調整 */
+    margin: 6rem 0;
+    /* アイテム間のスペースを適切に調整 */
     opacity: 0;
     transform: translateY(60px) scale(0.9);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2183,7 +3107,8 @@ body {
 
 /* 最後のアイテムには追加のマージン */
 .scroll-timeline-item:last-child {
-    margin-bottom: 8rem; /* 最後のアイテムのマージンを適切に調整 */
+    margin-bottom: 8rem;
+    /* 最後のアイテムのマージンを適切に調整 */
 }
 
 /* タイムラインエラー表示 */
@@ -2278,10 +3203,12 @@ body {
         transform: scale(1);
         opacity: 0.7;
     }
+
     50% {
         transform: scale(1.5);
         opacity: 0.3;
     }
+
     100% {
         transform: scale(2);
         opacity: 0;
@@ -2324,7 +3251,7 @@ body {
 
 /* カードコンテンツ */
 .timeline-card-content {
-    padding: 2rem;
+    padding: 2rem 5em;
 }
 
 .timeline-card__header {
@@ -2455,33 +3382,33 @@ body {
     .timeline-progress-line {
         left: 3rem;
     }
-    
+
     .scroll-timeline-item--left,
     .scroll-timeline-item--right {
         padding-left: 5rem;
         padding-right: 1rem;
         text-align: left;
     }
-    
+
     .scroll-timeline-node {
         left: calc(3rem - 30px) !important;
         right: auto !important;
     }
-    
+
     .timeline-card__date,
     .timeline-card__tech,
     .timeline-detail {
         justify-content: flex-start !important;
     }
-    
+
     .scroll-timeline-item {
         margin: 6rem 0;
     }
-    
+
     .timeline-card-content {
         padding: 1.5rem;
     }
-    
+
     .scroll-indicator {
         display: none;
     }
@@ -2491,31 +3418,31 @@ body {
     .scroll-timeline {
         padding: 2rem 0 4rem 0;
     }
-    
+
     .timeline-progress-line {
         left: 2rem;
     }
-    
+
     .scroll-timeline-item--left,
     .scroll-timeline-item--right {
         padding-left: 4rem;
         margin: 4rem 0;
     }
-    
+
     .scroll-timeline-node {
         left: calc(2rem - 25px) !important;
         width: 50px;
         height: 50px;
     }
-    
+
     .scroll-timeline-node i {
         font-size: 1.2rem;
     }
-    
+
     .timeline-card__title {
         font-size: 1.3rem;
     }
-    
+
     .timeline-card__description {
         font-size: 1rem;
     }
@@ -2726,44 +3653,45 @@ body {
         opacity: 1;
         pointer-events: auto;
     }
-    
+
     .slider-indicators {
         opacity: 1;
     }
-    
+
     .play-hint {
         opacity: 1;
         font-size: 0.8rem;
         padding: 0.4rem 0.8rem;
     }
-    
+
     .lock-overlay {
         opacity: 1;
         font-size: 0.8rem;
         padding: 0.8rem 1.2rem;
     }
-    
+
     .lock-overlay i {
         font-size: 1.2rem;
     }
-    
+
     .slider-btn {
         width: 35px;
         height: 35px;
     }
-    
+
     .clickable-image:hover {
         transform: none;
     }
-    
+
     .slider-image:hover {
         transform: none;
     }
-    
+
     .locked-image:hover .clickable-image {
         transform: none;
     }
 }
+
 .scroll-hint {
     position: fixed;
     bottom: 3rem;
@@ -2795,12 +3723,19 @@ body {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-10px);
     }
+
     60% {
         transform: translateY(-5px);
     }
@@ -2814,18 +3749,18 @@ body {
         gap: 1rem;
         padding: 1rem;
     }
-    
+
     .simple-timeline-icon {
         align-self: center;
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    
+
     .simple-timeline-title {
         font-size: 1.1rem;
     }
-    
+
     .timeline-section {
         padding: 60px 0;
     }
@@ -2838,4 +3773,325 @@ body {
     visibility: visible !important;
     display: block !important;
     transform: translateY(0) !important;
+}
+
+/* ===================================
+   セクション背景テキスト装飾
+   =================================== */
+.section__bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-20deg);
+    font-family: var(--font-primary);
+    font-size: clamp(8rem, 20vw, 25rem);
+    font-weight: 900;
+    color: rgba(99, 102, 241, 0.03);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+    letter-spacing: 0.1em;
+
+    /* デフォルト: フェードイン + スケール */
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-20deg) scale(0.8);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.section__bg-text.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-20deg) scale(1);
+}
+
+/* オプション2: ブラー効果版（コメントを外すと有効化）*/
+/*
+.section__bg-text {
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-50%, -50%) rotate(-20deg);
+    transition: opacity 1.2s ease-out, filter 1.2s ease-out;
+}
+
+.section__bg-text.visible {
+    opacity: 1;
+    filter: blur(0px);
+}
+*/
+
+/* セクションに相対位置を設定 */
+.works,
+.skills,
+.about,
+.contact,
+.updates {
+    position: relative;
+    overflow: hidden;
+}
+
+/* data属性から文字列を取得して表示 */
+.section__bg-text::before {
+    content: attr(data-text);
+}
+
+/* ===================================
+   スキルカード展開システム
+   =================================== */
+.skill-expand-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.skill-expand-overlay.active {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+}
+
+.skill--expanded {
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(99, 102, 241, 0.3) !important;
+    overflow: visible !important;
+    /* 画質改善のための設定 */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    image-rendering: crisp-edges;
+    transform-style: preserve-3d;
+}
+
+/* 展開時にレベルバッジを非表示 */
+.skill--expanded .skill-level-badge {
+    display: none !important;
+}
+
+/* 展開時に元のdescriptionを非表示 */
+.skill--expanded .skill__description {
+    display: none !important;
+}
+
+/* 詳細コンテンツ */
+.skill-details-content {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgba(15, 15, 35, 0.98);
+    border-radius: 15px;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    /* 画質改善 */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.skill-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+}
+
+.skill-details-title {
+    font-family: var(--font-primary);
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.skill-details-close {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: rgba(255, 107, 107, 0.1);
+    border: 2px solid rgba(255, 107, 107, 0.3);
+    color: #ff6b6b;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-details-close:hover {
+    background: rgba(255, 107, 107, 0.2);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* 統計情報 */
+.skill-details-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.skill-stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.skill-stat i {
+    font-size: 2rem;
+}
+
+/* 詳細セクション */
+.skill-details-section {
+    margin-bottom: 2rem;
+}
+
+.skill-details-subtitle {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.skill-details-subtitle i {
+    font-size: 2.2rem;
+}
+
+/* スキルグリッド */
+.skill-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+}
+
+.skill-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+    transition: all 0.3s ease;
+    animation: slideInFromLeft 0.5s ease backwards;
+}
+
+.skill-detail-item:nth-child(1) { animation-delay: 0.1s; }
+.skill-detail-item:nth-child(2) { animation-delay: 0.15s; }
+.skill-detail-item:nth-child(3) { animation-delay: 0.2s; }
+.skill-detail-item:nth-child(4) { animation-delay: 0.25s; }
+.skill-detail-item:nth-child(5) { animation-delay: 0.3s; }
+.skill-detail-item:nth-child(6) { animation-delay: 0.35s; }
+.skill-detail-item:nth-child(7) { animation-delay: 0.4s; }
+.skill-detail-item:nth-child(8) { animation-delay: 0.45s; }
+
+.skill-detail-item:hover {
+    background: rgba(99, 102, 241, 0.15);
+    transform: translateX(5px);
+    border-left-color: var(--secondary-color);
+}
+
+.skill-detail-item i {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+}
+
+.skill-detail-item span {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* フッター */
+.skill-details-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.skill-details-note {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.skill-details-note i {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .header__controls {
+        margin-left: 1rem;
+        gap: 0.5rem;
+    }
+
+    .skill--expanded {
+        width: 95vw !important;
+    }
+
+    .skill-details-content {
+        padding: 1.5rem;
+    }
+
+    .skill-details-title {
+        font-size: 2.2rem;
+    }
+
+    .skill-details-close {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.6rem;
+    }
+
+    .skill-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-details-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .skill-stat {
+        width: 100%;
+    }
 }

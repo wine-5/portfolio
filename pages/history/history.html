@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update History - wine-5 Portfolio</title>
+    <meta name="description" content="wine-5のポートフォリオサイトの更新履歴を確認できます。">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="history-page.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ローディング画面 -->
+    <div id="loading" class="loading">
+        <div class="loading__content">
+            <div class="loading__logo">
+                <div class="logo-ring logo-ring-1"></div>
+                <div class="logo-ring logo-ring-2"></div>
+                <div class="logo-ring logo-ring-3"></div>
+                <div class="logo-center">
+                    <span class="logo-text">W5</span>
+                </div>
+            </div>
+            <div class="loading__progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="loading__text">Loading History...</p>
+                <div class="loading__percentage">0%</div>
+            </div>
+            <div class="loading__particles"></div>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <nav class="header__nav">
+            <div class="header__logo">
+                <h1 class="header__title">
+                    <a href="../../index.html" class="header__title-link">wine-5</a>
+                </h1>
+            </div>
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    <a href="../../index.html#home" class="header__nav-link" data-i18n="common.header.home">Home</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../../index.html#games" class="header__nav-link" data-i18n="common.header.games">Games</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../../index.html#skills" class="header__nav-link" data-i18n="common.header.skills">Skills</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../../index.html#about" class="header__nav-link" data-i18n="common.header.about">About</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../../index.html#connect" class="header__nav-link" data-i18n="common.header.contact">Contact</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../timeline/timeline.html" class="header__nav-link" data-i18n="common.header.timeline">Timeline</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="../../index.html#updates" class="header__nav-link" data-i18n="common.header.updates">Updates</a>
+                </li>
+            </ul>
+            <!-- テーマ切り替え & 言語切り替えボタン -->
+            <!-- 言語切り替えとテーマ切り替えはJavaScriptで動的に追加されます -->
+            <!-- テーマ切り替え機能は未実装のため、ボタンは表示されません -->
+            <div class="header__controls" id="header-controls"></div>
+            <div class="header__hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- History Hero Section -->
+        <section class="history-hero">
+            <div class="container">
+                <div class="history-hero__content">
+                    <h1 class="history-hero__title" data-i18n="common.history.hero.title">Update History</h1>
+                    <p class="history-hero__subtitle" data-i18n="common.history.hero.subtitle">wine-5 ポートフォリオサイトの更新履歴</p>
+                    <a href="../../index.html" class="btn btn--primary">
+                        <i class="fas fa-arrow-left"></i>
+                        <span data-i18n="common.history.hero.backToHome">Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Timeline Section -->
+        <section class="history-timeline">
+            <div class="container">
+                <div class="history-timeline__content" id="history-timeline">
+                    <!-- 更新履歴はJavaScriptで動的生成 -->
+                    <div class="loading-message" data-i18n="common.history.loading">Loading history...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__main">
+                    <div class="footer__brand">
+                        <h3 class="footer__title">wine-5</h3>
+                        <p class="footer__description">Game Developer</p>
+                    </div>
+                    <div class="footer__links">
+                        <div class="footer__section">
+                            <h4 class="footer__section-title" data-i18n="common.footer.navigation">ナビゲーション</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-home"></i> <span data-i18n="common.header.home">Home</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-gamepad"></i> <span data-i18n="common.header.games">Games</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-code"></i> <span data-i18n="common.header.skills">Skills</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-user"></i> <span data-i18n="common.header.about">About</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-envelope"></i> <span data-i18n="common.header.contact">Contact</span></a></li>
+                                <li><a href="../timeline/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> <span data-i18n="common.header.timeline">Timeline</span></a></li>
+                                <li><a href="../../index.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__section">
+                            <h4 class="footer__section-title" data-i18n="common.footer.social">ソーシャル</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="https://github.com/wine-5" target="_blank" class="footer__link"><i class="fab fa-github"></i> GitHub</a></li>
+                                <li><a href="https://x.com/wine_program" target="_blank" class="footer__link"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
+                                <li><a href="https://unityroom.com/users/wine-555" target="_blank" class="footer__link"><i class="fas fa-dice-d6"></i> UnityRoom</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">法務</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="../legal/privacy.html" class="footer__link"><i class="fas fa-shield-halved"></i> <span data-i18n="common.footer.privacyPolicy">プライバシーポリシー</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer__bottom">
+                    <p class="footer__text">&copy; 2025 wine-5. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <!-- Core Systems -->
+    <script src="../../assets/js/managers/ui/theme-manager.js"></script>
+    <script src="../../assets/js/managers/ui/i18n-manager.js"></script>
+    
+    <script src="../../js/data/updates.js"></script>
+    <script src="../../assets/js/managers/sections/history-manager.js"></script>
+    <script>
+        // Initialize managers
+        let historyManager = null;
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize theme
+            if (window.themeManager) {
+                window.themeManager.init();
+                
+                // Create theme toggle button
+                const headerControls = document.getElementById('header-controls');
+                if (headerControls) {
+                    window.themeManager.createToggleButton(headerControls);
+                }
+            }
+            
+            // Initialize i18n
+            if (window.i18n) {
+                const currentLang = window.i18n.getCurrentLanguage();
+                await window.i18n.loadTranslations(currentLang);
+                window.i18n.applyTranslations();
+                
+                // Create language switcher
+                const headerControls = document.getElementById('header-controls');
+                if (headerControls) {
+                    window.i18n.createLanguageSwitcher(headerControls);
+                }
+            }
+            
+            // Load updates data
+            if (window.updatesData) {
+                const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+                await window.updatesData.load(currentLang);
+                
+                // データ読み込み完了後にHistoryManagerを初期化
+                try {
+                    historyManager = new HistoryManager();
+                    await historyManager.init();
+                } catch (error) {
+                    console.error('Failed to initialize HistoryManager:', error);
+                }
+            } else {
+                console.error('updatesData is not available');
+            }
+            
+            // 言語切り替えイベントをリスン
+            window.addEventListener('languageChanged', async (e) => {
+                const newLang = e.detail.language;
+                console.log('Language changed to:', newLang);
+                
+                // 更新履歴データを再読み込み
+                if (window.updatesData) {
+                    await window.updatesData.load(newLang);
+                }
+                
+                // 更新履歴を再レンダリング
+                if (historyManager) {
+                    historyManager.renderHistoryTimeline();
+                }
+            });
+            
+            // Hide loading screen
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.style.opacity = '0';
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

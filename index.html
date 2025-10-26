@@ -11,8 +11,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     
     <!-- CSS -->
+    <!-- New Structure -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Legacy Styles (移行中) -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,8 +31,22 @@
     <!-- ローディング画面 -->
     <div id="loading" class="loading">
         <div class="loading__content">
-            <div class="loading__spinner"></div>
-            <p class="loading__text">Loading Portfolio...</p>
+            <div class="loading__logo">
+                <div class="logo-ring logo-ring-1"></div>
+                <div class="logo-ring logo-ring-2"></div>
+                <div class="logo-ring logo-ring-3"></div>
+                <div class="logo-center">
+                    <span class="logo-text">W5</span>
+                </div>
+            </div>
+            <div class="loading__progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="loading__text">Loading Portfolio...</p>
+                <div class="loading__percentage">0%</div>
+            </div>
+            <div class="loading__particles"></div>
         </div>
     </div>
 
@@ -44,27 +60,39 @@
             </div>
             <ul class="header__nav-list">
                 <li class="header__nav-item">
-                    <a href="#home" class="header__nav-link">Home</a>
+                    <a href="#home" class="header__nav-link" data-i18n="common.header.home">Home</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#games" class="header__nav-link">Games</a>
+                    <a href="#games" class="header__nav-link" data-i18n="common.header.games">Games</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#skills" class="header__nav-link">Skills</a>
+                    <a href="#skills" class="header__nav-link" data-i18n="common.header.skills">Skills</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#about" class="header__nav-link">About</a>
+                    <a href="#about" class="header__nav-link" data-i18n="common.header.about">About</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#connect" class="header__nav-link">Contact</a>
+                    <a href="#connect" class="header__nav-link" data-i18n="common.header.contact">Contact</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="pages/timeline.html" class="header__nav-link">Timeline</a>
+                    <a href="pages/timeline/timeline.html" class="header__nav-link" data-i18n="common.header.timeline">Timeline</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#updates" class="header__nav-link">Updates</a>
+                    <a href="pages/history/history.html" class="header__nav-link" data-i18n="common.header.updates">Updates</a>
                 </li>
             </ul>
+            <!-- テーマ切り替え & 言語切り替えボタン -->
+            <div class="header__controls" id="header-controls">
+                <!-- デバッグコンソールトリガー -->
+                <button class="debug-console-trigger" id="debug-console-trigger" title="デバッグコンソールを開く">
+                    <i class="fas fa-terminal"></i>
+                </button>
+                <!-- テーマ切り替えボタン（未実装のためコメントアウト）
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                -->
+            </div>
             <div class="header__hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -85,30 +113,31 @@
                     <div class="hero__floating-cube"></div>
                 </div>
             </div>
+            
+            <!-- 湖面 -->
+            <div class="water-surface">
+                <svg class="water-svg" viewBox="0 0 1400 400" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(6,182,212,0.6);stop-opacity:1" />
+                            <stop offset="30%" style="stop-color:rgba(99,102,241,0.4);stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:rgba(6,182,212,0.3);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(30,58,138,0.2);stop-opacity:1" />
+                        </linearGradient>
+                        <radialGradient id="puddleReflection" cx="50%" cy="0%" r="80%">
+                            <stop offset="0%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:rgba(99,102,241,0.2);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgba(6,182,212,0.1);stop-opacity:1" />
+                        </radialGradient>
+                    </defs>
+                    <!-- 水たまりの形状（より浅く、広く） -->
+                    <path class="water-path" d="M0,200 Q350,180 700,200 T1400,210 L1400,400 L0,400 Z" fill="url(#waterGradient)"/>
+                    <!-- 表面の反射 -->
+                    <path class="water-reflection" d="M0,200 Q350,180 700,200 T1400,210 L1400,250 Q1050,230 700,240 T0,250 Z" fill="url(#puddleReflection)"/>
+                </svg>
+            </div>
+            
             <div class="hero__content">
-                <!-- 湖面 -->
-                <div class="water-surface">
-                    <svg class="water-svg" viewBox="0 0 1400 400" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" style="stop-color:rgba(6,182,212,0.6);stop-opacity:1" />
-                                <stop offset="30%" style="stop-color:rgba(99,102,241,0.4);stop-opacity:1" />
-                                <stop offset="70%" style="stop-color:rgba(6,182,212,0.3);stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:rgba(30,58,138,0.2);stop-opacity:1" />
-                            </linearGradient>
-                            <radialGradient id="puddleReflection" cx="50%" cy="0%" r="80%">
-                                <stop offset="0%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" />
-                                <stop offset="50%" style="stop-color:rgba(99,102,241,0.2);stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:rgba(6,182,212,0.1);stop-opacity:1" />
-                            </radialGradient>
-                        </defs>
-                        <!-- 水たまりの形状（より浅く、広く） -->
-                        <path class="water-path" d="M0,200 Q350,180 700,200 T1400,210 L1400,400 L0,400 Z" fill="url(#waterGradient)"/>
-                        <!-- 表面の反射 -->
-                        <path class="water-reflection" d="M0,200 Q350,180 700,200 T1400,210 L1400,250 Q1050,230 700,240 T0,250 Z" fill="url(#puddleReflection)"/>
-                    </svg>
-                </div>
-                
                 <!-- タイトル文字列 -->
                 <div class="hero__title-container">
                     <div class="hero__title-letters" id="heroTitleLetters">
@@ -144,6 +173,7 @@
 
         <!-- ゲームセクション -->
         <section class="works" id="games">
+            <div class="section__bg-text" data-text="Games"></div>
             <div class="container">
                 <h2 class="section__title">Games</h2>
                 <div class="works__grid" id="works-grid">
@@ -154,55 +184,22 @@
 
         <!-- スキルセクション -->
         <section class="skills" id="skills">
+            <div class="section__bg-text" data-text="Skills"></div>
             <div class="container">
                 <h2 class="section__title">Skills</h2>
+                <p class="skills__note">
+                    <i class="fas fa-info-circle"></i>
+                    <span data-i18n="sections.skills.note">各スキルのレベルは学習開始からの経験月数を表示しています（最大: 4年 / 学生期間）</span>
+                </p>
                 <div class="skills__grid">
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">Unity</span>
-                        </div>
-                        <div class="skill__description">
-                            3D/2Dゲーム開発、アニメーション、物理演算
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">C#</span>
-                        </div>
-                        <div class="skill__description">
-                            オブジェクト指向設計、SOLID原則、デザインパターン
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">C++</span>
-                        </div>
-                        <div class="skill__description">
-                            ポインタ操作
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">Git</span>
-                        </div>
-                        <div class="skill__description">
-                            バージョン管理、ブランチ戦略、チーム開発
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill__header">
-                            <span class="skill__name">HTML/CSS/JS</span>
-                        </div>
-                        <div class="skill__description">
-                            Webページの作成、実際にWebページを公開
-                        </div>
-                    </div>
+                    <!-- スキルカードはJavaScriptで動的生成 -->
                 </div>
             </div>
         </section>
 
         <!-- Aboutセクション -->
         <section class="about" id="about">
+            <div class="section__bg-text" data-text="About"></div>
             <div class="container">
                 <h2 class="section__title">About</h2>
                 <div class="about__content">
@@ -214,6 +211,7 @@
                             SOLID原則を意識した設計を心がけています。<br>
                             UnityRoomでの公開経験があり、<br>
                             プレイヤーに喜びを届けるゲーム作りを追求しています。<br>
+                            プログラミングを誰よりも楽しく、追求し続けることは私の強みです。<br>
                             <!-- 将来的にApp Storeでの公開も予定 --><br>
                             <br>
                             X（Twitter）: @wine_program でも活動中！
@@ -235,7 +233,7 @@
                         
                         <!-- タイムラインページへのリンク -->
                         <div class="about__timeline-link">
-                            <a href="pages/timeline.html" class="btn btn--primary about__timeline-button">
+                            <a href="pages/timeline/timeline.html" class="btn btn--primary about__timeline-button">
                                 <i class="fas fa-history"></i>
                                 開発の軌跡を見る
                             </a>
@@ -246,10 +244,8 @@
                     </div>
                     <div class="about__image">
                         <div class="about__avatar">
-                            <!-- プロフィール画像エリア -->
-                            <div class="about__avatar-placeholder">
-                                <i class="fas fa-user"></i>
-                            </div>
+                            <!-- プロフィール画像 -->
+                            <img src="images/icons/profile-icon.png" alt="wine-5 Profile" class="about__avatar-image">
                         </div>
                     </div>
                 </div>
@@ -258,18 +254,19 @@
 
         <!-- 更新履歴セクション -->
         <section class="updates" id="update-history">
+            <div class="section__bg-text" data-text="Updates"></div>
             <div class="container">
                 <h2 class="section__title">Updates</h2>
                 <div class="updates__content">
                     <div class="updates__simple">
                         <div class="updates__last-modified">
-                            <h3 class="updates__subtitle">Last Updated</h3>
-                            <p class="updates__date" id="last-updated-date">2025年10月23日</p>
+                            <h3 class="updates__subtitle" data-i18n="sections.updates.lastUpdated">Last Updated</h3>
+                            <p class="updates__date" id="last-updated-date">2025年10月27日</p>
                         </div>
                         <div class="updates__action">
-                            <a href="pages/history.html" class="btn btn--primary">
+                            <a href="pages/history/history.html" class="btn btn--primary">
                                 <i class="fas fa-history"></i>
-                                View All History
+                                <span data-i18n="sections.updates.viewAllHistory">View All History</span>
                             </a>
                         </div>
                     </div>
@@ -279,27 +276,28 @@
 
         <!-- コンタクトセクション -->
         <section class="contact" id="connect">
+            <div class="section__bg-text" data-text="Contact"></div>
             <div class="container">
                 <h2 class="section__title">Contact</h2>
                 <div class="contact__content">
                     <div class="contact__info">
-                        <h3 class="contact__subtitle">Get In Touch</h3>
-                        <p class="contact__description">
+                        <h3 class="contact__subtitle" data-i18n="sections.contact.subtitle">Get In Touch</h3>
+                        <p class="contact__description" data-i18n="sections.contact.description">
                             ゲーム開発に関する質問やご意見等がございましたら、<br>
                             お気軽にお問い合わせください。
                         </p>
                     </div>
                     <form class="contact__form" id="contact-form">
                         <div class="form__group">
-                            <input type="text" class="form__input" id="name" name="name" placeholder="お名前" required>
+                            <input type="text" class="form__input" id="name" name="name" placeholder="お名前" data-i18n-placeholder="common.form.namePlaceholder" required>
                         </div>
                         <div class="form__group">
-                            <input type="email" class="form__input" id="email" name="email" placeholder="メールアドレス" required>
+                            <input type="email" class="form__input" id="email" name="email" placeholder="メールアドレス" data-i18n-placeholder="common.form.emailPlaceholder" required>
                         </div>
                         <div class="form__group">
-                            <textarea class="form__textarea" id="message" name="message" placeholder="メッセージ" rows="5" required></textarea>
+                            <textarea class="form__textarea" id="message" name="message" placeholder="メッセージ" data-i18n-placeholder="common.form.messagePlaceholder" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                        <button type="submit" class="btn btn--primary btn--full" data-i18n="common.button.send">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -317,23 +315,29 @@
                     </div>
                     <div class="footer__links">
                         <div class="footer__section">
-                            <h4 class="footer__section-title">ナビゲーション</h4>
+                            <h4 class="footer__section-title" data-i18n="common.footer.navigation">ナビゲーション</h4>
                             <ul class="footer__link-list">
-                                <li><a href="#home" class="footer__link"><i class="fas fa-home"></i> Home</a></li>
-                                <li><a href="#games" class="footer__link"><i class="fas fa-gamepad"></i> Games</a></li>
-                                <li><a href="#skills" class="footer__link"><i class="fas fa-code"></i> Skills</a></li>
-                                <li><a href="#about" class="footer__link"><i class="fas fa-user"></i> About</a></li>
-                                <li><a href="#connect" class="footer__link"><i class="fas fa-envelope"></i> Contact</a></li>
-                                <li><a href="pages/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> Timeline</a></li>
-                                <li><a href="#updates" class="footer__link"><i class="fas fa-clock-rotate-left"></i> Updates</a></li>
+                                <li><a href="#home" class="footer__link"><i class="fas fa-home"></i> <span data-i18n="common.header.home">Home</span></a></li>
+                                <li><a href="#games" class="footer__link"><i class="fas fa-gamepad"></i> <span data-i18n="common.header.games">Games</span></a></li>
+                                <li><a href="#skills" class="footer__link"><i class="fas fa-code"></i> <span data-i18n="common.header.skills">Skills</span></a></li>
+                                <li><a href="#about" class="footer__link"><i class="fas fa-user"></i> <span data-i18n="common.header.about">About</span></a></li>
+                                <li><a href="#contact" class="footer__link"><i class="fas fa-envelope"></i> <span data-i18n="common.header.contact">Contact</span></a></li>
+                                <li><a href="pages/timeline/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> <span data-i18n="common.header.timeline">Timeline</span></a></li>
+                                <li><a href="pages/history/history.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
                             </ul>
                         </div>
                         <div class="footer__section">
-                            <h4 class="footer__section-title">ソーシャル</h4>
+                            <h4 class="footer__section-title" data-i18n="common.footer.social">ソーシャル</h4>
                             <ul class="footer__link-list">
                                 <li><a href="https://github.com/wine-5" target="_blank" class="footer__link"><i class="fab fa-github"></i> GitHub</a></li>
                                 <li><a href="https://x.com/wine_program" target="_blank" class="footer__link"><i class="fab fa-x-twitter"></i> X (Twitter)</a></li>
                                 <li><a href="https://unityroom.com/users/wine-555" target="_blank" class="footer__link"><i class="fas fa-dice-d6"></i> UnityRoom</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__section">
+                            <h4 class="footer__section-title">法務</h4>
+                            <ul class="footer__link-list">
+                                <li><a href="pages/legal/privacy.html" class="footer__link"><i class="fas fa-shield-halved"></i> <span data-i18n="common.footer.privacyPolicy">プライバシーポリシー</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -347,34 +351,72 @@
     </footer>
 
     <!-- JavaScript -->
-    <!-- ユーティリティ関数 -->
+    <!-- 0. Core Systems (First!) -->
+    <script src="assets/js/managers/ui/theme-manager.js"></script>
+    <script src="assets/js/managers/ui/i18n-manager.js"></script>
+    
+    <!-- 1. ユーティリティ & データ -->
     <script src="js/utils/functions.js"></script>
-    
-    <!-- データファイル -->
+    <script src="js/utils/skill-experience.js"></script>
+    <script src="js/data/skillDetails.js"></script>
     <script src="js/data/projects.js"></script>
-    <script src="js/data/timeline.js"></script>
     <script src="js/data/updates.js"></script>
-    
-    <!-- マネージャークラス -->
-    <script src="js/managers/ScrollManager.js"></script>
-    <script src="js/managers/SectionAnimationManager.js"></script>
-    <script src="js/managers/WaterReflectionTitleManager.js"></script>
-    <script src="js/managers/WebGLWaterReflectionManager.js"></script>
-
-    <script src="js/managers/GamesManager.js"></script>
-    <script src="js/managers/SkillsManager.js"></script>
-    <script src="js/managers/TimelineManager.js"></script>
-    <script src="js/managers/UpdatesManager.js"></script>
-    <script src="js/managers/ContactForm.js"></script>
-    
-    <!-- 設定ファイル -->
+    <script src="js/data/timeline.js"></script>
+    <script src="js/config/debug-config.js"></script>
+    <script src="js/utils/mobile-console.js"></script>
     <script src="js/config/logger.js"></script>
     <script src="js/config/email-config.js"></script>
     
-    <!-- アニメーション -->
-    <script src="js/animations.js"></script>
+    <!-- 2. Core Factory -->
+    <script src="assets/js/core/manager-factory.js"></script>
     
-    <!-- メインアプリケーション -->
+    <!-- 3. Animation Managers -->
+    <script src="assets/js/managers/animation/scroll-manager.js"></script>
+    <script src="assets/js/managers/animation/skill-particle-manager.js"></script>
+    <script src="assets/js/managers/animation/water-reflection-title-manager.js"></script>
+    <script src="assets/js/managers/animation/webgl-water-reflection-manager.js"></script>
+    
+    <!-- 4. Section Managers -->
+    <script src="assets/js/managers/sections/games-manager.js"></script>
+    <script src="assets/js/managers/sections/skills-manager.js"></script>
+    <script src="assets/js/managers/sections/updates-manager.js"></script>
+    <script src="assets/js/managers/sections/timeline-manager.js"></script>
+    <script src="assets/js/managers/sections/history-manager.js"></script>
+    <script src="assets/js/managers/sections/news-manager.js"></script>
+    
+    <!-- 5. UI Managers -->
+    <script src="assets/js/managers/ui/contact-form.js"></script>
+    <script src="assets/js/managers/ui/skill-card-expand-manager.js"></script>
+    <script src="assets/js/managers/ui/game-ui-manager.js"></script>
+    <script src="assets/js/managers/ui/footer-animation-manager.js"></script>
+    <script src="assets/js/managers/ui/section-animation-manager.js"></script>
+    <script src="assets/js/managers/ui/easter-egg-manager.js"></script>
+    <script src="js/managers/ui/debug-console-manager.js"></script>
+    
+    <!-- 6. アニメーション & メイン -->
+    <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- デバッグコンソールモーダル -->
+    <div class="console-modal" id="console-modal">
+        <div class="console-container">
+            <div class="console-header">
+                <h3 class="console-title">
+                    <i class="fas fa-terminal"></i>
+                    Debug Console
+                </h3>
+                <button class="console-close" id="console-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="console-output" id="console-output">
+                <div class="console-line info">コマンドを入力してください(2つ用意しています)</div>
+            </div>
+            <div class="console-input-wrapper">
+                <span class="console-prompt">$</span>
+                <input type="text" class="console-input" id="console-input" placeholder="コマンドを入力..." autocomplete="off">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

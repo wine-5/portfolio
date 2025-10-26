@@ -1,0 +1,69 @@
+/**
+ * テーマ切り替えボタンのスタイル
+ */
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+}
+
+.theme-toggle__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.theme-toggle__button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.theme-toggle__button:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle__icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+    transition: transform var(--transition-base);
+}
+
+.theme-toggle__button:hover .theme-toggle__icon {
+    transform: rotate(20deg);
+}
+
+/* ライトモード対応 */
+[data-theme="light"] .theme-toggle__button {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
+    color: var(--color-text-primary);
+}
+
+[data-theme="light"] .theme-toggle__button:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--color-primary);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .theme-toggle__button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .theme-toggle__icon {
+        width: 18px;
+        height: 18px;
+    }
+}

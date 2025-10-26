@@ -1,0 +1,122 @@
+{
+  "unity": {
+    "title": "Unity",
+    "additionalSkills": [
+      "Unity编辑器扩展",
+      "Shader Graph",
+      "粒子系统",
+      "物理与碰撞",
+      "UI Toolkit",
+      "Timeline与Cinemachine",
+      "Asset Bundle管理",
+      "性能优化"
+    ],
+    "projects": "10+项目",
+    "proficiency": "85%"
+  },
+  "c#": {
+    "title": "C#",
+    "additionalSkills": [
+      "LINQ与Lambda表达式",
+      "async/await异步处理",
+      "委托与事件",
+      "泛型",
+      "反射",
+      "特性应用",
+      "设计模式实现",
+      "Unity脚本API"
+    ],
+    "projects": "15+项目",
+    "proficiency": "80%"
+  },
+  "c++": {
+    "title": "C++",
+    "additionalSkills": [
+      "STL容器应用",
+      "智能指针",
+      "模板编程",
+      "多线程处理",
+      "内存管理优化",
+      "OpenGL集成",
+      "CMake构建配置",
+      "调试与性能分析"
+    ],
+    "projects": "8+项目",
+    "proficiency": "70%"
+  },
+  "git": {
+    "title": "Git",
+    "additionalSkills": [
+      "分支策略设计",
+      "变基与合并",
+      "冲突解决",
+      "GitHub Actions CI/CD",
+      "Git Hooks应用",
+      "子模块管理",
+      "团队开发流程",
+      "提交规范管理"
+    ],
+    "projects": "所有项目使用",
+    "proficiency": "75%"
+  },
+  "html": {
+    "title": "HTML",
+    "additionalSkills": [
+      "语义化HTML",
+      "无障碍访问支持",
+      "SEO优化",
+      "Open Graph设置",
+      "HTML5 API应用",
+      "响应式图片",
+      "表单验证",
+      "Web组件"
+    ],
+    "projects": "20+网站",
+    "proficiency": "90%"
+  },
+  "css": {
+    "title": "CSS",
+    "additionalSkills": [
+      "CSS Grid与Flexbox",
+      "动画设计",
+      "CSS变量应用",
+      "响应式设计",
+      "BEM命名规范",
+      "性能优化",
+      "跨浏览器兼容",
+      "自定义属性"
+    ],
+    "projects": "20+网站",
+    "proficiency": "85%"
+  },
+  "javascript": {
+    "title": "JavaScript",
+    "additionalSkills": [
+      "ES6+现代语法",
+      "Promise与async/await",
+      "DOM操作与事件",
+      "Fetch API与AJAX",
+      "闭包应用",
+      "原型链",
+      "设计模式",
+      "性能优化"
+    ],
+    "projects": "25+应用程序",
+    "proficiency": "85%"
+  },
+  "js": {
+    "title": "JavaScript",
+    "additionalSkills": [
+      "ES6+现代语法",
+      "Promise与async/await",
+      "DOM操作与事件",
+      "Fetch API与AJAX",
+      "闭包应用",
+      "原型链",
+      "设计模式",
+      "性能优化"
+    ],
+    "projects": "25+应用程序",
+    "proficiency": "85%"
+  }
+}

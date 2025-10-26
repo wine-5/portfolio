@@ -1,0 +1,48 @@
+/* タイムラインページ専用スタイル */
+
+/* タイムラインページの高さを適切に調整 */
+body {
+    min-height: 100vh; /* 通常の高さに戻す */
+}
+
+.timeline-section {
+    min-height: 200vh !important; /* 適度な高さに調整 */
+    padding-bottom: 200px !important; /* 下部パディングを適切に調整 */
+}
+
+.scroll-timeline {
+    min-height: 150vh !important; /* コンテナも適切なサイズに */
+    padding-bottom: 100px !important; /* 下部パディングを適切に調整 */
+}
+
+/* タイムラインノードの色とサイズを修正（vhを使用してレスポンシブ対応） */
+.scroll-timeline-node {
+    width: 10vh !important; /* ビューポート高の10%のサイズ */
+    height: 10vh !important; /* ビューポート高の10%のサイズ */
+    background: #6366f1 !important; /* 青紫色に固定 */
+    box-shadow: 0 0 0 0.4vh #6366f1, 0 0 4vh rgba(99, 102, 241, 0.5) !important;
+}
+
+.scroll-timeline-node.node-activated {
+    box-shadow: 0 0 0 0.6vh #6366f1, 0 0 5vh rgba(99, 102, 241, 0.7) !important;
+}
+
+/* ノードの位置調整（vhサイズに合わせて） */
+.scroll-timeline-item--left .scroll-timeline-node {
+    right: calc(50% - 5vh) !important; /* 10vh / 2 = 5vh */
+}
+
+.scroll-timeline-item--right .scroll-timeline-node {
+    left: calc(50% - 5vh) !important; /* 10vh / 2 = 5vh */
+}
+
+/* アイコンのサイズもvhを使用 */
+.scroll-timeline-node i {
+    font-size: 3vh !important; /* ビューポート高の3%のフォントサイズ */
+}
+
+/* フッターのリンクを即座に表示 */
+.footer__link {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}

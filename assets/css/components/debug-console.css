@@ -1,0 +1,284 @@
+/* ===================================
+   デバッグコンソールUI
+   =================================== */
+
+/* トリガーボタン（ヘッダー用） */
+.debug-console-trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 0.5rem;
+    color: var(--color-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    margin-left: 0.5rem;
+}
+
+.debug-console-trigger:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+    transform: scale(1.05);
+}
+
+.debug-console-trigger i {
+    font-size: 1rem;
+}
+
+
+
+/* コンソールモーダル */
+.console-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.console-modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* コンソールコンテナ */
+.console-container {
+    background: var(--color-bg-secondary);
+    border: 2px solid var(--color-primary);
+    border-radius: 1rem;
+    width: 90vw;
+    max-width: 60rem;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* コンソールヘッダー */
+.console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--color-primary);
+    border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.console-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.console-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.console-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* コンソール出力エリア */
+.console-output {
+    padding: 1.5rem;
+    min-height: 20vh;
+    max-height: 40vh;
+    overflow-y: auto;
+    background: var(--color-bg-primary);
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    line-height: 1.8;
+}
+
+.console-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+.console-output::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+}
+
+.console-output::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+.console-line {
+    margin-bottom: 0.8rem;
+    padding: 0.8rem;
+    border-left: 3px solid transparent;
+    font-size: 0.95rem;
+}
+
+.console-line.info {
+    border-left-color: #00aaff;
+    color: #00aaff;
+}
+
+.console-line.success {
+    border-left-color: #10b981;
+    color: #10b981;
+}
+
+.console-line.error {
+    border-left-color: #ef4444;
+    color: #ef4444;
+}
+
+.console-line.command {
+    border-left-color: var(--color-primary);
+    color: var(--color-text-primary);
+}
+
+/* コンソール入力エリア */
+.console-input-wrapper {
+    display: flex;
+    padding: 1.2rem 1.5rem;
+    background: var(--color-bg-secondary);
+    border-radius: 0 0 0.8rem 0.8rem;
+    border-top: 1px solid var(--color-border-primary);
+}
+
+.console-prompt {
+    color: var(--color-primary);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    margin-right: 0.8rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.console-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text-primary);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+}
+
+.console-input::placeholder {
+    color: var(--color-text-tertiary);
+}
+
+/* コマンド履歴ヒント */
+.console-hint {
+    padding: 0.5rem 1.5rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-top: 1px solid var(--color-border-primary);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .console-container {
+        width: 95vw;
+        max-width: 95vw;
+        max-height: 90vh;
+    }
+
+    .console-output {
+        padding: 1rem;
+        min-height: 25vh;
+        max-height: 50vh;
+        font-size: clamp(0.75rem, 3vw, 0.875rem);
+    }
+    
+    .console-input-wrapper {
+        padding: 1rem;
+    }
+    
+    .console-input,
+    .console-prompt {
+        font-size: clamp(0.875rem, 3vw, 1rem);
+    }
+    
+    .debug-console-trigger {
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .console-container {
+        width: 98vw;
+        max-width: 98vw;
+        border-radius: 0.75rem;
+    }
+    
+    .console-output {
+        padding: 0.75rem;
+        min-height: 30vh;
+        max-height: 55vh;
+    }
+    
+    .console-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .console-title {
+        font-size: 1rem;
+    }
+    
+    .console-close {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.2rem;
+    }
+}

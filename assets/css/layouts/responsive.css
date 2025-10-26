@@ -1,0 +1,797 @@
+/* ===================================
+   レスポンシブデザイン
+   モバイルファースト設計
+   =================================== */
+
+/* ===================================
+   タブレット (768px以下)
+   =================================== */
+@media screen and (max-width: 768px) {
+    /* フォントサイズ調整 */
+    html {
+        font-size: 55%;
+    }
+
+    /* コンテナ */
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    /* 背景テキスト - タブレット調整 */
+    .section__bg-text {
+        font-size: clamp(6rem, 15vw, 12rem);
+        transform: translate(-50%, -50%) rotate(-15deg) scale(0.8);
+    }
+    
+    .section__bg-text.visible {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+    }
+
+    /* ヘッダー */
+    .header__nav-list {
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background: rgba(15, 15, 35, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 5rem;
+        gap: 4rem;
+        transition: left var(--transition-normal);
+    }
+
+    .header__nav-list.active {
+        left: 0;
+    }
+
+    .header__hamburger {
+        display: flex;
+    }
+
+    .header__hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    }
+
+    .header__hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .header__hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(0.7rem, -0.6rem);
+    }
+
+    /* ヒーロー */
+    .hero__title {
+        font-size: 4.5rem;
+    }
+
+    /* タブレット向け文字調整 */
+    .letter {
+        font-size: clamp(4rem, 8vw, 5.5rem) !important;
+        letter-spacing: clamp(-0.1rem, -0.3vw, 0rem) !important;
+    }
+
+    .letter-reflection {
+        font-size: clamp(4rem, 8vw, 5.5rem) !important;
+        letter-spacing: clamp(-0.1rem, -0.3vw, 0rem) !important;
+    }
+
+    .hero__title-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .hero__subtitle {
+        font-size: 2rem;
+    }
+
+    .hero__description {
+        font-size: 1.6rem;
+    }
+
+    .hero__buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .hero__buttons .btn {
+        width: 100%;
+        max-width: 30rem;
+    }
+
+    /* セクションタイトル */
+    .section__title {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+    }
+
+    /* 作品セクション */
+    .works {
+        padding: 8rem 0;
+    }
+
+    .works__grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    /* スキル */
+    .skills {
+        padding: 8rem 0;
+    }
+
+    .skills__grid {
+        gap: 2.5rem;
+    }
+
+    .skill {
+        padding: 2.5rem;
+    }
+
+    .skill__name {
+        font-size: 1.8rem;
+    }
+
+    /* 更新履歴 */
+    .updates {
+        padding: 8rem 0;
+    }
+
+    .updates__simple {
+        gap: 3rem;
+        max-width: 400px;
+    }
+
+    .updates__last-modified {
+        padding: 2.5rem 3rem;
+    }
+
+    .updates__action .btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.4rem;
+    }
+
+    .update-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .update-item__date {
+        min-width: auto;
+        font-size: 1.3rem;
+    }
+
+    /* About */
+    .about {
+        padding: 8rem 0;
+    }
+
+    .about__content {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        text-align: center;
+    }
+
+    .about__avatar {
+        width: 25rem;
+        height: 25rem;
+    }
+
+    .about__avatar-placeholder {
+        font-size: 6rem;
+    }
+
+    .about__links {
+        justify-content: center;
+    }
+
+    /* コンタクト */
+    .contact {
+        padding: 8rem 0;
+    }
+
+    .contact__content {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        text-align: center;
+    }
+
+    .contact__form {
+        padding: 3rem;
+    }
+}
+
+/* ===================================
+   スマートフォン (480px以下)
+   =================================== */
+@media screen and (max-width: 480px) {
+    /* フォントサイズ調整 */
+    html {
+        font-size: 50%;
+    }
+
+    /* コンテナ */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* 背景テキスト - スマートフォン調整 */
+    .section__bg-text {
+        font-size: clamp(4rem, 18vw, 8rem);
+        transform: translate(-50%, -50%) rotate(-12deg) scale(0.8);
+        letter-spacing: 0.05em;
+    }
+    
+    .section__bg-text.visible {
+        transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+    }
+
+    /* ヘッダー */
+    .header__nav {
+        padding: 0 1rem;
+    }
+
+    .header__title {
+        font-size: 2rem;
+    }
+
+    /* ヒーロー */
+    .hero__content {
+        padding: 0 1rem;
+    }
+
+    .hero__title {
+        font-size: 3.5rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.8rem;
+    }
+
+    /* モバイル向け文字調整 - ビューポート幅に基づく柔軟なサイズ */
+    .letter {
+        font-size: clamp(3rem, 12vw, 4.5rem) !important;
+        letter-spacing: clamp(-0.2rem, -0.5vw, -0.1rem) !important;
+    }
+
+    .letter-reflection {
+        font-size: clamp(3rem, 12vw, 4.5rem) !important;
+        letter-spacing: clamp(-0.2rem, -0.5vw, -0.1rem) !important;
+    }
+
+    .hero__title-container {
+        transform: scale(1);
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    .hero__title-letters {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+
+    .hero__description {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+    }
+
+    /* セクションタイトル */
+    .section__title {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    /* 作品カード */
+    .work-card__content {
+        padding: 2rem;
+    }
+
+    .work-card__title {
+        font-size: 1.8rem;
+    }
+
+    .work-card__buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .work-card__button {
+        font-size: 1.3rem;
+    }
+
+    /* 詳細情報の折りたたみ - モバイル対応 */
+    .work-card__details-summary {
+        padding: 0.8rem 1rem;
+        font-size: 1.3rem;
+    }
+
+    .work-card__details-content {
+        padding: 1rem;
+    }
+
+    .work-card__features {
+        font-size: 1.3rem;
+        line-height: 1.6;
+    }
+
+    /* 担当箇所 - モバイル対応 */
+    .work-card__responsibilities-title {
+        font-size: 1.3rem;
+    }
+
+    .work-card__responsibilities-content {
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+
+    /* スキル */
+    .skill {
+        padding: 2rem;
+    }
+
+    .skill__name {
+        font-size: 1.6rem;
+    }
+
+    .skill__percentage {
+        font-size: 1.4rem;
+    }
+
+    .skill__description {
+        font-size: 1.4rem;
+    }
+
+    /* 更新履歴 */
+    .updates__subtitle {
+        font-size: 2rem;
+    }
+
+    .updates__date {
+        font-size: 1.8rem;
+    }
+
+    .updates__last-modified {
+        padding: 2rem;
+    }
+
+    .updates__timeline {
+        padding: 2rem;
+    }
+
+    /* About */
+    .about__subtitle {
+        font-size: 2.4rem;
+    }
+
+    .about__description {
+        font-size: 1.6rem;
+    }
+
+    .about__avatar {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .about__avatar-placeholder {
+        font-size: 5rem;
+    }
+
+    .about__links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about__link {
+        width: 100%;
+        max-width: 25rem;
+        justify-content: center;
+    }
+
+    /* コンタクト */
+    .contact__subtitle {
+        font-size: 2.4rem;
+    }
+
+    .contact__description {
+        font-size: 1.6rem;
+    }
+
+    .contact__form {
+        padding: 2rem;
+    }
+
+    .form__input,
+    .form__textarea {
+        padding: 1.2rem;
+        font-size: 1.4rem;
+    }
+}
+
+/* ===================================
+   超小画面 (360px以下) - 小型スマートフォン対応
+   =================================== */
+@media screen and (max-width: 360px) {
+    /* 背景テキスト - 小型スマートフォン調整 */
+    .section__bg-text {
+        font-size: clamp(3rem, 15vw, 6rem);
+        transform: translate(-50%, -50%) rotate(-10deg) scale(0.75);
+    }
+    
+    .section__bg-text.visible {
+        transform: translate(-50%, -50%) rotate(-10deg) scale(0.95);
+    }
+
+    /* 極小画面での文字調整 */
+    .letter {
+        font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+        letter-spacing: clamp(-0.3rem, -0.8vw, -0.1rem) !important;
+    }
+
+    .letter-reflection {
+        font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+        letter-spacing: clamp(-0.3rem, -0.8vw, -0.1rem) !important;
+    }
+
+    .hero__title-container {
+        padding: 0 0.5rem;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    .hero__title-letters {
+        gap: clamp(0.1rem, 0.5vw, 0.3rem) !important;
+        max-width: 100%;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .hero__content {
+        padding: 0 0.5rem;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+    }
+}
+
+/* ===================================
+   極小画面 (320px以下) - 最小スマートフォン対応
+   =================================== */
+@media screen and (max-width: 320px) {
+    /* 極極小画面での緊急調整 */
+    .letter {
+        font-size: clamp(2rem, 12vw, 3rem) !important;
+        letter-spacing: clamp(-0.4rem, -1vw, -0.2rem) !important;
+        transform: scaleX(0.8) !important; /* 横幅をさらに圧縮 */
+    }
+
+    .letter-reflection {
+        font-size: clamp(2rem, 12vw, 3rem) !important;
+        letter-spacing: clamp(-0.4rem, -1vw, -0.2rem) !important;
+        transform: scaleY(-1) scaleX(0.8) !important; /* 反転+横幅圧縮 */
+    }
+
+    .hero__title-container {
+        padding: 0 0.25rem;
+        transform: scale(0.9); /* コンテナ全体をわずかに縮小 */
+    }
+
+    .hero__title-letters {
+        gap: clamp(0.05rem, 0.3vw, 0.2rem) !important;
+        letter-spacing: -0.1rem;
+    }
+
+    /* WebGL Canvas のサイズ制限 */
+    #webgl-container {
+        transform: scale(0.85);
+        transform-origin: center center;
+    }
+
+    .hero__content {
+        padding: 0 0.25rem;
+    }
+
+    .container {
+        padding: 0 0.25rem;
+    }
+}
+
+/* ===================================
+   横向き小画面対応 (高さ500px以下で横向き)
+   =================================== */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .letter {
+        font-size: clamp(2rem, 8vh, 3.5rem) !important;
+    }
+
+    .letter-reflection {
+        font-size: clamp(2rem, 8vh, 3.5rem) !important;
+    }
+
+    .hero__title-container {
+        margin: 1rem 0;
+    }
+}
+
+/* ===================================
+   大画面 (1200px以上)
+   =================================== */
+@media screen and (min-width: 1200px) {
+    /* ヒーロー */
+    .hero__title {
+        font-size: 7rem;
+    }
+
+    .hero__subtitle {
+        font-size: 2.8rem;
+    }
+
+    .hero__description {
+        font-size: 2rem;
+    }
+
+    /* 作品グリッド */
+    .works__grid {
+        grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    }
+
+    /* スキル */
+    .skills__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===================================
+   高解像度対応
+   =================================== */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 140rem;
+    }
+
+    .hero__title {
+        font-size: 8rem;
+    }
+
+    .section__title {
+        font-size: 4.5rem;
+    }
+}
+
+/* ===================================
+   縦向き画面での調整
+   =================================== */
+@media screen and (max-height: 700px) and (orientation: landscape) {
+    .hero {
+        min-height: 120vh;
+    }
+
+    .hero__content {
+        padding-top: 5rem;
+    }
+
+    .hero__title {
+        font-size: 4rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.8rem;
+    }
+
+    .hero__description {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero__buttons .btn {
+        padding: 1rem 2rem;
+    }
+}
+
+/* ===================================
+   プリント時のスタイル
+   =================================== */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+
+    .header,
+    .hero__particles,
+    .loading,
+    .btn,
+    .contact__form {
+        display: none !important;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+
+    .section__title {
+        color: black !important;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+    }
+
+    .works,
+    .skills,
+    .about,
+    .contact {
+        padding: 3rem 0;
+    }
+
+    .work-card,
+    .skill,
+    .about__content {
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+}
+
+/* ===================================
+   アクセシビリティ対応
+   =================================== */
+
+/* モーション制限のユーザー向け */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .loading__spinner {
+        animation: none;
+        border: 0.4rem solid var(--primary-color);
+    }
+
+    .hero__scroll-icon::after {
+        animation: none;
+        transform: translateX(-50%);
+    }
+
+    .skill__progress::after {
+        animation: none;
+    }
+}
+
+/* ハイコントラストモード */
+@media (prefers-contrast: high) {
+    :root {
+        --color-bg-primary: #000000;
+        --color-bg-secondary: #111111;
+        --color-bg-tertiary: #222222;
+        --color-text-primary: #ffffff;
+        --color-text-secondary: #ffffff;
+        --color-text-tertiary: #cccccc;
+        --color-primary: #ffffff;
+        --color-secondary: #ffffff;
+        --color-accent: #ffffff;
+    }
+
+    .btn--secondary {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+
+    .work-card,
+    .skill,
+    .contact__form {
+        border: 2px solid #ffffff;
+    }
+}
+
+/* フォーカス可視化の改善 */
+@media (prefers-reduced-motion: no-preference) {
+    .header__nav-link:focus,
+    .btn:focus,
+    .form__input:focus,
+    .form__textarea:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}
+
+/* Updates Header Responsive */
+@media (max-width: 768px) {
+    .updates__header {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+    
+    .updates__subtitle {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .updates__header {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* ===================================
+   iPad・タブレット専用 (768px〜1024px)
+   =================================== */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* 背景テキスト - iPad調整 */
+    .section__bg-text {
+        font-size: clamp(10rem, 18vw, 20rem);
+    }
+
+    /* iPad対応: WebKitプレフィックス追加 */
+    .section__title {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: gradientFlow 8s ease infinite;
+        animation: gradientFlow 8s ease infinite;
+    }
+
+    .loading__text {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: gradientFlow 3s ease infinite, pulse 2s ease-in-out infinite;
+        animation: gradientFlow 3s ease infinite, pulse 2s ease-in-out infinite;
+    }
+
+    /* カードフリップアニメーション強化 */
+    .card-flip {
+        -webkit-transform: rotateY(-30deg) translateY(20px) scale(0.95);
+        transform: rotateY(-30deg) translateY(20px) scale(0.95);
+        -webkit-transition: all 0.5s ease-out;
+        transition: all 0.5s ease-out;
+    }
+
+    .card-flip.flip-visible {
+        -webkit-transform: rotateY(0deg) translateY(0) scale(1);
+        transform: rotateY(0deg) translateY(0) scale(1);
+    }
+
+    /* ホバーエフェクト調整（タッチデバイス対応） */
+    .work-card:active {
+        -webkit-transform: translateY(-5px) scale(1.02);
+        transform: translateY(-5px) scale(1.02);
+    }
+
+    .footer__link:active {
+        color: var(--primary-color);
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+}
+
+/* ===================================
+   iPad Pro専用 (1024px〜1366px)
+   =================================== */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    /* より大きなiPadでも同様の対応 */
+    .section__title {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .loading__text {
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

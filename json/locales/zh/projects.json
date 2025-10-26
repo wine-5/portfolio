@@ -1,0 +1,119 @@
+[
+  {
+    "title": "たかし、人生ベット中",
+    "description": "校内Game Jam 3天开发的2D射击游戏。5人团队的领导经验。获得株式会社InfiniteLoop堀川奖。",
+    "detailedFeatures": "这是在校内举办的为期3天的Game Jam游戏。作为第一次参加Game Jam的项目领导，指挥工作非常艰巨。\n在委托设计师绘图时，如何表达需要什么样的图、格式如何等都是非常好的经验。由于程序员很多，创建基类并缩短关键路径非常困难。\n而且在刚开始学习设计方法时，努力使用单例和对象池等来考虑效率化。",
+    "myResponsibilities": "项目领导、基类设计、单例模式实现、对象池系统实现",
+    "technologies": ["Unity", "C#", "单例模式", "对象池"],
+    "supportedPlatforms": ["PC", "Mac", "移动设备"],
+    "images": [
+      "images/game/takasi/takasi-home.png",
+      "images/game/takasi/takasi-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/i-want-hosurus",
+    "githubUrl": "https://github.com/wine-5/TechC_GameJam",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "5人（程序员4人、设计师1人）",
+    "period": "3天",
+    "award": "株式会社InfiniteLoop堀川奖"
+  },
+  {
+    "title": "蝶々反乱",
+    "description": "Sapporo Game Camp2025参赛作品。全员初次见面的7人团队开发的2D动作游戏。首次挑战校外Game Jam，仓库已公开。",
+    "detailedFeatures": "这是在Sapporo Game Camp2025创作的游戏。全员都是初次见面，这是第一次参加校外Game Jam。\n基于上次校内Game Jam的反思，在开始前创建Unity项目并预先准备基类，连接仓库和项目等。\n游戏本身顺利完成了，但原本预定的关卡数没能全部准备好，设计师们制作的图也没能全部使用，这也是遗憾之处。",
+    "myResponsibilities": "基类设计、玩家子弹实现、敌人行为和攻击模式实现",
+    "technologies": ["Unity", "C#"],
+    "supportedPlatforms": ["PC", "Mac", "移动设备"],
+    "images": [
+      "images/game/chocho/chocho-title.png"
+    ],
+    "playUrl": "",
+    "githubUrl": "https://github.com/wine-5/SGC2025",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "7人（现役程序员1人、学生程序员2人、现役设计师1人、学生设计师2人、学生策划1人）",
+    "period": "2天（目前正在完善中）",
+    "note": "SGC2025参赛作品·UnityRoom发布准备中",
+    "locked": true,
+    "lockReason": "UnityRoom发布准备中"
+  },
+  {
+    "title": "Git Command Helper",
+    "description": "Git学习专用命令网站。注重实用性的学习工具。",
+    "detailedFeatures": "这是我自己学习命令时为了方便而制作的工具。作为能够高效学习和参考Git命令的网站进行开发。",
+    "technologies": ["HTML", "CSS", "JavaScript", "Web设计"],
+    "supportedPlatforms": ["全平台兼容"],
+    "images": [
+      "images/game/git-command/git-home1.png",
+      "images/game/git-command/git-home2.png"
+    ],
+    "playUrl": "https://git-command.com/",
+    "githubUrl": "https://github.com/wine-5/Git-Command-Helper",
+    "year": "二年级",
+    "category": "web",
+    "teamSize": "1人",
+    "period": "持续开发中"
+  },
+  {
+    "title": "UnderOver",
+    "description": "兼顾Unity独有方法学习开发的2D动作游戏。Unity基础巩固的集大成之作。",
+    "detailedFeatures": "这是一边复习Unity独有方法一边制作的游戏。通过理解Unity的基本功能和2D动作游戏的开发，巩固了Unity游戏制作的基础。",
+    "technologies": ["Unity", "C#", "2D物理"],
+    "supportedPlatforms": ["PC", "Mac", "移动设备"],
+    "images": [
+      "images/game/under-over/UnderOver-title.png",
+      "images/game/under-over/UnderOver-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/underover",
+    "githubUrl": "https://github.com/wine-5/UnderOver",
+    "year": "一年级",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "2~3个月",
+    "note": "UnityRoom发布准备中",
+    "locked": false,
+    "lockReason": "UnityRoom发布准备中"
+  },
+  {
+    "title": "SPLIT",
+    "description": "首次团队开发制作的2D动作游戏。从策划到调试经历全部流程。首次接触Git的作品。",
+    "detailedFeatures": "从策划到开发、调试都是第一次进行。回想起第一次接触Git时的混乱情景。通过学习团队开发的基础，深刻体会到了版本管理的重要性，这是非常宝贵的经验。",
+    "myResponsibilities": "关卡难度调整、调试工作",
+    "technologies": ["HTML", "CSS", "JavaScript", "Git"],
+    "supportedPlatforms": ["仅限PC"],
+    "images": [
+      "images/game/split/split-title.png",
+      "images/game/split/split-in-game.png"
+    ],
+    "playUrl": "web-game/Split/homepage/homepage/HTML/homepage.html",
+    "localPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
+    "webPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
+    "githubUrl": "https://github.com/wine-5/SPLIT",
+    "year": "一年级",
+    "category": "web-game",
+    "teamSize": "3人（程序员3人）",
+    "period": "6个月",
+    "note": "策划~调试全流程经验"
+  },
+  {
+    "title": "ElementBattle",
+    "description": "值得纪念的首个卡牌游戏作品。边学习函数和变量边开发。掌握编程基础的难忘作品。",
+    "detailedFeatures": "这是我制作的第一个游戏。是一边学习函数、变量等一边制作的。通过实际的游戏制作学习了编程的基础概念，是一个非常难忘的作品。",
+    "technologies": ["HTML", "CSS", "JavaScript"],
+    "supportedPlatforms": ["仅限PC"],
+    "images": [
+      "images/game/element-battle/element-home.png",
+      "images/game/element-battle/element-in-game.png"
+    ],
+    "playUrl": "web-game/ElementBattle/index.html",
+    "localPath": "web-game/ElementBattle/index.html",
+    "webPath": "web-game/ElementBattle/index.html",
+    "githubUrl": "https://github.com/wine-5/Element_Battle",
+    "year": "一年级",
+    "category": "web-game",
+    "teamSize": "1人",
+    "period": "约1个月",
+    "note": "值得纪念的首个作品"
+  }
+]
