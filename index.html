@@ -78,7 +78,7 @@
                     <a href="pages/timeline/timeline.html" class="header__nav-link" data-i18n="common.header.timeline">Timeline</a>
                 </li>
                 <li class="header__nav-item">
-                    <a href="#updates" class="header__nav-link" data-i18n="common.header.updates">Updates</a>
+                    <a href="pages/history/history.html" class="header__nav-link" data-i18n="common.header.updates">Updates</a>
                 </li>
             </ul>
             <!-- テーマ切り替え & 言語切り替えボタン -->
@@ -87,6 +87,11 @@
                 <button class="debug-console-trigger" id="debug-console-trigger" title="デバッグコンソールを開く">
                     <i class="fas fa-terminal"></i>
                 </button>
+                <!-- テーマ切り替えボタン（未実装のためコメントアウト）
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                -->
             </div>
             <div class="header__hamburger" id="hamburger">
                 <span></span>
@@ -239,10 +244,8 @@
                     </div>
                     <div class="about__image">
                         <div class="about__avatar">
-                            <!-- プロフィール画像エリア -->
-                            <div class="about__avatar-placeholder">
-                                <i class="fas fa-user"></i>
-                            </div>
+                            <!-- プロフィール画像 -->
+                            <img src="images/icons/profile-icon.png" alt="wine-5 Profile" class="about__avatar-image">
                         </div>
                     </div>
                 </div>
@@ -320,7 +323,7 @@
                                 <li><a href="#about" class="footer__link"><i class="fas fa-user"></i> <span data-i18n="common.header.about">About</span></a></li>
                                 <li><a href="#contact" class="footer__link"><i class="fas fa-envelope"></i> <span data-i18n="common.header.contact">Contact</span></a></li>
                                 <li><a href="pages/timeline/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> <span data-i18n="common.header.timeline">Timeline</span></a></li>
-                                <li><a href="#updates" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
+                                <li><a href="pages/history/history.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
                             </ul>
                         </div>
                         <div class="footer__section">
