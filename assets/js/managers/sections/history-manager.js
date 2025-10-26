@@ -15,9 +15,15 @@ class HistoryManager {
         }
         
         // updatesDataの読み込みを待つ
-        if (window.updatesData && !window.updatesData.isLoaded) {
-            const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
-            await window.updatesData.load(currentLang);
+        if (window.updatesData) {
+            if (!window.updatesData.isLoaded) {
+                console.log('HistoryManager: Waiting for updates data to load...');
+                const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
+                await window.updatesData.load(currentLang);
+            }
+        } else {
+            console.error('HistoryManager: updatesData object not found');
+            return;
         }
         
         // UPDATES_DATAの確認
@@ -27,6 +33,7 @@ class HistoryManager {
             return;
         }
         
+        console.log('HistoryManager: Rendering timeline with', updates.length, 'updates');
         this.renderHistoryTimeline();
     }
 

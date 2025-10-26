@@ -162,11 +162,11 @@
 
     <!-- JavaScript -->
     <!-- Core Systems -->
-    <script src="../../assets/js/managers/ui/ThemeManager.js"></script>
-    <script src="../../assets/js/managers/ui/I18nManager.js"></script>
+    <script src="../../assets/js/managers/ui/theme-manager.js"></script>
+    <script src="../../assets/js/managers/ui/i18n-manager.js"></script>
     
     <script src="../../js/data/updates.js"></script>
-    <script src="../../assets/js/managers/sections/HistoryManager.js"></script>
+    <script src="../../assets/js/managers/sections/history-manager.js"></script>
     <script>
         // Initialize managers
         let historyManager = null;
@@ -200,14 +200,16 @@
             if (window.updatesData) {
                 const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
                 await window.updatesData.load(currentLang);
-            }
-
-            // History page functionality
-            try {
-                historyManager = new HistoryManager();
-                await historyManager.init();
-            } catch (error) {
-                console.error('Failed to initialize HistoryManager:', error);
+                
+                // データ読み込み完了後にHistoryManagerを初期化
+                try {
+                    historyManager = new HistoryManager();
+                    await historyManager.init();
+                } catch (error) {
+                    console.error('Failed to initialize HistoryManager:', error);
+                }
+            } else {
+                console.error('updatesData is not available');
             }
             
             // 言語切り替えイベントをリスン

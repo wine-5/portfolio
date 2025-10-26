@@ -5,7 +5,8 @@
 // 定数定義
 const TIMELINE_CONFIG = {
     INIT_RETRY_DELAY: 500,
-    SIMPLE_TIMELINE_MAX_EVENTS: 4
+    SIMPLE_TIMELINE_MAX_EVENTS: 4,
+    MAX_INIT_RETRIES: 10  // 最大リトライ回数
 };
 
 class TimelineManager {
@@ -15,26 +16,39 @@ class TimelineManager {
         this.timelineData = [];
         this.scrollTriggers = [];
         this.isInitialized = false;
+        this.initRetryCount = 0;  // リトライカウンター
     }
 
     ensureDataAndDOM() {
         // DOM要素の確認
         if (!this.timelineContainer) {
             this.timelineContainer = document.getElementById('timeline-container');
+            if (!this.timelineContainer) {
+                console.warn('TimelineManager: timeline-container element not found');
+            }
         }
         
         // データの確認
         // 1. timelineDataオブジェクトから取得を試みる
         if ((!this.timelineData || this.timelineData.length === 0) && window.timelineData) {
             this.timelineData = window.timelineData.getAllItems();
+            console.log('TimelineManager: Loaded data from window.timelineData:', this.timelineData?.length, 'items');
         }
         
         // 2. グローバルTIMELINE_DATAから取得を試みる
         if ((!this.timelineData || this.timelineData.length === 0) && typeof TIMELINE_DATA !== 'undefined') {
             this.timelineData = TIMELINE_DATA;
+            console.log('TimelineManager: Loaded data from TIMELINE_DATA:', this.timelineData?.length, 'items');
         }
         
-        return this.timelineContainer && this.timelineData && this.timelineData.length > 0;
+        const hasData = this.timelineData && this.timelineData.length > 0;
+        const hasContainer = !!this.timelineContainer;
+        
+        if (!hasData) {
+            console.warn('TimelineManager: No timeline data available');
+        }
+        
+        return hasContainer && hasData;
     }
 
     init() {
@@ -44,7 +58,15 @@ class TimelineManager {
         
         // データとDOMの確認
         if (!this.ensureDataAndDOM()) {
-            console.error('Failed to ensure data and DOM - retrying in 500ms');
+            // 最大リトライ回数をチェック
+            if (this.initRetryCount >= TIMELINE_CONFIG.MAX_INIT_RETRIES) {
+                console.error('Failed to initialize TimelineManager after maximum retries');
+                this.showErrorMessage();
+                return;
+            }
+            
+            this.initRetryCount++;
+            console.warn(`Failed to ensure data and DOM - retrying (${this.initRetryCount}/${TIMELINE_CONFIG.MAX_INIT_RETRIES}) in ${TIMELINE_CONFIG.INIT_RETRY_DELAY}ms`);
             setTimeout(() => this.init(), TIMELINE_CONFIG.INIT_RETRY_DELAY);
             return;
         }
@@ -61,6 +83,7 @@ class TimelineManager {
             }
             
             this.isInitialized = true;
+            console.log('TimelineManager initialized successfully');
             
         } catch (error) {
             console.error('Error during timeline initialization:', error);
@@ -72,8 +95,12 @@ class TimelineManager {
         if (this.timelineContainer) {
             this.timelineContainer.innerHTML = `
                 <div class="timeline-error">
-                    <h3>タイムライン読み込み中...</h3>
-                    <p>データを準備しています。少々お待ちください。</p>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>タイムラインの読み込みに失敗しました</h3>
+                    <p>データの読み込み中に問題が発生しました。ページを再読み込みしてください。</p>
+                    <button onclick="location.reload()" class="btn-reload">
+                        <i class="fas fa-redo"></i> ページを再読み込み
+                    </button>
                 </div>
             `;
         }

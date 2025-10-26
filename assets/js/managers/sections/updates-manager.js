@@ -13,6 +13,7 @@ class UpdatesManager {
     async init() {
         // updatesDataがまだロードされていない場合はロードを待つ
         if (window.updatesData && !window.updatesData.isReady()) {
+            console.log('UpdatesManager: Waiting for updates data to load...');
             const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
             await window.updatesData.load(lang);
         }
@@ -20,9 +21,12 @@ class UpdatesManager {
         // updatesDataから直接取得
         if (window.updatesData && window.updatesData.isReady()) {
             this.updates = window.updatesData.getAllUpdates();
+            console.log('UpdatesManager: Loaded', this.updates.length, 'updates from updatesData');
         } else if (typeof UPDATES_DATA !== 'undefined' && UPDATES_DATA.length > 0) {
             this.updates = UPDATES_DATA;
+            console.log('UpdatesManager: Loaded', this.updates.length, 'updates from UPDATES_DATA');
         } else {
+            console.warn('UpdatesManager: No updates data available, using fallback');
             this.updates = [
                 {
                     date: '2025-10-23',

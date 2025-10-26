@@ -1,6 +1,35 @@
 /* ===================================
    メインアプリケーションクラス（簡潔版）
    =================================== */
+
+// 定数定義
+const CONFIG = {
+    SCROLL_DEBOUNCE_DELAY: 10,
+    RESIZE_DEBOUNCE_DELAY: 250,
+    HEADER_SCROLL_THRESHOLD: 50,
+    MOBILE_BREAKPOINT: 768,
+    LOADING_PROGRESS_INCREMENT: 15,
+    LOADING_PROGRESS_INTERVAL: 200,
+    LOADING_HIDE_DELAY: 500,
+    HINT_ANIMATION_DELAY: 0.5,
+    PARTICLE_COUNT: 30,
+    PARTICLE_CREATION_DELAY: 50,
+    PARTICLE_MIN_SIZE: 2,
+    PARTICLE_MAX_SIZE: 8,
+    PARTICLE_MIN_DURATION: 2,
+    PARTICLE_MAX_DURATION: 5,
+    PARTICLE_MAX_DELAY: 2,
+    W5_CLICK_ANIMATION_DURATION: 800,
+    W5_PARTICLE_COUNT: 12,
+    W5_PARTICLE_MIN_DISTANCE: 50,
+    W5_PARTICLE_MAX_DISTANCE: 80,
+    W5_PARTICLE_MIN_SIZE: 4,
+    W5_PARTICLE_MAX_SIZE: 10,
+    W5_MESSAGE_DURATION: 3000,
+    W5_CLICK_THRESHOLD_5: 5,
+    W5_CLICK_THRESHOLD_10: 10
+};
+
 class PortfolioApp {
     constructor() {
         // DOM要素
@@ -93,12 +122,12 @@ class PortfolioApp {
         // スクロールイベント
         window.addEventListener('scroll', debounce(() => {
             this.updateHeaderBackground();
-        }, 10));
+        }, CONFIG.SCROLL_DEBOUNCE_DELAY));
 
         // リサイズイベント
         window.addEventListener('resize', debounce(() => {
             this.handleResize();
-        }, 250));
+        }, CONFIG.RESIZE_DEBOUNCE_DELAY));
     }
 
     setupNavigationEvents() {
@@ -131,7 +160,7 @@ class PortfolioApp {
 
     updateHeaderBackground() {
         if (!this.header) return;
-        const scrolled = window.pageYOffset > 50;
+        const scrolled = window.pageYOffset > CONFIG.HEADER_SCROLL_THRESHOLD;
         this.header.classList.toggle('header--scrolled', scrolled);
     }
 
@@ -146,7 +175,7 @@ class PortfolioApp {
     }
 
     handleResize() {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > CONFIG.MOBILE_BREAKPOINT) {
             this.closeMobileMenu();
         }
     }
@@ -165,16 +194,16 @@ class PortfolioApp {
         // プログレス表示
         let progress = 0;
         const progressInterval = setInterval(() => {
-            progress += Math.random() * 15;
+            progress += Math.random() * CONFIG.LOADING_PROGRESS_INCREMENT;
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(progressInterval);
-                setTimeout(() => this.hideLoading(), 500);
+                setTimeout(() => this.hideLoading(), CONFIG.LOADING_HIDE_DELAY);
             }
             if (percentageElement) {
                 percentageElement.textContent = Math.floor(progress) + '%';
             }
-        }, 200);
+        }, CONFIG.LOADING_PROGRESS_INTERVAL);
     }
 
     createRotatingHints(logoCenter) {
@@ -188,7 +217,7 @@ class PortfolioApp {
             const hintElement = document.createElement('div');
             hintElement.className = 'loading-hint';
             hintElement.textContent = hint;
-            hintElement.style.animationDelay = `${index * 0.5}s`;
+            hintElement.style.animationDelay = `${index * CONFIG.HINT_ANIMATION_DELAY}s`;
             hintsContainer.appendChild(hintElement);
         });
         
@@ -198,24 +227,29 @@ class PortfolioApp {
     createLoadingParticles(container) {
         if (!container) return;
         
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
             setTimeout(() => {
                 const particle = document.createElement('div');
+                const size = Math.random() * (CONFIG.PARTICLE_MAX_SIZE - CONFIG.PARTICLE_MIN_SIZE) + CONFIG.PARTICLE_MIN_SIZE;
+                const duration = Math.random() * (CONFIG.PARTICLE_MAX_DURATION - CONFIG.PARTICLE_MIN_DURATION) + CONFIG.PARTICLE_MIN_DURATION;
+                const delay = Math.random() * CONFIG.PARTICLE_MAX_DELAY;
+                const opacity = Math.random() * 0.8 + 0.2;
+                
                 particle.style.cssText = `
                     position: absolute;
-                    width: ${Math.random() * 6 + 2}px;
-                    height: ${Math.random() * 6 + 2}px;
+                    width: ${size}px;
+                    height: ${size}px;
                     background: radial-gradient(circle, 
-                        rgba(99, 102, 241, ${Math.random() * 0.8 + 0.2}), 
+                        rgba(99, 102, 241, ${opacity}), 
                         transparent);
                     border-radius: 50%;
                     left: ${Math.random() * 100}%;
                     top: ${Math.random() * 100}%;
-                    animation: floatParticle ${Math.random() * 3 + 2}s linear infinite;
-                    animation-delay: ${Math.random() * 2}s;
+                    animation: floatParticle ${duration}s linear infinite;
+                    animation-delay: ${delay}s;
                 `;
                 container.appendChild(particle);
-            }, i * 50);
+            }, i * CONFIG.PARTICLE_CREATION_DELAY);
         }
         
         // アニメーション定義
@@ -247,7 +281,6 @@ class PortfolioApp {
 
         let isAnimating = false;
         let clickCount = 0;
-        const maxClicks = 10;
 
         logoCenter.addEventListener('click', () => {
             if (isAnimating) return;
@@ -261,9 +294,9 @@ class PortfolioApp {
             this.createW5ClickParticles(logoCenter);
             
             // 特別なエフェクト（5回目と10回目）
-            if (clickCount === 5) {
+            if (clickCount === CONFIG.W5_CLICK_THRESHOLD_5) {
                 this.showW5Message('発見！隠し要素が近い...');
-            } else if (clickCount === maxClicks) {
+            } else if (clickCount === CONFIG.W5_CLICK_THRESHOLD_10) {
                 this.showW5Message('完璧！すべてのクリックを達成しました');
                 clickCount = 0;
             }
@@ -271,7 +304,7 @@ class PortfolioApp {
             setTimeout(() => {
                 logoCenter.classList.remove('w5-clicked');
                 isAnimating = false;
-            }, 800);
+            }, CONFIG.W5_CLICK_ANIMATION_DURATION);
         });
     }
 
@@ -280,11 +313,11 @@ class PortfolioApp {
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < CONFIG.W5_PARTICLE_COUNT; i++) {
             const particle = document.createElement('div');
-            const angle = (Math.PI * 2 * i) / 12;
-            const distance = 50 + Math.random() * 30;
-            const size = 4 + Math.random() * 6;
+            const angle = (Math.PI * 2 * i) / CONFIG.W5_PARTICLE_COUNT;
+            const distance = CONFIG.W5_PARTICLE_MIN_DISTANCE + Math.random() * (CONFIG.W5_PARTICLE_MAX_DISTANCE - CONFIG.W5_PARTICLE_MIN_DISTANCE);
+            const size = CONFIG.W5_PARTICLE_MIN_SIZE + Math.random() * (CONFIG.W5_PARTICLE_MAX_SIZE - CONFIG.W5_PARTICLE_MIN_SIZE);
             
             particle.style.cssText = `
                 position: fixed;
@@ -309,7 +342,7 @@ class PortfolioApp {
                 { transform: `translate(${endX - centerX}px, ${endY - centerY}px) scale(1)`, opacity: 0.8, offset: 0.5 },
                 { transform: `translate(${(endX - centerX) * 1.5}px, ${(endY - centerY) * 1.5}px) scale(0)`, opacity: 0 }
             ], {
-                duration: 800,
+                duration: CONFIG.W5_CLICK_ANIMATION_DURATION,
                 easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
             }).onfinish = () => particle.remove();
         }
@@ -341,7 +374,7 @@ class PortfolioApp {
             { transform: 'translate(-50%, -50%) scale(1)', opacity: 1, offset: 0.9 },
             { transform: 'translate(-50%, -50%) scale(0)', opacity: 0 }
         ], {
-            duration: 3000,
+            duration: CONFIG.W5_MESSAGE_DURATION,
             easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
         }).onfinish = () => messageBox.remove();
     }
@@ -351,7 +384,7 @@ class PortfolioApp {
             this.loading.style.opacity = '0';
             setTimeout(() => {
                 this.loading.style.display = 'none';
-            }, 500);
+            }, CONFIG.LOADING_HIDE_DELAY);
         }
     }
 }

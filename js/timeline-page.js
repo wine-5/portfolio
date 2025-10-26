@@ -144,7 +144,7 @@ class TimelinePageApp {
 let isTimelinePageInitialized = false;
 
 // より確実な初期化関数
-function initializeTimelinePage() {
+async function initializeTimelinePage() {
     if (isTimelinePageInitialized) return;
     
     // 必要なクラスが読み込まれているかチェック
@@ -158,8 +158,17 @@ function initializeTimelinePage() {
         return;
     }
     
-    if (typeof TIMELINE_DATA === 'undefined') {
-        console.error('TIMELINE_DATA is not loaded');
+    // timelineDataオブジェクトが存在し、データが読み込まれるまで待機
+    if (!window.timelineData) {
+        console.error('timelineData object is not loaded');
+        return;
+    }
+    
+    // データが読み込まれているか確認
+    const data = window.timelineData.getAllItems();
+    if (!data || data.length === 0) {
+        // データがまだ読み込まれていない場合は少し待つ
+        setTimeout(initializeTimelinePage, 100);
         return;
     }
     
@@ -173,12 +182,18 @@ function initializeTimelinePage() {
     }
 }
 
-// 複数のイベントで初期化を試行
-document.addEventListener('DOMContentLoaded', initializeTimelinePage);
+// timelineDataLoaded イベントを待機して初期化
+window.addEventListener('timelineDataLoaded', initializeTimelinePage);
 
-// DOM読み込み完了後にもう一度試行
+// フォールバック: DOMContentLoaded でも試行
+document.addEventListener('DOMContentLoaded', () => {
+    // 少し遅延させてデータ読み込みを待つ
+    setTimeout(initializeTimelinePage, 500);
+});
+
+// 最終フォールバック: window.load
 window.addEventListener('load', () => {
-    const INIT_RETRY_DELAY = 100; // 初期化リトライの遅延時間（ミリ秒）
+    const INIT_RETRY_DELAY = 100;
     
     if (!isTimelinePageInitialized) {
         setTimeout(initializeTimelinePage, INIT_RETRY_DELAY);
