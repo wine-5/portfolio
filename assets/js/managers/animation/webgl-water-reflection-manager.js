@@ -32,8 +32,6 @@ class WebGLWaterReflectionManager {
 
     async init() {
         try {
-            console.log('Initializing WebGL Water Reflection System...');
-            
             // WebGLサポートチェック
             if (!this.isWebGLSupported()) {
                 console.warn('WebGL is not supported on this device, falling back to CSS version');
@@ -41,18 +39,11 @@ class WebGLWaterReflectionManager {
                 return;
             }
             
-            // モバイルデバイスチェック
-            if (this.isMobileDevice()) {
-                console.log('Mobile device detected, using optimized settings');
-            }
-            
             // Three.jsがロードされているかチェック
             if (typeof THREE === 'undefined') {
-                console.log('Loading Three.js...');
                 await this.loadThreeJS();
             }
             
-            console.log('Setting up WebGL scene...');
             this.setupScene();
             this.setupRealisticWater(); // リアルな水面
             this.setupLights();
@@ -60,7 +51,6 @@ class WebGLWaterReflectionManager {
             this.startAnimation();
             
             this.isInitialized = true;
-            console.log('WebGL Water Reflection System initialized successfully!');
             
             // 成功した場合、CSS版を隠す
             this.hideCSSVersion();

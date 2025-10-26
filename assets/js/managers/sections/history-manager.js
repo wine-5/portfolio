@@ -17,7 +17,6 @@ class HistoryManager {
         // updatesDataの読み込みを待つ
         if (window.updatesData) {
             if (!window.updatesData.isLoaded) {
-                console.log('HistoryManager: Waiting for updates data to load...');
                 const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
                 await window.updatesData.load(currentLang);
             }
@@ -33,7 +32,6 @@ class HistoryManager {
             return;
         }
         
-        console.log('HistoryManager: Rendering timeline with', updates.length, 'updates');
         this.renderHistoryTimeline();
     }
 

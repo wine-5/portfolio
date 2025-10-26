@@ -35,8 +35,6 @@ class SectionAnimationManager {
             
             // 確実にCSSクラスが適用されるようにクラスを再適用
             title.classList.add('section__title');
-            
-            console.log('Title made visible with CSS preserved:', title.textContent);
         });
     }
 

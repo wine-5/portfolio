@@ -11,7 +11,6 @@ class SkillsManager {
     async init() {
         // skillDetailsDataがまだロードされていない場合はロードを待つ
         if (window.skillDetailsData && !window.skillDetailsData.isReady()) {
-            console.log('SkillsManager: Waiting for skill details data to load...');
             const lang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
             await window.skillDetailsData.load(lang);
         }
@@ -20,7 +19,6 @@ class SkillsManager {
         this.skillsData = window.skillDetailsData ? window.skillDetailsData.getAllSkills() : null;
         
         if (this.skillsData) {
-            console.log('SkillsManager: Rendering', this.skillsData.length, 'skills');
             this.renderSkills();
         } else {
             console.error('SkillsManager: SkillsData is null or undefined!');

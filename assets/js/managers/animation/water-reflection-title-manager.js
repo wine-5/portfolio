@@ -29,8 +29,6 @@ class WaterReflectionTitleManager {
         if (this.isAnimating) return;
         this.isAnimating = true;
         
-        console.log('Starting enhanced CSS title animation!');
-        
         // 1. 全体的な稲妻エフェクト
         this.createLightningBurst();
         
@@ -396,7 +394,6 @@ class WaterReflectionTitleManager {
 
     onAnimationComplete() {
         // アニメーション完了後の処理
-        console.log('Title animation completed!');
         
         // サブタイトルとボタンを表示
         this.showSubElements();

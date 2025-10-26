@@ -32,13 +32,11 @@ class TimelineManager {
         // 1. timelineDataオブジェクトから取得を試みる
         if ((!this.timelineData || this.timelineData.length === 0) && window.timelineData) {
             this.timelineData = window.timelineData.getAllItems();
-            console.log('TimelineManager: Loaded data from window.timelineData:', this.timelineData?.length, 'items');
         }
         
         // 2. グローバルTIMELINE_DATAから取得を試みる
         if ((!this.timelineData || this.timelineData.length === 0) && typeof TIMELINE_DATA !== 'undefined') {
             this.timelineData = TIMELINE_DATA;
-            console.log('TimelineManager: Loaded data from TIMELINE_DATA:', this.timelineData?.length, 'items');
         }
         
         const hasData = this.timelineData && this.timelineData.length > 0;
@@ -83,7 +81,6 @@ class TimelineManager {
             }
             
             this.isInitialized = true;
-            console.log('TimelineManager initialized successfully');
             
         } catch (error) {
             console.error('Error during timeline initialization:', error);
