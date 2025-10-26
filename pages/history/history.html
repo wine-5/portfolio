@@ -93,11 +93,11 @@
         <section class="history-hero">
             <div class="container">
                 <div class="history-hero__content">
-                    <h1 class="history-hero__title">Update History</h1>
-                    <p class="history-hero__subtitle">wine-5 ポートフォリオサイトの更新履歴</p>
+                    <h1 class="history-hero__title" data-i18n="common.history.hero.title">Update History</h1>
+                    <p class="history-hero__subtitle" data-i18n="common.history.hero.subtitle">wine-5 ポートフォリオサイトの更新履歴</p>
                     <a href="../../index.html" class="btn btn--primary">
                         <i class="fas fa-arrow-left"></i>
-                        Back to Home
+                        <span data-i18n="common.history.hero.backToHome">Back to Home</span>
                     </a>
                 </div>
             </div>
@@ -108,7 +108,7 @@
             <div class="container">
                 <div class="history-timeline__content" id="history-timeline">
                     <!-- 更新履歴はJavaScriptで動的生成 -->
-                    <div class="loading-message">Loading history...</div>
+                    <div class="loading-message" data-i18n="common.history.loading">Loading history...</div>
                 </div>
             </div>
         </section>
@@ -169,6 +169,8 @@
     <script src="../../assets/js/managers/sections/HistoryManager.js"></script>
     <script>
         // Initialize managers
+        let historyManager = null;
+        
         document.addEventListener('DOMContentLoaded', async () => {
             // Initialize theme
             if (window.themeManager) {
@@ -202,11 +204,27 @@
 
             // History page functionality
             try {
-                const historyManager = new HistoryManager();
+                historyManager = new HistoryManager();
                 await historyManager.init();
             } catch (error) {
                 console.error('Failed to initialize HistoryManager:', error);
             }
+            
+            // 言語切り替えイベントをリスン
+            window.addEventListener('languageChanged', async (e) => {
+                const newLang = e.detail.language;
+                console.log('Language changed to:', newLang);
+                
+                // 更新履歴データを再読み込み
+                if (window.updatesData) {
+                    await window.updatesData.load(newLang);
+                }
+                
+                // 更新履歴を再レンダリング
+                if (historyManager) {
+                    historyManager.renderHistoryTimeline();
+                }
+            });
             
             // Hide loading screen
             setTimeout(() => {

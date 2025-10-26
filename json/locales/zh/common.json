@@ -92,5 +92,13 @@
       "awards": "获奖",
       "years": "年"
     }
+  },
+  "history": {
+    "hero": {
+      "title": "更新历史",
+      "subtitle": "wine-5 作品集网站的更新历史",
+      "backToHome": "返回首页"
+    },
+    "loading": "正在加载历史记录..."
   }
 }

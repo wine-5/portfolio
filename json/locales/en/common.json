@@ -92,5 +92,13 @@
       "awards": "Awards",
       "years": "Years"
     }
+  },
+  "history": {
+    "hero": {
+      "title": "Update History",
+      "subtitle": "Update history of wine-5 portfolio site",
+      "backToHome": "Back to Home"
+    },
+    "loading": "Loading history..."
   }
 }
