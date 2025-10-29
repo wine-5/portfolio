@@ -3,116 +3,79 @@
     "title": "Unity",
     "additionalSkills": [
       "Unity Editor拡張",
-      "Shader Graph",
-      "Particle System",
+      "UniTask",
+      "ObjectPool",
       "Physics & Collision",
-      "UI Toolkit",
-      "Timeline & Cinemachine",
-      "Asset Bundle管理",
       "パフォーマンス最適化"
     ],
     "projects": "10+ プロジェクト",
-    "proficiency": "85%"
+    "proficiency": "70%"
   },
   "c#": {
     "title": "C#",
     "additionalSkills": [
-      "LINQ & Lambda式",
       "async/await非同期処理",
       "デリゲート & イベント",
       "ジェネリック型",
-      "リフレクション",
       "Attribute活用",
-      "デザインパターン実装",
-      "Unity Scripting API"
+      "デザインパターン実装"
     ],
-    "projects": "15+ プロジェクト",
-    "proficiency": "80%"
+    "projects": "10+ プロジェクト",
+    "proficiency": "70%"
   },
   "c++": {
     "title": "C++",
     "additionalSkills": [
-      "STLコンテナ活用",
-      "スマートポインタ",
-      "テンプレートプログラミング",
-      "マルチスレッド処理",
-      "メモリ管理最適化",
-      "OpenGL連携",
-      "CMakeビルド設定",
-      "デバッグ & プロファイリング"
+      "ポインタ管理"
     ],
-    "projects": "8+ プロジェクト",
-    "proficiency": "70%"
+    "projects": "3+ プロジェクト",
+    "proficiency": "20%"
   },
   "git": {
     "title": "Git",
     "additionalSkills": [
       "ブランチ戦略設計",
-      "リベース & マージ",
+      "Git Lfsの活用",
       "コンフリクト解決",
-      "GitHub Actions CI/CD",
-      "Git Hooks活用",
-      "Submodule管理",
-      "チーム開発フロー",
       "コミット規約管理"
     ],
     "projects": "全プロジェクトで使用",
-    "proficiency": "75%"
+    "proficiency": "90%"
   },
   "html": {
     "title": "HTML",
     "additionalSkills": [
-      "セマンティックHTML",
       "アクセシビリティ対応",
-      "SEO最適化",
-      "Open Graph設定",
-      "HTML5 API活用",
-      "レスポンシブ画像",
-      "フォーム検証",
-      "Web Components"
+      "SEO最適化"
     ],
-    "projects": "20+ Webサイト",
-    "proficiency": "90%"
+    "projects": "8+ Webサイト",
+    "proficiency": "40%"
   },
   "css": {
     "title": "CSS",
     "additionalSkills": [
-      "CSS Grid & Flexbox",
       "アニメーション設計",
       "CSS変数活用",
       "レスポンシブデザイン",
-      "BEM命名規則",
-      "パフォーマンス最適化",
-      "クロスブラウザ対応",
       "カスタムプロパティ"
     ],
-    "projects": "20+ Webサイト",
-    "proficiency": "85%"
+    "projects": "8+ Webサイト",
+    "proficiency": "70%"
   },
   "javascript": {
     "title": "JavaScript",
     "additionalSkills": [
-      "ES6+ モダン構文",
-      "Promise & async/await",
       "DOM操作 & イベント",
-      "Fetch API & AJAX",
-      "クロージャ活用",
-      "プロトタイプチェーン",
       "デザインパターン",
       "パフォーマンス最適化"
     ],
-    "projects": "25+ アプリケーション",
-    "proficiency": "85%"
+    "projects": "8+ アプリケーション",
+    "proficiency": "40%"
   },
   "js": {
     "title": "JavaScript",
     "additionalSkills": [
-      "ES6+ モダン構文",
-      "Promise & async/await",
       "DOM操作 & イベント",
-      "Fetch API & AJAX",
-      "クロージャ活用",
-      "プロトタイプチェーン",
       "デザインパターン",
       "パフォーマンス最適化"
     ],

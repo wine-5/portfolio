@@ -3,120 +3,83 @@
     "title": "Unity",
     "additionalSkills": [
       "Unity Editor Extensions",
-      "Shader Graph",
-      "Particle System",
+      "UniTask",
+      "ObjectPool",
       "Physics & Collision",
-      "UI Toolkit",
-      "Timeline & Cinemachine",
-      "Asset Bundle Management",
       "Performance Optimization"
     ],
     "projects": "10+ Projects",
-    "proficiency": "85%"
+    "proficiency": "70%"
   },
   "c#": {
     "title": "C#",
     "additionalSkills": [
-      "LINQ & Lambda Expressions",
       "async/await Async Processing",
       "Delegates & Events",
       "Generic Types",
-      "Reflection",
       "Attribute Usage",
-      "Design Pattern Implementation",
-      "Unity Scripting API"
+      "Design Pattern Implementation"
     ],
-    "projects": "15+ Projects",
-    "proficiency": "80%"
+    "projects": "10+ Projects",
+    "proficiency": "70%"
   },
   "c++": {
     "title": "C++",
     "additionalSkills": [
-      "STL Container Usage",
-      "Smart Pointers",
-      "Template Programming",
-      "Multithreading",
-      "Memory Management Optimization",
-      "OpenGL Integration",
-      "CMake Build Configuration",
-      "Debugging & Profiling"
+      "Pointer Management"
     ],
-    "projects": "8+ Projects",
-    "proficiency": "70%"
+    "projects": "3+ Projects",
+    "proficiency": "20%"
   },
   "git": {
     "title": "Git",
     "additionalSkills": [
       "Branch Strategy Design",
-      "Rebase & Merge",
+      "Git Lfs Usage",
       "Conflict Resolution",
-      "GitHub Actions CI/CD",
-      "Git Hooks Usage",
-      "Submodule Management",
-      "Team Development Flow",
       "Commit Convention Management"
     ],
     "projects": "Used in All Projects",
-    "proficiency": "75%"
+    "proficiency": "90%"
   },
   "html": {
     "title": "HTML",
     "additionalSkills": [
-      "Semantic HTML",
       "Accessibility Support",
-      "SEO Optimization",
-      "Open Graph Configuration",
-      "HTML5 API Usage",
-      "Responsive Images",
-      "Form Validation",
-      "Web Components"
+      "SEO Optimization"
     ],
-    "projects": "20+ Websites",
-    "proficiency": "90%"
+    "projects": "8+ Websites",
+    "proficiency": "40%"
   },
   "css": {
     "title": "CSS",
     "additionalSkills": [
-      "CSS Grid & Flexbox",
       "Animation Design",
       "CSS Variables Usage",
       "Responsive Design",
-      "BEM Naming Convention",
-      "Performance Optimization",
-      "Cross-browser Support",
       "Custom Properties"
     ],
-    "projects": "20+ Websites",
-    "proficiency": "85%"
+    "projects": "8+ Websites",
+    "proficiency": "70%"
   },
   "javascript": {
     "title": "JavaScript",
     "additionalSkills": [
-      "ES6+ Modern Syntax",
-      "Promise & async/await",
       "DOM Manipulation & Events",
-      "Fetch API & AJAX",
-      "Closure Usage",
-      "Prototype Chain",
       "Design Patterns",
       "Performance Optimization"
     ],
-    "projects": "25+ Applications",
-    "proficiency": "85%"
+    "projects": "8+ Applications",
+    "proficiency": "40%"
   },
   "js": {
     "title": "JavaScript",
     "additionalSkills": [
-      "ES6+ Modern Syntax",
-      "Promise & async/await",
       "DOM Manipulation & Events",
-      "Fetch API & AJAX",
-      "Closure Usage",
-      "Prototype Chain",
       "Design Patterns",
       "Performance Optimization"
     ],
-    "projects": "25+ Applications",
-    "proficiency": "85%"
+    "projects": "8+ Applications",
+    "proficiency": "40%"
   }
 }

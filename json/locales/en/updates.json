@@ -1,5 +1,10 @@
 [
   {
+    "date": "2025-10-30",
+    "title": "Layout Fixes and Minor Adjustments",
+    "description": "Added CSS for non-PC device support and fixed some text content"
+  },
+  {
     "date": "2025-10-27",
     "title": "Profile Image Addition and Minor Fixes",
     "description": "Updated the design of the update history page."

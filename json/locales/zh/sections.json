@@ -22,10 +22,10 @@
     "name": "wine-5",
     "role": "游戏开发者",
     "description": "我在专门学校学习游戏开发。专门使用Unity和C#进行游戏开发。",
-    "fullDescription": "我是一名以游戏行业为目标的游戏开发者。\n使用Unity和C#进行游戏开发，\n致力于遵循SOLID原则的设计。\n有在UnityRoom上发布的经验，\n追求为玩家带来快乐的游戏制作。\n我的优势是比任何人都更享受编程，并持续追求。",
+    "fullDescription": "我是一名以游戏行业为目标的游戏开发者。\n使用Unity和C#进行游戏开发，\n致力于遵循SOLID原则的设计。\n最近也在学习C++。\n有在UnityRoom上发布的经验，\n追求为玩家带来快乐的游戏制作。\n我的优势是比任何人都更享受编程，并持续追求。",
     "socialText": "也在X（Twitter）上活动：@wine_program！",
     "timelineButton": "查看开发轨迹",
-    "timelineDescription": "您可以查看从入学到现在的详细开发历史和项目轨迹"
+    "timelineDescription": "您可以查看从入学到现在的详细开发历史和项目记录"
   },
   "contact": {
     "title": "联系方式",

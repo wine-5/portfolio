@@ -4,8 +4,13 @@
     "description": "2D shooting game developed in 3 days during school game jam. Led a team of 5. Won Horikawa Award from Infinite Loop Inc.",
     "detailedFeatures": "This game was created during a 3-day in-school game jam. As the project leader for my first game jam, managing the team was challenging.\nIt was a great learning experience coordinating with designers on the type of artwork needed and the format. With many programmers on the team, creating base classes and shortening the critical path was quite difficult.\nI was just starting to learn design patterns, so I worked hard on optimization using Singleton, ObjectPool, and other patterns.",
     "myResponsibilities": "Project Leader, Base Class Design, Singleton Pattern Implementation, ObjectPool System Implementation",
-    "technologies": ["Unity", "C#", "Singleton", "ObjectPool"],
-    "supportedPlatforms": ["PC", "Mac", "Mobile"],
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
     "images": [
       "images/game/takasi/takasi-home.png",
       "images/game/takasi/takasi-in-game.png"
@@ -23,8 +28,13 @@
     "description": "2D action game for Sapporo Game Camp 2025. Developed with a team of 7, all meeting for the first time. First external game jam participation, repository published.",
     "detailedFeatures": "This game was created for Sapporo Game Camp 2025. Everyone was meeting for the first time, and it was my first time participating in an external game jam.\nApplying lessons from the previous in-school game jam, I prepared by creating the Unity project and base classes in advance, and setting up repository integration.\nWhile we successfully completed the game, we couldn't prepare all the planned stages, and I regret not being able to use all the artwork created by the designers.",
     "myResponsibilities": "Base Class Design, Player Bullet Implementation, Enemy Behavior and Attack Pattern Implementation",
-    "technologies": ["Unity", "C#"],
-    "supportedPlatforms": ["PC", "Mac", "Mobile"],
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
     "images": [
       "images/game/chocho/chocho-title.png"
     ],
@@ -41,9 +51,15 @@
   {
     "title": "Git Command Helper",
     "description": "Command-focused website for Git learning. Practical learning tool.",
-    "detailedFeatures": "A tool I created to make my life easier while studying commands. Developed as a website for efficiently learning and referencing Git commands.",
-    "technologies": ["HTML", "CSS", "JavaScript", "Web Design"],
-    "supportedPlatforms": ["All Platforms"],
+    "detailedFeatures": "A tool I created so I could quickly find commands when I forgot them and study more efficiently. Developed as a website for efficiently learning and referencing Git commands.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "All Platforms"
+    ],
     "images": [
       "images/game/git-command/git-home1.png",
       "images/game/git-command/git-home2.png"
@@ -53,14 +69,19 @@
     "year": "2nd Year",
     "category": "web",
     "teamSize": "1 person",
-    "period": "Ongoing Development"
+    "period": "Updating occasionally"
   },
   {
     "title": "UnderOver",
     "description": "2D action game developed while learning Unity-specific methods. Culmination of Unity basics.",
     "detailedFeatures": "A game I made while reviewing Unity's unique methods. Through 2D action game development, I solidified my understanding of Unity's basic features and game creation fundamentals.",
-    "technologies": ["Unity", "C#", "2D Physics"],
-    "supportedPlatforms": ["PC", "Mac", "Mobile"],
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
     "images": [
       "images/game/under-over/UnderOver-title.png",
       "images/game/under-over/UnderOver-in-game.png"
@@ -78,10 +99,16 @@
   {
     "title": "SPLIT",
     "description": "2D action game created in first team development. Experienced full process from planning to debugging. First Git experience.",
-    "detailedFeatures": "I experienced everything from planning to development and debugging for the first time. I remember the chaos when I first encountered Git. This was a valuable experience learning team development basics and realizing the importance of version control.",
+    "detailedFeatures": "I experienced everything from planning to development and debugging for the first time. I remember the chaos when I first encountered Git. This was a valuable experience learning team development basics and realizing the importance of version control systems.",
     "myResponsibilities": "Stage Difficulty Adjustment, Debugging",
-    "technologies": ["HTML", "CSS", "JavaScript", "Git"],
-    "supportedPlatforms": ["PC Only"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
     "images": [
       "images/game/split/split-title.png",
       "images/game/split/split-in-game.png"
@@ -94,14 +121,20 @@
     "category": "web-game",
     "teamSize": "3 people (3 Programmers)",
     "period": "6 months",
-    "note": "Full Process Experience: Planning to Debugging"
+    "note": "First Team Project"
   },
   {
     "title": "ElementBattle",
     "description": "My memorable first work - a card game. Developed while learning functions and variables. A memorable work where I learned programming basics.",
-    "detailedFeatures": "This is the first game I ever made. I created it while learning functions, variables, and other basics. It's a very memorable work where I learned fundamental programming concepts through actual game development.",
-    "technologies": ["HTML", "CSS", "JavaScript"],
-    "supportedPlatforms": ["PC Only"],
+    "detailedFeatures": "This is the first game I made by myself. I created it while learning functions, variables, and other basics. It's a very memorable work where I learned fundamental programming concepts through actual game development.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
     "images": [
       "images/game/element-battle/element-home.png",
       "images/game/element-battle/element-in-game.png"

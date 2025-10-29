@@ -1,7 +1,7 @@
 {
     "hero": {
         "title": "開発の軌跡",
-        "subtitle": "入学から現在までのゲーム開発ジャーニー",
+        "subtitle": "入学から現在までのゲーム開発の記録",
         "description": "専門学校入学から現在まで、各プロジェクトの開発期間・使用技術・成果を時系列で紹介します。"
     },
     "stats": {
@@ -37,7 +37,7 @@
         "date": "2024-10-01",
         "duration": 180,
         "description": "初めてのチーム開発で作った2Dアクションゲーム。企画からデバッグまで全工程を経験。",
-            "technologies": ["HTML", "CSS", "JavaScript", "Git"],
+            "technologies": ["HTML", "CSS", "JavaScript"],
             "color": "#8b5cf6",
             "icon": "🎮"
         },
@@ -48,7 +48,7 @@
         "date": "2024-12-01",
         "duration": 90,
         "description": "Unity独自メソッドの学習を兼ねて開発した2Dアクションゲーム。Unity基礎固めの集大成。",
-            "technologies": ["Unity", "C#", "2D Physics"],
+            "technologies": ["Unity", "C#"],
             "color": "#f59e0b",
             "icon": "⚡"
         },
@@ -59,7 +59,7 @@
         "date": "2025-08-01",
         "duration": 3,
         "description": "学内ゲームジャム3日間で開発した2Dシューティングゲーム。5人チームでのリーダー経験。",
-            "technologies": ["Unity", "C#", "シングルトン", "ObjectPool"],
+            "technologies": ["Unity", "C#"],
             "color": "#ef4444",
             "icon": "🏆",
             "award": "株式会社インフィニットループ堀川賞"
@@ -71,7 +71,7 @@
         "date": "2025-10-18",
         "duration": 2,
         "description": "Sapporo Game Camp2025参加作品。全員初対面の7人チームで開発した2Dアクションゲーム。",
-            "technologies": ["Unity", "C#", "設計パターン", "チーム開発"],
+            "technologies": ["Unity", "C#"],
             "color": "#06b6d4",
             "icon": "🦋",
             "status": "ブラッシュアップ中"

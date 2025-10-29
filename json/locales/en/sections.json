@@ -22,10 +22,10 @@
     "name": "wine-5",
     "role": "Game Developer",
     "description": "I'm studying game development at a vocational school. I specialize in game development using Unity and C#.",
-    "fullDescription": "I'm a game developer aiming for the game industry.\nI develop games using Unity and C#,\nand strive for design that follows SOLID principles.\nI have experience publishing on UnityRoom,\nand pursue game development that brings joy to players.\nMy strength is enjoying programming more than anyone and continuously pursuing it.",
+    "fullDescription": "I'm a game developer aiming for the game industry.\nI develop games using Unity and C#,\nand strive for design that follows SOLID principles.\nRecently, I've also been learning C++.\nI have experience publishing on UnityRoom,\nand pursue game development that brings joy to players.\nMy strength is enjoying programming more than anyone and continuously pursuing it.",
     "socialText": "Also active on X (Twitter): @wine_program!",
     "timelineButton": "View Development Journey",
-    "timelineDescription": "You can view detailed development history and project trajectory from enrollment to present"
+    "timelineDescription": "You can view detailed development history and project records from enrollment to present"
   },
   "contact": {
     "title": "Contact",

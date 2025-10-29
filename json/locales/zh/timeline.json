@@ -1,80 +1,99 @@
 {
-    "hero": {
-        "title": "开发轨迹",
-        "subtitle": "从入学到现在的游戏开发历程",
-        "description": "从专门学校入学到现在，按时间顺序介绍每个项目的开发期间、使用技术和成果。"
-    },
-    "stats": {
-        "projects": "项目",
-        "awards": "获奖",
-        "years": "年"
-    },
-    "items": [
-        {
-            "id": "school-start",
-            "title": "入学专门学校",
-            "type": "milestone",
-            "date": "2024-04-01",
-            "description": "开始学习游戏开发",
-            "color": "#10b981",
-            "icon": "🎓"
-        },
+  "hero": {
+    "title": "开发轨迹",
+    "subtitle": "从入学到现在的游戏开发记录",
+    "description": "从专门学校入学到现在，按时间顺序介绍每个项目的开发期间、使用技术和成果。"
+  },
+  "stats": {
+    "projects": "项目",
+    "awards": "获奖",
+    "years": "年"
+  },
+  "items": [
     {
-        "id": "element-battle",
-        "title": "ElementBattle",
-        "type": "project",
-        "date": "2025-01-16",
-        "duration": 30,
-        "description": "值得纪念的首个卡牌游戏作品。边学习函数和变量边开发。",
-        "technologies": ["HTML", "CSS", "JavaScript"],
-        "color": "#6366f1",
-        "icon": "🃏"
+      "id": "school-start",
+      "title": "入学专门学校",
+      "type": "milestone",
+      "date": "2024-04-01",
+      "description": "开始学习游戏开发",
+      "color": "#10b981",
+      "icon": "🎓"
     },
     {
-        "id": "split",
-        "title": "Split",
-        "type": "project",
-        "date": "2024-10-01",
-        "duration": 180,
-        "description": "首次团队开发制作的2D动作游戏。从策划到调试经历全部流程。",
-        "technologies": ["HTML", "CSS", "JavaScript", "Git"],
-        "color": "#8b5cf6",
-        "icon": "🎮"
+      "id": "element-battle",
+      "title": "ElementBattle",
+      "type": "project",
+      "date": "2025-01-16",
+      "duration": 30,
+      "description": "值得纪念的首个卡牌游戏作品。边学习函数和变量边开发。",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "color": "#6366f1",
+      "icon": "🃏"
     },
     {
-        "id": "under-over",
-        "title": "UnderOver",
-        "type": "project",
-        "date": "2024-12-01",
-        "duration": 90,
-        "description": "兼顾Unity独有方法学习开发的2D动作游戏。Unity基础巩固的集大成之作。",
-        "technologies": ["Unity", "C#", "2D物理"],
-        "color": "#f59e0b",
-        "icon": "⚡"
+      "id": "split",
+      "title": "Split",
+      "type": "project",
+      "date": "2024-10-01",
+      "duration": 180,
+      "description": "首次团队开发制作的2D动作游戏。从策划到调试经历全部流程。",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "color": "#8b5cf6",
+      "icon": "🎮"
     },
     {
-        "id": "takashi",
-        "title": "たかし、人生ベット中",
-        "type": "project",
-        "date": "2025-08-01",
-        "duration": 3,
-        "description": "校内Game Jam 3天开发的2D射击游戏。5人团队的领导经验。",
-        "technologies": ["Unity", "C#", "单例模式", "对象池"],
-        "color": "#ef4444",
-        "icon": "🏆",
-        "award": "株式会社InfiniteLoop堀川奖"
+      "id": "under-over",
+      "title": "UnderOver",
+      "type": "project",
+      "date": "2024-12-01",
+      "duration": 90,
+      "description": "兼顾Unity独有方法学习开发的2D动作游戏。Unity基础巩固的集大成之作。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#f59e0b",
+      "icon": "⚡"
     },
     {
-        "id": "butterfly",
-        "title": "蝶々反乱",
-        "type": "project",
-        "date": "2025-10-18",
-        "duration": 2,
-        "description": "Sapporo Game Camp2025参赛作品。全员初次见面的7人团队开发的2D动作游戏。",
-        "technologies": ["Unity", "C#", "设计模式", "团队开发"],
-        "color": "#06b6d4",
-        "icon": "🦋",
-            "status": "完善中"
-        }
-    ]
+      "id": "takashi",
+      "title": "たかし、人生ベット中",
+      "type": "project",
+      "date": "2025-08-01",
+      "duration": 3,
+      "description": "校内Game Jam 3天开发的2D射击游戏。5人团队的领导经验。",
+      "technologies": [
+        "Unity",
+        "C#",
+        "单例模式",
+        "对象池"
+      ],
+      "color": "#ef4444",
+      "icon": "🏆",
+      "award": "株式会社InfiniteLoop堀川奖"
+    },
+    {
+      "id": "butterfly",
+      "title": "蝶々反乱",
+      "type": "project",
+      "date": "2025-10-18",
+      "duration": 2,
+      "description": "Sapporo Game Camp2025参赛作品。全员初次见面的7人团队开发的2D动作游戏。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#06b6d4",
+      "icon": "🦋",
+      "status": "完善中"
+    }
+  ]
 }

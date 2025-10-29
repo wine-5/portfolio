@@ -1,80 +1,99 @@
 {
-    "hero": {
-        "title": "Development Journey",
-        "subtitle": "Game Development Journey from Enrollment to Present",
-        "description": "A chronological showcase of each project from vocational school enrollment to the present, including development period, technologies used, and achievements."
-    },
-    "stats": {
-        "projects": "Projects",
-        "awards": "Awards",
-        "years": "Years"
-    },
-    "items": [
-        {
-            "id": "school-start",
-            "title": "Enrolled in Vocational School",
-            "type": "milestone",
-            "date": "2024-04-01",
-            "description": "Started learning game development",
-            "color": "#10b981",
-            "icon": "🎓"
-        },
+  "hero": {
+    "title": "Development Journey",
+    "subtitle": "Game Development Journey from Enrollment to Present",
+    "description": "A chronological showcase of each project from vocational school enrollment to the present, including development period, technologies used, and achievements."
+  },
+  "stats": {
+    "projects": "Projects",
+    "awards": "Awards",
+    "years": "Years"
+  },
+  "items": [
     {
-        "id": "element-battle",
-        "title": "ElementBattle",
-        "type": "project",
-        "date": "2025-01-16",
-        "duration": 30,
-        "description": "My memorable first card game. Developed while learning functions and variables.",
-        "technologies": ["HTML", "CSS", "JavaScript"],
-        "color": "#6366f1",
-        "icon": "🃏"
+      "id": "school-start",
+      "title": "Enrolled in Vocational School",
+      "type": "milestone",
+      "date": "2024-04-01",
+      "description": "Started learning game development",
+      "color": "#10b981",
+      "icon": "🎓"
     },
     {
-        "id": "split",
-        "title": "Split",
-        "type": "project",
-        "date": "2024-10-01",
-        "duration": 180,
-        "description": "First team development 2D action game. Experienced full process from planning to debugging.",
-        "technologies": ["HTML", "CSS", "JavaScript", "Git"],
-        "color": "#8b5cf6",
-        "icon": "🎮"
+      "id": "element-battle",
+      "title": "ElementBattle",
+      "type": "project",
+      "date": "2025-01-16",
+      "duration": 30,
+      "description": "My memorable first card game. Developed while learning functions and variables.",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "color": "#6366f1",
+      "icon": "🃏"
     },
     {
-        "id": "under-over",
-        "title": "UnderOver",
-        "type": "project",
-        "date": "2024-12-01",
-        "duration": 90,
-        "description": "2D action game developed while learning Unity-specific methods. Culmination of Unity basics.",
-        "technologies": ["Unity", "C#", "2D Physics"],
-        "color": "#f59e0b",
-        "icon": "⚡"
+      "id": "split",
+      "title": "Split",
+      "type": "project",
+      "date": "2024-10-01",
+      "duration": 180,
+      "description": "First team development 2D action game. Experienced full process from planning to debugging.",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "color": "#8b5cf6",
+      "icon": "🎮"
     },
     {
-        "id": "takashi",
-        "title": "Takashi, Betting on Life",
-        "type": "project",
-        "date": "2025-08-01",
-        "duration": 3,
-        "description": "2D shooting game developed in 3 days during school game jam. Led a team of 5.",
-        "technologies": ["Unity", "C#", "Singleton", "ObjectPool"],
-        "color": "#ef4444",
-        "icon": "🏆",
-        "award": "Horikawa Award from Infinite Loop Inc."
+      "id": "under-over",
+      "title": "UnderOver",
+      "type": "project",
+      "date": "2024-12-01",
+      "duration": 90,
+      "description": "2D action game developed while learning Unity-specific methods. Culmination of Unity basics.",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#f59e0b",
+      "icon": "⚡"
     },
     {
-        "id": "butterfly",
-        "title": "Butterfly Rebellion",
-        "type": "project",
-        "date": "2025-10-18",
-        "duration": 2,
-        "description": "Entry for Sapporo Game Camp 2025. 2D action game developed with a team of 7, all meeting for the first time.",
-        "technologies": ["Unity", "C#", "Design Patterns", "Team Development"],
-        "color": "#06b6d4",
-        "icon": "🦋",
-            "status": "Being Polished"
-        }
-    ]
+      "id": "takashi",
+      "title": "Takashi, Betting on Life",
+      "type": "project",
+      "date": "2025-08-01",
+      "duration": 3,
+      "description": "2D shooting game developed in 3 days during school game jam. Led a team of 5.",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#ef4444",
+      "icon": "🏆",
+      "award": "Horikawa Award from Infinite Loop Inc."
+    },
+    {
+      "id": "butterfly",
+      "title": "Butterfly Rebellion",
+      "type": "project",
+      "date": "2025-10-18",
+      "duration": 2,
+      "description": "Entry for Sapporo Game Camp 2025. 2D action game developed with a team of 7, all meeting for the first time.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Design Patterns",
+        "Team Development"
+      ],
+      "color": "#06b6d4",
+      "icon": "🦋",
+      "status": "Being Polished"
+    }
+  ]
 }
