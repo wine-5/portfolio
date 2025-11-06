@@ -3572,6 +3572,190 @@ body {
     transform: scale(1.05);
 }
 
+/* 単一動画コンテナ */
+.single-video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.work-card__main-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.single-video-container .video-info-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.single-video-container:hover .video-info-overlay {
+    opacity: 1;
+}
+
+/* 動画要素の特別なスタイル */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.video-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/* 画像コンテナ */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    transition: transform 0.3s ease;
+}
+
+.image-element:hover {
+    transform: scale(1.05);
+}
+
+/* 画像のプレイオーバーレイ */
+.image-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.image-container:hover .image-play-overlay {
+    opacity: 1;
+}
+
+/* 動画のプレイオーバーレイ */
+.video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.video-container:hover .video-play-overlay {
+    opacity: 1;
+}
+
+/* 動画情報オーバーレイ（クリック不可） */
+.video-info-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.video-container:hover .video-info-overlay {
+    opacity: 1;
+}
+
+.video-info-hint {
+    background: rgba(75, 85, 99, 0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    font-size: 0.9em;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.video-container:hover .video-info-hint {
+    transform: translateY(0);
+}
+
+.play-game-hint {
+    background: rgba(99, 102, 241, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.video-play-overlay:hover .play-game-hint {
+    transform: translateY(0);
+}
+
+/* 動画のホバー効果 */
+video.slider-image:hover {
+    transform: scale(1.05);
+}
+
+/* クリック可能な動画のカーソル */
+video.clickable-image {
+    cursor: pointer;
+}
+
 .slider-controls {
     position: absolute;
     top: 50%;

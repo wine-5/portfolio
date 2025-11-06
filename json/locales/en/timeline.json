@@ -94,6 +94,20 @@
       "color": "#06b6d4",
       "icon": "🦋",
       "status": "Being Polished"
+    },
+    {
+      "id": "zirai-tyan",
+      "title": "Shin-layer Shin-ri Mine-chan",
+      "type": "project",
+      "date": "2025-10-25",
+      "duration": 14,
+      "description": "A 2-week game jam entry for Bandai Namco Studios Cup. Collaborated with professionals from various fields including designers, planners, and sound engineers.",
+      "technologies": [
+        "C++"
+      ],
+      "color": "#ec4899",
+      "icon": "💣",
+      "award": "Bandai Namco Studios Cup Participant"
     }
   ]
 }

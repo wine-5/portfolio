@@ -60,6 +60,22 @@ class GamesManager {
         ).join('');
         
         this.worksGrid.innerHTML = projectsHtml;
+        
+        // スライダーの初期化：最初のスライドが確実に表示されるようにする
+        setTimeout(() => {
+            const allSliders = document.querySelectorAll('.image-slider');
+            allSliders.forEach(slider => {
+                const firstSlide = slider.querySelector('.slider-image');
+                if (firstSlide && !firstSlide.classList.contains('active')) {
+                    firstSlide.classList.add('active');
+                }
+                
+                const firstIndicator = slider.querySelector('.indicator');
+                if (firstIndicator && !firstIndicator.classList.contains('active')) {
+                    firstIndicator.classList.add('active');
+                }
+            });
+        }, 100);
     }
 
     createGameCard(project) {
@@ -71,11 +87,61 @@ class GamesManager {
         const playUrl = project.locked ? '' : this.getPlayUrl(project); // ロック時はプレイURLを無効化
         
         let imageElement;
-        if (project.images && project.images.length > 0) {
+        if (project.images && project.images.length > 1) {
             // 複数画像の場合：スライダー表示
             imageElement = this.createImageSlider(project.images, project.title, playUrl, project.locked);
+        } else if (project.images && project.images.length === 1) {
+            // 単一画像または動画の場合
+            const singleItem = project.images[0];
+            const isVideo = singleItem.toLowerCase().endsWith('.mp4') || singleItem.toLowerCase().endsWith('.webm') || singleItem.toLowerCase().endsWith('.ogg');
+            
+            if (isVideo) {
+                // 単一動画の場合
+                imageElement = `
+                    <div class="single-video-container">
+                        <video src="${singleItem}" 
+                               class="work-card__main-video"
+                               controls
+                               muted
+                               preload="metadata"
+                               style="width: 100%; height: 100%; object-fit: cover;"
+                               onloadedmetadata="this.currentTime = 1;">
+                            お使いのブラウザは動画の再生に対応していません。
+                        </video>
+                        <div class="video-info-overlay">
+                            <div class="video-info-hint">
+                                <i class="fas fa-play"></i>
+                                <span>動画を再生</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // 単一画像の場合
+                const lockClass = project.locked ? 'locked-image' : '';
+                imageElement = `
+                    <div class="single-image-container ${lockClass}" data-play-url="${playUrl || ''}" data-locked="${project.locked || false}">
+                        <img src="${singleItem}" alt="${project.title}のスクリーンショット" 
+                             class="work-card__main-image ${project.locked ? '' : 'clickable-image'}"
+                             loading="lazy"
+                             data-play-url="${playUrl || ''}"
+                             onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(project.title)}'">
+                        ${project.locked ? `
+                            <div class="lock-overlay">
+                                <i class="fas fa-lock"></i>
+                                <span>${project.lockReason || '準備中'}</span>
+                            </div>
+                        ` : `
+                            <div class="play-hint">
+                                <i class="fas fa-play-circle"></i>
+                                <span>クリックしてプレイ</span>
+                            </div>
+                        `}
+                    </div>
+                `;
+            }
         } else if (project.image && project.image.trim() !== '') {
-            // 単一画像の場合
+            // レガシー：単一画像の場合
             const lockClass = project.locked ? 'locked-image' : '';
             imageElement = `
                 <div class="single-image-container ${lockClass}" data-play-url="${playUrl || ''}" data-locked="${project.locked || false}">
@@ -184,17 +250,62 @@ class GamesManager {
         const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
         const lockClass = isLocked ? 'locked-image' : '';
         
+        // プロジェクトに動画が含まれているかチェック
+        const hasVideo = images.some(image => 
+            image.toLowerCase().endsWith('.mp4') || 
+            image.toLowerCase().endsWith('.webm') || 
+            image.toLowerCase().endsWith('.ogg')
+        );
+        
         return `
             <div class="image-slider ${lockClass}" data-slider-id="${sliderId}" data-play-url="${playUrl || ''}" data-locked="${isLocked || false}">
                 <div class="slider-container">
-                    ${images.map((image, index) => `
-                        <img src="${image}" 
-                             alt="${title}のスクリーンショット ${index + 1}" 
-                             class="slider-image ${index === 0 ? 'active' : ''} ${isLocked ? '' : 'clickable-image'}"
-                             loading="lazy"
-                             data-play-url="${playUrl || ''}"
-                             onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(title)}'">
-                    `).join('')}
+                    ${images.map((image, index) => {
+                        const isVideo = image.toLowerCase().endsWith('.mp4') || image.toLowerCase().endsWith('.webm') || image.toLowerCase().endsWith('.ogg');
+                        
+                        if (isVideo) {
+                            return `
+                                <div class="video-container slider-image ${index === 0 ? 'active' : ''}" data-video="true">
+                                    <video src="${image}" 
+                                           class="video-element"
+                                           controls
+                                           muted
+                                           preload="metadata"
+                                           style="width: 100%; height: 100%; object-fit: cover;"
+                                           onloadedmetadata="this.currentTime = 1;">
+                                        お使いのブラウザは動画の再生に対応していません。
+                                    </video>
+                                    <div class="video-info-overlay">
+                                        <div class="video-info-hint">
+                                            <i class="fas fa-play"></i>
+                                            <span>動画を再生</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            // 画像の場合：動画がある場合はクリック無効、動画がない場合はクリック有効
+                            const isClickable = !hasVideo && !isLocked;
+                            return `
+                                <div class="image-container slider-image ${index === 0 ? 'active' : ''}">
+                                    <img src="${image}" 
+                                         alt="${title}のスクリーンショット ${index + 1}" 
+                                         class="image-element ${isClickable ? 'clickable-image' : ''}"
+                                         loading="lazy"
+                                         data-play-url="${isClickable ? (playUrl || '') : ''}"
+                                         onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(title)}'">
+                                    ${isClickable ? `
+                                        <div class="image-play-overlay clickable-image" data-play-url="${playUrl || ''}">
+                                            <div class="play-game-hint">
+                                                <i class="fas fa-external-link-alt"></i>
+                                                <span>ゲームをプレイ</span>
+                                            </div>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `;
+                        }
+                    }).join('')}
                 </div>
                 
                 <!-- スライダーコントロール -->
@@ -222,12 +333,12 @@ class GamesManager {
                         <i class="fas fa-lock"></i>
                         <span>準備中</span>
                     </div>
-                ` : `
+                ` : (!hasVideo ? `
                     <div class="play-hint">
                         <i class="fas fa-play-circle"></i>
                         <span>クリックしてプレイ</span>
                     </div>
-                `}
+                ` : '')}
             </div>
         `;
     }
@@ -299,8 +410,9 @@ class GamesManager {
                 const slideIndex = parseInt(button.dataset.slide);
                 this.goToSlide(sliderId, slideIndex);
             } else if (e.target.closest('.clickable-image')) {
-                // 画像をクリックしてゲームをプレイ
-                const playUrl = e.target.dataset.playUrl || e.target.closest('[data-play-url]')?.dataset.playUrl;
+                // 画像または動画オーバーレイをクリックしてゲームをプレイ
+                const clickedElement = e.target.closest('.clickable-image');
+                const playUrl = clickedElement.dataset.playUrl || clickedElement.closest('[data-play-url]')?.dataset.playUrl;
                 this.handleImageClick(playUrl);
             }
         });
@@ -357,12 +469,27 @@ class GamesManager {
         const images = slider.querySelectorAll('.slider-image');
         const indicators = slider.querySelectorAll('.indicator');
 
-        // 全ての画像からactiveクラスを削除
+        // 現在アクティブな動画を一時停止
+        const currentActiveVideo = slider.querySelector('.slider-image.active video');
+        if (currentActiveVideo) {
+            currentActiveVideo.pause();
+        }
+
+        // 全ての画像・動画からactiveクラスを削除
         images.forEach(img => img.classList.remove('active'));
         indicators.forEach(ind => ind.classList.remove('active'));
 
-        // 新しい画像とインジケーターにactiveクラスを追加
-        if (images[index]) images[index].classList.add('active');
+        // 新しい画像・動画とインジケーターにactiveクラスを追加
+        if (images[index]) {
+            images[index].classList.add('active');
+            
+            // 新しくアクティブになった要素が動画の場合、サムネイルを表示
+            const newVideo = images[index].querySelector('video');
+            if (newVideo) {
+                // 動画の最初のフレームにリセット
+                newVideo.currentTime = 1;
+            }
+        }
         if (indicators[index]) indicators[index].classList.add('active');
     }
 }

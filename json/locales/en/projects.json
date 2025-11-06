@@ -1,5 +1,26 @@
 [
   {
+    "title": "Shin-layer Shin-ri Mine-chan",
+    "description": "A 2-week game jam entry for Bandai Namco Studios Cup",
+    "detailedFeatures": "This game was created collaboratively with professionals from various fields including designers, planners, sound engineers, and many other disciplines beyond programming.",
+    "myResponsibilities": "Stage design and implementation, implementation of several boss skills",
+    "technologies": [
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/zirai-tyan/zirai-movie.mp4"
+    ],
+    "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
+    "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "10 people",
+    "period": "2 weeks"
+  },
+  {
     "title": "Takashi, Betting on Life",
     "description": "2D shooting game developed in 3 days during school game jam. Led a team of 5. Won Horikawa Award from Infinite Loop Inc.",
     "detailedFeatures": "This game was created during a 3-day in-school game jam. As the project leader for my first game jam, managing the team was challenging.\nIt was a great learning experience coordinating with designers on the type of artwork needed and the format. With many programmers on the team, creating base classes and shortening the critical path was quite difficult.\nI was just starting to learn design patterns, so I worked hard on optimization using Singleton, ObjectPool, and other patterns.",

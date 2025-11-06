@@ -1,5 +1,10 @@
 [
   {
+    "date": "2025-11-07",
+    "title": "Added \"Shin-layer Shin-ri Mine-chan\" Game",
+    "description": "Added \"Shin-layer Shin-ri Mine-chan\" from Bandai Namco Studios Cup to the projects. A 2-week game jam entry developed in C++."
+  },
+  {
     "date": "2025-10-30",
     "title": "Layout Fixes and Minor Adjustments",
     "description": "Added CSS for non-PC device support and fixed some text content"

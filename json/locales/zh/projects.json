@@ -1,5 +1,26 @@
 [
   {
+    "title": "深层深理 地雷酱",
+    "description": "万代南梦宫工作室杯为期2周的Game Jam作品",
+    "detailedFeatures": "这是与程序员以外的设计师、策划、音响等各种职业的人员共同制作的游戏。",
+    "myResponsibilities": "关卡设计与实现，实现了几个Boss技能",
+    "technologies": [
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/zirai-tyan/zirai-movie.mp4"
+    ],
+    "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
+    "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "10人",
+    "period": "2周"
+  },
+  {
     "title": "たかし、人生ベット中",
     "description": "校内Game Jam 3天开发的2D射击游戏。5人团队的领导经验。获得株式会社InfiniteLoop堀川奖。",
     "detailedFeatures": "这是在校内举办的为期3天的Game Jam游戏。作为第一次参加Game Jam的项目领导，指挥工作非常艰巨。\n在委托设计师绘图时，如何表达需要什么样的图、格式如何等都是非常好的经验。由于程序员很多，创建基类并缩短关键路径非常困难。\n而且在刚开始学习设计方法时，努力使用单例和对象池等来考虑效率化。",

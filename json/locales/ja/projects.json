@@ -1,5 +1,26 @@
 [
   {
+    "title": "シン層シン理 地雷ちゃん",
+    "description": "バンダイナムコスタジオ杯で行われた２週間のゲームジャムの作品",
+    "detailedFeatures": "プログラマー以外にデザイナー、プランナー、サウンドの人などたくさんの職種の方と一緒に作り上げたゲームです。",
+    "myResponsibilities": "ステージの設計から実装、ボスの技をいくつか実装",
+    "technologies": [
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/zirai-tyan/zirai-movie.mp4"
+    ],
+    "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
+    "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "10人",
+    "period": "2週間"
+  },
+  {
     "title": "たかし、人生ベット中",
     "description": "学内ゲームジャム3日間で開発した2Dシューティングゲーム。5人チームでのリーダー経験。株式会社インフィニットループ堀川賞受賞。",
     "detailedFeatures": "学内で3日間開催されたゲームジャムのゲームです。初めてのゲームジャムでプロジェクトのリーダーだったので指揮を取るのが大変でした。\nデザイナーへの絵を任せるときにどのような絵が欲しいか、形式はどうするかなどとてもいい経験になりました。プログラマーがたくさんいるので、基底クラスを作って、クリティカルパスを短くするのが大変でした。\nそして設計方法を学び始めたころなので、シングルトンやObjectPoolなどを使って効率化を考えて頑張りました。",
