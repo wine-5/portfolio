@@ -352,6 +352,14 @@ class GamesManager {
                     </button>`;
         }
         
+        // App Store等のインストールリンクがある場合
+        if (project.install && project.install !== '#') {
+            return `<a href="${project.install}" target="_blank" class="btn btn--primary work-card__button">
+                        <i class="fas fa-download"></i>
+                        Install
+                    </a>`;
+        }
+        
         // ウェブ公開用パスがある場合は、オンラインでプレイ可能
         if (project.webPath) {
             return `<a href="${project.webPath}" target="_blank" class="btn btn--primary work-card__button">
@@ -429,6 +437,11 @@ class GamesManager {
     }
 
     getPlayUrl(project) {
+        // installフィールドがある場合（App Store等）
+        if (project.install && project.install !== '#') {
+            return project.install;
+        }
+        
         // ウェブ公開用パスがある場合
         if (project.webPath) {
             return project.webPath;

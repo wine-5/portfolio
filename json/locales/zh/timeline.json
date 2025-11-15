@@ -108,6 +108,22 @@
       "color": "#ec4899",
       "icon": "💣",
       "award": "万代南梦宫工作室杯参加者"
+    },
+    {
+      "id": "tofu-runner",
+      "title": "TofuRunner",
+      "type": "project",
+      "date": "2025-11-12",
+      "duration": 3,
+      "description": "首次在App Store上发布的游戏。负责玩家（豆腐）控制和环形着色器渲染。",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Sharder"
+      ],
+      "color": "#f97316",
+      "icon": "📱",
+      "award": "App Store发布"
     }
   ]
 }

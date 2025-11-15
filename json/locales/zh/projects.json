@@ -1,5 +1,29 @@
 [
   {
+    "title": "TofuRunner",
+    "description": "首次在App Store上发布的作品",
+    "detailedFeatures": "与校内的人一起制作的游戏。此外首次使用Shader实现了更真实的渲染效果。",
+    "myResponsibilities": "玩家(豆腐)控制,环形着色器渲染",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Sharder"
+    ],
+    "supportedPlatforms": [
+      "iOS"
+    ],
+    "images": [
+      "images/game/Tofu/Tofu-Title.png",
+      "images/game/Tofu/Tofu-InGame.png"
+    ],
+    "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
+    "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "2人",
+    "period": "3天"
+  },
+  {
     "title": "深层深理 地雷酱",
     "description": "万代南梦宫工作室杯为期2周的Game Jam作品",
     "detailedFeatures": "这是与程序员以外的设计师、策划、音响等各种职业的人员共同制作的游戏。",

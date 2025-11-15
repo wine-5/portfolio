@@ -108,6 +108,22 @@
       "color": "#ec4899",
       "icon": "💣",
       "award": "Bandai Namco Studios Cup Participant"
+    },
+    {
+      "id": "tofu-runner",
+      "title": "TofuRunner",
+      "type": "project",
+      "date": "2025-11-12",
+      "duration": 3,
+      "description": "First game published on the App Store. Responsible for player (tofu) control and ring shader rendering.",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Sharder"
+      ],
+      "color": "#f97316",
+      "icon": "📱",
+      "award": "Published on App Store"
     }
   ]
 }

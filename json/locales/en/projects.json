@@ -1,5 +1,29 @@
 [
   {
+    "title": "TofuRunner",
+    "description": "First work published on the App Store",
+    "detailedFeatures": "A game created together with people from school. Also used Shader for the first time to achieve more realistic rendering.",
+    "myResponsibilities": "Player (tofu) control, ring shader rendering",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Sharder"
+    ],
+    "supportedPlatforms": [
+      "iOS"
+    ],
+    "images": [
+      "images/game/Tofu/Tofu-Title.png",
+      "images/game/Tofu/Tofu-InGame.png"
+    ],
+    "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
+    "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "2 people",
+    "period": "3 days"
+  },
+  {
     "title": "Shin-layer Shin-ri Mine-chan",
     "description": "A 2-week game jam entry for Bandai Namco Studios Cup",
     "detailedFeatures": "This game was created collaboratively with professionals from various fields including designers, planners, sound engineers, and many other disciplines beyond programming.",

@@ -87,6 +87,18 @@
             "color": "#ec4899",
             "icon": "💣",
             "award": "バンダイナムコスタジオ杯参加"
+        },
+        {
+        "id": "tofu-runner",
+        "title": "TofuRunner",
+        "type": "project",
+        "date": "2025-11-12",
+        "duration": 3,
+        "description": "初めてApp Storeに公開したゲーム。プレイヤー（豆腐）の制御とリングのShader描画を担当。",
+            "technologies": ["Unity", "C#", "Sharder"],
+            "color": "#f97316",
+            "icon": "📱",
+            "award": "App Store公開"
         }
     ]
 }

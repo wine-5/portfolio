@@ -1,5 +1,29 @@
 [
   {
+    "title": "TofuRunner",
+    "description": "初めてAppStoreに公開した作品",
+    "detailedFeatures": "学内の人と一緒に制作したゲームです。またShaderを初めて使いよりリアルな描画をすることができました。",
+    "myResponsibilities": "プレイヤー（豆腐）の制御、リングのShaderの描画",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Sharder"
+    ],
+    "supportedPlatforms": [
+      "iOS"
+    ],
+    "images": [
+      "images/game/Tofu/Tofu-Title.png",
+      "images/game/Tofu/Tofu-InGame.png"
+    ],
+    "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
+    "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "2人",
+    "period": "3日間"
+  },
+  {
     "title": "シン層シン理 地雷ちゃん",
     "description": "バンダイナムコスタジオ杯で行われた２週間のゲームジャムの作品",
     "detailedFeatures": "プログラマー以外にデザイナー、プランナー、サウンドの人などたくさんの職種の方と一緒に作り上げたゲームです。",

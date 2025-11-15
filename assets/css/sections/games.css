@@ -137,6 +137,7 @@
     background: var(--gradient-primary);
     position: relative;
     overflow: hidden;
+    z-index: 0;
 }
 
 .work-card__image img {
@@ -144,6 +145,8 @@
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-normal);
+    position: relative;
+    z-index: 1;
 }
 
 .work-card__main-image {
@@ -504,6 +507,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    z-index: 1;
 }
 
 .slider-image {
@@ -514,12 +518,16 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.5s ease, transform 0.3s ease;
     border-radius: 0;
+    z-index: 0;
 }
 
 .slider-image.active {
     opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
 }
 
 .slider-image:hover {
@@ -585,6 +593,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    z-index: 1;
 }
 
 .image-element {
@@ -596,6 +605,13 @@
     object-fit: cover;
     border-radius: 0;
     transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+/* スライダー内の画像要素の継承 */
+.slider-image .image-element {
+    opacity: inherit;
+    visibility: inherit;
 }
 
 .image-element:hover {
