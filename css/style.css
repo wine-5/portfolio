@@ -771,53 +771,7 @@ body {
     perspective: 1500px;
 }
 
-.hero__floating-cube {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    transform-style: preserve-3d;
-    animation: floatingCube 8s ease-in-out infinite;
-}
-
-.hero__floating-cube:nth-child(1) {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.hero__floating-cube:nth-child(2) {
-    top: 60%;
-    right: 15%;
-    animation-delay: -2s;
-}
-
-.hero__floating-cube:nth-child(3) {
-    bottom: 30%;
-    left: 20%;
-    animation-delay: -4s;
-}
-
-@keyframes floatingCube {
-
-    0%,
-    100% {
-        transform: translateY(0px) rotateX(0deg) rotateY(0deg) translateZ(0px);
-    }
-
-    25% {
-        transform: translateY(-30px) rotateX(90deg) rotateY(45deg) translateZ(50px);
-    }
-
-    50% {
-        transform: translateY(-60px) rotateX(180deg) rotateY(90deg) translateZ(100px);
-    }
-
-    75% {
-        transform: translateY(-30px) rotateX(270deg) rotateY(135deg) translateZ(50px);
-    }
-}
+/* .hero__floating-cube - 削除済み */
 
 .hero__title {
     /* CSS版を無効化 - WebGL版のみを使用 */
