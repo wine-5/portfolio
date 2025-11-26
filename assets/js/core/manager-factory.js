@@ -24,7 +24,12 @@ class ManagerFactory {
         this.managers.footerAnimation = new FooterAnimationManager();
         
         // WebGL水面反射システム（フォールバック付き）
-        this.managers.webglWater = new WebGLWaterReflectionManager();
+        try {
+            this.managers.webglWater = new WebGLWaterReflectionManager();
+        } catch (error) {
+            console.warn('WebGLWaterReflectionManager not available:', error);
+            this.managers.webglWater = null;
+        }
         this.managers.waterReflectionTitle = new WaterReflectionTitleManager();
         
         // ゲーム的UIエフェクト
@@ -67,6 +72,10 @@ class ManagerFactory {
     async initWaterReflection() {
         try {
             console.log('Checking WebGL support...');
+            
+            if (!this.managers.webglWater) {
+                throw new Error('WebGLWaterReflectionManager not available');
+            }
             
             await this.managers.webglWater.init();
             

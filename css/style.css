@@ -220,6 +220,11 @@ body {
 
 .loading.hidden {
     opacity: 0;
+    visibility: hidden;
+}
+
+.loading.hidden {
+    opacity: 0;
     pointer-events: none;
 }
 
@@ -473,6 +478,7 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    /* パーティクル生成はJSで無効化されているため、コンテナのみ表示 */
 }
 
 /* アニメーション定義 */
@@ -680,6 +686,53 @@ body {
     background: var(--gradient-primary);
     opacity: 0.1;
 }
+
+/* 白い球（パーティクル）を完全無効化 - 強化版 */
+
+/* パーティクル専用キャンバスのみを無効化 */
+#particles canvas,
+.hero__particles canvas,
+.loading__particles canvas,
+.skill-particle-canvas {
+    display: none !important;
+}
+
+/* パーティクル関連要素を無効化 */
+.hero__particles,
+.loading__particles,
+#particles,
+*[class*="particle"] {
+    display: none !important;
+}
+
+/* 白い色の疑似要素を無効化 */
+*::before,
+*::after {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 白いradial-gradientを持つ要素を透明に */
+*[style*="radial-gradient"] {
+    background: transparent !important;
+}
+
+/* 円形の背景を持つ可能性のある要素を無効化 */
+*[style*="border-radius: 50%"] {
+    background: transparent !important;
+}
+
+/* CSSフォールバック版の要素を表示 */
+.hero__content,
+.hero__title-container,
+.hero__title-letters,
+.hero__title-reflection {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ローディング画面を元に戻すため、hero::afterを削除 */
 
 /* 古いパーティクル処理を削除 - WebGL版を使用 */
 

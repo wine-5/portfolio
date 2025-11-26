@@ -8,7 +8,6 @@ class WebGLWaterReflectionManager {
         this.camera = null;
         this.renderer = null;
         this.textMeshes = [];
-        this.particles = [];
         this.animationId = null;
         this.isInitialized = false;
         
@@ -397,11 +396,11 @@ class WebGLWaterReflectionManager {
             { x: 0.25, y: 0, rotation: -0.3 }   // 右の線
         ];
         
-        const lineMaterial = new THREE.MeshPhongMaterial({
+        const lineMaterial = new THREE.MeshBasicMaterial({
             color: 0x6366f1,
-            emissive: 0x4f46e5,
-            emissiveIntensity: 0.3,
-            shininess: 100
+            // emissive: 0x4f46e5,
+            // emissiveIntensity: 0.3,
+            // shininess: 100
         });
         
         positions.forEach(pos => {
@@ -423,11 +422,8 @@ class WebGLWaterReflectionManager {
         const verticalGeometry = new THREE.BoxGeometry(0.08, 0.6, 0.15);
         const horizontalGeometry = new THREE.BoxGeometry(0.3, 0.08, 0.15);
         
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x6366f1,
-            emissive: 0x4f46e5,
-            emissiveIntensity: 0.3,
-            shininess: 100
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x6366f1
         });
         
         // 真ん中の縦線
@@ -461,11 +457,8 @@ class WebGLWaterReflectionManager {
         const verticalGeometry = new THREE.BoxGeometry(0.08, 0.8, 0.15);
         const diagonalGeometry = new THREE.BoxGeometry(0.08, 0.9, 0.15);
         
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x6366f1,
-            emissive: 0x4f46e5,
-            emissiveIntensity: 0.3,
-            shininess: 100
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x6366f1
         });
         
         // 左の縦線
@@ -500,11 +493,8 @@ class WebGLWaterReflectionManager {
         const verticalGeometry = new THREE.BoxGeometry(0.08, 0.8, 0.15);
         const horizontalGeometry = new THREE.BoxGeometry(0.25, 0.08, 0.15);
         
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x6366f1,
-            emissive: 0x4f46e5,
-            emissiveIntensity: 0.3,
-            shininess: 100
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x6366f1
         });
         
         // 左の縦線
@@ -542,11 +532,8 @@ class WebGLWaterReflectionManager {
     createLetterDash() {
         const group = new THREE.Group();
         const dashGeometry = new THREE.BoxGeometry(0.3, 0.08, 0.15);
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x6366f1,
-            emissive: 0x4f46e5,
-            emissiveIntensity: 0.3,
-            shininess: 100
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x6366f1
         });
         const dash = new THREE.Mesh(dashGeometry, material);
         dash.castShadow = true;
@@ -562,11 +549,8 @@ class WebGLWaterReflectionManager {
         const horizontalGeometry = new THREE.BoxGeometry(0.25, 0.08, 0.15);
         const verticalGeometry = new THREE.BoxGeometry(0.08, 0.3, 0.15);
         
-        const material = new THREE.MeshPhongMaterial({
-            color: 0x6366f1,
-            emissive: 0x4f46e5,
-            emissiveIntensity: 0.3,
-            shininess: 100
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x6366f1
         });
         
         // 上の横線
@@ -633,9 +617,6 @@ class WebGLWaterReflectionManager {
                     letterGroup.userData.textMesh.rotation.y = Math.sin(time * 0.8 + index) * 0.05;
                 }
             });
-            
-            // パーティクル効果のアニメーション
-            this.updateParticles();
             
             this.render();
         };
@@ -758,9 +739,6 @@ class WebGLWaterReflectionManager {
             } else {
                 // 飛び込み完了
                 userData.animationState = 'completed';
-                
-                // パーティクル効果を作成
-                this.createParticleEffect(letterGroup.position);
             }
         };
         
@@ -771,43 +749,6 @@ class WebGLWaterReflectionManager {
 
 
 
-    // パーティクル効果を作成
-    createParticleEffect(position) {
-        const particleCount = 15;
-        const particleGeometry = new THREE.SphereGeometry(0.02, 8, 8);
-        const particleMaterial = new THREE.MeshPhongMaterial({
-            color: 0xc0c0c0, // 銀色
-            emissive: 0x808080,
-            emissiveIntensity: 0.4,
-            transparent: true,
-            opacity: 0.8
-        });
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = new THREE.Mesh(particleGeometry, particleMaterial.clone());
-            
-            // カード位置から開始
-            particle.position.copy(position);
-            particle.position.y += 0.3; // 少し上から
-            
-            // ランダムな方向に飛散
-            const angle = (Math.PI * 2 * i) / particleCount;
-            const speed = 0.5 + Math.random() * 0.5;
-            
-            particle.userData = {
-                velocity: {
-                    x: Math.cos(angle) * speed,
-                    y: Math.random() * 0.8 + 0.2,
-                    z: Math.sin(angle) * speed
-                },
-                life: 1.0,
-                maxLife: 1.0 + Math.random() * 0.5
-            };
-            
-            this.particles.push(particle);
-            this.scene.add(particle);
-        }
-    }
 
 
 
@@ -815,34 +756,8 @@ class WebGLWaterReflectionManager {
 
 
 
-    // パーティクルの更新
-    updateParticles() {
-        for (let i = this.particles.length - 1; i >= 0; i--) {
-            const particle = this.particles[i];
-            const userData = particle.userData;
-            
-            // 位置を更新
-            particle.position.x += userData.velocity.x * 0.016;
-            particle.position.y += userData.velocity.y * 0.016;
-            particle.position.z += userData.velocity.z * 0.016;
-            
-            // 重力効果
-            userData.velocity.y -= 0.02;
-            
-            // ライフを減らす
-            userData.life -= 0.016 / userData.maxLife;
-            
-            // 透明度を更新
-            particle.material.opacity = userData.life * 0.8;
-            particle.scale.setScalar(userData.life);
-            
-            // ライフが尽きたら削除
-            if (userData.life <= 0) {
-                this.scene.remove(particle);
-                this.particles.splice(i, 1);
-            }
-        }
-    }
+
+
 
 
 
@@ -1046,10 +961,6 @@ class WebGLWaterReflectionManager {
 
     // 再演出機能
     resetAndReplay() {
-        // 既存のパーティクルをクリア
-        this.particles.forEach(particle => this.scene.remove(particle));
-        this.particles = [];
-
         // 文字を初期状態にリセット
         this.textMeshes.forEach((letterGroup, index) => {
             letterGroup.visible = false;

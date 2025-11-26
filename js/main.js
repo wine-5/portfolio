@@ -185,8 +185,8 @@ class PortfolioApp {
         const particlesContainer = document.querySelector('.loading__particles');
         const logoCenter = document.querySelector('.logo-center');
         
-        // パーティクルエフェクト生成
-        this.createLoadingParticles(particlesContainer);
+        // パーティクルエフェクト生成（無効化）
+        // this.createLoadingParticles(particlesContainer);
         
         // ヒントテキストを回転させて表示
         this.createRotatingHints(logoCenter);
@@ -225,32 +225,8 @@ class PortfolioApp {
     }
 
     createLoadingParticles(container) {
-        if (!container) return;
-        
-        for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
-            setTimeout(() => {
-                const particle = document.createElement('div');
-                const size = Math.random() * (CONFIG.PARTICLE_MAX_SIZE - CONFIG.PARTICLE_MIN_SIZE) + CONFIG.PARTICLE_MIN_SIZE;
-                const duration = Math.random() * (CONFIG.PARTICLE_MAX_DURATION - CONFIG.PARTICLE_MIN_DURATION) + CONFIG.PARTICLE_MIN_DURATION;
-                const delay = Math.random() * CONFIG.PARTICLE_MAX_DELAY;
-                const opacity = Math.random() * 0.8 + 0.2;
-                
-                particle.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    background: radial-gradient(circle, 
-                        rgba(99, 102, 241, ${opacity}), 
-                        transparent);
-                    border-radius: 50%;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    animation: floatParticle ${duration}s linear infinite;
-                    animation-delay: ${delay}s;
-                `;
-                container.appendChild(particle);
-            }, i * CONFIG.PARTICLE_CREATION_DELAY);
-        }
+        // パーティクル生成を完全に無効化
+        return;
         
         // アニメーション定義
         const style = document.createElement('style');
@@ -291,7 +267,7 @@ class PortfolioApp {
             logoCenter.classList.add('w5-clicked');
             
             // パーティクル生成
-            this.createW5ClickParticles(logoCenter);
+            // this.createW5ClickParticles(logoCenter);
             
             // 特別なエフェクト（5回目と10回目）
             if (clickCount === CONFIG.W5_CLICK_THRESHOLD_5) {
@@ -309,43 +285,8 @@ class PortfolioApp {
     }
 
     createW5ClickParticles(element) {
-        const rect = element.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        for (let i = 0; i < CONFIG.W5_PARTICLE_COUNT; i++) {
-            const particle = document.createElement('div');
-            const angle = (Math.PI * 2 * i) / CONFIG.W5_PARTICLE_COUNT;
-            const distance = CONFIG.W5_PARTICLE_MIN_DISTANCE + Math.random() * (CONFIG.W5_PARTICLE_MAX_DISTANCE - CONFIG.W5_PARTICLE_MIN_DISTANCE);
-            const size = CONFIG.W5_PARTICLE_MIN_SIZE + Math.random() * (CONFIG.W5_PARTICLE_MAX_SIZE - CONFIG.W5_PARTICLE_MIN_SIZE);
-            
-            particle.style.cssText = `
-                position: fixed;
-                left: ${centerX}px;
-                top: ${centerY}px;
-                width: ${size}px;
-                height: ${size}px;
-                background: linear-gradient(135deg, #6366f1, #a855f7);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 10001;
-                box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
-            `;
-            
-            document.body.appendChild(particle);
-            
-            const endX = centerX + Math.cos(angle) * distance;
-            const endY = centerY + Math.sin(angle) * distance;
-            
-            particle.animate([
-                { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
-                { transform: `translate(${endX - centerX}px, ${endY - centerY}px) scale(1)`, opacity: 0.8, offset: 0.5 },
-                { transform: `translate(${(endX - centerX) * 1.5}px, ${(endY - centerY) * 1.5}px) scale(0)`, opacity: 0 }
-            ], {
-                duration: CONFIG.W5_CLICK_ANIMATION_DURATION,
-                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-            }).onfinish = () => particle.remove();
-        }
+        // W5クリックパーティクルを無効化
+        return;
     }
 
     showW5Message(message) {

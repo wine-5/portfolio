@@ -8,11 +8,11 @@ class SkillParticleManager {
     }
 
     init() {
-        // 各スキルカードにパーティクルシステムを追加
-        document.querySelectorAll('.skill').forEach(skill => {
-            skill.addEventListener('mouseenter', (e) => this.handleSkillHover(e, skill));
-            skill.addEventListener('mouseleave', () => this.stopParticles());
-        });
+        // パーティクルシステムを無効化
+        // document.querySelectorAll('.skill').forEach(skill => {
+        //     skill.addEventListener('mouseenter', (e) => this.handleSkillHover(e, skill));
+        //     skill.addEventListener('mouseleave', () => this.stopParticles());
+        // });
     }
 
     handleSkillHover(e, skillElement) {
