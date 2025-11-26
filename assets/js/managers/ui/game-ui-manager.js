@@ -109,24 +109,7 @@ class GameUIManager {
         this.playLevelUpSound();
     }
 
-    createLevelUpParticles(container) {
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'level-up-particle';
-            
-            // ランダムな方向
-            const angle = (Math.PI * 2 * i) / 20;
-            const distance = 100 + Math.random() * 50;
-            const tx = Math.cos(angle) * distance;
-            const ty = Math.sin(angle) * distance;
-            
-            particle.style.setProperty('--tx', `${tx}px`);
-            particle.style.setProperty('--ty', `${ty}px`);
-            particle.style.animationDelay = `${Math.random() * 0.5}s`;
-            
-            container.appendChild(particle);
-        }
-    }
+    // createLevelUpParticles関数は削除済み
     */
     
     /* ===== レベルアップアニメーション機能ここまで ===== */

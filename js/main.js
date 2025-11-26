@@ -2,33 +2,7 @@
    メインアプリケーションクラス（簡潔版）
    =================================== */
 
-// 定数定義
-const CONFIG = {
-    SCROLL_DEBOUNCE_DELAY: 10,
-    RESIZE_DEBOUNCE_DELAY: 250,
-    HEADER_SCROLL_THRESHOLD: 50,
-    MOBILE_BREAKPOINT: 768,
-    LOADING_PROGRESS_INCREMENT: 15,
-    LOADING_PROGRESS_INTERVAL: 200,
-    LOADING_HIDE_DELAY: 500,
-    HINT_ANIMATION_DELAY: 0.5,
-    PARTICLE_COUNT: 30,
-    PARTICLE_CREATION_DELAY: 50,
-    PARTICLE_MIN_SIZE: 2,
-    PARTICLE_MAX_SIZE: 8,
-    PARTICLE_MIN_DURATION: 2,
-    PARTICLE_MAX_DURATION: 5,
-    PARTICLE_MAX_DELAY: 2,
-    W5_CLICK_ANIMATION_DURATION: 800,
-    W5_PARTICLE_COUNT: 12,
-    W5_PARTICLE_MIN_DISTANCE: 50,
-    W5_PARTICLE_MAX_DISTANCE: 80,
-    W5_PARTICLE_MIN_SIZE: 4,
-    W5_PARTICLE_MAX_SIZE: 10,
-    W5_MESSAGE_DURATION: 3000,
-    W5_CLICK_THRESHOLD_5: 5,
-    W5_CLICK_THRESHOLD_10: 10
-};
+// 定数定義は js/config/app-config.js に移動済み
 
 class PortfolioApp {
     constructor() {
@@ -224,32 +198,7 @@ class PortfolioApp {
         logoCenter.appendChild(hintsContainer);
     }
 
-    createLoadingParticles(container) {
-        // パーティクル生成を完全に無効化
-        return;
-        
-        // アニメーション定義
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes floatParticle {
-                0% {
-                    transform: translateY(0) scale(0);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 1;
-                }
-                90% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(-100vh) scale(1);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+    // createLoadingParticles関数は削除済み
 
     setupW5ClickAnimation() {
         const logoCenter = document.querySelector('.logo-center');
@@ -284,10 +233,7 @@ class PortfolioApp {
         });
     }
 
-    createW5ClickParticles(element) {
-        // W5クリックパーティクルを無効化
-        return;
-    }
+    // createW5ClickParticles関数は削除済み
 
     showW5Message(message) {
         const messageBox = document.createElement('div');

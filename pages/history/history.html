@@ -215,7 +215,7 @@
             // 言語切り替えイベントをリスン
             window.addEventListener('languageChanged', async (e) => {
                 const newLang = e.detail.language;
-                console.log('Language changed to:', newLang);
+                // 言語変更を処理
                 
                 // 更新履歴データを再読み込み
                 if (window.updatesData) {

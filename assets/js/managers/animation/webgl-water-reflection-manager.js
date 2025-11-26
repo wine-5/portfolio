@@ -2,6 +2,39 @@
    WebGL水面反射システムマネージャー
    Three.jsを使用したリアルな水面演出
    =================================== */
+
+// WebGL関連の定数
+const WEBGL_CONSTANTS = {
+    // カメラ設定
+    CAMERA_FOV: 90,
+    CAMERA_NEAR: 0.1,
+    CAMERA_FAR: 1000,
+    CAMERA_Z_POSITION: 6,
+    
+    // アニメーション設定
+    LETTER_ANIMATION_DELAY: 300, // ミリ秒
+    CARD_FLY_DURATION: 1000, // ミリ秒
+    HOVER_ANIMATION_DURATION: 300, // ミリ秒
+    POSITION_ANIMATION_DURATION: 500, // ミリ秒
+    REPLAY_DELAY: 500, // ミリ秒
+    ANIMATION_START_DELAY: 1000, // ミリ秒
+    
+    // 位置設定
+    LEFT_START_OFFSET: -20,
+    START_Y_POSITION: 0.5,
+    START_Z_POSITION: -2,
+    CENTER_Y_POSITION: 0.5,
+    
+    // スケール設定
+    INITIAL_SCALE: 0.3,
+    TARGET_SCALE: 1.0,
+    HOVER_SCALE: 1.2,
+    
+    // フレームレート
+    MOBILE_FPS: 30,
+    DESKTOP_FPS: 60
+};
+
 class WebGLWaterReflectionManager {
     constructor() {
         this.scene = null;
@@ -44,7 +77,7 @@ class WebGLWaterReflectionManager {
             // トランプカード演出を開始
             setTimeout(() => {
                 this.animateLettersIn();
-            }, 1000); // 1秒後に開始
+            }, WEBGL_CONSTANTS.ANIMATION_START_DELAY);
             
             // インタラクション機能を設定
             this.setupInteractions();
@@ -75,8 +108,7 @@ class WebGLWaterReflectionManager {
             const renderer = context.getParameter(context.RENDERER);
             const vendor = context.getParameter(context.VENDOR);
             
-            console.log('WebGL Renderer:', renderer);
-            console.log('WebGL Vendor:', vendor);
+            // レンダラー情報の取得のみでログは非表示
             
             // ソフトウェアレンダリング検出
             if (renderer && (renderer.toLowerCase().includes('software') || 
@@ -107,7 +139,7 @@ class WebGLWaterReflectionManager {
         const isSmallScreen = window.innerWidth <= 768;
         
         const result = isMobile || (isTouchDevice && isSmallScreen);
-        console.log('Mobile device check - UserAgent:', isMobile, 'Touch:', isTouchDevice, 'SmallScreen:', isSmallScreen, 'Result:', result);
+        // モバイルデバイス検出結果
         
         return result;
     }
@@ -139,7 +171,7 @@ class WebGLWaterReflectionManager {
             titleReflection.style.opacity = '0.8';
         }
         
-        console.log('Showing CSS fallback version with all elements visible');
+        // CSSフォールバック版を表示
     }
 
     async loadThreeJS() {
@@ -150,7 +182,7 @@ class WebGLWaterReflectionManager {
             threeScript.crossOrigin = 'anonymous';
             
             threeScript.onload = () => {
-                console.log('Three.js loaded successfully');
+                // Three.js読み込み成功
                 // 簡単なテスト
                 if (typeof THREE !== 'undefined') {
                     resolve();
@@ -204,7 +236,7 @@ class WebGLWaterReflectionManager {
         }
         
         const x = basePositions[index] * positionScale;
-        console.log(`Letter ${index}: RESPONSIVE position x=${x} (scale=${positionScale}, screen=${screenWidth}px)`);
+        // 文字位置をレスポンシブ計算
         
         return {
             x: x,
@@ -223,7 +255,7 @@ class WebGLWaterReflectionManager {
         const width = height * (this.windowWidth / this.windowHeight);
         
         const screenLeft = -width / 2;
-        console.log(`Screen dimensions: width=${width}, height=${height}, left=${screenLeft}`);
+        // 画面サイズを計算
         
         return screenLeft - 3; // 画面左端より3単位左に
     }
@@ -256,11 +288,11 @@ class WebGLWaterReflectionManager {
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
         
-        console.log(`Screen size: ${screenWidth} x ${screenHeight}`);
+        // 画面サイズを設定
 
         // Three.js基本設定 - 画面全体のサイズを使用
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(90, screenWidth / screenHeight, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(WEBGL_CONSTANTS.CAMERA_FOV, screenWidth / screenHeight, WEBGL_CONSTANTS.CAMERA_NEAR, WEBGL_CONSTANTS.CAMERA_FAR);
         this.renderer = new THREE.WebGLRenderer({ 
             canvas: canvas,
             alpha: true,
@@ -275,7 +307,7 @@ class WebGLWaterReflectionManager {
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
             // シャドウマップを無効化
             this.renderer.shadowMap.enabled = false;
-            console.log('Mobile optimizations applied');
+            // モバイル最適化を適用
         } else {
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             this.renderer.shadowMap.enabled = true;
@@ -283,7 +315,7 @@ class WebGLWaterReflectionManager {
         }
         
         // カメラ位置
-        this.camera.position.set(0, 0, 6);
+        this.camera.position.set(0, 0, WEBGL_CONSTANTS.CAMERA_Z_POSITION);
         this.camera.lookAt(0, 0, 0); // 中央を見る
     }
 
@@ -317,31 +349,32 @@ class WebGLWaterReflectionManager {
             switch(letter) {
                 case 'w':
                     textGeometry = this.createLetterW();
-                    console.log(`Created letter W with ${textGeometry.children.length} parts`);
+                    // W文字を作成
+                    textGeometry = this.createLetterW();
                     break;
                 case 'i':
+                    // I文字を作成
                     textGeometry = this.createLetterI();
-                    console.log(`Created letter I with ${textGeometry.children.length} parts`);
                     break;
                 case 'n':
+                    // N文字を作成
                     textGeometry = this.createLetterN();
-                    console.log(`Created letter N with ${textGeometry.children.length} parts`);
                     break;
                 case 'e':
+                    // E文字を作成
                     textGeometry = this.createLetterE();
-                    console.log(`Created letter E with ${textGeometry.children.length} parts`);
                     break;
                 case '-':
+                    // -文字を作成
                     textGeometry = this.createLetterDash();
-                    console.log(`Created letter - with ${textGeometry.children.length} parts`);
                     break;
                 case '5':
+                    // 5文字を作成
                     textGeometry = this.createLetter5();
-                    console.log(`Created letter 5 with ${textGeometry.children.length} parts`);
                     break;
                 default:
+                    // デフォルトジオメトリ
                     textGeometry = new THREE.BoxGeometry(0.3, 0.5, 0.1);
-                    console.log(`Created default geometry for ${letter}`);
             }
             
             // textGeometryは既にGroupオブジェクトなので、直接追加
@@ -353,10 +386,7 @@ class WebGLWaterReflectionManager {
             const centerPos = this.calculateCenterPosition(index);
             letterGroup.position.copy(centerPos);
             
-            console.log(`Letter ${letter} (${index}) positioned at:`, centerPos);
-            console.log(`Letter ${letter} group children count:`, letterGroup.children.length);
-            console.log(`Letter ${letter} visible:`, letterGroup.visible);
-            console.log(`Letter ${letter} scale:`, letterGroup.scale);
+            // 文字グループの位置と状態を設定
             
             // 4. 初期状態は非表示（各文字に個別の開始位置）
             letterGroup.visible = false;
@@ -364,7 +394,7 @@ class WebGLWaterReflectionManager {
             const startX = baseStartX - (index * 2); // 各文字をずらして配置
             letterGroup.position.x = startX;
             
-            console.log(`Letter ${letter} (${index}) start position: x=${startX}`);
+            // 文字の開始位置を設定
             
             // 5. アニメーション用のプロパティを追加
             letterGroup.userData = {
@@ -377,10 +407,10 @@ class WebGLWaterReflectionManager {
             
             this.textMeshes.push(letterGroup);
             this.scene.add(letterGroup);
-            console.log(`Added letter ${letter} to scene. Scene children count:`, this.scene.children.length);
+            // 文字をシーンに追加
         });
         
-        console.log('Trump card text system created:', this.textMeshes.length);
+        // トランプカードテキストシステム作成完了
     }
 
     // 各文字の形状作成メソッド
@@ -634,13 +664,13 @@ class WebGLWaterReflectionManager {
         const cssWaterElement = document.querySelector('.water-reflection-title');
         if (cssWaterElement) {
             cssWaterElement.style.display = 'none';
-            console.log('CSS water reflection hidden');
+            // CSS水面反射を非表示
         }
     }
 
     // CSS版へのフォールバック
     fallbackToCSS() {
-        console.log('Using CSS fallback for water reflection');
+        // CSSフォールバックを使用
         // 既存のCSS版を有効化
         const cssManager = new WaterReflectionTitleManager();
         cssManager.init();
@@ -648,10 +678,10 @@ class WebGLWaterReflectionManager {
 
     // トランプカード演出付きの文字アニメーション
     animateLettersIn() {
-        console.log('Starting letter animations...');
+        // 文字アニメーションを開始
         this.textMeshes.forEach((letterGroup, index) => {
-            const delay = index * 300; // 300ms間隔で順番に開始
-            console.log(`Letter ${letterGroup.userData.letter} will start in ${delay}ms`);
+            const delay = index * WEBGL_CONSTANTS.LETTER_ANIMATION_DELAY;
+            // 文字のアニメーションを遅延開始
             setTimeout(() => {
                 this.animateLetterWithCard(letterGroup);
             }, delay);
@@ -667,7 +697,7 @@ class WebGLWaterReflectionManager {
         userData.animationState = 'flying';
         
         // 初期位置設定（左の遠く）
-        letterGroup.position.set(-20, 0.5, -2);
+        letterGroup.position.set(WEBGL_CONSTANTS.LEFT_START_OFFSET, WEBGL_CONSTANTS.START_Y_POSITION, WEBGL_CONSTANTS.START_Z_POSITION);
         letterGroup.rotation.set(0, -Math.PI / 4, 0); // 少し回転した状態で飛び込む
         // モバイル対応: 初期スケールも画面サイズに応じて調整
         const screenWidth = window.innerWidth;
@@ -692,7 +722,7 @@ class WebGLWaterReflectionManager {
 
     animateCardFlyIn(letterGroup) {
         const userData = letterGroup.userData;
-        const duration = 1000;
+        const duration = WEBGL_CONSTANTS.CARD_FLY_DURATION;
         const startTime = performance.now();
         
         const startPos = { x: letterGroup.position.x, y: letterGroup.position.y, z: letterGroup.position.z };
@@ -839,7 +869,7 @@ class WebGLWaterReflectionManager {
         const targetScale = isHovering ? 1.2 : 1.0;
         const targetY = isHovering ? 0.7 : 0.5;
         
-        const duration = 300;
+        const duration = WEBGL_CONSTANTS.HOVER_ANIMATION_DURATION;
         const startTime = performance.now();
         const startScale = letterGroup.scale.x;
         const startY = letterGroup.position.y;
@@ -915,7 +945,7 @@ class WebGLWaterReflectionManager {
             targetScale = 0.9;
         }
         
-        console.log(`Updating letter scale for screen ${screenWidth}px: ${targetScale}`);
+        // 文字スケールを更新
         
         this.textMeshes.forEach((letterGroup, index) => {
             // 位置を更新
@@ -940,7 +970,7 @@ class WebGLWaterReflectionManager {
 
     // 新しい位置へのアニメーション
     animateToNewPosition(letterGroup, targetPos) {
-        const duration = 500;
+        const duration = WEBGL_CONSTANTS.POSITION_ANIMATION_DURATION;
         const startTime = performance.now();
         const startPos = letterGroup.position.clone();
 
@@ -976,7 +1006,7 @@ class WebGLWaterReflectionManager {
         // 演出を再開始
         setTimeout(() => {
             this.animateLettersIn();
-        }, 500);
+        }, WEBGL_CONSTANTS.REPLAY_DELAY);
     }
 
     // イージング関数

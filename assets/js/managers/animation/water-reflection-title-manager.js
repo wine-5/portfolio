@@ -1,12 +1,24 @@
 /* ===================================
    湖面反射タイトルアニメーションマネージャー
    =================================== */
+
+// タイトルアニメーション用定数
+const TITLE_ANIMATION_CONSTANTS = {
+    LETTER_DELAY: 300, // 各文字間の遅延時間(ms)
+    START_DELAY: 800, // 開始遅延時間(ms)
+    REFLECTION_DELAY: 150, // 反射表示の遅延(ms)
+    COMPLETION_DELAY: 600, // 完了イベント遅延(ms)
+    SUBTITLE_DELAY: 200, // サブタイトル表示遅延(ms)
+    BUTTONS_DELAY: 400, // ボタン表示遅延(ms)
+    RESET_DELAY: 100 // リセット時の遅延(ms)
+};
+
 class WaterReflectionTitleManager {
     constructor() {
         this.letters = [];
         this.reflectionLetters = [];
-        this.animationDelay = 300; // 各文字間の遅延時間(ms)
-        this.startDelay = 800; // 開始遅延時間(ms)
+        this.animationDelay = TITLE_ANIMATION_CONSTANTS.LETTER_DELAY;
+        this.startDelay = TITLE_ANIMATION_CONSTANTS.START_DELAY;
         this.particleSystem = [];
         this.lightningEffects = [];
         this.isAnimating = false;
@@ -37,13 +49,13 @@ class WaterReflectionTitleManager {
                     if (this.reflectionLetters[index]) {
                         this.reflectionLetters[index].classList.add('animate-in');
                     }
-                }, 150);
+                }, TITLE_ANIMATION_CONSTANTS.REFLECTION_DELAY);
                 
                 // 最後の文字の場合、完了イベントを発火
                 if (index === this.letters.length - 1) {
                     setTimeout(() => {
                         this.onAnimationComplete();
-                    }, 600);
+                    }, TITLE_ANIMATION_CONSTANTS.COMPLETION_DELAY);
                 }
             }, index * this.animationDelay);
         });
@@ -71,7 +83,7 @@ class WaterReflectionTitleManager {
             setTimeout(() => {
                 subtitle.style.opacity = '1';
                 subtitle.style.transform = 'translateY(0)';
-            }, 200);
+            }, TITLE_ANIMATION_CONSTANTS.SUBTITLE_DELAY);
         }
         
         if (buttons) {
@@ -82,7 +94,7 @@ class WaterReflectionTitleManager {
             setTimeout(() => {
                 buttons.style.opacity = '1';
                 buttons.style.transform = 'translateY(0)';
-            }, 400);
+            }, TITLE_ANIMATION_CONSTANTS.BUTTONS_DELAY);
         }
     }
 
@@ -128,6 +140,6 @@ class WaterReflectionTitleManager {
         
         setTimeout(() => {
             this.startTitleAnimation();
-        }, 100);
+        }, TITLE_ANIMATION_CONSTANTS.RESET_DELAY);
     }
 }

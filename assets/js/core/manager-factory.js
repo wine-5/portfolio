@@ -71,7 +71,7 @@ class ManagerFactory {
      */
     async initWaterReflection() {
         try {
-            console.log('Checking WebGL support...');
+            // WebGLサポートをチェック
             
             if (!this.managers.webglWater) {
                 throw new Error('WebGLWaterReflectionManager not available');
@@ -80,7 +80,7 @@ class ManagerFactory {
             await this.managers.webglWater.init();
             
             if (this.managers.webglWater.isInitialized) {
-                console.log('WebGL initialized successfully');
+                // WebGL初期化成功
                 setTimeout(() => {
                     this.managers.webglWater.animateLettersIn();
                 }, 1000);
@@ -88,7 +88,7 @@ class ManagerFactory {
                 throw new Error('WebGL initialization failed');
             }
         } catch (error) {
-            console.log('Falling back to CSS water system:', error.message);
+            // CSS水面システムにフォールバック
             this.showCSSElements();
             this.managers.waterReflectionTitle.init();
         }
