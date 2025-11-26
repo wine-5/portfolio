@@ -96,8 +96,8 @@ class GameUIManager {
         skillElement.style.position = 'relative';
         skillElement.appendChild(levelUpOverlay);
         
-        // パーティクル生成
-        this.createLevelUpParticles(levelUpOverlay.querySelector('.level-up-particles'));
+        // パーティクル生成（白い球削除のため無効化）
+        // this.createLevelUpParticles(levelUpOverlay.querySelector('.level-up-particles'));
         
         // アニメーション後に削除
         setTimeout(() => {

@@ -8,11 +8,8 @@ class SkillParticleManager {
     }
 
     init() {
-        // パーティクルシステムを無効化
-        // document.querySelectorAll('.skill').forEach(skill => {
-        //     skill.addEventListener('mouseenter', (e) => this.handleSkillHover(e, skill));
-        //     skill.addEventListener('mouseleave', () => this.stopParticles());
-        // });
+        // パーティクルシステムを完全無効化 - 何も実行しない
+        return;
     }
 
     handleSkillHover(e, skillElement) {

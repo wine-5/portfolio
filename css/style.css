@@ -1841,25 +1841,13 @@ body {
     }
 }
 
+/* レベルアップパーティクルを無効化（白い球削除のため） */
 .level-up-particles {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+    display: none !important;
 }
 
 .level-up-particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: radial-gradient(circle, #FFD700, transparent);
-    border-radius: 50%;
-    animation: particleBurst 1.5s ease-out forwards;
-    top: 50%;
-    left: 50%;
+    display: none !important;
 }
 
 @keyframes particleBurst {

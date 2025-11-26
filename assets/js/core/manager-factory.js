@@ -33,9 +33,9 @@ class ManagerFactory {
         this.managers.waterReflectionTitle = new WaterReflectionTitleManager();
         
         // ゲーム的UIエフェクト
-        this.managers.skillParticle = new SkillParticleManager();
+        // this.managers.skillParticle = new SkillParticleManager(); // 白い球削除のため無効化
         this.managers.gameUI = new GameUIManager();
-        this.managers.easterEgg = new EasterEggManager();
+        // this.managers.easterEgg = new EasterEggManager(); // パーティクル削除のため無効化
         this.managers.skillCardExpand = new SkillCardExpandManager();
         
         return this.managers;
@@ -57,9 +57,9 @@ class ManagerFactory {
         this.managers.footerAnimation.init();
         
         // ゲーム的UIエフェクトの初期化
-        this.managers.skillParticle.init();
+        // this.managers.skillParticle.init(); // 白い球削除のため無効化
         this.managers.gameUI.init();
-        this.managers.easterEgg.init();
+        // this.managers.easterEgg.init(); // パーティクル削除のため無効化
         this.managers.skillCardExpand.init();
         
         // UpdatesManagerは非同期で初期化（データロードを待つ）
