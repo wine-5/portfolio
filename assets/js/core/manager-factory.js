@@ -35,7 +35,7 @@ class ManagerFactory {
         // ゲーム的UIエフェクト
         // this.managers.skillParticle = new SkillParticleManager(); // 白い球削除のため無効化
         this.managers.gameUI = new GameUIManager();
-        // this.managers.easterEgg = new EasterEggManager(); // パーティクル削除のため無効化
+        this.managers.easterEgg = new EasterEggManager(); // 隠しコマンド用（パーティクルは無効化済み）
         this.managers.skillCardExpand = new SkillCardExpandManager();
         
         return this.managers;
@@ -59,7 +59,7 @@ class ManagerFactory {
         // ゲーム的UIエフェクトの初期化
         // this.managers.skillParticle.init(); // 白い球削除のため無効化
         this.managers.gameUI.init();
-        // this.managers.easterEgg.init(); // パーティクル削除のため無効化
+        this.managers.easterEgg.init(); // 隠しコマンド用（パーティクルは無効化済み）
         this.managers.skillCardExpand.init();
         
         // UpdatesManagerは非同期で初期化（データロードを待つ）

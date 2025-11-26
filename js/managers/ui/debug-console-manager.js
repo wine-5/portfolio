@@ -257,9 +257,20 @@ class DebugConsoleManager {
     }
 
     triggerEasterEgg() {
-        // イースターエッグマネージャーは無効化されているため、代替メッセージを表示
-        this.addOutput('🎉 イースターエッグ機能は現在無効化されています', 'info');
-        this.addOutput('パーティクル削除によりこの機能は利用できません', 'warning');
+        if (window.easterEggManager) {
+            this.addOutput('🎉 イースターエッグを発動！', 'success');
+            // ランダムなイースターエッグを発動
+            const eggs = ['wine', 'debug', 'konami'];
+            const randomEgg = eggs[Math.floor(Math.random() * eggs.length)];
+            
+            if (randomEgg === 'wine' && window.easterEggManager.activateWineEasterEgg) {
+                window.easterEggManager.activateWineEasterEgg();
+            } else {
+                this.addOutput('何かが起こりました... 👀', 'info');
+            }
+        } else {
+            this.addOutput('イースターエッグマネージャーが見つかりません', 'error');
+        }
     }
 }
 
