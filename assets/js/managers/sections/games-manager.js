@@ -197,10 +197,10 @@ class GamesManager {
                             お使いのブラウザは動画の再生に対応していません。
                         </video>
                         <div class="video-info-overlay">
-                            <button class="video-play-btn" data-playing="false">
+                            <div class="video-info-hint">
                                 <i class="fas fa-play"></i>
-                                <span class="video-play-text">再生</span>
-                            </button>
+                                <span>動画を再生</span>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -364,10 +364,10 @@ class GamesManager {
                                         お使いのブラウザは動画の再生に対応していません。
                                     </video>
                                     <div class="video-info-overlay">
-                                        <button class="video-play-btn" data-playing="false">
+                                        <div class="video-info-hint">
                                             <i class="fas fa-play"></i>
-                                            <span class="video-play-text">再生</span>
-                                        </button>
+                                            <span>動画を再生</span>
+                                        </div>
                                     </div>
                                 </div>
                             `;
@@ -510,40 +510,8 @@ class GamesManager {
                 const clickedElement = e.target.closest('.clickable-image');
                 const playUrl = clickedElement.dataset.playUrl || clickedElement.closest('[data-play-url]')?.dataset.playUrl;
                 this.handleImageClick(playUrl);
-            } else if (e.target.closest('.video-play-btn')) {
-                // 動画再生ボタンをクリック
-                const btn = e.target.closest('.video-play-btn');
-                const video = btn.closest('[class*="container"]').querySelector('video');
-                if (video) {
-                    this.toggleVideoPlayback(btn, video);
-                }
             }
         });
-    }
-
-    /**
-     * 動画の再生・停止を切り替え
-     */
-    toggleVideoPlayback(btn, video) {
-        const isPlaying = btn.dataset.playing === 'true';
-        const textSpan = btn.querySelector('.video-play-text');
-        const icon = btn.querySelector('i');
-        
-        if (isPlaying) {
-            // 再生中 → 停止に変更
-            video.pause();
-            btn.dataset.playing = 'false';
-            textSpan.textContent = '再生';
-            icon.className = 'fas fa-play';
-            console.log('▶️ 動画を停止しました');
-        } else {
-            // 停止中 → 再生に変更
-            video.play();
-            btn.dataset.playing = 'true';
-            textSpan.textContent = '停止';
-            icon.className = 'fas fa-pause';
-            console.log('⏸️ 動画を再生しました');
-        }
     }
 
     handleImageClick(playUrl) {
