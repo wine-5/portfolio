@@ -193,5 +193,50 @@
     "teamSize": "1 person",
     "period": "About 1 month",
     "note": "My Memorable First Work"
+  },
+  {
+    "title": "This Side / That Side of the Line",
+    "description": "A work created in a game jam hosted by HIBIGA",
+    "myResponsibilities": "Created sound class, implemented game overall state transitions, created some base classes",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/border/border-title.png",
+      "images/game/border/border-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/kochiratomukou",
+    "githubUrl": "https://github.com/wine-5/Fibonacci",
+    "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "4 people",
+    "period": "2 days"
+  },
+  {
+    "title": "MoreHit2",
+    "description": "A work created for the UnityRoom game jam held in December 2025",
+    "myResponsibilities": "Player design and implementation, enemy base class and boss implementation, sound and overall scene management class creation",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/MoreHit2/MoreHit2-title.png",
+      "images/game/MoreHit2/MoreHit2-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/morehit2",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "5 people",
+    "period": "1 week"
   }
 ]

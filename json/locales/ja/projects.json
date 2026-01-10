@@ -193,5 +193,50 @@
     "teamSize": "1人",
     "period": "約1ヶ月",
     "note": "記念すべき初作品"
+  },
+  {
+    "title": "線のこちら側 / 向こう側",
+    "description": "HIBIGA様主催のゲームジャムで制作した作品",
+    "myResponsibilities": "音のクラスを作成、ゲーム全体の遷移処理、一部基底クラスの作成",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/border/border-title.png",
+      "images/game/border/border-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/kochiratomukou",
+    "githubUrl": "https://github.com/wine-5/Fibonacci",
+    "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2日間"
+  },
+  {
+    "title": "MoreHit2",
+    "description": "2025年12月に開催されたUnityRoomのゲームジャムで制作した作品",
+    "myResponsibilities": "Playerの設計から実装、敵の基底クラスとボスの実装、音やシーン全体の管理クラスの作成",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/MoreHit2/MoreHit2-title.png",
+      "images/game/MoreHit2/MoreHit2-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/morehit2",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "5人",
+    "period": "1週間"
   }
 ]
