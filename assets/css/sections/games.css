@@ -3,16 +3,22 @@
    =================================== */
 
 .works {
+    display: block;
     padding: 10rem 0;
     background: var(--bg-secondary);
+    visibility: visible;
+    opacity: 1;
+    min-height: auto;
 }
 
 .works__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 3rem;
     perspective: 2000px;
     perspective-origin: center;
+    will-change: contents;
+    min-height: auto;
 }
 
 /* ===================================
@@ -521,13 +527,13 @@
     pointer-events: none;
     transition: opacity 0.5s ease, transform 0.3s ease;
     border-radius: 0;
-    z-index: 0;
+    z-index: 1;
 }
 
 .slider-image.active {
     opacity: 1;
     pointer-events: auto;
-    z-index: 1;
+    z-index: 2;
 }
 
 .slider-image:hover {
@@ -573,9 +579,12 @@
 
 /* 動画要素の特別なスタイル */
 .video-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1;
 }
 
 .video-element {
@@ -590,7 +599,9 @@
 
 /* 画像コンテナ */
 .image-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -605,7 +616,6 @@
     object-fit: cover;
     border-radius: 0;
     transition: transform 0.3s ease;
-    z-index: 1;
 }
 
 /* スライダー内の画像要素の継承 */
@@ -632,7 +642,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
 .image-container:hover .image-play-overlay {
@@ -653,7 +663,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
 .video-container:hover .video-play-overlay {

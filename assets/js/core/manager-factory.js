@@ -24,13 +24,18 @@ class ManagerFactory {
         this.managers.footerAnimation = new FooterAnimationManager();
         
         // WebGL水面反射システム（フォールバック付き）
-        this.managers.webglWater = new WebGLWaterReflectionManager();
+        try {
+            this.managers.webglWater = new WebGLWaterReflectionManager();
+        } catch (error) {
+            console.warn('WebGLWaterReflectionManager not available:', error);
+            this.managers.webglWater = null;
+        }
         this.managers.waterReflectionTitle = new WaterReflectionTitleManager();
         
         // ゲーム的UIエフェクト
-        this.managers.skillParticle = new SkillParticleManager();
+        // this.managers.skillParticle = new SkillParticleManager(); // 白い球削除のため無効化
         this.managers.gameUI = new GameUIManager();
-        this.managers.easterEgg = new EasterEggManager();
+        this.managers.easterEgg = new EasterEggManager(); // 隠しコマンド用（パーティクルは無効化済み）
         this.managers.skillCardExpand = new SkillCardExpandManager();
         
         return this.managers;
@@ -52,9 +57,9 @@ class ManagerFactory {
         this.managers.footerAnimation.init();
         
         // ゲーム的UIエフェクトの初期化
-        this.managers.skillParticle.init();
+        // this.managers.skillParticle.init(); // 白い球削除のため無効化
         this.managers.gameUI.init();
-        this.managers.easterEgg.init();
+        this.managers.easterEgg.init(); // 隠しコマンド用（パーティクルは無効化済み）
         this.managers.skillCardExpand.init();
         
         // UpdatesManagerは非同期で初期化（データロードを待つ）
@@ -66,12 +71,16 @@ class ManagerFactory {
      */
     async initWaterReflection() {
         try {
-            console.log('Checking WebGL support...');
+            // WebGLサポートをチェック
+            
+            if (!this.managers.webglWater) {
+                throw new Error('WebGLWaterReflectionManager not available');
+            }
             
             await this.managers.webglWater.init();
             
             if (this.managers.webglWater.isInitialized) {
-                console.log('WebGL initialized successfully');
+                // WebGL初期化成功
                 setTimeout(() => {
                     this.managers.webglWater.animateLettersIn();
                 }, 1000);
@@ -79,7 +88,7 @@ class ManagerFactory {
                 throw new Error('WebGL initialization failed');
             }
         } catch (error) {
-            console.log('Falling back to CSS water system:', error.message);
+            // CSS水面システムにフォールバック
             this.showCSSElements();
             this.managers.waterReflectionTitle.init();
         }

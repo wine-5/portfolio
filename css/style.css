@@ -220,6 +220,11 @@ body {
 
 .loading.hidden {
     opacity: 0;
+    visibility: hidden;
+}
+
+.loading.hidden {
+    opacity: 0;
     pointer-events: none;
 }
 
@@ -473,6 +478,7 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    /* パーティクル生成はJSで無効化されているため、コンテナのみ表示 */
 }
 
 /* アニメーション定義 */
@@ -681,6 +687,53 @@ body {
     opacity: 0.1;
 }
 
+/* 白い球（パーティクル）を完全無効化 - 強化版 */
+
+/* パーティクル専用キャンバスのみを無効化 */
+#particles canvas,
+.hero__particles canvas,
+.loading__particles canvas,
+.skill-particle-canvas {
+    display: none !important;
+}
+
+/* パーティクル関連要素を無効化 */
+.hero__particles,
+.loading__particles,
+#particles,
+*[class*="particle"] {
+    display: none !important;
+}
+
+/* 白い色の疑似要素を無効化 */
+*::before,
+*::after {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 白いradial-gradientを持つ要素を透明に */
+*[style*="radial-gradient"] {
+    background: transparent !important;
+}
+
+/* 円形の背景を持つ可能性のある要素を無効化 */
+*[style*="border-radius: 50%"] {
+    background: transparent !important;
+}
+
+/* CSSフォールバック版の要素を表示 */
+.hero__content,
+.hero__title-container,
+.hero__title-letters,
+.hero__title-reflection {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ローディング画面を元に戻すため、hero::afterを削除 */
+
 /* 古いパーティクル処理を削除 - WebGL版を使用 */
 
 .hero__content {
@@ -771,53 +824,7 @@ body {
     perspective: 1500px;
 }
 
-.hero__floating-cube {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    transform-style: preserve-3d;
-    animation: floatingCube 8s ease-in-out infinite;
-}
-
-.hero__floating-cube:nth-child(1) {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.hero__floating-cube:nth-child(2) {
-    top: 60%;
-    right: 15%;
-    animation-delay: -2s;
-}
-
-.hero__floating-cube:nth-child(3) {
-    bottom: 30%;
-    left: 20%;
-    animation-delay: -4s;
-}
-
-@keyframes floatingCube {
-
-    0%,
-    100% {
-        transform: translateY(0px) rotateX(0deg) rotateY(0deg) translateZ(0px);
-    }
-
-    25% {
-        transform: translateY(-30px) rotateX(90deg) rotateY(45deg) translateZ(50px);
-    }
-
-    50% {
-        transform: translateY(-60px) rotateX(180deg) rotateY(90deg) translateZ(100px);
-    }
-
-    75% {
-        transform: translateY(-30px) rotateX(270deg) rotateY(135deg) translateZ(50px);
-    }
-}
+/* .hero__floating-cube - 削除済み */
 
 .hero__title {
     /* CSS版を無効化 - WebGL版のみを使用 */
@@ -1152,16 +1159,22 @@ body {
    作品セクション
    =================================== */
 .works {
+    display: block;
     padding: 10rem 0;
     background: var(--bg-secondary);
+    visibility: visible;
+    opacity: 1;
+    min-height: auto;
 }
 
 .works__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 3rem;
     perspective: 2000px;
     perspective-origin: center;
+    will-change: contents;
+    min-height: auto;
 }
 
 .work-card {
@@ -1582,8 +1595,8 @@ body {
 
 /* セクションタイトルは最初から見える状態に */
 .section__title {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ===================================
@@ -1834,25 +1847,13 @@ body {
     }
 }
 
+/* レベルアップパーティクルを無効化（白い球削除のため） */
 .level-up-particles {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+    display: none !important;
 }
 
 .level-up-particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: radial-gradient(circle, #FFD700, transparent);
-    border-radius: 50%;
-    animation: particleBurst 1.5s ease-out forwards;
-    top: 50%;
-    left: 50%;
+    display: none !important;
 }
 
 @keyframes particleBurst {
@@ -2853,7 +2854,7 @@ body {
 
 /* アクティブナビゲーションリンク */
 .header__nav-link--active {
-    color: var(--primary-color) !important;
+    color: var(--primary-color);
     font-weight: 500;
     position: relative;
 }
@@ -3611,9 +3612,12 @@ body {
 
 /* 動画要素の特別なスタイル */
 .video-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1;
 }
 
 .video-element {
@@ -3628,9 +3632,12 @@ body {
 
 /* 画像コンテナ */
 .image-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1;
 }
 
 .image-element {

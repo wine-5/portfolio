@@ -5,7 +5,7 @@
 
 const DEBUG_CONFIG = {
     // デバッグモードのオン/オフ（本番環境ではfalseに設定）
-    isDebug: false,
+    isDebug: true,
     
     // 開発者ツールの無効化（デバッグモードがオフの場合）
     disableDevTools: true,

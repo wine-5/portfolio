@@ -124,6 +124,34 @@
       "color": "#f97316",
       "icon": "📱",
       "award": "Published on App Store"
+    },
+    {
+      "id": "kochira-mukou",
+      "title": "This Side / That Side of the Line",
+      "type": "project",
+      "date": "2026-01-11",
+      "duration": 2,
+      "description": "A work created in a game jam hosted by HIBIGA. Responsible for sound class design, overall game state transitions, and base class creation.",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#a78bfa",
+      "icon": "🎭"
+    },
+    {
+      "id": "more-hit-2",
+      "title": "MoreHit2",
+      "type": "project",
+      "date": "2026-01-11",
+      "duration": 7,
+      "description": "A work created for the UnityRoom game jam held in December 2025. Responsible for player design and implementation, enemy base class and boss implementation.",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#60a5fa",
+      "icon": "🎯"
     }
   ]
 }

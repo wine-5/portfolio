@@ -118,7 +118,7 @@ class ThemeManager {
      * テーマトグルボタンを作成
      */
     createToggleButton(container) {
-        // console.log('Creating theme toggle button in container:', container);
+        // テーマトグルボタンを作成
         
         // const wrapper = document.createElement('div');
         // wrapper.className = 'theme-toggle';
@@ -129,7 +129,7 @@ class ThemeManager {
         // button.innerHTML = this.getButtonIcon();
 
         // button.addEventListener('click', () => {
-        //     console.log('Theme toggle button clicked');
+        //     テーマトグルボタンがクリックされた
         //     this.toggleTheme();
         //     button.innerHTML = this.getButtonIcon();
         // });
@@ -143,12 +143,12 @@ class ThemeManager {
         
         // if (container instanceof HTMLElement) {
         //     container.appendChild(wrapper);
-        //     console.log('Theme toggle button added to container');
+        //     テーマトグルボタンをコンテナに追加
         // } else if (typeof container === 'string') {
         //     const target = document.querySelector(container);
         //     if (target) {
         //         target.appendChild(wrapper);
-        //         console.log('Theme toggle button added to:', container);
+        //         テーマトグルボタンを追加
         //     } else {
         //         console.error('Container not found:', container);
         //     }

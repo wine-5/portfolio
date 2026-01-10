@@ -27,9 +27,42 @@ class GamesManager {
             return;
         }
         
+        // ゲームセクションを初期化
+        this.initializeGameSection();
+        
         this.renderGames();
         this.setupImageSliders();
         this.setupLanguageListener();
+    }
+
+    /**
+     * ゲームセクションを初期化（表示状態の設定）
+     */
+    initializeGameSection() {
+        const gamesSection = document.querySelector('.works');
+        if (gamesSection) {
+            // 初期状態を不可視に設定
+            gamesSection.style.opacity = '0';
+            gamesSection.style.visibility = 'hidden';
+            gamesSection.style.display = 'block';
+            gamesSection.style.transition = 'opacity 0.8s ease-in-out';
+        }
+    }
+
+    /**
+     * ゲームセクションを表示（フェードイン）
+     */
+    showGameSection() {
+        const gamesSection = document.querySelector('.works');
+        if (gamesSection) {
+            // 強制的にブラウザにレイアウト再計算させる
+            void gamesSection.offsetHeight;
+            
+            // フェードイン
+            gamesSection.style.opacity = '1';
+            gamesSection.style.visibility = 'visible';
+            console.log('✨ Game section faded in');
+        }
     }
 
     /**
@@ -47,6 +80,27 @@ class GamesManager {
                 // スライダーの再初期化は不要(renderGames内でHTMLが再生成されるため)
             }
         });
+        
+        // ウィンドウリサイズ時に表示を再チェック
+        window.addEventListener('resize', () => {
+            this.checkAndUpdateGameSection();
+        });
+    }
+
+    /**
+     * ゲームセクションの表示状態を確認・更新
+     */
+    checkAndUpdateGameSection() {
+        if (!this.worksGrid) return;
+        
+        // ゲームカード数をチェック
+        const gameCards = this.worksGrid.querySelectorAll('.work-card');
+        
+        // カードが見つからない場合は再描画
+        if (gameCards.length === 0 && this.projects.length > 0) {
+            console.warn('GamesManager: Game cards not found, re-rendering...');
+            this.renderGames();
+        }
     }
 
     renderGames() {
@@ -55,27 +109,61 @@ class GamesManager {
             return;
         }
 
-        const projectsHtml = this.projects.map(project => 
-            this.createGameCard(project)
-        ).join('');
-        
-        this.worksGrid.innerHTML = projectsHtml;
-        
-        // スライダーの初期化：最初のスライドが確実に表示されるようにする
-        setTimeout(() => {
-            const allSliders = document.querySelectorAll('.image-slider');
-            allSliders.forEach(slider => {
-                const firstSlide = slider.querySelector('.slider-image');
-                if (firstSlide && !firstSlide.classList.contains('active')) {
-                    firstSlide.classList.add('active');
-                }
+        try {
+            const projectsHtml = this.projects.map(project => 
+                this.createGameCard(project)
+            ).join('');
+            
+            if (!projectsHtml) {
+                console.error('No HTML generated for game cards');
+                return;
+            }
+            
+            this.worksGrid.innerHTML = projectsHtml;
+            
+            // 確認：カードが正しく追加されたか
+            const cardCount = this.worksGrid.querySelectorAll('.work-card').length;
+            console.log(`✓ Rendered ${cardCount} game cards`);
+            
+            // ブラウザのレイアウト再計算を強制実行
+            this.forceReflow();
+            
+            // スライダーの初期化：最初のスライドが確実に表示されるようにする
+            setTimeout(() => {
+                this.forceReflow();
                 
-                const firstIndicator = slider.querySelector('.indicator');
-                if (firstIndicator && !firstIndicator.classList.contains('active')) {
-                    firstIndicator.classList.add('active');
-                }
-            });
-        }, 100);
+                const allSliders = document.querySelectorAll('.image-slider');
+                console.log(`✓ Found ${allSliders.length} sliders`);
+                
+                allSliders.forEach(slider => {
+                    const firstSlide = slider.querySelector('.slider-image');
+                    if (firstSlide && !firstSlide.classList.contains('active')) {
+                        firstSlide.classList.add('active');
+                    }
+                    
+                    const firstIndicator = slider.querySelector('.indicator');
+                    if (firstIndicator && !firstIndicator.classList.contains('active')) {
+                        firstIndicator.classList.add('active');
+                    }
+                });
+                
+                // ゲームセクションをフェードイン表示
+                this.showGameSection();
+            }, 150);
+        } catch (error) {
+            console.error('Error in renderGames:', error);
+        }
+    }
+
+    /**
+     * ブラウザのレイアウト再計算を強制実行
+     */
+    forceReflow() {
+        // DOMを強制的に再フロー
+        if (this.worksGrid) {
+            // offsetHeightへのアクセスでレイアウト再計算を強制
+            const height = this.worksGrid.offsetHeight;
+        }
     }
 
     createGameCard(project) {
@@ -477,10 +565,15 @@ class GamesManager {
 
     goToSlide(sliderId, index) {
         const slider = document.querySelector(`[data-slider-id="${sliderId}"]`);
-        if (!slider) return;
+        if (!slider) {
+            console.error(`GamesManager: Slider with id ${sliderId} not found`);
+            return;
+        }
 
         const images = slider.querySelectorAll('.slider-image');
         const indicators = slider.querySelectorAll('.indicator');
+        
+        console.log(`🎬 Changing slide to index ${index}/${images.length - 1} for slider ${sliderId}`);
 
         // 現在アクティブな動画を一時停止
         const currentActiveVideo = slider.querySelector('.slider-image.active video');
@@ -495,6 +588,7 @@ class GamesManager {
         // 新しい画像・動画とインジケーターにactiveクラスを追加
         if (images[index]) {
             images[index].classList.add('active');
+            console.log(`✅ Slide ${index} is now active`);
             
             // 新しくアクティブになった要素が動画の場合、サムネイルを表示
             const newVideo = images[index].querySelector('video');

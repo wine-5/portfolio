@@ -69,6 +69,7 @@
     
     /* フォントファミリー */
     --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Orbitron', monospace;
     --font-display: 'Orbitron', monospace;
     
     /* ボーダー半径 */
