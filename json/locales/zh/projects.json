@@ -1,5 +1,50 @@
 [
   {
+    "title": "MoreHit2",
+    "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品",
+    "myResponsibilities": "Player设计与实现、敌人基类和Boss实现、音频和场景整体管理类的创建",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/MoreHit2/MoreHit2-title.png",
+      "images/game/MoreHit2/MoreHit2-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/morehit2",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "5人",
+    "period": "1周"
+  },
+  {
+    "title": "这一侧 / 那一侧",
+    "description": "在HIBIGA主办的游戏Jam中制作的作品",
+    "myResponsibilities": "创建音频类、实现游戏整体状态转换、创建部分基类",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/border/border-title.png",
+      "images/game/border/border-in-game.png"
+    ],
+    "playUrl": "https://unityroom.com/games/kochiratomukou",
+    "githubUrl": "https://github.com/wine-5/Fibonacci",
+    "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2天"
+  },
+  {
     "title": "TofuRunner",
     "description": "首次在App Store上发布的作品",
     "detailedFeatures": "与校内的人一起制作的游戏。此外首次使用Shader实现了更真实的渲染效果。",
@@ -195,50 +240,5 @@
     "teamSize": "1人",
     "period": "约1个月",
     "note": "值得纪念的首个作品"
-  },
-  {
-    "title": "这一侧 / 那一侧",
-    "description": "在HIBIGA主办的游戏Jam中制作的作品",
-    "myResponsibilities": "创建音频类、实现游戏整体状态转换、创建部分基类",
-    "technologies": [
-      "Unity",
-      "C#"
-    ],
-    "supportedPlatforms": [
-      "仅限PC"
-    ],
-    "images": [
-      "images/game/border/border-title.png",
-      "images/game/border/border-in-game.png"
-    ],
-    "playUrl": "https://unityroom.com/games/kochiratomukou",
-    "githubUrl": "https://github.com/wine-5/Fibonacci",
-    "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
-    "year": "二年级",
-    "category": "game",
-    "teamSize": "4人",
-    "period": "2天"
-  },
-  {
-    "title": "MoreHit2",
-    "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品",
-    "myResponsibilities": "Player设计与实现、敌人基类和Boss实现、音频和场景整体管理类的创建",
-    "technologies": [
-      "Unity",
-      "C#"
-    ],
-    "supportedPlatforms": [
-      "仅限PC"
-    ],
-    "images": [
-      "images/game/MoreHit2/MoreHit2-title.png",
-      "images/game/MoreHit2/MoreHit2-in-game.png"
-    ],
-    "playUrl": "https://unityroom.com/games/morehit2",
-    "githubUrl": "https://github.com/wine-5/MoreHit2",
-    "year": "二年级",
-    "category": "game",
-    "teamSize": "5人",
-    "period": "1周"
   }
 ]

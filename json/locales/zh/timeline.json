@@ -124,6 +124,34 @@
       "color": "#f97316",
       "icon": "📱",
       "award": "App Store发布"
+    },
+    {
+      "id": "kochira-mukou",
+      "title": "这一侧 / 那一侧",
+      "type": "project",
+      "date": "2026-01-11",
+      "duration": 2,
+      "description": "在HIBIGA主办的游戏Jam中制作的作品。负责音频类设计、游戏整体状态转换、基类创建。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#a78bfa",
+      "icon": "🎭"
+    },
+    {
+      "id": "more-hit-2",
+      "title": "MoreHit2",
+      "type": "project",
+      "date": "2026-01-11",
+      "duration": 7,
+      "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品。负责Player设计与实现、敌人基类和Boss的实现。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#60a5fa",
+      "icon": "🎯"
     }
   ]
 }
