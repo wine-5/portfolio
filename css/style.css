@@ -697,11 +697,17 @@ body {
 /* CSSフォールバック版の要素を表示 */
 .hero__content,
 .hero__title-container,
-.hero__title-letters,
-.hero__title-reflection {
+.hero__title-letters {
     display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
+}
+
+/* [無効化] 反射要素を非表示 */
+.hero__title-reflection,
+.letter-reflection {
+    display: none !important;
+    visibility: hidden !important;
 }
 
 /* ローディング画面を元に戻すため、hero::afterを削除 */
