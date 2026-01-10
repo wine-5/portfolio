@@ -4,6 +4,35 @@
 
 // 定数定義は js/config/app-config.js に移動済み
 
+// [強制無効化] パーティクル・波描画システムを完全に無効化（wine-5テキストは維持）
+(function() {
+    // パーティクル・波関連のcanvas要素のみを削除
+    document.querySelectorAll('canvas').forEach(canvas => {
+        const id = canvas.id || '';
+        const className = canvas.className || '';
+        
+        // wine-5テキスト表示用canvas以外を削除
+        // （パーティクル、水面反射関連のcanvasを特定して削除）
+        if (id.includes('particle') || id.includes('water') || 
+            className.includes('particle') || className.includes('water')) {
+            canvas.remove();
+            console.log('[✓] パーティクル関連canvasを削除:', id || className);
+        }
+    });
+    
+    // パーティクルコンテナ削除
+    const particleContainers = document.querySelectorAll('[class*="particle"], [class*="water"], [id*="particle"], [id*="water"]');
+    particleContainers.forEach(el => {
+        if (el.tagName !== 'SCRIPT' && el.tagName !== 'CANVAS') {
+            el.style.display = 'none';
+            el.style.visibility = 'hidden';
+            console.log('[✓] パーティクル要素を無効化:', el.className || el.id);
+        }
+    });
+    
+    console.log('[✓] パーティクル・波システムを強制無効化しました（wine-5テキストは維持）');
+})();
+
 class PortfolioApp {
     constructor() {
         // DOM要素
@@ -37,7 +66,8 @@ class PortfolioApp {
         await this.managerFactory.initAll();
         
         // WebGL水面反射システムの初期化
-        this.managerFactory.initWaterReflection();
+        // [コメント化] パーティクル・波システムを無効化（ゲームホイール実装のため）
+        // this.managerFactory.initWaterReflection();
     }
 
     initializeCoreSystems() {
@@ -294,10 +324,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 // パーティクルシステムの遅延初期化
-window.addEventListener('load', function() {
-    const particleCanvas = document.getElementById('particle-canvas');
-    if (particleCanvas && typeof ParticleSystem !== 'undefined') {
-        const particleSystem = new ParticleSystem('particle-canvas');
-        particleSystem.init();
-    }
-});
+// [コメント化] パーティクルシステムを無効化（ゲームホイール実装のため）
+// window.addEventListener('load', function() {
+//     const particleCanvas = document.getElementById('particle-canvas');
+//     if (particleCanvas && typeof ParticleSystem !== 'undefined') {
+//         const particleSystem = new ParticleSystem('particle-canvas');
+//         particleSystem.init();
+//     }
+// });

@@ -28,6 +28,25 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
+    <!-- [強制無効化] WebGLエフェクト・パーティクル・波システムを無効化 -->
+    <script>
+        // DOMContentLoadedの前にWebGLキャンバスを削除
+        (function() {
+            // すべてのcanvas要素を削除（WebGL描画・パーティクル・波用）
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('canvas').forEach(canvas => {
+                        canvas.remove();
+                    });
+                });
+            } else {
+                document.querySelectorAll('canvas').forEach(canvas => {
+                    canvas.remove();
+                });
+            }
+        })();
+    </script>
+    
     <!-- ローディング画面 -->
     <div id="loading" class="loading">
         <div class="loading__content">
@@ -46,7 +65,8 @@
                 <p class="loading__text">Loading Portfolio...</p>
                 <div class="loading__percentage">0%</div>
             </div>
-            <div class="loading__particles"></div>
+            <!-- [コメント化] パーティクルエフェクト（ゲームホイール実装のため無効化） -->
+            <!-- <div class="loading__particles"></div> -->
         </div>
     </div>
 
@@ -344,9 +364,9 @@
     <!-- 3. Animation Managers -->
     <script src="assets/js/managers/animation/scroll-manager.js"></script>
     <!-- <script src="assets/js/managers/animation/skill-particle-manager.js"></script> -->
-    <!-- 水面とカード枠のアニメーションは削除済み。以下のマネージャーは現在基本的なタイトル表示のみ担当 -->
-    <script src="assets/js/managers/animation/water-reflection-title-manager.js"></script>
-    <script src="assets/js/managers/animation/webgl-water-reflection-manager.js"></script>
+    <!-- [コメント化] 水面とパーティクルシステムを無効化（ゲームホイール実装のため） -->
+    <!-- <script src="assets/js/managers/animation/water-reflection-title-manager.js"></script> -->
+    <!-- <script src="assets/js/managers/animation/webgl-water-reflection-manager.js"></script> -->
     
     <!-- 4. Section Managers -->
     <script src="assets/js/managers/sections/games-manager.js"></script>
