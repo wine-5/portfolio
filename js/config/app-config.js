@@ -1,0 +1,41 @@
+/* ===================================
+   アプリケーション設定定数
+   =================================== */
+
+const CONFIG = {
+    // スクロール・リサイズ設定
+    SCROLL_DEBOUNCE_DELAY: 10,
+    RESIZE_DEBOUNCE_DELAY: 250,
+    HEADER_SCROLL_THRESHOLD: 50,
+    
+    // 画面サイズ
+    MOBILE_BREAKPOINT: 768,
+    
+    // ローディング設定
+    LOADING_PROGRESS_INCREMENT: 15,
+    LOADING_PROGRESS_INTERVAL: 200,
+    LOADING_HIDE_DELAY: 500,
+    
+    // ヒントアニメーション
+    HINT_ANIMATION_DELAY: 0.5,
+    
+    // パーティクル設定（現在無効化）
+    PARTICLE_COUNT: 30,
+    PARTICLE_CREATION_DELAY: 50,
+    PARTICLE_MIN_SIZE: 2,
+    PARTICLE_MAX_SIZE: 8,
+    PARTICLE_MIN_DURATION: 2,
+    PARTICLE_MAX_DURATION: 5,
+    PARTICLE_MAX_DELAY: 2,
+    
+    // W5クリックアニメーション
+    W5_CLICK_ANIMATION_DURATION: 800,
+    W5_PARTICLE_COUNT: 12,
+    W5_PARTICLE_MIN_DISTANCE: 50,
+    W5_PARTICLE_MAX_DISTANCE: 80,
+    W5_PARTICLE_MIN_SIZE: 4,
+    W5_PARTICLE_MAX_SIZE: 10,
+    W5_MESSAGE_DURATION: 3000,
+    W5_CLICK_THRESHOLD_5: 5,
+    W5_CLICK_THRESHOLD_10: 10
+};

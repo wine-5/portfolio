@@ -2,33 +2,7 @@
    メインアプリケーションクラス（簡潔版）
    =================================== */
 
-// 定数定義
-const CONFIG = {
-    SCROLL_DEBOUNCE_DELAY: 10,
-    RESIZE_DEBOUNCE_DELAY: 250,
-    HEADER_SCROLL_THRESHOLD: 50,
-    MOBILE_BREAKPOINT: 768,
-    LOADING_PROGRESS_INCREMENT: 15,
-    LOADING_PROGRESS_INTERVAL: 200,
-    LOADING_HIDE_DELAY: 500,
-    HINT_ANIMATION_DELAY: 0.5,
-    PARTICLE_COUNT: 30,
-    PARTICLE_CREATION_DELAY: 50,
-    PARTICLE_MIN_SIZE: 2,
-    PARTICLE_MAX_SIZE: 8,
-    PARTICLE_MIN_DURATION: 2,
-    PARTICLE_MAX_DURATION: 5,
-    PARTICLE_MAX_DELAY: 2,
-    W5_CLICK_ANIMATION_DURATION: 800,
-    W5_PARTICLE_COUNT: 12,
-    W5_PARTICLE_MIN_DISTANCE: 50,
-    W5_PARTICLE_MAX_DISTANCE: 80,
-    W5_PARTICLE_MIN_SIZE: 4,
-    W5_PARTICLE_MAX_SIZE: 10,
-    W5_MESSAGE_DURATION: 3000,
-    W5_CLICK_THRESHOLD_5: 5,
-    W5_CLICK_THRESHOLD_10: 10
-};
+// 定数定義は js/config/app-config.js に移動済み
 
 class PortfolioApp {
     constructor() {
@@ -185,8 +159,8 @@ class PortfolioApp {
         const particlesContainer = document.querySelector('.loading__particles');
         const logoCenter = document.querySelector('.logo-center');
         
-        // パーティクルエフェクト生成
-        this.createLoadingParticles(particlesContainer);
+        // パーティクルエフェクト生成（無効化）
+        // this.createLoadingParticles(particlesContainer);
         
         // ヒントテキストを回転させて表示
         this.createRotatingHints(logoCenter);
@@ -224,56 +198,7 @@ class PortfolioApp {
         logoCenter.appendChild(hintsContainer);
     }
 
-    createLoadingParticles(container) {
-        if (!container) return;
-        
-        for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
-            setTimeout(() => {
-                const particle = document.createElement('div');
-                const size = Math.random() * (CONFIG.PARTICLE_MAX_SIZE - CONFIG.PARTICLE_MIN_SIZE) + CONFIG.PARTICLE_MIN_SIZE;
-                const duration = Math.random() * (CONFIG.PARTICLE_MAX_DURATION - CONFIG.PARTICLE_MIN_DURATION) + CONFIG.PARTICLE_MIN_DURATION;
-                const delay = Math.random() * CONFIG.PARTICLE_MAX_DELAY;
-                const opacity = Math.random() * 0.8 + 0.2;
-                
-                particle.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    background: radial-gradient(circle, 
-                        rgba(99, 102, 241, ${opacity}), 
-                        transparent);
-                    border-radius: 50%;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    animation: floatParticle ${duration}s linear infinite;
-                    animation-delay: ${delay}s;
-                `;
-                container.appendChild(particle);
-            }, i * CONFIG.PARTICLE_CREATION_DELAY);
-        }
-        
-        // アニメーション定義
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes floatParticle {
-                0% {
-                    transform: translateY(0) scale(0);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 1;
-                }
-                90% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(-100vh) scale(1);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+    // createLoadingParticles関数は削除済み
 
     setupW5ClickAnimation() {
         const logoCenter = document.querySelector('.logo-center');
@@ -291,7 +216,7 @@ class PortfolioApp {
             logoCenter.classList.add('w5-clicked');
             
             // パーティクル生成
-            this.createW5ClickParticles(logoCenter);
+            // this.createW5ClickParticles(logoCenter);
             
             // 特別なエフェクト（5回目と10回目）
             if (clickCount === CONFIG.W5_CLICK_THRESHOLD_5) {
@@ -308,45 +233,7 @@ class PortfolioApp {
         });
     }
 
-    createW5ClickParticles(element) {
-        const rect = element.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        for (let i = 0; i < CONFIG.W5_PARTICLE_COUNT; i++) {
-            const particle = document.createElement('div');
-            const angle = (Math.PI * 2 * i) / CONFIG.W5_PARTICLE_COUNT;
-            const distance = CONFIG.W5_PARTICLE_MIN_DISTANCE + Math.random() * (CONFIG.W5_PARTICLE_MAX_DISTANCE - CONFIG.W5_PARTICLE_MIN_DISTANCE);
-            const size = CONFIG.W5_PARTICLE_MIN_SIZE + Math.random() * (CONFIG.W5_PARTICLE_MAX_SIZE - CONFIG.W5_PARTICLE_MIN_SIZE);
-            
-            particle.style.cssText = `
-                position: fixed;
-                left: ${centerX}px;
-                top: ${centerY}px;
-                width: ${size}px;
-                height: ${size}px;
-                background: linear-gradient(135deg, #6366f1, #a855f7);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 10001;
-                box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
-            `;
-            
-            document.body.appendChild(particle);
-            
-            const endX = centerX + Math.cos(angle) * distance;
-            const endY = centerY + Math.sin(angle) * distance;
-            
-            particle.animate([
-                { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
-                { transform: `translate(${endX - centerX}px, ${endY - centerY}px) scale(1)`, opacity: 0.8, offset: 0.5 },
-                { transform: `translate(${(endX - centerX) * 1.5}px, ${(endY - centerY) * 1.5}px) scale(0)`, opacity: 0 }
-            ], {
-                duration: CONFIG.W5_CLICK_ANIMATION_DURATION,
-                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-            }).onfinish = () => particle.remove();
-        }
-    }
+    // createW5ClickParticles関数は削除済み
 
     showW5Message(message) {
         const messageBox = document.createElement('div');
