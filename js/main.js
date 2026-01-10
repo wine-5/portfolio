@@ -287,6 +287,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     const app = new PortfolioApp();
     await app.init(); // awaitを追加
     
+    // グローバルに参照できるようにする
+    window.portfolioApp = app;
+    
     isInitialized = true;
 });
 

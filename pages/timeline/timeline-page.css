@@ -1,7 +1,9 @@
 /* タイムラインページ専用スタイル */
 
-/* タイムラインページの高さを適切に調整 */
+/* フォント設定を明示的に指定 */
 body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     min-height: 100vh; /* 通常の高さに戻す */
 }
 
