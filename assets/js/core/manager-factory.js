@@ -23,24 +23,13 @@ class ManagerFactory {
         this.managers.contact = new ContactForm();
         this.managers.footerAnimation = new FooterAnimationManager();
         
-        // WebGL水面反射システム（フォールバック付き）
-        // [コメント化] パーティクル・波システムを無効化（ゲームホイール実装のため）
-        // try {
-        //     this.managers.webglWater = new WebGLWaterReflectionManager();
-        // } catch (error) {
-        //     console.warn('WebGLWaterReflectionManager not available:', error);
-        //     this.managers.webglWater = null;
-        // }
-        this.managers.webglWater = null; // 強制的にnullに設定
-        // [コメント化] パーティクル・波システムを無効化
-        // this.managers.waterReflectionTitle = new WaterReflectionTitleManager();
+        // [無効化] WebGL水面反射・パーティクルシステムを無効化（ゲームカルーセル実装のため）
+        this.managers.webglWater = null;
         this.managers.waterReflectionTitle = null;
         
         // ゲーム的UIエフェクト
-        // this.managers.skillParticle = new SkillParticleManager(); // 白い球削除のため無効化
         this.managers.gameUI = new GameUIManager();
         // [無効化] EasterEggManagerを無効化（WebGLエフェクト無効化のため）
-        // this.managers.easterEgg = new EasterEggManager(); // 隠しコマンド用（パーティクルは無効化済み）
         this.managers.easterEgg = null;
         this.managers.skillCardExpand = new SkillCardExpandManager();
         
@@ -63,10 +52,7 @@ class ManagerFactory {
         this.managers.footerAnimation.init();
         
         // ゲーム的UIエフェクトの初期化
-        // this.managers.skillParticle.init(); // 白い球削除のため無効化
         this.managers.gameUI.init();
-        // [無効化] EasterEggManagerを無効化（WebGLエフェクト無効化のため）
-        // this.managers.easterEgg.init(); // 隠しコマンド用（パーティクルは無効化済み）
         if (this.managers.easterEgg) {
             this.managers.easterEgg.init();
         }

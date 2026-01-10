@@ -710,10 +710,6 @@ body {
     visibility: hidden !important;
 }
 
-/* ローディング画面を元に戻すため、hero::afterを削除 */
-
-/* 古いパーティクル処理を削除 - WebGL版を使用 */
-
 .hero__content {
     text-align: center;
     z-index: 2;
@@ -802,28 +798,23 @@ body {
     perspective: 1500px;
 }
 
-/* .hero__floating-cube - 削除済み */
 
 .hero__title {
-    /* CSS版を無効化 - WebGL版のみを使用 */
     display: none;
 }
 
 .hero__title::before {
-    /* CSS版を無効化 - WebGL版を使用 */
     content: '';
     display: none;
 }
 
 .hero__title::after {
-    /* CSS版を無効化 - WebGL版を使用 */
     display: none;
 }
 
 .hero__title:hover,
 .hero__title:hover::before,
 .hero__title:hover::after {
-    /* CSS版を無効化 - WebGL版を使用 */
     display: none;
 }
 
@@ -895,7 +886,6 @@ body {
 }
 
 .hero__title-letters {
-    /* CSS版を表示 - パーティクルシステム無効化のため */
     display: flex !important;
     /* レスポンシブ対応のための基本設定 */
     flex-wrap: nowrap;

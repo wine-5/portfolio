@@ -16,7 +16,6 @@
         if (id.includes('particle') || id.includes('water') || 
             className.includes('particle') || className.includes('water')) {
             canvas.remove();
-            console.log('[✓] パーティクル関連canvasを削除:', id || className);
         }
     });
     
@@ -26,11 +25,8 @@
         if (el.tagName !== 'SCRIPT' && el.tagName !== 'CANVAS') {
             el.style.display = 'none';
             el.style.visibility = 'hidden';
-            console.log('[✓] パーティクル要素を無効化:', el.className || el.id);
         }
     });
-    
-    console.log('[✓] パーティクル・波システムを強制無効化しました（wine-5テキストは維持）');
 })();
 
 class PortfolioApp {
@@ -64,10 +60,6 @@ class PortfolioApp {
         
         // マネージャーの一括初期化（データ読み込み後）
         await this.managerFactory.initAll();
-        
-        // WebGL水面反射システムの初期化
-        // [コメント化] パーティクル・波システムを無効化（ゲームホイール実装のため）
-        // this.managerFactory.initWaterReflection();
     }
 
     initializeCoreSystems() {
@@ -189,9 +181,6 @@ class PortfolioApp {
         const particlesContainer = document.querySelector('.loading__particles');
         const logoCenter = document.querySelector('.logo-center');
         
-        // パーティクルエフェクト生成（無効化）
-        // this.createLoadingParticles(particlesContainer);
-        
         // ヒントテキストを回転させて表示
         this.createRotatingHints(logoCenter);
         
@@ -228,8 +217,6 @@ class PortfolioApp {
         logoCenter.appendChild(hintsContainer);
     }
 
-    // createLoadingParticles関数は削除済み
-
     setupW5ClickAnimation() {
         const logoCenter = document.querySelector('.logo-center');
         if (!logoCenter) return;
@@ -245,9 +232,6 @@ class PortfolioApp {
             
             logoCenter.classList.add('w5-clicked');
             
-            // パーティクル生成
-            // this.createW5ClickParticles(logoCenter);
-            
             // 特別なエフェクト（5回目と10回目）
             if (clickCount === CONFIG.W5_CLICK_THRESHOLD_5) {
                 this.showW5Message('発見！隠し要素が近い...');
@@ -262,8 +246,6 @@ class PortfolioApp {
             }, CONFIG.W5_CLICK_ANIMATION_DURATION);
         });
     }
-
-    // createW5ClickParticles関数は削除済み
 
     showW5Message(message) {
         const messageBox = document.createElement('div');
@@ -323,12 +305,3 @@ document.addEventListener('DOMContentLoaded', async function() {
     isInitialized = true;
 });
 
-// パーティクルシステムの遅延初期化
-// [コメント化] パーティクルシステムを無効化（ゲームホイール実装のため）
-// window.addEventListener('load', function() {
-//     const particleCanvas = document.getElementById('particle-canvas');
-//     if (particleCanvas && typeof ParticleSystem !== 'undefined') {
-//         const particleSystem = new ParticleSystem('particle-canvas');
-//         particleSystem.init();
-//     }
-// });

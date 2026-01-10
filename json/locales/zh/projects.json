@@ -2,6 +2,7 @@
   {
     "title": "MoreHit2",
     "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品",
+    "detailedFeatures": "在UnityRoom游戏Jam中花费1周时间开发的射击游戏。我重点关注敌人和Boss的难度平衡，逐步引入新敌人类型，最后进行Boss战斗。同时还特别关注UI和音效演出，为玩家营造紧迫感。",
     "myResponsibilities": "Player设计与实现、敌人基类和Boss实现、音频和场景整体管理类的创建",
     "technologies": [
       "Unity",
@@ -24,6 +25,7 @@
   {
     "title": "这一侧 / 那一侧",
     "description": "在HIBIGA主办的游戏Jam中制作的作品",
+    "detailedFeatures": "在HIBIGA主办的游戏Jam中花费2天时间开发的动作游戏。我充分利用線的主题，创造了玩家在線的上下方切換的独特游玩体验。在有限的时间内，我仔细设计了游戏的整体状态转换和音频管理，使作品更加完善。",
     "myResponsibilities": "创建音频类、实现游戏整体状态转换、创建部分基类",
     "technologies": [
       "Unity",

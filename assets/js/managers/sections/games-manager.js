@@ -61,7 +61,6 @@ class GamesManager {
             // フェードイン
             gamesSection.style.opacity = '1';
             gamesSection.style.visibility = 'visible';
-            console.log('✨ Game section faded in');
         }
     }
 
@@ -98,14 +97,12 @@ class GamesManager {
         
         // カードが見つからない場合は再描画
         if (gameCards.length === 0 && this.projects.length > 0) {
-            console.warn('GamesManager: Game cards not found, re-rendering...');
             this.renderGames();
         }
     }
 
     renderGames() {
         if (!this.worksGrid) {
-            console.error('works-grid element not found');
             return;
         }
 
@@ -115,15 +112,10 @@ class GamesManager {
             ).join('');
             
             if (!projectsHtml) {
-                console.error('No HTML generated for game cards');
                 return;
             }
             
             this.worksGrid.innerHTML = projectsHtml;
-            
-            // 確認：カードが正しく追加されたか
-            const cardCount = this.worksGrid.querySelectorAll('.work-card').length;
-            console.log(`✓ Rendered ${cardCount} game cards`);
             
             // ブラウザのレイアウト再計算を強制実行
             this.forceReflow();
@@ -133,7 +125,6 @@ class GamesManager {
                 this.forceReflow();
                 
                 const allSliders = document.querySelectorAll('.image-slider');
-                console.log(`✓ Found ${allSliders.length} sliders`);
                 
                 allSliders.forEach(slider => {
                     const firstSlide = slider.querySelector('.slider-image');
@@ -566,14 +557,11 @@ class GamesManager {
     goToSlide(sliderId, index) {
         const slider = document.querySelector(`[data-slider-id="${sliderId}"]`);
         if (!slider) {
-            console.error(`GamesManager: Slider with id ${sliderId} not found`);
             return;
         }
 
         const images = slider.querySelectorAll('.slider-image');
         const indicators = slider.querySelectorAll('.indicator');
-        
-        console.log(`🎬 Changing slide to index ${index}/${images.length - 1} for slider ${sliderId}`);
 
         // 現在アクティブな動画を一時停止
         const currentActiveVideo = slider.querySelector('.slider-image.active video');
@@ -588,7 +576,6 @@ class GamesManager {
         // 新しい画像・動画とインジケーターにactiveクラスを追加
         if (images[index]) {
             images[index].classList.add('active');
-            console.log(`✅ Slide ${index} is now active`);
             
             // 新しくアクティブになった要素が動画の場合、サムネイルを表示
             const newVideo = images[index].querySelector('video');
