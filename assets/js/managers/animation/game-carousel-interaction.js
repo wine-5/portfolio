@@ -69,7 +69,10 @@ class GameCarouselInteraction {
      * @private
      */
     handlePrevClick() {
+        this.carousel.stopAutoRotation();
         this.carousel.previousSlide();
+        // 3秒後に自動回転再開
+        setTimeout(() => this.carousel.startAutoRotation(), 3000);
     }
 
     /**
@@ -77,7 +80,10 @@ class GameCarouselInteraction {
      * @private
      */
     handleNextClick() {
+        this.carousel.stopAutoRotation();
         this.carousel.nextSlide();
+        // 3秒後に自動回転再開
+        setTimeout(() => this.carousel.startAutoRotation(), 3000);
     }
 
     /**
@@ -137,13 +143,18 @@ class GameCarouselInteraction {
         const difference = this.touchStartX - this.touchEndX;
 
         if (Math.abs(difference) > swipeThreshold) {
+            this.carousel.stopAutoRotation();
+            
             if (difference > 0) {
-                // 左にスワイプ → 次へ
                 this.carousel.nextSlide();
             } else {
-                // 右にスワイプ → 前へ
                 this.carousel.previousSlide();
             }
+            
+            // 3秒後に自動回転再開
+            setTimeout(() => {
+                this.carousel.startAutoRotation();
+            }, 3000);
         }
 
         this.isTouch = false;
@@ -158,11 +169,15 @@ class GameCarouselInteraction {
 
         switch (e.key) {
             case 'ArrowLeft':
+                this.carousel.stopAutoRotation();
                 this.carousel.previousSlide();
+                setTimeout(() => this.carousel.startAutoRotation(), 3000);
                 e.preventDefault();
                 break;
             case 'ArrowRight':
+                this.carousel.stopAutoRotation();
                 this.carousel.nextSlide();
+                setTimeout(() => this.carousel.startAutoRotation(), 3000);
                 e.preventDefault();
                 break;
         }

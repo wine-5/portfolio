@@ -7,6 +7,7 @@
     height: 500px;
     margin: 60px 0;
     perspective: 2000px;
+    perspective-origin: center 60%;
 }
 
 /* ステージ（回転軸） */
@@ -18,6 +19,7 @@
     align-items: center;
     justify-content: center;
     perspective: 2000px;
+    perspective-origin: center 60%;
 }
 
 /* 中央ラベル */
@@ -31,6 +33,7 @@
     letter-spacing: 8px;
     pointer-events: none;
     font-family: 'Orbitron', monospace;
+    display: none;
 }
 
 /* アイテムコンテナ */
@@ -39,7 +42,6 @@
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* アイテム */
@@ -107,13 +109,7 @@
 
 /* コントロール */
 .game-carousel__controls {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 16px;
-    z-index: 10;
+    display: none;
 }
 
 /* コントロールボタン */

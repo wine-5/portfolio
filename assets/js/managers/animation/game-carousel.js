@@ -12,6 +12,7 @@ class GameCarousel {
         this.currentRotation = 0;
         this.games = [];
         this.isAnimating = false;
+        this.autoRotationTimeout = null;
 
         this.renderer = null;
         this.interaction = null;
@@ -21,8 +22,9 @@ class GameCarousel {
             animationDuration: 600,
             autoPlayInterval: 0,
             perspective: 2000,
-            radius: 250,
-            itemSize: 140
+            radius: 450,
+            itemSize: 140,
+            autoRotationDelay: 5000
         };
     }
 
@@ -38,9 +40,14 @@ class GameCarousel {
         this.interaction = dependencies.interaction || new GameCarouselInteraction(this);
         this.transition = dependencies.transition || new GameCarouselTransition(this.config);
 
+        // 初期状態でアイコンを均等に配置してからレンダリング
+        this.currentRotation = 0;
         this.render();
 
         this.interaction.setupListeners();
+        
+        // 自動回転を開始
+        this.startAutoRotation();
 
         if (this.config.autoPlayInterval > 0) {
             this.startAutoPlay();
@@ -48,16 +55,51 @@ class GameCarousel {
     }
 
     /**
-     * 円形配置の角度を計算
+     * 自動回転を開始
+     */
+    startAutoRotation() {
+        if (this.autoRotationInterval) {
+            clearInterval(this.autoRotationInterval);
+        }
+
+        // 30秒で180度回転 = 0.1度/100ms
+        const rotationSpeed = 0.6; // 度/100ms = 6度/秒
+        
+        this.autoRotationInterval = setInterval(() => {
+            if (!this.isAnimating) {
+                this.currentRotation += rotationSpeed;
+                // 180度を超えたら-180から開始
+                if (this.currentRotation > 180) {
+                    this.currentRotation -= 360;
+                }
+                this.render();
+            }
+        }, 100);
+    }
+
+    /**
+     * 自動回転を停止
+     */
+    stopAutoRotation() {
+        if (this.autoRotationInterval) {
+            clearInterval(this.autoRotationInterval);
+            this.autoRotationInterval = null;
+        }
+    }
+
+    /**
+     * 円形配置の角度を計算（180度範囲内）
      * @returns {Array} 各ゲームの回転角度
      */
     calculatePositions() {
         if (this.games.length === 0) return [];
         
-        const angleStep = 360 / this.games.length;
+        // 180度範囲内に配置（-90度から90度）
+        const angleStep = 180 / Math.max(1, this.games.length - 1);
         return this.games.map((game, index) => {
+            const baseAngle = -90 + (angleStep * index);
             return {
-                angle: angleStep * index + this.currentRotation,
+                angle: baseAngle + this.currentRotation,
                 index,
                 game
             };
@@ -78,7 +120,8 @@ class GameCarousel {
         if (this.isAnimating) return;
         this.isAnimating = true;
 
-        const angleStep = 360 / this.games.length;
+        // 180度範囲内での回転ステップ
+        const angleStep = 180 / Math.max(1, this.games.length - 1);
         const newRotation = this.currentRotation - angleStep;
 
         await this.transition.executeRotation(this.currentRotation, newRotation);
@@ -96,7 +139,8 @@ class GameCarousel {
         if (this.isAnimating) return;
         this.isAnimating = true;
 
-        const angleStep = 360 / this.games.length;
+        // 180度範囲内での回転ステップ
+        const angleStep = 180 / Math.max(1, this.games.length - 1);
         const newRotation = this.currentRotation + angleStep;
 
         await this.transition.executeRotation(this.currentRotation, newRotation);

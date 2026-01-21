@@ -15,6 +15,7 @@
       "images/game/MoreHit2/MoreHit2-title.png",
       "images/game/MoreHit2/MoreHit2-in-game.png"
     ],
+    "thumbnailImage": "images/game/MoreHit2/MoreHit2-title.png",
     "playUrl": "https://unityroom.com/games/morehit2",
     "githubUrl": "https://github.com/wine-5/MoreHit2",
     "year": "2nd Year",
@@ -38,6 +39,7 @@
       "images/game/border/border-title.png",
       "images/game/border/border-in-game.png"
     ],
+    "thumbnailImage": "images/game/border/border-title.png",
     "playUrl": "https://unityroom.com/games/kochiratomukou",
     "githubUrl": "https://github.com/wine-5/Fibonacci",
     "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
@@ -63,6 +65,7 @@
       "images/game/Tofu/Tofu-Title.png",
       "images/game/Tofu/Tofu-InGame.png"
     ],
+    "thumbnailImage": "images/game/Tofu/Tofu-Title.png",
     "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
     "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
     "year": "2nd Year",
@@ -84,6 +87,7 @@
     "images": [
       "images/game/zirai-tyan/zirai-movie.mp4"
     ],
+    "thumbnailImage": "images/game/MoreHit2/MoreHit2-title.png",
     "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
     "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
     "year": "2nd Year",
@@ -130,6 +134,7 @@
     "images": [
       "images/game/chocho/chocho-title.png"
     ],
+    "thumbnailImage": "images/game/chocho/chocho-title.png",
     "playUrl": "",
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "2nd Year",
@@ -178,6 +183,7 @@
       "images/game/under-over/UnderOver-title.png",
       "images/game/under-over/UnderOver-in-game.png"
     ],
+    "thumbnailImage": "images/game/under-over/UnderOver-title.png",
     "playUrl": "https://unityroom.com/games/underover",
     "githubUrl": "https://github.com/wine-5/UnderOver",
     "year": "1st Year",
@@ -205,6 +211,7 @@
       "images/game/split/split-title.png",
       "images/game/split/split-in-game.png"
     ],
+    "thumbnailImage": "images/game/split/split-title.png",
     "playUrl": "web-game/Split/homepage/homepage/HTML/homepage.html",
     "localPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
     "webPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
@@ -231,6 +238,7 @@
       "images/game/element-battle/element-home.png",
       "images/game/element-battle/element-in-game.png"
     ],
+    "thumbnailImage": "images/game/element-battle/element-home.png",
     "playUrl": "web-game/ElementBattle/index.html",
     "localPath": "web-game/ElementBattle/index.html",
     "webPath": "web-game/ElementBattle/index.html",
