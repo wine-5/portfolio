@@ -60,6 +60,11 @@ class PortfolioApp {
         
         // マネージャーの一括初期化（データ読み込み後）
         await this.managerFactory.initAll();
+        
+        // ゲームカルーセルの初期化
+        if (window.gameCarouselManager) {
+            await window.gameCarouselManager.init();
+        }
     }
 
     initializeCoreSystems() {

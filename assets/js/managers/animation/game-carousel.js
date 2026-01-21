@@ -1,34 +1,28 @@
 /**
  * ゲームカルーセル管理クラス
- * 責任: カルーセルの状態管理と総合制御
- * SOLID: 単一責任の原則に従う
+ * 責任: 円形配置のカルーセル状態管理と総合制御
  */
 class GameCarousel {
     constructor(containerSelector) {
-        // DOM参照
         this.container = document.querySelector(containerSelector);
         if (!this.container) {
             throw new Error(`GameCarousel: Container "${containerSelector}" not found`);
         }
 
-        // 状態管理
-        this.currentIndex = 0;
+        this.currentRotation = 0;
         this.games = [];
         this.isAnimating = false;
 
-        // 依存注入（インターフェース分離）
         this.renderer = null;
         this.interaction = null;
         this.transition = null;
 
-        // 設定
         this.config = {
-            animationDuration: 500,
-            autoPlayInterval: 0, // 0 = 無効
-            perspective: 1200,
-            centerScale: 1.2,
-            edgeScale: 0.7,
-            rotationAngle: 15
+            animationDuration: 600,
+            autoPlayInterval: 0,
+            perspective: 2000,
+            radius: 250,
+            itemSize: 140
         };
     }
 
@@ -40,28 +34,34 @@ class GameCarousel {
     init(games, dependencies = {}) {
         this.games = games;
 
-        // 依存性の注入
         this.renderer = dependencies.renderer || new GameCarouselRenderer(this.container, this.config);
         this.interaction = dependencies.interaction || new GameCarouselInteraction(this);
         this.transition = dependencies.transition || new GameCarouselTransition(this.config);
 
-        // 初期描画
         this.render();
 
-        // イベントリスナー設定
         this.interaction.setupListeners();
 
-        // 自動再生設定
         if (this.config.autoPlayInterval > 0) {
             this.startAutoPlay();
         }
     }
 
     /**
-     * 現在のインデックスを取得（読み取り専用）
+     * 円形配置の角度を計算
+     * @returns {Array} 各ゲームの回転角度
      */
-    getCurrentIndex() {
-        return this.currentIndex;
+    calculatePositions() {
+        if (this.games.length === 0) return [];
+        
+        const angleStep = 360 / this.games.length;
+        return this.games.map((game, index) => {
+            return {
+                angle: angleStep * index + this.currentRotation,
+                index,
+                game
+            };
+        });
     }
 
     /**
@@ -72,55 +72,47 @@ class GameCarousel {
     }
 
     /**
-     * スライドを変更
-     * @param {number} index - ターゲットインデックス
+     * 次のゲームへ回転
      */
-    async goToSlide(index) {
-        if (this.isAnimating || index === this.currentIndex) {
-            return;
-        }
-
-        // インデックスのバリデーション
-        if (index < 0 || index >= this.games.length) {
-            return;
-        }
-
+    async nextSlide() {
+        if (this.isAnimating) return;
         this.isAnimating = true;
 
-        // トランジション実行
-        await this.transition.execute(
-            this.currentIndex,
-            index,
-            this.games.length
-        );
+        const angleStep = 360 / this.games.length;
+        const newRotation = this.currentRotation - angleStep;
 
-        this.currentIndex = index;
+        await this.transition.executeRotation(this.currentRotation, newRotation);
+
+        this.currentRotation = newRotation;
         this.render();
 
         this.isAnimating = false;
     }
 
     /**
-     * 次のスライドへ
-     */
-    async nextSlide() {
-        const nextIndex = (this.currentIndex + 1) % this.games.length;
-        await this.goToSlide(nextIndex);
-    }
-
-    /**
-     * 前のスライドへ
+     * 前のゲームへ回転
      */
     async previousSlide() {
-        const prevIndex = (this.currentIndex - 1 + this.games.length) % this.games.length;
-        await this.goToSlide(prevIndex);
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
+        const angleStep = 360 / this.games.length;
+        const newRotation = this.currentRotation + angleStep;
+
+        await this.transition.executeRotation(this.currentRotation, newRotation);
+
+        this.currentRotation = newRotation;
+        this.render();
+
+        this.isAnimating = false;
     }
 
     /**
      * 描画を実行
      */
     render() {
-        this.renderer.render(this.games, this.currentIndex);
+        const positions = this.calculatePositions();
+        this.renderer.render(this.games, positions, this.currentRotation);
     }
 
     /**

@@ -1,14 +1,12 @@
 /**
  * ゲームカルーセルレンダラークラス
- * 責任: 描画処理のみ
- * SOLID: 単一責任の原則に従う
+ * 責任: 円形配置の描画処理
  */
 class GameCarouselRenderer {
     constructor(container, config) {
         this.container = container;
         this.config = config;
         
-        // HTML構造を構築
         this.setupDOM();
     }
 
@@ -18,7 +16,8 @@ class GameCarouselRenderer {
     setupDOM() {
         this.container.classList.add('game-carousel');
         this.container.innerHTML = `
-            <div class="game-carousel__track">
+            <div class="game-carousel__stage">
+                <div class="game-carousel__center-label">wine-5</div>
                 <div class="game-carousel__items"></div>
             </div>
             <div class="game-carousel__controls">
@@ -33,105 +32,60 @@ class GameCarouselRenderer {
                     </svg>
                 </button>
             </div>
-            <div class="game-carousel__indicators"></div>
         `;
 
         this.itemsContainer = this.container.querySelector('.game-carousel__items');
-        this.indicatorsContainer = this.container.querySelector('.game-carousel__indicators');
     }
 
     /**
-     * カルーセルアイテムを描画
+     * カルーセルを描画
      * @param {Array} games - ゲームデータ配列
-     * @param {number} currentIndex - 現在のインデックス
+     * @param {Array} positions - 位置情報配列
+     * @param {number} rotation - 現在の回転角度
      */
-    render(games, currentIndex) {
-        // アイテムを描画
-        this.renderItems(games, currentIndex);
-        
-        // インジケーターを描画
-        this.renderIndicators(games, currentIndex);
+    render(games, positions, rotation) {
+        this.renderItems(games, positions, rotation);
     }
 
     /**
-     * アイテムを描画
+     * アイテムを描画（円形配置）
      * @private
      */
-    renderItems(games, currentIndex) {
-        this.itemsContainer.innerHTML = games.map((game, index) => {
-            const distance = Math.abs(index - currentIndex);
-            const scale = this.calculateScale(distance, games.length);
-            const zIndex = games.length - distance;
-            const rotation = this.calculateRotation(index, currentIndex, games.length);
+    renderItems(games, positions, rotation) {
+        this.itemsContainer.innerHTML = positions.map(({ angle, index, game }) => {
+            const radians = (angle * Math.PI) / 180;
+            const x = Math.cos(radians) * this.config.radius;
+            const z = Math.sin(radians) * this.config.radius;
+            
+            // 手前に来ているアイテムを大きく表示
+            const scale = 1 + (Math.cos(radians) * 0.3);
+            const opacity = Math.max(0.4, 1 - Math.abs(z) / (this.config.radius * 2));
+            
+            // 画像パスの取得
+            let imageSrc = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 200"%3E%3Crect fill="%23667eea" width="140" height="200"/%3E%3C/svg%3E';
+            if (game.images && game.images.length > 0) {
+                imageSrc = game.images[0];
+            }
 
             return `
                 <div class="game-carousel__item" 
                      data-index="${index}"
                      style="
-                        transform: scale(${scale}) rotateY(${rotation}deg);
-                        z-index: ${zIndex};
-                        opacity: ${this.calculateOpacity(distance)};
+                        transform: 
+                            translateX(${x}px) 
+                            translateZ(${z}px) 
+                            scale(${scale});
+                        opacity: ${opacity};
                      ">
                     <div class="game-carousel__item-content">
-                        <img src="${game.images[0]}" alt="${game.title}" class="game-carousel__item-image">
+                        <img src="${imageSrc}" alt="${game.title}" class="game-carousel__item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 140 200%22%3E%3Crect fill=%22%23667eea%22 width=%22140%22 height=%22200%22/%3E%3C/svg%3E'">
                         <div class="game-carousel__item-overlay">
                             <h3 class="game-carousel__item-title">${game.title}</h3>
-                            <p class="game-carousel__item-description">${game.description}</p>
                         </div>
                     </div>
                 </div>
             `;
         }).join('');
     }
-
-    /**
-     * インジケーターを描画
-     * @private
-     */
-    renderIndicators(games, currentIndex) {
-        this.indicatorsContainer.innerHTML = games.map((_, index) => `
-            <button class="game-carousel__indicator ${index === currentIndex ? 'active' : ''}" 
-                    data-index="${index}"
-                    aria-label="ゲーム ${index + 1}"></button>
-        `).join('');
-    }
-
-    /**
-     * スケール値を計算
-     * @private
-     */
-    calculateScale(distance, totalItems) {
-        if (distance === 0) {
-            return this.config.centerScale;
-        }
-        
-        const factor = distance / (totalItems / 2);
-        return Math.max(
-            this.config.edgeScale,
-            this.config.centerScale - (factor * (this.config.centerScale - this.config.edgeScale))
-        );
-    }
-
-    /**
-     * 回転角度を計算
-     * @private
-     */
-    calculateRotation(currentPos, centerPos, totalItems) {
-        const distance = currentPos - centerPos;
-        const direction = distance > 0 ? 1 : distance < 0 ? -1 : 0;
-        const maxRotation = this.config.rotationAngle;
-        
-        return Math.min(Math.abs(distance) * maxRotation, maxRotation) * direction;
-    }
-
-    /**
-     * 透明度を計算
-     * @private
-     */
-    calculateOpacity(distance) {
-        if (distance === 0) return 1;
-        if (distance === 1) return 0.8;
-        if (distance === 2) return 0.5;
-        return 0;
-    }
 }
+

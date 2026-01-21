@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- Legacy Styles (移行中) -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Game Carousel -->
+    <link rel="stylesheet" href="assets/css/components/game-carousel.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,6 +155,7 @@
                 
                 <p class="hero__subtitle">Game Developer</p>
                 <!-- <p class="hero__description">Unity & C#でゲームの可能性を追求し続ける開発者</p> -->
+                <div class="hero__carousel-container"></div>
                 <div class="hero__buttons">
                     <a href="#games" class="btn btn--primary">View Games</a>
                 </div>
@@ -363,6 +366,12 @@
     
     <!-- 3. Animation Managers -->
     <script src="assets/js/managers/animation/scroll-manager.js"></script>
+    <!-- Game Carousel -->
+    <script src="assets/js/managers/animation/game-carousel.js"></script>
+    <script src="assets/js/managers/animation/game-carousel-renderer.js"></script>
+    <script src="assets/js/managers/animation/game-carousel-interaction.js"></script>
+    <script src="assets/js/managers/animation/game-carousel-transition.js"></script>
+    <script src="assets/js/managers/animation/game-carousel-manager.js"></script>
     <!-- <script src="assets/js/managers/animation/skill-particle-manager.js"></script> -->
     <!-- [コメント化] 水面とパーティクルシステムを無効化（ゲームホイール実装のため） -->
     <!-- <script src="assets/js/managers/animation/water-reflection-title-manager.js"></script> -->

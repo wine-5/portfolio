@@ -1,25 +1,21 @@
 /**
  * ゲームカルーセルインタラクションクラス
  * 責任: ユーザー操作の処理
- * SOLID: 単一責任の原則に従う
  */
 class GameCarouselInteraction {
     constructor(carousel) {
         this.carousel = carousel;
         this.container = carousel.container;
         
-        // タッチイベント用
         this.touchStartX = 0;
         this.touchEndX = 0;
         this.isTouch = false;
 
-        // キーボード用
         this.keyboardEnabled = true;
 
-        // バインド
         this.handlePrevClick = this.handlePrevClick.bind(this);
         this.handleNextClick = this.handleNextClick.bind(this);
-        this.handleIndicatorClick = this.handleIndicatorClick.bind(this);
+        this.handleItemClick = this.handleItemClick.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -29,24 +25,21 @@ class GameCarouselInteraction {
      * イベントリスナーを設定
      */
     setupListeners() {
-        // ボタンクリック
         const prevBtn = this.container.querySelector('.game-carousel__control-btn--prev');
         const nextBtn = this.container.querySelector('.game-carousel__control-btn--next');
 
         if (prevBtn) prevBtn.addEventListener('click', this.handlePrevClick);
         if (nextBtn) nextBtn.addEventListener('click', this.handleNextClick);
 
-        // インジケータークリック
-        const indicators = this.container.querySelectorAll('.game-carousel__indicator');
-        indicators.forEach(indicator => {
-            indicator.addEventListener('click', this.handleIndicatorClick);
-        });
+        // アイテムクリック
+        const itemsContainer = this.container.querySelector('.game-carousel__items');
+        if (itemsContainer) {
+            itemsContainer.addEventListener('click', this.handleItemClick);
+        }
 
-        // タッチイベント
         this.container.addEventListener('touchstart', this.handleTouchStart, false);
         this.container.addEventListener('touchend', this.handleTouchEnd, false);
 
-        // キーボードイベント
         document.addEventListener('keydown', this.handleKeyDown);
     }
 
@@ -60,10 +53,10 @@ class GameCarouselInteraction {
         if (prevBtn) prevBtn.removeEventListener('click', this.handlePrevClick);
         if (nextBtn) nextBtn.removeEventListener('click', this.handleNextClick);
 
-        const indicators = this.container.querySelectorAll('.game-carousel__indicator');
-        indicators.forEach(indicator => {
-            indicator.removeEventListener('click', this.handleIndicatorClick);
-        });
+        const itemsContainer = this.container.querySelector('.game-carousel__items');
+        if (itemsContainer) {
+            itemsContainer.removeEventListener('click', this.handleItemClick);
+        }
 
         this.container.removeEventListener('touchstart', this.handleTouchStart);
         this.container.removeEventListener('touchend', this.handleTouchEnd);
@@ -88,12 +81,33 @@ class GameCarouselInteraction {
     }
 
     /**
-     * インジケーターをクリック
+     * アイテムをクリック - ゲームセクションにジャンプ
      * @private
      */
-    handleIndicatorClick(e) {
-        const index = parseInt(e.target.dataset.index, 10);
-        this.carousel.goToSlide(index);
+    handleItemClick(e) {
+        const item = e.target.closest('.game-carousel__item');
+        if (!item) return;
+
+        const index = parseInt(item.dataset.index, 10);
+        const game = this.carousel.games[index];
+        if (!game) return;
+
+        // ゲームセクションにスクロール
+        const gamesSection = document.getElementById('games');
+        if (gamesSection) {
+            gamesSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // ゲームセクションをハイライト
+            setTimeout(() => {
+                const gameCards = document.querySelectorAll('.work-card');
+                gameCards.forEach((card, idx) => {
+                    if (idx === index) {
+                        card.classList.add('highlight');
+                        setTimeout(() => card.classList.remove('highlight'), 2000);
+                    }
+                });
+            }, 500);
+        }
     }
 
     /**

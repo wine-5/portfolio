@@ -18,12 +18,14 @@ class GameCarouselManager {
             const games = await this.getGameData();
             
             if (games.length === 0) {
+                console.warn('No games found for carousel');
                 return;
             }
 
             // カルーセルコンテナを取得
             const container = document.querySelector('.hero__carousel-container');
             if (!container) {
+                console.warn('Carousel container not found');
                 return;
             }
 
@@ -33,12 +35,11 @@ class GameCarouselManager {
             // 依存オブジェクトをインジェクション
             const dependencies = {
                 renderer: new GameCarouselRenderer(container, {
-                    animationDuration: 500,
+                    animationDuration: 600,
                     autoPlayInterval: 0,
-                    perspective: 1200,
-                    centerScale: 1.2,
-                    edgeScale: 0.7,
-                    rotationAngle: 15
+                    perspective: 2000,
+                    radius: 250,
+                    itemSize: 140
                 }),
                 interaction: null, // 自動作成
                 transition: null   // 自動作成
@@ -46,6 +47,11 @@ class GameCarouselManager {
 
             // 初期化
             this.carousel.init(games, dependencies);
+
+            // 言語変更イベントをリッスン
+            window.addEventListener('languageChanged', (e) => {
+                this.onLanguageChanged(e.detail.lang);
+            });
 
         } catch (error) {
             console.error('GameCarouselManager initialization failed:', error);
@@ -62,8 +68,10 @@ class GameCarouselManager {
                 return [];
             }
 
-            // 言語を取得
-            const lang = window.currentLanguage || 'ja';
+            // 言語を取得（i18nマネージャーから）
+            const lang = (window.i18n && window.i18n.getCurrentLanguage) 
+                ? window.i18n.getCurrentLanguage() 
+                : 'ja';
             
             // データをロード
             await window.projectsData.load(lang);
