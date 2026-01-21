@@ -886,7 +886,7 @@ body {
 }
 
 .hero__title-letters {
-    display: flex !important;
+    display: none !important;
     /* レスポンシブ対応のための基本設定 */
     flex-wrap: nowrap;
     justify-content: center;

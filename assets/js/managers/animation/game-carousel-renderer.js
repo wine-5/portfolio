@@ -61,9 +61,11 @@ class GameCarouselRenderer {
             const scale = 1 + (Math.cos(radians) * 0.3);
             const opacity = Math.max(0.4, 1 - Math.abs(z) / (this.config.radius * 2));
             
-            // 画像パスの取得
+            // 画像パスの取得（thumbnailImage を優先使用）
             let imageSrc = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 200"%3E%3Crect fill="%23667eea" width="140" height="200"/%3E%3C/svg%3E';
-            if (game.images && game.images.length > 0) {
+            if (game.thumbnailImage) {
+                imageSrc = game.thumbnailImage;
+            } else if (game.images && game.images.length > 0) {
                 imageSrc = game.images[0];
             }
 
