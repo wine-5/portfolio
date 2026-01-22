@@ -22,7 +22,8 @@ class GameCarousel {
             animationDuration: 600,
             autoPlayInterval: 0,
             perspective: 2000,
-            radius: 450,
+            radiusX: 450,
+            radiusZ: 200,
             itemSize: 140,
             autoRotationDelay: 5000
         };
@@ -41,7 +42,7 @@ class GameCarousel {
         this.transition = dependencies.transition || new GameCarouselTransition(this.config);
 
         // 初期状態でアイコンを均等に配置してからレンダリング
-        this.currentRotation = 0;
+        this.currentRotation = 45;
         this.render();
 
         this.interaction.setupListeners();
@@ -63,7 +64,7 @@ class GameCarousel {
         }
 
         // 30秒で180度回転 = 0.1度/100ms
-        const rotationSpeed = 0.6; // 度/100ms = 6度/秒
+        const rotationSpeed = 1.2; // 度/100ms = 12度/秒（速度2倍）
         
         this.autoRotationInterval = setInterval(() => {
             if (!this.isAnimating) {

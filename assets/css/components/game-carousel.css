@@ -8,6 +8,12 @@
     margin: 60px 0;
     perspective: 2000px;
     perspective-origin: center 60%;
+    cursor: grab;
+    user-select: none;
+}
+
+.game-carousel:active {
+    cursor: grabbing;
 }
 
 /* ステージ（回転軸） */

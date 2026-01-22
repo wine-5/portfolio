@@ -1,7 +1,3 @@
-/**
- * ゲームカルーセルインタラクションクラス
- * 責任: ユーザー操作の処理
- */
 class GameCarouselInteraction {
     constructor(carousel) {
         this.carousel = carousel;
@@ -11,6 +7,10 @@ class GameCarouselInteraction {
         this.touchEndX = 0;
         this.isTouch = false;
 
+        // マウスドラッグ用
+        this.mouseStartX = 0;
+        this.isMouseDown = false;
+
         this.keyboardEnabled = true;
 
         this.handlePrevClick = this.handlePrevClick.bind(this);
@@ -18,6 +18,9 @@ class GameCarouselInteraction {
         this.handleItemClick = this.handleItemClick.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        this.handleMouseMove = this.handleMouseMove.bind(this);
+        this.handleMouseUp = this.handleMouseUp.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
@@ -40,6 +43,11 @@ class GameCarouselInteraction {
         this.container.addEventListener('touchstart', this.handleTouchStart, false);
         this.container.addEventListener('touchend', this.handleTouchEnd, false);
 
+        // マウスドラッグイベント
+        this.container.addEventListener('mousedown', this.handleMouseDown, false);
+        document.addEventListener('mousemove', this.handleMouseMove, false);
+        document.addEventListener('mouseup', this.handleMouseUp, false);
+
         document.addEventListener('keydown', this.handleKeyDown);
     }
 
@@ -60,6 +68,10 @@ class GameCarouselInteraction {
 
         this.container.removeEventListener('touchstart', this.handleTouchStart);
         this.container.removeEventListener('touchend', this.handleTouchEnd);
+
+        this.container.removeEventListener('mousedown', this.handleMouseDown);
+        document.removeEventListener('mousemove', this.handleMouseMove);
+        document.removeEventListener('mouseup', this.handleMouseUp);
 
         document.removeEventListener('keydown', this.handleKeyDown);
     }
@@ -158,6 +170,60 @@ class GameCarouselInteraction {
         }
 
         this.isTouch = false;
+    }
+
+    /**
+     * マウスダウン - ドラッグ開始
+     * @private
+     */
+    handleMouseDown(e) {
+        // 右クリックは無視
+        if (e.button !== 0) return;
+        
+        this.mouseStartX = e.clientX;
+        this.isMouseDown = true;
+        this.container.style.cursor = 'grabbing';
+    }
+
+    /**
+     * マウスムーブ - ドラッグ中
+     * @private
+     */
+    handleMouseMove(e) {
+        if (!this.isMouseDown) return;
+        // マウス移動中の処理（将来的なビジュアルフィードバック用）
+    }
+
+    /**
+     * マウスアップ - ドラッグ終了
+     * @private
+     */
+    handleMouseUp(e) {
+        if (!this.isMouseDown) return;
+        
+        const mouseEndX = e.clientX;
+        const swipeThreshold = 50;
+        const difference = this.mouseStartX - mouseEndX;
+
+        if (Math.abs(difference) > swipeThreshold) {
+            this.carousel.stopAutoRotation();
+            
+            if (difference > 0) {
+                // 右にドラッグ → 次へ
+                this.carousel.nextSlide();
+            } else {
+                // 左にドラッグ → 前へ
+                this.carousel.previousSlide();
+            }
+            
+            // 3秒後に自動回転再開
+            setTimeout(() => {
+                this.carousel.startAutoRotation();
+            }, 3000);
+        }
+
+        this.isMouseDown = false;
+        this.container.style.cursor = 'grab';
     }
 
     /**

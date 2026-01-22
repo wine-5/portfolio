@@ -54,12 +54,12 @@ class GameCarouselRenderer {
     renderItems(games, positions, rotation) {
         this.itemsContainer.innerHTML = positions.map(({ angle, index, game }) => {
             const radians = (angle * Math.PI) / 180;
-            const x = Math.cos(radians) * this.config.radius;
-            const z = Math.sin(radians) * this.config.radius;
+            const x = Math.cos(radians) * this.config.radiusX;
+            const z = Math.sin(radians) * this.config.radiusZ;
             
             // 手前に来ているアイテムを大きく表示
             const scale = 1 + (Math.cos(radians) * 0.3);
-            const opacity = Math.max(0.4, 1 - Math.abs(z) / (this.config.radius * 2));
+            const opacity = Math.max(0.4, 1 - Math.abs(z) / (this.config.radiusZ * 2));
             
             // 画像パスの取得（thumbnailImage を優先使用）
             let imageSrc = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 200"%3E%3Crect fill="%23667eea" width="140" height="200"/%3E%3C/svg%3E';
