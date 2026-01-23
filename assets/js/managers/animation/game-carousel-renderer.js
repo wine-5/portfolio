@@ -59,7 +59,7 @@ class GameCarouselRenderer {
             
             // 手前に来ているアイテムを大きく表示
             const scale = 1 + (Math.cos(radians) * 0.3);
-            const opacity = Math.max(0.4, 1 - Math.abs(z) / (this.config.radiusZ * 2));
+            const opacity = Math.max(0.7, 1 - Math.abs(z) / (this.config.radiusZ * 3));
             
             // 画像パスの取得（thumbnailImage を優先使用）
             let imageSrc = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 200"%3E%3Crect fill="%23667eea" width="140" height="200"/%3E%3C/svg%3E';
@@ -77,10 +77,9 @@ class GameCarouselRenderer {
                             translateX(${x}px) 
                             translateZ(${z}px) 
                             scale(${scale});
-                        opacity: ${opacity};
                      ">
-                    <div class="game-carousel__item-content">
-                        <img src="${imageSrc}" alt="${game.title}" class="game-carousel__item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 140 200%22%3E%3Crect fill=%22%23667eea%22 width=%22140%22 height=%22200%22/%3E%3C/svg%3E'">
+                    <div class="game-carousel__item-content" style="opacity: ${opacity};">
+                        <img src="${imageSrc}" alt="${game.title}" class="game-carousel__item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 140 140%22%3E%3Crect fill=%22%23667eea%22 width=%22140%22 height=%22140%22/%3E%3C/svg%3E'">
                         <div class="game-carousel__item-overlay">
                             <h3 class="game-carousel__item-title">${game.title}</h3>
                         </div>

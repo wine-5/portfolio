@@ -38,7 +38,7 @@ class GameCarouselManager {
                     animationDuration: 600,
                     autoPlayInterval: 0,
                     perspective: 2000,
-                    radiusX: 450,
+                    radiusX: 350,
                     radiusZ: 200,
                     itemSize: 140
                 }),

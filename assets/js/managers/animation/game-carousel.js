@@ -22,7 +22,7 @@ class GameCarousel {
             animationDuration: 600,
             autoPlayInterval: 0,
             perspective: 2000,
-            radiusX: 450,
+            radiusX: 350,
             radiusZ: 200,
             itemSize: 140,
             autoRotationDelay: 5000
@@ -64,7 +64,7 @@ class GameCarousel {
         }
 
         // 30秒で180度回転 = 0.1度/100ms
-        const rotationSpeed = 1.2; // 度/100ms = 12度/秒（速度2倍）
+        const rotationSpeed = 0.8; // 度/100ms = 8度/秒（速度調整）
         
         this.autoRotationInterval = setInterval(() => {
             if (!this.isAnimating) {
@@ -95,10 +95,14 @@ class GameCarousel {
     calculatePositions() {
         if (this.games.length === 0) return [];
         
-        // 180度範囲内に配置（-90度から90度）
-        const angleStep = 180 / Math.max(1, this.games.length - 1);
+        // ゲームを均等に配置（両端を少し内側に配置）
+        const angleStart = -85;  // -90度ではなく -85度から開始
+        const angleEnd = 85;      // 90度ではなく 85度まで
+        const angleRange = angleEnd - angleStart;
+        const angleStep = angleRange / Math.max(1, this.games.length - 1);
+        
         return this.games.map((game, index) => {
-            const baseAngle = -90 + (angleStep * index);
+            const baseAngle = angleStart + (angleStep * index);
             return {
                 angle: baseAngle + this.currentRotation,
                 index,
