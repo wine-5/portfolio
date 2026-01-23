@@ -206,6 +206,7 @@ class GameCarouselInteraction {
         const difference = this.mouseStartX - mouseEndX;
 
         if (Math.abs(difference) > swipeThreshold) {
+            // ドラッグ判定
             this.carousel.stopAutoRotation();
             
             if (difference > 0) {
@@ -220,6 +221,12 @@ class GameCarouselInteraction {
             setTimeout(() => {
                 this.carousel.startAutoRotation();
             }, 3000);
+        } else {
+            // クリック判定（ドラッグが小さい場合）
+            const clickTarget = e.target.closest('.game-carousel__item');
+            if (clickTarget) {
+                this.handleItemClick({ target: clickTarget });
+            }
         }
 
         this.isMouseDown = false;
