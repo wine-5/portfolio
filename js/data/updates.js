@@ -33,7 +33,6 @@ class UpdatesData {
             this.currentLang = lang;
             return this.updatesData;
         } catch (error) {
-            console.error('Error loading updates:', error);
             this.updatesData = [];
             this.isLoaded = true;
             this.currentLang = lang;

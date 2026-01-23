@@ -25,7 +25,7 @@ class NewsManager {
             this.isLoaded = true;
             return this.newsData;
         } catch (error) {
-            console.error('Error loading news:', error);
+            // ニュース読み込みエラーハンドリング
             this.newsData = [];
             this.isLoaded = true;
             return [];

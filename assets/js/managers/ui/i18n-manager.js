@@ -18,12 +18,10 @@ class I18nManager {
     detectBasePath() {
         const path = window.location.pathname;
         
-        // index.htmlまたはルートディレクトリの場合
         if (path === '/' || path.endsWith('/index.html') || path.endsWith('/Portfolio/')) {
             return '';
         }
         
-        // pages/timeline/, pages/history/, pages/legal/ などのサブディレクトリの場合
         if (path.includes('/pages/')) {
             return '../../';
         }
@@ -70,7 +68,7 @@ class I18nManager {
      */
     async loadTranslations(lang = this.currentLang) {
         if (!this.isSupported(lang)) {
-            console.warn(`Language ${lang} is not supported. Using default: ${this.defaultLanguage}`);
+            // 非整作的言語設定エラー
             lang = this.defaultLanguage;
         }
 
@@ -92,7 +90,7 @@ class I18nManager {
                     }
                     return { module, data: await response.json() };
                 } catch (error) {
-                    console.warn(`Could not load ${module} for ${lang}:`, error);
+                    // 翻訳モジュールロードエラーハンドリング
                     return { module, data: null };
                 }
             });
@@ -108,7 +106,7 @@ class I18nManager {
 
             return true;
         } catch (error) {
-            console.error('Error loading translations:', error);
+            // 翻訳読み込みエラーハンドリング
             return false;
         }
     }
@@ -118,7 +116,7 @@ class I18nManager {
      */
     async switchLanguage(lang) {
         if (!this.isSupported(lang)) {
-            console.error(`Language ${lang} is not supported`);
+            // 非整作的言語切り替えエラー
             return false;
         }
 
@@ -283,7 +281,7 @@ class I18nManager {
         const parts = key.split('.');
         
         if (parts.length < 2) {
-            console.warn(`Invalid translation key format: ${key}`);
+            // 不正な翻訳キーフォーマット
             return key;
         }
 
@@ -319,7 +317,7 @@ class I18nManager {
 
         // フォールバック: キーをそのまま返す
         if (!text) {
-            console.warn(`Translation not found: ${key}`);
+            // 翻訳が見つからないため、キーを返す
             return key;
         }
 

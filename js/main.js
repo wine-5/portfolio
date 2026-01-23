@@ -1,33 +1,8 @@
 /* ===================================
-   メインアプリケーションクラス（簡潔版）
+   メインアプリケーションクラス
    =================================== */
 
 // 定数定義は js/config/app-config.js に移動済み
-
-// [強制無効化] パーティクル・波描画システムを完全に無効化（wine-5テキストは維持）
-(function() {
-    // パーティクル・波関連のcanvas要素のみを削除
-    document.querySelectorAll('canvas').forEach(canvas => {
-        const id = canvas.id || '';
-        const className = canvas.className || '';
-        
-        // wine-5テキスト表示用canvas以外を削除
-        // （パーティクル、水面反射関連のcanvasを特定して削除）
-        if (id.includes('particle') || id.includes('water') || 
-            className.includes('particle') || className.includes('water')) {
-            canvas.remove();
-        }
-    });
-    
-    // パーティクルコンテナ削除
-    const particleContainers = document.querySelectorAll('[class*="particle"], [class*="water"], [id*="particle"], [id*="water"]');
-    particleContainers.forEach(el => {
-        if (el.tagName !== 'SCRIPT' && el.tagName !== 'CANVAS') {
-            el.style.display = 'none';
-            el.style.visibility = 'hidden';
-        }
-    });
-})();
 
 class PortfolioApp {
     constructor() {
@@ -254,20 +229,7 @@ class PortfolioApp {
 
     showW5Message(message) {
         const messageBox = document.createElement('div');
-        messageBox.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            z-index: 10002;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        `;
+        messageBox.className = 'w5-message-box';
         messageBox.textContent = message;
         document.body.appendChild(messageBox);
         

@@ -38,7 +38,7 @@ class DebugConsoleManager {
         this.output = document.getElementById('console-output');
         
         if (!this.trigger || !this.modal) {
-            console.warn('Debug console elements not found');
+            // デバッグコンソール要素不実のため
             return;
         }
 

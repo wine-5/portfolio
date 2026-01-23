@@ -18,14 +18,14 @@ class GameCarouselManager {
             const games = await this.getGameData();
             
             if (games.length === 0) {
-                console.warn('No games found for carousel');
+                // カルーセル確保ようにゲームが見つからない
                 return;
             }
 
             // カルーセルコンテナを取得
             const container = document.querySelector('.hero__carousel-container');
             if (!container) {
-                console.warn('Carousel container not found');
+                // カルーセルコンテナ不在
                 return;
             }
 
@@ -55,7 +55,7 @@ class GameCarouselManager {
             });
 
         } catch (error) {
-            console.error('GameCarouselManager initialization failed:', error);
+            // GameCarouselManager初期化エラーハンドリング
         }
     }
 
@@ -84,7 +84,7 @@ class GameCarouselManager {
             return allProjects.filter(project => project.category === 'game');
 
         } catch (error) {
-            console.error('Failed to get game data:', error);
+            // ゲームデータ取得エラーハンドリング
             return [];
         }
     }
@@ -100,7 +100,7 @@ class GameCarouselManager {
                 this.carousel.render();
             }
         } catch (error) {
-            console.error('Language change handling failed:', error);
+            // 言語変更処理エラーハンドリング
         }
     }
 

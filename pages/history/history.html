@@ -206,10 +206,10 @@
                     historyManager = new HistoryManager();
                     await historyManager.init();
                 } catch (error) {
-                    console.error('Failed to initialize HistoryManager:', error);
+                    // HistoryManager initialization error
                 }
             } else {
-                console.error('updatesData is not available');
+                // updatesData is not available
             }
             
             // 言語切り替えイベントをリスン

@@ -149,18 +149,15 @@ async function initializeTimelinePage() {
     
     // 必要なクラスが読み込まれているかチェック
     if (typeof ScrollManager === 'undefined') {
-        console.error('ScrollManager is not loaded');
         return;
     }
     
     if (typeof TimelineManager === 'undefined') {
-        console.error('TimelineManager is not loaded');
         return;
     }
     
     // timelineDataオブジェクトが存在し、データが読み込まれるまで待機
     if (!window.timelineData) {
-        console.error('timelineData object is not loaded');
         return;
     }
     
@@ -178,7 +175,7 @@ async function initializeTimelinePage() {
         app.init();
         isTimelinePageInitialized = true;
     } catch (error) {
-        console.error('Error initializing timeline page:', error);
+        // エラー出現時をサイレントに处理
     }
 }
 

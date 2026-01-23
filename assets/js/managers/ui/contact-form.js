@@ -17,7 +17,7 @@ class ContactForm {
         try {
             this.emailService = new EmailService();
         } catch (error) {
-            console.warn('EmailService initialization failed:', error);
+            // メール送信初期化エラーハンドリング
             this.showMessage('メール送信機能の初期化に失敗しました。', 'error');
         }
     }
@@ -126,8 +126,7 @@ class ContactForm {
             this.clearAllFieldErrors();
             
         } catch (error) {
-            console.error('Email send error:', error);
-            
+            // メール送信エラーハンドリング
             let errorMessage = '送信に失敗しました。';
             if (error.message.includes('Required fields')) {
                 errorMessage = '必須項目を入力してください。';

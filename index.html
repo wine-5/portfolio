@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Game Carousel -->
     <link rel="stylesheet" href="assets/css/components/game-carousel.css">
+    <!-- W5 Message -->
+    <link rel="stylesheet" href="assets/css/components/w5-message.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,24 +32,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
-    <!-- [強制無効化] WebGLエフェクト・パーティクル・波システムを無効化 -->
-    <script>
-        // DOMContentLoadedの前にWebGLキャンバスを削除
-        (function() {
-            // すべてのcanvas要素を削除（WebGL描画・パーティクル・波用）
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', function() {
-                    document.querySelectorAll('canvas').forEach(canvas => {
-                        canvas.remove();
-                    });
-                });
-            } else {
-                document.querySelectorAll('canvas').forEach(canvas => {
-                    canvas.remove();
-                });
-            }
-        })();
-    </script>
+    <!-- キャンバスクリーンアップ処理 -->
+    <script src="js/config/canvas-cleanup.js"></script>
     
     <!-- ローディング画面 -->
     <div id="loading" class="loading">
@@ -67,8 +53,6 @@
                 <p class="loading__text">Loading Portfolio...</p>
                 <div class="loading__percentage">0%</div>
             </div>
-            <!-- [コメント化] パーティクルエフェクト（ゲームホイール実装のため無効化） -->
-            <!-- <div class="loading__particles"></div> -->
         </div>
     </div>
 
@@ -109,11 +93,6 @@
                 <button class="debug-console-trigger" id="debug-console-trigger" title="デバッグコンソールを開く">
                     <i class="fas fa-terminal"></i>
                 </button>
-                <!-- テーマ切り替えボタン（未実装のためコメントアウト）
-                <button class="theme-toggle" id="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                -->
             </div>
             <div class="header__hamburger" id="hamburger">
                 <span></span>
@@ -128,7 +107,6 @@
         <!-- ヒーローセクション -->
         <section class="hero" id="home">
             <div class="hero__background">
-                <!-- <div class="hero__particles" id="particles"></div> -->
             </div>
             
             <div class="hero__content">
@@ -372,10 +350,6 @@
     <script src="assets/js/managers/animation/game-carousel-interaction.js"></script>
     <script src="assets/js/managers/animation/game-carousel-transition.js"></script>
     <script src="assets/js/managers/animation/game-carousel-manager.js"></script>
-    <!-- <script src="assets/js/managers/animation/skill-particle-manager.js"></script> -->
-    <!-- [コメント化] 水面とパーティクルシステムを無効化（ゲームホイール実装のため） -->
-    <!-- <script src="assets/js/managers/animation/water-reflection-title-manager.js"></script> -->
-    <!-- <script src="assets/js/managers/animation/webgl-water-reflection-manager.js"></script> -->
     
     <!-- 4. Section Managers -->
     <script src="assets/js/managers/sections/games-manager.js"></script>

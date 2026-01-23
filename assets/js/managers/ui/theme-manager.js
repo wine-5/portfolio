@@ -42,7 +42,6 @@ class ThemeManager {
      */
     applyTheme(theme) {
         if (!this.themes.includes(theme)) {
-            console.warn(`Theme ${theme} is not supported. Using default.`);
             theme = this.defaultTheme;
         }
 

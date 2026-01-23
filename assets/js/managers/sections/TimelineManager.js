@@ -44,7 +44,6 @@ class TimelineManager {
         
         // データとDOMの確認
         if (!this.ensureDataAndDOM()) {
-            console.error('Failed to ensure data and DOM - retrying in 500ms');
             setTimeout(() => this.init(), TIMELINE_CONFIG.INIT_RETRY_DELAY);
             return;
         }
@@ -63,7 +62,6 @@ class TimelineManager {
             this.isInitialized = true;
             
         } catch (error) {
-            console.error('Error during timeline initialization:', error);
             this.showErrorMessage();
         }
     }
@@ -213,8 +211,6 @@ class TimelineManager {
             this.timelineContainer.innerHTML = timelineHTML;
             
         } catch (error) {
-            console.error('Error generating timeline HTML:', error);
-            
             // エラーの場合はシンプルなメッセージを表示
             this.timelineContainer.innerHTML = `
                 <div class="timeline-error">

@@ -9,7 +9,7 @@ class GamesManager {
 
     async init() {
         if (!this.worksGrid) {
-            console.error('GamesManager: works-grid element not found in DOM');
+            // ワークグリッド要素不在
             return;
         }
         
@@ -23,7 +23,7 @@ class GamesManager {
         this.projects = window.PROJECTS_DATA || [];
         
         if (this.projects.length === 0) {
-            console.error('GamesManager: No projects data available');
+            // プロジェクトデータ不在
             return;
         }
         
@@ -142,7 +142,7 @@ class GamesManager {
                 this.showGameSection();
             }, 150);
         } catch (error) {
-            console.error('Error in renderGames:', error);
+            // ゲームカードレンダリングエラーハンドリング
         }
     }
 

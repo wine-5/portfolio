@@ -429,15 +429,15 @@
 /* ロック状態 */
 .locked-image {
     filter: grayscale(0.5) brightness(0.7);
-    cursor: default !important;
+    cursor: default;
 }
 
 .locked-image .clickable-image {
-    cursor: default !important;
+    cursor: default;
 }
 
 .locked-image:hover .clickable-image {
-    transform: none !important;
+    transform: none;
 }
 
 .lock-overlay {

@@ -55,7 +55,6 @@ class WebGLWaterReflectionManager {
         try {
             // WebGLサポートチェック
             if (!this.isWebGLSupported()) {
-                console.warn('WebGL is not supported on this device, falling back to CSS version');
                 this.showCSSVersion();
                 return;
             }
@@ -89,7 +88,6 @@ class WebGLWaterReflectionManager {
             this.setupScrollObserver();
             
         } catch (error) {
-            console.warn('WebGL initialization failed, falling back to CSS version:', error);
             this.fallbackToCSS();
         }
     }
@@ -100,7 +98,6 @@ class WebGLWaterReflectionManager {
             const context = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
             
             if (!context) {
-                console.log('WebGL context not available');
                 return false;
             }
             
@@ -114,13 +111,11 @@ class WebGLWaterReflectionManager {
             if (renderer && (renderer.toLowerCase().includes('software') || 
                            renderer.toLowerCase().includes('swiftshader') ||
                            renderer.toLowerCase().includes('microsoft basic'))) {
-                console.warn('Software rendering detected, may have performance issues');
                 return false; // ソフトウェアレンダリングでは重い処理を避ける
             }
             
             return true;
         } catch (error) {
-            console.error('WebGL support check failed:', error);
             return false;
         }
     }
@@ -192,7 +187,6 @@ class WebGLWaterReflectionManager {
             };
             
             threeScript.onerror = (error) => {
-                console.error('Failed to load Three.js:', error);
                 reject(error);
             };
             
@@ -231,7 +225,6 @@ class WebGLWaterReflectionManager {
         
         // インデックスの安全性チェック
         if (!Number.isInteger(index) || index < 0 || index >= basePositions.length) {
-            console.warn(`Invalid index ${index}, returning center position`);
             return { x: 0, y: 0.5, z: 0 };
         }
         

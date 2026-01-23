@@ -32,7 +32,6 @@ class ProjectsData {
             this.isLoaded = true;
             this.currentLang = lang;
         } catch (error) {
-            console.error('Error loading projects:', error);
             this.projectsData = [];
             this.isLoaded = true;
             this.currentLang = lang;
