@@ -80,9 +80,6 @@ class GameCarouselRenderer {
                      ">
                     <div class="game-carousel__item-content" style="opacity: ${opacity};">
                         <img src="${imageSrc}" alt="${game.title}" class="game-carousel__item-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 140 140%22%3E%3Crect fill=%22%23667eea%22 width=%22140%22 height=%22140%22/%3E%3C/svg%3E'">
-                        <div class="game-carousel__item-overlay">
-                            <h3 class="game-carousel__item-title">${game.title}</h3>
-                        </div>
                     </div>
                 </div>
             `;

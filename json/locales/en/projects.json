@@ -12,10 +12,10 @@
       "PC Only"
     ],
     "images": [
-      "images/game/MoreHit2/MoreHit2-title.png",
-      "images/game/MoreHit2/MoreHit2-in-game.png"
+      "images/game/morehit2/MoreHit2-title.png",
+      "images/game/morehit2/MoreHit2-in-game.png"
     ],
-    "thumbnailImage": "images/game/MoreHit2/MoreHit2-title.png",
+    "thumbnailImage": "images/game/morehit2/morehit2-icon.png",
     "playUrl": "https://unityroom.com/games/morehit2",
     "githubUrl": "https://github.com/wine-5/MoreHit2",
     "year": "2nd Year",
@@ -39,7 +39,7 @@
       "images/game/border/border-title.png",
       "images/game/border/border-in-game.png"
     ],
-    "thumbnailImage": "images/game/border/border-title.png",
+    "thumbnailImage": "images/game/border/border-icon.png",
     "playUrl": "https://unityroom.com/games/kochiratomukou",
     "githubUrl": "https://github.com/wine-5/Fibonacci",
     "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
@@ -62,10 +62,10 @@
       "iOS"
     ],
     "images": [
-      "images/game/Tofu/Tofu-Title.png",
-      "images/game/Tofu/Tofu-InGame.png"
+      "images/game/tofu/Tofu-Title.png",
+      "images/game/tofu/Tofu-InGame.png"
     ],
-    "thumbnailImage": "images/game/Tofu/Tofu-Title.png",
+    "thumbnailImage": "images/game/tofu/Tofu-Title.png",
     "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
     "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
     "year": "2nd Year",
@@ -111,6 +111,7 @@
       "images/game/takasi/takasi-home.png",
       "images/game/takasi/takasi-in-game.png"
     ],
+    "thumbnailImage": "images/game/takasi/takasi-icon.png",
     "playUrl": "https://unityroom.com/games/i-want-hosurus",
     "githubUrl": "https://github.com/wine-5/TechC_GameJam",
     "year": "2nd Year",
@@ -134,7 +135,7 @@
     "images": [
       "images/game/chocho/chocho-title.png"
     ],
-    "thumbnailImage": "images/game/chocho/chocho-title.png",
+    "thumbnailImage": "images/game/chocho/chocho-icon.png",
     "playUrl": "",
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "2nd Year",
