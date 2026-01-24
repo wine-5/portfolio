@@ -137,6 +137,7 @@
       "PCのみ"
     ],
     "images": [
+      "images/game/chocho/chocho-icon.png",
       "images/game/chocho/chocho-title.png"
     ],
     "thumbnailImage": "images/game/chocho/chocho-icon.png",
