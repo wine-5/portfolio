@@ -687,35 +687,7 @@ body {
     opacity: 0.1;
 }
 
-/* 白い球（パーティクル）を完全無効化 - 強化版 */
-
-/* パーティクル専用キャンバスのみを無効化 */
-#particles canvas,
-.hero__particles canvas,
-.loading__particles canvas,
-.skill-particle-canvas {
-    display: none !important;
-}
-
-/* パーティクル関連要素を無効化 */
-.hero__particles,
-.loading__particles,
-#particles,
-*[class*="particle"] {
-    display: none !important;
-}
-
-/* 白い色の疑似要素を無効化 */
-*::before,
-*::after {
-    background: transparent !important;
-    box-shadow: none !important;
-}
-
-/* 白いradial-gradientを持つ要素を透明に */
-*[style*="radial-gradient"] {
-    background: transparent !important;
-}
+/* [削除] パーティクル・波無効化ルール - EasterEggManagerを無効化したため不要 */
 
 /* 円形の背景を持つ可能性のある要素を無効化 */
 *[style*="border-radius: 50%"] {
@@ -725,16 +697,18 @@ body {
 /* CSSフォールバック版の要素を表示 */
 .hero__content,
 .hero__title-container,
-.hero__title-letters,
-.hero__title-reflection {
+.hero__title-letters {
     display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
-/* ローディング画面を元に戻すため、hero::afterを削除 */
-
-/* 古いパーティクル処理を削除 - WebGL版を使用 */
+/* [無効化] 反射要素を非表示 */
+.hero__title-reflection,
+.letter-reflection {
+    display: none !important;
+    visibility: hidden !important;
+}
 
 .hero__content {
     text-align: center;
@@ -749,6 +723,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 2rem;
 }
 
 /* ===================================
@@ -824,28 +799,23 @@ body {
     perspective: 1500px;
 }
 
-/* .hero__floating-cube - 削除済み */
 
 .hero__title {
-    /* CSS版を無効化 - WebGL版のみを使用 */
     display: none;
 }
 
 .hero__title::before {
-    /* CSS版を無効化 - WebGL版を使用 */
     content: '';
     display: none;
 }
 
 .hero__title::after {
-    /* CSS版を無効化 - WebGL版を使用 */
     display: none;
 }
 
 .hero__title:hover,
 .hero__title:hover::before,
 .hero__title:hover::after {
-    /* CSS版を無効化 - WebGL版を使用 */
     display: none;
 }
 
@@ -910,15 +880,16 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
     box-sizing: border-box;
+    order: -1;
+    flex-shrink: 0;
 }
 
 .hero__title-letters {
-    /* CSS版を無効化 - WebGL版を使用 */
-    display: none;
+    display: none !important;
     /* レスポンシブ対応のための基本設定 */
     flex-wrap: nowrap;
     justify-content: center;
@@ -936,8 +907,8 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientShift 3s ease-in-out infinite;
-    opacity: 0;
-    transform: translateX(-400px) rotateY(-90deg) scale(0.2) translateZ(-200px) rotateZ(-180deg);
+    opacity: 1 !important;
+    transform: translateX(0) rotateY(0deg) scale(1) translateZ(0) rotateZ(0deg) !important;
     transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     text-shadow:
         0 8px 25px rgba(99, 102, 241, 0.6),
@@ -945,7 +916,7 @@ body {
         0 0 30px rgba(6, 182, 212, 0.3);
     filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
     letter-spacing: clamp(-0.2rem, -0.1vw, 0rem);
-    display: inline-block;
+    display: inline-block !important;
     white-space: nowrap;
 }
 
@@ -1006,12 +977,12 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientShift 3s ease-in-out infinite, reflectionWave 4s ease-in-out infinite;
-    opacity: 0;
-    transform: translateX(-400px) rotateY(-90deg) translateZ(-100px) rotateX(180deg) scaleY(-1);
+    opacity: 0.7 !important;
+    transform: translateX(0) rotateY(0deg) translateZ(0px) rotateX(180deg) scaleY(-1) !important;
     transition: all 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     filter: blur(1px) brightness(0.7);
     letter-spacing: clamp(-0.2rem, -0.1vw, 0rem);
-    display: inline-block;
+    display: inline-block !important;
     white-space: nowrap;
 }
 
@@ -1103,8 +1074,8 @@ body {
 }
 
 .hero__scroll-icon {
-    width: 0.2rem;
-    height: 3rem;
+    width: 0.3rem;
+    height: 4rem;
     background: var(--gradient-primary);
     margin: 0 auto;
     border-radius: 1rem;
@@ -1117,8 +1088,8 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.8rem;
+    height: 0.8rem;
     background: var(--primary-color);
     border-radius: 50%;
     animation: scrollBounce 2s infinite;
@@ -1139,19 +1110,20 @@ body {
 @keyframes scrollBounce {
 
     0%,
-    20%,
-    50%,
-    80%,
+    10% {
+        transform: translateX(-50%) translateY(-20px);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0.3;
+    }
+
+    90%,
     100% {
-        transform: translateX(-50%) translateY(0);
-    }
-
-    40% {
-        transform: translateX(-50%) translateY(1rem);
-    }
-
-    60% {
-        transform: translateX(-50%) translateY(0.5rem);
+        transform: translateX(-50%) translateY(-20px);
+        opacity: 1;
     }
 }
 

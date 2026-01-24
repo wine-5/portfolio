@@ -93,6 +93,14 @@
         font-size: 1.6rem;
     }
 
+    .hero__content {
+        padding-top: 1.5rem;
+    }
+
+    .hero__scroll {
+        bottom: 2rem;
+    }
+
     .hero__buttons {
         flex-direction: column;
         align-items: center;
@@ -282,6 +290,26 @@
     .hero__description {
         font-size: 1.4rem;
         margin-bottom: 3rem;
+    }
+
+    /* Scroll Down - モバイル調整 */
+    .hero__scroll {
+        bottom: 2rem;
+    }
+
+    .hero__scroll-text {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero__scroll-icon {
+        width: 0.25rem;
+        height: 3rem;
+    }
+
+    .hero__scroll-icon::after {
+        width: 0.6rem;
+        height: 0.6rem;
     }
 
     /* セクションタイトル */

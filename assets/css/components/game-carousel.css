@@ -1,0 +1,252 @@
+/* ===================================
+   ゲームカルーセル - 円形3D配置
+   =================================== */
+
+.game-carousel {
+    width: 100%;
+    height: 500px;
+    margin: 60px 0;
+    perspective: 2000px;
+    perspective-origin: center 60%;
+    cursor: grab;
+    user-select: none;
+}
+
+.game-carousel:active {
+    cursor: grabbing;
+}
+
+/* ステージ（回転軸） */
+.game-carousel__stage {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 2000px;
+    perspective-origin: center 60%;
+}
+
+/* 中央ラベル */
+.game-carousel__center-label {
+    position: absolute;
+    z-index: 100;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(99, 102, 241, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    pointer-events: none;
+    font-family: 'Orbitron', monospace;
+    white-space: nowrap;
+}
+
+/* アイテムコンテナ */
+.game-carousel__items {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* アイテム */
+.game-carousel__item {
+    position: absolute;
+    width: 165px;
+    height: 165px;
+    left: 50%;
+    top: 50%;
+    margin-left: -82.5px;
+    margin-top: -82.5px;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    transition: transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 300ms ease;
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(99, 102, 241, 0.8);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5),
+                0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.game-carousel__item:hover {
+    /* ホバー時の処理なし - シンプルに保つ */
+}
+
+.game-carousel__item:active {
+    border: 4px solid rgba(99, 102, 241, 1);
+    border-color: #6366f1;
+    box-shadow: 0 0 40px rgba(99, 102, 241, 1),
+                0 0 80px rgba(99, 102, 241, 0.8),
+                0 0 120px rgba(99, 102, 241, 0.6),
+                0 20px 60px rgba(99, 102, 241, 0.8);
+}
+
+/* アイテムコンテンツ */
+.game-carousel__item-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* アイテム画像 */
+.game-carousel__item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* アイテムオーバーレイ */
+.game-carousel__item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.95) 100%);
+    padding: 16px 12px;
+    color: white;
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+    pointer-events: none;
+}
+
+.game-carousel__item:hover .game-carousel__item-overlay,
+.game-carousel__item:active .game-carousel__item-overlay {
+    opacity: 1;
+}
+
+/* アイテムタイトル */
+.game-carousel__item-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* コントロール */
+.game-carousel__controls {
+    display: none;
+}
+
+/* コントロールボタン */
+.game-carousel__control-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 50%;
+    color: var(--text-primary, #333);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.game-carousel__control-btn:hover {
+    background: rgba(99, 102, 241, 0.3);
+    border-color: rgba(99, 102, 241, 0.6);
+    transform: scale(1.1);
+}
+
+.game-carousel__control-btn:active {
+    transform: scale(0.95);
+}
+
+.game-carousel__control-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===================================
+   レスポンシブ対応
+   =================================== */
+
+/* タブレット */
+@media (max-width: 1023px) {
+    .game-carousel {
+        height: 400px;
+    }
+
+    .game-carousel__center-label {
+        font-size: 36px;
+        letter-spacing: 6px;
+    }
+
+    .game-carousel__item {
+        width: 140px;
+        height: 140px;
+        margin-left: -70px;
+        margin-top: -70px;
+    }
+}
+
+/* モバイル */
+@media (max-width: 767px) {
+    .game-carousel {
+        height: 320px;
+        margin: 40px 0;
+    }
+
+    .game-carousel__center-label {
+        font-size: 28px;
+        letter-spacing: 4px;
+    }
+
+    .game-carousel__item {
+        width: 120px;
+        height: 120px;
+        margin-left: -60px;
+        margin-top: -60px;
+    }
+
+    .game-carousel__item-title {
+        font-size: 12px;
+    }
+}
+
+/* 小型デバイス */
+@media (max-width: 479px) {
+    .game-carousel {
+        height: 260px;
+        margin: 30px 0;
+    }
+
+    .game-carousel__center-label {
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+
+    .game-carousel__item {
+        width: 95px;
+        height: 95px;
+        margin-left: -47.5px;
+        margin-top: -47.5px;
+    }
+
+    .game-carousel__item-title {
+        font-size: 10px;
+    }
+
+    .game-carousel__controls {
+        bottom: 10px;
+        gap: 12px;
+    }
+
+    .game-carousel__control-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .game-carousel__control-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}

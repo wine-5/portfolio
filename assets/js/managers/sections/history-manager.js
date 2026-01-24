@@ -10,7 +10,7 @@ class HistoryManager {
         this.timelineContainer = document.getElementById('history-timeline');
         
         if (!this.timelineContainer) {
-            console.error('HistoryManager: Timeline container not found');
+            // タイムラインコンテナ不在
             return;
         }
         
@@ -21,14 +21,14 @@ class HistoryManager {
                 await window.updatesData.load(currentLang);
             }
         } else {
-            console.error('HistoryManager: updatesData object not found');
+            // updatesDataが利用不可
             return;
         }
         
         // UPDATES_DATAの確認
         const updates = window.UPDATES_DATA;
         if (!updates || updates.length === 0) {
-            console.error('HistoryManager: No updates data available');
+            // 更新データ不大5エラー
             return;
         }
         
@@ -55,7 +55,7 @@ class HistoryManager {
             this.timelineContainer.innerHTML = timelineHTML;
             
         } catch (error) {
-            console.error('HistoryManager: Error rendering timeline:', error);
+            // 履歴タイムラインレンダリングエラーハンドリング
         }
     }
 

@@ -1,5 +1,10 @@
 [
   {
+    "date": "2026-01-25",
+    "title": "Major Redesign of Main Canvas Display",
+    "description": "Redesigned the game icon layout to create a more engaging screen."
+  },
+  {
     "date": "2026-01-11",
     "title": "Added \"MoreHit2\" and \"This Side / That Side of the Line\" Games",
     "description": "Added two new games created at UnityRoom game jam and HIBIGA-hosted game jam to the projects."

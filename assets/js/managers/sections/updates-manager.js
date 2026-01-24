@@ -23,7 +23,7 @@ class UpdatesManager {
         } else if (typeof UPDATES_DATA !== 'undefined' && UPDATES_DATA.length > 0) {
             this.updates = UPDATES_DATA;
         } else {
-            console.warn('UpdatesManager: No updates data available, using fallback');
+            // 更新データ不大5フォールバック適用
             this.updates = [
                 {
                     date: '2025-10-23',
@@ -34,7 +34,7 @@ class UpdatesManager {
         }
         
         if (!this.updates || this.updates.length === 0) {
-            console.error('Updates data is empty');
+            // 更新データ空エラーハンドリング
             return;
         }
         
@@ -59,7 +59,7 @@ class UpdatesManager {
 
     renderUpdateHistory() {
         if (!this.timelineContainer) {
-            console.error('Timeline container is missing, cannot render updates');
+            // タイムラインコンテナ不在
             return;
         }
 
@@ -71,7 +71,7 @@ class UpdatesManager {
             this.timelineContainer.innerHTML = updatesHTML;
             
         } catch (error) {
-            console.error('Error rendering update history:', error);
+            // 更新鞶歴レンダリングエラー
             this.timelineContainer.innerHTML = '<p class="update-error">更新履歴の読み込み中にエラーが発生しました。</p>';
         }
     }

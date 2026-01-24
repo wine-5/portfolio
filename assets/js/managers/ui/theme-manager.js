@@ -42,7 +42,6 @@ class ThemeManager {
      */
     applyTheme(theme) {
         if (!this.themes.includes(theme)) {
-            console.warn(`Theme ${theme} is not supported. Using default.`);
             theme = this.defaultTheme;
         }
 
@@ -118,43 +117,7 @@ class ThemeManager {
      * テーマトグルボタンを作成
      */
     createToggleButton(container) {
-        // テーマトグルボタンを作成
-        
-        // const wrapper = document.createElement('div');
-        // wrapper.className = 'theme-toggle';
-        
-        // const button = document.createElement('button');
-        // button.className = 'theme-toggle__button';
-        // button.setAttribute('aria-label', 'テーマ切り替え');
-        // button.innerHTML = this.getButtonIcon();
-
-        // button.addEventListener('click', () => {
-        //     テーマトグルボタンがクリックされた
-        //     this.toggleTheme();
-        //     button.innerHTML = this.getButtonIcon();
-        // });
-
-        // // テーマ変更時にアイコンを更新
-        // window.addEventListener('themeChanged', () => {
-        //     button.innerHTML = this.getButtonIcon();
-        // });
-
-        // wrapper.appendChild(button);
-        
-        // if (container instanceof HTMLElement) {
-        //     container.appendChild(wrapper);
-        //     テーマトグルボタンをコンテナに追加
-        // } else if (typeof container === 'string') {
-        //     const target = document.querySelector(container);
-        //     if (target) {
-        //         target.appendChild(wrapper);
-        //         テーマトグルボタンを追加
-        //     } else {
-        //         console.error('Container not found:', container);
-        //     }
-        // }
-
-        // return wrapper;
+        // テーマトグルボタン作成は無効化
     }
 
     /**

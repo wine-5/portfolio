@@ -1,0 +1,19 @@
+/* ===================================
+   W5メッセージボックス
+   =================================== */
+
+.w5-message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 10002;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}

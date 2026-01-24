@@ -1,5 +1,10 @@
 [
   {
+    "date": "2026-01-25",
+    "title": "主画布显示的大幅重新设计",
+    "description": "重新设计了游戏图标的布局，使画面更加有趣迷人。"
+  },
+  {
     "date": "2026-01-11",
     "title": "添加「MoreHit2」和「这一侧 / 那一侧」游戏",
     "description": "将在UnityRoom游戏Jam和HIBIGA主办游戏Jam中制作的两款新游戏添加到项目中。"

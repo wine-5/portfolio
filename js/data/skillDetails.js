@@ -41,7 +41,6 @@ class SkillDetailsData {
             this.isLoaded = true;
             this.currentLang = lang;
         } catch (error) {
-            console.error('Error loading skill details:', error);
             this.skillsData = {};
             this.isLoaded = true;
             this.currentLang = lang;
@@ -55,7 +54,7 @@ class SkillDetailsData {
      */
     getDetails(skillName) {
         if (!this.isLoaded || !this.skillsData) {
-            console.warn('Skill data not loaded yet');
+            // スキルデータ未読み込み
             return this.getDefaultDetails(skillName);
         }
 

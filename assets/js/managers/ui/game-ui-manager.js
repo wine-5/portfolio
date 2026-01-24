@@ -6,8 +6,6 @@ class GameUIManager {
     init() {
         this.addSkillLevelSystem();
         this.addProgressBars();
-        // レベルアップアニメーションは一旦無効化（将来の実装用に保持）
-        // this.setupLevelUpAnimations();
     }
 
     addSkillLevelSystem() {
@@ -61,58 +59,8 @@ class GameUIManager {
             }, { threshold: 0.3 });
             
             observer.observe(skill);
-            
-            // ホバー時のレベルアップアニメーションは一旦無効化（将来の実装用に保持）
-            /*
-            skill.addEventListener('mouseenter', () => {
-                if (Math.random() > 0.7) {
-                    this.showLevelUpAnimation(skill, level + 1);
-                }
-            });
-            */
         });
     }
-
-    /* ===== レベルアップアニメーション機能（将来の実装用に保持） =====
-     * 以下の機能は現在無効化されていますが、将来の拡張用に残しています
-     */
-    
-    /*
-    showLevelUpAnimation(skillElement, newLevel) {
-        // 既にレベルアップアニメーション中なら無視
-        if (skillElement.querySelector('.level-up-overlay')) return;
-
-        const levelUpOverlay = document.createElement('div');
-        levelUpOverlay.className = 'level-up-overlay';
-        levelUpOverlay.innerHTML = `
-            <div class="level-up-content">
-                <div class="level-up-flash"></div>
-                <div class="level-up-text">LEVEL UP!</div>
-                <div class="level-up-number">${newLevel}</div>
-                <div class="level-up-particles"></div>
-            </div>
-        `;
-        
-        skillElement.style.position = 'relative';
-        skillElement.appendChild(levelUpOverlay);
-        
-        // パーティクル生成（白い球削除のため無効化）
-        // this.createLevelUpParticles(levelUpOverlay.querySelector('.level-up-particles'));
-        
-        // アニメーション後に削除
-        setTimeout(() => {
-            levelUpOverlay.style.opacity = '0';
-            setTimeout(() => levelUpOverlay.remove(), 500);
-        }, 2000);
-        
-        // レベルアップサウンド（オプション）
-        this.playLevelUpSound();
-    }
-
-    // createLevelUpParticles関数は削除済み
-    */
-    
-    /* ===== レベルアップアニメーション機能ここまで ===== */
 
     addProgressBars() {
         const aboutSection = document.querySelector('.about__content');

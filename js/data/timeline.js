@@ -34,7 +34,6 @@ class TimelineData {
             this.isLoaded = true;
             this.currentLang = lang;
         } catch (error) {
-            console.error('Error loading timeline:', error);
             this.timelineData = [];
             this.isLoaded = true;
             this.currentLang = lang;

@@ -181,7 +181,7 @@
                     </div>
                 </div>
                 <div class="footer__bottom">
-                    <p class="footer__text">&copy; 2025 wine-5. All rights reserved.</p>
+                    <p class="footer__text">&copy; 2026 wine-5. All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -206,42 +206,7 @@
     <!-- タイムラインページ専用スクリプト -->
     <script src="../../js/timeline-page.js"></script>
     
-    <script>
-        // Initialize theme and language
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Initialize theme
-            if (window.themeManager) {
-                window.themeManager.init();
-                
-                // Create theme toggle button
-                const headerControls = document.getElementById('header-controls');
-                if (headerControls) {
-                    window.themeManager.createToggleButton(headerControls);
-                }
-            }
-            
-            // Initialize i18n
-            if (window.i18n) {
-                const currentLang = window.i18n.getCurrentLanguage();
-                await window.i18n.loadTranslations(currentLang);
-                window.i18n.applyTranslations();
-                
-                // Create language switcher
-                const headerControls = document.getElementById('header-controls');
-                if (headerControls) {
-                    window.i18n.createLanguageSwitcher(headerControls);
-                }
-            }
-            
-            // Load timeline data BEFORE timeline-page.js initializes
-            if (window.timelineData) {
-                const currentLang = window.i18n ? window.i18n.getCurrentLanguage() : 'ja';
-                await window.timelineData.load(currentLang);
-                
-                // データ読み込み完了をイベントで通知
-                window.dispatchEvent(new CustomEvent('timelineDataLoaded'));
-            }
-        });
-    </script>
+    <!-- 初期化スクリプト -->
+    <script src="timeline-init.js"></script>
 </body>
 </html>

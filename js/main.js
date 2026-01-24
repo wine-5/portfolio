@@ -1,5 +1,5 @@
 /* ===================================
-   メインアプリケーションクラス（簡潔版）
+   メインアプリケーションクラス
    =================================== */
 
 // 定数定義は js/config/app-config.js に移動済み
@@ -36,8 +36,10 @@ class PortfolioApp {
         // マネージャーの一括初期化（データ読み込み後）
         await this.managerFactory.initAll();
         
-        // WebGL水面反射システムの初期化
-        this.managerFactory.initWaterReflection();
+        // ゲームカルーセルの初期化
+        if (window.gameCarouselManager) {
+            await window.gameCarouselManager.init();
+        }
     }
 
     initializeCoreSystems() {
@@ -159,9 +161,6 @@ class PortfolioApp {
         const particlesContainer = document.querySelector('.loading__particles');
         const logoCenter = document.querySelector('.logo-center');
         
-        // パーティクルエフェクト生成（無効化）
-        // this.createLoadingParticles(particlesContainer);
-        
         // ヒントテキストを回転させて表示
         this.createRotatingHints(logoCenter);
         
@@ -198,8 +197,6 @@ class PortfolioApp {
         logoCenter.appendChild(hintsContainer);
     }
 
-    // createLoadingParticles関数は削除済み
-
     setupW5ClickAnimation() {
         const logoCenter = document.querySelector('.logo-center');
         if (!logoCenter) return;
@@ -214,9 +211,6 @@ class PortfolioApp {
             isAnimating = true;
             
             logoCenter.classList.add('w5-clicked');
-            
-            // パーティクル生成
-            // this.createW5ClickParticles(logoCenter);
             
             // 特別なエフェクト（5回目と10回目）
             if (clickCount === CONFIG.W5_CLICK_THRESHOLD_5) {
@@ -233,24 +227,9 @@ class PortfolioApp {
         });
     }
 
-    // createW5ClickParticles関数は削除済み
-
     showW5Message(message) {
         const messageBox = document.createElement('div');
-        messageBox.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            z-index: 10002;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        `;
+        messageBox.className = 'w5-message-box';
         messageBox.textContent = message;
         document.body.appendChild(messageBox);
         
@@ -293,11 +272,3 @@ document.addEventListener('DOMContentLoaded', async function() {
     isInitialized = true;
 });
 
-// パーティクルシステムの遅延初期化
-window.addEventListener('load', function() {
-    const particleCanvas = document.getElementById('particle-canvas');
-    if (particleCanvas && typeof ParticleSystem !== 'undefined') {
-        const particleSystem = new ParticleSystem('particle-canvas');
-        particleSystem.init();
-    }
-});

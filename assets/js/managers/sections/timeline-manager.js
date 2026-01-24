@@ -24,7 +24,7 @@ class TimelineManager {
         if (!this.timelineContainer) {
             this.timelineContainer = document.getElementById('timeline-container');
             if (!this.timelineContainer) {
-                console.warn('TimelineManager: timeline-container element not found');
+                // タイムラインコンテナ不在
             }
         }
         
@@ -43,7 +43,7 @@ class TimelineManager {
         const hasContainer = !!this.timelineContainer;
         
         if (!hasData) {
-            console.warn('TimelineManager: No timeline data available');
+            // タイムラインデータ不大5エラー
         }
         
         return hasContainer && hasData;
@@ -56,15 +56,15 @@ class TimelineManager {
         
         // データとDOMの確認
         if (!this.ensureDataAndDOM()) {
-            // 最大リトライ回数をチェック
+            // 初期化失敗エラーハンドリング
             if (this.initRetryCount >= TIMELINE_CONFIG.MAX_INIT_RETRIES) {
-                console.error('Failed to initialize TimelineManager after maximum retries');
+                // 最大リトライ回数超過
                 this.showErrorMessage();
                 return;
             }
             
             this.initRetryCount++;
-            console.warn(`Failed to ensure data and DOM - retrying (${this.initRetryCount}/${TIMELINE_CONFIG.MAX_INIT_RETRIES}) in ${TIMELINE_CONFIG.INIT_RETRY_DELAY}ms`);
+            // リトライ実行、設定時間后に再摂行
             setTimeout(() => this.init(), TIMELINE_CONFIG.INIT_RETRY_DELAY);
             return;
         }
@@ -83,7 +83,7 @@ class TimelineManager {
             this.isInitialized = true;
             
         } catch (error) {
-            console.error('Error during timeline initialization:', error);
+            // タイムライン初期化エラーハンドリング
             this.showErrorMessage();
         }
     }
@@ -237,7 +237,7 @@ class TimelineManager {
             this.timelineContainer.innerHTML = timelineHTML;
             
         } catch (error) {
-            console.error('Error generating timeline HTML:', error);
+            // タイムラインHTML生成エラーハンドリング
             
             // エラーの場合はシンプルなメッセージを表示
             this.timelineContainer.innerHTML = `

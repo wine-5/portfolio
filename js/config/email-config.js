@@ -30,10 +30,9 @@ class EmailService {
                 emailjs.init(EMAIL_CONFIG.publicKey);
                 this.isInitialized = true;
             } else {
-                console.error('EmailJS library not loaded');
+                // EmailJSライブラリ未読み込み
             }
         } catch (error) {
-            console.error('EmailJS initialization failed:', error);
         }
     }
 
@@ -74,7 +73,6 @@ class EmailService {
             
             return { notificationResponse, autoReplyResponse };
         } catch (error) {
-            console.error('Email send failed:', error);
             throw error;
         }
     }

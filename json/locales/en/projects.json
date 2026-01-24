@@ -2,6 +2,7 @@
   {
     "title": "MoreHit2",
     "description": "A work created for the UnityRoom game jam held in December 2025",
+    "detailedFeatures": "A shooting game developed over 1 week at a UnityRoom game jam. I focused on difficulty balancing for enemies and bosses, gradually introducing new enemy types and culminating in a boss battle. I also paid special attention to UI and sound effects to create a sense of urgency for players.",
     "myResponsibilities": "Player design and implementation, enemy base class and boss implementation, sound and overall scene management class creation",
     "technologies": [
       "Unity",
@@ -11,9 +12,10 @@
       "PC Only"
     ],
     "images": [
-      "images/game/MoreHit2/MoreHit2-title.png",
-      "images/game/MoreHit2/MoreHit2-in-game.png"
+      "images/game/morehit2/MoreHit2-title.png",
+      "images/game/morehit2/MoreHit2-in-game.png"
     ],
+    "thumbnailImage": "images/game/morehit2/morehit2-icon.png",
     "playUrl": "https://unityroom.com/games/morehit2",
     "githubUrl": "https://github.com/wine-5/MoreHit2",
     "year": "2nd Year",
@@ -24,6 +26,7 @@
   {
     "title": "This Side / That Side of the Line",
     "description": "A work created in a game jam hosted by HIBIGA",
+    "detailedFeatures": "An action game developed over 2 days at a HIBIGA-hosted game jam. I utilized the 'line' theme to create unique gameplay where players switch between above and below a line. Within the limited timeframe, I carefully designed the overall game state transitions and sound management to create a polished final product.",
     "myResponsibilities": "Created sound class, implemented game overall state transitions, created some base classes",
     "technologies": [
       "Unity",
@@ -36,6 +39,7 @@
       "images/game/border/border-title.png",
       "images/game/border/border-in-game.png"
     ],
+    "thumbnailImage": "images/game/border/border-icon.png",
     "playUrl": "https://unityroom.com/games/kochiratomukou",
     "githubUrl": "https://github.com/wine-5/Fibonacci",
     "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
@@ -58,9 +62,10 @@
       "iOS"
     ],
     "images": [
-      "images/game/Tofu/Tofu-Title.png",
-      "images/game/Tofu/Tofu-InGame.png"
+      "images/game/tofu/Tofu-Title.png",
+      "images/game/tofu/Tofu-InGame.png"
     ],
+    "thumbnailImage": "images/game/tofu/Tofu-Title.png",
     "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
     "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
     "year": "2nd Year",
@@ -82,6 +87,7 @@
     "images": [
       "images/game/zirai-tyan/zirai-movie.mp4"
     ],
+    "thumbnailImage": "images/game/zirai-tyan/zirai-icon.png",
     "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
     "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
     "year": "2nd Year",
@@ -105,6 +111,7 @@
       "images/game/takasi/takasi-home.png",
       "images/game/takasi/takasi-in-game.png"
     ],
+    "thumbnailImage": "images/game/takasi/takasi-icon.png",
     "playUrl": "https://unityroom.com/games/i-want-hosurus",
     "githubUrl": "https://github.com/wine-5/TechC_GameJam",
     "year": "2nd Year",
@@ -128,6 +135,7 @@
     "images": [
       "images/game/chocho/chocho-title.png"
     ],
+    "thumbnailImage": "images/game/chocho/chocho-icon.png",
     "playUrl": "",
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "2nd Year",
@@ -176,6 +184,7 @@
       "images/game/under-over/UnderOver-title.png",
       "images/game/under-over/UnderOver-in-game.png"
     ],
+    "thumbnailImage": "images/game/under-over/UnderOver-title.png",
     "playUrl": "https://unityroom.com/games/underover",
     "githubUrl": "https://github.com/wine-5/UnderOver",
     "year": "1st Year",
@@ -203,6 +212,7 @@
       "images/game/split/split-title.png",
       "images/game/split/split-in-game.png"
     ],
+    "thumbnailImage": "images/game/split/split-title.png",
     "playUrl": "web-game/Split/homepage/homepage/HTML/homepage.html",
     "localPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
     "webPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
@@ -229,6 +239,7 @@
       "images/game/element-battle/element-home.png",
       "images/game/element-battle/element-in-game.png"
     ],
+    "thumbnailImage": "images/game/element-battle/element-home.png",
     "playUrl": "web-game/ElementBattle/index.html",
     "localPath": "web-game/ElementBattle/index.html",
     "webPath": "web-game/ElementBattle/index.html",

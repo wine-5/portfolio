@@ -21,7 +21,7 @@ class SkillsManager {
         if (this.skillsData) {
             this.renderSkills();
         } else {
-            console.error('SkillsManager: SkillsData is null or undefined!');
+            // スキルデータ失敗エラーハンドリング
         }
         
         this.setupSkillAnimation();
@@ -33,12 +33,12 @@ class SkillsManager {
      */
     renderSkills() {
         if (!this.skillsGrid) {
-            console.error('Skills grid element not found');
+            // スキルグリッド要素不在
             return;
         }
         
         if (!this.skillsData) {
-            console.warn('No skills data available');
+            // スキルデータ不大5エラー
             return;
         }
 
@@ -48,7 +48,7 @@ class SkillsManager {
         const skillsHTML = skillKeys.map(key => {
             const skill = this.skillsData[key] || this.skillsData[key.toLowerCase()];
             if (!skill) {
-                console.warn(`Skill data not found for key: ${key}`);
+                // スキルデータ不在エラー
                 return '';
             }
             
