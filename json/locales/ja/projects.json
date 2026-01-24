@@ -12,6 +12,7 @@
       "PCのみ"
     ],
     "images": [
+      "images/game/moreHit2/morehit2-icon.png",
       "images/game/moreHit2/MoreHit2-title.png",
       "images/game/moreHit2/MoreHit2-in-game.png"
     ],
@@ -36,6 +37,7 @@
       "PCのみ"
     ],
     "images": [
+      "images/game/border/border-icon.png",
       "images/game/border/border-title.png",
       "images/game/border/border-in-game.png"
     ],
@@ -85,6 +87,7 @@
       "PCのみ"
     ],
     "images": [
+      "images/game/zirai-tyan/zirai-icon.png",
       "images/game/zirai-tyan/zirai-movie.mp4"
     ],
     "thumbnailImage": "images/game/zirai-tyan/zirai-icon.png",
@@ -108,6 +111,7 @@
       "PCのみ"
     ],
     "images": [
+      "images/game/takasi/takasi-icon.png",
       "images/game/takasi/takasi-home.png",
       "images/game/takasi/takasi-in-game.png"
     ],
