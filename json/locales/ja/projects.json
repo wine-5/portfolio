@@ -15,7 +15,7 @@
       "images/game/moreHit2/MoreHit2-title.png",
       "images/game/moreHit2/MoreHit2-in-game.png"
     ],
-    "thumbnailImage": "images/game/moreHit2/MoreHit2-title.png",
+    "thumbnailImage": "images/game/moreHit2/morehit2-icon.png",
     "playUrl": "https://unityroom.com/games/morehit2",
     "githubUrl": "https://github.com/wine-5/MoreHit2",
     "year": "2年次",
@@ -39,7 +39,7 @@
       "images/game/border/border-title.png",
       "images/game/border/border-in-game.png"
     ],
-    "thumbnailImage": "images/game/border/border-title.png",
+    "thumbnailImage": "images/game/border/border-icon.png",
     "playUrl": "https://unityroom.com/games/kochiratomukou",
     "githubUrl": "https://github.com/wine-5/Fibonacci",
     "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
@@ -87,7 +87,7 @@
     "images": [
       "images/game/zirai-tyan/zirai-movie.mp4"
     ],
-    "thumbnailImage": "",
+    "thumbnailImage": "images/game/zirai-tyan/zirai-icon.png",
     "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
     "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
     "year": "2年次",
@@ -111,7 +111,7 @@
       "images/game/takasi/takasi-home.png",
       "images/game/takasi/takasi-in-game.png"
     ],
-    "thumbnailImage": "images/game/takasi/takasi-home.png",
+    "thumbnailImage": "images/game/takasi/takasi-icon.png",
     "playUrl": "https://unityroom.com/games/i-want-hosurus",
     "githubUrl": "https://github.com/wine-5/TechC_GameJam",
     "year": "2年次",
