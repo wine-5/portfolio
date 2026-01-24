@@ -12,11 +12,11 @@
       "仅限PC"
     ],
     "images": [
-      "images/game/moreHit2/morehit2-icon.png",
-      "images/game/moreHit2/MoreHit2-title.png",
-      "images/game/moreHit2/MoreHit2-in-game.png"
+      "images/game/MoreHit2/morehit2-icon.png",
+      "images/game/MoreHit2/MoreHit2-title.png",
+      "images/game/MoreHit2/MoreHit2-in-game.png"
     ],
-    "thumbnailImage": "images/game/moreHit2/morehit2-icon.png",
+    "thumbnailImage": "images/game/MoreHit2/morehit2-icon.png",
     "playUrl": "https://unityroom.com/games/morehit2",
     "githubUrl": "https://github.com/wine-5/MoreHit2",
     "year": "二年级",
@@ -64,10 +64,10 @@
       "iOS"
     ],
     "images": [
-      "images/game/tofu/Tofu-Title.png",
-      "images/game/tofu/Tofu-InGame.png"
+      "images/game/Tofu/Tofu-Title.png",
+      "images/game/Tofu/Tofu-InGame.png"
     ],
-    "thumbnailImage": "images/game/tofu/Tofu-Title.png",
+    "thumbnailImage": "images/game/Tofu/Tofu-Title.png",
     "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
     "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
     "year": "二年级",
