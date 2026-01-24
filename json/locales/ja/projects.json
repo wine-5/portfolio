@@ -12,7 +12,6 @@
       "PCのみ"
     ],
     "images": [
-      "images/game/MoreHit2/morehit2-icon.png",
       "images/game/MoreHit2/MoreHit2-title.png",
       "images/game/MoreHit2/MoreHit2-in-game.png"
     ],
@@ -37,7 +36,6 @@
       "PCのみ"
     ],
     "images": [
-      "images/game/border/border-icon.png",
       "images/game/border/border-title.png",
       "images/game/border/border-in-game.png"
     ],
@@ -111,7 +109,6 @@
       "PCのみ"
     ],
     "images": [
-      "images/game/takasi/takasi-icon.png",
       "images/game/takasi/takasi-home.png",
       "images/game/takasi/takasi-in-game.png"
     ],
