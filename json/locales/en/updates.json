@@ -1,5 +1,10 @@
 [
   {
+    "date": "2026-01-30",
+    "title": "Updated \"Butterfly Rebellion\" Project Information",
+    "description": "Added image paths and UnityRoom play URL for Butterfly Rebellion. Updated project information to the latest state and applied changes to all languages."
+  },
+  {
     "date": "2026-01-25",
     "title": "Major Redesign of Main Canvas Display",
     "description": "Redesigned the game icon layout to create a more engaging screen."

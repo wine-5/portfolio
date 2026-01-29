@@ -124,7 +124,7 @@
   },
   {
     "title": "蝶々反乱",
-    "description": "Sapporo Game Camp2025参赛作品。全员初次见面的7人团队开发的2D动作游戏。首次挑战校外Game Jam，仓库已公开。",
+    "description": "Sapporo Game Camp2025参赛作品。全员初次见面的7人团队开发的2D动作游戏。首次挑战校外Game Jam。",
     "detailedFeatures": "这是在Sapporo Game Camp2025创作的游戏。全员都是初次见面，这是第一次参加校外Game Jam。\n基于上次校内Game Jam的反思，在开始前创建Unity项目并预先准备基类，连接仓库和项目等。\n游戏本身顺利完成了，但原本预定的关卡数没能全部准备好，设计师们制作的图也没能全部使用，这也是遗憾之处。",
     "myResponsibilities": "基类设计、玩家子弹实现、敌人行为和攻击模式实现",
     "technologies": [
@@ -139,15 +139,12 @@
       "images/game/chocho/chocho-title.png"
     ],
     "thumbnailImage": "images/game/chocho/chocho-icon.png",
-    "playUrl": "",
+    "playUrl": "https://unityroom.com/games/tyoutyou",
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "二年级",
     "category": "game",
     "teamSize": "7人（现役程序员1人、学生程序员2人、现役设计师1人、学生设计师2人、学生策划1人）",
-    "period": "2天（目前正在完善中）",
-    "note": "SGC2025参赛作品·UnityRoom发布准备中",
-    "locked": true,
-    "lockReason": "UnityRoom发布准备中"
+    "period": "2天（目前正在完善中）"
   },
   {
     "title": "Git Command Helper",
