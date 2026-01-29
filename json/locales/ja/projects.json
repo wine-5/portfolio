@@ -138,15 +138,12 @@
       "images/game/chocho/chocho-title.png"
     ],
     "thumbnailImage": "images/game/chocho/chocho-icon.png",
-    "playUrl": "",
+    "playUrl": "https://unityroom.com/games/tyoutyou",
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "2年次",
     "category": "game",
     "teamSize": "7人（現役プログラマー1人、学生プログラマー2人、現役デザイナー1人、学生デザイナー2人、学生プランナー1人）",
-    "period": "2日間（現在ブラッシュアップ中）",
-    "note": "SGC2025参加作品・UnityRoom公開予定",
-    "locked": true,
-    "lockReason": "UnityRoom公開準備中"
+    "period": "2日間（現在ブラッシュアップ中）"
   },
   {
     "title": "Git Command Helper",
