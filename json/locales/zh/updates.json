@@ -1,5 +1,10 @@
 [
   {
+    "date": "2026-03-25",
+    "title": "添加3款新游戏",
+    "description": "将在ImoGameJam制作的「MoreHit2(晴天娃娃)」、UnityRoom游戏Jam的「暗杀反转」和Global Game Jam的「The Mask Ball Seeker」添加到项目中。"
+  },
+  {
     "date": "2026-01-30",
     "title": "更新「蝶蝶反乱」项目信息",
     "description": "添加了蝶蝶反乱的图片路径和UnityRoom播放URL。将项目信息更新到最新状态并应用到所有语言版本。"

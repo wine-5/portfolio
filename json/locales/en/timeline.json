@@ -143,7 +143,7 @@
       "id": "more-hit-2",
       "title": "MoreHit2",
       "type": "project",
-      "date": "2026-01-11",
+      "date": "2025-12-01",
       "duration": 7,
       "description": "A work created for the UnityRoom game jam held in December 2025. Responsible for player design and implementation, enemy base class and boss implementation.",
       "technologies": [
@@ -152,6 +152,49 @@
       ],
       "color": "#60a5fa",
       "icon": "🎯"
+    },
+    {
+      "id": "the-mask-ball-seeker",
+      "title": "The Mask Ball Seeker",
+      "type": "project",
+      "date": "2026-01-25",
+      "duration": 3,
+      "description": "A game created at Global Game Jam to solve a murder case at a masquerade ball. Responsible for Player, NPC, mini-game implementation, sound and scene management.",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#c084fc",
+      "icon": "🎭",
+      "status": "Coming Soon"
+    },
+    {
+      "id": "ansatu-hantenn",
+      "title": "Assassination Reversal",
+      "type": "project",
+      "date": "2026-03-15",
+      "duration": 7,
+      "description": "Created at UnityRoom Game Jam. A game where you flip tiles and assassinate enemies from behind. Responsible for all programming.",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#34d399",
+      "icon": "🗡️"
+    },
+    {
+      "id": "teruteru-wars",
+      "title": "Teru Teru Wars",
+      "type": "project",
+      "date": "2026-03-22",
+      "duration": 2,
+      "description": "Created at ImoGameJam. A tower defense game where effects change by flipping teru teru bozu. Responsible for sound, scene transitions, and AI generation.",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#fbbf24",
+      "icon": "☀️"
     }
   ]
 }

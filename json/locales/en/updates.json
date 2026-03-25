@@ -1,5 +1,10 @@
 [
   {
+    "date": "2026-03-25",
+    "title": "Added 3 New Games",
+    "description": "Added 'MoreHit2 (Teru Teru Bozu)' created at ImoGameJam, 'Assassination Reversal' from UnityRoom Game Jam, and 'The Mask Ball Seeker' from Global Game Jam to the projects."
+  },
+  {
     "date": "2026-01-30",
     "title": "Updated \"Butterfly Rebellion\" Project Information",
     "description": "Added image paths and UnityRoom play URL for Butterfly Rebellion. Updated project information to the latest state and applied changes to all languages."

@@ -1,5 +1,78 @@
 [
   {
+    "title": "てるてるウォーズ",
+    "description": "ImoGameJamで制作した作品",
+    "detailedFeatures": "Inversion → 反転やひっくり返す→「てるてる坊主って向き変えると晴れから雨になる」というところからゲーム案を作り始めました！てるてる坊主を反転させることで効果が変わるタワーディフェンスゲームを作ろうとなりました！",
+    "myResponsibilities": "音関連のクラス、シーン遷移のクラス、AIを使用した画像、音の生成",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/teruteru/teruteru-title.jpg",
+      "images/game/teruteru/teruteru-game.png"
+    ],
+    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
+    "playUrl": "https://unityroom.com/games/teruteru-wars",
+    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2日間"
+  },
+  {
+    "title": "暗殺反転",
+    "description": "2026年3月に開催されたUnityRoomのゲームジャムで制作した作品",
+    "detailedFeatures": "お題が「うら」というところから「タイルをひっくり返しギミックを利用し、敵の背後を取って暗殺をするゲーム」を作りました。",
+    "myResponsibilities": "すべてのプログラム",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-title.png",
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-game.png"
+    ],
+    "thumbnailImage": "images/game/hanntenn-ansatu/Ansatu.gif",
+    "playUrl": "https://unityroom.com/games/hanntenn-ansatu",
+    "githubUrl": "https://github.com/wine-5/unity-room-202603",
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "1週間"
+  },
+  {
+    "title": "The Mask Ball Seeker",
+    "description": "2026年1月に開催されたGlobal Game Jamの作品",
+    "detailedFeatures": "テーマ「MASK」からチームメンバーで話し合った結果、「舞踏会で起きた殺人事件を解決するゲーム」を作ろう！となり作成しました。全員が初対面で最初は不安でしたが最後まで完成させることができました！",
+    "myResponsibilities": "Playerの設計から実装、NPCの実装、一部ミニゲームの実装、音やシーン全体の管理クラスの作成",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-home.png",
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png"
+    ],
+    "thumbnailImage": "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png",
+    "playUrl": "https://unityroom.com/games/the-mask-ball-seeker",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "locked": true,
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "5人",
+    "period": "3日間"
+  },
+  {
     "title": "MoreHit2",
     "description": "2025年12月に開催されたUnityRoomのゲームジャムで制作した作品",
     "detailedFeatures": "UnityRoomのゲームジャムで1週間かけて開発したシューティングゲームです。敵やボスの難易度調整にこだわり、段階的に敵の種類を増やし、最後にボスとの戦闘という流れにしました。また、UIやサウンドの演出も工夫し、プレイヤーに緊迫感を与える設計にしました。",
@@ -25,8 +98,8 @@
   },
   {
     "title": "線のこちら側 / 向こう側",
-    "description": "HIBIGA様主催のゲームジャムで制作した作品",
-    "detailedFeatures": "HIBIGA様主催のゲームジャムで2日間かけて開発したアクションゲームです。テーマの「線」を活かし、プレイヤーが線の上下を切り替えながら進むという独特なゲームプレイを実現しました。限られた時間の中で、ゲーム全体の遷移処理や音声管理をしっかり設計し、完成度の高い作品に仕上げることができました。",
+    "description": "ImoGameJamで制作した作品",
+    "detailedFeatures": "ImoGameJamで2日間かけて開発したアクションゲームです。テーマの「線」を活かし、プレイヤーが線の上下を切り替えながら進むという独特なゲームプレイを実現しました。限られた時間の中で、ゲーム全体の遷移処理や音声管理をしっかり設計し、完成度の高い作品に仕上げることができました。",
     "myResponsibilities": "音のクラスを作成、ゲーム全体の遷移処理、一部基底クラスの作成",
     "technologies": [
       "Unity",

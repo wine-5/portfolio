@@ -1,5 +1,78 @@
 [
   {
+    "title": "Teru Teru Wars",
+    "description": "A work created at ImoGameJam",
+    "detailedFeatures": "Inversion → flip or turn over → started creating game ideas from 'When you flip a teru teru bozu (Japanese weather doll), it changes from sunny to rainy!' We decided to make a tower defense game where the effects change by flipping teru teru bozu!",
+    "myResponsibilities": "Sound-related classes, scene transition classes, AI-generated images and sounds",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/teruteru/teruteru-title.jpg",
+      "images/game/teruteru/teruteru-game.png"
+    ],
+    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
+    "playUrl": "https://unityroom.com/games/teruteru-wars",
+    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "4 people",
+    "period": "2 days"
+  },
+  {
+    "title": "Assassination Reversal",
+    "description": "A work created at the UnityRoom game jam held in March 2026",
+    "detailedFeatures": "From the theme 'ura' (back/reverse), we created 'a game where you flip tiles, use gimmicks, and get behind enemies to assassinate them.'",
+    "myResponsibilities": "All programming",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-title.png",
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-game.png"
+    ],
+    "thumbnailImage": "images/game/hanntenn-ansatu/Ansatu.gif",
+    "playUrl": "https://unityroom.com/games/hanntenn-ansatu",
+    "githubUrl": "https://github.com/wine-5/unity-room-202603",
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "4 people",
+    "period": "1 week"
+  },
+  {
+    "title": "The Mask Ball Seeker",
+    "description": "A work created at Global Game Jam held in January 2026",
+    "detailedFeatures": "From the theme 'MASK', after discussing with team members, we decided to create 'a game where you solve a murder case at a masquerade ball!' Everyone was meeting for the first time and I was nervous at first, but we were able to complete it!",
+    "myResponsibilities": "Player design and implementation, NPC implementation, some mini-game implementation, sound and overall scene management class creation",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-home.png",
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png"
+    ],
+    "thumbnailImage": "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png",
+    "playUrl": "https://unityroom.com/games/the-mask-ball-seeker",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "locked": true,
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "5 people",
+    "period": "3 days"
+  },
+  {
     "title": "MoreHit2",
     "description": "A work created for the UnityRoom game jam held in December 2025",
     "detailedFeatures": "A shooting game developed over 1 week at a UnityRoom game jam. I focused on difficulty balancing for enemies and bosses, gradually introducing new enemy types and culminating in a boss battle. I also paid special attention to UI and sound effects to create a sense of urgency for players.",
