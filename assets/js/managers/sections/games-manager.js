@@ -157,6 +157,24 @@ class GamesManager {
         }
     }
 
+    /**
+     * プレースホルダー画像のDataURLを生成
+     * @param {string} text - 表示するテキスト
+     * @returns {string} SVG DataURL
+     */
+    createPlaceholderImage(text) {
+        const svg = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+                <rect width="400" height="250" fill="#6366f1"/>
+                <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" 
+                      fill="#ffffff" text-anchor="middle" dominant-baseline="middle">
+                    ${text}
+                </text>
+            </svg>
+        `;
+        return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+    }
+
     createGameCard(project) {
         const awardBadge = project.award ? `<div class="work-card__award">🏆 ${project.award}</div>` : '';
         const noteBadge = project.note ? `<div class="work-card__note">${project.note}</div>` : '';
@@ -204,7 +222,7 @@ class GamesManager {
                              class="work-card__main-image ${project.locked ? '' : 'clickable-image'}"
                              loading="lazy"
                              data-play-url="${playUrl || ''}"
-                             onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(project.title)}'">
+                             onerror="this.src='${this.createPlaceholderImage(project.title)}'">
                         ${project.locked ? `
                             <div class="lock-overlay">
                                 <i class="fas fa-lock"></i>
@@ -228,7 +246,7 @@ class GamesManager {
                          class="work-card__main-image ${project.locked ? '' : 'clickable-image'}"
                          loading="lazy"
                          data-play-url="${playUrl || ''}"
-                         onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(project.title)}'">
+                         onerror="this.src='${this.createPlaceholderImage(project.title)}'">
                     ${project.locked ? `
                         <div class="lock-overlay">
                             <i class="fas fa-lock"></i>
@@ -372,7 +390,7 @@ class GamesManager {
                                          class="image-element ${isClickable ? 'clickable-image' : ''}"
                                          loading="lazy"
                                          data-play-url="${isClickable ? (playUrl || '') : ''}"
-                                         onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(title)}'">
+                                         onerror="this.src='${this.createPlaceholderImage(title)}'">
                                     ${isClickable ? `
                                         <div class="image-play-overlay clickable-image" data-play-url="${playUrl || ''}">
                                             <div class="play-game-hint">

@@ -233,9 +233,13 @@ class I18nManager {
             const buttonText = this.t('sections.about.timelineButton');
             if (buttonText && buttonText !== 'sections.about.timelineButton') {
                 const icon = timelineButton.querySelector('i');
-                timelineButton.innerHTML = '';
-                if (icon) timelineButton.appendChild(icon.cloneNode(true));
-                timelineButton.appendChild(document.createTextNode('\n                                ' + buttonText + '\n                            '));
+                const iconHtml = icon ? icon.outerHTML : '<i class="fas fa-history"></i>';
+                // innerHTML を使って、アイコンとテキストを設定（hrefは維持される）
+                const currentContent = timelineButton.innerHTML;
+                const newContent = `${iconHtml}\n                                ${buttonText}\n                            `;
+                if (currentContent !== newContent) {
+                    timelineButton.innerHTML = newContent;
+                }
             }
         }
 
