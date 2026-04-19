@@ -5,6 +5,8 @@ class GamesManager {
     constructor() {
         this.worksGrid = document.getElementById('works-grid');
         this.projects = [];
+        this.activeCategory = 'all';
+        this.activeTech = 'all';
     }
 
     async init() {
@@ -32,6 +34,7 @@ class GamesManager {
         
         this.renderGames();
         this.setupImageSliders();
+        this.setupFilters();
         this.setupLanguageListener();
     }
 
@@ -107,7 +110,7 @@ class GamesManager {
         }
 
         try {
-            const projectsHtml = this.projects.map(project => 
+            const projectsHtml = this.getFilteredProjects().map(project =>
                 this.createGameCard(project)
             ).join('');
             
@@ -154,6 +157,45 @@ class GamesManager {
         if (this.worksGrid) {
             // offsetHeightへのアクセスでレイアウト再計算を強制
             const height = this.worksGrid.offsetHeight;
+        }
+    }
+
+    /**
+     * フィルタを適用したプロジェクト配列を返す
+     */
+    getFilteredProjects() {
+        return this.projects.filter(project => {
+            const catMatch = this.activeCategory === 'all' || project.category === this.activeCategory;
+            const techMatch = this.activeTech === 'all' || (project.technologies || []).includes(this.activeTech);
+            return catMatch && techMatch;
+        });
+    }
+
+    /**
+     * フィルタUIのイベントリスナーを設定
+     */
+    setupFilters() {
+        const filterBtns = document.querySelectorAll('.works__filter-btn');
+        const techSelect = document.getElementById('tech-filter');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // ボタンのアクティブ状態を更新
+                filterBtns.forEach(b => b.classList.remove('works__filter-btn--active'));
+                e.target.classList.add('works__filter-btn--active');
+
+                // フィルタ状態を更新
+                this.activeCategory = e.target.dataset.filter;
+                this.renderGames();
+            });
+        });
+
+        if (techSelect) {
+            techSelect.addEventListener('change', (e) => {
+                // フィルタ状態を更新
+                this.activeTech = e.target.value;
+                this.renderGames();
+            });
         }
     }
 

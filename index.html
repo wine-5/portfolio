@@ -80,9 +80,9 @@
                 <li class="header__nav-item">
                     <a href="#connect" class="header__nav-link" data-i18n="common.header.contact">Contact</a>
                 </li>
-                <li class="header__nav-item">
+                <!-- <li class="header__nav-item">
                     <a href="pages/timeline/timeline.html" class="header__nav-link" data-i18n="common.header.timeline">Timeline</a>
-                </li>
+                </li> -->
                 <li class="header__nav-item">
                     <a href="pages/history/history.html" class="header__nav-link" data-i18n="common.header.updates">Updates</a>
                 </li>
@@ -149,6 +149,25 @@
             <div class="section__bg-text" data-text="Games"></div>
             <div class="container">
                 <h2 class="section__title">Games</h2>
+                <!-- フィルタUI -->
+                <div class="works__filters">
+                    <!-- カテゴリーボタン -->
+                    <div class="works__filter-group">
+                        <button class="btn works__filter-btn works__filter-btn--active" data-filter="all">すべて</button>
+                        <button class="btn works__filter-btn" data-filter="game">ゲーム</button>
+                        <button class="btn works__filter-btn" data-filter="web">Webツール</button>
+                        <button class="btn works__filter-btn" data-filter="web-game">Webゲーム</button>
+                    </div>
+                    <!-- 言語ドロップダウン -->
+                    <div class="works__filter-group">
+                        <select class="works__filter-select" id="tech-filter">
+                            <option value="all">すべての言語</option>
+                            <option value="Unity">Unity / C#</option>
+                            <option value="HTML">HTML / CSS / JS</option>
+                            <option value="C++">C++</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="works__grid" id="works-grid">
                     <!-- 作品カードはJavaScriptで動的生成 -->
                 </div>
@@ -201,9 +220,9 @@
                                 UnityRoom
                             </a>
                         </div>
-                        
+
                         <!-- タイムラインページへのリンク -->
-                        <div class="about__timeline-link">
+                        <!-- <div class="about__timeline-link">
                             <a href="pages/timeline/timeline.html" class="btn btn--primary about__timeline-button">
                                 <i class="fas fa-history"></i>
                                 開発の軌跡を見る
@@ -211,7 +230,7 @@
                             <p class="about__timeline-description">
                                 入学から現在までの詳細な開発履歴とプロジェクトの軌跡をご覧いただけます
                             </p>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="about__image">
                         <div class="about__avatar">
@@ -293,7 +312,7 @@
                                 <li><a href="#skills" class="footer__link"><i class="fas fa-code"></i> <span data-i18n="common.header.skills">Skills</span></a></li>
                                 <li><a href="#about" class="footer__link"><i class="fas fa-user"></i> <span data-i18n="common.header.about">About</span></a></li>
                                 <li><a href="#contact" class="footer__link"><i class="fas fa-envelope"></i> <span data-i18n="common.header.contact">Contact</span></a></li>
-                                <li><a href="pages/timeline/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> <span data-i18n="common.header.timeline">Timeline</span></a></li>
+                                <!-- <li><a href="pages/timeline/timeline.html" class="footer__link"><i class="fas fa-timeline"></i> <span data-i18n="common.header.timeline">Timeline</span></a></li> -->
                                 <li><a href="pages/history/history.html" class="footer__link"><i class="fas fa-clock-rotate-left"></i> <span data-i18n="common.header.updates">Updates</span></a></li>
                             </ul>
                         </div>
