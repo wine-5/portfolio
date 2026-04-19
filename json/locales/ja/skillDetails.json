@@ -42,15 +42,6 @@
     "projects": "全プロジェクトで使用",
     "proficiency": "90%"
   },
-  "html": {
-    "title": "HTML",
-    "additionalSkills": [
-      "アクセシビリティ対応",
-      "SEO最適化"
-    ],
-    "projects": "8+ Webサイト",
-    "proficiency": "40%"
-  },
   "css": {
     "title": "CSS",
     "additionalSkills": [
@@ -81,5 +72,35 @@
     ],
     "projects": "25+ アプリケーション",
     "proficiency": "85%"
+  },
+  "typescript": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "型システム",
+      "インターフェース設計",
+      "ジェネリクス"
+    ],
+    "projects": "2+ プロジェクト",
+    "proficiency": "30%"
+  },
+  "ts": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "型システム",
+      "インターフェース設計",
+      "ジェネリクス"
+    ],
+    "projects": "2+ プロジェクト",
+    "proficiency": "30%"
+  },
+  "ci": {
+    "title": "CI/CD",
+    "additionalSkills": [
+      "自動化パイプライン",
+      "テスト自動化",
+      "デプロイ自動化"
+    ],
+    "projects": "1+ プロジェクト",
+    "proficiency": "20%"
   }
 }

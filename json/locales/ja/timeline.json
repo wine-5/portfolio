@@ -115,12 +115,46 @@
             "id": "more-hit-2",
             "title": "MoreHit2",
             "type": "project",
-            "date": "2026-01-11",
+            "date": "2025-12-01",
             "duration": 7,
             "description": "2025年12月に開催されたUnityRoomのゲームジャムで制作した作品。Playerの設計から実装、敵の基底クラスとボスの実装を担当。",
             "technologies": ["Unity", "C#"],
             "color": "#60a5fa",
             "icon": "🎯"
+        },
+        {
+            "id": "the-mask-ball-seeker",
+            "title": "The Mask Ball Seeker",
+            "type": "project",
+            "date": "2026-01-25",
+            "duration": 3,
+            "description": "Global Game Jamで制作した舞踏会の殺人事件を解決するゲーム。Player、NPC、ミニゲーム実装、音とシーン管理を担当。",
+            "technologies": ["Unity", "C#"],
+            "color": "#c084fc",
+            "icon": "🎭",
+            "status": "公開準備中"
+        },
+        {
+            "id": "ansatu-hantenn",
+            "title": "暗殺反転",
+            "type": "project",
+            "date": "2026-03-15",
+            "duration": 7,
+            "description": "UnityRoomゲームジャムで制作。タイルを反転させ敵の背後から暗殺するゲーム。すべてのプログラムを担当。",
+            "technologies": ["Unity", "C#"],
+            "color": "#34d399",
+            "icon": "🗡️"
+        },
+        {
+            "id": "teruteru-wars",
+            "title": "てるてるウォーズ",
+            "type": "project",
+            "date": "2026-03-22",
+            "duration": 2,
+            "description": "ImoGameJamで制作。てるてる坊主を反転させることで効果が変わるタワーディフェンスゲーム。音、シーン遷移、AI生成を担当。",
+            "technologies": ["Unity", "C#"],
+            "color": "#fbbf24",
+            "icon": "☀️"
         }
     ]
 }

@@ -143,7 +143,7 @@
       "id": "more-hit-2",
       "title": "MoreHit2",
       "type": "project",
-      "date": "2026-01-11",
+      "date": "2025-12-01",
       "duration": 7,
       "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品。负责Player设计与实现、敌人基类和Boss的实现。",
       "technologies": [
@@ -152,6 +152,49 @@
       ],
       "color": "#60a5fa",
       "icon": "🎯"
+    },
+    {
+      "id": "the-mask-ball-seeker",
+      "title": "The Mask Ball Seeker",
+      "type": "project",
+      "date": "2026-01-25",
+      "duration": 3,
+      "description": "在Global Game Jam制作的解决舞会谋杀案的游戏。负责Player、NPC、小游戏实现、音频和场景管理。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#c084fc",
+      "icon": "🎭",
+      "status": "即将推出"
+    },
+    {
+      "id": "ansatu-hantenn",
+      "title": "暗杀反转",
+      "type": "project",
+      "date": "2026-03-15",
+      "duration": 7,
+      "description": "在UnityRoom游戏Jam中制作。翻转瓷砖从敌人背后进行暗杀的游戏。负责所有编程工作。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#34d399",
+      "icon": "🗡️"
+    },
+    {
+      "id": "teruteru-wars",
+      "title": "晴天娃娃战争",
+      "type": "project",
+      "date": "2026-03-22",
+      "duration": 2,
+      "description": "在ImoGameJam制作。通过翻转晴天娃娃改变效果的塔防游戏。负责音频、场景转换和AI生成。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#fbbf24",
+      "icon": "☀️"
     }
   ]
 }

@@ -42,15 +42,6 @@
     "projects": "所有项目使用",
     "proficiency": "90%"
   },
-  "html": {
-    "title": "HTML",
-    "additionalSkills": [
-      "无障碍访问支持",
-      "SEO优化"
-    ],
-    "projects": "8+网站",
-    "proficiency": "40%"
-  },
   "css": {
     "title": "CSS",
     "additionalSkills": [
@@ -81,5 +72,35 @@
     ],
     "projects": "8+应用程序",
     "proficiency": "40%"
+  },
+  "typescript": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "类型系统",
+      "接口设计",
+      "泛型"
+    ],
+    "projects": "2+项目",
+    "proficiency": "30%"
+  },
+  "ts": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "类型系统",
+      "接口设计",
+      "泛型"
+    ],
+    "projects": "2+项目",
+    "proficiency": "30%"
+  },
+  "ci": {
+    "title": "CI/CD",
+    "additionalSkills": [
+      "自动化管道",
+      "测试自动化",
+      "部署自动化"
+    ],
+    "projects": "1+项目",
+    "proficiency": "20%"
   }
 }

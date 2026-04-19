@@ -5,6 +5,8 @@ class GamesManager {
     constructor() {
         this.worksGrid = document.getElementById('works-grid');
         this.projects = [];
+        this.activeCategory = 'all';
+        this.activeTech = 'all';
     }
 
     async init() {
@@ -32,6 +34,7 @@ class GamesManager {
         
         this.renderGames();
         this.setupImageSliders();
+        this.setupFilters();
         this.setupLanguageListener();
     }
 
@@ -107,7 +110,7 @@ class GamesManager {
         }
 
         try {
-            const projectsHtml = this.projects.map(project => 
+            const projectsHtml = this.getFilteredProjects().map(project =>
                 this.createGameCard(project)
             ).join('');
             
@@ -157,6 +160,63 @@ class GamesManager {
         }
     }
 
+    /**
+     * フィルタを適用したプロジェクト配列を返す
+     */
+    getFilteredProjects() {
+        return this.projects.filter(project => {
+            const catMatch = this.activeCategory === 'all' || project.category === this.activeCategory;
+            const techMatch = this.activeTech === 'all' || (project.technologies || []).includes(this.activeTech);
+            return catMatch && techMatch;
+        });
+    }
+
+    /**
+     * フィルタUIのイベントリスナーを設定
+     */
+    setupFilters() {
+        const filterBtns = document.querySelectorAll('.works__filter-btn');
+        const techSelect = document.getElementById('tech-filter');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // ボタンのアクティブ状態を更新
+                filterBtns.forEach(b => b.classList.remove('works__filter-btn--active'));
+                e.target.classList.add('works__filter-btn--active');
+
+                // フィルタ状態を更新
+                this.activeCategory = e.target.dataset.filter;
+                this.renderGames();
+            });
+        });
+
+        if (techSelect) {
+            techSelect.addEventListener('change', (e) => {
+                // フィルタ状態を更新
+                this.activeTech = e.target.value;
+                this.renderGames();
+            });
+        }
+    }
+
+    /**
+     * プレースホルダー画像のDataURLを生成
+     * @param {string} text - 表示するテキスト
+     * @returns {string} SVG DataURL
+     */
+    createPlaceholderImage(text) {
+        const svg = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+                <rect width="400" height="250" fill="#6366f1"/>
+                <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" 
+                      fill="#ffffff" text-anchor="middle" dominant-baseline="middle">
+                    ${text}
+                </text>
+            </svg>
+        `;
+        return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+    }
+
     createGameCard(project) {
         const awardBadge = project.award ? `<div class="work-card__award">🏆 ${project.award}</div>` : '';
         const noteBadge = project.note ? `<div class="work-card__note">${project.note}</div>` : '';
@@ -204,7 +264,7 @@ class GamesManager {
                              class="work-card__main-image ${project.locked ? '' : 'clickable-image'}"
                              loading="lazy"
                              data-play-url="${playUrl || ''}"
-                             onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(project.title)}'">
+                             onerror="this.src='${this.createPlaceholderImage(project.title)}'">
                         ${project.locked ? `
                             <div class="lock-overlay">
                                 <i class="fas fa-lock"></i>
@@ -228,7 +288,7 @@ class GamesManager {
                          class="work-card__main-image ${project.locked ? '' : 'clickable-image'}"
                          loading="lazy"
                          data-play-url="${playUrl || ''}"
-                         onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(project.title)}'">
+                         onerror="this.src='${this.createPlaceholderImage(project.title)}'">
                     ${project.locked ? `
                         <div class="lock-overlay">
                             <i class="fas fa-lock"></i>
@@ -372,7 +432,7 @@ class GamesManager {
                                          class="image-element ${isClickable ? 'clickable-image' : ''}"
                                          loading="lazy"
                                          data-play-url="${isClickable ? (playUrl || '') : ''}"
-                                         onerror="this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=${encodeURIComponent(title)}'">
+                                         onerror="this.src='${this.createPlaceholderImage(title)}'">
                                     ${isClickable ? `
                                         <div class="image-play-overlay clickable-image" data-play-url="${playUrl || ''}">
                                             <div class="play-game-hint">

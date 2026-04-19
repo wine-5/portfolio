@@ -42,15 +42,6 @@
     "projects": "Used in All Projects",
     "proficiency": "90%"
   },
-  "html": {
-    "title": "HTML",
-    "additionalSkills": [
-      "Accessibility Support",
-      "SEO Optimization"
-    ],
-    "projects": "8+ Websites",
-    "proficiency": "40%"
-  },
   "css": {
     "title": "CSS",
     "additionalSkills": [
@@ -81,5 +72,35 @@
     ],
     "projects": "8+ Applications",
     "proficiency": "40%"
+  },
+  "typescript": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "Type System",
+      "Interface Design",
+      "Generics"
+    ],
+    "projects": "2+ Projects",
+    "proficiency": "30%"
+  },
+  "ts": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "Type System",
+      "Interface Design",
+      "Generics"
+    ],
+    "projects": "2+ Projects",
+    "proficiency": "30%"
+  },
+  "ci": {
+    "title": "CI/CD",
+    "additionalSkills": [
+      "Automated Pipelines",
+      "Test Automation",
+      "Deploy Automation"
+    ],
+    "projects": "1+ Project",
+    "proficiency": "20%"
   }
 }

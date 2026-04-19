@@ -1,5 +1,78 @@
 [
   {
+    "title": "晴天娃娃战争",
+    "description": "在ImoGameJam制作的作品",
+    "detailedFeatures": "Inversion → 反转或翻转 → 从"晴天娃娃改变方向后会从晴天变成雨天"这个想法开始制作游戏！我们决定制作一个通过翻转晴天娃娃来改变效果的塔防游戏！",
+    "myResponsibilities": "音频相关类、场景转换类、使用AI生成图像和音频",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/teruteru/teruteru-title.jpg",
+      "images/game/teruteru/teruteru-game.png"
+    ],
+    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
+    "playUrl": "https://unityroom.com/games/teruteru-wars",
+    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2天"
+  },
+  {
+    "title": "暗杀反转",
+    "description": "在2026年3月举办的UnityRoom游戏Jam中制作的作品",
+    "detailedFeatures": "从主题"里(ura/反面)"出发，制作了"翻转瓷砖利用机关，从敌人背后进行暗杀的游戏"。",
+    "myResponsibilities": "所有编程工作",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-title.png",
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-game.png"
+    ],
+    "thumbnailImage": "images/game/hanntenn-ansatu/Ansatu.gif",
+    "playUrl": "https://unityroom.com/games/hanntenn-ansatu",
+    "githubUrl": "https://github.com/wine-5/unity-room-202603",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "1周"
+  },
+  {
+    "title": "The Mask Ball Seeker",
+    "description": "在2026年1月举办的Global Game Jam的作品",
+    "detailedFeatures": "从主题"MASK"出发，与团队成员讨论后，决定制作"在舞会上解决谋杀案的游戏"！全员初次见面，一开始很不安，但最后成功完成了！",
+    "myResponsibilities": "Player设计与实现、NPC实现、部分小游戏实现、音频和场景整体管理类的创建",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-home.png",
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png"
+    ],
+    "thumbnailImage": "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png",
+    "playUrl": "https://unityroom.com/games/the-mask-ball-seeker",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "locked": true,
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "5人",
+    "period": "3天"
+  },
+  {
     "title": "MoreHit2",
     "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品",
     "detailedFeatures": "在UnityRoom游戏Jam中花费1周时间开发的射击游戏。我重点关注敌人和Boss的难度平衡，逐步引入新敌人类型，最后进行Boss战斗。同时还特别关注UI和音效演出，为玩家营造紧迫感。",
