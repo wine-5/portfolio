@@ -75,8 +75,8 @@ class GameUIManager {
                     <span>HP (体力・やる気)</span>
                 </div>
                 <div class="stat-bar-container">
-                    <div class="stat-bar-fill hp-fill" data-value="90"></div>
-                    <span class="stat-value">900/1000</span>
+                    <div class="stat-bar-fill hp-fill" data-value="100"></div>
+                    <span class="stat-value">1000/1000</span>
                 </div>
             </div>
             <div class="stat-bar mp-bar">
@@ -85,8 +85,8 @@ class GameUIManager {
                     <span>MP (想像力)</span>
                 </div>
                 <div class="stat-bar-container">
-                    <div class="stat-bar-fill mp-fill" data-value="70"></div>
-                    <span class="stat-value">700/1000</span>
+                    <div class="stat-bar-fill mp-fill" data-value="80"></div>
+                    <span class="stat-value">800/1000</span>
                 </div>
             </div>
             <div class="stat-bar exp-bar-game">
