@@ -1,20 +1,20 @@
 import { Component } from '../../core/Component';
 import { root } from '@app/composition-root';
-import { FeaturedGameBanner } from './games/FeaturedGameBanner';
+import { GameCarousel } from './games/GameCarousel';
 import { GameList } from './games/GameList';
 
 /**
- * Games セクション: 主役。看板作品 + 制作ゲーム一覧。
+ * Games セクション: 主役。看板作品カルーセル + 制作ゲーム一覧。
  */
 export class GamesSection extends Component {
-  private featured: FeaturedGameBanner | null = null;
+  private carousel: GameCarousel | null = null;
   private gameList: GameList | null = null;
 
   async initialize(): Promise<void> {
     // データをロード
     const entries = await root.getCodexEntries.execute('ja');
 
-    this.featured = new FeaturedGameBanner(entries.filter(e => e.featured));
+    this.carousel = new GameCarousel(entries.filter(e => e.featured));
     this.gameList = new GameList(entries);
   }
 
@@ -29,10 +29,10 @@ export class GamesSection extends Component {
     title.textContent = '🎮 MY GAMES 🎮';
     section.appendChild(title);
 
-    // 看板作品
-    if (this.featured) {
-      const featuredEl = this.featured.render();
-      section.appendChild(featuredEl);
+    // カルーセル（看板作品）
+    if (this.carousel) {
+      const carouselEl = this.carousel.render();
+      section.appendChild(carouselEl);
     }
 
     // ゲーム一覧

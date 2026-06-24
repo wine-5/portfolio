@@ -4,7 +4,7 @@ import { DOT_BOX_STYLES } from './DotBox';
 import { EXP_BAR_STYLES } from './ExpBar';
 import { HUDNav, HUD_NAV_STYLES } from './HUDNav';
 import { GamesSection, GAMES_SECTION_STYLES } from './sections/GamesSection';
-import { FEATURED_BANNER_STYLES } from './sections/games/FeaturedGameBanner';
+import { GAME_CAROUSEL_STYLES } from './sections/games/GameCarousel';
 import { GAME_LIST_STYLES } from './sections/games/GameList';
 import { AboutSection, ABOUT_SECTION_STYLES } from './sections/AboutSection';
 import { SkillsSection, SKILLS_SECTION_STYLES } from './sections/SkillsSection';
@@ -125,7 +125,7 @@ export class App extends Component {
         HUD_NAV_STYLES,
         MAIN_CONTENT_STYLES,
         GAMES_SECTION_STYLES,
-        FEATURED_BANNER_STYLES,
+        GAME_CAROUSEL_STYLES,
         GAME_LIST_STYLES,
         GAME_DETAIL_MODAL_STYLES,
         ABOUT_SECTION_STYLES,
