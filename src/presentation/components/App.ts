@@ -6,6 +6,9 @@ import { HUDNav, HUD_NAV_STYLES } from './HUDNav';
 import { GamesSection, GAMES_SECTION_STYLES } from './sections/GamesSection';
 import { FEATURED_BANNER_STYLES } from './sections/games/FeaturedGameBanner';
 import { GAME_CODEX_STYLES } from './sections/games/GameCodex';
+import { AboutSection, ABOUT_SECTION_STYLES } from './sections/AboutSection';
+import { SkillsSection, SKILLS_SECTION_STYLES } from './sections/SkillsSection';
+import { ContactSection, CONTACT_SECTION_STYLES } from './sections/ContactSection';
 
 /**
  * Main content area styles.
@@ -92,7 +95,22 @@ export class App extends Component {
     const gameEl = gamesSection.render();
     mainContent.appendChild(gameEl);
 
-    // TODO: AboutSection, SkillsSection, ContactSection
+    // About セクション
+    const aboutSection = new AboutSection();
+    await aboutSection.initialize();
+    const aboutEl = aboutSection.render();
+    mainContent.appendChild(aboutEl);
+
+    // Skills セクション
+    const skillsSection = new SkillsSection();
+    await skillsSection.initialize();
+    const skillsEl = skillsSection.render();
+    mainContent.appendChild(skillsEl);
+
+    // Contact セクション
+    const contactSection = new ContactSection();
+    const contactEl = contactSection.render();
+    mainContent.appendChild(contactEl);
   }
 
   private injectGlobalStyles(): void {
@@ -108,6 +126,9 @@ export class App extends Component {
         GAMES_SECTION_STYLES,
         FEATURED_BANNER_STYLES,
         GAME_CODEX_STYLES,
+        ABOUT_SECTION_STYLES,
+        SKILLS_SECTION_STYLES,
+        CONTACT_SECTION_STYLES,
       ].join('\n\n');
       document.head.appendChild(style);
     }
