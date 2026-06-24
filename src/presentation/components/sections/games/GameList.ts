@@ -6,21 +6,65 @@ import { GameDetailModal } from '../../GameDetailModal';
  * ゲーム一覧: 制作したゲームの詳細リスト。
  */
 export class GameList {
+  private sortBy: 'date-desc' | 'date-asc' = 'date-desc';
+
   constructor(private entries: CodexEntryVM[]) {}
 
   render(): HTMLElement {
     const container = document.createElement('div');
     container.className = 'game-list';
 
+    // ヘッダー（タイトル + ソート）
+    const header = document.createElement('div');
+    header.className = 'game-list__header';
+
     const title = document.createElement('h3');
     title.className = 'game-list__title';
     title.textContent = `▸ 制作ゲーム一覧 (${this.entries.length})`;
-    container.appendChild(title);
+    header.appendChild(title);
+
+    // ソートボタン
+    const sortControl = document.createElement('div');
+    sortControl.className = 'game-list__sort';
+
+    const sortLabel = document.createElement('label');
+    sortLabel.className = 'game-list__sort-label';
+    sortLabel.textContent = 'ソート: ';
+
+    const sortSelect = document.createElement('select');
+    sortSelect.className = 'game-list__sort-select';
+    sortSelect.innerHTML = `
+      <option value="date-desc">新しい順</option>
+      <option value="date-asc">古い順</option>
+    `;
+    sortSelect.addEventListener('change', (e) => {
+      this.sortBy = (e.target as HTMLSelectElement).value as typeof this.sortBy;
+      this.updateList(list);
+    });
+
+    sortLabel.appendChild(sortSelect);
+    sortControl.appendChild(sortLabel);
+    header.appendChild(sortControl);
+
+    container.appendChild(header);
 
     const list = document.createElement('div');
     list.className = 'game-list__items';
 
-    this.entries.forEach((entry) => {
+    // ソート済みのエントリーを取得して表示
+    this.updateList(list);
+
+    container.appendChild(list);
+    return container;
+  }
+
+  private updateList(list: HTMLElement): void {
+    // リスト内容をクリア
+    list.innerHTML = '';
+
+    const sortedEntries = this.getSortedEntries();
+
+    sortedEntries.forEach((entry) => {
       const item = document.createElement('div');
       item.className = 'game-list-item';
       item.style.cursor = 'pointer';
@@ -100,9 +144,24 @@ export class GameList {
       item.appendChild(info);
       list.appendChild(item);
     });
+  }
 
-    container.appendChild(list);
-    return container;
+  private getSortedEntries(): CodexEntryVM[] {
+    const entries = [...this.entries];
+
+    // CodexNoでソート（数字を抽出）
+    entries.sort((a, b) => {
+      const numA = parseInt(a.codexNo.replace(/\D/g, '')) || 0;
+      const numB = parseInt(b.codexNo.replace(/\D/g, '')) || 0;
+
+      if (this.sortBy === 'date-desc') {
+        return numB - numA;
+      } else {
+        return numA - numB;
+      }
+    });
+
+    return entries;
   }
 }
 
@@ -114,13 +173,48 @@ export const GAME_LIST_STYLES = `
   margin-bottom: var(--space-12);
 }
 
+.game-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  border-bottom: 2px solid var(--line);
+  padding-bottom: var(--space-2);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
 .game-list__title {
   font-family: var(--font-pixel);
   font-size: var(--fs-lg);
   color: var(--accent);
-  margin-bottom: var(--space-6);
-  border-bottom: 2px solid var(--line);
-  padding-bottom: var(--space-2);
+  margin: 0;
+}
+
+.game-list__sort {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.game-list__sort-label {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.game-list__sort-select {
+  padding: var(--space-1) var(--space-2);
+  border: 2px solid var(--line);
+  background: var(--bg-1);
+  color: var(--ink);
+  font-family: var(--font-pixel);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  border-radius: 0;
 }
 
 .game-list__items {
