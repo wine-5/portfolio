@@ -1,4 +1,4 @@
-import { ContactGateway, ContactMessage } from '../ports/ContactGateway';
+import type { ContactGateway, ContactMessage } from '../ports/ContactGateway';
 
 /**
  * ユースケース: 手紙(問い合わせ)を送信。

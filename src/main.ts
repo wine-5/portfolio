@@ -1,6 +1,7 @@
 import '@presentation/styles/tokens.css';
 import '@presentation/styles/base.css';
 import { root } from '@app/composition-root';
+import { App } from '@presentation/components/App';
 
 /**
  * アプリケーション起動ポイント。
@@ -21,7 +22,12 @@ async function bootstrap() {
     await i18n.loadLanguage(lang);
     i18n.setCurrentLanguage(lang);
 
-    // TODO: Root App Component の初期化
+    // Root App Component をマウント
+    const app = new App();
+    const appRoot = document.getElementById('app');
+    if (appRoot) {
+      app.mount(appRoot);
+    }
 
     console.log('🎮 wine-5 Portfolio ready!');
   } catch (error) {

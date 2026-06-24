@@ -1,5 +1,5 @@
-import { UpdateLogRepository } from '@domain/repositories/UpdateLogRepository';
-import { UpdateLogVM } from '../view-models/UpdateLogVM';
+import type { UpdateLogRepository } from '@domain/repositories/UpdateLogRepository';
+import type { UpdateLogVM } from '../view-models/UpdateLogVM';
 
 /**
  * ユースケース: 更新履歴一覧を取得。

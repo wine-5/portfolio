@@ -1,6 +1,6 @@
 import { Component } from '../core/Component';
 import { TitleScreen, TITLE_SCREEN_STYLES } from './TitleScreen';
-import { DotBox, DOT_BOX_STYLES } from './DotBox';
+import { DOT_BOX_STYLES } from './DotBox';
 import { EXP_BAR_STYLES } from './ExpBar';
 import { HUDNav, HUD_NAV_STYLES } from './HUDNav';
 
@@ -9,7 +9,6 @@ import { HUDNav, HUD_NAV_STYLES } from './HUDNav';
  */
 export class App extends Component {
   private titleScreen: TitleScreen | null = null;
-  private showMainContent = false;
 
   render(): HTMLElement {
     const root = document.createElement('div');
@@ -37,7 +36,7 @@ export class App extends Component {
     return root;
   }
 
-  protected onMounted(): void {
+  override onMounted(): void {
     const titleContainer = document.getElementById('title-container');
     if (titleContainer && this.titleScreen) {
       this.titleScreen.mount(titleContainer);

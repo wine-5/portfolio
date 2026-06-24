@@ -1,4 +1,5 @@
-import { ExperienceLevel, calculateExperienceLevel } from '../value-objects/ExperienceLevel';
+import type { ExperienceLevel } from '../value-objects/ExperienceLevel';
+import { calculateExperienceLevel } from '../value-objects/ExperienceLevel';
 
 /**
  * スキルエンティティ。

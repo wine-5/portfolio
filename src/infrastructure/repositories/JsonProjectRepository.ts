@@ -1,7 +1,7 @@
-import { ProjectRepository } from '@domain/repositories/ProjectRepository';
+import type { ProjectRepository } from '@domain/repositories/ProjectRepository';
 import { Project } from '@domain/entities/Project';
 import { TechStack } from '@domain/value-objects/TechStack';
-import { Category } from '@domain/value-objects/Category';
+import type { Category } from '@domain/value-objects/Category';
 
 /**
  * 実装: JSON ファイルベースのプロジェクトリポジトリ。
@@ -11,7 +11,7 @@ export class JsonProjectRepository implements ProjectRepository {
     const data = await this.fetchJson(`/portfolio/data/locales/${lang}/projects.json`);
     if (!Array.isArray(data)) return [];
 
-    return data.map((raw: any, index) => this.mapToProject(raw, index));
+    return data.map((raw: any) => this.mapToProject(raw));
   }
 
   async getById(id: string, lang: string): Promise<Project | null> {
@@ -19,7 +19,7 @@ export class JsonProjectRepository implements ProjectRepository {
     return projects.find((p) => p.id === id) ?? null;
   }
 
-  private mapToProject(raw: any, index: number): Project {
+  private mapToProject(raw: any): Project {
     const isAwarded = !!raw.award || !!raw.isAwarded;
     const featured = this.determineFeatured(raw);
 

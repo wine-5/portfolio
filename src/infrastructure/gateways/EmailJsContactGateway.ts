@@ -1,4 +1,4 @@
-import { ContactGateway, ContactMessage } from '@application/ports/ContactGateway';
+import type { ContactGateway, ContactMessage } from '@application/ports/ContactGateway';
 
 /**
  * 実装: EmailJS を使用した問い合わせ送信ゲートウェイ。
@@ -6,7 +6,6 @@ import { ContactGateway, ContactMessage } from '@application/ports/ContactGatewa
 export class EmailJsContactGateway implements ContactGateway {
   private serviceId = 'service_a4l75fb';
   private templateId = 'template_hm3yktf';
-  private publicKey = 'n_Bg8sLOFnx8nVJPu';
 
   async sendContactLetter(msg: ContactMessage): Promise<{ success: boolean; messageId?: string }> {
     try {

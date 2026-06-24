@@ -1,5 +1,5 @@
-import { SkillRepository } from '@domain/repositories/SkillRepository';
-import { SkillSheetVM, SkillVM } from '../view-models/SkillVM';
+import type { SkillRepository } from '@domain/repositories/SkillRepository';
+import type { SkillSheetVM, SkillVM } from '../view-models/SkillVM';
 
 /**
  * ユースケース: スキルシート一覧を取得。

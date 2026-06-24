@@ -1,4 +1,4 @@
-import { PreferenceStore, Theme, Language } from '@application/ports/PreferenceStore';
+import type { PreferenceStore, Theme, Language } from '@application/ports/PreferenceStore';
 
 /**
  * 実装: LocalStorage を使用した設定永続化。

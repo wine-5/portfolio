@@ -1,7 +1,7 @@
-import { Category } from '../value-objects/Category';
-import { FeaturedKind } from '../value-objects/FeaturedKind';
+import type { Category } from '../value-objects/Category';
+import type { FeaturedKind } from '../value-objects/FeaturedKind';
 import { TechStack } from '../value-objects/TechStack';
-import { GameStat } from '../value-objects/GameStat';
+import type { GameStat } from '../value-objects/GameStat';
 
 /**
  * ゲーム作品エンティティ。

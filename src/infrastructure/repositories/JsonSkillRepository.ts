@@ -1,14 +1,5 @@
-import { SkillRepository } from '@domain/repositories/SkillRepository';
+import type { SkillRepository } from '@domain/repositories/SkillRepository';
 import { Skill } from '@domain/entities/Skill';
-
-interface SkillDetailsData {
-  [key: string]: {
-    title: string;
-    additionalSkills: string[];
-    projects: string;
-    proficiency: string;
-  };
-}
 
 /**
  * 実装: JSON ベースのスキルリポジトリ。

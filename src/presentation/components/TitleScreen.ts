@@ -38,7 +38,7 @@ export class TitleScreen extends Component {
     return container;
   }
 
-  protected onMounted(): void {
+  override onMounted(): void {
     // 1秒未満で自動遷移
     setTimeout(() => {
       this.onComplete();

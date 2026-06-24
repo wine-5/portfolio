@@ -1,4 +1,4 @@
-import { I18nProvider } from '@application/ports/I18nProvider';
+import type { I18nProvider } from '@application/ports/I18nProvider';
 
 /**
  * 実装: 国際化プロバイダー。

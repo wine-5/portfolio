@@ -1,5 +1,6 @@
 import { Project } from '../entities/Project';
-import { GameStat, calculateGameStat } from '../value-objects/GameStat';
+import type { GameStat } from '../value-objects/GameStat';
+import { calculateGameStat } from '../value-objects/GameStat';
 
 /**
  * ドメインサービス: プロジェクト ゲーム統計計算。

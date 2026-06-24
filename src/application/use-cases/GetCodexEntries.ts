@@ -1,7 +1,8 @@
-import { ProjectRepository } from '@domain/repositories/ProjectRepository';
+import type { ProjectRepository } from '@domain/repositories/ProjectRepository';
 import { CodexCatalog } from '@domain/services/CodexCatalog';
-import { CATEGORY_TYPE_LABEL, isFeatured } from '@domain/value-objects/FeaturedKind';
-import { CodexEntryVM } from '../view-models/CodexEntryVM';
+import { CATEGORY_TYPE_LABEL } from '@domain/value-objects/Category';
+import { isFeatured } from '@domain/value-objects/FeaturedKind';
+import type { CodexEntryVM } from '../view-models/CodexEntryVM';
 
 /**
  * ユースケース: 図鑑一覧を取得。

@@ -4,6 +4,12 @@
  */
 export type FeaturedKind = 'appstore-published' | 'store-coming-soon' | 'none';
 
+export const FEATURED_KIND_LABEL: Record<FeaturedKind, string> = {
+  'appstore-published': 'PLAY NOW',
+  'store-coming-soon': 'COMING SOON',
+  'none': '',
+};
+
 export function isFeatured(kind: FeaturedKind): boolean {
   return kind !== 'none';
 }

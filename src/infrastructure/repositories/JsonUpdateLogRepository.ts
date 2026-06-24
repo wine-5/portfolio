@@ -1,4 +1,4 @@
-import { UpdateLogRepository } from '@domain/repositories/UpdateLogRepository';
+import type { UpdateLogRepository } from '@domain/repositories/UpdateLogRepository';
 import { UpdateLog } from '@domain/entities/UpdateLog';
 
 /**

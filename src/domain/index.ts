@@ -6,7 +6,7 @@ export { UpdateLog } from './entities/UpdateLog';
 
 // Value Objects
 export { type Category, CATEGORY_ORDER, CATEGORY_TYPE_LABEL, isCategory } from './value-objects/Category';
-export { type FeaturedKind, isFeatured, getFeaturedBadgeLabel } from './value-objects/FeaturedKind';
+export { type FeaturedKind, isFeatured, getFeaturedBadgeLabel, FEATURED_KIND_LABEL } from './value-objects/FeaturedKind';
 export { type ExperienceLevel, calculateExperienceLevel } from './value-objects/ExperienceLevel';
 export { CodexNo } from './value-objects/CodexNo';
 export { type GameStat, calculateGameStat } from './value-objects/GameStat';

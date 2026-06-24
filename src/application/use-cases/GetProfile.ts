@@ -1,5 +1,5 @@
-import { ProfileRepository } from '@domain/repositories/ProfileRepository';
-import { ProfileVM } from '../view-models/ProfileVM';
+import type { ProfileRepository } from '@domain/repositories/ProfileRepository';
+import type { ProfileVM } from '../view-models/ProfileVM';
 
 /**
  * ユースケース: プロフィールを取得。

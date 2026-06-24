@@ -1,8 +1,8 @@
-import { ProjectRepository } from '@domain/repositories/ProjectRepository';
+import type { ProjectRepository } from '@domain/repositories/ProjectRepository';
 import { ProjectGameStatService } from '@domain/services/ProjectGameStatService';
 import { CodexCatalog } from '@domain/services/CodexCatalog';
-import { GameDetailVM } from '../view-models/GameDetailVM';
-import { CATEGORY_TYPE_LABEL } from '@domain/value-objects/FeaturedKind';
+import type { GameDetailVM } from '../view-models/GameDetailVM';
+import { CATEGORY_TYPE_LABEL } from '@domain/value-objects/Category';
 
 /**
  * ユースケース: 単一ゲームの詳細情報を取得。
