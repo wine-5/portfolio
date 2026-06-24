@@ -1,4 +1,5 @@
 import type { CodexEntryVM } from '@application/index';
+import { Game3DIcon, GAME_3D_ICON_STYLES } from '../../Game3DIcon';
 
 /**
  * ゲームカルーセル: スライダー形式の看板作品表示。
@@ -31,6 +32,12 @@ export class GameCarousel {
       thumbnail.alt = game.title;
       thumbnail.className = 'game-carousel__image';
       slide.appendChild(thumbnail);
+
+      // 3Dアイコン
+      const iconComponent = new Game3DIcon();
+      const iconEl = iconComponent.render(game.thumbnailUrl, game.title);
+      iconEl.className = 'game-carousel__3d-icon';
+      slide.appendChild(iconEl);
 
       // オーバーレイ
       const overlay = document.createElement('div');
@@ -164,6 +171,9 @@ export class GameCarousel {
  * GameCarousel CSS。
  */
 export const GAME_CAROUSEL_STYLES = `
+${GAME_3D_ICON_STYLES}
+
+
 .game-carousel {
   position: relative;
   width: 100%;
@@ -200,6 +210,13 @@ export const GAME_CAROUSEL_STYLES = `
   height: 100%;
   object-fit: cover;
   image-rendering: pixelated;
+}
+
+.game-carousel__3d-icon {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 15;
 }
 
 .game-carousel__overlay {
