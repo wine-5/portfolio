@@ -7,6 +7,7 @@ import { GameDetailModal } from '../../GameDetailModal';
  */
 export class GameList {
   private sortBy: 'date-desc' | 'date-asc' = 'date-desc';
+  private filterBy: 'all' | string = 'all';
 
   constructor(private entries: CodexEntryVM[]) {}
 
@@ -23,16 +24,50 @@ export class GameList {
     title.textContent = `▸ 制作ゲーム一覧 (${this.entries.length})`;
     header.appendChild(title);
 
-    // ソートボタン
-    const sortControl = document.createElement('div');
-    sortControl.className = 'game-list__sort';
+    // コントロール
+    const controls = document.createElement('div');
+    controls.className = 'game-list__controls';
+
+    // フィルター
+    const filterDiv = document.createElement('div');
+    filterDiv.className = 'game-list__filter';
+
+    const filterLabel = document.createElement('label');
+    filterLabel.className = 'game-list__label';
+    filterLabel.textContent = 'フィルター: ';
+
+    const filterSelect = document.createElement('select');
+    filterSelect.className = 'game-list__select';
+
+    // カテゴリを収集
+    const categories = new Set(this.entries.map(e => e.category));
+    filterSelect.innerHTML = '<option value="all">すべて</option>';
+    categories.forEach(cat => {
+      const opt = document.createElement('option');
+      opt.value = cat;
+      opt.textContent = cat;
+      filterSelect.appendChild(opt);
+    });
+
+    filterSelect.addEventListener('change', (e) => {
+      this.filterBy = (e.target as HTMLSelectElement).value;
+      this.updateList(list);
+    });
+
+    filterLabel.appendChild(filterSelect);
+    filterDiv.appendChild(filterLabel);
+    controls.appendChild(filterDiv);
+
+    // ソート
+    const sortDiv = document.createElement('div');
+    sortDiv.className = 'game-list__sort';
 
     const sortLabel = document.createElement('label');
-    sortLabel.className = 'game-list__sort-label';
+    sortLabel.className = 'game-list__label';
     sortLabel.textContent = 'ソート: ';
 
     const sortSelect = document.createElement('select');
-    sortSelect.className = 'game-list__sort-select';
+    sortSelect.className = 'game-list__select';
     sortSelect.innerHTML = `
       <option value="date-desc">新しい順</option>
       <option value="date-asc">古い順</option>
@@ -43,8 +78,10 @@ export class GameList {
     });
 
     sortLabel.appendChild(sortSelect);
-    sortControl.appendChild(sortLabel);
-    header.appendChild(sortControl);
+    sortDiv.appendChild(sortLabel);
+    controls.appendChild(sortDiv);
+
+    header.appendChild(controls);
 
     container.appendChild(header);
 
@@ -147,10 +184,14 @@ export class GameList {
   }
 
   private getSortedEntries(): CodexEntryVM[] {
-    const entries = [...this.entries];
+    // フィルター
+    let entries = this.entries.filter(entry => {
+      if (this.filterBy === 'all') return true;
+      return entry.category === this.filterBy;
+    });
 
-    // CodexNoでソート（数字を抽出）
-    entries.sort((a, b) => {
+    // ソート: CodexNoでソート（数字を抽出）
+    entries = [...entries].sort((a, b) => {
       const numA = parseInt(a.codexNo.replace(/\D/g, '')) || 0;
       const numB = parseInt(b.codexNo.replace(/\D/g, '')) || 0;
 
@@ -176,10 +217,10 @@ export const GAME_LIST_STYLES = `
 .game-list__header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: var(--space-6);
   border-bottom: 2px solid var(--line);
-  padding-bottom: var(--space-2);
+  padding-bottom: var(--space-3);
   flex-wrap: wrap;
   gap: var(--space-4);
 }
@@ -189,24 +230,30 @@ export const GAME_LIST_STYLES = `
   font-size: var(--fs-lg);
   color: var(--accent);
   margin: 0;
+  flex: 1;
 }
 
-.game-list__sort {
+.game-list__controls {
   display: flex;
-  align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
-.game-list__sort-label {
-  font-family: var(--font-pixel);
-  font-size: var(--fs-sm);
-  color: var(--ink);
+.game-list__filter,
+.game-list__sort {
   display: flex;
   align-items: center;
   gap: var(--space-1);
 }
 
-.game-list__sort-select {
+.game-list__label {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.game-list__select {
   padding: var(--space-1) var(--space-2);
   border: 2px solid var(--line);
   background: var(--bg-1);
@@ -215,6 +262,12 @@ export const GAME_LIST_STYLES = `
   font-size: var(--fs-sm);
   cursor: pointer;
   border-radius: 0;
+  min-width: 120px;
+}
+
+.game-list__select:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
 .game-list__items {
