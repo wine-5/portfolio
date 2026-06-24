@@ -1,21 +1,21 @@
 import { Component } from '../../core/Component';
 import { root } from '@app/composition-root';
 import { FeaturedGameBanner } from './games/FeaturedGameBanner';
-import { GameCodex } from './games/GameCodex';
+import { GameList } from './games/GameList';
 
 /**
- * Games セクション: 主役。図鑑風の作品一覧。
+ * Games セクション: 主役。看板作品 + 制作ゲーム一覧。
  */
 export class GamesSection extends Component {
   private featured: FeaturedGameBanner | null = null;
-  private codex: GameCodex | null = null;
+  private gameList: GameList | null = null;
 
   async initialize(): Promise<void> {
     // データをロード
     const entries = await root.getCodexEntries.execute('ja');
 
     this.featured = new FeaturedGameBanner(entries.filter(e => e.featured));
-    this.codex = new GameCodex(entries);
+    this.gameList = new GameList(entries);
   }
 
   render(): HTMLElement {
@@ -26,7 +26,7 @@ export class GamesSection extends Component {
     // タイトル
     const title = document.createElement('h2');
     title.className = 'section__title games-section__title';
-    title.textContent = '🎮 GAMES CODEX 🎮';
+    title.textContent = '🎮 MY GAMES 🎮';
     section.appendChild(title);
 
     // 看板作品
@@ -35,10 +35,10 @@ export class GamesSection extends Component {
       section.appendChild(featuredEl);
     }
 
-    // 図鑑
-    if (this.codex) {
-      const codexEl = this.codex.render();
-      section.appendChild(codexEl);
+    // ゲーム一覧
+    if (this.gameList) {
+      const listEl = this.gameList.render();
+      section.appendChild(listEl);
     }
 
     return section;
