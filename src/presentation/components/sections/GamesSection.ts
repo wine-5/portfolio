@@ -63,7 +63,11 @@ export const GAMES_SECTION_STYLES = `
 
 .section__title {
   font-family: var(--font-pixel);
-  color: var(--ink);
+  color: var(--accent);
   margin-bottom: var(--space-6);
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 `;
