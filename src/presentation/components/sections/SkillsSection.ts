@@ -70,7 +70,7 @@ export class SkillsSection extends Component {
  */
 export const SKILLS_SECTION_STYLES = `
 .skills-section {
-  background: var(--bg-1);
+  background: transparent;
 }
 
 .skills-grid {

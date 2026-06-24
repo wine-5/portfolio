@@ -50,7 +50,7 @@ export class GamesSection extends Component {
  */
 export const GAMES_SECTION_STYLES = `
 .games-section {
-  background: var(--bg-1);
+  background: transparent;
 }
 
 .games-section__title {

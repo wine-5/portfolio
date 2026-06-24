@@ -99,7 +99,7 @@ export class AboutSection extends Component {
  */
 export const ABOUT_SECTION_STYLES = `
 .about-section {
-  background: var(--bg-0);
+  background: transparent;
 }
 
 .about-card {

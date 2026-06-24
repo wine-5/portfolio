@@ -109,7 +109,7 @@ export class ContactSection extends Component {
  */
 export const CONTACT_SECTION_STYLES = `
 .contact-section {
-  background: var(--bg-0);
+  background: transparent;
 }
 
 .contact-container {

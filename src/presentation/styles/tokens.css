@@ -81,7 +81,7 @@
   --accent-2: #c850c0;      /* 副アクセント */
   --select: #f5c542;        /* メニュー選択カーソル */
   --window-shadow: rgba(0, 0, 0, 0.6);
-  --scanline: rgba(255, 255, 255, 0.025);
+  --scanline: rgba(255, 255, 255, 0.005);
   --sky-grad: radial-gradient(circle at 70% 18%, #2a2660 0%, #0b0a1a 60%);
 }
 
@@ -102,6 +102,6 @@
   --accent-2: #c026a8;
   --select: #e6a800;
   --window-shadow: rgba(40, 60, 120, 0.25);
-  --scanline: rgba(0, 0, 0, 0.02);
+  --scanline: rgba(0, 0, 0, 0.003);
   --sky-grad: radial-gradient(circle at 70% 14%, #fff6c8 0%, #bfe0ff 55%, #9ccbff 100%);
 }

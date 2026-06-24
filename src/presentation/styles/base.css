@@ -50,9 +50,9 @@ body::after {
   background: repeating-linear-gradient(
     to bottom,
     transparent 0,
-    transparent 3px,
-    var(--scanline) 3px,
-    var(--scanline) 4px
+    transparent 4px,
+    var(--scanline) 4px,
+    var(--scanline) 4.5px
   );
 }
 
@@ -110,8 +110,15 @@ ul { list-style: none; }
 }
 
 .section {
-  padding-block: var(--space-12);
+  padding-block: var(--space-12) var(--space-12);
+  margin-bottom: var(--space-8);
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: clamp(3rem, 8vh, 6rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
