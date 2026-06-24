@@ -1,0 +1,36 @@
+[
+  {
+    "id": "maintenance-example",
+    "type": "maintenance",
+    "priority": "high",
+    "publishDate": "2025-10-23",
+    "expireDate": "2025-10-24",
+    "title": "サーバーメンテナンスのお知らせ",
+    "description": "サーバーメンテナンスのため、2025年10月24日 午前2時〜午前4時の間、サイトが一時的にアクセスできなくなります。",
+    "icon": "🔧",
+    "showBanner": true
+  },
+  {
+    "id": "new-game-release",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2025-10-20",
+    "expireDate": null,
+    "title": "新作ゲーム「蝶々反乱」を追加",
+    "description": "Sapporo Game Camp2025で制作したアクションゲーム「蝶々反乱」をポートフォリオに追加しました。",
+    "icon": "🎮",
+    "showBanner": false,
+    "link": "#games"
+  },
+  {
+    "id": "site-redesign",
+    "type": "announcement",
+    "priority": "low",
+    "publishDate": "2025-10-15",
+    "expireDate": null,
+    "title": "サイトデザインをリニューアル",
+    "description": "ポートフォリオサイトのデザインを一新しました。多言語対応とダークモード切り替え機能を追加しました。",
+    "icon": "✨",
+    "showBanner": false
+  }
+]

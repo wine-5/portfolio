@@ -1,0 +1,36 @@
+[
+  {
+    "id": "maintenance-example",
+    "type": "maintenance",
+    "priority": "high",
+    "publishDate": "2025-10-23",
+    "expireDate": "2025-10-24",
+    "title": "Server Maintenance Notice",
+    "description": "Due to server maintenance, the site will be temporarily unavailable from 2:00 AM to 4:00 AM on October 24, 2025.",
+    "icon": "🔧",
+    "showBanner": true
+  },
+  {
+    "id": "new-game-release",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2025-10-20",
+    "expireDate": null,
+    "title": "New Game \"Butterfly Rebellion\" Added",
+    "description": "Added the action game \"Butterfly Rebellion\" created at Sapporo Game Camp 2025 to the portfolio.",
+    "icon": "🎮",
+    "showBanner": false,
+    "link": "#games"
+  },
+  {
+    "id": "site-redesign",
+    "type": "announcement",
+    "priority": "low",
+    "publishDate": "2025-10-15",
+    "expireDate": null,
+    "title": "Site Design Renewed",
+    "description": "Redesigned the portfolio site. Added multilingual support and dark mode toggle feature.",
+    "icon": "✨",
+    "showBanner": false
+  }
+]
