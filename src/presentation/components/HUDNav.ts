@@ -1,8 +1,11 @@
+import { ThemeToggle, THEME_TOGGLE_STYLES } from './ThemeToggle';
+import { LanguageToggle, LANGUAGE_TOGGLE_STYLES } from './LanguageToggle';
+
 /**
- * HUDナビゲーション: 上部バー、HP/MPステータス表示。
+ * HUDナビゲーション: 上部バー、HP/MPステータス表示、テーマ・言語切替。
  */
 export class HUDNav {
-  render(): HTMLElement {
+  async render(): Promise<HTMLElement> {
     const nav = document.createElement('nav');
     nav.className = 'hud-nav';
 
@@ -30,6 +33,10 @@ export class HUDNav {
     });
     nav.appendChild(menu);
 
+    // ステータス + コントロール
+    const rightArea = document.createElement('div');
+    rightArea.className = 'hud-nav__right';
+
     // ステータス
     const status = document.createElement('div');
     status.className = 'hud-nav__status';
@@ -38,16 +45,34 @@ export class HUDNav {
       <span class="hud-nav__stat">HP<span class="stat-bar">████░</span></span>
       <span class="hud-nav__stat">MP<span class="stat-bar">███░░</span></span>
     `;
-    nav.appendChild(status);
+    rightArea.appendChild(status);
+
+    // テーマ・言語切替
+    const controls = document.createElement('div');
+    controls.className = 'hud-nav__controls';
+
+    const themeToggle = new ThemeToggle();
+    await themeToggle.initialize();
+    controls.appendChild(themeToggle.render());
+
+    const langToggle = new LanguageToggle();
+    await langToggle.initialize();
+    controls.appendChild(langToggle.render());
+
+    rightArea.appendChild(controls);
+    nav.appendChild(rightArea);
 
     return nav;
   }
 }
 
 /**
- * HUDNav CSS。
+ * HUDNav CSS (含むテーマ・言語切替)。
  */
 export const HUD_NAV_STYLES = `
+${THEME_TOGGLE_STYLES}
+
+${LANGUAGE_TOGGLE_STYLES}
 .hud-nav {
   position: sticky;
   top: 0;
@@ -101,15 +126,27 @@ export const HUD_NAV_STYLES = `
   border-bottom-color: var(--select);
 }
 
+.hud-nav__right {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  flex-shrink: 0;
+  border-left: 1px solid var(--line-soft);
+  padding-left: var(--space-4);
+}
+
 .hud-nav__status {
   display: flex;
   gap: var(--space-3);
   align-items: center;
-  flex-shrink: 0;
   font-size: var(--fs-xs);
   color: var(--ink-dim);
-  border-left: 1px solid var(--line-soft);
-  padding-left: var(--space-3);
+}
+
+.hud-nav__controls {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
 }
 
 .hud-nav__level {

@@ -80,7 +80,7 @@ export class App extends Component {
   private async renderMainContent(container: HTMLElement): Promise<void> {
     // HUDNavを追加
     const hudNav = new HUDNav();
-    const navEl = hudNav.render();
+    const navEl = await hudNav.render();
     container.appendChild(navEl);
 
     // Main contentエリア
