@@ -1,5 +1,6 @@
 import type { CodexEntryVM } from '@application/index';
 import { root } from '@app/composition-root';
+import { GameDetailModal } from '../../GameDetailModal';
 
 /**
  * ゲーム一覧: 制作したゲームの詳細リスト。
@@ -88,8 +89,8 @@ export class GameList {
       detailBtn.addEventListener('click', async () => {
         const detail = await root.getGameDetail.execute(entry.id, 'ja');
         if (detail) {
-          console.log('Game Detail:', detail);
-          // TODO: モーダルで詳細表示
+          const modal = new GameDetailModal(detail);
+          modal.show();
         }
       });
       actions.appendChild(detailBtn);

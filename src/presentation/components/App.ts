@@ -9,6 +9,7 @@ import { GAME_LIST_STYLES } from './sections/games/GameList';
 import { AboutSection, ABOUT_SECTION_STYLES } from './sections/AboutSection';
 import { SkillsSection, SKILLS_SECTION_STYLES } from './sections/SkillsSection';
 import { ContactSection, CONTACT_SECTION_STYLES } from './sections/ContactSection';
+import { GAME_DETAIL_MODAL_STYLES } from './GameDetailModal';
 
 /**
  * Main content area styles.
@@ -126,6 +127,7 @@ export class App extends Component {
         GAMES_SECTION_STYLES,
         FEATURED_BANNER_STYLES,
         GAME_LIST_STYLES,
+        GAME_DETAIL_MODAL_STYLES,
         ABOUT_SECTION_STYLES,
         SKILLS_SECTION_STYLES,
         CONTACT_SECTION_STYLES,
