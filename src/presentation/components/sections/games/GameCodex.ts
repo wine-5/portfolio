@@ -87,21 +87,23 @@ export const GAME_CODEX_STYLES = `
 }
 
 .codex-card {
-  border: 2px solid var(--line);
+  border: 3px solid var(--line);
   background: var(--bg-window);
   padding: var(--space-2);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 150ms;
+  transition: all 150ms ease-out;
   box-shadow: var(--window-shadow);
+  width: 140px;
 }
 
 .codex-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-4px);
   border-color: var(--select);
-  box-shadow: 0 0 8px var(--accent);
+  box-shadow: 0 8px 16px var(--accent);
+  background: var(--bg-2);
 }
 
 .codex-card__no {
@@ -114,9 +116,10 @@ export const GAME_CODEX_STYLES = `
 .codex-card__thumb {
   width: 100%;
   height: 100px;
+  aspect-ratio: 1;
   object-fit: cover;
   image-rendering: pixelated;
-  border: 1px solid var(--line-soft);
+  border: 2px solid var(--line);
   margin-bottom: var(--space-2);
 }
 
