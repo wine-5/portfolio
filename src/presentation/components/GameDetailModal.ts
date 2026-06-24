@@ -161,6 +161,24 @@ export class GameDetailModal {
       info.appendChild(techSection);
     }
 
+    // 詳細機能
+    if (this.detail.detailedFeatures) {
+      const featuresSection = document.createElement('div');
+      featuresSection.className = 'game-detail-section';
+
+      const featuresLabel = document.createElement('h4');
+      featuresLabel.className = 'game-detail-section__label';
+      featuresLabel.textContent = 'ゲーム詳細';
+      featuresSection.appendChild(featuresLabel);
+
+      const featuresText = document.createElement('p');
+      featuresText.className = 'game-detail-section__text';
+      featuresText.textContent = this.detail.detailedFeatures;
+      featuresSection.appendChild(featuresText);
+
+      info.appendChild(featuresSection);
+    }
+
     // 担当
     if (this.detail.myResponsibilities) {
       const respSection = document.createElement('div');
@@ -177,6 +195,56 @@ export class GameDetailModal {
       respSection.appendChild(respText);
 
       info.appendChild(respSection);
+    }
+
+    // プロジェクト情報
+    const projectInfo = document.createElement('div');
+    projectInfo.className = 'game-detail-project-info';
+
+    if (this.detail.teamSize) {
+      const teamDiv = document.createElement('div');
+      teamDiv.className = 'game-detail-project-item';
+      const teamLabel = document.createElement('span');
+      teamLabel.className = 'game-detail-project-label';
+      teamLabel.textContent = 'チームサイズ:';
+      const teamValue = document.createElement('span');
+      teamValue.className = 'game-detail-project-value';
+      teamValue.textContent = `${this.detail.teamSize}人`;
+      teamDiv.appendChild(teamLabel);
+      teamDiv.appendChild(teamValue);
+      projectInfo.appendChild(teamDiv);
+    }
+
+    if (this.detail.durationDays) {
+      const durationDiv = document.createElement('div');
+      durationDiv.className = 'game-detail-project-item';
+      const durationLabel = document.createElement('span');
+      durationLabel.className = 'game-detail-project-label';
+      durationLabel.textContent = '開発期間:';
+      const durationValue = document.createElement('span');
+      durationValue.className = 'game-detail-project-value';
+      durationValue.textContent = `${this.detail.durationDays}日間`;
+      durationDiv.appendChild(durationLabel);
+      durationDiv.appendChild(durationValue);
+      projectInfo.appendChild(durationDiv);
+    }
+
+    if (this.detail.year) {
+      const yearDiv = document.createElement('div');
+      yearDiv.className = 'game-detail-project-item';
+      const yearLabel = document.createElement('span');
+      yearLabel.className = 'game-detail-project-label';
+      yearLabel.textContent = '学年:';
+      const yearValue = document.createElement('span');
+      yearValue.className = 'game-detail-project-value';
+      yearValue.textContent = this.detail.year;
+      yearDiv.appendChild(yearLabel);
+      yearDiv.appendChild(yearValue);
+      projectInfo.appendChild(yearDiv);
+    }
+
+    if (projectInfo.children.length > 0) {
+      info.appendChild(projectInfo);
     }
 
     // リンク
@@ -420,6 +488,34 @@ export const GAME_DETAIL_MODAL_STYLES = `
   color: var(--accent);
   font-family: var(--font-pixel);
   font-size: var(--fs-xs);
+}
+
+.game-detail-project-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--bg-1);
+  border: 1px solid var(--line-soft);
+}
+
+.game-detail-project-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.game-detail-project-label {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-xs);
+  color: var(--ink-dim);
+}
+
+.game-detail-project-value {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-base);
+  color: var(--accent);
+  font-weight: bold;
 }
 
 .game-detail-links {
