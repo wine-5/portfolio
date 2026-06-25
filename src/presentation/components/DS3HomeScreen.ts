@@ -988,6 +988,24 @@ export class DS3HomeScreen extends Component {
           </div>
         </div>
       </div>
+      <div class="ds3-about__info">
+        <div class="ds3-about__info-row">
+          <span class="ds3-about__info-label">名前:</span>
+          <span class="ds3-about__info-value">今多悠人</span>
+        </div>
+        <div class="ds3-about__info-row">
+          <span class="ds3-about__info-label">学校:</span>
+          <span class="ds3-about__info-value">札幌デザイン&amp;テクノロジー<br>専門学校</span>
+        </div>
+        <div class="ds3-about__info-row">
+          <span class="ds3-about__info-label">学年:</span>
+          <span class="ds3-about__info-value">3年生</span>
+        </div>
+        <div class="ds3-about__info-row">
+          <span class="ds3-about__info-label">専攻:</span>
+          <span class="ds3-about__info-value">スーパーゲーム<br>クリエイター専攻</span>
+        </div>
+      </div>
       <p class="ds3-about__desc">${this.profile.description}</p>
     `;
     return el;
@@ -1280,9 +1298,38 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-about__lv b { color: var(--c-gold); }
 .ds3-about__hp span { color: var(--c-hp); }
 .ds3-about__mp span { color: var(--c-mp); }
+.ds3-about__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 0;
+  border: 1px solid rgba(100, 160, 255, 0.15);
+  border-radius: 4px;
+  padding: 8px 10px;
+  background: rgba(0, 25, 65, 0.3);
+}
+
+.ds3-about__info-row {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.ds3-about__info-label {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.ds3-about__info-value {
+  color: var(--ink);
+}
+
 .ds3-about__desc {
-  font-size: 0.8rem; color: var(--ink); line-height: 1.6; margin: 0;
-  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 0.75rem; color: var(--ink); line-height: 1.5; margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 
 /* ---- CONTACT (top) ---- */
