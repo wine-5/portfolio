@@ -170,6 +170,132 @@ export class DS3HomeScreen extends Component {
     document.dispatchEvent(event);
   }
 
+  private showGameGalleryModal(detail: GameDetailVM): void {
+    // ギャラリーモーダルバックドロップ
+    const backdrop = document.createElement('div');
+    backdrop.className = 'ds3-gallery-backdrop';
+
+    // ギャラリーコンテナ
+    const modal = document.createElement('div');
+    modal.className = 'ds3-gallery-modal';
+
+    // クローズボタン
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'ds3-gallery__close';
+    closeBtn.textContent = '✕';
+    closeBtn.addEventListener('click', () => backdrop.remove());
+    modal.appendChild(closeBtn);
+
+    // メディアコンテナ
+    const mediaContainer = document.createElement('div');
+    mediaContainer.className = 'ds3-gallery__media';
+
+    let currentMediaIndex = 0;
+    const allMedia = detail.imageUrls.map(url => ({ type: 'image', url }));
+
+    // メインメディア表示関数
+    const showMedia = (index: number) => {
+      mediaContainer.innerHTML = '';
+      const media = allMedia[index];
+      if (media.type === 'image') {
+        const img = document.createElement('img');
+        img.src = media.url;
+        img.alt = detail.title;
+        img.className = 'ds3-gallery__main-img';
+        mediaContainer.appendChild(img);
+      }
+    };
+
+    showMedia(0);
+    modal.appendChild(mediaContainer);
+
+    let indicatorContainer: HTMLElement | null = null;
+    const updateIndicators = () => {
+      if (!indicatorContainer) return;
+      const indicators = indicatorContainer.querySelectorAll('.ds3-gallery__indicator');
+      indicators.forEach((ind: Element, idx: number) => {
+        if (idx === currentMediaIndex) {
+          ind.classList.add('ds3-gallery__indicator--active');
+        } else {
+          ind.classList.remove('ds3-gallery__indicator--active');
+        }
+      });
+    };
+
+    // サムネイル/インジケーター
+    if (allMedia.length > 1) {
+      indicatorContainer = document.createElement('div');
+      indicatorContainer.className = 'ds3-gallery__indicators';
+
+      allMedia.forEach((_, index) => {
+        const indicator = document.createElement('button');
+        indicator.className = 'ds3-gallery__indicator';
+        if (index === 0) indicator.classList.add('ds3-gallery__indicator--active');
+        indicator.addEventListener('click', () => {
+          currentMediaIndex = index;
+          showMedia(index);
+          updateIndicators();
+        });
+        indicatorContainer!.appendChild(indicator);
+      });
+
+      modal.appendChild(indicatorContainer);
+
+      // 矢印キーで切り替え
+      const handleKeydown = (e: KeyboardEvent) => {
+        if (e.key === 'ArrowLeft') {
+          currentMediaIndex = (currentMediaIndex - 1 + allMedia.length) % allMedia.length;
+          showMedia(currentMediaIndex);
+          updateIndicators();
+        } else if (e.key === 'ArrowRight') {
+          currentMediaIndex = (currentMediaIndex + 1) % allMedia.length;
+          showMedia(currentMediaIndex);
+          updateIndicators();
+        } else if (e.key === 'Escape') {
+          backdrop.remove();
+          document.removeEventListener('keydown', handleKeydown);
+        }
+      };
+
+      document.addEventListener('keydown', handleKeydown);
+
+      // ナビゲーションボタン
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'ds3-gallery__nav-btn ds3-gallery__nav-btn--prev';
+      prevBtn.textContent = '◀';
+      prevBtn.addEventListener('click', () => {
+        currentMediaIndex = (currentMediaIndex - 1 + allMedia.length) % allMedia.length;
+        showMedia(currentMediaIndex);
+        updateIndicators();
+      });
+      modal.appendChild(prevBtn);
+
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'ds3-gallery__nav-btn ds3-gallery__nav-btn--next';
+      nextBtn.textContent = '▶';
+      nextBtn.addEventListener('click', () => {
+        currentMediaIndex = (currentMediaIndex + 1) % allMedia.length;
+        showMedia(currentMediaIndex);
+        updateIndicators();
+      });
+      modal.appendChild(nextBtn);
+    }
+
+    backdrop.appendChild(modal);
+
+    // バックドロップクリックで閉じる
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) backdrop.remove();
+    });
+
+    document.body.appendChild(backdrop);
+
+    // フェードイン
+    setTimeout(() => {
+      backdrop.style.opacity = '1';
+    }, 10);
+  }
+
   private showGameDetailModal(detail: GameDetailVM): void {
     // モーダルバックドロップ
     const backdrop = document.createElement('div');
@@ -733,6 +859,13 @@ export class DS3HomeScreen extends Component {
         <button class="ds3-game__detail-btn">詳細を見る ▸</button>
       </div>
     `;
+
+    // 画像をクリック可能にする
+    const gameImg = el.querySelector('.ds3-game__img') as HTMLImageElement;
+    if (gameImg && d.imageUrls.length > 0) {
+      gameImg.style.cursor = 'pointer';
+      gameImg.addEventListener('click', () => this.showGameGalleryModal(d));
+    }
 
     // 詳細ボタンのイベントリスナー
     const detailBtn = el.querySelector('.ds3-game__detail-btn') as HTMLElement;
@@ -1760,6 +1893,133 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-slide-pad-r-inner {
   width: 18px; height: 18px;
   background: #3a3a3a; border-radius: 50%; border: 1px solid #222;
+}
+
+/* ===== GALLERY MODAL ===== */
+.ds3-gallery-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+.ds3-gallery-modal {
+  position: relative;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: gallerySlideIn 300ms ease-out;
+}
+
+@keyframes gallerySlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ds3-gallery__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 150ms;
+}
+
+.ds3-gallery__close:hover {
+  transform: scale(1.3);
+}
+
+.ds3-gallery__media {
+  width: 100%;
+  max-width: 90vw;
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds3-gallery__main-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border: 3px solid var(--line);
+}
+
+.ds3-gallery__indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.ds3-gallery__indicator {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent);
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 150ms;
+}
+
+.ds3-gallery__indicator--active {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.ds3-gallery__indicator:hover {
+  transform: scale(1.2);
+}
+
+.ds3-gallery__nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 150ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.ds3-gallery__nav-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+.ds3-gallery__nav-btn--prev {
+  left: 16px;
+}
+
+.ds3-gallery__nav-btn--next {
+  right: 16px;
 }
 
 /* ===== GAME DETAIL MODAL ===== */
