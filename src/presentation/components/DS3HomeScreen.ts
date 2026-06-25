@@ -838,7 +838,10 @@ export class DS3HomeScreen extends Component {
       if (idx === 0) {
         card.classList.add('ds3-game-card-sel', 'ds3-focused');
       }
+      const detail = this.gameDetails.get(entry.id);
+      const awardBadge = detail?.awardTitle ? `<div class="ds3-game-card__award">★ ${detail.awardTitle}</div>` : '';
       card.innerHTML = `
+        ${awardBadge}
         <img src="${entry.thumbnailUrl}" alt="${entry.title}" class="ds3-game-card__thumb">
         <span class="ds3-game-card__title">${entry.title}</span>
       `;
@@ -1737,6 +1740,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 
 .ds3-game-card {
+  position: relative;
   display: flex; flex-direction: column; align-items: center; gap: 3px;
   background: rgba(0, 25, 65, 0.5);
   border: 1px solid rgba(100, 160, 255, 0.12);
@@ -1752,6 +1756,20 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-game-card.ds3-focused {
   box-shadow: 0 0 12px rgba(100, 160, 255, 0.8), inset 0 0 8px rgba(100, 160, 255, 0.3);
   border-color: rgba(100, 180, 255, 0.8);
+}
+
+.ds3-game-card__award {
+  position: absolute;
+  top: 2px; left: 2px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #333;
+  font-size: 6px; font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 2px;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .ds3-game-card__thumb {

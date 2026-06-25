@@ -29,5 +29,6 @@ export interface GameDetailVM {
 
   // 受賞・看板フラグ
   isAwarded: boolean;
+  awardTitle?: string;
   featuredBadge?: string;
 }

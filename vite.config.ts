@@ -4,6 +4,11 @@ import { fileURLToPath, URL } from 'node:url';
 // GitHub Pages project site: https://wine-5.github.io/portfolio/
 export default defineConfig({
   base: '/portfolio/',
+  server: {
+    open: true,
+    host: 'localhost',
+    port: 5173,
+  },
   resolve: {
     alias: {
       '@domain': fileURLToPath(new URL('./src/domain', import.meta.url)),

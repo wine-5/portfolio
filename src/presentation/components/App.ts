@@ -2,14 +2,6 @@ import { Component } from '../core/Component';
 import { TitleScreen, TITLE_SCREEN_STYLES } from './TitleScreen';
 import { DOT_BOX_STYLES } from './DotBox';
 import { EXP_BAR_STYLES } from './ExpBar';
-import { HUD_NAV_STYLES } from './HUDNav';
-import { GAMES_SECTION_STYLES } from './sections/GamesSection';
-import { GAME_CAROUSEL_STYLES } from './sections/games/GameCarousel';
-import { GAME_LIST_STYLES } from './sections/games/GameList';
-import { ABOUT_SECTION_STYLES } from './sections/AboutSection';
-import { SKILLS_SECTION_STYLES } from './sections/SkillsSection';
-import { CONTACT_SECTION_STYLES } from './sections/ContactSection';
-import { GAME_DETAIL_MODAL_STYLES } from './GameDetailModal';
 import { DS3HomeScreen, DS3_HOME_SCREEN_STYLES } from './DS3HomeScreen';
 
 /**
@@ -79,15 +71,7 @@ export class App extends Component {
         TITLE_SCREEN_STYLES,
         DOT_BOX_STYLES,
         EXP_BAR_STYLES,
-        HUD_NAV_STYLES,
         DS3_HOME_SCREEN_STYLES,
-        GAMES_SECTION_STYLES,
-        GAME_CAROUSEL_STYLES,
-        GAME_LIST_STYLES,
-        GAME_DETAIL_MODAL_STYLES,
-        ABOUT_SECTION_STYLES,
-        SKILLS_SECTION_STYLES,
-        CONTACT_SECTION_STYLES,
       ].join('\n\n');
       document.head.appendChild(style);
     }
