@@ -40,7 +40,8 @@ export class JsonProjectRepository implements ProjectRepository {
       raw.install,
       featured,
       raw.detailedFeatures,
-      raw.myResponsibilities
+      raw.myResponsibilities,
+      raw.award
     );
   }
 

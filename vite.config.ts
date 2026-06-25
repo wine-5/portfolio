@@ -6,6 +6,8 @@ export default defineConfig({
   base: '/portfolio/',
   server: {
     open: true,
+    host: 'localhost',
+    port: 5173,
   },
   resolve: {
     alias: {

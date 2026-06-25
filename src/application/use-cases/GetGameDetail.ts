@@ -41,6 +41,7 @@ export class GetGameDetail {
       installUrl: project.installUrl,
       stat,
       isAwarded: project.isAwarded,
+      awardTitle: project.awardTitle,
       featuredBadge: project.featured === 'appstore-published' ? 'PLAY NOW' : project.featured === 'store-coming-soon' ? 'COMING SOON' : undefined,
     };
   }

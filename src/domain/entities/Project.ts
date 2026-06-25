@@ -26,6 +26,7 @@ export class Project {
     readonly featured: FeaturedKind = 'none',
     readonly detailedFeatures?: string,
     readonly myResponsibilities?: string,
+    readonly awardTitle?: string,
   ) {}
 
   /**
