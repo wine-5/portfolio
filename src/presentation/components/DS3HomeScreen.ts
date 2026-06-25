@@ -374,11 +374,8 @@ export class DS3HomeScreen extends Component {
         ${d.featuredBadge ? `<span class="ds3-game__badge">${d.featuredBadge}</span>` : ''}
         <div class="ds3-game__meta">${meta.join(' / ')}</div>
         <p class="ds3-game__desc">${d.description}</p>
-        <div class="ds3-game__stats">
-          ${this.statRow('難易度', d.stat.difficulty)}
-          ${this.statRow('独創性', d.stat.novelty)}
-          ${this.statRow('品質', d.stat.quality)}
-        </div>
+        ${d.detailedFeatures ? `<div class="ds3-game__section"><b class="ds3-game__label">ゲーム詳細</b><p class="ds3-game__text">${d.detailedFeatures}</p></div>` : ''}
+        ${d.myResponsibilities ? `<div class="ds3-game__section"><b class="ds3-game__label">担当範囲</b><p class="ds3-game__text">${d.myResponsibilities}</p></div>` : ''}
         <div class="ds3-game__tech">${d.technologies.map((t) => `<span class="ds3-game__tag">${t}</span>`).join('')}</div>
         <div class="ds3-game__links">${links.join('')}</div>
       </div>
@@ -386,16 +383,6 @@ export class DS3HomeScreen extends Component {
     return el;
   }
 
-  private statRow(label: string, value: number): string {
-    const v = Number.isFinite(value) ? Math.max(0, Math.min(5, value)) : 0;
-    return `
-      <div class="ds3-stat">
-        <span class="ds3-stat__lb">${label}</span>
-        <span class="ds3-stat__bar"><span class="ds3-stat__fill" style="width:${(v / 5) * 100}%"></span></span>
-        <span class="ds3-stat__val">${v}/5</span>
-      </div>
-    `;
-  }
 
   // ===== SKILLS =====
   private openSkills(): void {
@@ -793,14 +780,11 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-game__meta { font-size: 0.7rem; color: var(--ink-dim); }
 .ds3-game__desc {
   font-size: 0.78rem; color: var(--ink); line-height: 1.5; margin: 0;
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.ds3-game__stats { display: flex; flex-direction: column; gap: 3px; }
-.ds3-stat { display: grid; grid-template-columns: 48px 1fr 32px; gap: 6px; align-items: center; }
-.ds3-stat__lb { font-size: 0.65rem; color: var(--ink-dim); }
-.ds3-stat__bar { height: 8px; background: var(--bg-1); border: 1px solid var(--line); overflow: hidden; }
-.ds3-stat__fill { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--c-magenta)); }
-.ds3-stat__val { font-size: 0.6rem; color: var(--accent); text-align: right; }
+.ds3-game__section { display: flex; flex-direction: column; gap: 4px; }
+.ds3-game__label { font-size: 0.75rem; color: var(--accent); }
+.ds3-game__text { font-size: 0.72rem; color: var(--ink); line-height: 1.6; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .ds3-game__tech { display: flex; flex-wrap: wrap; gap: 4px; }
 .ds3-game__tag {
   font-size: 0.62rem; color: var(--accent); border: 1px solid var(--accent);
