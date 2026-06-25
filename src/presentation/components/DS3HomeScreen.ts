@@ -1126,7 +1126,7 @@ export class DS3HomeScreen extends Component {
         </div>
         <div class="ds3-about__info-row">
           <span class="ds3-about__info-label">学校:</span>
-          <span class="ds3-about__info-value">札幌デザイン&amp;テクノロジー<br>専門学校</span>
+          <span class="ds3-about__info-value">札幌デザイン&amp;テクノロジー専門学校</span>
         </div>
         <div class="ds3-about__info-row">
           <span class="ds3-about__info-label">学年:</span>
@@ -1134,7 +1134,7 @@ export class DS3HomeScreen extends Component {
         </div>
         <div class="ds3-about__info-row">
           <span class="ds3-about__info-label">専攻:</span>
-          <span class="ds3-about__info-value">スーパーゲーム<br>クリエイター専攻</span>
+          <span class="ds3-about__info-value">スーパーゲームクリエイター専攻</span>
         </div>
       </div>
       <p class="ds3-about__desc">${this.profile.description}</p>
