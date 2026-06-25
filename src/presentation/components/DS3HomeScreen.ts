@@ -432,14 +432,30 @@ export class DS3HomeScreen extends Component {
 
   private setTop(el: HTMLElement): void {
     if (!this.topContent) return;
-    this.topContent.innerHTML = '';
-    this.topContent.appendChild(el);
+    // フェードアウト
+    this.topContent.style.opacity = '0';
+    this.topContent.style.transition = 'opacity 200ms ease-out';
+
+    setTimeout(() => {
+      this.topContent!.innerHTML = '';
+      this.topContent!.appendChild(el);
+      // フェードイン
+      this.topContent!.style.opacity = '1';
+    }, 200);
   }
 
   private setBottom(el: HTMLElement): void {
     if (!this.bottomContent) return;
-    this.bottomContent.innerHTML = '';
-    this.bottomContent.appendChild(el);
+    // フェードアウト
+    this.bottomContent.style.opacity = '0';
+    this.bottomContent.style.transition = 'opacity 200ms ease-out';
+
+    setTimeout(() => {
+      this.bottomContent!.innerHTML = '';
+      this.bottomContent!.appendChild(el);
+      // フェードイン
+      this.bottomContent!.style.opacity = '1';
+    }, 200);
   }
 
   // ===== HOME =====
