@@ -2185,18 +2185,83 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 
 /* ===== レスポンシブ ===== */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+  .ds3-total { padding: 12px; }
   .ds3-left-ctrl, .ds3-right-ctrl { display: none; }
-  .ds3-bottom-bezel { width: 90%; max-width: none; }
+  .ds3-bottom-bezel { width: 95%; max-width: none; }
   .ds3-total { --ds3-bottom-w: var(--ds3-top-w); }
 }
 
-@media (max-width: 640px) {
-  .ds3-top-screen { height: clamp(180px, 42vh, 360px); }
-  .ds3-bottom-screen { height: clamp(150px, 28vh, 260px); }
-  .ds3-bot-icon-em { font-size: 20px; }
-  .ds3-game { grid-template-columns: 1fr; }
-  .ds3-game__media { height: 90px; }
-  .ds3-game-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 768px) {
+  .ds3-total { padding: 10px; }
+  .ds3-top-screen { height: clamp(160px, 38vh, 320px); font-size: 13px; }
+  .ds3-bottom-screen { height: clamp(130px, 25vh, 240px); }
+  .ds3-top-home { gap: 8px; }
+  .ds3-top-home__hero { gap: 8px; }
+  .ds3-top-home__name { font-size: 1.1rem; }
+  .ds3-top-home__title { font-size: 0.8rem; }
+  .ds3-game { grid-template-columns: 30% 1fr; gap: 10px; }
+  .ds3-game__media { height: 80px; }
+  .ds3-game__info { gap: 2px; }
+  .ds3-game__title { font-size: 0.95rem; }
+  .ds3-game__desc { font-size: 0.65rem; }
+  .ds3-about__hero { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+  .ds3-about__img { width: 100px; height: 100px; }
+  .ds3-about__info-row { grid-template-columns: auto 1fr; }
+  .ds3-bot-icon-em { font-size: 18px; }
+  .ds3-game-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .ds3-game-card { padding: 4px; }
+  .ds3-form__input, .ds3-form__textarea, .ds3-form__submit { font-size: 10px; padding: 4px; }
+  .ds3-list-link-btn { font-size: 10px; padding: 4px 8px; }
+  .ds3-settings__btn { font-size: 10px; padding: 6px 10px; }
+  .ds3-shs-bar { padding: 6px; }
+  .ds3-sys-btn { font-size: 0.7rem; padding: 4px 8px; }
+  .ds3-skills-stat { gap: 8px; }
+  .ds3-skills-stat__name { font-size: 0.75rem; }
+  .ds3-skills-stat__exp { font-size: 0.65rem; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 12px; }
+  .ds3-total { padding: 8px; }
+  .ds3-hud { padding: 4px; gap: 4px; }
+  .ds3-hud-status { font-size: 0.7rem; gap: 6px; }
+  .ds3-title-text { font-size: 0.95rem; }
+  .ds3-title-subtitle { font-size: 0.75rem; }
+  .ds3-top-screen { height: clamp(140px, 35vh, 280px); padding: 8px; }
+  .ds3-bottom-screen { height: clamp(110px, 22vh, 200px); padding: 6px; }
+  .ds3-top-home__name { font-size: 0.95rem; }
+  .ds3-top-home__title { font-size: 0.7rem; }
+  .ds3-top-home__lv { font-size: 0.7rem; }
+  .ds3-top-home__msg { font-size: 0.65rem; }
+  .ds3-game { grid-template-columns: 1fr; gap: 8px; }
+  .ds3-game__media { height: 70px; }
+  .ds3-game__title { font-size: 0.85rem; }
+  .ds3-game__meta { font-size: 0.6rem; }
+  .ds3-game__desc { font-size: 0.6rem; line-height: 1.3; }
+  .ds3-game__detail-btn { font-size: 0.6rem; padding: 3px 8px; }
+  .ds3-game__btn { font-size: 0.6rem; padding: 3px 6px; }
+  .ds3-game-modal__title { font-size: 1rem; }
+  .ds3-game-modal__desc { font-size: 0.8rem; }
+  .ds3-about__img { width: 90px; height: 90px; }
+  .ds3-about__info-row { gap: 6px; font-size: 0.7rem; }
+  .ds3-about__info-label { min-width: 45px; }
+  .ds3-bot-icon-em { font-size: 16px; }
+  .ds3-bot-icon { width: 35px; height: 35px; }
+  .ds3-game-grid { grid-template-columns: repeat(2, 1fr); gap: 3px; }
+  .ds3-game-card { padding: 3px; }
+  .ds3-game-card__title { font-size: 0.65rem; }
+  .ds3-form { padding: 6px; gap: 4px; }
+  .ds3-form__input, .ds3-form__textarea, .ds3-form__submit { font-size: 9px; padding: 3px; }
+  .ds3-list-link-btn { font-size: 0.7rem; padding: 3px 6px; }
+  .ds3-settings__btn { font-size: 0.7rem; padding: 5px 8px; }
+  .ds3-shs-bar { padding: 4px; }
+  .ds3-sys-btn { font-size: 0.65rem; padding: 3px 6px; }
+  .ds3-dpad { width: 50px; height: 50px; }
+  .ds3-dpad-btn { width: 14px; height: 14px; }
+  .ds3-abxy { gap: 8px; }
+  .ds3-ab-btn { width: 18px; height: 18px; font-size: 8px; }
+  .ds3-gallery__main-img { max-height: 50vh; }
+  .ds3-gallery__indicator { width: 10px; height: 10px; }
 }
 `;
