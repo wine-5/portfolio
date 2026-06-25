@@ -30,6 +30,6 @@ export class JsonProfileRepository implements ProfileRepository {
   }
 
   private getDescription(): string {
-    return 'ゲーム業界を目指すゲーム開発者です。UnityとC#を使用したゲーム開発を行っており、SOLID原則を意識した設計を心がけています。プログラミングを誰よりも楽しく、追求し続けることは私の強みです。';
+    return 'ゲーム業界へ入ることを目標にしているプログラマーです！主にUnityやDxLibを使った開発を行っており、アーキテクチャやクラス設計を意識しながらできるだけ仕様変更や追加機能が来た際にも柔軟かつ簡単にできるように意識して開発を行っています！\nプログラミングを誰よりも楽しく学び続けられるのは自分の最大の強みです！';
   }
 }
