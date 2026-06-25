@@ -170,6 +170,148 @@ export class DS3HomeScreen extends Component {
     document.dispatchEvent(event);
   }
 
+  private showGameDetailModal(detail: GameDetailVM): void {
+    // モーダルバックドロップ
+    const backdrop = document.createElement('div');
+    backdrop.className = 'ds3-game-modal-backdrop';
+
+    // モーダルコンテナ
+    const modal = document.createElement('div');
+    modal.className = 'ds3-game-modal';
+
+    // クローズボタン
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'ds3-game-modal__close';
+    closeBtn.textContent = '✕';
+    closeBtn.addEventListener('click', () => backdrop.remove());
+    modal.appendChild(closeBtn);
+
+    // コンテンツ
+    const content = document.createElement('div');
+    content.className = 'ds3-game-modal__content';
+
+    // タイトル
+    const title = document.createElement('h2');
+    title.className = 'ds3-game-modal__title';
+    title.textContent = detail.title;
+    content.appendChild(title);
+
+    // 説明
+    const desc = document.createElement('p');
+    desc.className = 'ds3-game-modal__desc';
+    desc.textContent = detail.description;
+    content.appendChild(desc);
+
+    // メタ情報
+    const meta: string[] = [];
+    if (detail.year) meta.push(detail.year);
+    if (detail.teamSize) {
+      const sizeStr = String(detail.teamSize);
+      meta.push(sizeStr.includes('人') ? sizeStr : `${sizeStr}人`);
+    }
+    if (detail.durationDays) {
+      const daysStr = String(detail.durationDays);
+      meta.push(daysStr.includes('日') ? daysStr : `${daysStr}日`);
+    }
+    if (meta.length > 0) {
+      const metaEl = document.createElement('div');
+      metaEl.className = 'ds3-game-modal__meta';
+      metaEl.textContent = meta.join(' / ');
+      content.appendChild(metaEl);
+    }
+
+    // ゲーム詳細
+    if (detail.detailedFeatures) {
+      const section = document.createElement('div');
+      section.className = 'ds3-game-modal__section';
+      section.innerHTML = `
+        <h3 class="ds3-game-modal__label">ゲーム詳細</h3>
+        <p class="ds3-game-modal__section-text">${detail.detailedFeatures}</p>
+      `;
+      content.appendChild(section);
+    }
+
+    // 担当範囲
+    if (detail.myResponsibilities) {
+      const section = document.createElement('div');
+      section.className = 'ds3-game-modal__section';
+      section.innerHTML = `
+        <h3 class="ds3-game-modal__label">担当範囲</h3>
+        <p class="ds3-game-modal__section-text">${detail.myResponsibilities}</p>
+      `;
+      content.appendChild(section);
+    }
+
+    // 技術スタック
+    if (detail.technologies.length > 0) {
+      const section = document.createElement('div');
+      section.className = 'ds3-game-modal__section';
+      const techLabel = document.createElement('h3');
+      techLabel.className = 'ds3-game-modal__label';
+      techLabel.textContent = '使用技術';
+      section.appendChild(techLabel);
+
+      const techList = document.createElement('div');
+      techList.className = 'ds3-game-modal__tech-list';
+      detail.technologies.forEach((tech) => {
+        const tag = document.createElement('span');
+        tag.className = 'ds3-game-modal__tech-tag';
+        tag.textContent = tech;
+        techList.appendChild(tag);
+      });
+      section.appendChild(techList);
+      content.appendChild(section);
+    }
+
+    // リンク
+    const links = document.createElement('div');
+    links.className = 'ds3-game-modal__links';
+
+    if (detail.installUrl) {
+      const link = document.createElement('a');
+      link.href = detail.installUrl;
+      link.target = '_blank';
+      link.className = 'ds3-game-modal__link-btn';
+      link.textContent = '▸ プレイ';
+      links.appendChild(link);
+    } else if (detail.playUrl) {
+      const link = document.createElement('a');
+      link.href = detail.playUrl;
+      link.target = '_blank';
+      link.className = 'ds3-game-modal__link-btn';
+      link.textContent = '▸ プレイ';
+      links.appendChild(link);
+    }
+
+    if (detail.githubUrl) {
+      const link = document.createElement('a');
+      link.href = detail.githubUrl;
+      link.target = '_blank';
+      link.className = 'ds3-game-modal__link-btn ds3-game-modal__link-btn--sub';
+      link.textContent = '▸ Code';
+      links.appendChild(link);
+    }
+
+    if (links.children.length > 0) {
+      content.appendChild(links);
+    }
+
+    modal.appendChild(content);
+    backdrop.appendChild(modal);
+
+    // バックドロップクリックで閉じる
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) backdrop.remove();
+    });
+
+    document.body.appendChild(backdrop);
+
+    // フェードイン
+    setTimeout(() => {
+      backdrop.style.opacity = '1';
+    }, 10);
+  }
+
   // ===== TOP BODY =====
   private buildTopBody(): HTMLElement {
     const bodyTop = document.createElement('div');
@@ -588,8 +730,16 @@ export class DS3HomeScreen extends Component {
         ${d.myResponsibilities ? `<div class="ds3-game__section"><b class="ds3-game__label">担当範囲</b><p class="ds3-game__text">${d.myResponsibilities}</p></div>` : ''}
         <div class="ds3-game__tech">${d.technologies.map((t) => `<span class="ds3-game__tag">${t}</span>`).join('')}</div>
         <div class="ds3-game__links">${links.join('')}</div>
+        <button class="ds3-game__detail-btn">詳細を見る ▸</button>
       </div>
     `;
+
+    // 詳細ボタンのイベントリスナー
+    const detailBtn = el.querySelector('.ds3-game__detail-btn') as HTMLElement;
+    if (detailBtn) {
+      detailBtn.addEventListener('click', () => this.showGameDetailModal(d));
+    }
+
     return el;
   }
 
@@ -1089,6 +1239,24 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-game__btn--sub { border-color: var(--accent); color: var(--accent); }
 .ds3-game__btn--sub:hover { background: var(--accent); color: #1a1a2e; }
 
+.ds3-game__detail-btn {
+  background: rgba(100, 160, 255, 0.2);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 150ms;
+  margin-top: 8px;
+}
+
+.ds3-game__detail-btn:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
 /* ---- SKILL (top) ---- */
 .ds3-skill { display: flex; flex-direction: column; gap: 14px; height: 100%; justify-content: center; }
 .ds3-skill__head { display: flex; justify-content: space-between; align-items: baseline; }
@@ -1536,6 +1704,168 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-slide-pad-r-inner {
   width: 18px; height: 18px;
   background: #3a3a3a; border-radius: 50%; border: 1px solid #222;
+}
+
+/* ===== GAME DETAIL MODAL ===== */
+.ds3-game-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  padding: 20px;
+}
+
+.ds3-game-modal {
+  background: var(--bg-window);
+  border: 3px solid var(--line);
+  border-radius: 0;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  position: relative;
+  animation: modalSlideIn 300ms ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ds3-game-modal__close {
+  position: sticky;
+  top: 0;
+  right: 0;
+  float: right;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 12px 16px;
+  z-index: 1;
+  transition: transform 150ms;
+}
+
+.ds3-game-modal__close:hover {
+  transform: scale(1.3);
+}
+
+.ds3-game-modal__content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ds3-game-modal__title {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  color: var(--accent);
+  margin: 0;
+}
+
+.ds3-game-modal__desc {
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.ds3-game-modal__meta {
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+}
+
+.ds3-game-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds3-game-modal__label {
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin: 0;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.ds3-game-modal__section-text {
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.8;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.ds3-game-modal__tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ds3-game-modal__tech-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--accent);
+  background: var(--bg-1);
+  color: var(--accent);
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  border-radius: 3px;
+}
+
+.ds3-game-modal__links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.ds3-game-modal__link-btn {
+  padding: 10px 16px;
+  border: 2px solid var(--c-exp);
+  background: var(--bg-1);
+  color: var(--c-exp);
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 150ms;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.ds3-game-modal__link-btn:hover {
+  background: var(--c-exp);
+  color: var(--bg-primary);
+}
+
+.ds3-game-modal__link-btn--sub {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.ds3-game-modal__link-btn--sub:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
 }
 
 /* ===== レスポンシブ ===== */
