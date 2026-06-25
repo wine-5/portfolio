@@ -2,29 +2,15 @@ import { Component } from '../core/Component';
 import { TitleScreen, TITLE_SCREEN_STYLES } from './TitleScreen';
 import { DOT_BOX_STYLES } from './DotBox';
 import { EXP_BAR_STYLES } from './ExpBar';
-import { HUDNav, HUD_NAV_STYLES } from './HUDNav';
-import { GamesSection, GAMES_SECTION_STYLES } from './sections/GamesSection';
+import { HUD_NAV_STYLES } from './HUDNav';
+import { GAMES_SECTION_STYLES } from './sections/GamesSection';
 import { GAME_CAROUSEL_STYLES } from './sections/games/GameCarousel';
 import { GAME_LIST_STYLES } from './sections/games/GameList';
-import { AboutSection, ABOUT_SECTION_STYLES } from './sections/AboutSection';
-import { SkillsSection, SKILLS_SECTION_STYLES } from './sections/SkillsSection';
-import { ContactSection, CONTACT_SECTION_STYLES } from './sections/ContactSection';
+import { ABOUT_SECTION_STYLES } from './sections/AboutSection';
+import { SKILLS_SECTION_STYLES } from './sections/SkillsSection';
+import { CONTACT_SECTION_STYLES } from './sections/ContactSection';
 import { GAME_DETAIL_MODAL_STYLES } from './GameDetailModal';
-
-/**
- * Main content area styles.
- */
-const MAIN_CONTENT_STYLES = `
-.main-content {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--space-12) var(--container-pad);
-}
-
-.section {
-  scroll-margin-top: var(--hud-height);
-}
-`;
+import { DS3HomeScreen, DS3_HOME_SCREEN_STYLES } from './DS3HomeScreen';
 
 /**
  * ルートアプリケーションコンポーネント。
@@ -79,39 +65,10 @@ export class App extends Component {
   }
 
   private async renderMainContent(container: HTMLElement): Promise<void> {
-    // HUDNavを追加
-    const hudNav = new HUDNav();
-    const navEl = await hudNav.render();
-    container.appendChild(navEl);
-
-    // Main contentエリア
-    const mainContent = document.createElement('main');
-    mainContent.id = 'main-content';
-    mainContent.className = 'main-content';
-    container.appendChild(mainContent);
-
-    // Games セクション
-    const gamesSection = new GamesSection();
-    await gamesSection.initialize();
-    const gameEl = gamesSection.render();
-    mainContent.appendChild(gameEl);
-
-    // About セクション
-    const aboutSection = new AboutSection();
-    await aboutSection.initialize();
-    const aboutEl = aboutSection.render();
-    mainContent.appendChild(aboutEl);
-
-    // Skills セクション
-    const skillsSection = new SkillsSection();
-    await skillsSection.initialize();
-    const skillsEl = skillsSection.render();
-    mainContent.appendChild(skillsEl);
-
-    // Contact セクション
-    const contactSection = new ContactSection();
-    const contactEl = contactSection.render();
-    mainContent.appendChild(contactEl);
+    // 3DSホーム画面（アプリ本体シェル）
+    const ds3 = new DS3HomeScreen();
+    await ds3.initialize();
+    ds3.mount(container);
   }
 
   private injectGlobalStyles(): void {
@@ -123,7 +80,7 @@ export class App extends Component {
         DOT_BOX_STYLES,
         EXP_BAR_STYLES,
         HUD_NAV_STYLES,
-        MAIN_CONTENT_STYLES,
+        DS3_HOME_SCREEN_STYLES,
         GAMES_SECTION_STYLES,
         GAME_CAROUSEL_STYLES,
         GAME_LIST_STYLES,
