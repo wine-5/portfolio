@@ -1205,34 +1205,34 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-top-home__hint { font-size: 0.75rem; color: var(--accent); text-align: center; }
 
 /* ---- GAME (top) ---- */
-.ds3-game { display: grid; grid-template-columns: 40% 1fr; gap: 16px; height: 100%; }
+.ds3-game { display: grid; grid-template-columns: 35% 1fr; gap: 12px; height: 100%; }
 .ds3-game__media { height: 100%; overflow: hidden; }
 .ds3-game__img {
   width: 100%; height: 100%; object-fit: cover;
   border: 2px solid var(--line); image-rendering: pixelated;
 }
-.ds3-game__info { display: flex; flex-direction: column; gap: 6px; overflow: hidden; min-width: 0; }
-.ds3-game__title { font-size: clamp(1rem, 2.5vw, 1.4rem); color: var(--accent); line-height: 1.2; }
+.ds3-game__info { display: flex; flex-direction: column; gap: 3px; overflow: hidden; min-width: 0; }
+.ds3-game__title { font-size: clamp(0.9rem, 2.2vw, 1.2rem); color: var(--accent); line-height: 1.1; }
 .ds3-game__badge {
   align-self: flex-start; background: var(--c-legendary); color: #1a1a2e;
-  font-size: 0.65rem; padding: 2px 6px; border: 1px solid var(--c-gold);
+  font-size: 0.55rem; padding: 1px 4px; border: 1px solid var(--c-gold);
 }
-.ds3-game__meta { font-size: 0.7rem; color: var(--ink-dim); }
+.ds3-game__meta { font-size: 0.65rem; color: var(--ink-dim); }
 .ds3-game__desc {
-  font-size: 0.78rem; color: var(--ink); line-height: 1.5; margin: 0;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 0.7rem; color: var(--ink); line-height: 1.4; margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
 }
-.ds3-game__section { display: flex; flex-direction: column; gap: 4px; }
-.ds3-game__label { font-size: 0.75rem; color: var(--accent); }
-.ds3-game__text { font-size: 0.72rem; color: var(--ink); line-height: 1.6; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.ds3-game__tech { display: flex; flex-wrap: wrap; gap: 4px; }
+.ds3-game__section { display: flex; flex-direction: column; gap: 2px; }
+.ds3-game__label { font-size: 0.65rem; color: var(--accent); }
+.ds3-game__text { font-size: 0.62rem; color: var(--ink); line-height: 1.4; margin: 0; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.ds3-game__tech { display: flex; flex-wrap: wrap; gap: 2px; }
 .ds3-game__tag {
-  font-size: 0.62rem; color: var(--accent); border: 1px solid var(--accent);
-  padding: 1px 5px; background: var(--bg-1);
+  font-size: 0.55rem; color: var(--accent); border: 1px solid var(--accent);
+  padding: 1px 4px; background: var(--bg-1);
 }
-.ds3-game__links { display: flex; gap: 6px; margin-top: auto; }
+.ds3-game__links { display: flex; gap: 4px; margin-top: 2px; }
 .ds3-game__btn {
-  font-size: 0.7rem; padding: 4px 10px; border: 2px solid var(--c-exp);
+  font-size: 0.62rem; padding: 3px 8px; border: 1px solid var(--c-exp);
   color: var(--c-exp); background: var(--bg-1); text-decoration: none;
 }
 .ds3-game__btn:hover { background: var(--c-exp); color: #1a1a2e; }
@@ -1241,15 +1241,15 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 .ds3-game__detail-btn {
   background: rgba(100, 160, 255, 0.2);
-  border: 2px solid var(--accent);
-  border-radius: 4px;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
   color: var(--accent);
   font-family: var(--font-pixel);
-  font-size: 0.75rem;
-  padding: 6px 12px;
+  font-size: 0.65rem;
+  padding: 4px 10px;
   cursor: pointer;
   transition: all 150ms;
-  margin-top: 8px;
+  margin-top: 2px;
 }
 
 .ds3-game__detail-btn:hover {
@@ -1361,49 +1361,62 @@ export const DS3_HOME_SCREEN_STYLES = `
   background: #3a3a3a; border-radius: 50%; border: 1px solid #222;
 }
 
-.ds3-dpad { position: relative; width: 60px; height: 60px; }
+.ds3-dpad {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 2px;
+  align-items: center;
+  justify-items: center;
+}
 
 .ds3-dpad-btn {
-  position: absolute;
-  background: #252525; border-radius: 3px; border: 1px solid #111;
-  color: transparent; cursor: pointer;
+  background: #252525;
+  border-radius: 3px;
+  border: 1px solid #111;
+  color: transparent;
+  cursor: pointer;
   transition: all 120ms;
   padding: 0;
+  width: 18px;
+  height: 18px;
 }
 
 .ds3-dpad-btn:hover { background: #3a3a3a; }
 .ds3-dpad-btn:active { background: #1c1c1c; }
 
-/* 十字キーの形状を正確に配置 */
+/* グリッドレイアウトで十字形を作成 */
 .ds3-dpad-up {
-  width: 20px; height: 13px;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-}
-
-.ds3-dpad-down {
-  width: 20px; height: 13px;
-  bottom: 0; left: 50%;
-  transform: translateX(-50%);
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .ds3-dpad-left {
-  width: 13px; height: 20px;
-  top: 50%; left: 0;
-  transform: translateY(-50%);
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .ds3-dpad-right {
-  width: 13px; height: 20px;
-  top: 50%; right: 0;
-  transform: translateY(-50%);
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.ds3-dpad-down {
+  grid-column: 2;
+  grid-row: 3;
 }
 
 .ds3-dpad-c {
-  position: absolute; width: 14px; height: 14px;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: #1c1c1c; z-index: 2; pointer-events: none;
+  grid-column: 2;
+  grid-row: 2;
+  width: 12px;
+  height: 12px;
+  background: #1c1c1c;
+  z-index: 2;
+  pointer-events: none;
   border-radius: 2px;
 }
 
