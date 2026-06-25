@@ -414,7 +414,7 @@ export class DS3HomeScreen extends Component {
       link.href = detail.githubUrl;
       link.target = '_blank';
       link.className = 'ds3-game-modal__link-btn ds3-game-modal__link-btn--sub';
-      link.textContent = '▸ Code';
+      link.textContent = '▸ Github';
       links.appendChild(link);
     }
 
@@ -841,7 +841,7 @@ export class DS3HomeScreen extends Component {
     const links: string[] = [];
     if (d.installUrl) links.push(`<a href="${d.installUrl}" target="_blank" class="ds3-game__btn">▸ プレイ</a>`);
     else if (d.playUrl) links.push(`<a href="${d.playUrl}" target="_blank" class="ds3-game__btn">▸ プレイ</a>`);
-    if (d.githubUrl) links.push(`<a href="${d.githubUrl}" target="_blank" class="ds3-game__btn ds3-game__btn--sub">▸ Code</a>`);
+    if (d.githubUrl) links.push(`<a href="${d.githubUrl}" target="_blank" class="ds3-game__btn ds3-game__btn--sub">▸ Github</a>`);
 
     el.innerHTML = `
       <div class="ds3-game__media">
