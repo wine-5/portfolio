@@ -340,16 +340,20 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-wrap {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 2rem 1rem 3rem;
+  align-items: center;
+  padding: 10px;
   font-family: var(--font-pixel);
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .ds3-total {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: 100%;
   --ds3-top-w: 720px;
   --ds3-bottom-w: 820px;
 }
@@ -382,7 +386,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-shoulder-r { border-radius: 0 10px 0 0; }
 
 .ds3-top-screen-section {
-  padding: 22px 40px 14px;
+  padding: 16px 40px 10px;
   position: relative;
 }
 
@@ -415,7 +419,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-top-screen {
   background: var(--bg-0, #0a1020);
   border-radius: 3px;
-  height: 440px;
+  height: clamp(200px, 48vh, 460px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -520,7 +524,7 @@ export const DS3_HOME_SCREEN_STYLES = `
   max-width: 96vw;
   background: #1e1e1e;
   border-radius: 0 0 40px 40px;
-  padding: 16px 0 32px;
+  padding: 12px 0 20px;
   position: relative;
 }
 
@@ -590,7 +594,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-bottom-screen {
   background: #0a1020;
   border-radius: 3px;
-  height: 300px;
+  height: clamp(170px, 30vh, 300px);
   display: flex; flex-direction: column;
   overflow: hidden;
 }
@@ -719,8 +723,8 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 
 @media (max-width: 640px) {
-  .ds3-top-screen { height: 360px; }
-  .ds3-bottom-screen { height: 260px; }
+  .ds3-top-screen { height: clamp(180px, 42vh, 360px); }
+  .ds3-bottom-screen { height: clamp(150px, 28vh, 260px); }
   .ds3-bot-icon-em { font-size: 20px; }
 }
 `;
