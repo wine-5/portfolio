@@ -343,14 +343,7 @@ export class DS3HomeScreen extends Component {
         break;
       case 'about':
         this.setTop(this.topAbout());
-        this.setBottom(this.bottomBackOnly('👤 ABOUT', this.profile.socialLinks.map((l) => {
-          const a = document.createElement('a');
-          a.className = 'ds3-list-link';
-          a.href = l.url;
-          a.target = '_blank';
-          a.textContent = `${l.icon} ${l.label}`;
-          return a;
-        })));
+        this.setBottom(this.bottomAbout());
         break;
       case 'games':
         this.openGames();
@@ -610,19 +603,52 @@ export class DS3HomeScreen extends Component {
     container.className = 'ds3-list-view';
     container.appendChild(this.listHeader('✉️ CONTACT', null));
 
+    // キーボード用フォーカス管理を初期化
+    this.focusableElements = [];
+    this.focusCols = 1;
+    this.currentFocusIndex = 0;
+
     const form = document.createElement('form');
     form.className = 'ds3-form';
-    form.innerHTML = `
-      <input type="text" name="name" class="ds3-form__input" placeholder="お名前">
-      <input type="email" name="email" class="ds3-form__input" placeholder="メールアドレス">
-      <textarea name="message" class="ds3-form__textarea" placeholder="メッセージ" rows="3"></textarea>
-      <button type="submit" class="ds3-form__submit">送信する ▸</button>
-    `;
+
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.name = 'name';
+    nameInput.className = 'ds3-form__input';
+    nameInput.placeholder = 'お名前';
+    form.appendChild(nameInput);
+    this.focusableElements.push(nameInput);
+
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.name = 'email';
+    emailInput.className = 'ds3-form__input';
+    emailInput.placeholder = 'メールアドレス';
+    form.appendChild(emailInput);
+    this.focusableElements.push(emailInput);
+
+    const messageTextarea = document.createElement('textarea');
+    messageTextarea.name = 'message';
+    messageTextarea.className = 'ds3-form__textarea';
+    messageTextarea.placeholder = 'メッセージ';
+    messageTextarea.rows = 3;
+    form.appendChild(messageTextarea);
+    this.focusableElements.push(messageTextarea);
+
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'submit';
+    submitBtn.className = 'ds3-form__submit';
+    submitBtn.classList.add('ds3-focused');
+    submitBtn.textContent = '送信する ▸';
+    this.currentFocusIndex = this.focusableElements.length;
+    form.appendChild(submitBtn);
+    this.focusableElements.push(submitBtn);
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = (form.querySelector('[name="name"]') as HTMLInputElement).value;
-      const email = (form.querySelector('[name="email"]') as HTMLInputElement).value;
-      const message = (form.querySelector('[name="message"]') as HTMLTextAreaElement).value;
+      const name = nameInput.value;
+      const email = emailInput.value;
+      const message = messageTextarea.value;
       try {
         const result = await root.submitContactLetter.execute(name, email, message);
         alert(result.success ? '送信しました！ありがとうございます。' : '送信に失敗しました。');
@@ -646,6 +672,11 @@ export class DS3HomeScreen extends Component {
     container.className = 'ds3-list-view';
     container.appendChild(this.listHeader('⚙️ SETTINGS', null));
 
+    // キーボード用フォーカス管理を初期化
+    this.focusableElements = [];
+    this.focusCols = 1;
+    this.currentFocusIndex = 0;
+
     const body = document.createElement('div');
     body.className = 'ds3-settings-body';
 
@@ -653,7 +684,7 @@ export class DS3HomeScreen extends Component {
     themeRow.className = 'ds3-settings__row';
     themeRow.innerHTML = '<span>テーマ</span>';
     const themeBtn = document.createElement('button');
-    themeBtn.className = 'ds3-settings__btn';
+    themeBtn.className = 'ds3-settings__btn ds3-focused';
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'night';
     themeBtn.textContent = currentTheme === 'night' ? '🌙 夜' : '☀️ 昼';
     themeBtn.addEventListener('click', () => {
@@ -665,6 +696,7 @@ export class DS3HomeScreen extends Component {
     });
     themeRow.appendChild(themeBtn);
     body.appendChild(themeRow);
+    this.focusableElements.push(themeBtn);
 
     const langRow = document.createElement('div');
     langRow.className = 'ds3-settings__row';
@@ -674,12 +706,42 @@ export class DS3HomeScreen extends Component {
     langBtn.textContent = '日本語 / EN';
     langRow.appendChild(langBtn);
     body.appendChild(langRow);
+    this.focusableElements.push(langBtn);
 
     container.appendChild(body);
     return container;
   }
 
   // ===== ABOUT =====
+  private bottomAbout(): HTMLElement {
+    const container = document.createElement('div');
+    container.className = 'ds3-list-view';
+    container.appendChild(this.listHeader('👤 ABOUT', null));
+
+    // キーボード用フォーカス管理を初期化
+    this.focusableElements = [];
+    this.focusCols = 1;
+    this.currentFocusIndex = 0;
+
+    const list = document.createElement('div');
+    list.className = 'ds3-link-list';
+
+    this.profile.socialLinks.forEach((link, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'ds3-list-link-btn';
+      if (idx === 0) btn.classList.add('ds3-focused');
+      btn.innerHTML = `${link.icon} ${link.label}`;
+      btn.addEventListener('click', () => {
+        window.open(link.url, '_blank');
+      });
+      list.appendChild(btn);
+      this.focusableElements.push(btn);
+    });
+
+    container.appendChild(list);
+    return container;
+  }
+
   private topAbout(): HTMLElement {
     const el = document.createElement('div');
     el.className = 'ds3-about';
@@ -1213,14 +1275,20 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 /* ---- LINK list (bottom, about) ---- */
 .ds3-link-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; padding: 10px; }
-.ds3-list-link {
+.ds3-list-link, .ds3-list-link-btn {
   background: rgba(0, 25, 65, 0.5);
   border: 1px solid rgba(100, 160, 255, 0.2);
   border-radius: 5px; padding: 9px 12px;
   color: rgba(180, 210, 255, 0.95); font-size: 11px;
   text-decoration: none; transition: all 120ms;
+  font-family: var(--font-pixel); cursor: pointer;
 }
-.ds3-list-link:hover { background: rgba(20, 50, 120, 0.5); color: #fff; }
+.ds3-list-link:hover, .ds3-list-link-btn:hover { background: rgba(20, 50, 120, 0.5); color: #fff; }
+
+.ds3-list-link-btn.ds3-focused {
+  box-shadow: 0 0 12px rgba(100, 160, 255, 0.8), inset 0 0 8px rgba(100, 160, 255, 0.3);
+  border-color: rgba(100, 180, 255, 0.8);
+}
 
 /* ---- FORM (bottom, contact) ---- */
 .ds3-form { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 8px; overflow-y: auto; }
@@ -1229,16 +1297,29 @@ export const DS3_HOME_SCREEN_STYLES = `
   border: 1px solid rgba(100, 160, 255, 0.25);
   border-radius: 4px; padding: 6px 8px;
   color: #dceaff; font-size: 11px; font-family: var(--font-body);
+  transition: all 120ms;
 }
 .ds3-form__input:focus, .ds3-form__textarea:focus { outline: none; border-color: var(--accent); }
+
+.ds3-form__input.ds3-focused, .ds3-form__textarea.ds3-focused {
+  box-shadow: 0 0 12px rgba(100, 160, 255, 0.6), inset 0 0 8px rgba(100, 160, 255, 0.2);
+  border-color: rgba(100, 180, 255, 0.8);
+}
+
 .ds3-form__textarea { resize: none; }
 .ds3-form__submit {
   background: rgba(50, 110, 220, 0.7);
   border: 1px solid rgba(100, 180, 255, 0.5);
   border-radius: 4px; padding: 7px; color: #fff;
   font-size: 11px; cursor: pointer; font-family: var(--font-pixel);
+  transition: all 120ms;
 }
 .ds3-form__submit:hover { background: rgba(70, 130, 240, 0.85); }
+
+.ds3-form__submit.ds3-focused {
+  box-shadow: 0 0 12px rgba(100, 160, 255, 0.8), inset 0 0 8px rgba(100, 160, 255, 0.3);
+  border-color: rgba(100, 180, 255, 0.8);
+}
 
 /* ---- SETTINGS (bottom) ---- */
 .ds3-settings-body { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 10px; }
@@ -1254,8 +1335,14 @@ export const DS3_HOME_SCREEN_STYLES = `
   border: 1px solid rgba(100, 180, 255, 0.4);
   border-radius: 4px; padding: 5px 10px; color: #fff;
   font-size: 10px; cursor: pointer; font-family: var(--font-pixel);
+  transition: all 120ms;
 }
 .ds3-settings__btn:hover { background: rgba(70, 130, 240, 0.8); }
+
+.ds3-settings__btn.ds3-focused {
+  box-shadow: 0 0 12px rgba(100, 160, 255, 0.8), inset 0 0 8px rgba(100, 160, 255, 0.3);
+  border-color: rgba(100, 180, 255, 0.8);
+}
 
 /* スクロールバー */
 .ds3-game-grid::-webkit-scrollbar, .ds3-skill-list::-webkit-scrollbar,
