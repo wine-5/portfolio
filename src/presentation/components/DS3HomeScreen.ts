@@ -377,11 +377,12 @@ export class DS3HomeScreen extends Component {
   }
 
   private statRow(label: string, value: number): string {
+    const v = Number.isFinite(value) ? Math.max(0, Math.min(5, value)) : 0;
     return `
       <div class="ds3-stat">
         <span class="ds3-stat__lb">${label}</span>
-        <span class="ds3-stat__bar"><span class="ds3-stat__fill" style="width:${(value / 5) * 100}%"></span></span>
-        <span class="ds3-stat__val">${value}/5</span>
+        <span class="ds3-stat__bar"><span class="ds3-stat__fill" style="width:${(v / 5) * 100}%"></span></span>
+        <span class="ds3-stat__val">${v}/5</span>
       </div>
     `;
   }
@@ -630,6 +631,8 @@ export const DS3_HOME_SCREEN_STYLES = `
   font-family: var(--font-pixel);
   height: 100vh;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 38%, #f3f7fb 0%, #d4e2ef 38%, #aec3da 72%, #8ba6c4 100%);
 }
 
 .ds3-total {
@@ -641,15 +644,26 @@ export const DS3_HOME_SCREEN_STYLES = `
   max-height: 100%;
   --ds3-top-w: 720px;
   --ds3-bottom-w: 820px;
+  /* メタリックブルー本体カラー */
+  --ds3-blue-top: linear-gradient(160deg, #5aa3e6 0%, #3a78c8 42%, #2a5fae 100%);
+  --ds3-blue-bottom: linear-gradient(180deg, #3a78c8 0%, #2a5fae 55%, #214c92 100%);
+  --ds3-blue-edge: #1c3f7a;
+  --ds3-hinge: linear-gradient(180deg, #224d92 0%, #18356b 100%);
+  filter: drop-shadow(0 24px 40px rgba(20, 40, 80, 0.45));
 }
 
 /* ===== TOP BODY ===== */
 .ds3-body-top {
   width: var(--ds3-top-w);
   max-width: 92vw;
-  background: #1c1c1c;
-  border-radius: 18px 18px 0 0;
+  background: var(--ds3-blue-top);
+  border-radius: 18px 18px 4px 4px;
   position: relative;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.45),
+    inset 2px 0 4px rgba(255, 255, 255, 0.15),
+    inset -2px 0 4px rgba(0, 0, 0, 0.2),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.35);
 }
 
 .ds3-shoulders {
@@ -661,10 +675,10 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 .ds3-shoulder {
   width: 120px; height: 15px;
-  background: #2a2a2a;
-  border: 1px solid #111;
+  background: linear-gradient(180deg, #3a6cb0 0%, #244c8e 100%);
+  border: 1px solid #1c3f7a;
   display: flex; align-items: center; justify-content: center;
-  font-size: 10px; color: #555;
+  font-size: 10px; color: rgba(255, 255, 255, 0.55);
 }
 
 .ds3-shoulder-l { border-radius: 10px 0 0 0; }
@@ -834,26 +848,33 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-hinge {
   width: var(--ds3-top-w);
   max-width: 92vw;
-  background: #111;
+  background: var(--ds3-hinge);
   height: 15px;
   display: flex; align-items: center;
   justify-content: space-between;
   padding: 0 30px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .ds3-hinge-nub {
   width: 40px; height: 11px;
-  background: #0a0a0a; border-radius: 6px; border: 1px solid #222;
+  background: linear-gradient(180deg, #2c5798 0%, #16336a 100%);
+  border-radius: 6px; border: 1px solid #12305f;
 }
 
 /* ===== BOTTOM BODY ===== */
 .ds3-body-bottom {
   width: var(--ds3-bottom-w);
   max-width: 96vw;
-  background: #1e1e1e;
-  border-radius: 0 0 40px 40px;
+  background: var(--ds3-blue-bottom);
+  border-radius: 4px 4px 40px 40px;
   padding: 12px 0 20px;
   position: relative;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.3),
+    inset 2px 0 4px rgba(255, 255, 255, 0.12),
+    inset -2px 0 4px rgba(0, 0, 0, 0.2),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.4);
 }
 
 .ds3-bottom-main {
