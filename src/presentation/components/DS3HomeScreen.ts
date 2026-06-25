@@ -38,6 +38,11 @@ export class DS3HomeScreen extends Component {
   private currentSection: ViewId = 'home';
   private previousSection: ViewId = 'home';
 
+  // キーボード操作用
+  private currentFocusIndex = 0;
+  private focusableElements: HTMLElement[] = [];
+  private focusCols = 1;
+
   /**
    * 全データを事前ロード。
    */
@@ -71,6 +76,88 @@ export class DS3HomeScreen extends Component {
   override onMounted(): void {
     this.startClock();
     this.navigate('home');
+    document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+  }
+
+  private handleKeyDown(e: KeyboardEvent): void {
+    const key = e.key;
+
+    // 矢印キー
+    if (key === 'ArrowUp') {
+      e.preventDefault();
+      this.moveFocusUp();
+    } else if (key === 'ArrowDown') {
+      e.preventDefault();
+      this.moveFocusDown();
+    } else if (key === 'ArrowLeft') {
+      e.preventDefault();
+      this.moveFocusLeft();
+    } else if (key === 'ArrowRight') {
+      e.preventDefault();
+      this.moveFocusRight();
+    }
+    // Aボタン（Enter / Space）
+    else if (key === 'Enter' || key === ' ') {
+      e.preventDefault();
+      this.handleFocusClick();
+    }
+    // Bボタン（Escape）
+    else if (key === 'Escape') {
+      e.preventDefault();
+      this.navigate(this.previousSection);
+    }
+  }
+
+  private moveFocusUp(): void {
+    if (this.focusableElements.length === 0) return;
+    const newIndex = Math.max(0, this.currentFocusIndex - this.focusCols);
+    this.setFocus(newIndex);
+  }
+
+  private moveFocusDown(): void {
+    if (this.focusableElements.length === 0) return;
+    const newIndex = Math.min(
+      this.focusableElements.length - 1,
+      this.currentFocusIndex + this.focusCols
+    );
+    this.setFocus(newIndex);
+  }
+
+  private moveFocusLeft(): void {
+    if (this.focusableElements.length === 0) return;
+    const row = Math.floor(this.currentFocusIndex / this.focusCols);
+    const col = this.currentFocusIndex % this.focusCols;
+    if (col > 0) {
+      this.setFocus(row * this.focusCols + col - 1);
+    }
+  }
+
+  private moveFocusRight(): void {
+    if (this.focusableElements.length === 0) return;
+    const row = Math.floor(this.currentFocusIndex / this.focusCols);
+    const col = this.currentFocusIndex % this.focusCols;
+    if (col < this.focusCols - 1 && this.currentFocusIndex + 1 < this.focusableElements.length) {
+      this.setFocus(row * this.focusCols + col + 1);
+    }
+  }
+
+  private setFocus(index: number): void {
+    if (index < 0 || index >= this.focusableElements.length) return;
+    // 前のフォーカスを削除
+    this.focusableElements[this.currentFocusIndex]?.classList.remove('ds3-focused');
+    // 新しいフォーカスを設定
+    this.currentFocusIndex = index;
+    const el = this.focusableElements[index];
+    if (el) {
+      el.classList.add('ds3-focused');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  private handleFocusClick(): void {
+    if (this.focusableElements.length > 0) {
+      this.focusableElements[this.currentFocusIndex]?.click();
+    }
   }
 
   // ===== TOP BODY =====
@@ -321,15 +408,22 @@ export class DS3HomeScreen extends Component {
     const grid = document.createElement('div');
     grid.className = 'ds3-bot-icons';
 
-    SECTIONS.forEach((s) => {
+    // キーボード用フォーカス管理を初期化
+    this.focusableElements = [];
+    this.focusCols = 3; // ホームアイコンは3列
+    this.currentFocusIndex = 0;
+
+    SECTIONS.forEach((s, idx) => {
       const iconEl = document.createElement('button');
       iconEl.className = 'ds3-bot-icon';
+      if (idx === 0) iconEl.classList.add('ds3-focused');
       iconEl.innerHTML = `
         <div class="ds3-bot-icon-em">${s.emoji}</div>
         <div class="ds3-bot-icon-lb">${s.label}</div>
       `;
       iconEl.addEventListener('click', () => this.navigate(s.id));
       grid.appendChild(iconEl);
+      this.focusableElements.push(iconEl);
     });
 
     for (let i = 0; i < 3; i++) {
@@ -356,21 +450,32 @@ export class DS3HomeScreen extends Component {
     const grid = document.createElement('div');
     grid.className = 'ds3-game-grid';
 
+    // キーボード用フォーカス管理を初期化
+    this.focusableElements = [];
+    this.focusCols = 4; // ゲームグリッドは4列
+    this.currentFocusIndex = 0;
+
     this.codexEntries.forEach((entry, idx) => {
       const card = document.createElement('button');
       card.className = 'ds3-game-card';
-      if (idx === 0) card.classList.add('ds3-game-card-sel');
+      if (idx === 0) {
+        card.classList.add('ds3-game-card-sel', 'ds3-focused');
+      }
       card.innerHTML = `
         <img src="${entry.thumbnailUrl}" alt="${entry.title}" class="ds3-game-card__thumb">
         <span class="ds3-game-card__title">${entry.title}</span>
       `;
       card.addEventListener('click', () => {
-        grid.querySelectorAll('.ds3-game-card').forEach((c) => c.classList.remove('ds3-game-card-sel'));
+        const oldFocus = grid.querySelector('.ds3-game-card-sel');
+        if (oldFocus) oldFocus.classList.remove('ds3-game-card-sel');
         card.classList.add('ds3-game-card-sel');
+        // マウスクリック時もフォーカスを更新
+        this.currentFocusIndex = this.focusableElements.indexOf(card);
         const detail = this.gameDetails.get(entry.id);
         if (detail) this.setTop(this.topGame(detail));
       });
       grid.appendChild(card);
+      this.focusableElements.push(card);
     });
 
     container.appendChild(grid);
@@ -427,20 +532,31 @@ export class DS3HomeScreen extends Component {
     const list = document.createElement('div');
     list.className = 'ds3-skill-list';
 
+    // キーボード用フォーカス管理を初期化
+    this.focusableElements = [];
+    this.focusCols = 1; // スキルリストは1列
+    this.currentFocusIndex = 0;
+
     this.skills.forEach((skill, idx) => {
       const item = document.createElement('button');
       item.className = 'ds3-skill-item';
-      if (idx === 0) item.classList.add('ds3-skill-item-sel');
+      if (idx === 0) {
+        item.classList.add('ds3-skill-item-sel', 'ds3-focused');
+      }
       item.innerHTML = `
         <span class="ds3-skill-item__name">${skill.title}</span>
         <span class="ds3-skill-item__lv">Lv.${skill.level}</span>
       `;
       item.addEventListener('click', () => {
-        list.querySelectorAll('.ds3-skill-item').forEach((c) => c.classList.remove('ds3-skill-item-sel'));
+        const oldFocus = list.querySelector('.ds3-skill-item-sel');
+        if (oldFocus) oldFocus.classList.remove('ds3-skill-item-sel');
         item.classList.add('ds3-skill-item-sel');
+        // マウスクリック時もフォーカスを更新
+        this.currentFocusIndex = this.focusableElements.indexOf(item);
         this.setTop(this.topSkill(skill));
       });
       list.appendChild(item);
+      this.focusableElements.push(item);
     });
 
     container.appendChild(list);
@@ -1012,6 +1128,11 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 .ds3-bot-icon-empty:hover { transform: none; background: rgba(0, 15, 40, 0.3); border-color: rgba(100,160,255,0.12); }
 
+.ds3-bot-icon.ds3-focused {
+  box-shadow: 0 0 12px rgba(100, 160, 255, 0.8), inset 0 0 8px rgba(100, 160, 255, 0.3);
+  border-color: rgba(100, 180, 255, 0.8);
+}
+
 .ds3-bot-icon-em { font-size: 24px; }
 .ds3-bot-icon-lb { color: rgba(150, 200, 255, 0.85); font-size: 9px; text-align: center; }
 
@@ -1056,8 +1177,13 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-game-card-sel {
   background: rgba(35, 80, 190, 0.55);
   border-color: rgba(100, 180, 255, 0.5);
-  box-shadow: 0 0 8px rgba(100, 160, 255, 0.4);
 }
+
+.ds3-game-card.ds3-focused {
+  box-shadow: 0 0 12px rgba(100, 160, 255, 0.8), inset 0 0 8px rgba(100, 160, 255, 0.3);
+  border-color: rgba(100, 180, 255, 0.8);
+}
+
 .ds3-game-card__thumb {
   width: 100%; aspect-ratio: 1; object-fit: cover;
   border: 1px solid rgba(100,160,255,0.2); image-rendering: pixelated;
