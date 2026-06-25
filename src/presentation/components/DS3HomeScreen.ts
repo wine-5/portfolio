@@ -1197,7 +1197,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 .ds3-dpad-btn {
   position: absolute;
-  background: #252525; border-radius: 4px; border: 1px solid #111;
+  background: #252525; border-radius: 3px; border: 1px solid #111;
   color: transparent; cursor: pointer;
   transition: all 120ms;
   padding: 0;
@@ -1206,30 +1206,37 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-dpad-btn:hover { background: #3a3a3a; }
 .ds3-dpad-btn:active { background: #1c1c1c; }
 
+/* 十字キーの形状を正確に配置 */
 .ds3-dpad-up {
-  width: 100%; height: 33%;
-  top: 0; left: 0;
+  width: 20px; height: 13px;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
 }
 
 .ds3-dpad-down {
-  width: 100%; height: 33%;
-  bottom: 0; left: 0;
+  width: 20px; height: 13px;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
 }
 
 .ds3-dpad-left {
-  width: 33%; height: 100%;
-  top: 0; left: 0;
+  width: 13px; height: 20px;
+  top: 50%; left: 0;
+  transform: translateY(-50%);
 }
 
 .ds3-dpad-right {
-  width: 33%; height: 100%;
-  top: 0; right: 0;
+  width: 13px; height: 20px;
+  top: 50%; right: 0;
+  transform: translateY(-50%);
 }
 
 .ds3-dpad-c {
-  position: absolute; width: 33%; height: 33%;
-  top: 33%; left: 33%;
+  position: absolute; width: 14px; height: 14px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   background: #1c1c1c; z-index: 2; pointer-events: none;
+  border-radius: 2px;
 }
 
 .ds3-bottom-screen-wrap {
