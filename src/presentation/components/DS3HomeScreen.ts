@@ -203,20 +203,20 @@ export class DS3HomeScreen extends Component {
     content.appendChild(desc);
 
     // メタ情報
-    const meta: string[] = [];
-    if (detail.year) meta.push(detail.year);
+    const metaLines: string[] = [];
+    if (detail.year) metaLines.push(detail.year);
     if (detail.teamSize) {
       const sizeStr = String(detail.teamSize);
-      meta.push(sizeStr.includes('人') ? sizeStr : `${sizeStr}人`);
+      metaLines.push(`制作: ${sizeStr.includes('人') ? sizeStr : `${sizeStr}人`}`);
     }
     if (detail.durationDays) {
       const daysStr = String(detail.durationDays);
-      meta.push(daysStr.includes('日') ? daysStr : `${daysStr}日`);
+      metaLines.push(`期間: ${daysStr.includes('日') ? daysStr : `${daysStr}日`}`);
     }
-    if (meta.length > 0) {
+    if (metaLines.length > 0) {
       const metaEl = document.createElement('div');
       metaEl.className = 'ds3-game-modal__meta';
-      metaEl.textContent = meta.join(' / ');
+      metaEl.textContent = metaLines.join(' / ');
       content.appendChild(metaEl);
     }
 
@@ -701,15 +701,15 @@ export class DS3HomeScreen extends Component {
     const el = document.createElement('div');
     el.className = 'ds3-game';
 
-    const meta: string[] = [];
-    if (d.year) meta.push(d.year);
+    const metaLines: string[] = [];
+    if (d.year) metaLines.push(d.year);
     if (d.teamSize) {
       const sizeStr = String(d.teamSize);
-      meta.push(sizeStr.includes('人') ? sizeStr : `${sizeStr}人`);
+      metaLines.push(`制作: ${sizeStr.includes('人') ? sizeStr : `${sizeStr}人`}`);
     }
     if (d.durationDays) {
       const daysStr = String(d.durationDays);
-      meta.push(daysStr.includes('日') ? daysStr : `${daysStr}日`);
+      metaLines.push(`期間: ${daysStr.includes('日') ? daysStr : `${daysStr}日`}`);
     }
 
     const links: string[] = [];
@@ -724,7 +724,7 @@ export class DS3HomeScreen extends Component {
       <div class="ds3-game__info">
         <div class="ds3-game__title">${d.title}</div>
         ${d.featuredBadge ? `<span class="ds3-game__badge">${d.featuredBadge}</span>` : ''}
-        <div class="ds3-game__meta">${meta.join(' / ')}</div>
+        <div class="ds3-game__meta">${metaLines.join(' / ')}</div>
         <p class="ds3-game__desc">${d.description}</p>
         ${d.detailedFeatures ? `<div class="ds3-game__section"><b class="ds3-game__label">ゲーム詳細</b><p class="ds3-game__text">${d.detailedFeatures}</p></div>` : ''}
         ${d.myResponsibilities ? `<div class="ds3-game__section"><b class="ds3-game__label">担当範囲</b><p class="ds3-game__text">${d.myResponsibilities}</p></div>` : ''}
