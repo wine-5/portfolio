@@ -160,6 +160,16 @@ export class DS3HomeScreen extends Component {
     }
   }
 
+  private simulateKeyEvent(key: string): void {
+    const event = new KeyboardEvent('keydown', {
+      key,
+      code: key,
+      bubbles: true,
+      cancelable: true,
+    });
+    document.dispatchEvent(event);
+  }
+
   // ===== TOP BODY =====
   private buildTopBody(): HTMLElement {
     const bodyTop = document.createElement('div');
@@ -237,14 +247,41 @@ export class DS3HomeScreen extends Component {
 
     const leftCtrl = document.createElement('div');
     leftCtrl.className = 'ds3-left-ctrl';
-    leftCtrl.innerHTML = `
-      <div class="ds3-slide-pad"><div class="ds3-slide-pad-inner"></div></div>
-      <div class="ds3-dpad">
-        <div class="ds3-dpad-h"></div>
-        <div class="ds3-dpad-v"></div>
-        <div class="ds3-dpad-c"></div>
-      </div>
-    `;
+
+    const slidePad = document.createElement('div');
+    slidePad.className = 'ds3-slide-pad';
+    slidePad.innerHTML = '<div class="ds3-slide-pad-inner"></div>';
+    leftCtrl.appendChild(slidePad);
+
+    const dpadContainer = document.createElement('div');
+    dpadContainer.className = 'ds3-dpad';
+
+    // 十字キー：上下左右
+    const dpadUp = document.createElement('button');
+    dpadUp.className = 'ds3-dpad-btn ds3-dpad-up';
+    dpadUp.addEventListener('click', () => this.simulateKeyEvent('ArrowUp'));
+    dpadContainer.appendChild(dpadUp);
+
+    const dpadDown = document.createElement('button');
+    dpadDown.className = 'ds3-dpad-btn ds3-dpad-down';
+    dpadDown.addEventListener('click', () => this.simulateKeyEvent('ArrowDown'));
+    dpadContainer.appendChild(dpadDown);
+
+    const dpadLeft = document.createElement('button');
+    dpadLeft.className = 'ds3-dpad-btn ds3-dpad-left';
+    dpadLeft.addEventListener('click', () => this.simulateKeyEvent('ArrowLeft'));
+    dpadContainer.appendChild(dpadLeft);
+
+    const dpadRight = document.createElement('button');
+    dpadRight.className = 'ds3-dpad-btn ds3-dpad-right';
+    dpadRight.addEventListener('click', () => this.simulateKeyEvent('ArrowRight'));
+    dpadContainer.appendChild(dpadRight);
+
+    const dpadCenter = document.createElement('div');
+    dpadCenter.className = 'ds3-dpad-c';
+    dpadContainer.appendChild(dpadCenter);
+
+    leftCtrl.appendChild(dpadContainer);
     bottomMain.appendChild(leftCtrl);
 
     const bottomScreenWrap = document.createElement('div');
@@ -269,15 +306,42 @@ export class DS3HomeScreen extends Component {
 
     const rightCtrl = document.createElement('div');
     rightCtrl.className = 'ds3-right-ctrl';
-    rightCtrl.innerHTML = `
-      <div class="ds3-abxy">
-        <div class="ds3-ab-btn ds3-btn-x">X</div>
-        <div class="ds3-ab-btn ds3-btn-y">Y</div>
-        <div class="ds3-ab-btn ds3-btn-a">A</div>
-        <div class="ds3-ab-btn ds3-btn-b">B</div>
-      </div>
-      <div class="ds3-slide-pad-r"><div class="ds3-slide-pad-r-inner"></div></div>
-    `;
+
+    const abxyContainer = document.createElement('div');
+    abxyContainer.className = 'ds3-abxy';
+
+    // X Y A B ボタン
+    const btnX = document.createElement('button');
+    btnX.className = 'ds3-ab-btn ds3-btn-x';
+    btnX.textContent = 'X';
+    btnX.addEventListener('click', () => this.simulateKeyEvent('x'));
+    abxyContainer.appendChild(btnX);
+
+    const btnY = document.createElement('button');
+    btnY.className = 'ds3-ab-btn ds3-btn-y';
+    btnY.textContent = 'Y';
+    btnY.addEventListener('click', () => this.simulateKeyEvent('y'));
+    abxyContainer.appendChild(btnY);
+
+    const btnA = document.createElement('button');
+    btnA.className = 'ds3-ab-btn ds3-btn-a';
+    btnA.textContent = 'A';
+    btnA.addEventListener('click', () => this.simulateKeyEvent('Enter'));
+    abxyContainer.appendChild(btnA);
+
+    const btnB = document.createElement('button');
+    btnB.className = 'ds3-ab-btn ds3-btn-b';
+    btnB.textContent = 'B';
+    btnB.addEventListener('click', () => this.simulateKeyEvent('Escape'));
+    abxyContainer.appendChild(btnB);
+
+    rightCtrl.appendChild(abxyContainer);
+
+    const slidePadR = document.createElement('div');
+    slidePadR.className = 'ds3-slide-pad-r';
+    slidePadR.innerHTML = '<div class="ds3-slide-pad-r-inner"></div>';
+    rightCtrl.appendChild(slidePadR);
+
     bottomMain.appendChild(rightCtrl);
 
     bodyBottom.appendChild(bottomMain);
@@ -1114,20 +1178,42 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 
 .ds3-dpad { position: relative; width: 60px; height: 60px; }
-.ds3-dpad-h {
-  position: absolute; width: 100%; height: 33%;
-  top: 33%; left: 0;
+
+.ds3-dpad-btn {
+  position: absolute;
   background: #252525; border-radius: 4px; border: 1px solid #111;
+  color: transparent; cursor: pointer;
+  transition: all 120ms;
+  padding: 0;
 }
-.ds3-dpad-v {
-  position: absolute; width: 33%; height: 100%;
-  top: 0; left: 33%;
-  background: #252525; border-radius: 4px; border: 1px solid #111;
+
+.ds3-dpad-btn:hover { background: #3a3a3a; }
+.ds3-dpad-btn:active { background: #1c1c1c; }
+
+.ds3-dpad-up {
+  width: 100%; height: 33%;
+  top: 0; left: 0;
 }
+
+.ds3-dpad-down {
+  width: 100%; height: 33%;
+  bottom: 0; left: 0;
+}
+
+.ds3-dpad-left {
+  width: 33%; height: 100%;
+  top: 0; left: 0;
+}
+
+.ds3-dpad-right {
+  width: 33%; height: 100%;
+  top: 0; right: 0;
+}
+
 .ds3-dpad-c {
   position: absolute; width: 33%; height: 33%;
   top: 33%; left: 33%;
-  background: #1c1c1c; z-index: 2;
+  background: #1c1c1c; z-index: 2; pointer-events: none;
 }
 
 .ds3-bottom-screen-wrap {
@@ -1407,7 +1493,12 @@ export const DS3_HOME_SCREEN_STYLES = `
   font-size: 10px; font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 120ms;
 }
+
+.ds3-ab-btn:hover { transform: scale(1.1); }
+.ds3-ab-btn:active { transform: scale(0.95); }
 .ds3-btn-x { background: #4488cc; top: 0; left: 23px; }
 .ds3-btn-y { background: #44aa55; top: 23px; left: 0; }
 .ds3-btn-a { background: #cc4444; top: 23px; right: 0; }
