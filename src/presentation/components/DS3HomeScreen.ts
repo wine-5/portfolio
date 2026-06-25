@@ -43,6 +43,11 @@ export class DS3HomeScreen extends Component {
   private focusableElements: HTMLElement[] = [];
   private focusCols = 1;
 
+  // 画像自動切り替え用
+  private imageRotationTimer: ReturnType<typeof setInterval> | null = null;
+  private currentImageIndex = 0;
+  private currentGameImages: string[] = [];
+
   /**
    * 全データを事前ロード。
    */
@@ -168,6 +173,34 @@ export class DS3HomeScreen extends Component {
       cancelable: true,
     });
     document.dispatchEvent(event);
+  }
+
+  private startImageRotation(imgElement: HTMLImageElement, imageUrls: string[]): void {
+    // 前のタイマーをクリア
+    if (this.imageRotationTimer !== null) {
+      clearInterval(this.imageRotationTimer);
+    }
+
+    this.currentGameImages = imageUrls;
+    this.currentImageIndex = 0;
+
+    // 3秒ごとに画像を切り替え
+    this.imageRotationTimer = setInterval(() => {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.currentGameImages.length;
+      imgElement.src = this.currentGameImages[this.currentImageIndex];
+      // フェードイン効果
+      imgElement.style.opacity = '0.5';
+      setTimeout(() => {
+        imgElement.style.opacity = '1';
+      }, 150);
+    }, 3000);
+  }
+
+  private stopImageRotation(): void {
+    if (this.imageRotationTimer !== null) {
+      clearInterval(this.imageRotationTimer);
+      this.imageRotationTimer = null;
+    }
   }
 
   private showGameGalleryModal(detail: GameDetailVM): void {
@@ -656,6 +689,9 @@ export class DS3HomeScreen extends Component {
 
   // ===== ナビゲーション =====
   private navigate(view: ViewId): void {
+    // 画像自動切り替えタイマーをクリア
+    this.stopImageRotation();
+
     // 前のセクションを記録
     if (this.currentSection !== view) {
       this.previousSection = this.currentSection;
@@ -865,6 +901,11 @@ export class DS3HomeScreen extends Component {
     if (gameImg && d.imageUrls.length > 0) {
       gameImg.style.cursor = 'pointer';
       gameImg.addEventListener('click', () => this.showGameGalleryModal(d));
+
+      // 複数の画像がある場合は自動切り替えを開始
+      if (d.imageUrls.length > 1) {
+        this.startImageRotation(gameImg, d.imageUrls);
+      }
     }
 
     // 詳細ボタンのイベントリスナー
@@ -1359,6 +1400,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-game__img {
   width: 100%; height: 100%; object-fit: cover;
   border: 2px solid var(--line); image-rendering: pixelated;
+  transition: opacity 150ms ease-out;
 }
 .ds3-game__info { display: flex; flex-direction: column; gap: 3px; overflow: hidden; min-width: 0; }
 .ds3-game__title { font-size: clamp(0.9rem, 2.2vw, 1.2rem); color: var(--accent); line-height: 1.1; }
