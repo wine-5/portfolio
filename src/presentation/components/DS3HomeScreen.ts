@@ -35,6 +35,9 @@ export class DS3HomeScreen extends Component {
   private bottomContent: HTMLElement | null = null;
   private topLabel: HTMLElement | null = null;
 
+  private currentSection: ViewId = 'home';
+  private previousSection: ViewId = 'home';
+
   /**
    * 全データを事前ロード。
    */
@@ -198,12 +201,29 @@ export class DS3HomeScreen extends Component {
 
     const shsGroup = document.createElement('div');
     shsGroup.className = 'ds3-shs-group';
-    shsGroup.innerHTML = `
-      <button class="ds3-sys-btn">SELECT</button>
-      <button class="ds3-home-btn" id="ds3-home-btn"><div class="ds3-home-inner"></div></button>
-      <button class="ds3-sys-btn">START</button>
-    `;
-    shsGroup.querySelector('#ds3-home-btn')?.addEventListener('click', () => this.navigate('home'));
+
+    const backBtn = document.createElement('button');
+    backBtn.className = 'ds3-sys-btn';
+    backBtn.textContent = 'BACK';
+    backBtn.addEventListener('click', () => {
+      if (this.previousSection !== this.currentSection) {
+        this.navigate(this.previousSection);
+      }
+    });
+    shsGroup.appendChild(backBtn);
+
+    const homeBtn = document.createElement('button');
+    homeBtn.className = 'ds3-home-btn';
+    homeBtn.id = 'ds3-home-btn';
+    homeBtn.innerHTML = '<div class="ds3-home-inner"></div>';
+    homeBtn.addEventListener('click', () => this.navigate('home'));
+    shsGroup.appendChild(homeBtn);
+
+    const startBtn = document.createElement('button');
+    startBtn.className = 'ds3-sys-btn';
+    startBtn.textContent = 'START';
+    shsGroup.appendChild(startBtn);
+
     shsBar.appendChild(shsGroup);
 
     const powerBtn = document.createElement('button');
@@ -217,6 +237,12 @@ export class DS3HomeScreen extends Component {
 
   // ===== ナビゲーション =====
   private navigate(view: ViewId): void {
+    // 前のセクションを記録
+    if (this.currentSection !== view) {
+      this.previousSection = this.currentSection;
+    }
+    this.currentSection = view;
+
     const labelMap: Record<ViewId, string> = {
       home: 'HOME', about: 'ABOUT', games: 'GAMES',
       skills: 'SKILLS', contact: 'CONTACT', settings: 'SETTINGS', updates: 'UPDATES',
@@ -357,8 +383,14 @@ export class DS3HomeScreen extends Component {
 
     const meta: string[] = [];
     if (d.year) meta.push(d.year);
-    if (d.teamSize) meta.push(`${d.teamSize}人`);
-    if (d.durationDays) meta.push(`${d.durationDays}日`);
+    if (d.teamSize) {
+      const sizeStr = String(d.teamSize);
+      meta.push(sizeStr.includes('人') ? sizeStr : `${sizeStr}人`);
+    }
+    if (d.durationDays) {
+      const daysStr = String(d.durationDays);
+      meta.push(daysStr.includes('日') ? daysStr : `${daysStr}日`);
+    }
 
     const links: string[] = [];
     if (d.installUrl) links.push(`<a href="${d.installUrl}" target="_blank" class="ds3-game__btn">▸ プレイ</a>`);
