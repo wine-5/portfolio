@@ -174,18 +174,7 @@ export class DS3HomeScreen extends Component {
     bottomScreen.appendChild(content);
 
     bottomBezel.appendChild(bottomScreen);
-
-    const shsRow = document.createElement('div');
-    shsRow.className = 'ds3-shs-row';
-    shsRow.innerHTML = `
-      <div class="ds3-shs-btn"><span>SEL</span></div>
-      <div class="ds3-home-btn" id="ds3-home-btn"><div class="ds3-home-inner"></div></div>
-      <div class="ds3-shs-btn"><span>STA</span></div>
-    `;
-    shsRow.querySelector('#ds3-home-btn')?.addEventListener('click', () => this.navigate('home'));
-
     bottomScreenWrap.appendChild(bottomBezel);
-    bottomScreenWrap.appendChild(shsRow);
     bottomMain.appendChild(bottomScreenWrap);
 
     const rightCtrl = document.createElement('div');
@@ -202,6 +191,27 @@ export class DS3HomeScreen extends Component {
     bottomMain.appendChild(rightCtrl);
 
     bodyBottom.appendChild(bottomMain);
+
+    // SELECT / HOME / START + POWER（本体最下部の横一列）
+    const shsBar = document.createElement('div');
+    shsBar.className = 'ds3-shs-bar';
+
+    const shsGroup = document.createElement('div');
+    shsGroup.className = 'ds3-shs-group';
+    shsGroup.innerHTML = `
+      <button class="ds3-sys-btn">SELECT</button>
+      <button class="ds3-home-btn" id="ds3-home-btn"><div class="ds3-home-inner"></div></button>
+      <button class="ds3-sys-btn">START</button>
+    `;
+    shsGroup.querySelector('#ds3-home-btn')?.addEventListener('click', () => this.navigate('home'));
+    shsBar.appendChild(shsGroup);
+
+    const powerBtn = document.createElement('button');
+    powerBtn.className = 'ds3-power-btn';
+    powerBtn.innerHTML = '⏻ POWER';
+    shsBar.appendChild(powerBtn);
+
+    bodyBottom.appendChild(shsBar);
     return bodyBottom;
   }
 
@@ -642,8 +652,9 @@ export const DS3_HOME_SCREEN_STYLES = `
   justify-content: center;
   height: 100%;
   max-height: 100%;
-  --ds3-top-w: 720px;
-  --ds3-bottom-w: 820px;
+  /* 上下の本体は同じ幅（実機と同様） */
+  --ds3-top-w: 780px;
+  --ds3-bottom-w: 780px;
   /* メタリックブルー本体カラー */
   --ds3-blue-top: linear-gradient(160deg, #5aa3e6 0%, #3a78c8 42%, #2a5fae 100%);
   --ds3-blue-bottom: linear-gradient(180deg, #3a78c8 0%, #2a5fae 55%, #214c92 100%);
@@ -878,9 +889,10 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 
 .ds3-bottom-main {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   gap: 18px;
   padding: 0 20px;
 }
@@ -889,8 +901,10 @@ export const DS3_HOME_SCREEN_STYLES = `
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   flex-shrink: 0;
+  width: 90px;
 }
 
 .ds3-slide-pad {
@@ -1109,22 +1123,50 @@ export const DS3_HOME_SCREEN_STYLES = `
   background: rgba(100,160,255,0.4); border-radius: 3px;
 }
 
-/* SELECT HOME START */
-.ds3-shs-row { display: flex; align-items: center; gap: 12px; }
-.ds3-shs-btn {
-  width: 36px; height: 11px;
-  background: #2a2a2a; border-radius: 6px; border: 1px solid #111;
-  display: flex; align-items: center; justify-content: center;
+/* SELECT / HOME / START + POWER（本体最下部の横一列） */
+.ds3-shs-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+  padding: 0 30px;
 }
-.ds3-shs-btn span { color: #555; font-size: 6px; }
+.ds3-shs-group { display: flex; align-items: center; gap: 28px; }
+.ds3-sys-btn {
+  min-width: 56px; height: 16px;
+  background: linear-gradient(180deg, #d8dde4 0%, #b3bcc8 100%);
+  border-radius: 8px; border: 1px solid #8b94a3;
+  color: #3a4150; font-size: 8px; letter-spacing: 1px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-family: var(--font-pixel);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.ds3-sys-btn:hover { background: linear-gradient(180deg, #e6eaef 0%, #c2cad6 100%); }
 .ds3-home-btn {
-  width: 28px; height: 28px;
-  background: #2a2a2a; border-radius: 50%; border: 2px solid #111;
+  width: 30px; height: 30px;
+  background: linear-gradient(180deg, #d8dde4 0%, #aab4c2 100%);
+  border-radius: 50%; border: 2px solid #8b94a3;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.6);
 }
-.ds3-home-btn:hover { background: #3a3a3a; }
-.ds3-home-inner { width: 12px; height: 12px; background: #3a3a3a; border-radius: 50%; border: 1px solid #222; pointer-events: none; }
+.ds3-home-btn:hover { background: linear-gradient(180deg, #e6eaef 0%, #bcc5d2 100%); }
+.ds3-home-inner {
+  width: 11px; height: 11px;
+  border: 1.5px solid #6b7585; border-radius: 2px;
+  pointer-events: none;
+}
+.ds3-power-btn {
+  position: absolute;
+  right: 36px;
+  background: linear-gradient(180deg, #3a6cb0 0%, #244c8e 100%);
+  border: 1px solid #1c3f7a; border-radius: 8px;
+  color: rgba(255,255,255,0.85); font-size: 8px; letter-spacing: 1px;
+  padding: 4px 10px; cursor: pointer; font-family: var(--font-pixel);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+}
+.ds3-power-btn:hover { filter: brightness(1.15); }
 
 /* 右コントローラー */
 .ds3-abxy { position: relative; width: 70px; height: 70px; }
