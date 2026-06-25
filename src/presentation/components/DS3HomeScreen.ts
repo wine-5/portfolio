@@ -983,8 +983,6 @@ export class DS3HomeScreen extends Component {
           <div class="ds3-about__title">${this.profile.title}</div>
           <div class="ds3-about__stats">
             <div class="ds3-about__lv">LV. <b>${this.profile.level}</b></div>
-            <div class="ds3-about__hp">HP <span>${'█'.repeat(8)}</span></div>
-            <div class="ds3-about__mp">MP <span>${'█'.repeat(6)}</span></div>
           </div>
         </div>
       </div>
@@ -1296,8 +1294,6 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-about__title { font-size: 0.85rem; color: var(--ink-dim); margin: 4px 0 8px; }
 .ds3-about__stats { display: flex; flex-direction: column; gap: 2px; font-size: 0.72rem; }
 .ds3-about__lv b { color: var(--c-gold); }
-.ds3-about__hp span { color: var(--c-hp); }
-.ds3-about__mp span { color: var(--c-mp); }
 .ds3-about__info {
   display: flex;
   flex-direction: column;
