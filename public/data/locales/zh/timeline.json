@@ -1,0 +1,200 @@
+{
+  "hero": {
+    "title": "开发轨迹",
+    "subtitle": "从入学到现在的游戏开发记录",
+    "description": "从专门学校入学到现在，按时间顺序介绍每个项目的开发期间、使用技术和成果。"
+  },
+  "stats": {
+    "projects": "项目",
+    "awards": "获奖",
+    "years": "年"
+  },
+  "items": [
+    {
+      "id": "school-start",
+      "title": "入学专门学校",
+      "type": "milestone",
+      "date": "2024-04-01",
+      "description": "开始学习游戏开发",
+      "color": "#10b981",
+      "icon": "🎓"
+    },
+    {
+      "id": "element-battle",
+      "title": "ElementBattle",
+      "type": "project",
+      "date": "2025-01-16",
+      "duration": 30,
+      "description": "值得纪念的首个卡牌游戏作品。边学习函数和变量边开发。",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "color": "#6366f1",
+      "icon": "🃏"
+    },
+    {
+      "id": "split",
+      "title": "Split",
+      "type": "project",
+      "date": "2024-10-01",
+      "duration": 180,
+      "description": "首次团队开发制作的2D动作游戏。从策划到调试经历全部流程。",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "color": "#8b5cf6",
+      "icon": "🎮"
+    },
+    {
+      "id": "under-over",
+      "title": "UnderOver",
+      "type": "project",
+      "date": "2024-12-01",
+      "duration": 90,
+      "description": "兼顾Unity独有方法学习开发的2D动作游戏。Unity基础巩固的集大成之作。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#f59e0b",
+      "icon": "⚡"
+    },
+    {
+      "id": "takashi",
+      "title": "たかし、人生ベット中",
+      "type": "project",
+      "date": "2025-08-01",
+      "duration": 3,
+      "description": "校内Game Jam 3天开发的2D射击游戏。5人团队的领导经验。",
+      "technologies": [
+        "Unity",
+        "C#",
+        "单例模式",
+        "对象池"
+      ],
+      "color": "#ef4444",
+      "icon": "🏆",
+      "award": "株式会社InfiniteLoop堀川奖"
+    },
+    {
+      "id": "butterfly",
+      "title": "蝶々反乱",
+      "type": "project",
+      "date": "2025-10-18",
+      "duration": 2,
+      "description": "Sapporo Game Camp2025参赛作品。全员初次见面的7人团队开发的2D动作游戏。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#06b6d4",
+      "icon": "🦋",
+      "status": "完善中"
+    },
+    {
+      "id": "zirai-tyan",
+      "title": "深层深理 地雷酱",
+      "type": "project",
+      "date": "2025-10-25",
+      "duration": 14,
+      "description": "万代南梦宫工作室杯为期2周的Game Jam作品。与程序员以外的设计师、策划、音响等各种职业的人员共同开发。",
+      "technologies": [
+        "C++"
+      ],
+      "color": "#ec4899",
+      "icon": "💣",
+      "award": "万代南梦宫工作室杯参加者"
+    },
+    {
+      "id": "tofu-runner",
+      "title": "TofuRunner",
+      "type": "project",
+      "date": "2025-11-12",
+      "duration": 3,
+      "description": "首次在App Store上发布的游戏。负责玩家（豆腐）控制和环形着色器渲染。",
+      "technologies": [
+        "Unity",
+        "C#",
+        "Sharder"
+      ],
+      "color": "#f97316",
+      "icon": "📱",
+      "award": "App Store发布"
+    },
+    {
+      "id": "kochira-mukou",
+      "title": "这一侧 / 那一侧",
+      "type": "project",
+      "date": "2026-01-11",
+      "duration": 2,
+      "description": "在HIBIGA主办的游戏Jam中制作的作品。负责音频类设计、游戏整体状态转换、基类创建。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#a78bfa",
+      "icon": "🎭"
+    },
+    {
+      "id": "more-hit-2",
+      "title": "MoreHit2",
+      "type": "project",
+      "date": "2025-12-01",
+      "duration": 7,
+      "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品。负责Player设计与实现、敌人基类和Boss的实现。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#60a5fa",
+      "icon": "🎯"
+    },
+    {
+      "id": "the-mask-ball-seeker",
+      "title": "The Mask Ball Seeker",
+      "type": "project",
+      "date": "2026-01-25",
+      "duration": 3,
+      "description": "在Global Game Jam制作的解决舞会谋杀案的游戏。负责Player、NPC、小游戏实现、音频和场景管理。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#c084fc",
+      "icon": "🎭",
+      "status": "即将推出"
+    },
+    {
+      "id": "ansatu-hantenn",
+      "title": "暗杀反转",
+      "type": "project",
+      "date": "2026-03-15",
+      "duration": 7,
+      "description": "在UnityRoom游戏Jam中制作。翻转瓷砖从敌人背后进行暗杀的游戏。负责所有编程工作。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#34d399",
+      "icon": "🗡️"
+    },
+    {
+      "id": "teruteru-wars",
+      "title": "晴天娃娃战争",
+      "type": "project",
+      "date": "2026-03-22",
+      "duration": 2,
+      "description": "在ImoGameJam制作。通过翻转晴天娃娃改变效果的塔防游戏。负责音频、场景转换和AI生成。",
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
+      "color": "#fbbf24",
+      "icon": "☀️"
+    }
+  ]
+}

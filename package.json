@@ -1,0 +1,19 @@
+{
+  "name": "wine-5-portfolio",
+  "version": "2.0.0",
+  "description": "wine-5 portfolio — retro 8bit RPG world (Vite + TypeScript, onion architecture)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}

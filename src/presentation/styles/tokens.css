@@ -1,0 +1,107 @@
+/* =========================================================
+   Design Tokens ─ レトロ8bit RPG デザインシステム
+   テーマ: night(夜=デフォルト) / day(昼)
+   ========================================================= */
+
+:root {
+  /* --- Fonts --- */
+  --font-pixel: 'DotGothic16', 'Press Start 2P', monospace; /* 見出し/UI(日本語ドット) */
+  --font-pixel-en: 'Press Start 2P', monospace;             /* 英字ロゴ専用 */
+  --font-body: 'BIZ UDPGothic', 'DotGothic16', sans-serif;  /* 本文(読みやすさ重視) */
+
+  /* --- Pixel grid --- */
+  --px: 4px;                /* ドット1単位 */
+  --border-pixel: 4px;      /* ドット枠の太さ */
+
+  /* --- Spacing (8px grid) --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+
+  /* --- Font sizes --- */
+  --fs-xs: 0.7rem;
+  --fs-sm: 0.8rem;
+  --fs-base: 0.95rem;
+  --fs-lg: 1.1rem;
+  --fs-xl: 1.4rem;
+  --fs-2xl: 1.8rem;
+  --fs-3xl: 2.4rem;
+  --fs-title: clamp(2.2rem, 8vw, 4.5rem);
+
+  /* --- Layout --- */
+  --max-width: 1120px;
+  --container-pad: clamp(1rem, 4vw, 2rem);
+  --hud-height: 64px;
+
+  /* --- Z-index --- */
+  --z-bg: 0;
+  --z-content: 10;
+  --z-hud: 100;
+  --z-modal: 1000;
+  --z-title: 2000;
+
+  /* --- Transition --- */
+  --t-fast: 120ms steps(2, end);
+  --t-base: 240ms steps(4, end);
+  --t-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Brand accents (テーマ非依存の原色パレット) --- */
+  --c-hp: #e23636;          /* HP 赤 */
+  --c-mp: #2a6fdb;          /* MP 青 */
+  --c-exp: #2ecc71;         /* EXP 緑 */
+  --c-gold: #f5c542;        /* ゴールド/星 */
+  --c-magenta: #c850c0;     /* 看板アクセント */
+  --c-cyan: #36d6e2;
+
+  /* レアリティ(看板演出) */
+  --c-legendary: #f5c542;   /* AppStore公開済み */
+  --c-epic: #c850c0;        /* Store公開予定 */
+}
+
+/* =========================================================
+   THEME: NIGHT (夜マップ・デフォルト)
+   ========================================================= */
+[data-theme='night'] {
+  --bg-0: #0b0a1a;          /* 最背面 */
+  --bg-1: #141233;          /* パネル背景 */
+  --bg-2: #1e1b4d;          /* 一段明るいパネル */
+  --bg-window: #100e26;     /* RPGウィンドウ内 */
+  --ink: #f5f3ff;           /* 主テキスト */
+  --ink-dim: #a7a3d6;       /* 補助テキスト */
+  --ink-faint: #6f6ba3;
+  --line: #4b3fa0;          /* ドット枠線 */
+  --line-soft: #2c2860;
+  --accent: #818cf8;        /* 主アクセント(紫) */
+  --accent-2: #c850c0;      /* 副アクセント */
+  --select: #f5c542;        /* メニュー選択カーソル */
+  --window-shadow: rgba(0, 0, 0, 0.6);
+  --scanline: rgba(255, 255, 255, 0.005);
+  --sky-grad: radial-gradient(circle at 70% 18%, #2a2660 0%, #0b0a1a 60%);
+}
+
+/* =========================================================
+   THEME: DAY (昼マップ)
+   ========================================================= */
+[data-theme='day'] {
+  --bg-0: #cfe8ff;
+  --bg-1: #ffffff;
+  --bg-2: #eaf3ff;
+  --bg-window: #ffffff;
+  --ink: #1b1736;
+  --ink-dim: #4a4570;
+  --ink-faint: #8884ab;
+  --line: #3a4fb0;
+  --line-soft: #9fb4e8;
+  --accent: #4f46e5;
+  --accent-2: #c026a8;
+  --select: #e6a800;
+  --window-shadow: rgba(40, 60, 120, 0.25);
+  --scanline: rgba(0, 0, 0, 0.003);
+  --sky-grad: radial-gradient(circle at 70% 14%, #fff6c8 0%, #bfe0ff 55%, #9ccbff 100%);
+}

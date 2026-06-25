@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2026-04-18",
+    "title": "Added 3 New Games",
+    "description": "Added 'MoreHit2 (Teru Teru Bozu)' created at ImoGameJam, 'Assassination Reversal' from UnityRoom Game Jam, and 'The Mask Ball Seeker' from Global Game Jam to the projects."
+  },
+  {
+    "date": "2026-01-30",
+    "title": "Updated \"Butterfly Rebellion\" Project Information",
+    "description": "Added image paths and UnityRoom play URL for Butterfly Rebellion. Updated project information to the latest state and applied changes to all languages."
+  },
+  {
+    "date": "2026-01-25",
+    "title": "Major Redesign of Main Canvas Display",
+    "description": "Redesigned the game icon layout to create a more engaging screen."
+  },
+  {
+    "date": "2026-01-11",
+    "title": "Added \"MoreHit2\" and \"This Side / That Side of the Line\" Games",
+    "description": "Added two new games created at UnityRoom game jam and HIBIGA-hosted game jam to the projects."
+  },
+  {
+    "date": "2025-11-15",
+    "title": "Added \"TofuRunner\" Game",
+    "description": "Added \"TofuRunner\", the first game published on the App Store, to the projects."
+  },
+  {
+    "date": "2025-11-07",
+    "title": "Added \"Shin-layer Shin-ri Mine-chan\" Game",
+    "description": "Added \"Shin-layer Shin-ri Mine-chan\" from Bandai Namco Studios Cup to the projects. A 2-week game jam entry developed in C++."
+  },
+  {
+    "date": "2025-10-30",
+    "title": "Layout Fixes and Minor Adjustments",
+    "description": "Added CSS for non-PC device support and fixed some text content"
+  },
+  {
+    "date": "2025-10-27",
+    "title": "Profile Image Addition and Minor Fixes",
+    "description": "Updated the design of the update history page."
+  },
+  {
+    "date": "2025-10-24",
+    "title": "Major UI Renewal and Multi-language Support",
+    "description": "Completely renewed the site UI and implemented support for 3 languages (Japanese, English, Chinese). Also improved code readability and maintainability."
+  },
+  {
+    "date": "2025-10-23",
+    "title": "Mobile Display Improvements and Regular Ripple Effect Added",
+    "description": "Optimized title display on smartphones and added periodic ripple effects after animation."
+  },
+  {
+    "date": "2025-10-21",
+    "title": "3D Water Reflection Title and Game Image Slider Added",
+    "description": "Implemented 3D water reflection effect on homepage and added multi-image slider functionality for game works."
+  },
+  {
+    "date": "2025-10-20",
+    "title": "Portfolio Site Launched",
+    "description": "wine-5's portfolio site has been launched."
+  }
+]

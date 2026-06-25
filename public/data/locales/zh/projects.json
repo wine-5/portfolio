@@ -1,0 +1,327 @@
+[
+  {
+    "title": "晴天娃娃战争",
+    "description": "在ImoGameJam制作的作品",
+    "detailedFeatures": "Inversion → 反转或翻转 → 从"晴天娃娃改变方向后会从晴天变成雨天"这个想法开始制作游戏！我们决定制作一个通过翻转晴天娃娃来改变效果的塔防游戏！",
+    "myResponsibilities": "音频相关类、场景转换类、使用AI生成图像和音频",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/teruteru/teruteru-title.jpg",
+      "images/game/teruteru/teruteru-game.png"
+    ],
+    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
+    "playUrl": "https://unityroom.com/games/teruteru-wars",
+    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2天"
+  },
+  {
+    "title": "暗杀反转",
+    "description": "在2026年3月举办的UnityRoom游戏Jam中制作的作品",
+    "detailedFeatures": "从主题"里(ura/反面)"出发，制作了"翻转瓷砖利用机关，从敌人背后进行暗杀的游戏"。",
+    "myResponsibilities": "所有编程工作",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-title.png",
+      "images/game/hanntenn-ansatu/hanntenn-ansatu-game.png"
+    ],
+    "thumbnailImage": "images/game/hanntenn-ansatu/Ansatu.gif",
+    "playUrl": "https://unityroom.com/games/hanntenn-ansatu",
+    "githubUrl": "https://github.com/wine-5/unity-room-202603",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "1周"
+  },
+  {
+    "title": "The Mask Ball Seeker",
+    "description": "在2026年1月举办的Global Game Jam的作品",
+    "detailedFeatures": "从主题"MASK"出发，与团队成员讨论后，决定制作"在舞会上解决谋杀案的游戏"！全员初次见面，一开始很不安，但最后成功完成了！",
+    "myResponsibilities": "Player设计与实现、NPC实现、部分小游戏实现、音频和场景整体管理类的创建",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-home.png",
+      "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png"
+    ],
+    "thumbnailImage": "images/game/the-mask-ball-seeker/the-mask-ball-seeker-game.png",
+    "playUrl": "https://unityroom.com/games/the-mask-ball-seeker",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "locked": true,
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "5人",
+    "period": "3天"
+  },
+  {
+    "title": "MoreHit2",
+    "description": "在2025年12月举办的UnityRoom游戏Jam中制作的作品",
+    "detailedFeatures": "在UnityRoom游戏Jam中花费1周时间开发的射击游戏。我重点关注敌人和Boss的难度平衡，逐步引入新敌人类型，最后进行Boss战斗。同时还特别关注UI和音效演出，为玩家营造紧迫感。",
+    "myResponsibilities": "Player设计与实现、敌人基类和Boss实现、音频和场景整体管理类的创建",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/MoreHit2/MoreHit2-title.png",
+      "images/game/MoreHit2/MoreHit2-in-game.png"
+    ],
+    "thumbnailImage": "images/game/MoreHit2/morehit2-icon.png",
+    "playUrl": "https://unityroom.com/games/morehit2",
+    "githubUrl": "https://github.com/wine-5/MoreHit2",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "5人",
+    "period": "1周"
+  },
+  {
+    "title": "这一侧 / 那一侧",
+    "description": "在HIBIGA主办的游戏Jam中制作的作品",
+    "detailedFeatures": "在HIBIGA主办的游戏Jam中花费2天时间开发的动作游戏。我充分利用線的主题，创造了玩家在線的上下方切換的独特游玩体验。在有限的时间内，我仔细设计了游戏的整体状态转换和音频管理，使作品更加完善。",
+    "myResponsibilities": "创建音频类、实现游戏整体状态转换、创建部分基类",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/border/border-title.png",
+      "images/game/border/border-in-game.png"
+    ],
+    "thumbnailImage": "images/game/border/border-icon.png",
+    "playUrl": "https://unityroom.com/games/kochiratomukou",
+    "githubUrl": "https://github.com/wine-5/Fibonacci",
+    "officialUrl": "https://www.hibiga.games/game-jam/%E7%AC%AC8%E5%9B%9E",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2天"
+  },
+  {
+    "title": "TofuRunner",
+    "description": "首次在App Store上发布的作品",
+    "detailedFeatures": "与校内的人一起制作的游戏。此外首次使用Shader实现了更真实的渲染效果。",
+    "myResponsibilities": "玩家(豆腐)控制,环形着色器渲染",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Sharder"
+    ],
+    "supportedPlatforms": [
+      "iOS"
+    ],
+    "images": [
+      "images/game/Tofu/Tofu-Title.png",
+      "images/game/Tofu/Tofu-InGame.png"
+    ],
+    "thumbnailImage": "images/game/Tofu/Tofu-Title.png",
+    "install": "https://apps.apple.com/jp/app/tofurunner/id6755136719",
+    "githubUrl": "https://github.com/Allow-hub/TouhuRunner",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "2人",
+    "period": "3天"
+  },
+  {
+    "title": "深层深理 地雷酱",
+    "description": "万代南梦宫工作室杯为期2周的Game Jam作品",
+    "detailedFeatures": "这是与程序员以外的设计师、策划、音响等各种职业的人员共同制作的游戏。",
+    "myResponsibilities": "关卡设计与实现，实现了几个Boss技能",
+    "technologies": [
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/zirai-tyan/zirai-icon.png",
+      "images/game/zirai-tyan/zirai-movie.mp4"
+    ],
+    "thumbnailImage": "images/game/zirai-tyan/zirai-icon.png",
+    "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
+    "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "10人",
+    "period": "2周"
+  },
+  {
+    "title": "たかし、人生ベット中",
+    "description": "校内Game Jam 3天开发的2D射击游戏。5人团队的领导经验。获得株式会社InfiniteLoop堀川奖。",
+    "detailedFeatures": "这是在校内举办的为期3天的Game Jam游戏。作为第一次参加Game Jam的项目领导，指挥工作非常艰巨。\n在委托设计师绘图时，如何表达需要什么样的图、格式如何等都是非常好的经验。由于程序员很多，创建基类并缩短关键路径非常困难。\n而且在刚开始学习设计方法时，努力使用单例和对象池等来考虑效率化。",
+    "myResponsibilities": "项目领导、基类设计、单例模式实现、对象池系统实现",
+    "technologies": [
+      "Unity",
+      "C#",
+      "单例模式"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/takasi/takasi-home.png",
+      "images/game/takasi/takasi-in-game.png"
+    ],
+    "thumbnailImage": "images/game/takasi/takasi-icon.png",
+    "playUrl": "https://unityroom.com/games/i-want-hosurus",
+    "githubUrl": "https://github.com/wine-5/TechC_GameJam",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "5人（程序员4人、设计师1人）",
+    "period": "3天",
+    "award": "株式会社InfiniteLoop堀川奖"
+  },
+  {
+    "title": "蝶々反乱",
+    "description": "Sapporo Game Camp2025参赛作品。全员初次见面的7人团队开发的2D动作游戏。首次挑战校外Game Jam。",
+    "detailedFeatures": "这是在Sapporo Game Camp2025创作的游戏。全员都是初次见面，这是第一次参加校外Game Jam。\n基于上次校内Game Jam的反思，在开始前创建Unity项目并预先准备基类，连接仓库和项目等。\n游戏本身顺利完成了，但原本预定的关卡数没能全部准备好，设计师们制作的图也没能全部使用，这也是遗憾之处。",
+    "myResponsibilities": "基类设计、玩家子弹实现、敌人行为和攻击模式实现",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/chocho/chocho-icon.png",
+      "images/game/chocho/chocho-title.png"
+    ],
+    "thumbnailImage": "images/game/chocho/chocho-icon.png",
+    "playUrl": "https://unityroom.com/games/tyoutyou",
+    "githubUrl": "https://github.com/wine-5/SGC2025",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "7人（现役程序员1人、学生程序员2人、现役设计师1人、学生设计师2人、学生策划1人）",
+    "period": "2天（目前正在完善中）"
+  },
+  {
+    "title": "Git Command Helper",
+    "description": "Git学习专用命令网站。注重实用性的学习工具。",
+    "detailedFeatures": "这是我自己学习命令时,为了在忘记命令时能快速找到并高效学习而制作的工具。作为能够高效学习和参考Git命令的网站进行开发。",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Web设计"
+    ],
+    "supportedPlatforms": [
+      "全平台兼容"
+    ],
+    "images": [
+      "images/game/git-command/git-home1.png",
+      "images/game/git-command/git-home2.png"
+    ],
+    "playUrl": "https://git-command.com/",
+    "githubUrl": "https://github.com/wine-5/Git-Command-Helper",
+    "year": "二年级",
+    "category": "web",
+    "teamSize": "1人",
+    "period": "持续开发中"
+  },
+  {
+    "title": "UnderOver",
+    "description": "兼顾Unity独有方法学习开发的2D动作游戏。Unity基础巩固的集大成之作。",
+    "detailedFeatures": "这是一边复习Unity独有方法一边制作的游戏。通过理解Unity的基本功能和2D动作游戏的开发，巩固了Unity游戏制作的基础。",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/under-over/UnderOver-title.png",
+      "images/game/under-over/UnderOver-in-game.png"
+    ],
+    "thumbnailImage": "images/game/under-over/UnderOver-title.png",
+    "playUrl": "https://unityroom.com/games/underover",
+    "githubUrl": "https://github.com/wine-5/UnderOver",
+    "year": "一年级",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "2~3个月",
+    "note": "UnityRoom发布准备中",
+    "locked": false,
+    "lockReason": "UnityRoom发布准备中"
+  },
+  {
+    "title": "SPLIT",
+    "description": "首次团队开发制作的2D动作游戏。从策划到调试经历全部流程。首次接触Git的作品。",
+    "detailedFeatures": "从策划到开发、调试都是第一次进行。回想起第一次接触Git时的混乱情景。通过学习团队开发的基础，深刻体会到了版本管理的重要性，这是非常宝贵的经验。",
+    "myResponsibilities": "关卡难度调整、调试工作",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/split/split-title.png",
+      "images/game/split/split-in-game.png"
+    ],
+    "thumbnailImage": "images/game/split/split-title.png",
+    "playUrl": "web-game/Split/homepage/homepage/HTML/homepage.html",
+    "localPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
+    "webPath": "web-game/Split/homepage/homepage/HTML/homepage.html",
+    "githubUrl": "https://github.com/wine-5/SPLIT",
+    "year": "一年级",
+    "category": "web-game",
+    "teamSize": "3人（程序员3人）",
+    "period": "6个月",
+    "note": "初のチーム制作"
+  },
+  {
+    "title": "ElementBattle",
+    "description": "值得纪念的首个卡牌游戏作品。边学习函数和变量边开发。掌握编程基础的难忘作品。",
+    "detailedFeatures": "这是我1人第一次制作的游戏。是一边学习函数、变量等一边制作的。通过实际的游戏制作学习了编程的基础概念，是一个非常难忘的作品。",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/element-battle/element-home.png",
+      "images/game/element-battle/element-in-game.png"
+    ],
+    "thumbnailImage": "images/game/element-battle/element-home.png",
+    "playUrl": "web-game/ElementBattle/index.html",
+    "localPath": "web-game/ElementBattle/index.html",
+    "webPath": "web-game/ElementBattle/index.html",
+    "githubUrl": "https://github.com/wine-5/Element_Battle",
+    "year": "一年级",
+    "category": "web-game",
+    "teamSize": "1人",
+    "period": "约1个月",
+    "note": "值得纪念的首个作品"
+  }
+]
