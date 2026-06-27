@@ -2246,9 +2246,9 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 /* ===== レスポンシブ ===== */
 @media (max-width: 1024px) {
-  .ds3-total { padding: 12px; }
+  .ds3-total { padding: 12px; margin: 0 auto; }
   .ds3-left-ctrl, .ds3-right-ctrl { display: none; }
-  .ds3-bottom-bezel { width: 95%; max-width: none; }
+  .ds3-bottom-bezel { width: 95%; max-width: none; box-sizing: border-box; }
   .ds3-total { --ds3-bottom-w: var(--ds3-top-w); }
 }
 
@@ -2283,7 +2283,8 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 @media (max-width: 480px) {
   body { font-size: 12px; }
-  .ds3-total { padding: 8px; }
+  .ds3-total { padding: 8px; margin: 0 auto; }
+  .ds3-bottom-bezel { width: 100%; max-width: 100%; box-sizing: border-box; }
   .ds3-hud { padding: 4px; gap: 4px; }
   .ds3-hud-status { font-size: 0.7rem; gap: 6px; }
   .ds3-title-text { font-size: 0.95rem; }
