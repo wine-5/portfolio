@@ -2254,6 +2254,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 @media (max-width: 768px) {
   .ds3-total { padding: 10px; }
+  .ds3-body-bottom { width: 100%; }
   .ds3-top-screen { height: clamp(160px, 38vh, 320px); font-size: 13px; }
   .ds3-bottom-screen { height: clamp(130px, 25vh, 240px); }
   .ds3-top-home { gap: 8px; }
@@ -2283,7 +2284,8 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 @media (max-width: 480px) {
   body { font-size: 12px; }
-  .ds3-total { padding: 8px; margin: 0 auto; }
+  .ds3-total { padding: 8px; margin: 0 auto; --ds3-bottom-w: 100%; }
+  .ds3-body-bottom { width: 100%; }
   .ds3-bottom-bezel { width: 100%; max-width: 100%; box-sizing: border-box; }
   .ds3-hud { padding: 4px; gap: 4px; }
   .ds3-hud-status { font-size: 0.7rem; gap: 6px; }
