@@ -1569,11 +1569,11 @@ export const DS3_HOME_SCREEN_STYLES = `
 
 .ds3-bottom-main {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr minmax(0, 420px) 1fr;
   align-items: center;
   justify-items: center;
   gap: 18px;
-  padding: 0 20px;
+  padding: 14px 20px;
 }
 
 .ds3-left-ctrl, .ds3-right-ctrl {
@@ -1662,15 +1662,23 @@ export const DS3_HOME_SCREEN_STYLES = `
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  width: 100%;
 }
 
 .ds3-bottom-bezel {
-  background: #111;
-  border-radius: 6px;
-  padding: 6px;
-  border: 1.5px solid #000;
-  width: 420px;
-  max-width: 70vw;
+  background: linear-gradient(160deg, #0c0c0c 0%, #1a1a1a 100%);
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #000;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  /* 3DS本体に画面が沈み込んで見える凹みフレーム */
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.9),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.25),
+    0 -1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .ds3-bottom-screen {
@@ -2263,7 +2271,6 @@ export const DS3_HOME_SCREEN_STYLES = `
 /* ===== レスポンシブ ===== */
 @media (max-width: 1024px) {
   .ds3-total { padding: 12px; margin: 0 auto; }
-  .ds3-bottom-bezel { width: 95%; max-width: none; box-sizing: border-box; }
   .ds3-total { --ds3-bottom-w: var(--ds3-top-w); }
 }
 
@@ -2272,7 +2279,6 @@ export const DS3_HOME_SCREEN_STYLES = `
   .ds3-left-ctrl, .ds3-right-ctrl { display: flex !important; }
   .ds3-bottom-main { grid-template-columns: 80px 1fr 80px; padding: 0 10px; gap: 10px; align-items: center; justify-items: center; }
   .ds3-bottom-screen-wrap { width: 100%; justify-self: stretch; }
-  .ds3-bottom-bezel { width: 100%; max-width: 100%; }
 }
 
 @media (max-width: 768px) {
@@ -2312,7 +2318,6 @@ export const DS3_HOME_SCREEN_STYLES = `
   .ds3-total { padding: 8px; margin: 0 auto; --ds3-bottom-w: 100%; }
   .ds3-body-bottom { width: 100%; }
   .ds3-bottom-main { grid-template-columns: 1fr; padding: 0; gap: 8px; }
-  .ds3-bottom-bezel { width: 100%; max-width: 100%; box-sizing: border-box; }
   .ds3-hud { padding: 4px; gap: 4px; }
   .ds3-hud-status { font-size: 0.7rem; gap: 6px; }
   .ds3-title-text { font-size: 0.95rem; }
