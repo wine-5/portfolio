@@ -2247,14 +2247,15 @@ export const DS3_HOME_SCREEN_STYLES = `
 /* ===== レスポンシブ ===== */
 @media (max-width: 1024px) {
   .ds3-total { padding: 12px; margin: 0 auto; }
-  .ds3-left-ctrl, .ds3-right-ctrl { display: none; }
   .ds3-bottom-bezel { width: 95%; max-width: none; box-sizing: border-box; }
   .ds3-total { --ds3-bottom-w: var(--ds3-top-w); }
 }
 
 @media (max-width: 768px) {
   .ds3-total { padding: 10px; }
+  .ds3-left-ctrl, .ds3-right-ctrl { display: none; }
   .ds3-body-bottom { width: 100%; }
+  .ds3-bottom-main { grid-template-columns: 1fr; padding: 0; gap: 8px; }
   .ds3-top-screen { height: clamp(160px, 38vh, 320px); font-size: 13px; }
   .ds3-bottom-screen { height: clamp(130px, 25vh, 240px); }
   .ds3-top-home { gap: 8px; }
