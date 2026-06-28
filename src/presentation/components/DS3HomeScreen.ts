@@ -181,7 +181,8 @@ export class DS3HomeScreen extends Component {
       clearInterval(this.imageRotationTimer);
     }
 
-    this.currentGameImages = imageUrls;
+    // 動画ファイルは <img> で表示できないためローテーション対象から除外
+    this.currentGameImages = imageUrls.filter((url) => !/\.(mp4|webm|ogg|mov)$/i.test(url));
     this.currentImageIndex = 0;
 
     // 3秒ごとに画像を切り替え
@@ -224,13 +225,27 @@ export class DS3HomeScreen extends Component {
     mediaContainer.className = 'ds3-gallery__media';
 
     let currentMediaIndex = 0;
-    const allMedia = detail.imageUrls.map(url => ({ type: 'image', url }));
+    const isVideo = (url: string) => /\.(mp4|webm|ogg|mov)$/i.test(url);
+    const allMedia = detail.imageUrls.map(url => ({
+      type: isVideo(url) ? 'video' : 'image',
+      url,
+    }));
 
     // メインメディア表示関数
     const showMedia = (index: number) => {
       mediaContainer.innerHTML = '';
       const media = allMedia[index];
-      if (media.type === 'image') {
+      if (media.type === 'video') {
+        const video = document.createElement('video');
+        video.src = media.url;
+        video.className = 'ds3-gallery__main-img';
+        video.controls = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        mediaContainer.appendChild(video);
+      } else {
         const img = document.createElement('img');
         img.src = media.url;
         img.alt = detail.title;
