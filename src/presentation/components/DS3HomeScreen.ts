@@ -2251,11 +2251,12 @@ export const DS3_HOME_SCREEN_STYLES = `
   .ds3-total { --ds3-bottom-w: var(--ds3-top-w); }
 }
 
-/* ランドスケープモード：コントローラーを表示 */
-@media (orientation: landscape) and (max-height: 768px) {
+/* ランドスケープモード：コントローラーを表示、下画面を大きく */
+@media (orientation: landscape) {
   .ds3-left-ctrl, .ds3-right-ctrl { display: flex !important; }
-  .ds3-bottom-main { grid-template-columns: 1fr auto 1fr; padding: 0 20px; gap: 18px; }
-  .ds3-bottom-bezel { width: auto; max-width: 100%; }
+  .ds3-bottom-main { grid-template-columns: 80px 1fr 80px; padding: 0 10px; gap: 10px; align-items: center; justify-items: center; }
+  .ds3-bottom-screen-wrap { width: 100%; justify-self: stretch; }
+  .ds3-bottom-bezel { width: 100%; max-width: 100%; }
 }
 
 @media (max-width: 768px) {
