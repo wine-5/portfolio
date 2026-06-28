@@ -2251,6 +2251,13 @@ export const DS3_HOME_SCREEN_STYLES = `
   .ds3-total { --ds3-bottom-w: var(--ds3-top-w); }
 }
 
+/* ランドスケープモード：コントローラーを表示 */
+@media (orientation: landscape) and (max-height: 768px) {
+  .ds3-left-ctrl, .ds3-right-ctrl { display: flex !important; }
+  .ds3-bottom-main { grid-template-columns: 1fr auto 1fr; padding: 0 20px; gap: 18px; }
+  .ds3-bottom-bezel { width: auto; max-width: 100%; }
+}
+
 @media (max-width: 768px) {
   .ds3-total { padding: 10px; }
   .ds3-left-ctrl, .ds3-right-ctrl { display: none; }
