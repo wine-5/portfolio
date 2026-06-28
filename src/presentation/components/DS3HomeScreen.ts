@@ -1383,10 +1383,11 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-dot-grn { width: 6px; height: 6px; border-radius: 50%; background: rgba(80, 200, 80, 0.8); }
 .ds3-top-clock { margin-left: auto; color: rgba(100, 160, 255, 0.5); }
 
-/* 上画面コンテンツ（固定・スクロールなし） */
+/* 上画面コンテンツ（はみ出す場合はスクロール可能） */
 .ds3-top-content {
   flex: 1;
-  overflow: hidden;
+  min-height: 0;
+  overflow-y: auto;
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
@@ -1399,7 +1400,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 
 /* ---- HOME (top) ---- */
-.ds3-top-home { display: flex; flex-direction: column; gap: 14px; height: 100%; justify-content: center; }
+.ds3-top-home { display: flex; flex-direction: column; gap: 14px; margin: auto 0; }
 .ds3-top-home__hero { display: flex; align-items: center; gap: 16px; }
 .ds3-top-home__img {
   width: 90px; height: 90px; object-fit: cover;
@@ -1467,7 +1468,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 }
 
 /* ---- SKILL (top) ---- */
-.ds3-skill { display: flex; flex-direction: column; gap: 14px; height: 100%; justify-content: center; }
+.ds3-skill { display: flex; flex-direction: column; gap: 14px; margin: auto 0; }
 .ds3-skill__head { display: flex; justify-content: space-between; align-items: baseline; }
 .ds3-skill__title { font-size: clamp(1.1rem, 3vw, 1.6rem); color: var(--accent); }
 .ds3-skill__lv { font-size: 0.8rem; color: var(--ink-dim); }
@@ -1477,7 +1478,7 @@ export const DS3_HOME_SCREEN_STYLES = `
 .ds3-skill__row--dim { color: var(--ink-faint); font-style: italic; font-size: 0.75rem; }
 
 /* ---- ABOUT (top) ---- */
-.ds3-about { display: flex; flex-direction: column; gap: 14px; height: 100%; justify-content: center; }
+.ds3-about { display: flex; flex-direction: column; gap: 14px; margin: auto 0; }
 .ds3-about__hero { display: flex; gap: 16px; align-items: center; }
 .ds3-about__img {
   width: 100px; height: 100px; object-fit: cover;
