@@ -8,16 +8,16 @@ const DEBUG_CONFIG = {
     isDebug: false,
     
     // 開発者ツールの無効化（デバッグモードがオフの場合）
-    disableDevTools: true,
+    disableDevTools: false,
     
     // コンソールログの無効化（デバッグモードがオフの場合）
-    disableConsole: true,
+    disableConsole: false,
     
     // 右クリックメニューの無効化
-    disableContextMenu: true,
+    disableContextMenu: false,
     
     // キーボードショートカットの無効化
-    disableKeyboardShortcuts: true
+    disableKeyboardShortcuts: false
 };
 
 /* ===================================

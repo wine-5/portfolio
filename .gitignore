@@ -1,6 +1,10 @@
 # web-gameフォルダ全体を除外
 web-game/
 
+# ビルド生成物・キャッシュ
+dist/
+.vite/
+
 # その他の一般的な除外設定
 node_modules/
 .DS_Store
