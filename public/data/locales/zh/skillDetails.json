@@ -1,0 +1,106 @@
+{
+  "unity": {
+    "title": "Unity",
+    "additionalSkills": [
+      "Unity编辑器扩展",
+      "UniTask",
+      "ObjectPool",
+      "物理与碰撞",
+      "性能优化"
+    ],
+    "projects": "10+项目",
+    "proficiency": "70%"
+  },
+  "c#": {
+    "title": "C#",
+    "additionalSkills": [
+      "async/await异步处理",
+      "委托与事件",
+      "泛型",
+      "特性应用",
+      "设计模式实现"
+    ],
+    "projects": "10+项目",
+    "proficiency": "70%"
+  },
+  "c++": {
+    "title": "C++",
+    "additionalSkills": [
+      "指针管理"
+    ],
+    "projects": "3+项目",
+    "proficiency": "20%"
+  },
+  "git": {
+    "title": "Git",
+    "additionalSkills": [
+      "分支策略设计",
+      "Git Lfs应用",
+      "冲突解决",
+      "提交规范管理"
+    ],
+    "projects": "所有项目使用",
+    "proficiency": "90%"
+  },
+  "css": {
+    "title": "CSS",
+    "additionalSkills": [
+      "动画设计",
+      "CSS变量应用",
+      "响应式设计",
+      "自定义属性"
+    ],
+    "projects": "8+网站",
+    "proficiency": "70%"
+  },
+  "javascript": {
+    "title": "JavaScript",
+    "additionalSkills": [
+      "DOM操作与事件",
+      "设计模式",
+      "性能优化"
+    ],
+    "projects": "8+应用程序",
+    "proficiency": "40%"
+  },
+  "js": {
+    "title": "JavaScript",
+    "additionalSkills": [
+      "DOM操作与事件",
+      "设计模式",
+      "性能优化"
+    ],
+    "projects": "8+应用程序",
+    "proficiency": "40%"
+  },
+  "typescript": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "类型系统",
+      "接口设计",
+      "泛型"
+    ],
+    "projects": "2+项目",
+    "proficiency": "30%"
+  },
+  "ts": {
+    "title": "TypeScript",
+    "additionalSkills": [
+      "类型系统",
+      "接口设计",
+      "泛型"
+    ],
+    "projects": "2+项目",
+    "proficiency": "30%"
+  },
+  "ci": {
+    "title": "CI/CD",
+    "additionalSkills": [
+      "自动化管道",
+      "测试自动化",
+      "部署自动化"
+    ],
+    "projects": "1+项目",
+    "proficiency": "20%"
+  }
+}
