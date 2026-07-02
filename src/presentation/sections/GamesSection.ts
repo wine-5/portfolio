@@ -36,6 +36,12 @@ export class GamesSection extends View<GameCollection> {
     this.redraw();
   }
 
+  /** 図鑑外(ヒーローのカルーセル等)から指定 No. の詳細モーダルを開く */
+  openEntry(entryNo: number): void {
+    const game = this.games.find((g) => g.entryNo === entryNo);
+    if (game) this.modal.open(game);
+  }
+
   private redraw(): void {
     const match = (g: Game): boolean =>
       (this.filter === 'all' || g.category === this.filter) &&

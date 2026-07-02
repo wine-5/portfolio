@@ -1,0 +1,182 @@
+/* ============================================
+   HERO(上部演出): タイトル + 回転カルーセル
+   ============================================ */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: calc(100svh - 70px);
+  padding-top: 1.5rem;
+}
+
+.hero__title-wrap {
+  text-align: center;
+  /* 旧サイトの水面反射をブラウザ標準の反射で再現(Edge/Chrome対応) */
+  -webkit-box-reflect: below -8px linear-gradient(transparent 55%, rgba(255, 255, 255, 0.18));
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 10vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: var(--color-text);
+}
+
+.hero__letter {
+  display: inline-block;
+  opacity: 0;
+  animation: hero-letter-in 0.55s cubic-bezier(0.2, 0.8, 0.3, 1.2) forwards;
+  animation-delay: calc(var(--i) * 0.09s);
+  text-shadow: var(--glow-cyan);
+}
+
+@keyframes hero-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero__subtitle {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.45em;
+  color: var(--color-magenta);
+  opacity: 0;
+  animation: hero-fade-in 0.8s ease 0.7s forwards;
+}
+
+@keyframes hero-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---- カルーセル ---- */
+.hero__carousel {
+  width: 100%;
+  max-width: 900px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.carousel__stage {
+  position: relative;
+  height: clamp(180px, 32vw, 260px);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.carousel__stage:active {
+  cursor: grabbing;
+}
+
+.carousel__item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(96px, 16vw, 150px);
+  aspect-ratio: 1;
+  padding: 0;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform, opacity;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.carousel__item:hover {
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.carousel__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 120;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+  color: var(--color-cyan);
+  background: rgba(5, 7, 15, 0.7);
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.12s;
+}
+
+.carousel__arrow:hover {
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.carousel__arrow:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.carousel__arrow--prev {
+  left: 0.3rem;
+}
+
+.carousel__arrow--next {
+  right: 0.3rem;
+}
+
+/* ---- スクロール誘導 ---- */
+.hero__scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  color: var(--color-text-dim);
+}
+
+.hero__scroll-chevron {
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--color-cyan);
+  border-bottom: 2px solid var(--color-cyan);
+  transform: rotate(45deg);
+  animation: hero-scroll-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px) rotate(45deg);
+    opacity: 0.4;
+  }
+}

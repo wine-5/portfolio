@@ -5,6 +5,7 @@ import type { Locale } from '@application/ports/Locale';
 import { BootScreen } from './components/BootScreen';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { HeroSection } from './sections/HeroSection';
 import { GamesSection } from './sections/GamesSection';
 import { NewsSection } from './sections/NewsSection';
 import { AboutSection } from './sections/AboutSection';
@@ -40,6 +41,12 @@ export class App {
 
     const games = new GamesSection();
     games.render(collection);
+
+    const hero = new HeroSection();
+    hero.setOnSelect((entryNo) => games.openEntry(entryNo));
+    hero.render([...collection.featured, ...collection.entries]);
+    hero.mount(main);
+
     games.mount(main);
 
     const newsSection = new NewsSection();
