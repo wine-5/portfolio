@@ -63,6 +63,27 @@
   box-shadow: var(--glow-cyan);
 }
 
+.tech-select {
+  margin-left: auto;
+  padding: 0.4em 1em;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-cyan);
+  background: var(--color-bg-2);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tech-select:hover,
+.tech-select:focus {
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+  outline: none;
+}
+
 .games__empty {
   padding: 3rem 0;
   font-family: var(--font-display);

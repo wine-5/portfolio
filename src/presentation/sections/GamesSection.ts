@@ -20,6 +20,7 @@ export class GamesSection extends View<GameCollection> {
   private collection: GameCollection = { featured: [], entries: [] };
   private games: readonly Game[] = [];
   private filter: Filter = 'all';
+  private tech = 'all';
 
   constructor() {
     super('section', 'games');
@@ -33,9 +34,12 @@ export class GamesSection extends View<GameCollection> {
   }
 
   private redraw(): void {
-    const match = (g: Game): boolean => this.filter === 'all' || g.category === this.filter;
+    const match = (g: Game): boolean =>
+      (this.filter === 'all' || g.category === this.filter) &&
+      (this.tech === 'all' || g.technologies.includes(this.tech));
     const featured = this.collection.featured.filter(match);
     const entries = this.collection.entries.filter(match);
+    const techs = [...new Set(this.games.flatMap((g) => [...g.technologies]))].sort();
 
     this.el.innerHTML = `
       <header class="games__header">
@@ -50,6 +54,15 @@ export class GamesSection extends View<GameCollection> {
               ${f.label}
             </button>`,
         ).join('')}
+        <select class="tech-select" data-tech aria-label="使用技術で絞り込み">
+          <option value="all">ALL TECH</option>
+          ${techs
+            .map(
+              (t) =>
+                `<option value="${esc(t)}"${this.tech === t ? ' selected' : ''}>${esc(t)}</option>`,
+            )
+            .join('')}
+        </select>
       </nav>
       ${featured.length > 0 ? `<div class="games__featured">${featured.map((g) => featuredCard(g)).join('')}</div>` : ''}
       ${
@@ -66,6 +79,11 @@ export class GamesSection extends View<GameCollection> {
         this.filter = btn.dataset['filter'] as Filter;
         this.redraw();
       });
+    });
+
+    this.el.querySelector<HTMLSelectElement>('[data-tech]')?.addEventListener('change', (e) => {
+      this.tech = (e.target as HTMLSelectElement).value;
+      this.redraw();
     });
 
     this.el.querySelectorAll<HTMLElement>('[data-entry]').forEach((node) => {
