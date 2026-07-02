@@ -141,33 +141,59 @@ img {
   padding: 2rem clamp(1rem, 4vw, 2rem) 6rem;
 }
 
+/* ボタンは「押せる」ことが一目で分かるよう立体エッジ+押し込み挙動にする
+   (バッジ/チップ等の非インタラクティブ要素はフラットのまま差別化) */
 .btn {
-  display: inline-block;
-  padding: 0.45em 1.4em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1.5em;
   font-family: var(--font-ui);
   font-weight: 700;
   letter-spacing: 0.15em;
   color: var(--color-cyan);
-  background: transparent;
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.18), rgba(0, 229, 255, 0.06));
   border: 1px solid var(--color-cyan);
+  border-radius: 4px;
+  box-shadow: 0 4px 0 rgba(0, 160, 190, 0.55), 0 6px 14px rgba(0, 0, 0, 0.45);
   text-decoration: none;
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.2s;
+}
+
+.btn::before {
+  content: '▸';
+  font-size: 0.85em;
+  line-height: 1;
 }
 
 .btn:hover {
-  background: rgba(0, 229, 255, 0.15);
-  box-shadow: var(--glow-cyan);
+  background: rgba(0, 229, 255, 0.28);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0, 160, 190, 0.55), 0 10px 20px rgba(0, 229, 255, 0.25);
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 160, 190, 0.55), 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .btn--primary {
   color: #041018;
-  background: var(--color-cyan);
+  background: linear-gradient(180deg, #6ef2ff, var(--color-cyan));
+  box-shadow: 0 4px 0 #0092b0, 0 6px 16px rgba(0, 229, 255, 0.35);
 }
 
 .btn--primary:hover {
-  background: var(--color-cyan);
-  color: #041018;
+  background: linear-gradient(180deg, #9df7ff, #33eaff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #0092b0, 0 10px 24px rgba(0, 229, 255, 0.5);
+}
+
+.btn--primary:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0092b0, 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .badge {

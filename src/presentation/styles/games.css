@@ -44,23 +44,32 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   color: var(--color-text-dim);
-  background: transparent;
-  border: 1px solid rgba(0, 229, 255, 0.25);
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.1), rgba(0, 229, 255, 0.02));
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 4px;
+  box-shadow: 0 3px 0 rgba(0, 160, 190, 0.35), 0 4px 10px rgba(0, 0, 0, 0.35);
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  user-select: none;
+  transition: transform 0.12s, box-shadow 0.12s, color 0.2s, border-color 0.2s, background 0.2s;
 }
 
 .filter-btn:hover {
   color: var(--color-cyan);
   border-color: var(--color-cyan);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 rgba(0, 160, 190, 0.45), 0 8px 14px rgba(0, 229, 255, 0.2);
+}
+
+.filter-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 160, 190, 0.45);
 }
 
 .filter-btn--active {
   color: #041018;
-  background: var(--color-cyan);
+  background: linear-gradient(180deg, #6ef2ff, var(--color-cyan));
   border-color: var(--color-cyan);
-  box-shadow: var(--glow-cyan);
+  box-shadow: 0 3px 0 #0092b0, 0 0 14px rgba(0, 229, 255, 0.45);
 }
 
 .tech-select {
