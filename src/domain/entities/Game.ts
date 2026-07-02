@@ -1,8 +1,11 @@
 export type GameCategory = 'game' | 'web' | 'tool';
 
+/** 配信ストア。バッジ表示に使う */
+export type Store = 'app-store' | 'steam';
+
 export type ReleaseState =
-  | { kind: 'playable'; url: string }
-  | { kind: 'coming-soon' }
+  | { kind: 'playable'; url: string; store?: Store }
+  | { kind: 'coming-soon'; store?: Store }
   | { kind: 'archived' };
 
 /** 図鑑に載る 1 作品。No. は図鑑上の通し番号 */

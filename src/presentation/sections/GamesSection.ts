@@ -2,7 +2,7 @@ import type { Game } from '@domain/entities/Game';
 import type { GameCollection } from '@application/usecases/GetGameCollection';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
-import { esc, asset } from '../util/html';
+import { esc, asset, storeChip } from '../util/html';
 import '../styles/games.css';
 
 /** モンスター図鑑風の Games セクション(近未来 HUD デザイン) */
@@ -46,14 +46,16 @@ export class GamesSection extends View<GameCollection> {
 }
 
 function featuredCard(game: Game): string {
+  const released = game.release.kind === 'playable';
+  const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
   const action =
     game.release.kind === 'playable'
-      ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>`
-      : '<span class="badge badge--soon">COMING SOON</span>';
+      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>${chip}`
+      : `<span class="badge badge--soon">COMING SOON</span>${chip}`;
 
   return `
-    <article class="featured-card" data-entry="${game.entryNo}" tabindex="0">
-      <div class="featured-card__label">FEATURED</div>
+    <article class="featured-card${released ? ' featured-card--released' : ''}" data-entry="${game.entryNo}" tabindex="0">
+      <div class="featured-card__label">${released ? 'RELEASED' : 'FEATURED'}</div>
       <div class="featured-card__visual">
         <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
       </div>

@@ -1,6 +1,6 @@
 import type { Game } from '@domain/entities/Game';
 import { View } from './View';
-import { esc, asset } from '../util/html';
+import { esc, asset, storeChip } from '../util/html';
 
 /** 図鑑エントリをクリックしたときのステータス詳細画面 */
 export class GameDetailModal extends View<Game> {
@@ -73,9 +73,9 @@ export class GameDetailModal extends View<Game> {
 function releaseBadge(game: Game): string {
   switch (game.release.kind) {
     case 'coming-soon':
-      return '<span class="badge badge--soon">COMING SOON</span>';
+      return `<span class="badge badge--soon">COMING SOON</span>${game.release.store ? storeChip(game.release.store) : ''}`;
     case 'playable':
-      return '<span class="badge badge--play">PLAYABLE</span>';
+      return `<span class="badge badge--play">PLAYABLE</span>${game.release.store ? storeChip(game.release.store) : ''}`;
     case 'archived':
       return '';
   }

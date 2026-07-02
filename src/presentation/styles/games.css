@@ -55,6 +55,28 @@
   box-shadow: var(--glow-cyan);
 }
 
+/* リリース済み作品は常時発光させて別格感を出す */
+.featured-card--released {
+  border-color: var(--color-cyan);
+  animation: released-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes released-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(0, 229, 255, 0.65), 0 0 48px rgba(0, 229, 255, 0.2);
+  }
+}
+
+.featured-card--released .featured-card__label {
+  background: var(--color-cyan);
+  color: #041018;
+  text-shadow: none;
+}
+
 .featured-card__label {
   position: absolute;
   top: 0;
@@ -114,6 +136,39 @@
 
 .featured-card__action {
   margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+/* ---- 配信ストアのチップ ---- */
+.store-chip {
+  display: inline-block;
+  padding: 0.25em 0.9em;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.store-chip--app {
+  color: #fff;
+  background: #0a84ff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+}
+
+.store-chip--steam {
+  color: #66c0f4;
+  background: #1b2838;
+  border: 1px solid #66c0f4;
+  border-radius: 6px;
+}
+
+.btn--lg {
+  padding: 0.6em 1.9em;
+  font-size: 1.05rem;
 }
 
 /* ---- 図鑑グリッド ---- */

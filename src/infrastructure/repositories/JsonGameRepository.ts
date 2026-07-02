@@ -24,14 +24,15 @@ interface ProjectDto {
 
 /**
  * FEATURED(別格表示)作品。バッジは仕様で固定:
- * TofuRunner = AppStore 公開済み(PLAY NOW)、蝶々反乱 = Store 公開予定(COMING SOON)
+ * TofuRunner = App Store 公開済み(PLAY NOW)、蝶々反乱 = Steam 公開予定(COMING SOON)
  */
 const FEATURED_RELEASE: Record<string, ReleaseState> = {
   TofuRunner: {
     kind: 'playable',
     url: 'https://apps.apple.com/jp/app/tofurunner/id6755136719',
+    store: 'app-store',
   },
-  蝶々反乱: { kind: 'coming-soon' },
+  蝶々反乱: { kind: 'coming-soon', store: 'steam' },
 };
 
 export class JsonGameRepository implements GameRepository {
