@@ -1,4 +1,5 @@
-export type GameCategory = 'game' | 'web' | 'tool';
+/** projects.json の category 実値に合わせる */
+export type GameCategory = 'game' | 'web' | 'web-game';
 
 /** 配信ストア。バッジ表示に使う */
 export type Store = 'app-store' | 'steam';

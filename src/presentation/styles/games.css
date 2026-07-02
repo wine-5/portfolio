@@ -29,6 +29,48 @@
   color: var(--color-text-dim);
 }
 
+/* ---- カテゴリフィルタ ---- */
+.games__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.4em 1.3em;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-text-dim);
+  background: transparent;
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.filter-btn:hover {
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+}
+
+.filter-btn--active {
+  color: #041018;
+  background: var(--color-cyan);
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.games__empty {
+  padding: 3rem 0;
+  font-family: var(--font-display);
+  letter-spacing: 0.3em;
+  text-align: center;
+  color: var(--color-text-dim);
+}
+
 /* ---- FEATURED(別格表示) ---- */
 .games__featured {
   display: grid;

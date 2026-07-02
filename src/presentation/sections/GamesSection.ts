@@ -1,14 +1,25 @@
-import type { Game } from '@domain/entities/Game';
+import type { Game, GameCategory } from '@domain/entities/Game';
 import type { GameCollection } from '@application/usecases/GetGameCollection';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
 import { esc, asset, storeChip } from '../util/html';
 import '../styles/games.css';
 
+type Filter = GameCategory | 'all';
+
+const FILTERS: readonly { id: Filter; label: string }[] = [
+  { id: 'all', label: 'ALL' },
+  { id: 'game', label: 'GAME' },
+  { id: 'web-game', label: 'WEB GAME' },
+  { id: 'web', label: 'WEB TOOL' },
+];
+
 /** モンスター図鑑風の Games セクション(近未来 HUD デザイン) */
 export class GamesSection extends View<GameCollection> {
   private readonly modal = new GameDetailModal();
+  private collection: GameCollection = { featured: [], entries: [] };
   private games: readonly Game[] = [];
+  private filter: Filter = 'all';
 
   constructor() {
     super('section', 'games');
@@ -16,22 +27,46 @@ export class GamesSection extends View<GameCollection> {
   }
 
   override render(collection: GameCollection): void {
+    this.collection = collection;
     this.games = [...collection.featured, ...collection.entries];
-    const total = this.games.length;
+    this.redraw();
+  }
+
+  private redraw(): void {
+    const match = (g: Game): boolean => this.filter === 'all' || g.category === this.filter;
+    const featured = this.collection.featured.filter(match);
+    const entries = this.collection.entries.filter(match);
 
     this.el.innerHTML = `
       <header class="games__header">
         <p class="games__kicker">// DATABASE</p>
         <h2 class="games__title">GAME ARCHIVE</h2>
-        <p class="games__count">REGISTERED: ${String(total).padStart(3, '0')}</p>
+        <p class="games__count">REGISTERED: ${String(this.games.length).padStart(3, '0')}</p>
       </header>
-      <div class="games__featured">
-        ${collection.featured.map((g) => featuredCard(g)).join('')}
-      </div>
-      <ol class="games__grid">
-        ${collection.entries.map((g) => entryCard(g)).join('')}
-      </ol>
+      <nav class="games__filters" aria-label="カテゴリ絞り込み">
+        ${FILTERS.map(
+          (f) => `
+            <button class="filter-btn${this.filter === f.id ? ' filter-btn--active' : ''}" data-filter="${f.id}">
+              ${f.label}
+            </button>`,
+        ).join('')}
+      </nav>
+      ${featured.length > 0 ? `<div class="games__featured">${featured.map((g) => featuredCard(g)).join('')}</div>` : ''}
+      ${
+        entries.length > 0
+          ? `<ol class="games__grid">${entries.map((g) => entryCard(g)).join('')}</ol>`
+          : featured.length === 0
+            ? '<p class="games__empty">NO DATA</p>'
+            : ''
+      }
     `;
+
+    this.el.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        this.filter = btn.dataset['filter'] as Filter;
+        this.redraw();
+      });
+    });
 
     this.el.querySelectorAll<HTMLElement>('[data-entry]').forEach((node) => {
       node.addEventListener('click', (e) => {
