@@ -25,6 +25,17 @@ export class AboutSection extends View<Profile> {
           <span class="name-label">NAME</span>
           <h3 class="about__name">${esc(profile.name)}</h3>
           <p class="about__job">${esc(profile.job)}</p>
+          <dl class="about__details">
+            ${profile.details
+              .map(
+                (d) => `
+                  <div class="about__detail">
+                    <dt>${esc(d.label)}</dt>
+                    <dd>${esc(d.value)}</dd>
+                  </div>`,
+              )
+              .join('')}
+          </dl>
           ${gaugeRow('hp', profile.hp.label, gaugePercent(profile.hp), `${profile.hp.current}/${profile.hp.max}`)}
           ${gaugeRow('mp', profile.mp.label, gaugePercent(profile.mp), `${profile.mp.current}/${profile.mp.max}`)}
           <div class="about__exp">

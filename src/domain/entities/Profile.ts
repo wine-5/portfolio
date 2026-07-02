@@ -10,10 +10,17 @@ export interface ProfileLink {
   readonly url: string;
 }
 
+/** 名前・学校・学科などのラベル付き項目 */
+export interface ProfileDetail {
+  readonly label: string;
+  readonly value: string;
+}
+
 /** About セクションで主人公キャラとして表示する本人情報 */
 export interface Profile {
   readonly name: string;
   readonly job: string;
+  readonly details: readonly ProfileDetail[];
   readonly description: string;
   readonly avatar: string;
   readonly hp: Gauge;

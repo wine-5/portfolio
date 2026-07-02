@@ -54,6 +54,33 @@
   color: var(--color-magenta);
 }
 
+/* ---- 名前・学校などの項目 ---- */
+.about__details {
+  margin: 0 0 1.1rem;
+  border-top: 1px solid rgba(0, 229, 255, 0.15);
+  padding-top: 0.7rem;
+}
+
+.about__detail {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.92rem;
+}
+
+.about__detail dt {
+  width: 4.5em;
+  flex-shrink: 0;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-cyan);
+}
+
+.about__detail dd {
+  margin: 0;
+}
+
 /* ---- HP/MP ゲージ ---- */
 .about__gauge {
   margin-bottom: 0.8rem;

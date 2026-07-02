@@ -1,6 +1,11 @@
 {
   "name": "wine-5",
   "job": "GAME DEVELOPER",
+  "details": [
+    { "label": "Name", "value": "Yuto Imata" },
+    { "label": "School", "value": "Sapporo Design & Technology College" },
+    { "label": "Department", "value": "AI & Technology" }
+  ],
   "description": "A game developer aiming for the game industry.\nI develop games with Unity and C#,\ndesigning with SOLID principles in mind.\nI have released games on UnityRoom and the App Store,\nand I pursue game development that brings joy to players.\nEnjoying and pursuing programming more than anyone is my strength.\nAlso active on X (Twitter): @wine_program!",
   "avatar": "images/icons/profile-icon.png",
   "hp": { "label": "HP (Energy / Motivation)", "current": 1000, "max": 1000 },
