@@ -1,0 +1,154 @@
+/* ============================================
+   ABOUT(プレイヤーステータス)セクション
+   ============================================ */
+.about__header {
+  margin: 4rem 0 2rem;
+}
+
+.about__kicker {
+  margin: 0;
+  font-family: var(--font-ui);
+  letter-spacing: 0.3em;
+  color: var(--color-magenta);
+}
+
+.about__title {
+  margin: 0.2rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-shadow: var(--glow-cyan);
+}
+
+.about__panel {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
+  gap: 1.5rem 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+}
+
+.about__avatar img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.about__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  letter-spacing: 0.1em;
+}
+
+.about__job {
+  margin: 0.1rem 0 1rem;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--color-magenta);
+}
+
+/* ---- HP/MP ゲージ ---- */
+.about__gauge {
+  margin-bottom: 0.8rem;
+}
+
+.about__gauge-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-text-dim);
+}
+
+.about__gauge-track {
+  position: relative;
+  height: 14px;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  overflow: hidden;
+}
+
+.about__gauge-fill {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about__gauge--hp .about__gauge-fill {
+  background: linear-gradient(90deg, #00e676, var(--color-cyan));
+}
+
+.about__gauge--mp .about__gauge-fill {
+  background: linear-gradient(90deg, #2979ff, var(--color-magenta));
+}
+
+.about__gauge-value {
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ---- EXP 言語チップ ---- */
+.about__exp-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.about__exp-langs span {
+  padding: 0.15em 0.8em;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+}
+
+/* ---- 紹介文 + リンク ---- */
+.about__bio {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.2rem;
+}
+
+.about__bio p {
+  margin: 0 0 1.2rem;
+  color: var(--color-text-dim);
+}
+
+.about__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+/* ---- スマホ縦: アバターとステータスを縦積みに ---- */
+@media (max-width: 560px) {
+  .about__panel {
+    grid-template-columns: 1fr;
+  }
+
+  .about__avatar {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+}

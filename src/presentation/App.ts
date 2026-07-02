@@ -1,7 +1,9 @@
 import type { GetGameCollection } from '@application/usecases/GetGameCollection';
+import type { GetPlayerProfile } from '@application/usecases/GetPlayerProfile';
 import type { Locale } from '@application/ports/Locale';
 import { BootScreen } from './components/BootScreen';
 import { GamesSection } from './sections/GamesSection';
+import { AboutSection } from './sections/AboutSection';
 
 /**
  * アプリ全体のシェル。
@@ -11,11 +13,15 @@ export class App {
   constructor(
     private readonly root: HTMLElement,
     private readonly getGameCollection: GetGameCollection,
+    private readonly getPlayerProfile: GetPlayerProfile,
   ) {}
 
   async start(locale: Locale): Promise<void> {
     const boot = new BootScreen().play(this.root);
-    const collection = await this.getGameCollection.execute(locale);
+    const [collection, profile] = await Promise.all([
+      this.getGameCollection.execute(locale),
+      this.getPlayerProfile.execute(locale),
+    ]);
     await boot;
 
     this.root.insertAdjacentHTML(
@@ -24,6 +30,7 @@ export class App {
         <span class="hud__logo">WINE-5</span>
         <nav class="hud__nav">
           <a href="#games">GAMES</a>
+          <a href="#about">ABOUT</a>
         </nav>
       </header>`,
     );
@@ -35,5 +42,9 @@ export class App {
     const games = new GamesSection();
     games.render(collection);
     games.mount(main);
+
+    const about = new AboutSection();
+    about.render(profile);
+    about.mount(main);
   }
 }

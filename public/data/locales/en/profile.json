@@ -1,0 +1,15 @@
+{
+  "name": "wine-5",
+  "job": "GAME DEVELOPER",
+  "description": "A game developer aiming for the game industry.\nI develop games with Unity and C#,\ndesigning with SOLID principles in mind.\nI have released games on UnityRoom and the App Store,\nand I pursue game development that brings joy to players.\nEnjoying and pursuing programming more than anyone is my strength.\nAlso active on X (Twitter): @wine_program!",
+  "avatar": "images/icons/profile-icon.png",
+  "hp": { "label": "HP (Energy / Motivation)", "current": 1000, "max": 1000 },
+  "mp": { "label": "MP (Imagination)", "current": 800, "max": 1000 },
+  "expLabel": "EXP (Languages)",
+  "expLanguages": ["C", "C++", "C#", "PHP", "HTML", "CSS", "JS", "Python"],
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/wine-5" },
+    { "label": "X (Twitter)", "url": "https://x.com/wine_program" },
+    { "label": "UnityRoom", "url": "https://unityroom.com/users/wine-555" }
+  ]
+}
