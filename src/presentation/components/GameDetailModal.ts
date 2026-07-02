@@ -1,5 +1,4 @@
 import type { Game } from '@domain/entities/Game';
-import { STAT_MAX } from '@domain/values/GameStats';
 import { View } from './View';
 import { esc, asset } from '../util/html';
 
@@ -14,40 +13,21 @@ export class GameDetailModal extends View<Game> {
   }
 
   override render(game: Game): void {
-    const stats: readonly [string, number][] = [
-      ['ATK', game.stats.atk],
-      ['DEF', game.stats.def],
-      ['INT', game.stats.int],
-      ['AGI', game.stats.agi],
-      ['LUK', game.stats.luk],
-    ];
-
     this.el.innerHTML = `
       <div class="game-modal__backdrop" data-close></div>
       <article class="game-modal__panel" role="dialog" aria-modal="true" aria-label="${esc(game.title)}">
         <button class="game-modal__close" data-close aria-label="閉じる">×</button>
         <header class="game-modal__header">
           <span class="game-modal__no">No.${String(game.entryNo).padStart(3, '0')}</span>
-          <h3 class="game-modal__title">${esc(game.title)}</h3>
+          <div class="game-modal__name">
+            <span class="game-modal__name-label">NAME</span>
+            <h3 class="game-modal__title">${esc(game.title)}</h3>
+          </div>
           ${releaseBadge(game)}
         </header>
         <div class="game-modal__body">
           <div class="game-modal__visual">
             <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
-            <dl class="game-modal__stats">
-              ${stats
-                .map(
-                  ([label, value]) => `
-                    <div class="stat-row">
-                      <dt>${label}</dt>
-                      <dd>
-                        <span class="stat-row__bar" style="--stat: ${(value / STAT_MAX) * 100}%"></span>
-                        <span class="stat-row__value">${value}</span>
-                      </dd>
-                    </div>`,
-                )
-                .join('')}
-            </dl>
           </div>
           <div class="game-modal__info">
             <p class="game-modal__desc">${esc(game.description)}</p>

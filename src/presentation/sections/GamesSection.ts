@@ -59,6 +59,7 @@ function featuredCard(game: Game): string {
       </div>
       <div class="featured-card__body">
         <span class="featured-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
+        <span class="name-label">NAME</span>
         <h3 class="featured-card__title">${esc(game.title)}</h3>
         <p class="featured-card__desc">${esc(game.description)}</p>
         <div class="featured-card__action">${action}</div>
@@ -73,6 +74,7 @@ function entryCard(game: Game): string {
       <div class="entry-card__visual">
         <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
       </div>
+      <span class="name-label">NAME</span>
       <h3 class="entry-card__title">${esc(game.title)}</h3>
       <p class="entry-card__tech">${game.technologies.map((t) => `<span>${esc(t)}</span>`).join('')}</p>
     </li>`;

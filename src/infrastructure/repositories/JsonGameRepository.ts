@@ -1,5 +1,4 @@
 import type { Game, GameCategory, ReleaseState } from '@domain/entities/Game';
-import { deriveGameStats } from '@domain/services/deriveGameStats';
 import type { GameRepository } from '@application/ports/GameRepository';
 import type { Locale } from '@application/ports/Locale';
 
@@ -72,14 +71,6 @@ export class JsonGameRepository implements GameRepository {
       period: dto.period ?? '',
       release,
       featured: featuredRelease !== undefined,
-      stats: deriveGameStats({
-        title: dto.title,
-        detailedFeatures: dto.detailedFeatures ?? '',
-        myResponsibilities: dto.myResponsibilities ?? '',
-        technologies: dto.technologies ?? [],
-        supportedPlatforms: dto.supportedPlatforms ?? [],
-        period: dto.period ?? '',
-      }),
     };
   }
 }

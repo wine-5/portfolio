@@ -1,5 +1,3 @@
-import type { GameStats } from '../values/GameStats';
-
 export type GameCategory = 'game' | 'web' | 'tool';
 
 export type ReleaseState =
@@ -25,5 +23,4 @@ export interface Game {
   readonly period: string;
   readonly release: ReleaseState;
   readonly featured: boolean;
-  readonly stats: GameStats;
 }

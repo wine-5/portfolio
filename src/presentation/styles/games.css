@@ -284,61 +284,30 @@
   border: 1px solid var(--color-line);
 }
 
-.game-modal__stats {
-  margin: 1rem 0 0;
-}
-
-.stat-row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.45rem;
-}
-
-.stat-row dt {
-  width: 3em;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  color: var(--color-text-dim);
-}
-
-.stat-row dd {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0;
-}
-
-.stat-row__bar {
-  flex: 1;
-  height: 6px;
-  background: rgba(0, 229, 255, 0.12);
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-row__bar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  width: var(--stat);
-  background: linear-gradient(90deg, var(--color-cyan), var(--color-magenta));
-  animation: stat-fill 0.6s ease-out;
-}
-
-@keyframes stat-fill {
-  from {
-    width: 0;
-  }
-}
-
-.stat-row__value {
-  width: 2em;
+/* 図鑑風の項目ラベル(NAME 等) */
+.name-label {
+  display: block;
   font-family: var(--font-ui);
+  font-size: 0.68rem;
   font-weight: 700;
-  text-align: right;
+  letter-spacing: 0.35em;
   color: var(--color-cyan);
+  opacity: 0.8;
+}
+
+.game-modal__name {
+  flex: 1;
+  min-width: 0;
+}
+
+.game-modal__name-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: var(--color-cyan);
+  opacity: 0.8;
 }
 
 .game-modal__desc {
