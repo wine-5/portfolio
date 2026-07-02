@@ -1,0 +1,50 @@
+/* デザイントークン(フェーズ 3 以降でドット絵 RPG デザインに拡張) */
+:root {
+  --color-bg: #1a1c2c;
+  --color-text: #f4f4f4;
+  --color-accent: #ffcd75;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+}
+
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;
+  transition: opacity 0.2s;
+}
+
+.boot-screen--out {
+  opacity: 0;
+}
+
+.boot-screen__title {
+  font-size: 2rem;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.boot-screen__press {
+  text-align: center;
+  animation: boot-blink 0.5s steps(1) infinite;
+}
+
+@keyframes boot-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}

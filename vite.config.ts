@@ -14,5 +14,9 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      // 旧サイト(index.html)は移行完了まで手を付けず、新アプリのみビルドする
+      input: fileURLToPath(new URL('./redesign.html', import.meta.url)),
+    },
   },
 });
