@@ -113,6 +113,7 @@ img {
   letter-spacing: 0.2em;
   color: var(--color-cyan);
   text-shadow: var(--glow-cyan);
+  text-decoration: none;
 }
 
 .hud__nav {
@@ -132,6 +133,70 @@ img {
 .hud__nav a:hover {
   color: var(--color-cyan);
   text-shadow: var(--glow-cyan);
+}
+
+/* ---- ハンバーガー(狭幅のみ表示) ---- */
+.hud__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hud__hamburger span {
+  height: 2px;
+  background: var(--color-cyan);
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.hud--open .hud__hamburger span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hud--open .hud__hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.hud--open .hud__hamburger span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 640px) {
+  .hud__hamburger {
+    display: flex;
+  }
+
+  .hud__nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(5, 7, 15, 0.96);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-line);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .hud--open .hud__nav {
+    max-height: 60vh;
+  }
+
+  .hud__nav a {
+    padding: 0.9rem 1.5rem;
+    border-top: 1px solid rgba(0, 229, 255, 0.12);
+  }
 }
 
 /* ---- 共通部品 ---- */
@@ -215,6 +280,95 @@ img {
 .badge--play {
   color: var(--color-cyan);
   border: 1px solid var(--color-cyan);
+}
+
+/* ---- フッター ---- */
+.footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--color-line);
+  background: rgba(5, 7, 15, 0.7);
+}
+
+.footer__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem clamp(1rem, 4vw, 2rem) 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(0, 2fr);
+  gap: 2rem;
+}
+
+.footer__logo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.footer__tagline {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: var(--color-text-dim);
+}
+
+.footer__columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+}
+
+.footer__section h4 {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: var(--color-magenta);
+}
+
+.footer__section ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__section li {
+  margin-bottom: 0.4rem;
+}
+
+.footer__section a {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+  text-decoration: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.footer__section a:hover {
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.footer__copyright {
+  grid-column: 1 / -1;
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 229, 255, 0.12);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: var(--color-text-dim);
+}
+
+@media (max-width: 560px) {
+  .footer__inner {
+    grid-template-columns: 1fr;
+  }
 }
 
 @keyframes badge-pulse {

@@ -2,6 +2,8 @@ import type { GetGameCollection } from '@application/usecases/GetGameCollection'
 import type { GetPlayerProfile } from '@application/usecases/GetPlayerProfile';
 import type { Locale } from '@application/ports/Locale';
 import { BootScreen } from './components/BootScreen';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import { GamesSection } from './sections/GamesSection';
 import { AboutSection } from './sections/AboutSection';
 
@@ -24,16 +26,9 @@ export class App {
     ]);
     await boot;
 
-    this.root.insertAdjacentHTML(
-      'afterbegin',
-      `<header class="hud">
-        <span class="hud__logo">WINE-5</span>
-        <nav class="hud__nav">
-          <a href="#games">GAMES</a>
-          <a href="#about">ABOUT</a>
-        </nav>
-      </header>`,
-    );
+    const header = new Header();
+    header.render();
+    header.mount(this.root);
 
     const main = document.createElement('main');
     main.className = 'app';
@@ -46,5 +41,9 @@ export class App {
     const about = new AboutSection();
     about.render(profile);
     about.mount(main);
+
+    const footer = new Footer();
+    footer.render({ social: profile.links });
+    footer.mount(this.root);
   }
 }
