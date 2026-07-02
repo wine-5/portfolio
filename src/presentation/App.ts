@@ -1,10 +1,12 @@
 import type { GetGameCollection } from '@application/usecases/GetGameCollection';
 import type { GetPlayerProfile } from '@application/usecases/GetPlayerProfile';
+import type { GetNews } from '@application/usecases/GetNews';
 import type { Locale } from '@application/ports/Locale';
 import { BootScreen } from './components/BootScreen';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { GamesSection } from './sections/GamesSection';
+import { NewsSection } from './sections/NewsSection';
 import { AboutSection } from './sections/AboutSection';
 
 /**
@@ -16,13 +18,15 @@ export class App {
     private readonly root: HTMLElement,
     private readonly getGameCollection: GetGameCollection,
     private readonly getPlayerProfile: GetPlayerProfile,
+    private readonly getNews: GetNews,
   ) {}
 
   async start(locale: Locale): Promise<void> {
     const boot = new BootScreen().play(this.root);
-    const [collection, profile] = await Promise.all([
+    const [collection, profile, news] = await Promise.all([
       this.getGameCollection.execute(locale),
       this.getPlayerProfile.execute(locale),
+      this.getNews.execute(locale),
     ]);
     await boot;
 
@@ -37,6 +41,10 @@ export class App {
     const games = new GamesSection();
     games.render(collection);
     games.mount(main);
+
+    const newsSection = new NewsSection();
+    newsSection.render(news);
+    newsSection.mount(main);
 
     const about = new AboutSection();
     about.render(profile);

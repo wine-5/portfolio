@@ -1,0 +1,117 @@
+/* ============================================
+   NEWS(リリース情報フィード)セクション
+   ============================================ */
+.news__header {
+  margin: 4rem 0 1.5rem;
+}
+
+.news__kicker {
+  margin: 0;
+  font-family: var(--font-ui);
+  letter-spacing: 0.3em;
+  color: var(--color-magenta);
+}
+
+.news__title {
+  margin: 0.2rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-shadow: var(--glow-cyan);
+}
+
+.news__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--color-line);
+}
+
+.news-item {
+  position: relative;
+  padding: 0.9rem 0 0.9rem 1.5rem;
+}
+
+/* タイムラインのノード */
+.news-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 1.45rem;
+  width: 10px;
+  height: 10px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-cyan);
+  transform: rotate(45deg);
+}
+
+.news-item__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-item__link:hover .news-item__title {
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.news-item__head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.news-item__date {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-text-dim);
+}
+
+.news-item__type {
+  padding: 0.1em 0.8em;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.news-item__type--release {
+  color: #041018;
+  background: var(--color-cyan);
+}
+
+.news-item__type--maintenance {
+  color: #1a1200;
+  background: #ffcd75;
+}
+
+.news-item__type--announcement {
+  color: #fff;
+  background: var(--color-magenta);
+}
+
+.news-item__title {
+  margin: 0.3rem 0 0.2rem;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.news-item__desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-dim);
+}
+
+.news__empty {
+  padding: 2rem 0;
+  font-family: var(--font-display);
+  letter-spacing: 0.3em;
+  color: var(--color-text-dim);
+}
