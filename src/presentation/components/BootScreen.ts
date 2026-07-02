@@ -1,6 +1,6 @@
 import { View } from './View';
 
-/** PRESS START 風の起動画面。入力待ちせず 1 秒未満で自動的に消える */
+/** システムブート風の起動画面。入力待ちせず 1 秒未満で自動的に消える */
 export class BootScreen extends View {
   private static readonly DURATION_MS = 900;
 
@@ -8,8 +8,8 @@ export class BootScreen extends View {
     this.el.className = 'boot-screen';
     this.el.innerHTML = `
       <div class="boot-screen__inner">
-        <p class="boot-screen__title">WINE-5 QUEST</p>
-        <p class="boot-screen__press">PRESS START</p>
+        <p class="boot-screen__title">WINE-5.SYS</p>
+        <div class="boot-screen__press" role="presentation"></div>
       </div>
     `;
   }

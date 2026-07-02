@@ -1,23 +1,51 @@
-/* デザイントークン(フェーズ 3 以降でドット絵 RPG デザインに拡張) */
+/* ============================================
+   デザイントークン(近未来/サイバー HUD 調)
+   ============================================ */
 :root {
-  --color-bg: #1a1c2c;
-  --color-text: #f4f4f4;
-  --color-accent: #ffcd75;
+  --color-bg: #05070f;
+  --color-bg-2: #0a0f1e;
+  --color-panel: rgba(13, 20, 40, 0.85);
+  --color-line: rgba(0, 229, 255, 0.35);
+  --color-cyan: #00e5ff;
+  --color-magenta: #ff3d81;
+  --color-text: #e8f1ff;
+  --color-text-dim: #8ba3c7;
+
+  --font-display: 'Orbitron', sans-serif;
+  --font-ui: 'Rajdhani', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+
+  --glow-cyan: 0 0 8px rgba(0, 229, 255, 0.6), 0 0 24px rgba(0, 229, 255, 0.25);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  background:
+    radial-gradient(ellipse at 20% -10%, rgba(0, 229, 255, 0.08), transparent 50%),
+    radial-gradient(ellipse at 90% 110%, rgba(255, 61, 129, 0.06), transparent 50%),
+    var(--color-bg);
   color: var(--color-text);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.7;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---- ブート画面(1 秒未満で自動遷移) ---- */
 .boot-screen {
   position: fixed;
   inset: 0;
+  z-index: 100;
   display: grid;
   place-items: center;
-  background: #000;
+  background: var(--color-bg);
   transition: opacity 0.2s;
 }
 
@@ -26,25 +54,144 @@ body {
 }
 
 .boot-screen__title {
-  font-size: 2rem;
-  letter-spacing: 0.2em;
-  color: var(--color-accent);
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
   text-align: center;
 }
 
 .boot-screen__press {
-  text-align: center;
-  animation: boot-blink 0.5s steps(1) infinite;
+  margin: 0 auto;
+  width: min(280px, 60vw);
+  height: 3px;
+  background: rgba(0, 229, 255, 0.15);
+  overflow: hidden;
+  position: relative;
 }
 
-@keyframes boot-blink {
-  50% {
-    opacity: 0;
+.boot-screen__press::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-magenta));
+  transform-origin: left;
+  animation: boot-load 0.85s ease-out forwards;
+}
+
+@keyframes boot-load {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 
+/* ---- HUD ヘッダー ---- */
+.hud {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem clamp(1rem, 4vw, 2.5rem);
+  background: rgba(5, 7, 15, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.hud__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.hud__nav {
+  display: flex;
+  gap: clamp(0.8rem, 3vw, 2rem);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.hud__nav a {
+  color: var(--color-text-dim);
+  text-decoration: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.hud__nav a:hover {
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+/* ---- 共通部品 ---- */
 .app {
-  max-width: 960px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem clamp(1rem, 4vw, 2rem) 6rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.45em 1.4em;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-cyan);
+  background: transparent;
+  border: 1px solid var(--color-cyan);
+  text-decoration: none;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  background: rgba(0, 229, 255, 0.15);
+  box-shadow: var(--glow-cyan);
+}
+
+.btn--primary {
+  color: #041018;
+  background: var(--color-cyan);
+}
+
+.btn--primary:hover {
+  background: var(--color-cyan);
+  color: #041018;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.9em;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+}
+
+.badge--soon {
+  color: var(--color-magenta);
+  border: 1px solid var(--color-magenta);
+  text-shadow: 0 0 8px rgba(255, 61, 129, 0.6);
+  animation: badge-pulse 1.6s ease-in-out infinite;
+}
+
+.badge--play {
+  color: var(--color-cyan);
+  border: 1px solid var(--color-cyan);
+}
+
+@keyframes badge-pulse {
+  50% {
+    opacity: 0.45;
+  }
 }
