@@ -7,6 +7,9 @@ import '../styles/games.css';
 
 type Filter = GameCategory | 'all';
 
+/** 言語ドロップダウンから除外する非言語の技術(エンジン・シェーダー等) */
+const NON_LANGUAGES: ReadonlySet<string> = new Set(['Unity', 'Sharder', 'Shader']);
+
 const FILTERS: readonly { id: Filter; label: string }[] = [
   { id: 'all', label: 'ALL' },
   { id: 'game', label: 'GAME' },
@@ -39,7 +42,9 @@ export class GamesSection extends View<GameCollection> {
       (this.tech === 'all' || g.technologies.includes(this.tech));
     const featured = this.collection.featured.filter(match);
     const entries = this.collection.entries.filter(match);
-    const techs = [...new Set(this.games.flatMap((g) => [...g.technologies]))].sort();
+    const techs = [...new Set(this.games.flatMap((g) => [...g.technologies]))]
+      .filter((t) => !NON_LANGUAGES.has(t))
+      .sort();
 
     this.el.innerHTML = `
       <header class="games__header">
@@ -54,8 +59,8 @@ export class GamesSection extends View<GameCollection> {
               ${f.label}
             </button>`,
         ).join('')}
-        <select class="tech-select" data-tech aria-label="使用技術で絞り込み">
-          <option value="all">ALL TECH</option>
+        <select class="tech-select" data-tech aria-label="言語で絞り込み">
+          <option value="all">ALL LANGUAGES</option>
           ${techs
             .map(
               (t) =>
