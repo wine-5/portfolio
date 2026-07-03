@@ -96,7 +96,7 @@
 
 /* ---- カルーセルから飛んできたカードのシャイン演出 ---- */
 .entry-flash {
-  animation: entry-flash-glow 1.4s ease-out;
+  animation: entry-flash-glow 1s ease-out;
 }
 
 @keyframes entry-flash-glow {
@@ -130,7 +130,7 @@
   );
   background-size: 300% 100%;
   background-position: 200% 0;
-  animation: entry-flash-sweep 0.9s ease-out 0.1s forwards;
+  animation: entry-flash-sweep 0.65s ease-out 0.05s forwards;
 }
 
 @keyframes entry-flash-sweep {

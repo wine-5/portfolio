@@ -63,7 +63,7 @@ export class GamesSection extends View<GameCollection> {
       node.classList.remove('entry-flash');
       void node.offsetWidth;
       node.classList.add('entry-flash');
-      window.setTimeout(() => node.classList.remove('entry-flash'), 1500);
+      window.setTimeout(() => node.classList.remove('entry-flash'), 1100);
     }, 450);
   }
 
