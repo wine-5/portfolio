@@ -36,10 +36,35 @@ export class GamesSection extends View<GameCollection> {
     this.redraw();
   }
 
-  /** 図鑑外(ヒーローのカルーセル等)から指定 No. の詳細モーダルを開く */
-  openEntry(entryNo: number): void {
+  /**
+   * 図鑑外(ヒーローのカルーセル等)から指定 No. のカードへスクロールし、
+   * 一瞬シャイン演出で光らせてタップ先を知らせる
+   */
+  focusEntry(entryNo: number): void {
     const game = this.games.find((g) => g.entryNo === entryNo);
-    if (game) this.modal.open(game);
+    if (!game) return;
+
+    // 絞り込みで対象カードが非表示なら ALL に戻して描画し直す
+    const visible =
+      (this.filter === 'all' || game.category === this.filter) &&
+      (this.tech === 'all' || game.technologies.includes(this.tech));
+    if (!visible) {
+      this.filter = 'all';
+      this.tech = 'all';
+      this.redraw();
+    }
+
+    const node = this.el.querySelector<HTMLElement>(`[data-entry="${entryNo}"]`);
+    if (!node) return;
+
+    node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // スクロールが落ち着いた頃にシャインを発火(再タップでも再生されるよう一度リセット)
+    window.setTimeout(() => {
+      node.classList.remove('entry-flash');
+      void node.offsetWidth;
+      node.classList.add('entry-flash');
+      window.setTimeout(() => node.classList.remove('entry-flash'), 1500);
+    }, 450);
   }
 
   private redraw(): void {

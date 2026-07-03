@@ -43,7 +43,7 @@ export class App {
     games.render(collection);
 
     const hero = new HeroSection();
-    hero.setOnSelect((entryNo) => games.openEntry(entryNo));
+    hero.setOnSelect((entryNo) => games.focusEntry(entryNo));
     hero.render([...collection.featured, ...collection.entries]);
     hero.mount(main);
 

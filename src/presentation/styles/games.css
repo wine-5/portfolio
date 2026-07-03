@@ -94,6 +94,51 @@
   outline: none;
 }
 
+/* ---- カルーセルから飛んできたカードのシャイン演出 ---- */
+.entry-flash {
+  animation: entry-flash-glow 1.4s ease-out;
+}
+
+@keyframes entry-flash-glow {
+  0% {
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 0 rgba(0, 229, 255, 0);
+  }
+  25% {
+    border-color: #fff;
+    box-shadow: 0 0 28px rgba(0, 229, 255, 0.9), 0 0 60px rgba(0, 229, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(0, 229, 255, 0);
+  }
+}
+
+/* 光の帯がカードを斜めに走る(シェーダー風) */
+.entry-flash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(160, 245, 255, 0.75) 48%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(160, 245, 255, 0.75) 52%,
+    transparent 68%
+  );
+  background-size: 300% 100%;
+  background-position: 200% 0;
+  animation: entry-flash-sweep 0.9s ease-out 0.1s forwards;
+}
+
+@keyframes entry-flash-sweep {
+  to {
+    background-position: -100% 0;
+  }
+}
+
 .games__empty {
   padding: 3rem 0;
   font-family: var(--font-display);
