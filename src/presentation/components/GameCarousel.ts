@@ -99,20 +99,24 @@ export class GameCarousel extends View<readonly CarouselEntry[]> {
       this.rotation += dx * 0.35;
       this.lastX = e.clientX;
     });
-    const end = (): void => {
+    // setPointerCapture 中は子要素の click が発火しないため、
+    // タップ判定は pointerup の座標から自前で行う
+    stage.addEventListener('pointerup', (e) => {
       if (!this.dragging) return;
       this.dragging = false;
       this.resumeAt = performance.now() + GameCarousel.RESUME_DELAY_MS;
-    };
-    stage.addEventListener('pointerup', end);
-    stage.addEventListener('pointercancel', end);
-
-    this.items.forEach((item) => {
-      item.addEventListener('click', () => {
-        if (this.moved) return; // ドラッグ操作はクリック扱いにしない
-        const entry = this.entries[Number(item.dataset['index'])];
-        if (entry) this.onSelect(entry.entryNo);
-      });
+      if (this.moved) return; // ドラッグ操作はタップ扱いにしない
+      const item = document
+        .elementFromPoint(e.clientX, e.clientY)
+        ?.closest<HTMLElement>('.carousel__item');
+      if (!item) return;
+      const entry = this.entries[Number(item.dataset['index'])];
+      if (entry) this.onSelect(entry.entryNo);
+    });
+    stage.addEventListener('pointercancel', () => {
+      if (!this.dragging) return;
+      this.dragging = false;
+      this.resumeAt = performance.now() + GameCarousel.RESUME_DELAY_MS;
     });
 
     this.el.querySelector('.carousel__arrow--prev')?.addEventListener('click', () => this.rotateBy(this.step()));
