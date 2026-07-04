@@ -94,6 +94,28 @@
   outline: none;
 }
 
+/* 受賞バッジ(カード右上、ゴールド) */
+.entry-card__award {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  max-width: 85%;
+  padding: 0.25em 0.8em;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #2a1f00;
+  background: linear-gradient(180deg, #ffe27a, #f0b429);
+  border-bottom: 1px solid rgba(255, 226, 122, 0.7);
+  border-left: 1px solid rgba(255, 226, 122, 0.7);
+  box-shadow: 0 0 10px rgba(240, 180, 41, 0.45);
+}
+
 /* 図鑑カードの「詳細を見る」表示(クリック可能であることの明示) */
 .entry-card__detail {
   display: block;

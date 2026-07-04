@@ -28,4 +28,6 @@ export interface Game {
   readonly period: string;
   readonly release: ReleaseState;
   readonly featured: boolean;
+  /** 受賞歴(あればカード右上にバッジ表示) */
+  readonly award?: string;
 }

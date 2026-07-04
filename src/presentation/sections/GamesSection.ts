@@ -176,6 +176,7 @@ function featuredCard(game: Game): string {
 function entryCard(game: Game): string {
   return `
     <li class="entry-card" data-entry="${game.entryNo}" tabindex="0">
+      ${game.award ? `<span class="entry-card__award" title="${esc(game.award)}">🏆 ${esc(game.award)}</span>` : ''}
       <span class="entry-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
       <div class="entry-card__visual">
         <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />

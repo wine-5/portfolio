@@ -72,6 +72,7 @@ export class JsonGameRepository implements GameRepository {
       images: dto.images ?? [],
       thumbnailImage: dto.thumbnailImage ?? '',
       ...(dto.githubUrl !== undefined ? { githubUrl: dto.githubUrl } : {}),
+      ...(dto.award !== undefined ? { award: dto.award } : {}),
       year: dto.year ?? '',
       category: (dto.category ?? 'game') as GameCategory,
       teamSize: dto.teamSize ?? '',

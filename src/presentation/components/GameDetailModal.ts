@@ -39,6 +39,7 @@ export class GameDetailModal extends View<Game> {
               ${metaRow('PLATFORM', game.supportedPlatforms.join(' / '))}
               ${metaRow('TEAM', game.teamSize)}
               ${metaRow('PERIOD', game.period)}
+              ${metaRow('AWARD', game.award ? `🏆 ${game.award}` : '')}
             </dl>
             <div class="game-modal__links">
               ${game.release.kind === 'playable' ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>` : ''}
