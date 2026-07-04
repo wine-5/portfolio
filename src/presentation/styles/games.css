@@ -94,6 +94,30 @@
   outline: none;
 }
 
+/* 図鑑カードの「詳細を見る」表示(クリック可能であることの明示) */
+.entry-card__detail {
+  display: block;
+  margin-top: 0.7rem;
+  padding: 0.35em 0;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: var(--color-cyan);
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.14), rgba(0, 229, 255, 0.04));
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  border-radius: 4px;
+  box-shadow: 0 2px 0 rgba(0, 160, 190, 0.4);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.entry-card:hover .entry-card__detail,
+.entry-card:focus-visible .entry-card__detail {
+  background: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 2px 0 rgba(0, 160, 190, 0.5), 0 0 12px rgba(0, 229, 255, 0.4);
+}
+
 /* ---- カルーセルから飛んできたカードのシャイン演出 ---- */
 .entry-flash {
   animation: entry-flash-glow 1s ease-out;
