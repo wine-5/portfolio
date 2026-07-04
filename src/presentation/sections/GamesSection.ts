@@ -81,8 +81,8 @@ export class GamesSection extends View<GameCollection> {
     this.el.innerHTML = `
       <header class="games__header">
         <p class="games__kicker">// DATABASE</p>
-        <h2 class="games__title">GAME ARCHIVE</h2>
-        <p class="games__count">REGISTERED: ${String(this.games.length).padStart(3, '0')}</p>
+        <h2 class="games__title">${esc(t('gamesTitle'))}</h2>
+        <p class="games__count">${esc(t('registered'))}: ${String(this.games.length).padStart(3, '0')}</p>
       </header>
       <nav class="games__filters" aria-label="${esc(t('categoryFilter'))}">
         ${FILTERS.map(
@@ -135,17 +135,31 @@ export class GamesSection extends View<GameCollection> {
   }
 }
 
+/** どのストアで遊べる/遊べる予定なのかがひと目で分かるリボン文言 */
+function featuredLabel(game: Game): string {
+  const store = game.release.kind !== 'archived' ? game.release.store : undefined;
+  const storeName = store === 'app-store' ? 'APP STORE' : store === 'steam' ? 'STEAM' : '';
+  if (game.release.kind === 'playable') {
+    return storeName ? `${storeName} RELEASED` : 'RELEASED';
+  }
+  return storeName ? `${storeName} COMING SOON` : 'FEATURED';
+}
+
 function featuredCard(game: Game): string {
   const released = game.release.kind === 'playable';
   const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
   const action =
     game.release.kind === 'playable'
       ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>${chip}<span class="btn">${esc(t('details'))}</span>`
-      : `<span class="badge badge--soon">COMING SOON</span>${chip}<span class="btn">${esc(t('details'))}</span>`;
+      : `<span class="badge badge--soon">COMING SOON</span>${chip}${
+          game.release.kind === 'coming-soon' && game.release.url
+            ? `<a class="btn btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${esc(t('steamPage'))}</a>`
+            : ''
+        }<span class="btn">${esc(t('details'))}</span>`;
 
   return `
     <article class="featured-card${released ? ' featured-card--released' : ''}" data-entry="${game.entryNo}" tabindex="0">
-      <div class="featured-card__label">${released ? 'RELEASED' : 'FEATURED'}</div>
+      <div class="featured-card__label">${featuredLabel(game)}</div>
       <div class="featured-card__visual">
         <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
       </div>
