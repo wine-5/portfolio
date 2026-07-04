@@ -102,6 +102,13 @@ export class App {
     games.mount(main);
 
     const newsSection = new NewsSection();
+    // ニュースからも図鑑カードへ移動できるようにする(ヒーローのアイコンタップと同じ挙動)
+    newsSection.setOnSelectGame((gameUrl) => {
+      const game = [...collection.featured, ...collection.entries].find(
+        (g) => g.githubUrl === gameUrl,
+      );
+      if (game) games.focusEntry(game.entryNo);
+    });
     newsSection.render(news);
     newsSection.mount(main);
 
