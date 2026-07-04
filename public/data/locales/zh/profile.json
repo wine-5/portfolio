@@ -13,7 +13,7 @@
   "hp": { "label": "HP（体力・干劲）", "current": 1000, "max": 1000 },
   "mp": { "label": "MP（想象力）", "current": 800, "max": 1000 },
   "expLabel": "EXP（掌握语言）",
-  "expLanguages": ["C", "C++", "C#", "PHP", "HTML", "CSS", "JS", "Python"],
+  "expLanguages": ["C#", "C++", "C", "JavaScript", "TypeScript", "PHP", "Python", "HTML", "CSS"],
   "links": [
     { "label": "GitHub", "url": "https://github.com/wine-5" },
     { "label": "Steam", "url": "https://store.steampowered.com/search/?publisher=wine-5" },

@@ -13,7 +13,7 @@
   "hp": { "label": "HP (Energy / Motivation)", "current": 1000, "max": 1000 },
   "mp": { "label": "MP (Imagination)", "current": 800, "max": 1000 },
   "expLabel": "EXP (Languages)",
-  "expLanguages": ["C", "C++", "C#", "PHP", "HTML", "CSS", "JS", "Python"],
+  "expLanguages": ["C#", "C++", "C", "JavaScript", "TypeScript", "PHP", "Python", "HTML", "CSS"],
   "links": [
     { "label": "GitHub", "url": "https://github.com/wine-5" },
     { "label": "Steam", "url": "https://store.steampowered.com/search/?publisher=wine-5" },
