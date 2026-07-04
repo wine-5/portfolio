@@ -1,13 +1,14 @@
 [
   {
-    "id": "news-preparing",
-    "type": "announcement",
-    "priority": "low",
-    "publishDate": "2026-07-02",
+    "id": "butterfly-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-06-30",
     "expireDate": null,
-    "title": "ニュース準備中",
-    "description": "掲載する内容はこれから考え中です。今後、ゲームのリリース情報などをここでお知らせしていく予定です。",
-    "icon": "📝",
-    "showBanner": false
+    "title": "「蝶々反乱」のSteamストアページを公開",
+    "description": "Sapporo Game Camp 2025で制作した2Dアクションゲーム「蝶々反乱」のSteamストアページを公開しました。クリックすると作品の詳細をご覧いただけます。",
+    "icon": "🦋",
+    "showBanner": false,
+    "gameUrl": "https://github.com/wine-5/SGC2025"
   }
 ]

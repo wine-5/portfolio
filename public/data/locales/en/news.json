@@ -1,13 +1,14 @@
 [
   {
-    "id": "news-preparing",
-    "type": "announcement",
-    "priority": "low",
-    "publishDate": "2026-07-02",
+    "id": "butterfly-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-06-30",
     "expireDate": null,
-    "title": "News Coming Soon",
-    "description": "Content is still being planned. Game release announcements and other updates will be posted here.",
-    "icon": "📝",
-    "showBanner": false
+    "title": "\"Butterfly Rebellion\" Steam Store Page Now Live",
+    "description": "The Steam store page for \"Butterfly Rebellion\", a 2D action game created at Sapporo Game Camp 2025, is now live. Click to view the project details.",
+    "icon": "🦋",
+    "showBanner": false,
+    "gameUrl": "https://github.com/wine-5/SGC2025"
   }
 ]
