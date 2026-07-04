@@ -10,7 +10,12 @@ import { JsonProfileRepository } from '@infrastructure/repositories/JsonProfileR
 import { JsonNewsRepository } from '@infrastructure/repositories/JsonNewsRepository';
 import { App } from '@presentation/App';
 import { detectLocale } from '@presentation/i18n/localePreference';
+import { detectTheme, applyTheme, watchSystemTheme } from '@presentation/theme/themePreference';
 import './presentation/styles/main.css';
+
+// 描画前にテーマを確定させ、初期表示のちらつきを防ぐ
+applyTheme(detectTheme());
+watchSystemTheme();
 
 const baseUrl = import.meta.env.BASE_URL;
 

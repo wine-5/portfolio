@@ -124,7 +124,7 @@
   place-items: center;
   font-size: 0.9rem;
   color: var(--color-cyan);
-  background: rgba(5, 7, 15, 0.7);
+  background: var(--color-chrome-soft);
   border: 1px solid var(--color-line);
   border-radius: 50%;
   cursor: pointer;

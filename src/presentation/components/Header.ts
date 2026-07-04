@@ -3,6 +3,7 @@ import { View } from './View';
 import { esc } from '../util/html';
 import { navItems } from './navigation';
 import { t, LOCALE_NAMES } from '../i18n/uiStrings';
+import { toggleTheme } from '../theme/themePreference';
 
 export interface HeaderProps {
   /** 現在の表示言語(切り替え UI のアクティブ表示に使う) */
@@ -26,6 +27,7 @@ export class Header extends View<HeaderProps> {
           .join('')}
       </nav>
       <div class="hud__tools">
+        ${themeToggle()}
         ${languageSwitcher(props.locale)}
         <button class="hud__hamburger" aria-label="${esc(t('menu'))}" aria-expanded="false" aria-controls="hud-nav">
           <span></span><span></span><span></span>
@@ -46,6 +48,15 @@ export class Header extends View<HeaderProps> {
     });
 
     this.bindLanguageSwitcher(props);
+    this.bindThemeToggle();
+  }
+
+  private bindThemeToggle(): void {
+    const button = this.el.querySelector<HTMLButtonElement>('.theme-toggle')!;
+    button.addEventListener('click', () => {
+      const next = toggleTheme();
+      button.setAttribute('aria-label', next === 'dark' ? t('toLightMode') : t('toDarkMode'));
+    });
   }
 
   private bindLanguageSwitcher(props: HeaderProps): void {
@@ -67,6 +78,21 @@ export class Header extends View<HeaderProps> {
       });
     });
   }
+}
+
+/** 太陽/月アイコンは両方描画し、data-theme に応じて CSS で表示を切り替える */
+function themeToggle(): string {
+  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  return `
+    <button class="theme-toggle" aria-label="${esc(isDark ? t('toLightMode') : t('toDarkMode'))}">
+      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="5" />
+        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+      </svg>
+      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>`;
 }
 
 function languageSwitcher(current: Locale): string {
