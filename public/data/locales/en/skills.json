@@ -2,7 +2,7 @@
   "languages": [
     {
       "name": "C#",
-      "startDate": "2024-07-01",
+      "months": 24,
       "projects": "10+ projects",
       "items": [
         "async/await asynchronous programming",
@@ -19,37 +19,51 @@
     },
     {
       "name": "C++",
-      "startDate": "2025-09-01",
+      "months": 10,
       "projects": "3+ projects",
       "items": ["Pointer management"],
       "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
     },
     {
       "name": "C",
-      "startDate": "2026-01-01",
-      "projects": "",
-      "items": [],
-      "relatedGames": []
-    },
-    {
-      "name": "PHP",
-      "startDate": "2025-07-01",
+      "months": 12,
       "projects": "",
       "items": [],
       "relatedGames": []
     },
     {
       "name": "JavaScript",
-      "startDate": "2025-07-01",
+      "months": 12,
       "projects": "8+ applications",
       "items": ["DOM manipulation & events", "Design patterns", "Performance optimization"],
+      "relatedGames": []
+    },
+    {
+      "name": "TypeScript",
+      "months": 3,
+      "projects": "",
+      "items": ["Type system", "Interface design"],
+      "relatedGames": []
+    },
+    {
+      "name": "PHP",
+      "months": 12,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Python",
+      "months": 2,
+      "projects": "",
+      "items": [],
       "relatedGames": []
     }
   ],
   "tools": [
     {
       "name": "Unity",
-      "startDate": "2024-07-01",
+      "months": 24,
       "projects": "10+ projects",
       "items": [
         "Unity Editor extensions",
@@ -65,16 +79,65 @@
     },
     {
       "name": "DxLib",
-      "startDate": "2025-09-01",
+      "months": 16,
       "projects": "1+ project",
       "items": ["2D game development in C++"],
       "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
     },
     {
-      "name": "Git / GitHub",
-      "startDate": "2024-10-01",
+      "name": "Unreal Engine 5",
+      "months": 1,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Visual Studio",
+      "months": 24,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Visual Studio Code",
+      "months": 27,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Git",
+      "months": 24,
       "projects": "Used in all projects",
       "items": ["Branch strategy design", "Git LFS", "Conflict resolution", "Commit conventions"],
+      "relatedGames": []
+    },
+    {
+      "name": "GitHub Actions",
+      "months": 4,
+      "projects": "",
+      "items": ["Automation pipelines", "Deployment automation"],
+      "relatedGames": []
+    },
+    {
+      "name": "CMake",
+      "months": 6,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Docker",
+      "months": 1,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Blender",
+      "months": 6,
+      "projects": "",
+      "items": [],
       "relatedGames": []
     }
   ]

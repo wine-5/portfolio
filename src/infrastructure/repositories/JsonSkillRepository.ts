@@ -5,7 +5,10 @@ import type { Locale } from '@application/ports/Locale';
 
 interface SkillDto {
   name: string;
-  startDate: string;
+  /** 実際に触っていた期間(月数)。指定時はこちらが優先(過去に使っていたスキル向け) */
+  months?: number;
+  /** 開始日。months 未指定ならここから自動計算(現役で使い続けているスキル向け) */
+  startDate?: string;
   projects?: string;
   items?: string[];
   relatedGames?: string[];
@@ -34,11 +37,10 @@ export class JsonSkillRepository implements SkillRepository {
 }
 
 function toSkill(dto: SkillDto, group: SkillGroup, now: Date): Skill {
-  const months = monthsSince(dto.startDate, now);
+  const months = dto.months ?? (dto.startDate ? monthsSince(dto.startDate, now) : 1);
   return {
     name: dto.name,
     group,
-    startDate: dto.startDate,
     months,
     level: months,
     projects: dto.projects ?? '',

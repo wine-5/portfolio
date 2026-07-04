@@ -1,11 +1,13 @@
 /** スキルの区分。JSON のグループキーに対応 */
 export type SkillGroup = 'language' | 'tool';
 
-/** Skills セクションの 1 スキル。レベルは経験月数から導出(経験月数=レベル) */
+/**
+ * Skills セクションの 1 スキル。レベルは経験月数から導出(経験月数=レベル)。
+ * 月数は「実際に触っていた期間の固定値」か「開始日からの自動計算」のどちらかで決まる。
+ */
 export interface Skill {
   readonly name: string;
   readonly group: SkillGroup;
-  readonly startDate: string; // YYYY-MM-DD
   readonly months: number;
   readonly level: number;
   readonly projects: string;

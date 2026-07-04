@@ -2,7 +2,7 @@
   "languages": [
     {
       "name": "C#",
-      "startDate": "2024-07-01",
+      "months": 24,
       "projects": "10+ 个项目",
       "items": [
         "async/await异步处理",
@@ -19,37 +19,51 @@
     },
     {
       "name": "C++",
-      "startDate": "2025-09-01",
+      "months": 10,
       "projects": "3+ 个项目",
       "items": ["指针管理"],
       "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
     },
     {
       "name": "C",
-      "startDate": "2026-01-01",
-      "projects": "",
-      "items": [],
-      "relatedGames": []
-    },
-    {
-      "name": "PHP",
-      "startDate": "2025-07-01",
+      "months": 12,
       "projects": "",
       "items": [],
       "relatedGames": []
     },
     {
       "name": "JavaScript",
-      "startDate": "2025-07-01",
+      "months": 12,
       "projects": "8+ 个应用",
       "items": ["DOM操作与事件", "设计模式", "性能优化"],
+      "relatedGames": []
+    },
+    {
+      "name": "TypeScript",
+      "months": 3,
+      "projects": "",
+      "items": ["类型系统", "接口设计"],
+      "relatedGames": []
+    },
+    {
+      "name": "PHP",
+      "months": 12,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Python",
+      "months": 2,
+      "projects": "",
+      "items": [],
       "relatedGames": []
     }
   ],
   "tools": [
     {
       "name": "Unity",
-      "startDate": "2024-07-01",
+      "months": 24,
       "projects": "10+ 个项目",
       "items": [
         "Unity Editor扩展",
@@ -65,16 +79,65 @@
     },
     {
       "name": "DxLib",
-      "startDate": "2025-09-01",
+      "months": 16,
       "projects": "1+ 个项目",
       "items": ["使用C++的2D游戏开发"],
       "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
     },
     {
-      "name": "Git / GitHub",
-      "startDate": "2024-10-01",
+      "name": "Unreal Engine 5",
+      "months": 1,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Visual Studio",
+      "months": 24,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Visual Studio Code",
+      "months": 27,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Git",
+      "months": 24,
       "projects": "所有项目均使用",
       "items": ["分支策略设计", "Git LFS的运用", "冲突解决", "提交规范管理"],
+      "relatedGames": []
+    },
+    {
+      "name": "GitHub Actions",
+      "months": 4,
+      "projects": "",
+      "items": ["自动化流水线", "部署自动化"],
+      "relatedGames": []
+    },
+    {
+      "name": "CMake",
+      "months": 6,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Docker",
+      "months": 1,
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "Blender",
+      "months": 6,
+      "projects": "",
+      "items": [],
       "relatedGames": []
     }
   ]

@@ -7,16 +7,15 @@ export interface SkillMatrix {
   readonly tools: readonly Skill[];
 }
 
-/** Skills セクション表示用。グループごとに経験月数の降順で返す */
+/** Skills セクション表示用。並び順は JSON の記載順(=ゲーム制作での重要度順)を保つ */
 export class GetPlayerSkills {
   constructor(private readonly skills: SkillRepository) {}
 
   async execute(locale: Locale): Promise<SkillMatrix> {
     const all = await this.skills.findAll(locale);
-    const byMonthsDesc = (a: Skill, b: Skill): number => b.months - a.months;
     return {
-      languages: all.filter((s) => s.group === 'language').sort(byMonthsDesc),
-      tools: all.filter((s) => s.group === 'tool').sort(byMonthsDesc),
+      languages: all.filter((s) => s.group === 'language'),
+      tools: all.filter((s) => s.group === 'tool'),
     };
   }
 }
