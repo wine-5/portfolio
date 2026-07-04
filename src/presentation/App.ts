@@ -13,6 +13,7 @@ import { NewsSection } from './sections/NewsSection';
 import { AboutSection } from './sections/AboutSection';
 import { setUiLocale } from './i18n/uiStrings';
 import { persistLocale } from './i18n/localePreference';
+import './styles/transition.css';
 
 interface AppData {
   readonly collection: GameCollection;
@@ -39,12 +40,34 @@ export class App {
     this.renderAll(locale, data);
   }
 
-  /** 言語切り替え時はブート画面なしで全体を描画し直す */
+  /** 言語切り替え時はブート画面なしで、短いトランジション演出を挟んで描画し直す */
   private async switchLocale(locale: Locale): Promise<void> {
     persistLocale(locale);
     const data = await this.load(locale);
-    this.root.innerHTML = '';
-    this.renderAll(locale, data);
+    await this.transitionSwap(() => {
+      this.root.innerHTML = '';
+      this.renderAll(locale, data);
+    });
+  }
+
+  /** 画面全体をスキャンライン付きオーバーレイで一瞬覆い、隠れている間に中身を差し替える */
+  private transitionSwap(swap: () => void): Promise<void> {
+    const overlay = document.createElement('div');
+    overlay.className = 'locale-transition';
+    document.body.appendChild(overlay);
+    return new Promise((resolve) => {
+      requestAnimationFrame(() => {
+        overlay.classList.add('locale-transition--cover');
+        window.setTimeout(() => {
+          swap();
+          overlay.classList.remove('locale-transition--cover');
+          window.setTimeout(() => {
+            overlay.remove();
+            resolve();
+          }, 260);
+        }, 240);
+      });
+    });
   }
 
   private async load(locale: Locale): Promise<AppData> {

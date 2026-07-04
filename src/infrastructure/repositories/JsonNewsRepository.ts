@@ -11,6 +11,7 @@ interface NewsDto {
   description: string;
   icon?: string;
   link?: string;
+  gameUrl?: string;
 }
 
 const KNOWN_TYPES: readonly NewsType[] = ['release', 'maintenance', 'announcement'];
@@ -35,6 +36,7 @@ export class JsonNewsRepository implements NewsRepository {
       description: dto.description,
       icon: dto.icon ?? '',
       ...(dto.link !== undefined ? { link: dto.link } : {}),
+      ...(dto.gameUrl !== undefined ? { gameUrl: dto.gameUrl } : {}),
     }));
   }
 }

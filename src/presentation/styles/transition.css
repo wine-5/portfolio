@@ -1,0 +1,40 @@
+/* ============================================
+   言語切り替え時の全画面トランジション
+   ============================================ */
+.locale-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 229, 255, 0.05) 0 2px,
+      transparent 2px 5px
+    ),
+    var(--color-bg);
+  opacity: 0;
+  transition: opacity 0.24s ease;
+  overflow: hidden;
+}
+
+.locale-transition--cover {
+  opacity: 1;
+}
+
+/* 走査線が上から下へ流れる */
+.locale-transition::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12%;
+  height: 12%;
+  background: linear-gradient(180deg, transparent, rgba(0, 229, 255, 0.35), transparent);
+  animation: locale-scan 0.5s linear infinite;
+}
+
+@keyframes locale-scan {
+  to {
+    top: 100%;
+  }
+}

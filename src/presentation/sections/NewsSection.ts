@@ -12,9 +12,16 @@ const TYPE_LABEL: Record<NewsType, string> = {
 
 /** リリース情報などを流すニュースフィード */
 export class NewsSection extends View<readonly NewsItem[]> {
+  private onSelectGame?: (gameUrl: string) => void;
+
   constructor() {
     super('section', 'news');
     this.el.id = 'news';
+  }
+
+  /** gameUrl 付きニュースをクリックした際に図鑑カードへ移動させるためのフック */
+  setOnSelectGame(handler: (gameUrl: string) => void): void {
+    this.onSelectGame = handler;
   }
 
   override render(items: readonly NewsItem[]): void {
@@ -29,6 +36,14 @@ export class NewsSection extends View<readonly NewsItem[]> {
           : '<p class="news__empty">NO SIGNAL</p>'
       }
     `;
+
+    this.el.querySelectorAll<HTMLAnchorElement>('[data-game-url]').forEach((node) => {
+      node.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = node.dataset['gameUrl'];
+        if (url) this.onSelectGame?.(url);
+      });
+    });
   }
 }
 
@@ -42,8 +57,15 @@ function newsRow(item: NewsItem): string {
     <p class="news-item__desc">${esc(item.description)}</p>
   `;
 
+  // gameUrl 付きは図鑑カードへのナビゲーション(link より優先)、link 付きは通常のリンク
+  const wrapped = item.gameUrl
+    ? `<a class="news-item__link" href="#games" data-game-url="${esc(item.gameUrl)}">${body}</a>`
+    : item.link
+      ? `<a class="news-item__link" href="${esc(item.link)}">${body}</a>`
+      : body;
+
   return `
     <li class="news-item">
-      ${item.link ? `<a class="news-item__link" href="${esc(item.link)}">${body}</a>` : body}
+      ${wrapped}
     </li>`;
 }

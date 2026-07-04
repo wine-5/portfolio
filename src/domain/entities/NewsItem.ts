@@ -10,6 +10,8 @@ export interface NewsItem {
   readonly description: string;
   readonly icon: string;
   readonly link?: string;
+  /** 関連ゲームの githubUrl(言語非依存キー)。指定時はクリックで図鑑の該当カードへ移動 */
+  readonly gameUrl?: string;
 }
 
 /** 掲載期限切れでないか(expireDate なしは常に有効) */
