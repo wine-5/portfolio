@@ -8,7 +8,7 @@ export class BootScreen extends View {
     this.el.className = 'boot-screen';
     this.el.innerHTML = `
       <div class="boot-screen__inner">
-        <p class="boot-screen__title">WINE-5.SYS</p>
+        <p class="boot-screen__title">Wine-5 Portfolio</p>
         <div class="boot-screen__press" role="presentation"></div>
       </div>
     `;
