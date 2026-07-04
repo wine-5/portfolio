@@ -1,6 +1,7 @@
 import { View } from './View';
 import { esc } from '../util/html';
 import { navItems } from './navigation';
+import { t } from '../i18n/uiStrings';
 
 /** HUD 風ヘッダー。狭幅ではハンバーガーメニューに切り替わる */
 export class Header extends View {
@@ -16,7 +17,7 @@ export class Header extends View {
           .map((item) => `<a href="${esc(item.href)}">${esc(item.label)}</a>`)
           .join('')}
       </nav>
-      <button class="hud__hamburger" aria-label="メニュー" aria-expanded="false" aria-controls="hud-nav">
+      <button class="hud__hamburger" aria-label="${esc(t('menu'))}" aria-expanded="false" aria-controls="hud-nav">
         <span></span><span></span><span></span>
       </button>
     `;

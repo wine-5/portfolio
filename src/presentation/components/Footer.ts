@@ -2,6 +2,7 @@ import type { ProfileLink } from '@domain/entities/Profile';
 import { View } from './View';
 import { esc, asset } from '../util/html';
 import { navItems } from './navigation';
+import { t } from '../i18n/uiStrings';
 
 export interface FooterProps {
   /** ソーシャルリンク(profile.json の links を流用) */
@@ -44,7 +45,7 @@ export class Footer extends View<FooterProps> {
           <section class="footer__section">
             <h4>LEGAL</h4>
             <ul>
-              <li><a href="${asset('pages/legal/privacy.html')}">プライバシーポリシー</a></li>
+              <li><a href="${asset('pages/legal/privacy.html')}">${esc(t('privacyPolicy'))}</a></li>
             </ul>
           </section>
         </div>

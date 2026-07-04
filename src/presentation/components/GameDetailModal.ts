@@ -1,6 +1,7 @@
 import type { Game } from '@domain/entities/Game';
 import { View } from './View';
 import { esc, asset, storeChip } from '../util/html';
+import { t } from '../i18n/uiStrings';
 
 /** 図鑑エントリをクリックしたときのステータス詳細画面 */
 export class GameDetailModal extends View<Game> {
@@ -16,7 +17,7 @@ export class GameDetailModal extends View<Game> {
     this.el.innerHTML = `
       <div class="game-modal__backdrop" data-close></div>
       <article class="game-modal__panel" role="dialog" aria-modal="true" aria-label="${esc(game.title)}">
-        <button class="game-modal__close" data-close aria-label="閉じる">×</button>
+        <button class="game-modal__close" data-close aria-label="${esc(t('close'))}">×</button>
         <header class="game-modal__header">
           <span class="game-modal__no">No.${String(game.entryNo).padStart(3, '0')}</span>
           <div class="game-modal__name">
@@ -31,8 +32,8 @@ export class GameDetailModal extends View<Game> {
           </div>
           <div class="game-modal__info">
             <p class="game-modal__desc">${esc(game.description)}</p>
-            ${infoBlock('概要', game.detailedFeatures)}
-            ${infoBlock('担当', game.myResponsibilities)}
+            ${infoBlock(t('overview'), game.detailedFeatures)}
+            ${infoBlock(t('responsibilities'), game.myResponsibilities)}
             <dl class="game-modal__meta">
               ${metaRow('TECH', game.technologies.join(' / '))}
               ${metaRow('PLATFORM', game.supportedPlatforms.join(' / '))}
@@ -89,7 +90,7 @@ function infoBlock(label: string, text: string): string {
   if (!text) return '';
   return `
     <section class="game-modal__block">
-      <h4>${label}</h4>
+      <h4>${esc(label)}</h4>
       <p>${esc(text).replace(/\n/g, '<br />')}</p>
     </section>`;
 }

@@ -3,6 +3,7 @@ import type { GameCollection } from '@application/usecases/GetGameCollection';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
 import { esc, asset, storeChip } from '../util/html';
+import { t } from '../i18n/uiStrings';
 import '../styles/games.css';
 
 type Filter = GameCategory | 'all';
@@ -83,14 +84,14 @@ export class GamesSection extends View<GameCollection> {
         <h2 class="games__title">GAME ARCHIVE</h2>
         <p class="games__count">REGISTERED: ${String(this.games.length).padStart(3, '0')}</p>
       </header>
-      <nav class="games__filters" aria-label="カテゴリ絞り込み">
+      <nav class="games__filters" aria-label="${esc(t('categoryFilter'))}">
         ${FILTERS.map(
           (f) => `
             <button class="filter-btn${this.filter === f.id ? ' filter-btn--active' : ''}" data-filter="${f.id}">
               ${f.label}
             </button>`,
         ).join('')}
-        <select class="tech-select" data-tech aria-label="言語で絞り込み">
+        <select class="tech-select" data-tech aria-label="${esc(t('languageFilter'))}">
           <option value="all">ALL LANGUAGES</option>
           ${techs
             .map(
@@ -139,8 +140,8 @@ function featuredCard(game: Game): string {
   const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
   const action =
     game.release.kind === 'playable'
-      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>${chip}<span class="btn">詳細</span>`
-      : `<span class="badge badge--soon">COMING SOON</span>${chip}<span class="btn">詳細</span>`;
+      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>${chip}<span class="btn">${esc(t('details'))}</span>`
+      : `<span class="badge badge--soon">COMING SOON</span>${chip}<span class="btn">${esc(t('details'))}</span>`;
 
   return `
     <article class="featured-card${released ? ' featured-card--released' : ''}" data-entry="${game.entryNo}" tabindex="0">
@@ -168,6 +169,6 @@ function entryCard(game: Game): string {
       <span class="name-label">NAME</span>
       <h3 class="entry-card__title">${esc(game.title)}</h3>
       <p class="entry-card__tech">${game.technologies.map((t) => `<span>${esc(t)}</span>`).join('')}</p>
-      <span class="entry-card__detail">▸ 詳細を見る</span>
+      <span class="entry-card__detail">▸ ${esc(t('viewDetails'))}</span>
     </li>`;
 }
