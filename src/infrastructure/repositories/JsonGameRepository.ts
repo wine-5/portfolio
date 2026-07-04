@@ -50,7 +50,8 @@ export class JsonGameRepository implements GameRepository {
       throw new Error(`projects.json の取得に失敗しました (${res.status})`);
     }
     const dtos = (await res.json()) as ProjectDto[];
-    return dtos.map((dto, i) => this.toGame(dto, i + 1));
+    // JSON は新しい順なので、最初に作った作品(末尾)が No.001 になるよう逆順で採番する
+    return dtos.map((dto, i) => this.toGame(dto, dtos.length - i));
   }
 
   private toGame(dto: ProjectDto, entryNo: number): Game {
