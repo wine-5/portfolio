@@ -152,7 +152,8 @@
     "detailedFeatures": "プログラマー以外にデザイナー、プランナー、サウンドの人などたくさんの職種の方と一緒に作り上げたゲームです。",
     "myResponsibilities": "ステージの設計から実装、ボスの技をいくつか実装",
     "technologies": [
-      "C++"
+      "C++",
+      "Siv3D"
     ],
     "supportedPlatforms": [
       "PCのみ"

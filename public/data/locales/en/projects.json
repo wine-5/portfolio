@@ -152,7 +152,8 @@
     "detailedFeatures": "This game was created collaboratively with professionals from various fields including designers, planners, sound engineers, and many other disciplines beyond programming.",
     "myResponsibilities": "Stage design and implementation, implementation of several boss skills",
     "technologies": [
-      "C++"
+      "C++",
+      "Siv3D"
     ],
     "supportedPlatforms": [
       "PC Only"

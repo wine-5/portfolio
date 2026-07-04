@@ -152,7 +152,8 @@
     "detailedFeatures": "这是与程序员以外的设计师、策划、音响等各种职业的人员共同制作的游戏。",
     "myResponsibilities": "关卡设计与实现，实现了几个Boss技能",
     "technologies": [
-      "C++"
+      "C++",
+      "Siv3D"
     ],
     "supportedPlatforms": [
       "仅限PC"

@@ -9,7 +9,13 @@ import '../styles/games.css';
 type Filter = GameCategory | 'all';
 
 /** 言語ドロップダウンから除外する非言語の技術(エンジン・シェーダー等) */
-const NON_LANGUAGES: ReadonlySet<string> = new Set(['Unity', 'Sharder', 'Shader']);
+const NON_LANGUAGES: ReadonlySet<string> = new Set([
+  'Unity',
+  'Sharder',
+  'Shader',
+  'Siv3D',
+  'DxLib',
+]);
 
 const FILTERS: readonly { id: Filter; label: string }[] = [
   { id: 'all', label: 'ALL' },
