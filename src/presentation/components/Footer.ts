@@ -50,6 +50,7 @@ export class Footer extends View<FooterProps> {
           </section>
         </div>
         <p class="footer__copyright">&copy; ${new Date().getFullYear()} wine-5. All rights reserved.</p>
+        <p class="footer__updated">LAST UPDATE: ${esc(__BUILD_DATE__)}</p>
       </div>
     `;
   }

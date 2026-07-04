@@ -532,6 +532,18 @@ img {
   color: var(--color-text-dim);
 }
 
+/* ビルド時に自動注入される最終更新日。コピーライトよりさらに控えめに */
+.footer__updated {
+  grid-column: 1 / -1;
+  margin: 0.3rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-align: center;
+  color: var(--color-text-dim);
+  opacity: 0.6;
+}
+
 @media (max-width: 560px) {
   .footer__inner {
     grid-template-columns: 1fr;
