@@ -410,13 +410,14 @@
 
 .game-modal__panel {
   position: relative;
-  width: min(860px, 100%);
+  width: min(1040px, 100%);
   /* iOS Safari のアドレスバー分を考慮(dvh 非対応環境は vh にフォールバック) */
-  max-height: 90vh;
-  max-height: 90dvh;
+  max-height: 94vh;
+  max-height: 94dvh;
+  min-height: min(560px, 88vh);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 1.6rem clamp(1rem, 3vw, 2rem);
+  padding: 2rem clamp(1.2rem, 3.5vw, 2.6rem);
   background: var(--color-bg-2);
   border: 1px solid var(--color-cyan);
   box-shadow: var(--glow-cyan);
