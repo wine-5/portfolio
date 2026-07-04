@@ -14,6 +14,9 @@ export class GameDetailModal extends View<Game> {
   }
 
   override render(game: Game): void {
+    // 掲載メディア(画像+動画)。images が空なら図鑑サムネイルで代用
+    const media = game.images.length > 0 ? game.images : [game.thumbnailImage];
+
     this.el.innerHTML = `
       <div class="game-modal__backdrop" data-close></div>
       <article class="game-modal__panel" role="dialog" aria-modal="true" aria-label="${esc(game.title)}">
@@ -28,7 +31,21 @@ export class GameDetailModal extends View<Game> {
         </header>
         <div class="game-modal__body">
           <div class="game-modal__visual">
-            <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
+            <div class="game-modal__stage" data-stage>${mediaMain(media[0]!, game.title)}</div>
+            ${
+              media.length > 1
+                ? `<div class="game-modal__thumbs">
+                    ${media
+                      .map(
+                        (m, i) => `
+                          <button class="media-thumb${i === 0 ? ' media-thumb--active' : ''}" data-media="${i}" aria-label="${esc(game.title)} ${i + 1}">
+                            ${thumbInner(m)}
+                          </button>`,
+                      )
+                      .join('')}
+                  </div>`
+                : ''
+            }
           </div>
           <div class="game-modal__info">
             <p class="game-modal__desc">${esc(game.description)}</p>
@@ -54,6 +71,20 @@ export class GameDetailModal extends View<Game> {
     this.el.querySelectorAll('[data-close]').forEach((n) => {
       n.addEventListener('click', () => this.close());
     });
+
+    // サムネイルクリックでメインの画像/動画を切り替える
+    const stage = this.el.querySelector<HTMLElement>('[data-stage]')!;
+    this.el.querySelectorAll<HTMLButtonElement>('[data-media]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const path = media[Number(btn.dataset['media'])];
+        if (!path) return;
+        stage.innerHTML = mediaMain(path, game.title);
+        this.el
+          .querySelectorAll('.media-thumb--active')
+          .forEach((n) => n.classList.remove('media-thumb--active'));
+        btn.classList.add('media-thumb--active');
+      });
+    });
   }
 
   open(game: Game): void {
@@ -75,6 +106,22 @@ export class GameDetailModal extends View<Game> {
     this.el.classList.remove('game-modal--open');
     window.setTimeout(() => this.unmount(), 200);
   }
+}
+
+const VIDEO_RE = /\.(mp4|webm|mov)$/i;
+
+/** メイン表示エリア: 動画なら再生コントロール付き、画像ならそのまま */
+function mediaMain(path: string, title: string): string {
+  return VIDEO_RE.test(path)
+    ? `<video src="${esc(asset(path))}" controls playsinline preload="metadata"></video>`
+    : `<img src="${esc(asset(path))}" alt="${esc(title)}" loading="lazy" />`;
+}
+
+/** サムネイル: 動画は ▶ タイル、画像は縮小表示 */
+function thumbInner(path: string): string {
+  return VIDEO_RE.test(path)
+    ? '<span class="media-thumb__video" aria-hidden="true">▶</span>'
+    : `<img src="${esc(asset(path))}" alt="" loading="lazy" />`;
 }
 
 function releaseBadge(game: Game): string {
