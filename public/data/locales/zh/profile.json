@@ -4,7 +4,9 @@
   "details": [
     { "label": "姓名", "value": "今多 悠人" },
     { "label": "学校", "value": "札幌设计与科技专门学校" },
-    { "label": "学科", "value": "AI与科技学科" }
+    { "label": "学科", "value": "AI与科技学科" },
+    { "label": "专业", "value": "超级游戏创作者专业（4年制）" },
+    { "label": "年级", "value": "三年级" }
   ],
   "description": "以进入游戏行业为目标的游戏开发者。主要使用Unity和DxLib进行开发，注重设计出尽量能灵活应对变更、便于添加和修改功能的架构与类结构。\n此外，我拥有在App Store和Steam上发布作品的经验，以及在UnityRoom等平台公开作品的经历，始终追求能为用户带来快乐与乐趣的游戏开发。\n“行动力”与“坚持力”，以及比任何人都更享受编程、不断追求新知识的态度，是我的强项。",
   "avatar": "images/icons/profile-icon.png",

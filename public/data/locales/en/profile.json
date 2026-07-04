@@ -4,7 +4,9 @@
   "details": [
     { "label": "Name", "value": "Yuto Imata" },
     { "label": "School", "value": "Sapporo Design & Technology College" },
-    { "label": "Department", "value": "AI & Technology" }
+    { "label": "Department", "value": "AI & Technology" },
+    { "label": "Major", "value": "Super Game Creator Program (4-year)" },
+    { "label": "Year", "value": "3rd Year" }
   ],
   "description": "A game developer aiming to join the game industry. I mainly develop with Unity and DxLib, and I strive to design architectures and classes that are resilient to change and allow features to be added or modified flexibly.\nI have released titles on the App Store and Steam, and published games on UnityRoom and other platforms, always pursuing game development that brings joy and fun to users.\nMy strengths are my drive to act, my persistence, and my attitude of enjoying programming more than anyone while continuously pursuing new knowledge.",
   "avatar": "images/icons/profile-icon.png",
