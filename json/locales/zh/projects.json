@@ -2,7 +2,7 @@
   {
     "title": "晴天娃娃战争",
     "description": "在ImoGameJam制作的作品",
-    "detailedFeatures": "Inversion → 反转或翻转 → 从"晴天娃娃改变方向后会从晴天变成雨天"这个想法开始制作游戏！我们决定制作一个通过翻转晴天娃娃来改变效果的塔防游戏！",
+    "detailedFeatures": "Inversion → 反转或翻转 → 从「晴天娃娃改变方向后会从晴天变成雨天」这个想法开始制作游戏！我们决定制作一个通过翻转晴天娃娃来改变效果的塔防游戏！",
     "myResponsibilities": "音频相关类、场景转换类、使用AI生成图像和音频",
     "technologies": [
       "Unity",
@@ -26,7 +26,7 @@
   {
     "title": "暗杀反转",
     "description": "在2026年3月举办的UnityRoom游戏Jam中制作的作品",
-    "detailedFeatures": "从主题"里(ura/反面)"出发，制作了"翻转瓷砖利用机关，从敌人背后进行暗杀的游戏"。",
+    "detailedFeatures": "从主题「里(ura/反面)」出发，制作了「翻转瓷砖利用机关，从敌人背后进行暗杀的游戏」。",
     "myResponsibilities": "所有编程工作",
     "technologies": [
       "Unity",
@@ -50,7 +50,7 @@
   {
     "title": "The Mask Ball Seeker",
     "description": "在2026年1月举办的Global Game Jam的作品",
-    "detailedFeatures": "从主题"MASK"出发，与团队成员讨论后，决定制作"在舞会上解决谋杀案的游戏"！全员初次见面，一开始很不安，但最后成功完成了！",
+    "detailedFeatures": "从主题「MASK」出发，与团队成员讨论后，决定制作「在舞会上解决谋杀案的游戏」！全员初次见面，一开始很不安，但最后成功完成了！",
     "myResponsibilities": "Player设计与实现、NPC实现、部分小游戏实现、音频和场景整体管理类的创建",
     "technologies": [
       "Unity",
