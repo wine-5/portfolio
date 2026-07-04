@@ -135,6 +135,15 @@ img {
   text-shadow: var(--glow-cyan);
 }
 
+/* 言語切り替えでボタン幅が変わってもナビが動かないよう、広幅では中央に絶対配置で固定する */
+@media (min-width: 641px) {
+  .hud__nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 /* ---- ヘッダー右側のツール(言語切り替え+ハンバーガー) ---- */
 .hud__tools {
   display: flex;
@@ -149,6 +158,9 @@ img {
 .lang-switcher__button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  /* 言語名の長さ(日本語/English/中文)でヘッダーのレイアウトが揺れないよう幅を固定 */
+  min-width: 7.5em;
   gap: 0.4em;
   padding: 0.35em 0.8em;
   font-family: var(--font-ui);

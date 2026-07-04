@@ -2,6 +2,7 @@ import type { Profile } from '@domain/entities/Profile';
 import { gaugePercent } from '@domain/entities/Profile';
 import { View } from '../components/View';
 import { esc, asset } from '../util/html';
+import { t } from '../i18n/uiStrings';
 import '../styles/about.css';
 
 /** 本人を主人公キャラとして表示するプレイヤーステータス風 About */
@@ -15,7 +16,7 @@ export class AboutSection extends View<Profile> {
     this.el.innerHTML = `
       <header class="about__header">
         <p class="about__kicker">// PLAYER STATUS</p>
-        <h2 class="about__title">ABOUT</h2>
+        <h2 class="about__title">${esc(t('aboutTitle'))}</h2>
       </header>
       <div class="about__panel">
         <div class="about__avatar">

@@ -1,6 +1,7 @@
 import type { NewsItem, NewsType } from '@domain/entities/NewsItem';
 import { View } from '../components/View';
 import { esc } from '../util/html';
+import { t } from '../i18n/uiStrings';
 import '../styles/news.css';
 
 const TYPE_LABEL: Record<NewsType, string> = {
@@ -20,7 +21,7 @@ export class NewsSection extends View<readonly NewsItem[]> {
     this.el.innerHTML = `
       <header class="news__header">
         <p class="news__kicker">// TRANSMISSION LOG</p>
-        <h2 class="news__title">NEWS</h2>
+        <h2 class="news__title">${esc(t('newsTitle'))}</h2>
       </header>
       ${
         items.length > 0
