@@ -24,15 +24,16 @@ interface ProjectDto {
 
 /**
  * FEATURED(別格表示)作品。バッジは仕様で固定:
- * TofuRunner = App Store 公開済み(PLAY NOW)、蝶々反乱 = Steam 公開予定(COMING SOON)
+ * TofuRunner = App Store 公開済み(PLAY NOW)、蝶々反乱 = Steam 公開予定(COMING SOON)。
+ * タイトルはロケールごとに翻訳されるため、言語に依存しない githubUrl をキーにする
  */
 const FEATURED_RELEASE: Record<string, ReleaseState> = {
-  TofuRunner: {
+  'https://github.com/Allow-hub/TouhuRunner': {
     kind: 'playable',
     url: 'https://apps.apple.com/jp/app/tofurunner/id6755136719',
     store: 'app-store',
   },
-  蝶々反乱: { kind: 'coming-soon', store: 'steam' },
+  'https://github.com/wine-5/SGC2025': { kind: 'coming-soon', store: 'steam' },
 };
 
 export class JsonGameRepository implements GameRepository {
@@ -48,7 +49,7 @@ export class JsonGameRepository implements GameRepository {
   }
 
   private toGame(dto: ProjectDto, entryNo: number): Game {
-    const featuredRelease = FEATURED_RELEASE[dto.title];
+    const featuredRelease = dto.githubUrl ? FEATURED_RELEASE[dto.githubUrl] : undefined;
     const release: ReleaseState =
       featuredRelease ??
       (dto.install || dto.playUrl
