@@ -2,6 +2,14 @@ import type { Locale } from '@application/ports/Locale';
 
 /** コンポーネント内に直書きしていた固定 UI 文言の翻訳辞書 */
 interface UiStrings {
+  readonly navGames: string;
+  readonly navNews: string;
+  readonly navAbout: string;
+  readonly gamesTitle: string;
+  readonly registered: string;
+  readonly newsTitle: string;
+  readonly aboutTitle: string;
+  readonly steamPage: string;
   readonly menu: string;
   readonly details: string;
   readonly viewDetails: string;
@@ -16,6 +24,14 @@ interface UiStrings {
 
 const STRINGS: Record<Locale, UiStrings> = {
   ja: {
+    navGames: 'ゲーム紹介',
+    navNews: 'ニュース',
+    navAbout: '自己紹介',
+    gamesTitle: 'ゲーム紹介',
+    registered: '登録作品数',
+    newsTitle: 'ニュース',
+    aboutTitle: '自己紹介',
+    steamPage: 'Steamページ',
     menu: 'メニュー',
     details: '詳細',
     viewDetails: '詳細を見る',
@@ -28,6 +44,14 @@ const STRINGS: Record<Locale, UiStrings> = {
     switchLanguage: '言語切り替え',
   },
   en: {
+    navGames: 'GAMES',
+    navNews: 'NEWS',
+    navAbout: 'ABOUT',
+    gamesTitle: 'GAME ARCHIVE',
+    registered: 'REGISTERED',
+    newsTitle: 'NEWS',
+    aboutTitle: 'ABOUT',
+    steamPage: 'Steam Page',
     menu: 'Menu',
     details: 'Details',
     viewDetails: 'View details',
@@ -40,6 +64,14 @@ const STRINGS: Record<Locale, UiStrings> = {
     switchLanguage: 'Switch language',
   },
   zh: {
+    navGames: '游戏介绍',
+    navNews: '新闻',
+    navAbout: '自我介绍',
+    gamesTitle: '游戏介绍',
+    registered: '收录作品数',
+    newsTitle: '新闻',
+    aboutTitle: '自我介绍',
+    steamPage: 'Steam页面',
     menu: '菜单',
     details: '详情',
     viewDetails: '查看详情',

@@ -6,7 +6,8 @@ export type Store = 'app-store' | 'steam';
 
 export type ReleaseState =
   | { kind: 'playable'; url: string; store?: Store }
-  | { kind: 'coming-soon'; store?: Store }
+  /** url はストアの商品ページ(公開前でもウィッシュリスト等に誘導できる) */
+  | { kind: 'coming-soon'; store?: Store; url?: string }
   | { kind: 'archived' };
 
 /** 図鑑に載る 1 作品。No. は図鑑上の通し番号 */

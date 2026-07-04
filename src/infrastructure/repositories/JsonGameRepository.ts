@@ -33,7 +33,12 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
     url: 'https://apps.apple.com/jp/app/tofurunner/id6755136719',
     store: 'app-store',
   },
-  'https://github.com/wine-5/SGC2025': { kind: 'coming-soon', store: 'steam' },
+  // 2026-07-14 19:00 に Steam 公開予定(公開までは COMING SOON + ストアページ誘導)
+  'https://github.com/wine-5/SGC2025': {
+    kind: 'coming-soon',
+    store: 'steam',
+    url: 'https://store.steampowered.com/app/4841000/_/',
+  },
 };
 
 export class JsonGameRepository implements GameRepository {
