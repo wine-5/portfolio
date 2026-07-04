@@ -1,0 +1,81 @@
+{
+  "languages": [
+    {
+      "name": "C#",
+      "startDate": "2024-07-01",
+      "projects": "10+ 个项目",
+      "items": [
+        "async/await异步处理",
+        "委托与事件",
+        "泛型",
+        "Attribute的运用",
+        "设计模式实现"
+      ],
+      "relatedGames": [
+        "https://github.com/Allow-hub/TouhuRunner",
+        "https://github.com/wine-5/SGC2025",
+        "https://github.com/wine-5/TechC_GameJam"
+      ]
+    },
+    {
+      "name": "C++",
+      "startDate": "2025-09-01",
+      "projects": "3+ 个项目",
+      "items": ["指针管理"],
+      "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
+    },
+    {
+      "name": "C",
+      "startDate": "2026-01-01",
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "PHP",
+      "startDate": "2025-07-01",
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "JavaScript",
+      "startDate": "2025-07-01",
+      "projects": "8+ 个应用",
+      "items": ["DOM操作与事件", "设计模式", "性能优化"],
+      "relatedGames": []
+    }
+  ],
+  "tools": [
+    {
+      "name": "Unity",
+      "startDate": "2024-07-01",
+      "projects": "10+ 个项目",
+      "items": [
+        "Unity Editor扩展",
+        "UniTask",
+        "ObjectPool",
+        "Physics & Collision",
+        "性能优化"
+      ],
+      "relatedGames": [
+        "https://github.com/Allow-hub/TouhuRunner",
+        "https://github.com/wine-5/SGC2025"
+      ]
+    },
+    {
+      "name": "DxLib",
+      "startDate": "2025-09-01",
+      "projects": "1+ 个项目",
+      "items": ["使用C++的2D游戏开发"],
+      "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
+    },
+    {
+      "name": "Git / GitHub",
+      "startDate": "2024-10-01",
+      "projects": "所有项目均使用",
+      "items": ["分支策略设计", "Git LFS的运用", "冲突解决", "提交规范管理"],
+      "relatedGames": []
+    }
+  ]
+}

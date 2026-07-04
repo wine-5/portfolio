@@ -1,5 +1,6 @@
 import type { GetGameCollection, GameCollection } from '@application/usecases/GetGameCollection';
 import type { GetPlayerProfile } from '@application/usecases/GetPlayerProfile';
+import type { GetPlayerSkills, SkillMatrix } from '@application/usecases/GetPlayerSkills';
 import type { GetNews } from '@application/usecases/GetNews';
 import type { Locale } from '@application/ports/Locale';
 import type { Profile } from '@domain/entities/Profile';
@@ -9,6 +10,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HeroSection } from './sections/HeroSection';
 import { GamesSection } from './sections/GamesSection';
+import { SkillsSection } from './sections/SkillsSection';
 import { NewsSection } from './sections/NewsSection';
 import { AboutSection } from './sections/AboutSection';
 import { setUiLocale } from './i18n/uiStrings';
@@ -18,6 +20,7 @@ import './styles/transition.css';
 interface AppData {
   readonly collection: GameCollection;
   readonly profile: Profile;
+  readonly skills: SkillMatrix;
   readonly news: readonly NewsItem[];
 }
 
@@ -30,6 +33,7 @@ export class App {
     private readonly root: HTMLElement,
     private readonly getGameCollection: GetGameCollection,
     private readonly getPlayerProfile: GetPlayerProfile,
+    private readonly getPlayerSkills: GetPlayerSkills,
     private readonly getNews: GetNews,
   ) {}
 
@@ -71,15 +75,16 @@ export class App {
   }
 
   private async load(locale: Locale): Promise<AppData> {
-    const [collection, profile, news] = await Promise.all([
+    const [collection, profile, skills, news] = await Promise.all([
       this.getGameCollection.execute(locale),
       this.getPlayerProfile.execute(locale),
+      this.getPlayerSkills.execute(locale),
       this.getNews.execute(locale),
     ]);
-    return { collection, profile, news };
+    return { collection, profile, skills, news };
   }
 
-  private renderAll(locale: Locale, { collection, profile, news }: AppData): void {
+  private renderAll(locale: Locale, { collection, profile, skills, news }: AppData): void {
     setUiLocale(locale);
     document.documentElement.lang = locale;
 
@@ -101,20 +106,30 @@ export class App {
 
     games.mount(main);
 
-    const newsSection = new NewsSection();
-    // ニュースからも図鑑カードへ移動できるようにする(ヒーローのアイコンタップと同じ挙動)
-    newsSection.setOnSelectGame((gameUrl) => {
-      const game = [...collection.featured, ...collection.entries].find(
-        (g) => g.githubUrl === gameUrl,
-      );
+    // githubUrl から図鑑エントリを引く(Skills/News からのジャンプに共用)
+    const allGames = [...collection.featured, ...collection.entries];
+    const focusByGithubUrl = (githubUrl: string): void => {
+      const game = allGames.find((g) => g.githubUrl === githubUrl);
       if (game) games.focusEntry(game.entryNo);
-    });
-    newsSection.render(news);
-    newsSection.mount(main);
+    };
+
+    const skillsSection = new SkillsSection();
+    skillsSection.setOnSelectGame(focusByGithubUrl);
+    skillsSection.setGameTitleResolver(
+      (githubUrl) => allGames.find((g) => g.githubUrl === githubUrl)?.title ?? '',
+    );
+    skillsSection.render(skills);
+    skillsSection.mount(main);
 
     const about = new AboutSection();
     about.render(profile);
     about.mount(main);
+
+    const newsSection = new NewsSection();
+    // ニュースからも図鑑カードへ移動できるようにする(ヒーローのアイコンタップと同じ挙動)
+    newsSection.setOnSelectGame(focusByGithubUrl);
+    newsSection.render(news);
+    newsSection.mount(main);
 
     const footer = new Footer();
     footer.render({ social: profile.links });

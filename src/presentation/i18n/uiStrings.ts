@@ -3,8 +3,13 @@ import type { Locale } from '@application/ports/Locale';
 /** コンポーネント内に直書きしていた固定 UI 文言の翻訳辞書 */
 interface UiStrings {
   readonly navGames: string;
+  readonly navSkills: string;
   readonly navNews: string;
   readonly navAbout: string;
+  readonly skillsTitle: string;
+  readonly groupLanguages: string;
+  readonly groupTools: string;
+  readonly relatedWorks: string;
   readonly gamesTitle: string;
   readonly registered: string;
   readonly newsTitle: string;
@@ -27,8 +32,13 @@ interface UiStrings {
 const STRINGS: Record<Locale, UiStrings> = {
   ja: {
     navGames: 'GAMES',
+    navSkills: 'SKILLS',
     navNews: 'NEWS',
     navAbout: 'ABOUT',
+    skillsTitle: 'SKILLS',
+    groupLanguages: 'LANGUAGES',
+    groupTools: 'TOOLS & ENGINES',
+    relatedWorks: '関連作品',
     gamesTitle: 'GAME ARCHIVE',
     registered: 'REGISTERED',
     newsTitle: 'NEWS',
@@ -49,8 +59,13 @@ const STRINGS: Record<Locale, UiStrings> = {
   },
   en: {
     navGames: 'GAMES',
+    navSkills: 'SKILLS',
     navNews: 'NEWS',
     navAbout: 'ABOUT',
+    skillsTitle: 'SKILLS',
+    groupLanguages: 'LANGUAGES',
+    groupTools: 'TOOLS & ENGINES',
+    relatedWorks: 'Related Works',
     gamesTitle: 'GAME ARCHIVE',
     registered: 'REGISTERED',
     newsTitle: 'NEWS',
@@ -71,8 +86,13 @@ const STRINGS: Record<Locale, UiStrings> = {
   },
   zh: {
     navGames: '游戏介绍',
+    navSkills: '技能',
     navNews: '新闻',
     navAbout: '自我介绍',
+    skillsTitle: '技能',
+    groupLanguages: '编程语言',
+    groupTools: '工具与引擎',
+    relatedWorks: '相关作品',
     gamesTitle: '游戏介绍',
     registered: '收录作品数',
     newsTitle: '新闻',
@@ -110,4 +130,18 @@ export function setUiLocale(locale: Locale): void {
 /** 現在のロケールの UI 文言を返す */
 export function t(key: keyof UiStrings): string {
   return STRINGS[current][key];
+}
+
+/** 経験月数を「2年3ヶ月」等のロケール別表記にする */
+export function formatExperience(totalMonths: number): string {
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  switch (current) {
+    case 'ja':
+      return `${years > 0 ? `${years}年` : ''}${months > 0 || years === 0 ? `${months}ヶ月` : ''}`;
+    case 'zh':
+      return `${years > 0 ? `${years}年` : ''}${months > 0 || years === 0 ? `${months}个月` : ''}`;
+    case 'en':
+      return `${years > 0 ? `${years}y ` : ''}${months > 0 || years === 0 ? `${months}m` : ''}`.trim();
+  }
 }

@@ -1,0 +1,81 @@
+{
+  "languages": [
+    {
+      "name": "C#",
+      "startDate": "2024-07-01",
+      "projects": "10+ projects",
+      "items": [
+        "async/await asynchronous programming",
+        "Delegates & events",
+        "Generics",
+        "Attributes",
+        "Design pattern implementation"
+      ],
+      "relatedGames": [
+        "https://github.com/Allow-hub/TouhuRunner",
+        "https://github.com/wine-5/SGC2025",
+        "https://github.com/wine-5/TechC_GameJam"
+      ]
+    },
+    {
+      "name": "C++",
+      "startDate": "2025-09-01",
+      "projects": "3+ projects",
+      "items": ["Pointer management"],
+      "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
+    },
+    {
+      "name": "C",
+      "startDate": "2026-01-01",
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "PHP",
+      "startDate": "2025-07-01",
+      "projects": "",
+      "items": [],
+      "relatedGames": []
+    },
+    {
+      "name": "JavaScript",
+      "startDate": "2025-07-01",
+      "projects": "8+ applications",
+      "items": ["DOM manipulation & events", "Design patterns", "Performance optimization"],
+      "relatedGames": []
+    }
+  ],
+  "tools": [
+    {
+      "name": "Unity",
+      "startDate": "2024-07-01",
+      "projects": "10+ projects",
+      "items": [
+        "Unity Editor extensions",
+        "UniTask",
+        "ObjectPool",
+        "Physics & Collision",
+        "Performance optimization"
+      ],
+      "relatedGames": [
+        "https://github.com/Allow-hub/TouhuRunner",
+        "https://github.com/wine-5/SGC2025"
+      ]
+    },
+    {
+      "name": "DxLib",
+      "startDate": "2025-09-01",
+      "projects": "1+ project",
+      "items": ["2D game development in C++"],
+      "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
+    },
+    {
+      "name": "Git / GitHub",
+      "startDate": "2024-10-01",
+      "projects": "Used in all projects",
+      "items": ["Branch strategy design", "Git LFS", "Conflict resolution", "Commit conventions"],
+      "relatedGames": []
+    }
+  ]
+}

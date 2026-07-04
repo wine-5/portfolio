@@ -4,9 +4,11 @@
  */
 import { GetGameCollection } from '@application/usecases/GetGameCollection';
 import { GetPlayerProfile } from '@application/usecases/GetPlayerProfile';
+import { GetPlayerSkills } from '@application/usecases/GetPlayerSkills';
 import { GetNews } from '@application/usecases/GetNews';
 import { JsonGameRepository } from '@infrastructure/repositories/JsonGameRepository';
 import { JsonProfileRepository } from '@infrastructure/repositories/JsonProfileRepository';
+import { JsonSkillRepository } from '@infrastructure/repositories/JsonSkillRepository';
 import { JsonNewsRepository } from '@infrastructure/repositories/JsonNewsRepository';
 import { App } from '@presentation/App';
 import { detectLocale } from '@presentation/i18n/localePreference';
@@ -23,6 +25,7 @@ const app = new App(
   document.getElementById('app')!,
   new GetGameCollection(new JsonGameRepository(baseUrl)),
   new GetPlayerProfile(new JsonProfileRepository(baseUrl)),
+  new GetPlayerSkills(new JsonSkillRepository(baseUrl)),
   new GetNews(new JsonNewsRepository(baseUrl)),
 );
 
