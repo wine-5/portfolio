@@ -20,17 +20,19 @@ interface UiStrings {
   readonly categoryFilter: string;
   readonly languageFilter: string;
   readonly switchLanguage: string;
+  readonly toLightMode: string;
+  readonly toDarkMode: string;
 }
 
 const STRINGS: Record<Locale, UiStrings> = {
   ja: {
-    navGames: 'ゲーム紹介',
-    navNews: 'ニュース',
-    navAbout: '自己紹介',
-    gamesTitle: 'ゲーム紹介',
-    registered: '登録作品数',
-    newsTitle: 'ニュース',
-    aboutTitle: '自己紹介',
+    navGames: 'GAMES',
+    navNews: 'NEWS',
+    navAbout: 'ABOUT',
+    gamesTitle: 'GAME ARCHIVE',
+    registered: 'REGISTERED',
+    newsTitle: 'NEWS',
+    aboutTitle: 'ABOUT',
     steamPage: 'Steamページ',
     menu: 'メニュー',
     details: '詳細',
@@ -42,6 +44,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     categoryFilter: 'カテゴリ絞り込み',
     languageFilter: '言語で絞り込み',
     switchLanguage: '言語切り替え',
+    toLightMode: 'ライトモードに切り替え',
+    toDarkMode: 'ダークモードに切り替え',
   },
   en: {
     navGames: 'GAMES',
@@ -62,6 +66,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     categoryFilter: 'Filter by category',
     languageFilter: 'Filter by language',
     switchLanguage: 'Switch language',
+    toLightMode: 'Switch to light mode',
+    toDarkMode: 'Switch to dark mode',
   },
   zh: {
     navGames: '游戏介绍',
@@ -82,6 +88,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     categoryFilter: '按类别筛选',
     languageFilter: '按语言筛选',
     switchLanguage: '切换语言',
+    toLightMode: '切换到浅色模式',
+    toDarkMode: '切换到深色模式',
   },
 };
 
