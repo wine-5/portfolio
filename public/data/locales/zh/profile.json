@@ -1,0 +1,20 @@
+{
+  "name": "wine-5",
+  "job": "GAME DEVELOPER",
+  "details": [
+    { "label": "姓名", "value": "今多 悠人" },
+    { "label": "学校", "value": "札幌设计与科技专门学校" },
+    { "label": "学科", "value": "AI与科技学科" }
+  ],
+  "description": "以进入游戏行业为目标的游戏开发者。\n使用Unity和C#进行游戏开发，\n注重遵循SOLID原则的设计。\n有在UnityRoom和App Store发布作品的经验，\n致力于制作能为玩家带来快乐的游戏。\n比任何人都更享受编程、不断钻研是我的强项。\n也在X（Twitter）: @wine_program 上活跃中！",
+  "avatar": "images/icons/profile-icon.png",
+  "hp": { "label": "HP（体力・干劲）", "current": 1000, "max": 1000 },
+  "mp": { "label": "MP（想象力）", "current": 800, "max": 1000 },
+  "expLabel": "EXP（掌握语言）",
+  "expLanguages": ["C", "C++", "C#", "PHP", "HTML", "CSS", "JS", "Python"],
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/wine-5" },
+    { "label": "X (Twitter)", "url": "https://x.com/wine_program" },
+    { "label": "UnityRoom", "url": "https://unityroom.com/users/wine-555" }
+  ]
+}
