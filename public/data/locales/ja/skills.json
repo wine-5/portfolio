@@ -80,6 +80,13 @@
     {
       "name": "DxLib",
       "months": 16,
+      "projects": "",
+      "items": ["C++での2Dゲーム開発"],
+      "relatedGames": []
+    },
+    {
+      "name": "Siv3D",
+      "months": 2,
       "projects": "1+ プロジェクト",
       "items": ["C++での2Dゲーム開発"],
       "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
