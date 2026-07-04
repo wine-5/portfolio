@@ -57,6 +57,9 @@ export class GameDetailModal extends View<Game> {
     this.render(game);
     this.mount(document.body);
     document.addEventListener('keydown', this.onKeydown);
+    // スクロールバーが消える分の幅を余白で補い、背景のズレ(ガタつき)を防ぐ
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : '';
     document.body.style.overflow = 'hidden';
     // マウント後にクラスを付けて開閉アニメーションを発火させる
     requestAnimationFrame(() => this.el.classList.add('game-modal--open'));
@@ -65,6 +68,7 @@ export class GameDetailModal extends View<Game> {
   close(): void {
     document.removeEventListener('keydown', this.onKeydown);
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
     this.el.classList.remove('game-modal--open');
     window.setTimeout(() => this.unmount(), 200);
   }
