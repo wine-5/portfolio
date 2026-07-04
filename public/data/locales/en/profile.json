@@ -6,7 +6,7 @@
     { "label": "School", "value": "Sapporo Design & Technology College" },
     { "label": "Department", "value": "AI & Technology" }
   ],
-  "description": "A game developer aiming for the game industry.\nI develop games with Unity and C#,\ndesigning with SOLID principles in mind.\nI have released games on UnityRoom and the App Store,\nand I pursue game development that brings joy to players.\nEnjoying and pursuing programming more than anyone is my strength.\nAlso active on X (Twitter): @wine_program!",
+  "description": "A game developer aiming to join the game industry. I mainly develop with Unity and DxLib, and I strive to design architectures and classes that are resilient to change and allow features to be added or modified flexibly.\nI have released titles on the App Store and Steam, and published games on UnityRoom and other platforms, always pursuing game development that brings joy and fun to users.\nMy strengths are my drive to act, my persistence, and my attitude of enjoying programming more than anyone while continuously pursuing new knowledge.",
   "avatar": "images/icons/profile-icon.png",
   "hp": { "label": "HP (Energy / Motivation)", "current": 1000, "max": 1000 },
   "mp": { "label": "MP (Imagination)", "current": 800, "max": 1000 },

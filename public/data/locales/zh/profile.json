@@ -6,7 +6,7 @@
     { "label": "学校", "value": "札幌设计与科技专门学校" },
     { "label": "学科", "value": "AI与科技学科" }
   ],
-  "description": "以进入游戏行业为目标的游戏开发者。\n使用Unity和C#进行游戏开发，\n注重遵循SOLID原则的设计。\n有在UnityRoom和App Store发布作品的经验，\n致力于制作能为玩家带来快乐的游戏。\n比任何人都更享受编程、不断钻研是我的强项。\n也在X（Twitter）: @wine_program 上活跃中！",
+  "description": "以进入游戏行业为目标的游戏开发者。主要使用Unity和DxLib进行开发，注重设计出尽量能灵活应对变更、便于添加和修改功能的架构与类结构。\n此外，我拥有在App Store和Steam上发布作品的经验，以及在UnityRoom等平台公开作品的经历，始终追求能为用户带来快乐与乐趣的游戏开发。\n“行动力”与“坚持力”，以及比任何人都更享受编程、不断追求新知识的态度，是我的强项。",
   "avatar": "images/icons/profile-icon.png",
   "hp": { "label": "HP（体力・干劲）", "current": 1000, "max": 1000 },
   "mp": { "label": "MP（想象力）", "current": 800, "max": 1000 },
