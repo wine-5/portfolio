@@ -135,6 +135,84 @@ img {
   text-shadow: var(--glow-cyan);
 }
 
+/* ---- ヘッダー右側のツール(言語切り替え+ハンバーガー) ---- */
+.hud__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lang-switcher {
+  position: relative;
+}
+
+.lang-switcher__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.35em 0.8em;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+  background: transparent;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, text-shadow 0.2s;
+}
+
+.lang-switcher__button:hover {
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.lang-switcher__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 8.5em;
+  display: none;
+  flex-direction: column;
+  background: rgba(5, 7, 15, 0.96);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 60;
+}
+
+.lang-switcher--open .lang-switcher__dropdown {
+  display: flex;
+}
+
+.lang-switcher__option {
+  padding: 0.55em 1em;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: var(--color-text-dim);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.lang-switcher__option:hover {
+  color: var(--color-cyan);
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.lang-switcher__option--active {
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
 /* ---- ハンバーガー(狭幅のみ表示) ---- */
 .hud__hamburger {
   display: none;

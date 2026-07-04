@@ -9,6 +9,7 @@ import { JsonGameRepository } from '@infrastructure/repositories/JsonGameReposit
 import { JsonProfileRepository } from '@infrastructure/repositories/JsonProfileRepository';
 import { JsonNewsRepository } from '@infrastructure/repositories/JsonNewsRepository';
 import { App } from '@presentation/App';
+import { detectLocale } from '@presentation/i18n/localePreference';
 import './presentation/styles/main.css';
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -20,4 +21,4 @@ const app = new App(
   new GetNews(new JsonNewsRepository(baseUrl)),
 );
 
-void app.start('ja');
+void app.start(detectLocale());
