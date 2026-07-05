@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # images/ と web-game/ は public/ 外にあるため、手動で dist へコピーして配信対象に含める
+      - run: cp -r images web-game dist/
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
