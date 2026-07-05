@@ -1,5 +1,52 @@
 [
   {
+    "title": "虚拟连击对战",
+    "description": "校内制作的VTuber战斗游戏。首个长期大规模开发项目",
+    "detailedFeatures": "这是一款VTuber在直播舞台上对战的游戏。最用心的地方是评论部分。最初使用TMP滚动文字，但这样缺乏立体感，无法充分利用3D空间。所以我用Python创建了一个工具来生成输入文本的3D模型，在Blender中批量执行生成，然后改用播放这些模型的处理。最终效果看起来好多了。我还创建了特殊评论和只有直播评论才能实现的特殊机制。那时我对Unity的经验还不足，所以在3D模型显示和渲染方面遇到了困难。",
+    "myResponsibilities": "评论的策划与实现、摄像机控制",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/v-battle/v-battle-select.png",
+      "images/game/v-battle/v-battle-ingame1.png",
+      "images/game/v-battle/v-battle-ingame2.png"
+    ],
+    "thumbnailImage": "images/game/v-battle/v-battle-select.png",
+    "year": "一~二年级",
+    "category": "game",
+    "teamSize": "8人（程序3人、设计5人）",
+    "period": "约1年"
+  },
+  {
+    "title": "双子",
+    "description": "在第10届ImoGameJam中制作的游戏",
+    "detailedFeatures": "游戏Jam的主题是「链接」，因此团队讨论后决定制作一款通过链接敌人来造成伤害、连锁击倒敌人的游戏。理解策划提出的伤害链接方式等规格花费了一些时间，但游戏循环本身顺利完成了。UI和游戏内说明还应做得更容易让玩家理解，这是需要反省的地方。",
+    "myResponsibilities": "玩家、敌人、伤害计算相关、声音播放处理、游戏循环等",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/futago/futago-title.png",
+      "images/game/futago/futago-ingame.png"
+    ],
+    "thumbnailImage": "images/game/futago/futago-title.png",
+    "playUrl": "https://unityroom.com/games/futago",
+    "githubUrl": "https://github.com/wine-5/futago",
+    "year": "三年级",
+    "category": "game",
+    "teamSize": "7人（策划2人、程序4人、特效设计1人）",
+    "period": "2天"
+  },
+  {
     "title": "晴天娃娃战争",
     "description": "在ImoGameJam制作的作品",
     "detailedFeatures": "Inversion → 反转或翻转 → 从「晴天娃娃改变方向后会从晴天变成雨天」这个想法开始制作游戏！我们决定制作一个通过翻转晴天娃娃来改变效果的塔防游戏！",

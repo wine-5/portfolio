@@ -1,5 +1,52 @@
 [
   {
+    "title": "Virtual Link Battle",
+    "description": "A VTuber battle game created on campus. First long-term, large-scale project.",
+    "detailedFeatures": "A game where VTubers battle on a live streaming stage. The main focus was on comments. Initially, I used TMP to scroll text, but it lacked depth and didn't utilize the 3D space effectively. So I created a Python tool to generate 3D models from input text, executed it in Blender to create them in batch, and replaced the system to play them back. The result looked much better. I also created special comments and gimmicks that only work because of live streaming. At the time, I was still inexperienced with Unity, so I struggled with 3D model display and rendering.",
+    "myResponsibilities": "Comment design & implementation, camera control",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/v-battle/v-battle-select.png",
+      "images/game/v-battle/v-battle-ingame1.png",
+      "images/game/v-battle/v-battle-ingame2.png"
+    ],
+    "thumbnailImage": "images/game/v-battle/v-battle-select.png",
+    "year": "1st-2nd Year",
+    "category": "game",
+    "teamSize": "8 people (3 programmers, 5 designers)",
+    "period": "~1 year"
+  },
+  {
+    "title": "Futago",
+    "description": "A game created at the 10th ImoGameJam",
+    "detailedFeatures": "The jam theme was \"Link\", so our team discussed and decided to make a game where you link enemies to deal damage and defeat them in chains. It took me a while to understand the damage-linking specifications from our planners, but the core game loop was completed successfully. Making the UI and in-game explanations easier for players to understand is something to improve on.",
+    "myResponsibilities": "Player, enemies, damage calculation, sound playback, game loop, etc.",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/futago/futago-title.png",
+      "images/game/futago/futago-ingame.png"
+    ],
+    "thumbnailImage": "images/game/futago/futago-title.png",
+    "playUrl": "https://unityroom.com/games/futago",
+    "githubUrl": "https://github.com/wine-5/futago",
+    "year": "3rd Year",
+    "category": "game",
+    "teamSize": "7 people (2 planners, 4 programmers, 1 effects designer)",
+    "period": "2 days"
+  },
+  {
     "title": "Teru Teru Wars",
     "description": "A work created at ImoGameJam",
     "detailedFeatures": "Inversion → flip or turn over → started creating game ideas from 'When you flip a teru teru bozu (Japanese weather doll), it changes from sunny to rainy!' We decided to make a tower defense game where the effects change by flipping teru teru bozu!",
