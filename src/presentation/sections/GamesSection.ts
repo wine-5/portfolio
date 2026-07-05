@@ -154,10 +154,17 @@ function featuredLabel(game: Game): string {
 function featuredCard(game: Game): string {
   const released = game.release.kind === 'playable';
   const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
-  const action =
+
+  // ストア情報(バッジ+テキスト)と アクションボタン(PLAY NOW、詳細など)を分ける
+  const storeInfo =
     game.release.kind === 'playable'
-      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a>${chip}<span class="btn">${esc(t('details'))}</span>`
-      : `<span class="badge badge--soon">COMING SOON</span>${chip}${
+      ? `<span class="badge badge--play">PLAYABLE</span>${chip}`
+      : `<span class="badge badge--soon">COMING SOON</span>${chip}`;
+
+  const buttons =
+    game.release.kind === 'playable'
+      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a><span class="btn">${esc(t('details'))}</span>`
+      : `${
           game.release.kind === 'coming-soon' && game.release.url
             ? `<a class="btn btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}${esc(t('steamPage'))}</a>`
             : ''
@@ -174,7 +181,8 @@ function featuredCard(game: Game): string {
         <span class="name-label">NAME</span>
         <h3 class="featured-card__title">${esc(game.title)}</h3>
         <p class="featured-card__desc">${esc(game.description)}</p>
-        <div class="featured-card__action">${action}</div>
+        <div class="featured-card__store-info">${storeInfo}</div>
+        <div class="featured-card__buttons">${buttons}</div>
       </div>
     </article>`;
 }
