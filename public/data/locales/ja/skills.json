@@ -35,7 +35,7 @@
       "name": "JavaScript",
       "months": 12,
       "projects": "8+ アプリケーション",
-      "items": ["DOM操作 & イベント", "デザインパターン", "パフォーマンス最適化"],
+      "items": ["DOM操作 & イベント", "デザインパターン"],
       "relatedGames": []
     },
     {
@@ -123,7 +123,7 @@
       "name": "GitHub Actions",
       "months": 4,
       "projects": "",
-      "items": ["自動化パイプライン", "デプロイ自動化"],
+      "items": ["CIの構築・運用", "自動化パイプライン", "デプロイ自動化"],
       "relatedGames": []
     },
     {
