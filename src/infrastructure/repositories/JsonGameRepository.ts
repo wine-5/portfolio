@@ -12,6 +12,7 @@ interface ProjectDto {
   supportedPlatforms?: string[];
   images?: string[];
   thumbnailImage?: string;
+  carouselImage?: string;
   playUrl?: string;
   install?: string;
   githubUrl?: string;
@@ -73,6 +74,7 @@ export class JsonGameRepository implements GameRepository {
       images: dto.images ?? [],
       thumbnailImage: dto.thumbnailImage ?? '',
       ...(dto.githubUrl !== undefined ? { githubUrl: dto.githubUrl } : {}),
+      ...(dto.carouselImage !== undefined ? { carouselImage: dto.carouselImage } : {}),
       ...(dto.award !== undefined ? { award: dto.award } : {}),
       year: dto.year ?? '',
       category: (dto.category ?? 'game') as GameCategory,

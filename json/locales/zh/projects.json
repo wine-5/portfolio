@@ -218,13 +218,14 @@
       "images/game/chocho/Runking.png",
       "images/game/chocho/TyotyoVideo.mp4"
     ],
-    "thumbnailImage": "images/game/chocho/TyotyoIcon.png",
+    "thumbnailImage": "images/game/chocho/Full_Main.png",
     "playUrl": "https://unityroom.com/games/tyoutyou",
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "二年级",
     "category": "game",
     "teamSize": "7人（现役程序员1人、学生程序员2人、现役设计师1人、学生设计师2人、学生策划1人）",
-    "period": "2天（目前正在完善中）"
+    "period": "2天（目前正在完善中）",
+    "carouselImage": "images/game/chocho/TyotyoIcon.png"
   },
   {
     "title": "Git Command Helper",

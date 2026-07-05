@@ -38,7 +38,7 @@ export class HeroSection extends View<readonly Game[]> {
     `;
 
     this.carousel.render(
-      games.map((g) => ({ entryNo: g.entryNo, title: g.title, image: g.thumbnailImage })),
+      games.map((g) => ({ entryNo: g.entryNo, title: g.title, image: g.carouselImage ?? g.thumbnailImage })),
     );
     this.carousel.mount(this.el.querySelector<HTMLElement>('.hero__carousel')!);
   }

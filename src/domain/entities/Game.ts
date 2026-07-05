@@ -21,6 +21,8 @@ export interface Game {
   readonly supportedPlatforms: readonly string[];
   readonly images: readonly string[];
   readonly thumbnailImage: string;
+  /** ホーム画面のカルーセル用アイコン(指定がなければ thumbnailImage を使う) */
+  readonly carouselImage?: string;
   readonly githubUrl?: string;
   readonly year: string;
   readonly category: GameCategory;
