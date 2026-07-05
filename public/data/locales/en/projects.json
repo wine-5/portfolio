@@ -245,9 +245,9 @@
   },
   {
     "title": "Butterfly Rebellion",
-    "description": "Sapporo Game Camp 2025 entry. 2D action game developed with a team of 7, all meeting for the first time. First external game jam challenge.",
-    "detailedFeatures": "This game was created for Sapporo Game Camp 2025. Everyone was meeting for the first time, and it was my first time participating in an external game jam.\nApplying lessons from the previous in-school game jam, I prepared by creating the Unity project and base classes in advance, and setting up repository integration.\nWhile we successfully completed the game, we couldn't prepare all the planned stages, and I regret not being able to use all the artwork created by the designers.",
-    "myResponsibilities": "Base class design, player bullet implementation, enemy behavior and attack pattern implementation",
+    "description": "A 2D action game developed at Sapporo Game Camp 2025 by a 7-person team of first-time collaborators. First external game jam.",
+    "detailedFeatures": "A game created at Sapporo Game Camp 2025. After multiple rounds of polish, it's scheduled for Steam release on July 14th.\n\nLearning from the previous internal game jam, I prepared the Unity project and base classes in advance, and set up repository integration before the event.\nWhile the game was completed successfully, we couldn't achieve a satisfying result. So we polished it several times and displayed it at SAPPORO GAME ODYSSEY. It was well-received, so based on the feedback, we decided to further refine it and release on Steam.",
+    "myResponsibilities": "Base class design, player bullet implementation, enemy behavior & attack pattern implementation, ranking feature addition, Steam store page creation, etc.",
     "technologies": [
       "Unity",
       "C#"
@@ -270,8 +270,8 @@
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "2nd Year",
     "category": "game",
-    "teamSize": "7 people (1 Professional Programmer, 2 Student Programmers, 1 Professional Designer, 2 Student Designers, 1 Student Planner)",
-    "period": "2 days (Currently being polished)",
+    "teamSize": "7 people (3 student programmers, 2 planners, 2 designers)",
+    "period": "2 months",
     "carouselImage": "images/game/chocho/TyotyoIcon.png"
   },
   {
