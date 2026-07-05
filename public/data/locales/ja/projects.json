@@ -38,7 +38,8 @@
     "images": [
       "images/game/v-battle/v-battle-select.png",
       "images/game/v-battle/v-battle-ingame1.png",
-      "images/game/v-battle/v-battle-ingame2.png"
+      "images/game/v-battle/v-battle-ingame2.png",
+      "images/game/v-battle/Vlinkvideo.mov"
     ],
     "thumbnailImage": "images/game/v-battle/v-battle-select.png",
     "year": "1~2年次",
