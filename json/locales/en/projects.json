@@ -1,29 +1,5 @@
 [
   {
-    "title": "Teru Teru Wars",
-    "description": "A work created at ImoGameJam",
-    "detailedFeatures": "Inversion → flip or turn over → started creating game ideas from 'When you flip a teru teru bozu (Japanese weather doll), it changes from sunny to rainy!' We decided to make a tower defense game where the effects change by flipping teru teru bozu!",
-    "myResponsibilities": "Sound-related classes, scene transition classes, AI-generated images and sounds",
-    "technologies": [
-      "Unity",
-      "C#"
-    ],
-    "supportedPlatforms": [
-      "PC Only"
-    ],
-    "images": [
-      "images/game/teruteru/teruteru-title.jpg",
-      "images/game/teruteru/teruteru-game.png"
-    ],
-    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
-    "playUrl": "https://unityroom.com/games/teruteru-wars",
-    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
-    "year": "2nd Year",
-    "category": "game",
-    "teamSize": "4 people",
-    "period": "2 days"
-  },
-  {
     "title": "Assassination Reversal",
     "description": "A work created at the UnityRoom game jam held in March 2026",
     "detailedFeatures": "From the theme 'ura' (back/reverse), we created 'a game where you flip tiles, use gimmicks, and get behind enemies to assassinate them.'",
@@ -46,6 +22,30 @@
     "category": "game",
     "teamSize": "4 people",
     "period": "1 week"
+  },
+  {
+    "title": "Teru Teru Wars",
+    "description": "A work created at ImoGameJam",
+    "detailedFeatures": "Inversion → flip or turn over → started creating game ideas from 'When you flip a teru teru bozu (Japanese weather doll), it changes from sunny to rainy!' We decided to make a tower defense game where the effects change by flipping teru teru bozu!",
+    "myResponsibilities": "Sound-related classes, scene transition classes, AI-generated images and sounds",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/teruteru/teruteru-title.jpg",
+      "images/game/teruteru/teruteru-game.png"
+    ],
+    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
+    "playUrl": "https://unityroom.com/games/teruteru-wars",
+    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
+    "year": "2nd Year",
+    "category": "game",
+    "teamSize": "4 people",
+    "period": "2 days"
   },
   {
     "title": "The Mask Ball Seeker",

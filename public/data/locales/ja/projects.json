@@ -1,28 +1,5 @@
 [
   {
-    "title": "バーチャルリンクバトル",
-    "description": "学内で作成したVTuber同士が戦う戦闘ゲーム。初の長期かつ大規模開発",
-    "detailedFeatures": "VTuber同士がライブ配信を舞台に戦うゲームです。一番こだわったところはコメントについてです。最初は普通にTMPで文字を流していましたが、それだと立体感がなくせっかくの3D空間が活かせないと思ったのでPythonで入力した文字の3Dモデルを作成するツールを作成してBlenderで実行して一括で作成してそれを再生する処理に置き換えました。結果的に見た目がすごくよくなりました。また特殊コメントも作成してライブ配信のコメントだからこそできるギミックなども用意しました。当時Unityの経験がまだ浅かったため、3Dモデルの表示、描画関連に苦戦しました。",
-    "myResponsibilities": "コメントの企画・実装、カメラの制御",
-    "technologies": [
-      "Unity",
-      "C#"
-    ],
-    "supportedPlatforms": [
-      "PCのみ"
-    ],
-    "images": [
-      "images/game/v-battle/v-battle-select.png",
-      "images/game/v-battle/v-battle-ingame1.png",
-      "images/game/v-battle/v-battle-ingame2.png"
-    ],
-    "thumbnailImage": "images/game/v-battle/v-battle-select.png",
-    "year": "1~2年次",
-    "category": "game",
-    "teamSize": "8人（プログラマー3人、デザイナー5人）",
-    "period": "約1年"
-  },
-  {
     "title": "双子",
     "description": "ImoGameJam第10回で制作したゲーム",
     "detailedFeatures": "ゲームジャムのお題が「リンク」だったので、なにかリンクしてダメージを与えて敵を連鎖的に倒していくゲームを作ろうとチーム内で話し合い制作しました。ダメージのリンク方法、与え方などをプランナーから仕様を聞き、理解するまでに時間がかかってしまいました。ですがゲームループ自体は無事にできました。UIやゲーム内の説明をもうすこしユーザーに分かりやすくするべき点が反省点です。",
@@ -45,6 +22,29 @@
     "category": "game",
     "teamSize": "7人（プランナー2人、プログラマー4人、エフェクトデザイナー1人）",
     "period": "2日間"
+  },
+  {
+    "title": "バーチャルリンクバトル",
+    "description": "学内で作成したVTuber同士が戦う戦闘ゲーム。初の長期かつ大規模開発",
+    "detailedFeatures": "VTuber同士がライブ配信を舞台に戦うゲームです。一番こだわったところはコメントについてです。最初は普通にTMPで文字を流していましたが、それだと立体感がなくせっかくの3D空間が活かせないと思ったのでPythonで入力した文字の3Dモデルを作成するツールを作成してBlenderで実行して一括で作成してそれを再生する処理に置き換えました。結果的に見た目がすごくよくなりました。また特殊コメントも作成してライブ配信のコメントだからこそできるギミックなども用意しました。当時Unityの経験がまだ浅かったため、3Dモデルの表示、描画関連に苦戦しました。",
+    "myResponsibilities": "コメントの企画・実装、カメラの制御",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/v-battle/v-battle-select.png",
+      "images/game/v-battle/v-battle-ingame1.png",
+      "images/game/v-battle/v-battle-ingame2.png"
+    ],
+    "thumbnailImage": "images/game/v-battle/v-battle-select.png",
+    "year": "1~2年次",
+    "category": "game",
+    "teamSize": "8人（プログラマー3人、デザイナー5人）",
+    "period": "約1年"
   },
   {
     "title": "てるてるウォーズ",

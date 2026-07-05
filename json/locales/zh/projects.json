@@ -1,29 +1,5 @@
 [
   {
-    "title": "晴天娃娃战争",
-    "description": "在ImoGameJam制作的作品",
-    "detailedFeatures": "Inversion → 反转或翻转 → 从「晴天娃娃改变方向后会从晴天变成雨天」这个想法开始制作游戏！我们决定制作一个通过翻转晴天娃娃来改变效果的塔防游戏！",
-    "myResponsibilities": "音频相关类、场景转换类、使用AI生成图像和音频",
-    "technologies": [
-      "Unity",
-      "C#"
-    ],
-    "supportedPlatforms": [
-      "仅限PC"
-    ],
-    "images": [
-      "images/game/teruteru/teruteru-title.jpg",
-      "images/game/teruteru/teruteru-game.png"
-    ],
-    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
-    "playUrl": "https://unityroom.com/games/teruteru-wars",
-    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
-    "year": "二年级",
-    "category": "game",
-    "teamSize": "4人",
-    "period": "2天"
-  },
-  {
     "title": "暗杀反转",
     "description": "在2026年3月举办的UnityRoom游戏Jam中制作的作品",
     "detailedFeatures": "从主题「里(ura/反面)」出发，制作了「翻转瓷砖利用机关，从敌人背后进行暗杀的游戏」。",
@@ -46,6 +22,30 @@
     "category": "game",
     "teamSize": "4人",
     "period": "1周"
+  },
+  {
+    "title": "晴天娃娃战争",
+    "description": "在ImoGameJam制作的作品",
+    "detailedFeatures": "Inversion → 反转或翻转 → 从「晴天娃娃改变方向后会从晴天变成雨天」这个想法开始制作游戏！我们决定制作一个通过翻转晴天娃娃来改变效果的塔防游戏！",
+    "myResponsibilities": "音频相关类、场景转换类、使用AI生成图像和音频",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/teruteru/teruteru-title.jpg",
+      "images/game/teruteru/teruteru-game.png"
+    ],
+    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
+    "playUrl": "https://unityroom.com/games/teruteru-wars",
+    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
+    "year": "二年级",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2天"
   },
   {
     "title": "The Mask Ball Seeker",

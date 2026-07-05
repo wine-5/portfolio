@@ -1,29 +1,5 @@
 [
   {
-    "title": "てるてるウォーズ",
-    "description": "ImoGameJamで制作した作品",
-    "detailedFeatures": "Inversion → 反転やひっくり返す→「てるてる坊主って向き変えると晴れから雨になる」というところからゲーム案を作り始めました！てるてる坊主を反転させることで効果が変わるタワーディフェンスゲームを作ろうとなりました！",
-    "myResponsibilities": "音関連のクラス、シーン遷移のクラス、AIを使用した画像、音の生成",
-    "technologies": [
-      "Unity",
-      "C#"
-    ],
-    "supportedPlatforms": [
-      "PCのみ"
-    ],
-    "images": [
-      "images/game/teruteru/teruteru-title.jpg",
-      "images/game/teruteru/teruteru-game.png"
-    ],
-    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
-    "playUrl": "https://unityroom.com/games/teruteru-wars",
-    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
-    "year": "2年次",
-    "category": "game",
-    "teamSize": "4人",
-    "period": "2日間"
-  },
-  {
     "title": "暗殺反転",
     "description": "2026年3月に開催されたUnityRoomのゲームジャムで制作した作品",
     "detailedFeatures": "お題が「うら」というところから「タイルをひっくり返しギミックを利用し、敵の背後を取って暗殺をするゲーム」を作りました。",
@@ -46,6 +22,30 @@
     "category": "game",
     "teamSize": "4人",
     "period": "1週間"
+  },
+  {
+    "title": "てるてるウォーズ",
+    "description": "ImoGameJamで制作した作品",
+    "detailedFeatures": "Inversion → 反転やひっくり返す→「てるてる坊主って向き変えると晴れから雨になる」というところからゲーム案を作り始めました！てるてる坊主を反転させることで効果が変わるタワーディフェンスゲームを作ろうとなりました！",
+    "myResponsibilities": "音関連のクラス、シーン遷移のクラス、AIを使用した画像、音の生成",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/teruteru/teruteru-title.jpg",
+      "images/game/teruteru/teruteru-game.png"
+    ],
+    "thumbnailImage": "images/game/teruteru/teruteru-gameIcon.png",
+    "playUrl": "https://unityroom.com/games/teruteru-wars",
+    "githubUrl": "https://github.com/kuon-haruto/imo-game-jam-202603",
+    "year": "2年次",
+    "category": "game",
+    "teamSize": "4人",
+    "period": "2日間"
   },
   {
     "title": "The Mask Ball Seeker",
