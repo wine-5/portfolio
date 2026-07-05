@@ -10,6 +10,8 @@ export interface HeaderProps {
   readonly locale: Locale;
   /** 言語が選択されたときに App へ通知する */
   readonly onLocaleChange: (locale: Locale) => void;
+  /** ターミナルを開きたいときに親へ通知する */
+  readonly onTerminalToggle?: () => void;
 }
 
 /** HUD 風ヘッダー。狭幅ではハンバーガーメニューに切り替わる */
@@ -27,6 +29,12 @@ export class Header extends View<HeaderProps> {
           .join('')}
       </nav>
       <div class="hud__tools">
+        <button class="terminal-toggle" aria-label="Open terminal" title="Terminal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+        </button>
         ${themeToggle()}
         ${languageSwitcher(props.locale)}
         <button class="hud__hamburger" aria-label="${esc(t('menu'))}" aria-expanded="false" aria-controls="hud-nav">
@@ -49,6 +57,7 @@ export class Header extends View<HeaderProps> {
 
     this.bindLanguageSwitcher(props);
     this.bindThemeToggle();
+    this.bindTerminalToggle(props);
   }
 
   private bindThemeToggle(): void {
@@ -76,6 +85,13 @@ export class Header extends View<HeaderProps> {
         switcher.classList.remove('lang-switcher--open');
         if (locale !== props.locale) props.onLocaleChange(locale);
       });
+    });
+  }
+
+  private bindTerminalToggle(props: HeaderProps): void {
+    const button = this.el.querySelector<HTMLButtonElement>('.terminal-toggle')!;
+    button.addEventListener('click', () => {
+      props.onTerminalToggle?.();
     });
   }
 }

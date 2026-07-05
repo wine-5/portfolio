@@ -1,0 +1,15 @@
+{
+  "commands": [
+    { "name": "help", "description": "Show available commands", "details": "Displays a list of all available commands." },
+    { "name": "portfolio", "description": "List all projects", "details": "Shows all game projects in the portfolio." },
+    { "name": "skills", "description": "Display technical skills", "details": "Shows programming languages, tools, and expertise areas." },
+    { "name": "contact", "description": "Show contact information", "details": "Displays email and social media links." },
+    { "name": "resume", "description": "Display resume/CV", "details": "Shows career summary and experience." },
+    { "name": "whoami", "description": "Show profile information", "details": "Displays basic profile about the developer." },
+    { "name": "status", "description": "Display current status", "details": "Shows current working status and recent activities." },
+    { "name": "git clone https://github.com/wine-5", "description": "Clone repository", "details": "GitHub profile: https://github.com/wine-5" },
+    { "name": "git log --oneline", "description": "Show commit history (projects)", "details": "Displays all projects in reverse chronological order (newest first)." },
+    { "name": "git status", "description": "Show project status", "details": "Shows the current development status of projects." },
+    { "name": "git show [project-name]", "description": "Display project details", "details": "Shows detailed information about a specific project. Use: git show [project-name]" }
+  ]
+}

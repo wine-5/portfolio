@@ -8,6 +8,7 @@ import type { NewsItem } from '@domain/entities/NewsItem';
 import { BootScreen } from './components/BootScreen';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { TerminalModal } from './components/TerminalModal';
 import { HeroSection } from './sections/HeroSection';
 import { GamesSection } from './sections/GamesSection';
 import { SkillsSection } from './sections/SkillsSection';
@@ -29,6 +30,9 @@ interface AppData {
  * セクションは仕様の主役順に追加していく(Games → About → Skills → Contact)。
  */
 export class App {
+  private commands: any[] = [];
+  private terminalModal: TerminalModal | undefined;
+
   constructor(
     private readonly root: HTMLElement,
     private readonly getGameCollection: GetGameCollection,
@@ -37,9 +41,19 @@ export class App {
     private readonly getNews: GetNews,
   ) {}
 
+  private async loadCommands(): Promise<void> {
+    try {
+      const response = await fetch('/portfolio/data/commands.json');
+      const data = await response.json();
+      this.commands = data.commands;
+    } catch (error) {
+      console.error('Failed to load commands:', error);
+    }
+  }
+
   async start(locale: Locale): Promise<void> {
     const boot = new BootScreen().play(this.root);
-    const data = await this.load(locale);
+    const [data] = await Promise.all([this.load(locale), this.loadCommands()]);
     await boot;
     this.renderAll(locale, data);
   }
@@ -52,6 +66,21 @@ export class App {
       this.root.innerHTML = '';
       this.renderAll(locale, data);
     });
+  }
+
+  /** ターミナルモーダルの開閉を切り替える */
+  private toggleTerminal(): void {
+    if (this.terminalModal) {
+      this.terminalModal.unmount();
+      this.terminalModal = undefined;
+    } else {
+      this.terminalModal = new TerminalModal();
+      this.terminalModal.render({
+        onClose: () => this.toggleTerminal(),
+        commands: this.commands,
+      });
+      this.terminalModal.mount(document.body);
+    }
   }
 
   /** 画面全体をスキャンライン付きオーバーレイで一瞬覆い、隠れている間に中身を差し替える */
@@ -89,7 +118,11 @@ export class App {
     document.documentElement.lang = locale;
 
     const header = new Header();
-    header.render({ locale, onLocaleChange: (next) => void this.switchLocale(next) });
+    header.render({
+      locale,
+      onLocaleChange: (next) => void this.switchLocale(next),
+      onTerminalToggle: () => this.toggleTerminal(),
+    });
     header.mount(this.root);
 
     const main = document.createElement('main');
