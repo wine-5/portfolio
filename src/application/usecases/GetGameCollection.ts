@@ -13,11 +13,11 @@ export class GetGameCollection {
 
   async execute(locale: Locale): Promise<GameCollection> {
     const all = await this.games.findAll(locale);
-    // 図鑑らしく No. 昇順(=制作の古い順)で並べる
-    const byNo = (a: Game, b: Game): number => a.entryNo - b.entryNo;
+    // 最新作がすぐ目に入るよう No. 降順(=制作の新しい順)で並べる
+    const byNoDesc = (a: Game, b: Game): number => b.entryNo - a.entryNo;
     return {
-      featured: all.filter((g) => g.featured).sort(byNo),
-      entries: all.filter((g) => !g.featured).sort(byNo),
+      featured: all.filter((g) => g.featured).sort(byNoDesc),
+      entries: all.filter((g) => !g.featured).sort(byNoDesc),
     };
   }
 }
