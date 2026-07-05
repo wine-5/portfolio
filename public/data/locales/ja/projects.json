@@ -317,6 +317,33 @@
     "lockReason": "UnityRoom公開準備中"
   },
   {
+    "title": "ElementBattle",
+    "description": "記念すべき初作品のカードゲーム。関数・変数を学習しながら開発。プログラミングの基礎を身につけた思い出の作品。",
+    "detailedFeatures": "自分が1人で初めて作ったゲームです。関数、変数などを学習しながら作ったものです。プログラミングの基礎概念を実際のゲーム制作を通して学ぶことができた、非常に思い出深い作品です。",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "PCのみ"
+    ],
+    "images": [
+      "images/game/element-battle/element-home.png",
+      "images/game/element-battle/element-in-game.png"
+    ],
+    "thumbnailImage": "images/game/element-battle/element-home.png",
+    "playUrl": "web-game/ElementBattle/index.html",
+    "localPath": "web-game/ElementBattle/index.html",
+    "webPath": "web-game/ElementBattle/index.html",
+    "githubUrl": "https://github.com/wine-5/Element_Battle",
+    "year": "1年次",
+    "category": "web-game",
+    "teamSize": "1人",
+    "period": "約1ヶ月",
+    "note": "記念すべき初作品"
+  },
+  {
     "title": "SPLIT",
     "description": "初めてのチーム開発で作った2Dアクションゲーム。企画からデバッグまで全工程を経験。Git初体験作品。",
     "detailedFeatures": "企画から開発、デバッグのすべてを初めて行いました。初めてGitに出会って、わちゃわちゃしていたのを思い出します。チーム開発の基礎を学び、バージョン管理システムの重要性を実感した貴重な経験でした。",
@@ -343,32 +370,5 @@
     "teamSize": "3人（プログラマー3人）",
     "period": "6ヶ月",
     "note": "初のチーム制作"
-  },
-  {
-    "title": "ElementBattle",
-    "description": "記念すべき初作品のカードゲーム。関数・変数を学習しながら開発。プログラミングの基礎を身につけた思い出の作品。",
-    "detailedFeatures": "自分が1人で初めて作ったゲームです。関数、変数などを学習しながら作ったものです。プログラミングの基礎概念を実際のゲーム制作を通して学ぶことができた、非常に思い出深い作品です。",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "supportedPlatforms": [
-      "PCのみ"
-    ],
-    "images": [
-      "images/game/element-battle/element-home.png",
-      "images/game/element-battle/element-in-game.png"
-    ],
-    "thumbnailImage": "images/game/element-battle/element-home.png",
-    "playUrl": "web-game/ElementBattle/index.html",
-    "localPath": "web-game/ElementBattle/index.html",
-    "webPath": "web-game/ElementBattle/index.html",
-    "githubUrl": "https://github.com/wine-5/Element_Battle",
-    "year": "1年次",
-    "category": "web-game",
-    "teamSize": "1人",
-    "period": "約1ヶ月",
-    "note": "記念すべき初作品"
   }
 ]

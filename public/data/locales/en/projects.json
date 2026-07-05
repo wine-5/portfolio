@@ -316,6 +316,33 @@
     "lockReason": "Preparing for UnityRoom release"
   },
   {
+    "title": "ElementBattle",
+    "description": "My memorable first work - a card game. Developed while learning functions and variables. A memorable work where I learned programming basics.",
+    "detailedFeatures": "This is the first game I made by myself. I created it while learning functions, variables, and other basics. It's a very memorable work where I learned fundamental programming concepts through actual game development.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "PC Only"
+    ],
+    "images": [
+      "images/game/element-battle/element-home.png",
+      "images/game/element-battle/element-in-game.png"
+    ],
+    "thumbnailImage": "images/game/element-battle/element-home.png",
+    "playUrl": "web-game/ElementBattle/index.html",
+    "localPath": "web-game/ElementBattle/index.html",
+    "webPath": "web-game/ElementBattle/index.html",
+    "githubUrl": "https://github.com/wine-5/Element_Battle",
+    "year": "1st Year",
+    "category": "web-game",
+    "teamSize": "1 person",
+    "period": "About 1 month",
+    "note": "My Memorable First Work"
+  },
+  {
     "title": "SPLIT",
     "description": "2D action game created in first team development. Experienced full process from planning to debugging. First Git experience.",
     "detailedFeatures": "I experienced everything from planning to development and debugging for the first time. I remember the chaos when I first encountered Git. This was a valuable experience learning team development basics and realizing the importance of version control systems.",
@@ -342,32 +369,5 @@
     "teamSize": "3 people (3 Programmers)",
     "period": "6 months",
     "note": "First Team Project"
-  },
-  {
-    "title": "ElementBattle",
-    "description": "My memorable first work - a card game. Developed while learning functions and variables. A memorable work where I learned programming basics.",
-    "detailedFeatures": "This is the first game I made by myself. I created it while learning functions, variables, and other basics. It's a very memorable work where I learned fundamental programming concepts through actual game development.",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "supportedPlatforms": [
-      "PC Only"
-    ],
-    "images": [
-      "images/game/element-battle/element-home.png",
-      "images/game/element-battle/element-in-game.png"
-    ],
-    "thumbnailImage": "images/game/element-battle/element-home.png",
-    "playUrl": "web-game/ElementBattle/index.html",
-    "localPath": "web-game/ElementBattle/index.html",
-    "webPath": "web-game/ElementBattle/index.html",
-    "githubUrl": "https://github.com/wine-5/Element_Battle",
-    "year": "1st Year",
-    "category": "web-game",
-    "teamSize": "1 person",
-    "period": "About 1 month",
-    "note": "My Memorable First Work"
   }
 ]

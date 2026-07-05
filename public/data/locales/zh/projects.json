@@ -318,6 +318,33 @@
     "lockReason": "UnityRoom发布准备中"
   },
   {
+    "title": "ElementBattle",
+    "description": "值得纪念的首个卡牌游戏作品。边学习函数和变量边开发。掌握编程基础的难忘作品。",
+    "detailedFeatures": "这是我1人第一次制作的游戏。是一边学习函数、变量等一边制作的。通过实际的游戏制作学习了编程的基础概念，是一个非常难忘的作品。",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "supportedPlatforms": [
+      "仅限PC"
+    ],
+    "images": [
+      "images/game/element-battle/element-home.png",
+      "images/game/element-battle/element-in-game.png"
+    ],
+    "thumbnailImage": "images/game/element-battle/element-home.png",
+    "playUrl": "web-game/ElementBattle/index.html",
+    "localPath": "web-game/ElementBattle/index.html",
+    "webPath": "web-game/ElementBattle/index.html",
+    "githubUrl": "https://github.com/wine-5/Element_Battle",
+    "year": "一年级",
+    "category": "web-game",
+    "teamSize": "1人",
+    "period": "约1个月",
+    "note": "值得纪念的首个作品"
+  },
+  {
     "title": "SPLIT",
     "description": "首次团队开发制作的2D动作游戏。从策划到调试经历全部流程。首次接触Git的作品。",
     "detailedFeatures": "从策划到开发、调试都是第一次进行。回想起第一次接触Git时的混乱情景。通过学习团队开发的基础，深刻体会到了版本管理的重要性，这是非常宝贵的经验。",
@@ -344,32 +371,5 @@
     "teamSize": "3人（程序员3人）",
     "period": "6个月",
     "note": "初のチーム制作"
-  },
-  {
-    "title": "ElementBattle",
-    "description": "值得纪念的首个卡牌游戏作品。边学习函数和变量边开发。掌握编程基础的难忘作品。",
-    "detailedFeatures": "这是我1人第一次制作的游戏。是一边学习函数、变量等一边制作的。通过实际的游戏制作学习了编程的基础概念，是一个非常难忘的作品。",
-    "technologies": [
-      "HTML",
-      "CSS",
-      "JavaScript"
-    ],
-    "supportedPlatforms": [
-      "仅限PC"
-    ],
-    "images": [
-      "images/game/element-battle/element-home.png",
-      "images/game/element-battle/element-in-game.png"
-    ],
-    "thumbnailImage": "images/game/element-battle/element-home.png",
-    "playUrl": "web-game/ElementBattle/index.html",
-    "localPath": "web-game/ElementBattle/index.html",
-    "webPath": "web-game/ElementBattle/index.html",
-    "githubUrl": "https://github.com/wine-5/Element_Battle",
-    "year": "一年级",
-    "category": "web-game",
-    "teamSize": "1人",
-    "period": "约1个月",
-    "note": "值得纪念的首个作品"
   }
 ]
