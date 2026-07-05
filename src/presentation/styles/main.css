@@ -205,6 +205,7 @@ img {
   gap: 0.6rem;
 }
 
+.terminal-toggle,
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -220,6 +221,7 @@ img {
   transition: color 0.2s, border-color 0.2s;
 }
 
+.terminal-toggle:hover,
 .theme-toggle:hover {
   color: var(--color-cyan);
   border-color: var(--color-cyan);
