@@ -21,8 +21,7 @@
     "year": "3rd Year",
     "category": "game",
     "teamSize": "7 people (2 planners, 4 programmers, 1 effects designer)",
-    "period": "2 days",
-    "award": "神ゲーエボリューション 1次審査通過"
+    "period": "2 days"
   },
   {
     "title": "Virtual Link Battle",
@@ -45,7 +44,8 @@
     "year": "1st-2nd Year",
     "category": "game",
     "teamSize": "8 people (3 programmers, 5 designers)",
-    "period": "~1 year"
+    "period": "~1 year",
+    "award": "神ゲーエボリューション 1次審査通過"
   },
   {
     "title": "Teru Teru Wars",

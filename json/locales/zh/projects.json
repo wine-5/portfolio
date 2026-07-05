@@ -21,8 +21,7 @@
     "year": "二年级",
     "category": "game",
     "teamSize": "4人",
-    "period": "1周",
-    "award": "神ゲーエボリューション 1次審査通過"
+    "period": "1周"
   },
   {
     "title": "晴天娃娃战争",
@@ -46,7 +45,8 @@
     "year": "二年级",
     "category": "game",
     "teamSize": "4人",
-    "period": "2天"
+    "period": "2天",
+    "award": "神ゲーエボリューション 1次審査通過"
   },
   {
     "title": "The Mask Ball Seeker",

@@ -21,8 +21,7 @@
     "year": "2年次",
     "category": "game",
     "teamSize": "4人",
-    "period": "1週間",
-    "award": "神ゲーエボリューション 1次審査通過"
+    "period": "1週間"
   },
   {
     "title": "てるてるウォーズ",
@@ -46,7 +45,8 @@
     "year": "2年次",
     "category": "game",
     "teamSize": "4人",
-    "period": "2日間"
+    "period": "2日間",
+    "award": "神ゲーエボリューション 1次審査通過"
   },
   {
     "title": "The Mask Ball Seeker",

@@ -21,8 +21,7 @@
     "year": "2nd Year",
     "category": "game",
     "teamSize": "4 people",
-    "period": "1 week",
-    "award": "神ゲーエボリューション 1次審査通過"
+    "period": "1 week"
   },
   {
     "title": "Teru Teru Wars",
@@ -46,7 +45,8 @@
     "year": "2nd Year",
     "category": "game",
     "teamSize": "4 people",
-    "period": "2 days"
+    "period": "2 days",
+    "award": "神ゲーエボリューション 1次審査通過"
   },
   {
     "title": "The Mask Ball Seeker",
