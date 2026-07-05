@@ -93,13 +93,13 @@ export class TerminalModal extends View<TerminalModalProps> {
       e.preventDefault();
       this.historyIndex = Math.min(this.historyIndex + 1, this.commandHistory.length - 1);
       if (this.historyIndex >= 0) {
-        this.input!.value = this.commandHistory[this.commandHistory.length - 1 - this.historyIndex];
+        this.input!.value = this.commandHistory[this.commandHistory.length - 1 - this.historyIndex] ?? '';
       }
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       this.historyIndex = Math.max(this.historyIndex - 1, -1);
       if (this.historyIndex >= 0) {
-        this.input!.value = this.commandHistory[this.commandHistory.length - 1 - this.historyIndex];
+        this.input!.value = this.commandHistory[this.commandHistory.length - 1 - this.historyIndex] ?? '';
       } else {
         this.input!.value = '';
       }
@@ -108,7 +108,7 @@ export class TerminalModal extends View<TerminalModalProps> {
 
   private executeCommand(input: string, commands: readonly Command[]): void {
     const parts = input.split(/\s+/);
-    const firstWord = parts[0].toLowerCase();
+    const firstWord = (parts[0] ?? '').toLowerCase();
 
     if (firstWord === 'help') {
       this.printOutput('Available commands:', 'output');
