@@ -12,13 +12,12 @@ function isTheme(value: string): value is Theme {
 
 /**
  * 表示テーマを検出する。
- * 優先順位: localStorage > システム設定(prefers-color-scheme) > デフォルト(dark)
+ * 優先順位: localStorage(手動選択) > デフォルト(dark)
+ * ※ OS のライト/ダーク設定には追従せず、初回訪問は常にダークで表示する
  */
 export function detectTheme(): Theme {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored && isTheme(stored)) return stored;
-
-  if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
 
   return DEFAULT_THEME;
 }
@@ -57,13 +56,4 @@ function crossFade(update: () => void): void {
   root.classList.add('theme-fade');
   update();
   window.setTimeout(() => root.classList.remove('theme-fade'), 550);
-}
-
-/** ユーザーが手動選択していない間だけ、システム設定の変更に追従する */
-export function watchSystemTheme(): void {
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      applyTheme(e.matches ? 'dark' : 'light');
-    }
-  });
 }
