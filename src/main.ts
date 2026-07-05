@@ -14,6 +14,7 @@ import { App } from '@presentation/App';
 import { detectLocale } from '@presentation/i18n/localePreference';
 import { detectTheme, applyTheme, watchSystemTheme } from '@presentation/theme/themePreference';
 import { CyberBackground } from '@presentation/components/CyberBackground';
+import { setupSmoothScroll } from '@presentation/managers/SmoothScrollManager';
 import './presentation/styles/main.css';
 
 // 描画前にテーマを確定させ、初期表示のちらつきを防ぐ
@@ -22,6 +23,9 @@ watchSystemTheme();
 
 // 常時動き続けるサイバー背景(言語切り替えの再描画に巻き込まれないよう body 直下に置く)
 new CyberBackground().start(document.body);
+
+// アンカーリンククリック時に加速度付きスクロール
+setupSmoothScroll();
 
 const baseUrl = import.meta.env.BASE_URL;
 
