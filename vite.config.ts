@@ -18,9 +18,5 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    rollupOptions: {
-      // 新アプリ(index.html)のみビルドする。旧サイトは old-site.html に退避済み
-      input: fileURLToPath(new URL('./index.html', import.meta.url)),
-    },
   },
 });
