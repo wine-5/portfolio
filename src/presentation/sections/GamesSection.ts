@@ -2,7 +2,7 @@ import type { Game, GameCategory } from '@domain/entities/Game';
 import type { GameCollection } from '@application/usecases/GetGameCollection';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
-import { esc, asset, storeChip } from '../util/html';
+import { esc, asset, storeChip, linkIcon } from '../util/html';
 import { t } from '../i18n/uiStrings';
 import '../styles/games.css';
 
@@ -156,10 +156,10 @@ function featuredCard(game: Game): string {
   const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
   const action =
     game.release.kind === 'playable'
-      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>${chip}<span class="btn">${esc(t('details'))}</span>`
+      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a>${chip}<span class="btn">${esc(t('details'))}</span>`
       : `<span class="badge badge--soon">COMING SOON</span>${chip}${
           game.release.kind === 'coming-soon' && game.release.url
-            ? `<a class="btn btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${esc(t('steamPage'))}</a>`
+            ? `<a class="btn btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}${esc(t('steamPage'))}</a>`
             : ''
         }<span class="btn">${esc(t('details'))}</span>`;
 

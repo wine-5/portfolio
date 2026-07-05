@@ -1,6 +1,6 @@
 import type { Game } from '@domain/entities/Game';
 import { View } from './View';
-import { esc, asset, storeChip } from '../util/html';
+import { esc, asset, storeChip, linkIcon } from '../util/html';
 import { t } from '../i18n/uiStrings';
 
 /** 図鑑エントリをクリックしたときのステータス詳細画面 */
@@ -59,9 +59,9 @@ export class GameDetailModal extends View<Game> {
               ${metaRow('AWARD', game.award ? `🏆 ${game.award}` : '')}
             </dl>
             <div class="game-modal__links">
-              ${game.release.kind === 'playable' ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">PLAY NOW</a>` : ''}
-              ${game.release.kind === 'coming-soon' && game.release.url ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">${esc(t('steamPage'))}</a>` : ''}
-              ${game.githubUrl ? `<a class="btn" href="${esc(game.githubUrl)}" target="_blank" rel="noopener">GITHUB</a>` : ''}
+              ${game.release.kind === 'playable' ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a>` : ''}
+              ${game.release.kind === 'coming-soon' && game.release.url ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}${esc(t('steamPage'))}</a>` : ''}
+              ${game.githubUrl ? `<a class="btn" href="${esc(game.githubUrl)}" target="_blank" rel="noopener">${linkIcon(game.githubUrl)}GITHUB</a>` : ''}
             </div>
           </div>
         </div>

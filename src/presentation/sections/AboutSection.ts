@@ -1,7 +1,7 @@
 import type { Profile } from '@domain/entities/Profile';
 import { gaugePercent } from '@domain/entities/Profile';
 import { View } from '../components/View';
-import { esc, asset } from '../util/html';
+import { esc, asset, linkIcon } from '../util/html';
 import { t } from '../i18n/uiStrings';
 import '../styles/about.css';
 
@@ -51,7 +51,7 @@ export class AboutSection extends View<Profile> {
           <div class="about__links">
             ${profile.links
               .map(
-                (l) => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`,
+                (l) => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener">${linkIcon(l.url)}${esc(l.label)}</a>`,
               )
               .join('')}
           </div>

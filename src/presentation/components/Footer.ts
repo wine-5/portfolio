@@ -1,6 +1,6 @@
 import type { ProfileLink } from '@domain/entities/Profile';
 import { View } from './View';
-import { esc, asset } from '../util/html';
+import { esc, asset, linkIcon } from '../util/html';
 import { navItems } from './navigation';
 import { t } from '../i18n/uiStrings';
 
@@ -37,7 +37,7 @@ export class Footer extends View<FooterProps> {
               ${props.social
                 .map(
                   (l) =>
-                    `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`,
+                    `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${linkIcon(l.url)}${esc(l.label)}</a></li>`,
                 )
                 .join('')}
             </ul>
