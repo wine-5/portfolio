@@ -257,9 +257,15 @@
     ],
     "images": [
       "images/game/chocho/Full_Main.png",
-      "images/game/chocho/InGame1.png"
+      "images/game/chocho/InGame1.png",
+      "images/game/chocho/InGame2.png",
+      "images/game/chocho/InGame3.png",
+      "images/game/chocho/InGame4.png",
+      "images/game/chocho/Result.png",
+      "images/game/chocho/Runking.png",
+      "images/game/chocho/TyotyoVideo.mp4"
     ],
-    "thumbnailImage": "images/game/chocho/Full_Main.png",
+    "thumbnailImage": "images/game/chocho/TyotyoIcon.png",
     "playUrl": "https://unityroom.com/games/tyoutyou",
     "githubUrl": "https://github.com/wine-5/SGC2025",
     "year": "2nd Year",
