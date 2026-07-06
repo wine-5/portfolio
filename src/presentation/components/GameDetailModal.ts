@@ -5,7 +5,7 @@ import { t } from '../i18n/uiStrings';
 
 /** 図鑑エントリをクリックしたときのステータス詳細画面 */
 /** 自動スライドショーの切り替え間隔(ms) */
-const AUTOPLAY_INTERVAL = 4000;
+const AUTOPLAY_INTERVAL = 3000;
 /** フェードアウトにかける時間(ms)。CSS の transition と合わせる */
 const FADE_DURATION = 300;
 
@@ -108,13 +108,13 @@ export class GameDetailModal extends View<Game> {
       });
     });
 
-    // 画像が複数あれば数秒おきに自動でフェード切り替え(動画はスキップ)
-    const imageIndexes = media.flatMap((m, i) => (VIDEO_RE.test(m) ? [] : [i]));
-    if (imageIndexes.length > 1) {
+    // メディアが複数あれば数秒おきに自動でフェード切り替え(動画も含めて巡回)。
+    // ただしユーザーが動画を再生している間は、勝手に切り替えず待つ
+    if (media.length > 1) {
       this.autoplayTimer = window.setInterval(() => {
-        const pos = imageIndexes.indexOf(currentIndex);
-        const next = imageIndexes[(pos + 1) % imageIndexes.length]!;
-        showMedia(next);
+        const video = stage.querySelector<HTMLVideoElement>('video');
+        if (video && !video.paused && !video.ended) return;
+        showMedia((currentIndex + 1) % media.length);
       }, AUTOPLAY_INTERVAL);
     }
   }
