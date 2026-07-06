@@ -541,6 +541,15 @@
 }
 
 /* ---- メディアギャラリー(画像/動画の切り替え) ---- */
+/* 自動スライドショー: フェードアウト→中身差し替え→フェードイン */
+.game-modal__stage {
+  transition: opacity 0.3s ease;
+}
+
+.game-modal__stage--fading {
+  opacity: 0;
+}
+
 .game-modal__stage video {
   width: 100%;
   max-height: 46vh;

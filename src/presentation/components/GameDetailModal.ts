@@ -4,7 +4,14 @@ import { esc, asset, storeChip, linkIcon } from '../util/html';
 import { t } from '../i18n/uiStrings';
 
 /** 図鑑エントリをクリックしたときのステータス詳細画面 */
+/** 自動スライドショーの切り替え間隔(ms) */
+const AUTOPLAY_INTERVAL = 4000;
+/** フェードアウトにかける時間(ms)。CSS の transition と合わせる */
+const FADE_DURATION = 300;
+
 export class GameDetailModal extends View<Game> {
+  private autoplayTimer: number | null = null;
+
   private readonly onKeydown = (e: KeyboardEvent): void => {
     if (e.key === 'Escape') this.close();
   };
@@ -14,6 +21,7 @@ export class GameDetailModal extends View<Game> {
   }
 
   override render(game: Game): void {
+    this.stopAutoplay();
     // 掲載メディア(画像+動画)。images が空なら図鑑サムネイルで代用
     const media = game.images.length > 0 ? game.images : [game.thumbnailImage];
 
@@ -72,19 +80,50 @@ export class GameDetailModal extends View<Game> {
       n.addEventListener('click', () => this.close());
     });
 
-    // サムネイルクリックでメインの画像/動画を切り替える
+    // メイン表示をフェード付きで index 番目のメディアへ切り替える
     const stage = this.el.querySelector<HTMLElement>('[data-stage]')!;
-    this.el.querySelectorAll<HTMLButtonElement>('[data-media]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const path = media[Number(btn.dataset['media'])];
-        if (!path) return;
+    let currentIndex = 0;
+    const showMedia = (index: number): void => {
+      const path = media[index];
+      if (!path || index === currentIndex) return;
+      currentIndex = index;
+      stage.classList.add('game-modal__stage--fading');
+      window.setTimeout(() => {
         stage.innerHTML = mediaMain(path, game.title);
+        stage.classList.remove('game-modal__stage--fading');
         this.el
           .querySelectorAll('.media-thumb--active')
           .forEach((n) => n.classList.remove('media-thumb--active'));
-        btn.classList.add('media-thumb--active');
+        this.el
+          .querySelector(`[data-media="${index}"]`)
+          ?.classList.add('media-thumb--active');
+      }, FADE_DURATION);
+    };
+
+    // サムネイルクリックでメインの画像/動画を切り替える(手動操作後は自動再生を止める)
+    this.el.querySelectorAll<HTMLButtonElement>('[data-media]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        this.stopAutoplay();
+        showMedia(Number(btn.dataset['media']));
       });
     });
+
+    // 画像が複数あれば数秒おきに自動でフェード切り替え(動画はスキップ)
+    const imageIndexes = media.flatMap((m, i) => (VIDEO_RE.test(m) ? [] : [i]));
+    if (imageIndexes.length > 1) {
+      this.autoplayTimer = window.setInterval(() => {
+        const pos = imageIndexes.indexOf(currentIndex);
+        const next = imageIndexes[(pos + 1) % imageIndexes.length]!;
+        showMedia(next);
+      }, AUTOPLAY_INTERVAL);
+    }
+  }
+
+  private stopAutoplay(): void {
+    if (this.autoplayTimer !== null) {
+      window.clearInterval(this.autoplayTimer);
+      this.autoplayTimer = null;
+    }
   }
 
   open(game: Game): void {
@@ -100,6 +139,7 @@ export class GameDetailModal extends View<Game> {
   }
 
   close(): void {
+    this.stopAutoplay();
     document.removeEventListener('keydown', this.onKeydown);
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';
