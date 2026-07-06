@@ -219,26 +219,104 @@
   box-shadow: var(--glow-cyan);
 }
 
-/* リリース済み作品は常時発光させて別格感を出す */
+/* リリース済み作品 ── 豪華な発光 + カラーシフト縁 */
 .featured-card--released {
   border-color: var(--color-cyan);
-  animation: released-glow 2.4s ease-in-out infinite;
+  overflow: hidden;
+  animation: released-glow 4s ease-in-out infinite;
 }
 
+/* 縁がシアン → マゼンタ → シアンと色相シフトしながら多層グロー */
 @keyframes released-glow {
   0%,
   100% {
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.35);
+    border-color: var(--color-cyan);
+    box-shadow:
+      0 0  6px 2px rgba(0, 229, 255, 0.85),
+      0 0 18px 4px rgba(0, 229, 255, 0.50),
+      0 0 48px 8px rgba(0, 229, 255, 0.18);
   }
-  50% {
-    box-shadow: 0 0 22px rgba(0, 229, 255, 0.65), 0 0 48px rgba(0, 229, 255, 0.2);
+  40% {
+    border-color: #cc55ff;
+    box-shadow:
+      0 0  6px 2px rgba(204,  85, 255, 0.85),
+      0 0 18px 4px rgba(204,  85, 255, 0.50),
+      0 0 48px 8px rgba(204,  85, 255, 0.18);
+  }
+  75% {
+    border-color: var(--color-cyan);
+    box-shadow:
+      0 0 10px 3px rgba(0, 229, 255, 1.00),
+      0 0 28px 6px rgba(0, 229, 255, 0.60),
+      0 0 65px 12px rgba(0, 229, 255, 0.22);
   }
 }
 
+/* スキャンライン : 光の帯が上から下へ定期的に流れる */
+.featured-card--released::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 28%;
+  z-index: 4;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(120, 255, 255, 0.10) 30%,
+    rgba(200, 255, 255, 0.32) 50%,
+    rgba(120, 255, 255, 0.10) 70%,
+    transparent 100%
+  );
+  transform: translateY(-110%);
+  animation: released-scan 6s cubic-bezier(0.4, 0, 0.6, 1) 0.8s infinite;
+}
+
+@keyframes released-scan {
+  0%         { transform: translateY(-110%); opacity: 1; }
+  70%        { transform: translateY(450%);  opacity: 1; }
+  71%, 100%  { transform: translateY(-110%); opacity: 0; }
+}
+
+/* インナーオーラ : 上端・下端に脈動するエネルギーフィールド */
+.featured-card--released::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 45% at 50%   0%, rgba(0, 229, 255, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 35% at 50% 100%, rgba(204,  85, 255, 0.10) 0%, transparent 70%);
+  animation: released-inner-pulse 4s ease-in-out infinite;
+}
+
+@keyframes released-inner-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 1;    }
+}
+
+/* RELEASED ラベル : グラデーションがゆっくりシフトするシマー */
 .featured-card--released .featured-card__label {
-  background: var(--color-cyan);
   color: #041018;
   text-shadow: none;
+  background: linear-gradient(
+    90deg,
+    var(--color-cyan) 0%,
+    #cc55ff          40%,
+    var(--color-cyan) 80%,
+    #cc55ff         120%
+  );
+  background-size: 200% 100%;
+  animation: released-label-shimmer 4s linear infinite;
+}
+
+@keyframes released-label-shimmer {
+  0%   { background-position: 0%   50%; }
+  100% { background-position: 200% 50%; }
 }
 
 .featured-card__label {
