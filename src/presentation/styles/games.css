@@ -219,8 +219,9 @@
   box-shadow: var(--glow-cyan);
 }
 
-/* リリース済み作品 ── 豪華な発光 + カラーシフト縁 */
-.featured-card--released {
+/* リリース済み・注目作品 ── 豪華な発光 + カラーシフト縁 */
+.featured-card--released,
+.featured-card--upcoming {
   border-color: var(--color-cyan);
   overflow: hidden;
   animation: released-glow 4s ease-in-out infinite;
@@ -253,7 +254,8 @@
 }
 
 /* スキャンライン : 光の帯が上から下へ定期的に流れる */
-.featured-card--released::before {
+.featured-card--released::before,
+.featured-card--upcoming::before {
   content: '';
   position: absolute;
   top: 0;
@@ -282,7 +284,8 @@
 }
 
 /* インナーオーラ : 上端・下端に脈動するエネルギーフィールド */
-.featured-card--released::after {
+.featured-card--released::after,
+.featured-card--upcoming::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -299,8 +302,9 @@
   50%       { opacity: 1;    }
 }
 
-/* RELEASED ラベル : グラデーションがゆっくりシフトするシマー */
-.featured-card--released .featured-card__label {
+/* RELEASED / UPCOMING ラベル : グラデーションがゆっくりシフトするシマー */
+.featured-card--released .featured-card__label,
+.featured-card--upcoming .featured-card__label {
   color: #041018;
   text-shadow: none;
   background: linear-gradient(

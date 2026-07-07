@@ -153,6 +153,7 @@ function featuredLabel(game: Game): string {
 
 function featuredCard(game: Game): string {
   const released = game.release.kind === 'playable';
+  const upcoming = game.release.kind === 'coming-soon';
   const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
 
   // ストア情報(バッジ+テキスト)と アクションボタン(PLAY NOW、詳細など)を分ける
@@ -171,7 +172,7 @@ function featuredCard(game: Game): string {
         }<span class="btn">${esc(t('details'))}</span>`;
 
   return `
-    <article class="featured-card${released ? ' featured-card--released' : ''}" data-entry="${game.entryNo}" tabindex="0">
+    <article class="featured-card${released ? ' featured-card--released' : ''}${upcoming ? ' featured-card--upcoming' : ''}" data-entry="${game.entryNo}" tabindex="0">
       <div class="featured-card__label">${featuredLabel(game)}</div>
       <div class="featured-card__visual">
         <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
