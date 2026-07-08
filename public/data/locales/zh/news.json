@@ -1,5 +1,17 @@
 [
   {
+    "id": "butterfly-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-07-14",
+    "expireDate": null,
+    "title": "「蝶々反乱」已在Steam正式发售",
+    "description": "在Sapporo Game Camp 2025制作的2D动作游戏「蝶々反乱」今日已在Steam正式发售。欢迎体验!点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://github.com/wine-5/SGC2025"
+  },
+  {
     "id": "butterfly-steam-page",
     "type": "release",
     "priority": "medium",

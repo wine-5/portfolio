@@ -14,8 +14,17 @@ export interface NewsItem {
   readonly gameUrl?: string;
 }
 
-/** 掲載期限切れでないか(expireDate なしは常に有効) */
+/** ローカルタイムの YYYY-MM-DD 文字列に変換する */
+function toLocalDateString(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+/** 公開日を迎えており、かつ掲載期限切れでないか(expireDate なしは期限なし) */
 export function isActive(item: NewsItem, now: Date): boolean {
+  if (item.publishDate > toLocalDateString(now)) return false;
   if (item.expireDate === null) return true;
   return new Date(item.expireDate).getTime() >= now.getTime();
 }
