@@ -11,6 +11,10 @@
   --color-text: #e8f1ff;
   --color-text-dim: #8ba3c7;
 
+  /* 個人制作/チーム制作チップの色(SOLO=グリーン、TEAM=アンバー) */
+  --color-solo: #3dffa0;
+  --color-team: #ffb547;
+
   /* ヘッダー/ドロップダウン/フッターなど「枠」の背景(テーマで切り替える) */
   --color-chrome: rgba(5, 7, 15, 0.8);
   --color-chrome-solid: rgba(5, 7, 15, 0.96);
@@ -54,6 +58,9 @@
   --color-magenta: #d81b60;
   --color-text: #14263f;
   --color-text-dim: #4a6076;
+
+  --color-solo: #008a56;
+  --color-team: #a86400;
 
   --color-chrome: rgba(255, 255, 255, 0.85);
   --color-chrome-solid: rgba(248, 251, 255, 0.97);

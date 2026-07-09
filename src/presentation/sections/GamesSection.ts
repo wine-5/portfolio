@@ -1,4 +1,4 @@
-import type { Game, GameCategory } from '@domain/entities/Game';
+import { teamHeadcount, type Game, type GameCategory } from '@domain/entities/Game';
 import type { GameCollection } from '@application/usecases/GetGameCollection';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
@@ -141,6 +141,15 @@ export class GamesSection extends View<GameCollection> {
   }
 }
 
+/** 個人制作かチーム制作かがひと目で分かるチップ(チームは人数付き) */
+function crewChip(game: Game): string {
+  const count = teamHeadcount(game);
+  if (count === undefined) return '';
+  return count === 1
+    ? '<span class="crew-chip crew-chip--solo">SOLO</span>'
+    : `<span class="crew-chip crew-chip--team">TEAM ×${count}</span>`;
+}
+
 /** どのストアで遊べる/遊べる予定なのかがひと目で分かるリボン文言 */
 function featuredLabel(game: Game): string {
   const store = game.release.kind !== 'archived' ? game.release.store : undefined;
@@ -178,7 +187,10 @@ function featuredCard(game: Game): string {
         <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
       </div>
       <div class="featured-card__body">
-        <span class="featured-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
+        <div class="featured-card__meta">
+          <span class="featured-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
+          ${crewChip(game)}
+        </div>
         <span class="name-label">NAME</span>
         <h3 class="featured-card__title">${esc(game.title)}</h3>
         <p class="featured-card__desc">${esc(game.description)}</p>
@@ -194,6 +206,7 @@ function entryCard(game: Game): string {
       ${game.award ? `<span class="entry-card__award" title="${esc(game.award)}">🏆 ${esc(game.award)}</span>` : ''}
       <div class="entry-card__head">
         <span class="entry-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
+        ${crewChip(game)}
         ${game.year ? `<span class="entry-card__year">${esc(game.year)}</span>` : ''}
       </div>
       <div class="entry-card__visual">

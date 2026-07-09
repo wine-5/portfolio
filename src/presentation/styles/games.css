@@ -116,6 +116,27 @@
   box-shadow: 0 0 10px rgba(240, 180, 41, 0.45);
 }
 
+/* 個人制作/チーム制作チップ(一覧を流し見るだけで見分けられる色分け) */
+.crew-chip {
+  display: inline-block;
+  padding: 0.1em 0.6em;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+.crew-chip--solo {
+  color: var(--color-solo);
+  border: 1px solid var(--color-solo);
+}
+
+.crew-chip--team {
+  color: var(--color-team);
+  border: 1px solid var(--color-team);
+}
+
 /* 図鑑カードの「詳細を見る」表示(クリック可能であることの明示) */
 .entry-card__detail {
   display: block;
@@ -363,6 +384,13 @@
   padding: 1rem 1.2rem 1.4rem;
 }
 
+/* No. と SOLO/TEAM チップを横並びにする行 */
+.featured-card__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
 .featured-card__no {
   font-family: var(--font-ui);
   letter-spacing: 0.2em;
@@ -459,7 +487,6 @@
 .entry-card__head {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
   gap: 0.5rem;
 }
 
@@ -472,6 +499,7 @@
 
 /* No. の反対側に置く制作時の学年 */
 .entry-card__year {
+  margin-left: auto;
   font-family: var(--font-ui);
   font-size: 0.75rem;
   letter-spacing: 0.15em;

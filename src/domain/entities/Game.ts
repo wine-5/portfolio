@@ -33,3 +33,12 @@ export interface Game {
   /** 受賞歴(あればカード右上にバッジ表示) */
   readonly award?: string;
 }
+
+/**
+ * teamSize の先頭の人数を読む(全ロケールとも「7人（…）」「7 people (…)」の数字始まり)。
+ * 数字始まりでないデータが来たら undefined を返し、バッジ表示側でスキップする
+ */
+export function teamHeadcount(game: Game): number | undefined {
+  const m = /^\d+/.exec(game.teamSize.trim());
+  return m ? Number(m[0]) : undefined;
+}
