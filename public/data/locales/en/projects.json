@@ -248,7 +248,7 @@
   {
     "title": "Butterfly Rebellion",
     "description": "A 2D action game developed at Sapporo Game Camp 2025 by a 7-person team of first-time collaborators. First external game jam.",
-    "detailedFeatures": "A game created at Sapporo Game Camp 2025. After multiple rounds of polish, it's scheduled for Steam release on July 14th.\n\nLearning from the previous internal game jam, I prepared the Unity project and base classes in advance, and set up repository integration before the event.\nWhile the game was completed successfully, we couldn't achieve a satisfying result. So we polished it several times and displayed it at SAPPORO GAME ODYSSEY. It was well-received, so based on the feedback, we decided to further refine it and release on Steam.",
+    "detailedFeatures": "A game created at Sapporo Game Camp 2025. After multiple rounds of polish, it was released on Steam on July 14th.\n\nLearning from the previous internal game jam, I prepared the Unity project and base classes in advance, and set up repository integration before the event.\nWhile the game was completed successfully, we couldn't achieve a satisfying result. So we polished it several times and displayed it at SAPPORO GAME ODYSSEY. It was well-received, so based on the feedback, we decided to further refine it and release on Steam.",
     "myResponsibilities": "Base class design, player bullet implementation, enemy behavior & attack pattern implementation, ranking feature addition, Steam store page creation, etc.",
     "technologies": [
       "Unity",

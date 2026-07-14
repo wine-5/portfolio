@@ -25,7 +25,7 @@ interface ProjectDto {
 
 /**
  * FEATURED(別格表示)作品。バッジは仕様で固定:
- * TofuRunner = App Store 公開済み(PLAY NOW)、蝶々反乱 = Steam 公開予定(COMING SOON)。
+ * TofuRunner = App Store 公開済み(PLAY NOW)、蝶々反乱 = Steam 公開済み(PLAY NOW)。
  * タイトルはロケールごとに翻訳されるため、言語に依存しない githubUrl をキーにする
  */
 const FEATURED_RELEASE: Record<string, ReleaseState> = {
@@ -34,9 +34,9 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
     url: 'https://apps.apple.com/jp/app/tofurunner/id6755136719',
     store: 'app-store',
   },
-  // 2026-07-14 19:00 に Steam 公開予定(公開までは COMING SOON + ストアページ誘導)
+  // Steam 公開済み(App Store 版と同様に PLAY NOW でストアページへ誘導)
   'https://github.com/wine-5/SGC2025': {
-    kind: 'coming-soon',
+    kind: 'playable',
     store: 'steam',
     url: 'https://store.steampowered.com/app/4841000/_/',
   },
