@@ -30,6 +30,7 @@
       "images/game/win-vs-mac/win-vs-mac.mp4"
     ],
     "thumbnailImage": "images/game/win-vs-mac/title.png",
+    "carouselImage": "images/game/win-vs-mac/gameicon.png",
     "playUrl": "https://github.com/wine-5/win-vs-mac/releases",
     "githubUrl": "https://github.com/wine-5/win-vs-mac",
     "year": "3rd Year",
