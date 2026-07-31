@@ -1,5 +1,43 @@
 [
   {
+    "title": "WIN vs MAC",
+    "description": "A 3D action RPG where you fight through a dungeon inside Windows, using your own PC as a weapon.",
+    "detailedFeatures": "You play as a digital entity inside Windows, fighting your way to the final boss: a MacBook. Its defining feature is that the machine you are actually running on becomes part of the game. The title screen renders live CPU, memory and disk usage as its background graph, and the loadout screen is a Windows-desktop-style UI (WebView2 + HTML/CSS/JS) where you equip real files from your own PC. The extension of the file you pick changes your stats (.cpp raises critical rate, .mp4 extends projectile range, and so on), difficulty selection is styled as a UAC dialog, and results appear as a shutdown screen on victory or a blue screen on defeat. Combat is 3D action with melee combos, window-throwing projectiles, charged shots and deflection; enemies are Mac-side processes (Safari, Xcode) plus the phase-based MacBook boss. Enemy behaviour is data-driven — defined by combining behaviors/animations in JSON rather than by subclassing. Architecturally the project uses strict layering (Platform → Infrastructure → Game → Core) with an ECS inside the Game layer, an EventBus for loosely coupled systems, and interface-only access to DxLib and the Windows API.",
+    "myResponsibilities": "Solo project — I handled planning, architecture, implementation, asset production and balancing myself. My main focus areas were the layered architecture with an ECS game layer and the removal of all singletons in favour of a composition root, decoupling systems through an EventBus, making enemy AI data-driven via JSON behaviour/animation composition, pulling live system metrics from the Windows API and building the OS-style UI with WebView2, establishing an AI-generated model → Mixamo → mv1 animation pipeline, and cutting memory usage from roughly 3.5 GB to 1.3 GB by reworking textures and BGM streaming.",
+    "technologies": [
+      "C++20",
+      "DxLib",
+      "Effekseer",
+      "Windows API",
+      "WebView2",
+      "HTML / CSS / JavaScript",
+      "nlohmann/json",
+      "ECS",
+      "Visual Studio / MSBuild",
+      "Git / GitHub Actions"
+    ],
+    "supportedPlatforms": [
+      "PC only (Windows 10 or later)",
+      "Download the zip and run the exe"
+    ],
+    "images": [
+      "images/game/win-vs-mac/title.png",
+      "images/game/win-vs-mac/select.png",
+      "images/game/win-vs-mac/ingame_1.png",
+      "images/game/win-vs-mac/ingame_2.png",
+      "images/game/win-vs-mac/ingame_3.png",
+      "images/game/win-vs-mac/ingame_4.png",
+      "images/game/win-vs-mac/win-vs-mac.mp4"
+    ],
+    "thumbnailImage": "images/game/win-vs-mac/title.png",
+    "playUrl": "https://github.com/wine-5/win-vs-mac/releases",
+    "githubUrl": "https://github.com/wine-5/win-vs-mac",
+    "year": "3rd Year",
+    "category": "game",
+    "teamSize": "1 person",
+    "period": "About 6 months"
+  },
+  {
     "title": "Futago",
     "description": "A game created at the 10th ImoGameJam",
     "detailedFeatures": "The jam theme was \"Link\", so our team discussed and decided to make a game where you link enemies to deal damage and defeat them in chains. It took me a while to understand the damage-linking specifications from our planners, but the core game loop was completed successfully. Making the UI and in-game explanations easier for players to understand is something to improve on.",

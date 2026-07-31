@@ -1,5 +1,43 @@
 [
   {
+    "title": "WIN vs MAC",
+    "description": "自分のPCを武器に、Windows内部のダンジョンを攻略する3DアクションRPG",
+    "detailedFeatures": "プレイヤーは Windows OS 内部のデジタル存在となり、最終ボスである MacBook の撃退を目指します。最大の特徴は「実際に動いているPCがそのままゲームに反映される」点です。タイトル画面の背景グラフは実行中PCのCPU・メモリ・ディスク使用率をリアルタイムに描画し、装備選択画面では Windows デスクトップ風UI（WebView2 + HTML/CSS/JS）から自分のPCの実ファイルを選んで装備します。選んだファイルの拡張子でステータスが変化し（.cpp ならクリティカル率、.mp4 なら弾の飛距離など）、難易度選択は UAC ダイアログ風、リザルトは勝利＝シャットダウン画面風／敗北＝ブルースクリーン風といったOS演出で統一しています。戦闘は近接コンボ・ウィンドウ投擲・溜め攻撃・弾反射を備えた3Dアクションで、敵はMac側のプロセス（Safari / Xcode）とフェーズ制のボス MacBook。敵の挙動は派生クラスではなくJSONの behaviors / animations の組み合わせで定義するデータ駆動設計にしています。設計面では Platform → Infrastructure → Game → Core のレイヤードアーキテクチャを敷き、Game層内部は ECS で構成。System間はEventBusによるイベント駆動で疎結合にし、DxLib や Windows API はインターフェース越しにしか触れない依存管理を徹底しました。",
+    "myResponsibilities": "個人制作のため、企画・設計・実装・アセット制作・調整のすべてを担当。特に注力したのは、レイヤードアーキテクチャ＋ECSの設計とシングルトン全廃（コンポジションルート化）、EventBusによるSystem間の疎結合化、敵AIのデータ駆動化（JSONのbehaviors/animations組み合わせ）、Windows APIからのリソース情報取得とWebView2によるOS風UIの実装、AI生成モデル→Mixamo→mv1のアニメーションパイプライン構築、テクスチャ・BGMの見直しによるメモリ使用量の削減（約3.5GB→1.3GB）です。",
+    "technologies": [
+      "C++20",
+      "DxLib",
+      "Effekseer",
+      "Windows API",
+      "WebView2",
+      "HTML / CSS / JavaScript",
+      "nlohmann/json",
+      "ECS",
+      "Visual Studio / MSBuild",
+      "Git / GitHub Actions"
+    ],
+    "supportedPlatforms": [
+      "PCのみ（Windows 10以上）",
+      "Zipをダウンロードしてexeを起動"
+    ],
+    "images": [
+      "images/game/win-vs-mac/title.png",
+      "images/game/win-vs-mac/select.png",
+      "images/game/win-vs-mac/ingame_1.png",
+      "images/game/win-vs-mac/ingame_2.png",
+      "images/game/win-vs-mac/ingame_3.png",
+      "images/game/win-vs-mac/ingame_4.png",
+      "images/game/win-vs-mac/win-vs-mac.mp4"
+    ],
+    "thumbnailImage": "images/game/win-vs-mac/title.png",
+    "playUrl": "https://github.com/wine-5/win-vs-mac/releases",
+    "githubUrl": "https://github.com/wine-5/win-vs-mac",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "約6ヶ月"
+  },
+  {
     "title": "双子",
     "description": "ImoGameJam第10回で制作したゲーム",
     "detailedFeatures": "ゲームジャムのお題が「リンク」だったので、なにかリンクしてダメージを与えて敵を連鎖的に倒していくゲームを作ろうとチーム内で話し合い制作しました。ダメージのリンク方法、与え方などをプランナーから仕様を聞き、理解するまでに時間がかかってしまいました。ですがゲームループ自体は無事にできました。UIやゲーム内の説明をもうすこしユーザーに分かりやすくするべき点が反省点です。",
