@@ -3,7 +3,7 @@
     "title": "WIN vs MAC",
     "description": "以自己的电脑为武器、攻略 Windows 内部地下城的 3D 动作 RPG。",
     "detailedFeatures": "玩家化身为 Windows 系统内部的数字存在，目标是击退最终 BOSS —— MacBook。最大的特色在于「正在运行的这台电脑本身会被反映进游戏」：标题画面的背景图表实时绘制当前 PC 的 CPU、内存与磁盘使用率；装备选择界面则是仿 Windows 桌面的 UI（WebView2 + HTML/CSS/JS），可以直接选取自己电脑里的真实文件作为装备。所选文件的扩展名会改变角色数值（.cpp 提升暴击率、.mp4 增加弹道射程等），难度选择做成 UAC 对话框风格，结算画面胜利为关机画面风、失败为蓝屏风。战斗为 3D 动作，包含近战连段、窗口投掷、蓄力攻击与弹幕反弹；敌人是 Mac 侧的进程（Safari / Xcode）以及分阶段的 BOSS MacBook。敌人行为并非通过派生类，而是以 JSON 的 behaviors / animations 组合定义的数据驱动设计。架构上采用 Platform → Infrastructure → Game → Core 的分层设计，Game 层内部以 ECS 构成，系统之间通过 EventBus 事件驱动解耦，并严格限制只能经由接口访问 DxLib 与 Windows API。",
-    "myResponsibilities": "个人开发，企划、设计、实现、素材制作与调整均由本人负责。重点投入的部分包括：分层架构 + ECS 的设计与彻底废除单例（改为组合根注入）、通过 EventBus 实现系统间解耦、敌人 AI 的数据驱动化（JSON 的 behaviors / animations 组合）、经由 Windows API 获取系统资源信息并用 WebView2 实现仿 OS 界面、构建「AI 生成模型 → Mixamo → mv1」的动画流程，以及通过重做贴图与 BGM 流式播放将内存占用从约 3.5GB 降至 1.3GB。",
+    "myResponsibilities": "个人开发，企划、设计、实现、素材制作与调整均由本人负责。重点投入的部分包括：分层架构 + ECS 的设计、通过 EventBus 实现系统间解耦、敌人 AI 的数据驱动化（JSON 的 behaviors / animations 组合）、经由 Windows API 获取系统资源信息并用 WebView2 实现仿 OS 界面，以及构建「AI 生成模型 → Mixamo → mv1」的动画流程。",
     "technologies": [
       "C++20",
       "DxLib",
@@ -11,10 +11,7 @@
       "Windows API",
       "WebView2",
       "HTML / CSS / JavaScript",
-      "nlohmann/json",
-      "ECS",
-      "Visual Studio / MSBuild",
-      "Git / GitHub Actions"
+      "ECS"
     ],
     "supportedPlatforms": [
       "仅限 PC（Windows 10 及以上）",
