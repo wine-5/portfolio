@@ -353,8 +353,11 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* 指で押せる高さ(約 46px)を確保しつつ、1 行に 4 枚収まる幅にする */
   .flagship-thumb {
-    width: 64px;
+    width: 70px;
+    height: 46px;
+    aspect-ratio: auto;
   }
 
   .flagship__play-icon {
