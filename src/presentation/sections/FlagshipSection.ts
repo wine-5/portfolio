@@ -135,8 +135,12 @@ export class FlagshipSection extends View<Game> {
       if (!item || index === current) return;
       current = index;
       stage.innerHTML = mediaMain(item, game.title);
+      // ループ動画へ戻ってきたときは監視が再発火しないので、その場で読み込んで再生する
       const video = stage.querySelector<HTMLVideoElement>('video[data-loop]');
-      if (video) video.src = asset(item.path);
+      if (video) {
+        video.src = asset(item.path);
+        void video.play().catch(() => {});
+      }
       bindPlay();
       this.el
         .querySelectorAll('.flagship-thumb--active')
