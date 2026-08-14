@@ -36,6 +36,39 @@
     "period": "约 5 个月"
   },
   {
+    "title": "CodeTree (Git Tool)",
+    "description": "面向 Windows 的 Git 客户端工具，结合了 SourceTree 的 Git 操作体验与 VS Code 的开发体验。",
+    "detailedFeatures": "AI 提交信息生成功能会将已暂存的差异发送给 Claude API，并生成 Conventional Commits 格式的建议。feature/、fix/ 等前缀可通过按钮一键输入，也支持注册自定义前缀。点击变更文件名即可跳转到对应差异；紧凑模式则只保留常用操作，节省界面空间。同时还提供提交图、分支与储藏管理、GitHub 集成、统计仪表盘和内置 PowerShell 终端。",
+    "myResponsibilities": "负责策划、架构设计和类设计。实现工作委托给 AI。",
+    "technologies": [
+      "TypeScript",
+      "Electron",
+      "Node.js",
+      "Webpack",
+      "simple-git",
+      "Chart.js",
+      "Cytoscape.js",
+      "Claude API"
+    ],
+    "supportedPlatforms": [
+      "Windows 10 / 11 (x64)"
+    ],
+    "images": [
+      "images/projects/git-tool/benefit-compact.png",
+      "images/projects/git-tool/benefit-shortcuts.png",
+      "images/projects/git-tool/benefit-timeline.png",
+      "images/projects/git-tool/benefit-unified.png"
+    ],
+    "thumbnailImage": "images/projects/git-tool/benefit-unified.png",
+    "carouselImage": "images/projects/git-tool/app-icon.png",
+    "downloadUrl": "https://wine-5.github.io/code-tree-release/",
+    "githubUrl": "https://github.com/wine-5/git-tool",
+    "year": "大学三年级",
+    "category": "web",
+    "teamSize": "1人",
+    "period": "3个月"
+  },
+  {
     "title": "双子",
     "description": "在第10届ImoGameJam中制作的游戏",
     "detailedFeatures": "游戏Jam的主题是「链接」，因此团队讨论后决定制作一款通过链接敌人来造成伤害、连锁击倒敌人的游戏。理解策划提出的伤害链接方式等规格花费了一些时间，但游戏循环本身顺利完成了。UI和游戏内说明还应做得更容易让玩家理解，这是需要反省的地方。",

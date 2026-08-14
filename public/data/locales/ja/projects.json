@@ -36,6 +36,39 @@
     "period": "約5ヶ月"
   },
   {
+    "title": "CodeTree (Git Tool)",
+    "description": "SourceTree の Git 操作性と VS Code の開発体験を組み合わせた、Windows 向け Git クライアントツール。",
+    "detailedFeatures": "AI によるコミット名生成では、ステージ済みの差分を Claude API に読み込ませ、Conventional Commits 形式のメッセージを提案します。feature/ や fix/ などの接頭語はボタンでワンクリック入力でき、独自の接頭語も登録できます。変更ファイル名をクリックすると該当の差分へすぐに移動できるほか、よく使う操作だけに絞った省スペースのコンパクトモードも用意しています。コミットグラフ、ブランチ・スタッシュ管理、GitHub 連携、統計ダッシュボード、PowerShell ターミナルも備えています。",
+    "myResponsibilities": "企画、アーキテクチャ設計、クラス設計を担当しました。実装は AI に委ねています。",
+    "technologies": [
+      "TypeScript",
+      "Electron",
+      "Node.js",
+      "Webpack",
+      "simple-git",
+      "Chart.js",
+      "Cytoscape.js",
+      "Claude API"
+    ],
+    "supportedPlatforms": [
+      "Windows 10 / 11 (x64)"
+    ],
+    "images": [
+      "images/projects/git-tool/benefit-compact.png",
+      "images/projects/git-tool/benefit-shortcuts.png",
+      "images/projects/git-tool/benefit-timeline.png",
+      "images/projects/git-tool/benefit-unified.png"
+    ],
+    "thumbnailImage": "images/projects/git-tool/benefit-unified.png",
+    "carouselImage": "images/projects/git-tool/app-icon.png",
+    "downloadUrl": "https://wine-5.github.io/code-tree-release/",
+    "githubUrl": "https://github.com/wine-5/git-tool",
+    "year": "3年次",
+    "category": "web",
+    "teamSize": "1人",
+    "period": "3か月"
+  },
+  {
     "title": "双子",
     "description": "ImoGameJam第10回で制作したゲーム",
     "detailedFeatures": "ゲームジャムのお題が「リンク」だったので、なにかリンクしてダメージを与えて敵を連鎖的に倒していくゲームを作ろうとチーム内で話し合い制作しました。ダメージのリンク方法、与え方などをプランナーから仕様を聞き、理解するまでに時間がかかってしまいました。ですがゲームループ自体は無事にできました。UIやゲーム内の説明をもうすこしユーザーに分かりやすくするべき点が反省点です。",

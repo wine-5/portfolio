@@ -36,6 +36,39 @@
     "period": "About 5 months"
   },
   {
+    "title": "CodeTree (Git Tool)",
+    "description": "A Windows Git client that combines SourceTree's Git workflow with VS Code's development experience.",
+    "detailedFeatures": "AI commit-message generation sends staged diffs to the Claude API and proposes messages in Conventional Commits format. Prefixes such as feature/ and fix/ can be entered with one click, and custom prefixes can also be registered. Clicking a changed filename jumps directly to its diff, while Compact Mode provides a space-saving view focused on frequently used actions. The app also includes a commit graph, branch and stash management, GitHub integration, a statistics dashboard, and an integrated PowerShell terminal.",
+    "myResponsibilities": "Handled planning, architecture design, and class design. Implementation was delegated to AI.",
+    "technologies": [
+      "TypeScript",
+      "Electron",
+      "Node.js",
+      "Webpack",
+      "simple-git",
+      "Chart.js",
+      "Cytoscape.js",
+      "Claude API"
+    ],
+    "supportedPlatforms": [
+      "Windows 10 / 11 (x64)"
+    ],
+    "images": [
+      "images/projects/git-tool/benefit-compact.png",
+      "images/projects/git-tool/benefit-shortcuts.png",
+      "images/projects/git-tool/benefit-timeline.png",
+      "images/projects/git-tool/benefit-unified.png"
+    ],
+    "thumbnailImage": "images/projects/git-tool/benefit-unified.png",
+    "carouselImage": "images/projects/git-tool/app-icon.png",
+    "downloadUrl": "https://wine-5.github.io/code-tree-release/",
+    "githubUrl": "https://github.com/wine-5/git-tool",
+    "year": "3rd Year",
+    "category": "web",
+    "teamSize": "1 person",
+    "period": "3 months"
+  },
+  {
     "title": "Futago",
     "description": "A game created at the 10th ImoGameJam",
     "detailedFeatures": "The jam theme was \"Link\", so our team discussed and decided to make a game where you link enemies to deal damage and defeat them in chains. It took me a while to understand the damage-linking specifications from our planners, but the core game loop was completed successfully. Making the UI and in-game explanations easier for players to understand is something to improve on.",

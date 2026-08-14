@@ -24,6 +24,8 @@ export interface Game {
   /** ホーム画面のカルーセル用アイコン(指定がなければ thumbnailImage を使う) */
   readonly carouselImage?: string;
   readonly githubUrl?: string;
+  /** ダウンロード／配布ページへのリンク(ある作品だけ表示) */
+  readonly downloadUrl?: string;
   readonly year: string;
   readonly category: GameCategory;
   readonly teamSize: string;
