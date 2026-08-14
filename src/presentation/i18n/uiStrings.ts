@@ -12,6 +12,8 @@ interface UiStrings {
   readonly relatedWorks: string;
   readonly gamesTitle: string;
   readonly registered: string;
+  readonly flagshipLead: string;
+  readonly playVideo: string;
   readonly newsTitle: string;
   readonly aboutTitle: string;
   readonly steamPage: string;
@@ -41,6 +43,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     relatedWorks: '関連作品',
     gamesTitle: 'GAME ARCHIVE',
     registered: 'REGISTERED',
+    flagshipLead: '今いちばん見てほしい個人制作',
+    playVideo: 'プレイ動画を再生',
     newsTitle: 'NEWS',
     aboutTitle: 'ABOUT',
     steamPage: 'Steamページ',
@@ -68,6 +72,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     relatedWorks: 'Related Works',
     gamesTitle: 'GAME ARCHIVE',
     registered: 'REGISTERED',
+    flagshipLead: 'The solo project I most want you to see',
+    playVideo: 'Play gameplay video',
     newsTitle: 'NEWS',
     aboutTitle: 'ABOUT',
     steamPage: 'Steam Page',
@@ -95,6 +101,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     relatedWorks: '相关作品',
     gamesTitle: '游戏介绍',
     registered: '收录作品数',
+    flagshipLead: '现在最想让你看的个人作品',
+    playVideo: '播放游戏视频',
     newsTitle: '新闻',
     aboutTitle: '自我介绍',
     steamPage: 'Steam页面',
