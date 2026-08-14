@@ -10,6 +10,12 @@ export type ReleaseState =
   | { kind: 'coming-soon'; store?: Store; url?: string }
   | { kind: 'archived' };
 
+/** 看板作品セクションに並べる訴求ポイント(見出し + 補足の 2 行組) */
+export interface Highlight {
+  readonly title: string;
+  readonly body: string;
+}
+
 /** 図鑑に載る 1 作品。No. は図鑑上の通し番号 */
 export interface Game {
   readonly entryNo: number;
@@ -32,6 +38,15 @@ export interface Game {
   readonly period: string;
   readonly release: ReleaseState;
   readonly featured: boolean;
+  /**
+   * 看板作品。図鑑とは別に、最上部の FLAGSHIP セクションで 1 作品だけ別格表示する。
+   * FEATURED(ストア公開済み)とは軸が違うので枠を分けている
+   */
+  readonly flagship: boolean;
+  /** FLAGSHIP セクションに並べる訴求ポイント(看板作品以外は空) */
+  readonly highlights: readonly Highlight[];
+  /** FLAGSHIP セクションで自動再生するループ動画(未指定なら images の動画を手動再生) */
+  readonly flagshipVideo?: string;
   /** 受賞歴(あればカード右上にバッジ表示) */
   readonly award?: string;
 }

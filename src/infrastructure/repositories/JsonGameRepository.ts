@@ -1,4 +1,4 @@
-import type { Game, GameCategory, ReleaseState } from '@domain/entities/Game';
+import type { Game, GameCategory, Highlight, ReleaseState } from '@domain/entities/Game';
 import type { GameRepository } from '@application/ports/GameRepository';
 import type { Locale } from '@application/ports/Locale';
 
@@ -22,6 +22,9 @@ interface ProjectDto {
   teamSize?: string;
   period?: string;
   award?: string;
+  flagship?: boolean;
+  highlights?: Highlight[];
+  flagshipVideo?: string;
 }
 
 /**
@@ -77,6 +80,7 @@ export class JsonGameRepository implements GameRepository {
       ...(dto.githubUrl !== undefined ? { githubUrl: dto.githubUrl } : {}),
       ...(dto.downloadUrl !== undefined ? { downloadUrl: dto.downloadUrl } : {}),
       ...(dto.carouselImage !== undefined ? { carouselImage: dto.carouselImage } : {}),
+      ...(dto.flagshipVideo !== undefined ? { flagshipVideo: dto.flagshipVideo } : {}),
       ...(dto.award !== undefined ? { award: dto.award } : {}),
       year: dto.year ?? '',
       category: (dto.category ?? 'game') as GameCategory,
@@ -84,6 +88,8 @@ export class JsonGameRepository implements GameRepository {
       period: dto.period ?? '',
       release,
       featured: featuredRelease !== undefined,
+      flagship: dto.flagship === true,
+      highlights: dto.highlights ?? [],
     };
   }
 }
