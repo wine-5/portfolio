@@ -33,7 +33,22 @@
     "year": "3rd Year",
     "category": "game",
     "teamSize": "1 person",
-    "period": "About 5 months"
+    "period": "About 5 months",
+    "flagship": true,
+    "highlights": [
+      {
+        "title": "Real files from your PC become weapons",
+        "body": "Equip files picked from a Windows-desktop-style UI; the extension changes your stats — .cpp raises critical rate, .mp4 extends projectile range."
+      },
+      {
+        "title": "The machine you are running on becomes the game",
+        "body": "The title screen graph renders live CPU, memory and disk usage from the PC you are actually playing on."
+      },
+      {
+        "title": "Framed end to end in OS dressing",
+        "body": "Difficulty selection is a UAC dialog, victory is a shutdown screen, defeat is a blue screen."
+      }
+    ]
   },
   {
     "title": "CodeTree (Git Tool)",

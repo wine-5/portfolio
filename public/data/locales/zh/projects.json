@@ -33,7 +33,22 @@
     "year": "三年级",
     "category": "game",
     "teamSize": "1人",
-    "period": "约 5 个月"
+    "period": "约 5 个月",
+    "flagship": true,
+    "highlights": [
+      {
+        "title": "自己电脑里的真实文件就是武器",
+        "body": "在仿 Windows 桌面的界面中选取文件，扩展名决定数值：.cpp 提升暴击率，.mp4 增加弹道射程。"
+      },
+      {
+        "title": "正在运行的这台电脑本身进入游戏",
+        "body": "标题画面的背景图表实时绘制当前 PC 的 CPU、内存与磁盘使用率。"
+      },
+      {
+        "title": "全程贯穿 OS 风格演出",
+        "body": "难度选择为 UAC 对话框风，胜利是关机画面风，失败是蓝屏风。"
+      }
+    ]
   },
   {
     "title": "CodeTree (Git Tool)",
