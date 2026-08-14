@@ -121,9 +121,10 @@ export class App {
     hero.render(allGames);
     hero.mount(main);
 
+    // 看板作品はリリース作品(FEATURED)の下、図鑑グリッドの上に置く
     if (flagship && flagshipGame) {
       flagship.render(flagshipGame);
-      flagship.mount(main);
+      games.mountFlagship(flagship);
     }
 
     games.mount(main);

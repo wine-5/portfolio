@@ -27,6 +27,9 @@ const FILTERS: readonly { id: Filter; label: string }[] = [
 /** モンスター図鑑風の Games セクション(近未来 HUD デザイン) */
 export class GamesSection extends View<GameCollection> {
   private readonly modal = new GameDetailModal();
+  /** FEATURED と図鑑グリッドの間に差し込む外部セクション(看板作品)の受け皿。
+   *  redraw で innerHTML を作り直しても中身が消えないよう、この要素は使い回す */
+  private readonly flagshipSlot = document.createElement('div');
   private collection: GameCollection = { featured: [], entries: [] };
   private games: readonly Game[] = [];
   private filter: Filter = 'all';
@@ -39,8 +42,18 @@ export class GamesSection extends View<GameCollection> {
 
   override render(collection: GameCollection): void {
     this.collection = collection;
-    this.games = [...collection.featured, ...collection.entries];
+    // 看板作品もこのセクション内に並ぶので、登録数・言語フィルタの母集団には含める
+    this.games = [
+      ...(collection.flagship ? [collection.flagship] : []),
+      ...collection.featured,
+      ...collection.entries,
+    ];
     this.redraw();
+  }
+
+  /** リリース作品(FEATURED)の下に看板作品セクションを差し込む */
+  mountFlagship(view: { mount(parent: HTMLElement): void }): void {
+    view.mount(this.flagshipSlot);
   }
 
   /**
@@ -80,6 +93,7 @@ export class GamesSection extends View<GameCollection> {
       (this.tech === 'all' || g.technologies.includes(this.tech));
     const featured = this.collection.featured.filter(match);
     const entries = this.collection.entries.filter(match);
+    const flagshipVisible = this.collection.flagship !== undefined && match(this.collection.flagship);
     const techs = [...new Set(this.games.flatMap((g) => [...g.technologies]))]
       .filter((t) => !NON_LANGUAGES.has(t))
       .sort();
@@ -108,14 +122,20 @@ export class GamesSection extends View<GameCollection> {
         </select>
       </nav>
       ${featured.length > 0 ? `<div class="games__featured">${featured.map((g) => featuredCard(g)).join('')}</div>` : ''}
+      <div data-flagship-slot></div>
       ${
         entries.length > 0
           ? `<ol class="games__grid">${entries.map((g) => entryCard(g)).join('')}</ol>`
-          : featured.length === 0
+          : featured.length === 0 && !flagshipVisible
             ? '<p class="games__empty">NO DATA</p>'
             : ''
       }
     `;
+
+    // 使い回している受け皿(と中の看板作品)を、組み直した DOM の所定位置へ戻す。
+    // 看板作品も絞り込みの対象にして、他のカードと表示条件を揃える
+    this.el.querySelector('[data-flagship-slot]')?.replaceWith(this.flagshipSlot);
+    this.flagshipSlot.hidden = !flagshipVisible;
 
     this.el.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((btn) => {
       btn.addEventListener('click', () => {
