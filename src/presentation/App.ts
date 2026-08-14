@@ -9,6 +9,7 @@ import { BootScreen } from './components/BootScreen';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HeroSection } from './sections/HeroSection';
+import { FlagshipSection } from './sections/FlagshipSection';
 import { GamesSection } from './sections/GamesSection';
 import { SkillsSection } from './sections/SkillsSection';
 import { NewsSection } from './sections/NewsSection';
@@ -99,18 +100,38 @@ export class App {
     const games = new GamesSection();
     games.render(collection);
 
+    const flagshipGame = collection.flagship;
+    const flagship = flagshipGame ? new FlagshipSection() : null;
+
+    // 看板作品は図鑑グリッドに並ばないので、専用セクションへスクロールさせる
+    const focusEntry = (entryNo: number): void => {
+      if (flagship && flagshipGame?.entryNo === entryNo) flagship.focus();
+      else games.focusEntry(entryNo);
+    };
+
+    // カルーセルは看板作品を先頭に置く(角度 0 = 正面なので初期表示で正面に来る)
+    const allGames = [
+      ...(flagshipGame ? [flagshipGame] : []),
+      ...collection.featured,
+      ...collection.entries,
+    ];
+
     const hero = new HeroSection();
-    hero.setOnSelect((entryNo) => games.focusEntry(entryNo));
-    hero.render([...collection.featured, ...collection.entries]);
+    hero.setOnSelect(focusEntry);
+    hero.render(allGames);
     hero.mount(main);
+
+    if (flagship && flagshipGame) {
+      flagship.render(flagshipGame);
+      flagship.mount(main);
+    }
 
     games.mount(main);
 
-    // githubUrl から図鑑エントリを引く(Skills/News からのジャンプに共用)
-    const allGames = [...collection.featured, ...collection.entries];
+    // githubUrl から作品を引く(Skills/News からのジャンプに共用)
     const focusByGithubUrl = (githubUrl: string): void => {
       const game = allGames.find((g) => g.githubUrl === githubUrl);
-      if (game) games.focusEntry(game.entryNo);
+      if (game) focusEntry(game.entryNo);
     };
 
     const skillsSection = new SkillsSection();
