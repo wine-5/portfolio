@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bandai-namco-studios-2026",
+    "company": "万代南梦宫工作室（BANDAI NAMCO Studios）",
+    "period": "2026年8月3日〜8月7日（5天）",
+    "theme": "完整复刻《MAPPY》",
+    "summary": "用5天时间完整体验了游戏公司现场的开发流程。使用Emscripten将C++代码编译为WebAssembly，使游戏能在浏览器中运行。",
+    "tags": ["C++", "SDL2", "Emscripten", "GitHub Actions"],
+    "learnings": [
+      {
+        "title": "main分支是需要保护的",
+        "body": "亲身实践了合并前必须获得至少1人评审批准的开发流程"
+      },
+      {
+        "title": "合并后自动发布",
+        "body": "GitHub Actions检测到合并至main分支后会自动执行到部署为止"
+      },
+      {
+        "title": "体会到CI在现场的意义",
+        "body": "切身体会到个人开发中采用的CI理念同样应用于公司的开发流程"
+      }
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bandai-namco-studios-2026",
+    "company": "株式会社バンダイナムコスタジオ",
+    "period": "2026年8月3日〜8月7日（5日間）",
+    "theme": "「MAPPY」の完全再現",
+    "summary": "現場の開発フローを5日間で一通り体験。C++で書いたコードをEmscriptenでWebAssembly化し、ブラウザで動く形にした。",
+    "tags": ["C++", "SDL2", "Emscripten", "GitHub Actions"],
+    "learnings": [
+      {
+        "title": "mainブランチは守るもの",
+        "body": "マージにはレビュー承認が1人以上必要という運用を実際に踏んだ"
+      },
+      {
+        "title": "マージすれば自動で公開",
+        "body": "GitHub Actionsがmainブランチへのマージを検知してデプロイまで走る"
+      },
+      {
+        "title": "個人開発のCIの意義を実感",
+        "body": "個人開発で取り入れていたCIの考え方が、現場の開発フローでも活用されていることを実感した"
+      }
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bandai-namco-studios-2026",
+    "company": "BANDAI NAMCO Studios Inc.",
+    "period": "Aug 3–7, 2026 (5 days)",
+    "theme": "Full recreation of \"MAPPY\"",
+    "summary": "Experienced a studio's full development flow in 5 days. Compiled C++ code to WebAssembly with Emscripten so the same game runs in the browser.",
+    "tags": ["C++", "SDL2", "Emscripten", "GitHub Actions"],
+    "learnings": [
+      {
+        "title": "The main branch is protected",
+        "body": "Worked under a rule requiring at least one review approval before merging"
+      },
+      {
+        "title": "Merging deploys automatically",
+        "body": "GitHub Actions detects merges into main and runs all the way to deployment"
+      },
+      {
+        "title": "Saw why CI matters in production",
+        "body": "Realized the CI practices from my personal projects are used in real studio workflows too"
+      }
+    ]
+  }
+]
