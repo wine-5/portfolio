@@ -1,5 +1,17 @@
 [
   {
+    "id": "internship-section",
+    "type": "announcement",
+    "priority": "medium",
+    "publishDate": "2026-08-27",
+    "expireDate": null,
+    "title": "新增实习经历板块",
+    "description": "新增了介绍在万代南梦宫工作室实习经历的板块，汇总了在开发现场体验到的开发流程与收获。点击即可跳转到该板块。",
+    "icon": "",
+    "showBanner": false,
+    "link": "#internship"
+  },
+  {
     "id": "butterfly-release",
     "type": "release",
     "priority": "high",

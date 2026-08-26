@@ -1,5 +1,17 @@
 [
   {
+    "id": "internship-section",
+    "type": "announcement",
+    "priority": "medium",
+    "publishDate": "2026-08-27",
+    "expireDate": null,
+    "title": "Internship Section Added",
+    "description": "Added a new section introducing my internship experience at BANDAI NAMCO Studios Inc. It covers the development workflow I experienced on-site and what I learned. Click to jump to the section.",
+    "icon": "",
+    "showBanner": false,
+    "link": "#internship"
+  },
+  {
     "id": "butterfly-release",
     "type": "release",
     "priority": "high",

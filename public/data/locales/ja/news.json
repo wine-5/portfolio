@@ -1,5 +1,17 @@
 [
   {
+    "id": "internship-section",
+    "type": "announcement",
+    "priority": "medium",
+    "publishDate": "2026-08-27",
+    "expireDate": null,
+    "title": "インターンシップセクションを追加しました",
+    "description": "株式会社バンダイナムコスタジオでのインターンシップ経験を紹介するセクションを新設しました。現場で体験した開発フローや学びをまとめています。クリックするとセクションへ移動します。",
+    "icon": "",
+    "showBanner": false,
+    "link": "#internship"
+  },
+  {
     "id": "butterfly-release",
     "type": "release",
     "priority": "high",
