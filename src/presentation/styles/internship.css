@@ -1,0 +1,120 @@
+/* ============================================
+   INTERNSHIP(任務記録)セクション
+   ============================================ */
+.internship__header {
+  margin: 4rem 0 1.5rem;
+}
+
+.internship__kicker {
+  margin: 0;
+  font-family: var(--font-ui);
+  letter-spacing: 0.3em;
+  color: var(--color-magenta);
+}
+
+.internship__title {
+  margin: 0.2rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-shadow: var(--glow-cyan);
+}
+
+.internship-card {
+  padding: clamp(1rem, 3vw, 1.8rem);
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+}
+
+.internship-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+.internship-card__company {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: clamp(1.05rem, 3.5vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.internship-card__period {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+}
+
+.internship-card__theme {
+  margin: 0;
+  font-weight: 700;
+}
+
+.internship-card__theme-label {
+  font-family: var(--font-ui);
+  letter-spacing: 0.15em;
+  color: var(--color-cyan);
+  margin-right: 0.4em;
+}
+
+.internship-card__tags {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.internship-card__tags li {
+  padding: 0.15em 0.8em;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  color: var(--color-text-dim);
+}
+
+.internship-card__summary {
+  margin: 1rem 0 0;
+  font-weight: 700;
+}
+
+/* ---- 学びカード ---- */
+.internship-card__learnings {
+  list-style: none;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.internship-learning {
+  border-left: 3px solid var(--color-cyan);
+  padding-left: 0.8rem;
+}
+
+.internship-learning__title {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--color-cyan);
+}
+
+.internship-learning__body {
+  margin: 0.25rem 0 0;
+  font-size: 0.88rem;
+  color: var(--color-text-dim);
+}

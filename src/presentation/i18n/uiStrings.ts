@@ -5,6 +5,7 @@ interface UiStrings {
   readonly navGames: string;
   readonly navSkills: string;
   readonly navNews: string;
+  readonly navInternship: string;
   readonly navAbout: string;
   readonly skillsTitle: string;
   readonly groupLanguages: string;
@@ -16,6 +17,8 @@ interface UiStrings {
   readonly playVideo: string;
   readonly newsTitle: string;
   readonly aboutTitle: string;
+  readonly internshipTitle: string;
+  readonly internshipTheme: string;
   readonly steamPage: string;
   readonly menu: string;
   readonly details: string;
@@ -36,6 +39,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     navGames: 'GAMES',
     navSkills: 'SKILLS',
     navNews: 'NEWS',
+    navInternship: 'INTERNSHIP',
     navAbout: 'ABOUT',
     skillsTitle: 'SKILLS',
     groupLanguages: 'LANGUAGES',
@@ -47,6 +51,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     playVideo: 'プレイ動画を再生',
     newsTitle: 'NEWS',
     aboutTitle: 'ABOUT',
+    internshipTitle: 'INTERNSHIP',
+    internshipTheme: '課題',
     steamPage: 'Steamページ',
     menu: 'メニュー',
     details: '詳細',
@@ -65,6 +71,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     navGames: 'GAMES',
     navSkills: 'SKILLS',
     navNews: 'NEWS',
+    navInternship: 'INTERNSHIP',
     navAbout: 'ABOUT',
     skillsTitle: 'SKILLS',
     groupLanguages: 'LANGUAGES',
@@ -76,6 +83,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     playVideo: 'Play gameplay video',
     newsTitle: 'NEWS',
     aboutTitle: 'ABOUT',
+    internshipTitle: 'INTERNSHIP',
+    internshipTheme: 'Challenge',
     steamPage: 'Steam Page',
     menu: 'Menu',
     details: 'Details',
@@ -94,6 +103,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     navGames: '游戏介绍',
     navSkills: '技能',
     navNews: '新闻',
+    navInternship: '实习',
     navAbout: '自我介绍',
     skillsTitle: '技能',
     groupLanguages: '编程语言',
@@ -105,6 +115,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     playVideo: '播放游戏视频',
     newsTitle: '新闻',
     aboutTitle: '自我介绍',
+    internshipTitle: '实习经历',
+    internshipTheme: '课题',
     steamPage: 'Steam页面',
     menu: '菜单',
     details: '详情',
