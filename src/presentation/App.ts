@@ -2,9 +2,11 @@ import type { GetGameCollection, GameCollection } from '@application/usecases/Ge
 import type { GetPlayerProfile } from '@application/usecases/GetPlayerProfile';
 import type { GetPlayerSkills, SkillMatrix } from '@application/usecases/GetPlayerSkills';
 import type { GetNews } from '@application/usecases/GetNews';
+import type { GetInternships } from '@application/usecases/GetInternships';
 import type { Locale } from '@application/ports/Locale';
 import type { Profile } from '@domain/entities/Profile';
 import type { NewsItem } from '@domain/entities/NewsItem';
+import type { Internship } from '@domain/entities/Internship';
 import { BootScreen } from './components/BootScreen';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -14,6 +16,7 @@ import { GamesSection } from './sections/GamesSection';
 import { SkillsSection } from './sections/SkillsSection';
 import { NewsSection } from './sections/NewsSection';
 import { AboutSection } from './sections/AboutSection';
+import { InternshipSection } from './sections/InternshipSection';
 import { setUiLocale } from './i18n/uiStrings';
 import { persistLocale } from './i18n/localePreference';
 import './styles/transition.css';
@@ -23,6 +26,7 @@ interface AppData {
   readonly profile: Profile;
   readonly skills: SkillMatrix;
   readonly news: readonly NewsItem[];
+  readonly internships: readonly Internship[];
 }
 
 /**
@@ -36,6 +40,7 @@ export class App {
     private readonly getPlayerProfile: GetPlayerProfile,
     private readonly getPlayerSkills: GetPlayerSkills,
     private readonly getNews: GetNews,
+    private readonly getInternships: GetInternships,
   ) {}
 
   async start(locale: Locale): Promise<void> {
@@ -76,16 +81,20 @@ export class App {
   }
 
   private async load(locale: Locale): Promise<AppData> {
-    const [collection, profile, skills, news] = await Promise.all([
+    const [collection, profile, skills, news, internships] = await Promise.all([
       this.getGameCollection.execute(locale),
       this.getPlayerProfile.execute(locale),
       this.getPlayerSkills.execute(locale),
       this.getNews.execute(locale),
+      this.getInternships.execute(locale),
     ]);
-    return { collection, profile, skills, news };
+    return { collection, profile, skills, news, internships };
   }
 
-  private renderAll(locale: Locale, { collection, profile, skills, news }: AppData): void {
+  private renderAll(
+    locale: Locale,
+    { collection, profile, skills, news, internships }: AppData,
+  ): void {
     setUiLocale(locale);
     document.documentElement.lang = locale;
 
@@ -146,6 +155,11 @@ export class App {
     const about = new AboutSection();
     about.render(profile);
     about.mount(main);
+
+    // インターン経験は本人の経歴なので About の直後・News の前に置く
+    const internshipSection = new InternshipSection();
+    internshipSection.render(internships);
+    internshipSection.mount(main);
 
     const newsSection = new NewsSection();
     // ニュースからも図鑑カードへ移動できるようにする(ヒーローのアイコンタップと同じ挙動)

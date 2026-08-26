@@ -12,6 +12,7 @@ export function navItems(): readonly NavItem[] {
     { label: t('navGames'), href: '#games' },
     { label: t('navSkills'), href: '#skills' },
     { label: t('navAbout'), href: '#about' },
+    { label: t('navInternship'), href: '#internship' },
     { label: t('navNews'), href: '#news' },
   ];
 }
