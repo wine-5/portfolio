@@ -1,5 +1,17 @@
 [
   {
+    "id": "kodama-cyberagent",
+    "type": "announcement",
+    "priority": "medium",
+    "publishDate": "2026-09-01",
+    "expireDate": null,
+    "title": "Added my CyberAgent internship and the game \"Kodama (working title)\"",
+    "description": "Added \"Kodama (working title)\", the 2D action game I built at CyberAgent's Proto Sprint League, to the works list, along with the internship itself in the internship section. Click to jump to the section.",
+    "icon": "",
+    "showBanner": false,
+    "link": "#internship"
+  },
+  {
     "id": "internship-section",
     "type": "announcement",
     "priority": "medium",

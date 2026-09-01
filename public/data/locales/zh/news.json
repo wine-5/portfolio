@@ -1,5 +1,17 @@
 [
   {
+    "id": "kodama-cyberagent",
+    "type": "announcement",
+    "priority": "medium",
+    "publishDate": "2026-09-01",
+    "expireDate": null,
+    "title": "新增了CyberAgent实习经历与作品《回音（暂定名）》",
+    "description": "将在株式会社CyberAgent的「Proto Sprint League」中制作的2D动作游戏《回音（暂定名）》加入作品列表，并在实习经历板块补充了该实习经历。点击可跳转至该板块。",
+    "icon": "",
+    "showBanner": false,
+    "link": "#internship"
+  },
+  {
     "id": "internship-section",
     "type": "announcement",
     "priority": "medium",
