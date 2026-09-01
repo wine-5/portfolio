@@ -19,7 +19,7 @@
       },
       {
         "title": "Echo built from arrival order, not a reverb effect",
-        "body": "Instead of faking the sound of a cave with reverb, the echo is the ripple itself reaching near tiles before far ones. Volume, pitch and stereo panning shift with distance, so you can tell which side the wall is on by sound alone"
+        "body": "Instead of faking the sound of a cave with reverb, the echo is the ripple itself reaching near tiles before far ones. Volume, pitch and stereo panning shift with distance"
       },
       {
         "title": "Prototype quality tracks how often you touch the real device",
