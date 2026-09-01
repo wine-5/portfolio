@@ -3,7 +3,7 @@
     "title": "Kodama",
     "description": "A 2D action game where you \"see\" a pitch-black cave through ripples of sound",
     "detailedFeatures": "A 2D action game for Android, built by a team of three at CyberAgent's \"Proto Sprint League\" internship. The screen is almost entirely dark, and all you can do is tap to jump. Landing sends out a ripple of sound, and only the blocks it touches light up for an instant, revealing the terrain. Each struck tile also sends back an echo delayed by its distance, so the shape of the space comes through in sound as well. The higher you fall from, the larger the ripple — so taking the risk of jumping high buys you a wider view.",
-    "myResponsibilities": "I owned everything that shapes how the game feels, plus the team's development infrastructure. The former: the ripple simulation (fall height drives light, sound and vibration together), the echo sound system, ten hand-written HLSL shaders, and an EventBus-based decoupled architecture. The latter: a \"Scene DSL\" that generates scenes from plain text to eliminate merge conflicts, and a one-shortcut pipeline from APK build to launching on a real device.",
+    "myResponsibilities": "I was in charge of the rendering and the staging around it, aiming to make the moment of landing feel fun and satisfying for the player. Since the game is set inside a cave, I also implemented the sound so that it feels like it echoes off the walls.",
     "technologies": [
       "Unity 6",
       "C#",
