@@ -14,12 +14,12 @@
     ],
     "learnings": [
       {
-        "title": "Turning scenes into text killed our merge conflicts",
-        "body": "Unity scene files become unresolvable conflicts once three people touch them. I built a round-trip tool that generates a whole scene from a custom text DSL and exports existing scenes back out, replacing the binary blob with a diffable text asset"
+        "title": "Making the ripple read as a shockwave, not a moving ring",
+        "body": "Spreading the ripple at a constant speed just looked like a ring sliding outward, so I gave it a burst of speed at the start that decays over time. In the shader I also made the wave's cross-section asymmetric — sharp on the outer edge, with a long tail on the inside — so it feels like an impact cracking out and then spreading"
       },
       {
-        "title": "Cohesive feedback comes from event design",
-        "body": "Simply putting the fall height on the landing event let the light, sound and vibration owners derive intensity from the same number with zero coordination, so all three reactions synced naturally"
+        "title": "Echo built from arrival order, not a reverb effect",
+        "body": "Instead of faking the sound of a cave with reverb, the echo is the ripple itself reaching near tiles before far ones. Volume, pitch and stereo panning shift with distance, so you can tell which side the wall is on by sound alone"
       },
       {
         "title": "Prototype quality tracks how often you touch the real device",
