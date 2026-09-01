@@ -19,7 +19,8 @@
     "images": [
       "images/game/kodama/kodama-title.png",
       "images/game/kodama/kodama-ingame1.png",
-      "images/game/kodama/kodama-ingame2.png"
+      "images/game/kodama/kodama-ingame2.png",
+      "images/game/kodama/kodama-video.mp4"
     ],
     "thumbnailImage": "images/game/kodama/kodama-title.png",
     "carouselImage": "images/game/kodama/kodama-icon.png",
