@@ -1,11 +1,44 @@
 [
   {
+    "id": "cyberagent-2026",
+    "company": "株式会社CyberAgent",
+    "period": "2026年8月22日〜8月30日（Proto Sprint League / H组）",
+    "theme": "3人团队在2天黑客松内做出全新游戏原型",
+    "summary": "制作了「用声音的波纹看见漆黑洞窟」的2D动作游戏《回音（暂定名）》。负责所有与游戏「手感」相关的部分（波纹・声音・光・震动）以及团队整体的开发基础设施。",
+    "tags": [
+      "Unity 6",
+      "URP",
+      "HLSL",
+      "Android",
+      "团队开发"
+    ],
+    "learnings": [
+      {
+        "title": "把场景变成文本，消除了合并冲突",
+        "body": "Unity的场景文件一旦3人同时修改就会产生无法解决的冲突。我制作了可从自定义DSL整体生成场景、也可将既有场景导出为文本的双向工具，把它替换成能读懂差分的文本资产"
+      },
+      {
+        "title": "演出的整体感来自事件设计",
+        "body": "只要把「落下的高度」放进落地事件中，负责光、声音、震动的人无需相互对齐就能以同一基准决定强度，三种演出自然同步"
+      },
+      {
+        "title": "真机试玩的次数决定原型的质量",
+        "body": "用一个快捷键自动完成APK构建→真机安装→启动，让团队所有人想到的调整都能立刻在真机上确认"
+      }
+    ]
+  },
+  {
     "id": "bandai-namco-studios-2026",
     "company": "万代南梦宫工作室（BANDAI NAMCO Studios）",
     "period": "2026年8月3日〜8月7日（5天）",
     "theme": "完整复刻《MAPPY》",
     "summary": "用5天时间完整体验了游戏公司现场的开发流程。使用Emscripten将C++代码编译为WebAssembly，使游戏能在浏览器中运行。",
-    "tags": ["C++", "SDL2", "Emscripten", "GitHub Actions"],
+    "tags": [
+      "C++",
+      "SDL2",
+      "Emscripten",
+      "GitHub Actions"
+    ],
     "learnings": [
       {
         "title": "main分支是需要保护的",

@@ -1,11 +1,44 @@
 [
   {
+    "id": "cyberagent-2026",
+    "company": "CyberAgent, Inc.",
+    "period": "Aug 22–30, 2026 (Proto Sprint League / Team H)",
+    "theme": "Ship a new game prototype as a team of three in a 2-day hackathon",
+    "summary": "Built \"Kodama (working title)\", a 2D action game where you see a pitch-black cave through ripples of sound. I owned everything that shapes how the game feels — ripples, sound, light, vibration — plus the team's development infrastructure.",
+    "tags": [
+      "Unity 6",
+      "URP",
+      "HLSL",
+      "Android",
+      "Team Development"
+    ],
+    "learnings": [
+      {
+        "title": "Turning scenes into text killed our merge conflicts",
+        "body": "Unity scene files become unresolvable conflicts once three people touch them. I built a round-trip tool that generates a whole scene from a custom text DSL and exports existing scenes back out, replacing the binary blob with a diffable text asset"
+      },
+      {
+        "title": "Cohesive feedback comes from event design",
+        "body": "Simply putting the fall height on the landing event let the light, sound and vibration owners derive intensity from the same number with zero coordination, so all three reactions synced naturally"
+      },
+      {
+        "title": "Prototype quality tracks how often you touch the real device",
+        "body": "I automated APK build, install and launch behind a single shortcut so every teammate could try a tweak on a real phone the moment they thought of it"
+      }
+    ]
+  },
+  {
     "id": "bandai-namco-studios-2026",
     "company": "BANDAI NAMCO Studios Inc.",
     "period": "Aug 3–7, 2026 (5 days)",
     "theme": "Full recreation of \"MAPPY\"",
     "summary": "Experienced a studio's full development flow in 5 days. Compiled C++ code to WebAssembly with Emscripten so the same game runs in the browser.",
-    "tags": ["C++", "SDL2", "Emscripten", "GitHub Actions"],
+    "tags": [
+      "C++",
+      "SDL2",
+      "Emscripten",
+      "GitHub Actions"
+    ],
     "learnings": [
       {
         "title": "The main branch is protected",
