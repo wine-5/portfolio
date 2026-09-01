@@ -1,5 +1,34 @@
 [
   {
+    "title": "こだま（仮）",
+    "description": "暗闇の洞窟を、音の波紋で「視る」2Dアクション",
+    "detailedFeatures": "サイバーエージェントのインターンシップ「プロトスプリントリーグ」で3人チーム制作したAndroid向け2Dアクションです。画面はほぼ真っ暗で、プレイヤーができるのはタップで跳ぶことだけ。着地した瞬間に音の波紋が同心円状に広がり、触れたブロックだけが一瞬光って地形が浮かび上がります。同時に、当たったマスから距離に応じて遅れて「返り音」が鳴るため、光だけでなく音でも空間の形が伝わります。高い所から落ちるほど波紋は大きく強く広がるので、「リスクを取って高く跳び、広い視界を得る」という駆け引きが成立します。エコーはリバーブで作らず、「波紋が近いマスから遠いマスへ順に届くこと自体をこだまにする」方針で実装しました。",
+    "myResponsibilities": "ゲームの「感触」に関わる部分すべてと、チーム全体の開発基盤を担当しました。具体的には、EventBusによる疎結合アーキテクチャの設計、中核メカニクスである波紋シミュレーション（落下高さに応じて光・音・振動が同時に強くなる設計）、返り音システム、HLSLシェーダー10本の自作、カメラ制御・ヒットストップ・ハプティクスなどの演出、タイトル/リザルト演出とランキングの端末保存です。開発基盤としては、シーンのコンフリクトを根本から避けるための「シーンDSL」（シーンをテキストから自動生成／既存シーンを書き出す双方向ツール）と、ショートカット一発でAPKビルドから実機インストール・起動まで行うデプロイ機構を実装し、Git運用ルールと命名規則の策定も担当しました。",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "HLSL",
+      "UniTask",
+      "New Input System",
+      "エディタ拡張"
+    ],
+    "supportedPlatforms": [
+      "Android（縦持ち・片手プレイ）"
+    ],
+    "images": [
+      "images/game/kodama/kodama-title.png",
+      "images/game/kodama/kodama-ingame1.png",
+      "images/game/kodama/kodama-ingame2.png"
+    ],
+    "thumbnailImage": "images/game/kodama/kodama-title.png",
+    "carouselImage": "images/game/kodama/kodama-icon.png",
+    "year": "3年生",
+    "category": "game",
+    "teamSize": "3人（サイバーエージェント インターンシップ）",
+    "period": "9日間（うち実装は2日間のハッカソン）"
+  },
+  {
     "title": "WIN vs MAC",
     "description": "自分のPCを武器に、Windows内部のダンジョンを攻略する3DアクションRPG",
     "detailedFeatures": "プレイヤーは Windows OS 内部のデジタル存在となり、最終ボスである MacBook の撃退を目指します。最大の特徴は「実際に動いているPCがそのままゲームに反映される」点です。タイトル画面の背景グラフは実行中PCのCPU・メモリ・ディスク使用率をリアルタイムに描画し、装備選択画面では Windows デスクトップ風UI（WebView2 + HTML/CSS/JS）から自分のPCの実ファイルを選んで装備します。選んだファイルの拡張子でステータスが変化し（.cpp ならクリティカル率、.mp4 なら弾の飛距離など）、難易度選択は UAC ダイアログ風、リザルトは勝利＝シャットダウン画面風／敗北＝ブルースクリーン風といったOS演出で統一しています。戦闘は近接コンボ・ウィンドウ投擲・溜め攻撃・弾反射を備えた3Dアクションで、敵はMac側のプロセス（Safari / Xcode）とフェーズ制のボス MacBook。敵の挙動は派生クラスではなくJSONの behaviors / animations の組み合わせで定義するデータ駆動設計にしています。設計面では Platform → Infrastructure → Game → Core のレイヤードアーキテクチャを敷き、Game層内部は ECS で構成。System間はEventBusによるイベント駆動で疎結合にし、DxLib や Windows API はインターフェース越しにしか触れない依存管理を徹底しました。",

@@ -1,5 +1,34 @@
 [
   {
+    "title": "Kodama (working title)",
+    "description": "A 2D action game where you \"see\" a pitch-black cave through ripples of sound",
+    "detailedFeatures": "A 2D action game for Android, built by a team of three at CyberAgent's \"Proto Sprint League\" internship. The screen is almost entirely dark, and the only thing the player can do is tap to jump. The moment you land, a ripple of sound spreads out in concentric circles, and only the blocks it touches light up for an instant, revealing the terrain. At the same time each struck tile sends back an \"echo\" delayed by its distance, so the shape of the space comes through in sound as well as light. The higher you fall from, the larger and stronger the ripple, which creates a real trade-off: take the risk of jumping high to gain a wider view. Rather than faking echoes with a reverb effect, the echo is the ripple itself arriving at near tiles before far ones.",
+    "myResponsibilities": "I owned everything that shapes how the game feels, plus the team's development infrastructure. That included the EventBus-based decoupled architecture, the core ripple simulation (fall height drives light, sound and vibration in sync), the echo sound system, ten hand-written HLSL shaders, camera control, hit stop and haptics, the title/result staging, and persisting the ranking on the device. On the infrastructure side I built a \"Scene DSL\" — a round-trip tool that generates scenes from plain text and exports existing scenes back out, which eliminated Unity scene merge conflicts entirely — and a one-shortcut pipeline that builds the APK, installs it on connected devices and launches it. I also wrote the team's Git workflow and naming conventions.",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "HLSL",
+      "UniTask",
+      "New Input System",
+      "Editor Tooling"
+    ],
+    "supportedPlatforms": [
+      "Android (portrait, one-handed play)"
+    ],
+    "images": [
+      "images/game/kodama/kodama-title.png",
+      "images/game/kodama/kodama-ingame1.png",
+      "images/game/kodama/kodama-ingame2.png"
+    ],
+    "thumbnailImage": "images/game/kodama/kodama-title.png",
+    "carouselImage": "images/game/kodama/kodama-icon.png",
+    "year": "3rd year",
+    "category": "game",
+    "teamSize": "3 people (CyberAgent internship)",
+    "period": "9 days (2-day hackathon for implementation)"
+  },
+  {
     "title": "WIN vs MAC",
     "description": "A 3D action RPG where you fight through a dungeon inside Windows, using your own PC as a weapon.",
     "detailedFeatures": "You play as a digital entity inside Windows, fighting your way to the final boss: a MacBook. Its defining feature is that the machine you are actually running on becomes part of the game. The title screen renders live CPU, memory and disk usage as its background graph, and the loadout screen is a Windows-desktop-style UI (WebView2 + HTML/CSS/JS) where you equip real files from your own PC. The extension of the file you pick changes your stats (.cpp raises critical rate, .mp4 extends projectile range, and so on), difficulty selection is styled as a UAC dialog, and results appear as a shutdown screen on victory or a blue screen on defeat. Combat is 3D action with melee combos, window-throwing projectiles, charged shots and deflection; enemies are Mac-side processes (Safari, Xcode) plus the phase-based MacBook boss. Enemy behaviour is data-driven — defined by combining behaviors/animations in JSON rather than by subclassing. Architecturally the project uses strict layering (Platform → Infrastructure → Game → Core) with an ECS inside the Game layer, an EventBus for loosely coupled systems, and interface-only access to DxLib and the Windows API.",
