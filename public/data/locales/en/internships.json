@@ -4,7 +4,7 @@
     "company": "CyberAgent, Inc.",
     "period": "Aug 22–30, 2026 (Proto Sprint League / Team H)",
     "theme": "Ship a new game prototype as a team of three in a 2-day hackathon",
-    "summary": "Built \"Kodama (working title)\", a 2D action game where you see a pitch-black cave through ripples of sound. I owned everything that shapes how the game feels — ripples, sound, light, vibration — plus the team's development infrastructure.",
+    "summary": "Built \"Kodama\", a 2D action game where you see a pitch-black cave through ripples of sound. I owned everything that shapes how the game feels — ripples, sound, light, vibration — plus the team's development infrastructure.",
     "tags": [
       "Unity 6",
       "URP",
