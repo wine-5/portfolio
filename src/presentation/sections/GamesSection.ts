@@ -20,14 +20,37 @@ interface FilterState {
 
 const DEFAULT_FILTER: FilterState = { category: 'all', tech: 'all', crew: 'all', status: 'all' };
 
-/** 言語ドロップダウンから除外する非言語の技術(エンジン・シェーダー等) */
-const NON_LANGUAGES: ReadonlySet<string> = new Set([
-  'Unity',
-  'Sharder',
-  'Shader',
-  'Siv3D',
-  'DxLib',
-]);
+/**
+ * LANGUAGE ドロップダウンに出すプログラミング言語(許可リスト)。
+ * エンジン・ライブラリ・マークアップ(Unity, HTML, CSS 等)は含めない
+ */
+const LANGUAGES: readonly string[] = [
+  'C',
+  'C#',
+  'C++',
+  'JavaScript',
+  'TypeScript',
+  'Python',
+  'Java',
+  'Rust',
+  'Go',
+  'Lua',
+];
+
+/**
+ * technologies の 1 項目からプログラミング言語を取り出す。
+ * 「C++20」→ C++、「HTML / CSS / JavaScript」→ JavaScript のように表記ゆれを吸収する
+ */
+function languagesOf(tech: string): readonly string[] {
+  return tech
+    .split(/[\s/,]+/)
+    .map((token) => token.replace(/^(C\+\+)\d+$/, '$1'))
+    .filter((token) => LANGUAGES.includes(token));
+}
+
+function gameLanguages(g: Game): readonly string[] {
+  return g.technologies.flatMap((tech) => [...languagesOf(tech)]);
+}
 
 const FILTERS: readonly { id: Filter; label: string }[] = [
   { id: 'all', label: 'ALL' },
@@ -50,7 +73,7 @@ const STATUSES: readonly { id: Status; label: string }[] = [
 
 function matches(g: Game, f: FilterState): boolean {
   if (f.category !== 'all' && g.category !== f.category) return false;
-  if (f.tech !== 'all' && !g.technologies.includes(f.tech)) return false;
+  if (f.tech !== 'all' && !gameLanguages(g).includes(f.tech)) return false;
   if (f.crew !== 'all') {
     const count = teamHeadcount(g);
     if (count === undefined) return false;
@@ -131,9 +154,9 @@ export class GamesSection extends View<GameCollection> {
     const featured = this.collection.featured.filter(match);
     const entries = this.collection.entries.filter(match);
     const flagshipVisible = this.collection.flagship !== undefined && match(this.collection.flagship);
-    const techs = [...new Set(this.games.flatMap((g) => [...g.technologies]))]
-      .filter((t) => !NON_LANGUAGES.has(t))
-      .sort();
+    // 実際に使っている言語だけを許可リストの順で並べる
+    const used = new Set(this.games.flatMap((g) => [...gameLanguages(g)]));
+    const techs = LANGUAGES.filter((l) => used.has(l));
     const active = activeCount(this.filter);
     const shown = featured.length + entries.length + (flagshipVisible ? 1 : 0);
 
