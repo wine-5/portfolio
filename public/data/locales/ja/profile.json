@@ -18,6 +18,7 @@
   "links": [
     { "label": "GitHub", "url": "https://github.com/wine-5" },
     { "label": "Steam", "url": "https://store.steampowered.com/search/?publisher=wine-5" },
+    { "label": "App Store", "url": "https://apps.apple.com/us/developer/yuto-imata/id6810103266" },
     { "label": "X (Twitter)", "url": "https://x.com/wine_program" },
     { "label": "UnityRoom", "url": "https://unityroom.com/users/wine-555" }
   ]
