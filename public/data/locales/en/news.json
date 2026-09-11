@@ -1,5 +1,17 @@
 [
   {
+    "id": "kodama-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-09-11",
+    "expireDate": null,
+    "title": "\"Kodama\" Now Available on the App Store",
+    "description": "\"Kodama\", the 2D action game I built at CyberAgent's Proto Sprint League, is officially released on the App Store today. Try \"seeing\" a pitch-black cave through ripples of sound on your iPhone. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/us/app/%E3%81%93%E3%81%A0%E3%81%BE/id6810103264"
+  },
+  {
     "id": "kodama-cyberagent",
     "type": "announcement",
     "priority": "medium",
