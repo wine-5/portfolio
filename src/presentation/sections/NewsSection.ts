@@ -10,9 +10,14 @@ const TYPE_LABEL: Record<NewsType, string> = {
   announcement: 'INFO',
 };
 
-/** リリース情報などを流すニュースフィード */
+/** 折りたたみ時に表示する件数(最新順の先頭から) */
+const VISIBLE_COUNT = 3;
+
+/** リリース情報などを流すニュースフィード。件数が増えても最新 3 件だけ見せ、残りは展開式にする */
 export class NewsSection extends View<readonly NewsItem[]> {
   private onSelectGame?: (gameUrl: string) => void;
+  private items: readonly NewsItem[] = [];
+  private expanded = false;
 
   constructor() {
     super('section', 'news');
@@ -25,6 +30,15 @@ export class NewsSection extends View<readonly NewsItem[]> {
   }
 
   override render(items: readonly NewsItem[]): void {
+    this.items = items;
+    this.redraw();
+  }
+
+  private redraw(): void {
+    const items = this.items;
+    const hidden = Math.max(0, items.length - VISIBLE_COUNT);
+    const shown = this.expanded ? items : items.slice(0, VISIBLE_COUNT);
+
     this.el.innerHTML = `
       <header class="news__header">
         <p class="news__kicker">// TRANSMISSION LOG</p>
@@ -32,10 +46,24 @@ export class NewsSection extends View<readonly NewsItem[]> {
       </header>
       ${
         items.length > 0
-          ? `<ol class="news__list">${items.map((n) => newsRow(n)).join('')}</ol>`
+          ? `<ol class="news__list">${shown.map((n) => newsRow(n)).join('')}</ol>`
           : '<p class="news__empty">NO SIGNAL</p>'
       }
+      ${
+        hidden > 0
+          ? `<button class="news__more" data-more aria-expanded="${this.expanded}">
+               ${this.expanded ? `▴ ${esc(t('showLess'))}` : `▾ ${esc(t('showMore'))} (+${hidden})`}
+             </button>`
+          : ''
+      }
     `;
+
+    this.el.querySelector<HTMLButtonElement>('[data-more]')?.addEventListener('click', () => {
+      this.expanded = !this.expanded;
+      this.redraw();
+      // 閉じたときにボタンが画面外へ飛ばないよう、セクション先頭へ戻す
+      if (!this.expanded) this.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 
     this.el.querySelectorAll<HTMLAnchorElement>('[data-game-url]').forEach((node) => {
       node.addEventListener('click', (e) => {
