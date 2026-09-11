@@ -29,12 +29,139 @@
   color: var(--color-text-dim);
 }
 
-/* ---- カテゴリフィルタ ---- */
-.games__filters {
+/* ---- 絞り込みツールバー(FILTER ボタン / リセット / 件数) ---- */
+.games__toolbar {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.45em 1.2em;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-cyan);
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.14), rgba(0, 229, 255, 0.03));
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  border-radius: 4px;
+  box-shadow: 0 3px 0 rgba(0, 160, 190, 0.4), 0 4px 10px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.2s;
+}
+
+.filter-toggle:hover {
+  background: rgba(0, 229, 255, 0.24);
+  transform: translateY(-1px);
+}
+
+.filter-toggle:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 160, 190, 0.45);
+}
+
+.filter-toggle--active {
+  border-color: var(--color-cyan);
+  box-shadow: 0 3px 0 rgba(0, 160, 190, 0.4), 0 0 14px rgba(0, 229, 255, 0.4);
+}
+
+.filter-toggle__badge {
+  min-width: 1.5em;
+  padding: 0 0.4em;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  line-height: 1.5em;
+  text-align: center;
+  color: #041018;
+  background: var(--color-cyan);
+  border-radius: 999px;
+}
+
+.filter-toggle__chevron {
+  transition: transform 0.2s;
+}
+
+.filter-toggle--open .filter-toggle__chevron {
+  transform: rotate(180deg);
+}
+
+.filter-reset {
+  padding: 0.45em 1em;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-magenta);
+  background: transparent;
+  border: 1px solid rgba(255, 61, 129, 0.5);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.filter-reset:hover {
+  background: rgba(255, 61, 129, 0.12);
+}
+
+.games__result {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--color-text-dim);
+}
+
+/* ---- 絞り込みパネル(FILTER ボタンで開閉) ---- */
+.games__filters {
+  display: grid;
+  gap: 0.8rem;
   margin-bottom: 2rem;
+  padding: 1rem 1.1rem;
+  background: var(--color-panel);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+/* hidden 属性を display:grid で打ち消さないようにする */
+.games__filters[hidden] {
+  display: none;
+}
+
+.games__filters--open {
+  animation: filter-panel-in 0.25s ease-out;
+}
+
+@keyframes filter-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-row__label {
+  flex: 0 0 6.5em;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--color-magenta);
 }
 
 .filter-btn {
@@ -73,7 +200,6 @@
 }
 
 .tech-select {
-  margin-left: auto;
   max-width: 100%;
   padding: 0.4em 1em;
   font-family: var(--font-ui);

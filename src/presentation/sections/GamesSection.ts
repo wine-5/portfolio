@@ -7,6 +7,18 @@ import { t } from '../i18n/uiStrings';
 import '../styles/games.css';
 
 type Filter = GameCategory | 'all';
+type Crew = 'all' | 'solo' | 'team';
+type Status = 'all' | 'released' | 'awarded';
+
+/** 絞り込みパネルの状態。全部 'all' が未絞り込み */
+interface FilterState {
+  category: Filter;
+  tech: string;
+  crew: Crew;
+  status: Status;
+}
+
+const DEFAULT_FILTER: FilterState = { category: 'all', tech: 'all', crew: 'all', status: 'all' };
 
 /** 言語ドロップダウンから除外する非言語の技術(エンジン・シェーダー等) */
 const NON_LANGUAGES: ReadonlySet<string> = new Set([
@@ -24,6 +36,36 @@ const FILTERS: readonly { id: Filter; label: string }[] = [
   { id: 'web', label: 'WEB TOOL' },
 ];
 
+const CREWS: readonly { id: Crew; label: string }[] = [
+  { id: 'all', label: 'ALL' },
+  { id: 'solo', label: 'SOLO' },
+  { id: 'team', label: 'TEAM' },
+];
+
+const STATUSES: readonly { id: Status; label: string }[] = [
+  { id: 'all', label: 'ALL' },
+  { id: 'released', label: 'RELEASED' },
+  { id: 'awarded', label: 'AWARDED' },
+];
+
+function matches(g: Game, f: FilterState): boolean {
+  if (f.category !== 'all' && g.category !== f.category) return false;
+  if (f.tech !== 'all' && !g.technologies.includes(f.tech)) return false;
+  if (f.crew !== 'all') {
+    const count = teamHeadcount(g);
+    if (count === undefined) return false;
+    if (f.crew === 'solo' ? count !== 1 : count === 1) return false;
+  }
+  if (f.status === 'released' && g.release.kind !== 'playable') return false;
+  if (f.status === 'awarded' && !g.award) return false;
+  return true;
+}
+
+/** 'all' 以外に設定されている条件の数(FILTER ボタンのバッジ表示用) */
+function activeCount(f: FilterState): number {
+  return (Object.keys(f) as (keyof FilterState)[]).filter((k) => f[k] !== 'all').length;
+}
+
 /** モンスター図鑑風の Games セクション(近未来 HUD デザイン) */
 export class GamesSection extends View<GameCollection> {
   private readonly modal = new GameDetailModal();
@@ -32,8 +74,9 @@ export class GamesSection extends View<GameCollection> {
   private readonly flagshipSlot = document.createElement('div');
   private collection: GameCollection = { featured: [], entries: [] };
   private games: readonly Game[] = [];
-  private filter: Filter = 'all';
-  private tech = 'all';
+  private filter: FilterState = { ...DEFAULT_FILTER };
+  /** 絞り込みパネルの開閉。条件が多いので普段は畳んでおく */
+  private panelOpen = false;
 
   constructor() {
     super('section', 'games');
@@ -64,13 +107,9 @@ export class GamesSection extends View<GameCollection> {
     const game = this.games.find((g) => g.entryNo === entryNo);
     if (!game) return;
 
-    // 絞り込みで対象カードが非表示なら ALL に戻して描画し直す
-    const visible =
-      (this.filter === 'all' || game.category === this.filter) &&
-      (this.tech === 'all' || game.technologies.includes(this.tech));
-    if (!visible) {
-      this.filter = 'all';
-      this.tech = 'all';
+    // 絞り込みで対象カードが非表示なら条件を全解除して描画し直す
+    if (!matches(game, this.filter)) {
+      this.filter = { ...DEFAULT_FILTER };
       this.redraw();
     }
 
@@ -88,15 +127,15 @@ export class GamesSection extends View<GameCollection> {
   }
 
   private redraw(): void {
-    const match = (g: Game): boolean =>
-      (this.filter === 'all' || g.category === this.filter) &&
-      (this.tech === 'all' || g.technologies.includes(this.tech));
+    const match = (g: Game): boolean => matches(g, this.filter);
     const featured = this.collection.featured.filter(match);
     const entries = this.collection.entries.filter(match);
     const flagshipVisible = this.collection.flagship !== undefined && match(this.collection.flagship);
     const techs = [...new Set(this.games.flatMap((g) => [...g.technologies]))]
       .filter((t) => !NON_LANGUAGES.has(t))
       .sort();
+    const active = activeCount(this.filter);
+    const shown = featured.length + entries.length + (flagshipVisible ? 1 : 0);
 
     this.el.innerHTML = `
       <header class="games__header">
@@ -104,23 +143,33 @@ export class GamesSection extends View<GameCollection> {
         <h2 class="games__title">${esc(t('gamesTitle'))}</h2>
         <p class="games__count">${esc(t('registered'))}: ${String(this.games.length).padStart(3, '0')}</p>
       </header>
-      <nav class="games__filters" aria-label="${esc(t('categoryFilter'))}">
-        ${FILTERS.map(
-          (f) => `
-            <button class="filter-btn${this.filter === f.id ? ' filter-btn--active' : ''}" data-filter="${f.id}">
-              ${f.label}
-            </button>`,
-        ).join('')}
-        <select class="tech-select" data-tech aria-label="${esc(t('languageFilter'))}">
-          <option value="all">ALL LANGUAGES</option>
-          ${techs
-            .map(
-              (t) =>
-                `<option value="${esc(t)}"${this.tech === t ? ' selected' : ''}>${esc(t)}</option>`,
-            )
-            .join('')}
-        </select>
-      </nav>
+      <div class="games__toolbar">
+        <button class="filter-toggle${this.panelOpen ? ' filter-toggle--open' : ''}${active > 0 ? ' filter-toggle--active' : ''}" data-panel-toggle aria-expanded="${this.panelOpen}" aria-controls="games-filter-panel">
+          <span class="filter-toggle__icon" aria-hidden="true">⚙</span>
+          <span>${esc(t('filter'))}</span>
+          ${active > 0 ? `<span class="filter-toggle__badge">${active}</span>` : ''}
+          <span class="filter-toggle__chevron" aria-hidden="true">▾</span>
+        </button>
+        ${active > 0 ? `<button class="filter-reset" data-reset>✕ ${esc(t('reset'))}</button>` : ''}
+        <span class="games__result">${String(shown).padStart(3, '0')} / ${String(this.games.length).padStart(3, '0')}</span>
+      </div>
+      <div class="games__filters${this.panelOpen ? ' games__filters--open' : ''}" id="games-filter-panel"${this.panelOpen ? '' : ' hidden'}>
+        ${filterRow('CATEGORY', t('categoryFilter'), 'category', FILTERS, this.filter.category)}
+        ${filterRow('CREW', 'CREW', 'crew', CREWS, this.filter.crew)}
+        ${filterRow('STATUS', 'STATUS', 'status', STATUSES, this.filter.status)}
+        <div class="filter-row">
+          <span class="filter-row__label">LANGUAGE</span>
+          <select class="tech-select" data-tech aria-label="${esc(t('languageFilter'))}">
+            <option value="all">ALL LANGUAGES</option>
+            ${techs
+              .map(
+                (t) =>
+                  `<option value="${esc(t)}"${this.filter.tech === t ? ' selected' : ''}>${esc(t)}</option>`,
+              )
+              .join('')}
+          </select>
+        </div>
+      </div>
       ${featured.length > 0 ? `<div class="games__featured">${featured.map((g) => featuredCard(g)).join('')}</div>` : ''}
       <div data-flagship-slot></div>
       ${
@@ -137,15 +186,26 @@ export class GamesSection extends View<GameCollection> {
     this.el.querySelector('[data-flagship-slot]')?.replaceWith(this.flagshipSlot);
     this.flagshipSlot.hidden = !flagshipVisible;
 
+    this.el.querySelector<HTMLButtonElement>('[data-panel-toggle]')?.addEventListener('click', () => {
+      this.panelOpen = !this.panelOpen;
+      this.redraw();
+    });
+
+    this.el.querySelector<HTMLButtonElement>('[data-reset]')?.addEventListener('click', () => {
+      this.filter = { ...DEFAULT_FILTER };
+      this.redraw();
+    });
+
     this.el.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        this.filter = btn.dataset['filter'] as Filter;
+        const key = btn.dataset['key'] as 'category' | 'crew' | 'status';
+        this.filter = { ...this.filter, [key]: btn.dataset['filter'] };
         this.redraw();
       });
     });
 
     this.el.querySelector<HTMLSelectElement>('[data-tech]')?.addEventListener('change', (e) => {
-      this.tech = (e.target as HTMLSelectElement).value;
+      this.filter = { ...this.filter, tech: (e.target as HTMLSelectElement).value };
       this.redraw();
     });
 
@@ -159,6 +219,26 @@ export class GamesSection extends View<GameCollection> {
       });
     });
   }
+}
+
+/** 絞り込みパネルの 1 行(見出し + トグルボタン群) */
+function filterRow<T extends string>(
+  label: string,
+  ariaLabel: string,
+  key: keyof FilterState,
+  options: readonly { id: T; label: string }[],
+  current: T,
+): string {
+  return `
+    <div class="filter-row" role="group" aria-label="${esc(ariaLabel)}">
+      <span class="filter-row__label">${label}</span>
+      ${options
+        .map(
+          (o) =>
+            `<button class="filter-btn${current === o.id ? ' filter-btn--active' : ''}" data-filter="${o.id}" data-key="${key}">${o.label}</button>`,
+        )
+        .join('')}
+    </div>`;
 }
 
 /** 個人制作かチーム制作かがひと目で分かるチップ(チームは人数付き) */
