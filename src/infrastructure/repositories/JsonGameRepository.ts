@@ -46,6 +46,18 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
   },
 };
 
+/**
+ * githubUrl を持たない作品(こだま等)向け。install/playUrl がストアの商品ページなら
+ * FEATURED 扱いにしてストアバッジを付ける。それ以外は undefined(通常エントリ)
+ */
+function storeRelease(dto: ProjectDto): ReleaseState | undefined {
+  const url = dto.install ?? dto.playUrl;
+  if (!url) return undefined;
+  if (url.startsWith('https://apps.apple.com/')) return { kind: 'playable', url, store: 'app-store' };
+  if (url.startsWith('https://store.steampowered.com/')) return { kind: 'playable', url, store: 'steam' };
+  return undefined;
+}
+
 export class JsonGameRepository implements GameRepository {
   constructor(private readonly baseUrl: string) {}
 
@@ -60,7 +72,8 @@ export class JsonGameRepository implements GameRepository {
   }
 
   private toGame(dto: ProjectDto, entryNo: number): Game {
-    const featuredRelease = dto.githubUrl ? FEATURED_RELEASE[dto.githubUrl] : undefined;
+    const featuredRelease =
+      (dto.githubUrl ? FEATURED_RELEASE[dto.githubUrl] : undefined) ?? storeRelease(dto);
     const release: ReleaseState =
       featuredRelease ??
       (dto.install || dto.playUrl
