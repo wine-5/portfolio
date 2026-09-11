@@ -38,9 +38,19 @@ export class SkillsSection extends View<SkillMatrix> {
         <p class="skills__kicker">// SKILL MATRIX</p>
         <h2 class="skills__title">${esc(t('skillsTitle'))}</h2>
       </header>
-      ${group(t('groupLanguages'), matrix.languages, this.titleOf)}
-      ${group(t('groupTools'), matrix.tools, this.titleOf)}
+      ${group('languages', t('groupLanguages'), matrix.languages, this.titleOf, true)}
+      ${group('tools', t('groupTools'), matrix.tools, this.titleOf, false)}
     `;
+
+    // グループ全体の折りたたみ(カード数が多いので、見たいグループだけ開ける)
+    this.el.querySelectorAll<HTMLButtonElement>('[data-group-toggle]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const wrap = btn.closest('.skills__section');
+        if (!wrap) return;
+        const open = wrap.classList.toggle('skills__section--open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
 
     // 詳細の開閉
     this.el.querySelectorAll<HTMLButtonElement>('[data-toggle]').forEach((btn) => {
@@ -81,17 +91,29 @@ export class SkillsSection extends View<SkillMatrix> {
   }
 }
 
+/** 折りたたみ可能なグループ。見出しがトグルで、閉じている間はカードを描画したまま隠す */
 function group(
+  id: string,
   label: string,
   skills: readonly Skill[],
   titleOf: (url: string) => string,
+  openByDefault: boolean,
 ): string {
   if (skills.length === 0) return '';
+  const panelId = `skills-panel-${id}`;
   return `
-    <h3 class="skills__group">${esc(label)}</h3>
-    <ul class="skills__grid">
-      ${skills.map((s) => skillCard(s, titleOf)).join('')}
-    </ul>`;
+    <div class="skills__section${openByDefault ? ' skills__section--open' : ''}">
+      <h3 class="skills__group">
+        <button class="skills__group-toggle" data-group-toggle aria-expanded="${openByDefault}" aria-controls="${panelId}">
+          <span class="skills__group-label">${esc(label)}</span>
+          <span class="skills__group-count">${String(skills.length).padStart(2, '0')}</span>
+          <span class="skills__group-chevron" aria-hidden="true">▾</span>
+        </button>
+      </h3>
+      <ul class="skills__grid" id="${panelId}">
+        ${skills.map((s) => skillCard(s, titleOf)).join('')}
+      </ul>
+    </div>`;
 }
 
 function skillCard(skill: Skill, titleOf: (url: string) => string): string {

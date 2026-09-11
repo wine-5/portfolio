@@ -21,15 +21,66 @@
   text-shadow: var(--glow-cyan);
 }
 
+/* ---- 折りたたみグループ ---- */
+.skills__section {
+  margin-top: 1.4rem;
+}
+
 .skills__group {
-  margin: 1.8rem 0 0.9rem;
+  margin: 0 0 0.9rem;
+  font-size: 1rem;
+}
+
+.skills__group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  width: 100%;
+  padding: 0.55em 0.9em;
   font-family: var(--font-ui);
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.3em;
+  text-align: left;
   color: var(--color-cyan);
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.12), rgba(0, 229, 255, 0.02));
+  border: 1px solid rgba(0, 229, 255, 0.25);
   border-left: 3px solid var(--color-cyan);
-  padding-left: 0.7em;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.skills__group-toggle:hover {
+  background: rgba(0, 229, 255, 0.18);
+  box-shadow: var(--glow-cyan);
+}
+
+.skills__group-label {
+  flex: 1;
+}
+
+.skills__group-count {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+}
+
+.skills__group-chevron {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.skills__section--open .skills__group-chevron {
+  transform: rotate(180deg);
+}
+
+.skills__section:not(.skills__section--open) .skills__grid {
+  display: none;
+}
+
+.skills__section--open .skills__grid {
+  animation: skill-detail-in 0.25s ease-out;
 }
 
 .skills__grid {
