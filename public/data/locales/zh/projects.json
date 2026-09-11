@@ -2,7 +2,7 @@
   {
     "title": "回音",
     "description": "用声音的波纹「看见」漆黑洞窟的2D动作游戏",
-    "detailedFeatures": "在株式会社CyberAgent实习项目「Proto Sprint League」中由3人团队制作的Android 2D动作游戏。画面几乎全黑，玩家能做的只有点击跳跃。落地的瞬间声音的波纹会扩散开来，只有被触碰到的方块会瞬间发光，让地形浮现。",
+    "detailedFeatures": "在株式会社CyberAgent实习项目「Proto Sprint League」中由3人团队制作的iOS 2D动作游戏。画面几乎全黑，玩家能做的只有点击跳跃。落地的瞬间声音的波纹会扩散开来，只有被触碰到的方块会瞬间发光，让地形浮现。",
     "myResponsibilities": "我负责了渲染及其周边的演出效果，目标是让玩家觉得「落地的瞬间」有趣、爽快。另外，由于设定是身处洞窟之中，我也将声音实现成仿佛在回响一般。",
     "technologies": [
       "Unity 6",
@@ -14,7 +14,7 @@
       "编辑器扩展"
     ],
     "supportedPlatforms": [
-      "Android（竖屏・单手游玩）"
+      "iOS（竖屏・单手游玩）"
     ],
     "images": [
       "images/game/kodama/kodama-title.png",
