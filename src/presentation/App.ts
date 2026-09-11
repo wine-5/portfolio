@@ -138,9 +138,12 @@ export class App {
 
     games.mount(main);
 
-    // githubUrl から作品を引く(Skills/News からのジャンプに共用)
+    // githubUrl から作品を引く(Skills/News からのジャンプに共用)。
+    // リポジトリ非公開の作品(こだま等)はストアの商品ページ URL でも引けるようにする
     const focusByGithubUrl = (githubUrl: string): void => {
-      const game = allGames.find((g) => g.githubUrl === githubUrl);
+      const game = allGames.find(
+        (g) => g.githubUrl === githubUrl || (g.release.kind === 'playable' && g.release.url === githubUrl),
+      );
       if (game) focusEntry(game.entryNo);
     };
 
