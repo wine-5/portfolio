@@ -27,6 +27,8 @@ interface UiStrings {
   readonly responsibilities: string;
   readonly close: string;
   readonly privacyPolicy: string;
+  readonly filter: string;
+  readonly reset: string;
   readonly categoryFilter: string;
   readonly languageFilter: string;
   readonly switchLanguage: string;
@@ -61,6 +63,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     responsibilities: '担当',
     close: '閉じる',
     privacyPolicy: 'プライバシーポリシー',
+    filter: '絞り込み',
+    reset: 'リセット',
     categoryFilter: 'カテゴリ絞り込み',
     languageFilter: '言語で絞り込み',
     switchLanguage: '言語切り替え',
@@ -93,6 +97,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     responsibilities: 'My Role',
     close: 'Close',
     privacyPolicy: 'Privacy Policy',
+    filter: 'Filter',
+    reset: 'Reset',
     categoryFilter: 'Filter by category',
     languageFilter: 'Filter by language',
     switchLanguage: 'Switch language',
@@ -125,6 +131,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     responsibilities: '负责内容',
     close: '关闭',
     privacyPolicy: '隐私政策',
+    filter: '筛选',
+    reset: '重置',
     categoryFilter: '按类别筛选',
     languageFilter: '按语言筛选',
     switchLanguage: '切换语言',
