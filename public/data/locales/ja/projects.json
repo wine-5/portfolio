@@ -313,28 +313,33 @@
     "period": "3日間"
   },
   {
-    "title": "シン層シン理 地雷ちゃん",
-    "description": "バンダイナムコスタジオ杯で行われた２週間のゲームジャムの作品",
-    "detailedFeatures": "プログラマー以外にデザイナー、プランナー、サウンドの人などたくさんの職種の方と一緒に作り上げたゲームです。",
+    "title": "病み菌少女 地雷ちゃん",
+    "description": "バンダイナムコスタジオ杯から生まれた2Dワイヤーアクション。ブラッシュアップを重ねてSteamへ",
+    "detailedFeatures": "バンダイナムコスタジオ杯(2週間のゲームジャム)で制作した「シン層シン理 地雷ちゃん」をブラッシュアップし、Steamでのリリースに向けて開発中の2Dワイヤーアクションです。\n\nユメミちゃんを操作し、ワイヤーで敵を倒したり足場に飛び移ったりしながらゴールを目指します。全エリアを攻略して、世界からの脱出を目指しましょう。\n\n【ゲームシステム】\n各エリアは攻略メインのアクションパートと、それに沿ったストーリーパートで構成。攻略を進めるほど世界の真実に近づいていくノベル要素があり、世界観をより深く楽しめます。\n\n【ストーリー】\n目を覚ますとそこは悪夢のような世界。記憶を失った地雷系少女ユメミの前に現れたのは、ぬいぐるみのような姿をした謎の存在リスカ。元の世界へ戻るには深層心理に潜むボスを倒し、病み菌を回収しなければならない。ユメミはチョーカーのワイヤーを頼りに、回収と脱出を目指す。",
     "myResponsibilities": "ステージの設計から実装、ボスの技をいくつか実装",
     "technologies": [
       "C++",
       "Siv3D"
     ],
     "supportedPlatforms": [
-      "PCのみ"
+      "Windows（Steam）"
     ],
     "images": [
-      "images/game/zirai-tyan/zirai-icon.png",
-      "images/game/zirai-tyan/zirai-movie.mp4"
+      "images/game/zirai-tyan/zirai-title.png",
+      "images/game/zirai-tyan/zirai-home.png",
+      "images/game/zirai-tyan/zirai-ingame1.png",
+      "images/game/zirai-tyan/zirai-ingame2.png",
+      "images/game/zirai-tyan/zirai-ingame3.png",
+      "images/game/zirai-tyan/zirai-config.png",
+      "images/game/zirai-tyan/zirai-video.mp4"
     ],
-    "thumbnailImage": "images/game/zirai-tyan/zirai-icon.png",
-    "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
+    "thumbnailImage": "images/game/zirai-tyan/zirai-title.png",
     "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
     "year": "2年次",
     "category": "game",
     "teamSize": "10人",
-    "period": "2週間"
+    "period": "2週間",
+    "carouselImage": "images/game/zirai-tyan/zirai-icon.png"
   },
   {
     "title": "たかし、人生ベット中",

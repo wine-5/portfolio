@@ -313,28 +313,33 @@
     "period": "3天"
   },
   {
-    "title": "深层深理 地雷酱",
-    "description": "万代南梦宫工作室杯为期2周的Game Jam作品",
-    "detailedFeatures": "这是与程序员以外的设计师、策划、音响等各种职业的人员共同制作的游戏。",
+    "title": "病菌少女 地雷酱",
+    "description": "诞生于万代南梦宫工作室杯的2D钢索动作游戏，经过反复打磨后即将登陆Steam",
+    "detailedFeatures": "本作是在万代南梦宫工作室杯（为期2周的Game Jam）中制作的《深层深理 地雷酱》的打磨升级版，正朝着Steam发售进行开发。\n\n操作梦美，运用钢索击败敌人、飞跃平台，以到达终点为目标。攻略所有区域，逃出这个世界吧。\n\n【游戏系统】\n每个区域由以攻略为主的动作部分和与之对应的剧情部分构成。随着攻略推进，视觉小说式的剧情会逐渐揭开这个世界的真相，让你更深入地享受世界观。\n\n【故事】\n醒来时，眼前是一个如同噩梦般的世界。失去记忆的地雷系少女梦美面前，出现了外形如同布偶的神秘存在莉丝卡。要回到原来的世界，就必须击败潜藏在深层心理中的Boss并回收病菌。梦美依靠项圈上的钢索，踏上回收与逃脱之路。",
     "myResponsibilities": "关卡设计与实现，实现了几个Boss技能",
     "technologies": [
       "C++",
       "Siv3D"
     ],
     "supportedPlatforms": [
-      "仅限PC"
+      "Windows（Steam）"
     ],
     "images": [
-      "images/game/zirai-tyan/zirai-icon.png",
-      "images/game/zirai-tyan/zirai-movie.mp4"
+      "images/game/zirai-tyan/zirai-title.png",
+      "images/game/zirai-tyan/zirai-home.png",
+      "images/game/zirai-tyan/zirai-ingame1.png",
+      "images/game/zirai-tyan/zirai-ingame2.png",
+      "images/game/zirai-tyan/zirai-ingame3.png",
+      "images/game/zirai-tyan/zirai-config.png",
+      "images/game/zirai-tyan/zirai-video.mp4"
     ],
-    "thumbnailImage": "images/game/zirai-tyan/zirai-icon.png",
-    "playUrl": "https://drive.google.com/file/d/1Sh76_mSJL6uqylhps6pRVFh3loyaQiMV/view?usp=sharing",
+    "thumbnailImage": "images/game/zirai-tyan/zirai-title.png",
     "githubUrl": "https://github.com/Allow-hub/BannamJamTest",
     "year": "二年级",
     "category": "game",
     "teamSize": "10人",
-    "period": "2周"
+    "period": "2周",
+    "carouselImage": "images/game/zirai-tyan/zirai-icon.png"
   },
   {
     "title": "たかし、人生ベット中",
