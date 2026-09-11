@@ -12,6 +12,18 @@
     "gameUrl": "https://apps.apple.com/us/app/%E3%81%93%E3%81%A0%E3%81%BE/id6810103264"
   },
   {
+    "id": "jirai-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-09-03",
+    "expireDate": null,
+    "title": "《病菌少女 地雷酱》Steam商店页面已公开",
+    "description": "由万代南梦宫工作室杯作品打磨而成的2D钢索动作游戏《病菌少女 地雷酱》的Steam商店页面已公开。目前正在筹备发售，欢迎加入愿望单。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": false,
+    "gameUrl": "https://github.com/Allow-hub/BannamJamTest"
+  },
+  {
     "id": "kodama-cyberagent",
     "type": "announcement",
     "priority": "medium",
