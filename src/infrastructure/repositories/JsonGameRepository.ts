@@ -44,6 +44,12 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
     store: 'steam',
     url: 'https://store.steampowered.com/app/4841000/_/',
   },
+  // 病み菌少女 地雷ちゃん = Steam ストアページ公開済み・未リリース(COMING SOON でウィッシュリストへ誘導)
+  'https://github.com/Allow-hub/BannamJamTest': {
+    kind: 'coming-soon',
+    store: 'steam',
+    url: 'https://store.steampowered.com/app/4190040/_/',
+  },
 };
 
 /**
