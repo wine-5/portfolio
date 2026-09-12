@@ -109,12 +109,42 @@
 
 .skill-card__head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
 }
 
+/* ロゴタイル。ライトテーマでも白ロゴが沈まないよう、地は常に暗色で固定する */
+.skill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.1rem;
+  height: 2.1rem;
+  background: rgba(5, 10, 25, 0.92);
+  border: 1px solid var(--color-line);
+  border-radius: 7px;
+}
+
+.skill-icon .icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  vertical-align: 0;
+  color: #e8f1ff;
+}
+
+/* 素材がないスキルは頭文字タイルで代用する */
+.skill-icon--text {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #00e5ff;
+}
+
 .skill-card__name {
+  flex: 1;
   margin: 0;
   font-family: var(--font-ui);
   font-size: 1.1rem;
