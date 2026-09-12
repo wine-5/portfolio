@@ -11,10 +11,10 @@ import type { Store } from '@domain/entities/Game';
 
 /**
  * images/icons/*.webp を 1em 角のアイコンとして埋め込む。
- * 白一色のロゴ(GitHub / Steam / Unity)は背景の明暗で見えなくなるため、
+ * 単色のロゴ(GitHub / Steam / Unity / X)は背景の明暗で見えなくなるため、
  * 画像をマスクにして文字色(currentColor)で塗る。それ以外はそのまま画像で出す。
  */
-const MONO_ICONS = new Set(['github', 'steam', 'unity']);
+const MONO_ICONS = new Set(['github', 'steam', 'unity', 'x']);
 
 export function icon(name: string, extraClass = ''): string {
   const url = asset(`images/icons/${name}.webp`);
@@ -37,9 +37,7 @@ export function linkIcon(url: string): string {
   if (url.includes('steampowered.com')) return `${icon('steam')} `;
   if (url.includes('apps.apple.com')) return `${icon('app-store')} `;
   if (url.includes('unityroom.com')) return `${icon('unityroom')} `;
-  // 手持ちの素材にないものは Font Awesome のブランドアイコンで補う
-  if (url.includes('x.com') || url.includes('twitter.com'))
-    return '<i class="fa-brands fa-x-twitter" aria-hidden="true"></i> ';
+  if (url.includes('x.com') || url.includes('twitter.com')) return `${icon('x')} `;
   return '';
 }
 
