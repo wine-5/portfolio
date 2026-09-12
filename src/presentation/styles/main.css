@@ -445,6 +445,23 @@ img {
   box-shadow: 0 1px 0 #0092b0, 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
+/* ---- ブランドアイコン(ボタン/リンクの文字の左に添える) ---- */
+.icon {
+  display: inline-block;
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+  object-fit: contain;
+}
+
+/* 白一色のロゴは背景が明るいと消えるので、画像をマスクにして文字色で塗る */
+.icon--mono {
+  background-color: currentColor;
+  -webkit-mask: var(--icon-url) center / contain no-repeat;
+  mask: var(--icon-url) center / contain no-repeat;
+}
+
 .badge {
   display: inline-block;
   padding: 0.2em 0.9em;

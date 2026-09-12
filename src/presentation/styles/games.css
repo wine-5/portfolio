@@ -556,7 +556,9 @@
 
 /* ---- 配信ストアのチップ ---- */
 .store-chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
   padding: 0.25em 0.9em;
   font-family: var(--font-ui);
   font-size: 0.78rem;
@@ -569,6 +571,12 @@
   background: #0a84ff;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 6px;
+}
+
+/* App Store のロゴタイルは地色と同系の青なので、白い縁で切り分ける */
+.store-chip--app .icon {
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
 }
 
 .store-chip--steam {

@@ -1,7 +1,7 @@
 import type { Skill } from '@domain/entities/Skill';
 import type { SkillMatrix } from '@application/usecases/GetPlayerSkills';
 import { View } from '../components/View';
-import { esc } from '../util/html';
+import { esc, skillIcon } from '../util/html';
 import { t, formatExperience } from '../i18n/uiStrings';
 import '../styles/skills.css';
 
@@ -123,6 +123,7 @@ function skillCard(skill: Skill, titleOf: (url: string) => string): string {
   return `
     <li class="skill-card">
       <div class="skill-card__head">
+        ${skillIcon(skill.name)}
         <h4 class="skill-card__name">${esc(skill.name)}</h4>
         <span class="skill-card__level">Lv.${skill.level}</span>
       </div>
