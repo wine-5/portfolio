@@ -11,10 +11,10 @@ import type { Store } from '@domain/entities/Game';
 
 /**
  * images/icons/*.webp を 1em 角のアイコンとして埋め込む。
- * 単色のロゴ(GitHub / Steam / Unity / X)は背景の明暗で見えなくなるため、
+ * 単色のロゴ(GitHub / Steam / Unity / X / Unreal)は背景の明暗で見えなくなるため、
  * 画像をマスクにして文字色(currentColor)で塗る。それ以外はそのまま画像で出す。
  */
-const MONO_ICONS = new Set(['github', 'steam', 'unity', 'x']);
+const MONO_ICONS = new Set(['github', 'steam', 'unity', 'x', 'unreal']);
 
 export function icon(name: string, extraClass = ''): string {
   const url = asset(`images/icons/${name}.webp`);
@@ -52,6 +52,15 @@ const SKILL_ICONS: Readonly<Record<string, string>> = {
   Git: 'git',
   'GitHub Actions': 'github',
   Blender: 'blender',
+  C: 'c',
+  JavaScript: 'javascript',
+  TypeScript: 'typescript',
+  PHP: 'php',
+  Python: 'python',
+  Siv3D: 'siv3d',
+  'Unreal Engine 5': 'unreal',
+  CMake: 'cmake',
+  Docker: 'docker',
 };
 
 /** スキルカードの見出しアイコン。素材がないスキルは頭文字のタイルで代用する */
