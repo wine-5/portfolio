@@ -22,6 +22,7 @@
     ],
     "thumbnailImage": "images/game/kiwa/kiwa-title.png",
     "carouselImage": "images/game/kiwa/kiwa-icon.png",
+    "githubUrl": "https://github.com/wine-5/kasa-gamejam",
     "year": "3年次",
     "category": "game",
     "teamSize": "個人",
