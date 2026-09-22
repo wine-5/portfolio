@@ -315,11 +315,15 @@
   {
     "title": "Yamikin Girl Jirai-chan",
     "description": "A 2D wire-action game born at the Bandai Namco Studios Cup, polished up and heading to Steam",
-    "detailedFeatures": "A 2D wire-action game in development for Steam, polished up from \"Shin-layer Shin-ri Mine-chan\", the entry we built at the two-week Bandai Namco Studios Cup game jam.\n\nControl Yumemi and make full use of her wire to defeat enemies and swing between platforms on the way to each goal. Clear every area and escape from this world.\n\n[Game System]\nEach area pairs an action part focused on clearing the stage with a story part that follows it. As you progress, novel-style scenes gradually bring you closer to the truth of this world, so you can enjoy the setting more deeply.\n\n[Story]\nYumemi, an amnesiac \"jirai-kei\" girl, wakes up in a nightmarish world. Before her appears Risuka, a mysterious being that looks like a stuffed toy. To return home she must defeat the bosses lurking in the depths of the psyche and collect the \"yami-kin\". Relying on the wire in her choker, Yumemi sets out to collect them all and escape.",
-    "myResponsibilities": "Stage design and implementation, implementation of several boss skills",
+    "detailedFeatures": "A 2D wire-action game in development for Steam. We rebuilt \"Shin-layer Shin-ri Mine-chan\", the entry from the two-week Bandai Namco Studios Cup game jam, moving it from C++/Siv3D to Unity 6.\n\nControl Yumemi and make full use of her wire to defeat enemies and swing between platforms on the way to each goal. Clear every area and escape from this world.\n\n[Game System]\nEach area pairs an action part focused on clearing the stage with a story part that follows it. As you progress, novel-style scenes gradually bring you closer to the truth of this world, so you can enjoy the setting more deeply.\n\n[Story]\nYumemi, an amnesiac \"jirai-kei\" girl, wakes up in a nightmarish world. Before her appears Risuka, a mysterious being that looks like a stuffed toy. To return home she must defeat the bosses lurking in the depths of the psyche and collect the \"yami-kin\". Relying on the wire in her choker, Yumemi sets out to collect them all and escape.\n\n[Technical Work on My Parts]\n- Block gimmicks: a single MonoBehaviour holds a list of IBlockAbility, so moving, damaging, paired and wire-pullable blocks are composed instead of subclassed and can be mass-produced just by combining prefabs.\n- Config screen: split into Presenter / View and kept alive in the manager scene, decoupling \"pause\" from \"open settings\". Values persist to PlayerPrefs, covering volume, graphics, aim assist and gamepad sensitivity in one place.\n- Camera: unified follow, shake and zoom behind an ICameraEffect interface on Cinemachine 3; hits trigger shake through the EventBus, and FOV is interpolated with the player's speed while swinging to sell the sense of momentum.",
+    "myResponsibilities": "Design and implementation of the block gimmicks (moving, damaging, paired and wire-pullable blocks), the config screen (saving and applying volume, graphics and assist settings), and the Cinemachine-based camera (follow, shake, zoom, speed-linked FOV)",
     "technologies": [
-      "C++",
-      "Siv3D"
+      "Unity 6",
+      "C#",
+      "URP",
+      "Cinemachine",
+      "UniTask",
+      "Spine"
     ],
     "supportedPlatforms": [
       "Windows (Steam)"
@@ -338,7 +342,7 @@
     "year": "2nd Year",
     "category": "game",
     "teamSize": "10 people",
-    "period": "2 weeks",
+    "period": "2 weeks + ongoing",
     "carouselImage": "images/game/zirai-tyan/zirai-icon.png"
   },
   {
