@@ -12,7 +12,8 @@
       "Python（アセット生成）"
     ],
     "supportedPlatforms": [
-      "PCのみ（Windows）"
+      "PCのみ（Windows）",
+      "Zipをダウンロードしてexeを起動"
     ],
     "images": [
       "images/game/kiwa/kiwa-title.png",
@@ -23,6 +24,7 @@
     "thumbnailImage": "images/game/kiwa/kiwa-title.png",
     "carouselImage": "images/game/kiwa/kiwa-icon.png",
     "githubUrl": "https://github.com/wine-5/kasa-gamejam",
+    "downloadUrl": "https://wine-5.github.io/portfolio/downloads/Kiwa_Windows.zip",
     "year": "3年次",
     "category": "game",
     "teamSize": "個人",
