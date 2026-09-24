@@ -6,11 +6,7 @@
     "myResponsibilities": "すべて担当",
     "technologies": [
       "Unity 6",
-      "C#",
-      "URP",
-      "Physics2D",
-      "エディタ拡張",
-      "Python（サウンド・アイコン生成）"
+      "C#"
     ],
     "supportedPlatforms": [
       "PCのみ"
