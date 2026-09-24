@@ -3,7 +3,7 @@
     "title": "Mirror Luka",
     "description": "Get reflected and you're pulled into the mirror. A top-down stealth puzzle about sneaking through a cursed mansion",
     "detailedFeatures": "A top-down stealth puzzle made for a one-day game jam with the theme \"utsuru\" (to be reflected).\n\nIf a mirror reflects you, you get pulled into the world inside it. Luka, a girl who wandered into an old mansion deep in the forest on a dare, finds that every mirror in the house is cursed to swallow whatever it reflects.\n\nIn front of each mirror, a faintly glowing \"reflection zone\" lies on the floor. Avoid it and make your way to the exit door! Hide behind pillars, bookshelves or sofas and the mirrors can't see you.",
-    "myResponsibilities": "A solo project, so I handled the concept, stage design and implementation entirely. I focused on the reflection check and visualizing the reflection zones, the 2.5D presentation, text-defined stages with a scene-building DSL, and an automated test that proves every stage can be cleared.",
+    "myResponsibilities": "Everything",
     "technologies": [
       "Unity 6",
       "C#",
