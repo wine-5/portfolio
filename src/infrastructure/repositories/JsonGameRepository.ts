@@ -30,7 +30,8 @@ interface ProjectDto {
 /**
  * FEATURED(別格表示)作品。バッジは仕様で固定:
  * TofuRunner = App Store 公開済み(PLAY NOW)、蝶々反乱 = Steam 公開済み(PLAY NOW)。
- * タイトルはロケールごとに翻訳されるため、言語に依存しない githubUrl をキーにする
+ * タイトルはロケールごとに翻訳されるため、言語に依存しない githubUrl
+ * (リポジトリを載せない作品はストアページの URL)をキーにする
  */
 const FEATURED_RELEASE: Record<string, ReleaseState> = {
   'https://github.com/Allow-hub/TouhuRunner': {
@@ -45,7 +46,7 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
     url: 'https://store.steampowered.com/app/4841000/_/',
   },
   // 病み菌少女 地雷ちゃん = Steam ストアページ公開済み・未リリース(COMING SOON でウィッシュリストへ誘導)
-  'https://github.com/Allow-hub/BannamJamTest': {
+  'https://store.steampowered.com/app/4190040/_/': {
     kind: 'coming-soon',
     store: 'steam',
     url: 'https://store.steampowered.com/app/4190040/_/',
@@ -78,8 +79,8 @@ export class JsonGameRepository implements GameRepository {
   }
 
   private toGame(dto: ProjectDto, entryNo: number): Game {
-    const featuredRelease =
-      (dto.githubUrl ? FEATURED_RELEASE[dto.githubUrl] : undefined) ?? storeRelease(dto);
+    const key = dto.githubUrl ?? dto.install ?? dto.playUrl;
+    const featuredRelease = (key ? FEATURED_RELEASE[key] : undefined) ?? storeRelease(dto);
     const release: ReleaseState =
       featuredRelease ??
       (dto.install || dto.playUrl

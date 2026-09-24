@@ -139,18 +139,20 @@ export class App {
     games.mount(main);
 
     // githubUrl から作品を引く(Skills/News からのジャンプに共用)。
-    // リポジトリ非公開の作品(こだま等)はストアの商品ページ URL でも引けるようにする
-    const focusByGithubUrl = (githubUrl: string): void => {
-      const game = allGames.find(
-        (g) => g.githubUrl === githubUrl || (g.release.kind === 'playable' && g.release.url === githubUrl),
+    // リポジトリ非公開の作品(こだま等)や未リリース作品(地雷ちゃん)はストアの商品ページ URL でも引けるようにする
+    const findByGithubUrl = (githubUrl: string) =>
+      allGames.find(
+        (g) => g.githubUrl === githubUrl || (g.release.kind !== 'archived' && g.release.url === githubUrl),
       );
+    const focusByGithubUrl = (githubUrl: string): void => {
+      const game = findByGithubUrl(githubUrl);
       if (game) focusEntry(game.entryNo);
     };
 
     const skillsSection = new SkillsSection();
     skillsSection.setOnSelectGame(focusByGithubUrl);
     skillsSection.setGameTitleResolver(
-      (githubUrl) => allGames.find((g) => g.githubUrl === githubUrl)?.title ?? '',
+      (githubUrl) => findByGithubUrl(githubUrl)?.title ?? '',
     );
     skillsSection.render(skills);
     skillsSection.mount(main);
