@@ -16,9 +16,11 @@ interface FilterState {
   tech: string;
   crew: Crew;
   status: Status;
+  /** 学年('1' | '2' | …)。どの学年があるかは作品データから拾う */
+  year: string;
 }
 
-const DEFAULT_FILTER: FilterState = { category: 'all', tech: 'all', crew: 'all', status: 'all' };
+const DEFAULT_FILTER: FilterState = { category: 'all', tech: 'all', crew: 'all', status: 'all', year: 'all' };
 
 /**
  * LANGUAGE ドロップダウンに出すプログラミング言語(許可リスト)。
@@ -52,6 +54,18 @@ function gameLanguages(g: Game): readonly string[] {
   return g.technologies.flatMap((tech) => [...languagesOf(tech)]);
 }
 
+const GRADE_NUMERALS: Readonly<Record<string, number>> = { 一: 1, 二: 2, 三: 3, 四: 4 };
+
+/**
+ * year の文字列から学年を取り出す。
+ * 「1~2年次」「1st-2nd Year」「一~二年级」のように学年をまたぐ作品は両方の学年に含める
+ */
+function gradesOf(g: Game): readonly number[] {
+  return [...g.year.matchAll(/[1-4一二三四]/g)].map((m) => GRADE_NUMERALS[m[0]] ?? Number(m[0]));
+}
+
+const ORDINALS: Readonly<Record<number, string>> = { 1: '1ST', 2: '2ND', 3: '3RD', 4: '4TH' };
+
 const FILTERS: readonly { id: Filter; label: string }[] = [
   { id: 'all', label: 'ALL' },
   { id: 'game', label: 'GAME' },
@@ -81,6 +95,7 @@ function matches(g: Game, f: FilterState): boolean {
   }
   if (f.status === 'released' && g.release.kind !== 'playable') return false;
   if (f.status === 'awarded' && !g.award) return false;
+  if (f.year !== 'all' && !gradesOf(g).includes(Number(f.year))) return false;
   return true;
 }
 
@@ -157,6 +172,13 @@ export class GamesSection extends View<GameCollection> {
     // 実際に使っている言語だけを許可リストの順で並べる
     const used = new Set(this.games.flatMap((g) => [...gameLanguages(g)]));
     const techs = LANGUAGES.filter((l) => used.has(l));
+    // 実際にある学年だけを若い順に並べる
+    const years = [
+      { id: 'all', label: 'ALL' },
+      ...[...new Set(this.games.flatMap((g) => [...gradesOf(g)]))]
+        .sort((a, b) => a - b)
+        .map((n) => ({ id: String(n), label: ORDINALS[n] ?? String(n) })),
+    ];
     const active = activeCount(this.filter);
     const shown = featured.length + entries.length + (flagshipVisible ? 1 : 0);
 
@@ -180,6 +202,7 @@ export class GamesSection extends View<GameCollection> {
         ${filterRow('CATEGORY', t('categoryFilter'), 'category', FILTERS, this.filter.category)}
         ${filterRow('CREW', 'CREW', 'crew', CREWS, this.filter.crew)}
         ${filterRow('STATUS', 'STATUS', 'status', STATUSES, this.filter.status)}
+        ${filterRow('YEAR', 'YEAR', 'year', years, this.filter.year)}
         <div class="filter-row">
           <span class="filter-row__label">LANGUAGE</span>
           <select class="tech-select" data-tech aria-label="${esc(t('languageFilter'))}">
@@ -221,7 +244,7 @@ export class GamesSection extends View<GameCollection> {
 
     this.el.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const key = btn.dataset['key'] as 'category' | 'crew' | 'status';
+        const key = btn.dataset['key'] as 'category' | 'crew' | 'status' | 'year';
         this.filter = { ...this.filter, [key]: btn.dataset['filter'] };
         this.redraw();
       });
