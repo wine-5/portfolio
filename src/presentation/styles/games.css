@@ -510,7 +510,7 @@
   padding: 1rem 1.2rem 1.4rem;
 }
 
-/* No. と SOLO/TEAM チップを横並びにする行 */
+/* No.・SOLO/TEAM チップ・年次を横並びにする行 */
 .featured-card__meta {
   display: flex;
   align-items: baseline;
@@ -520,6 +520,14 @@
 .featured-card__no {
   font-family: var(--font-ui);
   letter-spacing: 0.2em;
+  color: var(--color-text-dim);
+}
+
+.featured-card__year {
+  margin-left: auto;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
   color: var(--color-text-dim);
 }
 

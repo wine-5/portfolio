@@ -336,6 +336,7 @@ function featuredCard(game: Game): string {
         <div class="featured-card__meta">
           <span class="featured-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
           ${crewChip(game)}
+          ${game.year ? `<span class="featured-card__year">${esc(game.year)}</span>` : ''}
         </div>
         <span class="name-label">NAME</span>
         <h3 class="featured-card__title">${esc(game.title)}</h3>
