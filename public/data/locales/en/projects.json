@@ -13,8 +13,7 @@
       "Python（サウンド・アイコン生成）"
     ],
     "supportedPlatforms": [
-      "PC (browser / unityroom)",
-      "Keyboard and gamepad"
+      "PC Only"
     ],
     "images": [
       "images/game/mirror-luka/mirror-luka-title.png",
