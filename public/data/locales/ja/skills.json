@@ -22,7 +22,7 @@
       "months": 10,
       "projects": "3+ プロジェクト",
       "items": ["ポインタ管理"],
-      "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
+      "relatedGames": ["https://store.steampowered.com/app/4190040/_/"]
     },
     {
       "name": "C",
@@ -89,7 +89,7 @@
       "months": 2,
       "projects": "1+ プロジェクト",
       "items": ["C++での2Dゲーム開発"],
-      "relatedGames": ["https://github.com/Allow-hub/BannamJamTest"]
+      "relatedGames": ["https://store.steampowered.com/app/4190040/_/"]
     },
     {
       "name": "Unreal Engine 5",
