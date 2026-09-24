@@ -36,8 +36,7 @@
       "レイヤードアーキテクチャ"
     ],
     "supportedPlatforms": [
-      "PCのみ（Windows）",
-      "Zipをダウンロードしてexeを起動"
+      "PCのみ"
     ],
     "images": [
       "images/game/kiwa/kiwa-title.png",
