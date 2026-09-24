@@ -33,8 +33,7 @@
       "C++20",
       "DxLib",
       "MVP",
-      "レイヤードアーキテクチャ",
-      "Python（アセット生成）"
+      "レイヤードアーキテクチャ"
     ],
     "supportedPlatforms": [
       "仅限PC（Windows）",
