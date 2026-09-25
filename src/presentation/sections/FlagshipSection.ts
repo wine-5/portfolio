@@ -221,6 +221,7 @@ function actions(game: Game): string {
 
   return `
     ${primary ? `<a class="btn btn--primary btn--lg" href="${esc(primary)}" target="_blank" rel="noopener">${linkIcon(primary)}${primaryLabel}</a>` : ''}
+    ${game.websiteUrl ? `<a class="btn btn--lg" href="${esc(game.websiteUrl)}" target="_blank" rel="noopener">${esc(t('officialSite'))}</a>` : ''}
     ${game.githubUrl ? `<a class="btn btn--lg" href="${esc(game.githubUrl)}" target="_blank" rel="noopener">${linkIcon(game.githubUrl)}GITHUB</a>` : ''}
     <button class="btn btn--lg" data-detail>${esc(t('details'))}</button>`;
 }

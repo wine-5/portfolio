@@ -32,6 +32,8 @@ export interface Game {
   readonly githubUrl?: string;
   /** ダウンロード／配布ページへのリンク(ある作品だけ表示) */
   readonly downloadUrl?: string;
+  /** 作品の公式サイト(ある作品だけ表示) */
+  readonly websiteUrl?: string;
   readonly year: string;
   readonly category: GameCategory;
   readonly teamSize: string;

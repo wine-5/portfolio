@@ -317,14 +317,17 @@ function featuredCard(game: Game): string {
       ? `<span class="badge badge--play">PLAYABLE</span>${chip}`
       : `<span class="badge badge--soon">COMING SOON</span>${chip}`;
 
+  const officialSiteButton = game.websiteUrl
+    ? `<a class="btn btn--lg" href="${esc(game.websiteUrl)}" target="_blank" rel="noopener">${esc(t('officialSite'))}</a>`
+    : '';
   const buttons =
     game.release.kind === 'playable'
-      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a><span class="btn">${esc(t('details'))}</span>`
+      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a>${officialSiteButton}<span class="btn">${esc(t('details'))}</span>`
       : `${
           game.release.kind === 'coming-soon' && game.release.url
             ? `<a class="btn btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}${esc(t('steamPage'))}</a>`
             : ''
-        }<span class="btn">${esc(t('details'))}</span>`;
+        }${officialSiteButton}<span class="btn">${esc(t('details'))}</span>`;
 
   return `
     <article class="featured-card${released ? ' featured-card--released' : ''}${upcoming ? ' featured-card--upcoming' : ''}" data-entry="${game.entryNo}" tabindex="0">
