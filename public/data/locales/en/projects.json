@@ -2,14 +2,13 @@
   {
     "title": "Sliding Space Parking",
     "description": "A parking action game where you stop a brakeless spaceship dead in its bay using inertia alone",
-    "detailedFeatures": "A spaceship parking game made for a game jam with the theme \"inertia\". The iOS version is currently under App Store review.\n\nYour spaceship has no brakes. Thrusting accelerates it, and it keeps sliding through space even after you let go. The only way to stop is to thrust in the opposite direction. Keep your thrusts to a minimum and bring the ship to a perfect stop inside the parking bay.\n\n[Rules]\nSix courses in total. Hold the ship slow enough inside the bay for a moment and you have parked. Hit a wall or cargo and you restart the course, and from Course 3 meteors fall after a warning. Your score depends on how many times you pressed thrust, how often you crashed and your time, so the fewer inputs you use, the higher you score. The result screen gives you a rank from S to C.\n\n[Technical Highlights]\n- Engine-independent simulation: movement, collision and parking checks live in plain C# classes with a custom Vec2, stepped at a fixed 1/120 s so the ship behaves the same at any frame rate.\n- Game design backed by tests: an autopilot that drives with the same inputs as the keyboard verifies in tests that every course can be cleared, and doubles as the title screen demo.\n- MVP and an event bus: the view and external services (rankings, ads) sit behind interfaces, so unityroom and iOS (Game Center, AdMob) can be swapped in.\n- HD-2D style visuals: the logic stays 2D while the scene is drawn on a 3D floor for depth. Sound effects, BGM and some 3D models were generated with Python and Blender scripts.",
-    "myResponsibilities": "All programming (gameplay, UI, effects, scoring and rankings, ads), asset generation tools, tests, and the unityroom WebGL build and iOS release work",
+    "detailedFeatures": "A spaceship parking game made for a game jam with the theme \"kansei\", which I took as \"inertia\" (also read \"kansei\" in Japanese). The iOS version is currently under App Store review.\n\nYour spaceship has no brakes. Thrusting accelerates it, and it keeps sliding through space even after you let go. The only way to stop is to thrust in the opposite direction. Keep your thrusts to a minimum and bring the ship to a perfect stop inside the parking bay.\n\n[Game Center and Ads Integration]\n- Game Center leaderboard: the player is signed in at launch, and the score is submitted only when every course is parked. A button on the result screen opens the standard Game Center leaderboard. A failed submission never stops the game.\n- AdMob interstitial ads: shown when returning from the result screen to the title. One ad is preloaded at launch and the next is loaded after each one is shown. If loading is not ready in time, the game moves on without an ad, and the game and sound pause while an ad is on screen.\n- App Tracking Transparency: tracking permission is requested before the ads are initialized. Since the dialog does not appear unless the app is in the foreground, the request waits until the app is in front and is retried if the dialog still does not show.\n- Switching per platform: rankings and ads sit behind interfaces, so iOS uses Game Center + AdMob, unityroom (WebGL) uses only the unityroom leaderboard, and the editor uses neither.\n- ID management and build automation: AdMob IDs and the leaderboard auth key live in a .env file and are written out before the build, so they never enter the repository. The exported Xcode project's Info.plist is also patched automatically to skip the export compliance question, and developer devices get test ads even with the production IDs.",
+    "myResponsibilities": "All programming and the iOS release work",
     "technologies": [
       "Unity 6",
       "C#",
       "URP",
       "UniTask",
-      "New Input System",
       "Game Center",
       "AdMob",
       "Python",
@@ -24,8 +23,6 @@
       "images/game/sliding-space-parking/ssp-sliding.webp",
       "images/game/sliding-space-parking/ssp-meteor.webp",
       "images/game/sliding-space-parking/ssp-last-course.webp",
-      "images/game/sliding-space-parking/ssp-result.webp",
-      "images/game/sliding-space-parking/ssp-parking.gif",
       "images/game/sliding-space-parking/ssp-meteor.gif",
       "images/game/sliding-space-parking/ssp-video.mp4"
     ],

@@ -2,14 +2,13 @@
   {
     "title": "すべる宇宙駐車場",
     "description": "ブレーキのない宇宙船を、慣性だけで駐車枠にぴたりと止める駐車アクション",
-    "detailedFeatures": "ゲームジャムのお題「慣性」から作った、宇宙船の駐車ゲームです。iOS版はApp Storeで審査中です。\n\n宇宙船にはブレーキがありません。噴射すると加速し、キーを離しても宇宙空間を滑り続けます。止まるには、進む向きと反対へ噴射するしかありません。噴射を最小限に抑えて、駐車枠の中でぴたりと止めましょう。\n\n【ルール】\n全6コース。枠の中でじゅうぶん遅くなった状態を少し保つと駐車成功です。壁や荷物にぶつかるとコースの最初からやり直しになり、コース3からは予告付きの隕石も降ってきます。スコアは噴射ボタンを押した回数・衝突回数・タイムで決まり、少ない操作でスマートに停めるほど高得点。結果画面でS〜Cの評価が付きます。\n\n【技術的な取り組み】\n・Unityに依存しない判定ロジック：慣性移動・当たり判定・駐車判定を独自のVec2で書いたC#のクラスに分け、1/120秒の固定ステップで計算することで、フレームレートが違っても同じ動きになるようにしました。\n・テストで保証するゲームデザイン：キー入力と同じ操作だけで走る自動操縦を作り、全コースがクリアできることをテストで確認。同じ自動操縦をタイトル画面のデモにも使っています。\n・MVPとイベントバス：画面と外部サービス（ランキング・広告）をインターフェースで切り離し、unityroomとiOS（Game Center・AdMob）で差し替えられる構成にしました。\n・HD-2D風の見た目：計算は2Dのまま、描画は3Dの床に写して奥行きのある画面にしています。効果音・BGM・3Dモデルの一部はPythonとBlenderのスクリプトで生成しました。",
-    "myResponsibilities": "プログラム全般（インゲーム・UI・演出・スコアとランキング・広告）、素材の自動生成ツール、テスト、unityroom向けWebGLビルドとiOSのリリース対応",
+    "detailedFeatures": "ゲームジャムのお題「かんせい」を「慣性」と捉えて作った、宇宙船の駐車ゲームです。iOS版はApp Storeで審査中です。\n\n宇宙船にはブレーキがありません。噴射すると加速し、キーを離しても宇宙空間を滑り続けます。止まるには、進む向きと反対へ噴射するしかありません。噴射を最小限に抑えて、駐車枠の中でぴたりと止めましょう。\n\n【Game Center・広告の連携】\n・Game Centerのランキング：起動時にサインインを済ませておき、全コースを駐車できたときだけスコアを送信します。結果画面のボタンから、Game Center標準のランキング画面を開けます。送信に失敗してもゲームは止めません。\n・AdMobのインタースティシャル広告：結果画面からタイトルへ戻るタイミングで表示します。起動時に1本先読みしておき、表示したら次を読み込みます。読み込みが間に合わないときは広告を出さずに進み、表示中はゲームと音を止めます。\n・App Tracking Transparency：広告の初期化前にトラッキングの許可を尋ねます。アプリが前面に出ていないとダイアログが表示されないため、前面に出てから尋ね、表示されなかったときは尋ね直すようにしました。\n・遊ぶ環境ごとの切り替え：ランキングと広告をインターフェースで切り離し、iOSではGame Center＋AdMob、unityroom（WebGL）ではunityroomのランキングだけを使い、エディタではどちらも使わないようにしています。\n・IDの管理とビルドの自動化：AdMobのIDやランキングの認証キーは.envに置いてビルド前に書き出し、リポジトリに入れないようにしました。書き出したXcodeプロジェクトのInfo.plistも自動で書き換え、輸出コンプライアンスの申告を省いています。また、開発者の端末では本番のIDのままでもテスト広告が出るようにしています。",
+    "myResponsibilities": "プログラム全般とiOSのリリース対応",
     "technologies": [
       "Unity 6",
       "C#",
       "URP",
       "UniTask",
-      "New Input System",
       "Game Center",
       "AdMob",
       "Python",
@@ -24,8 +23,6 @@
       "images/game/sliding-space-parking/ssp-sliding.webp",
       "images/game/sliding-space-parking/ssp-meteor.webp",
       "images/game/sliding-space-parking/ssp-last-course.webp",
-      "images/game/sliding-space-parking/ssp-result.webp",
-      "images/game/sliding-space-parking/ssp-parking.gif",
       "images/game/sliding-space-parking/ssp-meteor.gif",
       "images/game/sliding-space-parking/ssp-video.mp4"
     ],
