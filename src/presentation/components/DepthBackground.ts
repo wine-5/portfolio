@@ -174,6 +174,13 @@ export class DepthBackground {
   private readonly reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   private readonly timer = new THREE.Timer();
   private rafId = 0;
+  /** stop() でまとめて外すためのリスナー登録用シグナル */
+  private readonly listeners = new AbortController();
+  private readonly themeObserver = new MutationObserver(() => {
+    this.applyTheme();
+    if (this.reducedMotion) this.render(0);
+  });
+  private stopped = false;
   private theme: Theme = 'dark';
   /** カメラ z の目標値(スクロールで決まる)と、ポインタによる視差の目標値 */
   private targetZ = CAMERA_START_Z;
@@ -207,17 +214,15 @@ export class DepthBackground {
     canvas.setAttribute('aria-hidden', 'true');
     parent.appendChild(canvas);
 
+    const { signal } = this.listeners;
     this.applyTheme();
-    new MutationObserver(() => {
-      this.applyTheme();
-      if (this.reducedMotion) this.render(0);
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    this.themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     this.resize();
     window.addEventListener('resize', () => {
       this.resize();
       if (this.reducedMotion) this.render(0);
-    });
+    }, { signal });
 
     if (this.reducedMotion) {
       this.panels.forEach((p) => (p.loaded = 1));
@@ -226,14 +231,14 @@ export class DepthBackground {
       return;
     }
 
-    window.addEventListener('scroll', () => this.updateScrollTarget(), { passive: true });
+    window.addEventListener('scroll', () => this.updateScrollTarget(), { passive: true, signal });
     window.addEventListener(
       'pointermove',
       (e) => {
         if (e.pointerType !== 'mouse') return;
         this.pointerTarget.set(e.clientX / window.innerWidth - 0.5, e.clientY / window.innerHeight - 0.5);
       },
-      { passive: true },
+      { passive: true, signal },
     );
     this.updateScrollTarget();
     this.camera.position.z = this.targetZ;
@@ -246,8 +251,26 @@ export class DepthBackground {
         this.timer.reset();
         this.rafId = requestAnimationFrame(this.tick);
       }
-    });
+    }, { signal });
     this.rafId = requestAnimationFrame(this.tick);
+  }
+
+  /** 描画を止め、GPU リソースとリスナーを解放して canvas を外す(設定で背景を切り替えたとき) */
+  stop(): void {
+    this.stopped = true;
+    cancelAnimationFrame(this.rafId);
+    this.rafId = 0;
+    this.listeners.abort();
+    this.themeObserver.disconnect();
+    this.scene.traverse((obj) => {
+      const { geometry, material } = obj as THREE.Mesh<THREE.BufferGeometry, THREE.Material>;
+      geometry?.dispose();
+      if (material instanceof THREE.ShaderMaterial) (material.uniforms['uMap']?.value as THREE.Texture | null)?.dispose();
+      material?.dispose();
+    });
+    this.renderer.dispose();
+    this.renderer.forceContextLoss();
+    this.renderer.domElement.remove();
   }
 
   private createPanel(name: string, index: number): Panel {
@@ -284,6 +307,10 @@ export class DepthBackground {
     const panel: Panel = { mesh, baseY: y, phase: jitter * Math.PI * 2, loaded: 0, ready: false };
 
     new THREE.TextureLoader().load(asset(`images/depth/${name}.webp`), (texture) => {
+      if (this.stopped) {
+        texture.dispose();
+        return;
+      }
       texture.colorSpace = THREE.SRGBColorSpace;
       texture.anisotropy = 4;
       const img = texture.image as { width: number; height: number };
