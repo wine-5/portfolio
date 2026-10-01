@@ -46,9 +46,9 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
     store: 'steam',
     url: 'https://store.steampowered.com/app/4841000/_/',
   },
-  // 病み菌少女 地雷ちゃん = Steam ストアページ公開済み・未リリース(COMING SOON でウィッシュリストへ誘導)
+  // 病み菌少女 地雷ちゃん = Steam 公開済み(2026-09-29 リリース)
   'https://store.steampowered.com/app/4190040/_/': {
-    kind: 'coming-soon',
+    kind: 'playable',
     store: 'steam',
     url: 'https://store.steampowered.com/app/4190040/_/',
   },

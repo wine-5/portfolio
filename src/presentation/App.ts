@@ -139,7 +139,7 @@ export class App {
     games.mount(main);
 
     // githubUrl から作品を引く(Skills/News からのジャンプに共用)。
-    // リポジトリ非公開の作品(こだま等)や未リリース作品(地雷ちゃん)はストアの商品ページ URL でも引けるようにする
+    // リポジトリ非公開の作品(こだま等)や地雷ちゃんはストアの商品ページ URL でも引けるようにする
     const findByGithubUrl = (githubUrl: string) =>
       allGames.find(
         (g) => g.githubUrl === githubUrl || (g.release.kind !== 'archived' && g.release.url === githubUrl),
