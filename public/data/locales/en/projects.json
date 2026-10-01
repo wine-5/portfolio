@@ -1,5 +1,74 @@
 [
   {
+    "title": "Sliding Space Parking",
+    "description": "A parking action game where you stop a brakeless spaceship dead in its bay using inertia alone",
+    "detailedFeatures": "A spaceship parking game made for a game jam with the theme \"inertia\". The iOS version is currently under App Store review.\n\nYour spaceship has no brakes. Thrusting accelerates it, and it keeps sliding through space even after you let go. The only way to stop is to thrust in the opposite direction. Keep your thrusts to a minimum and bring the ship to a perfect stop inside the parking bay.\n\n[Rules]\nSix courses in total. Hold the ship slow enough inside the bay for a moment and you have parked. Hit a wall or cargo and you restart the course, and from Course 3 meteors fall after a warning. Your score depends on how many times you pressed thrust, how often you crashed and your time, so the fewer inputs you use, the higher you score. The result screen gives you a rank from S to C.\n\n[Technical Highlights]\n- Engine-independent simulation: movement, collision and parking checks live in plain C# classes with a custom Vec2, stepped at a fixed 1/120 s so the ship behaves the same at any frame rate.\n- Game design backed by tests: an autopilot that drives with the same inputs as the keyboard verifies in tests that every course can be cleared, and doubles as the title screen demo.\n- MVP and an event bus: the view and external services (rankings, ads) sit behind interfaces, so unityroom and iOS (Game Center, AdMob) can be swapped in.\n- HD-2D style visuals: the logic stays 2D while the scene is drawn on a 3D floor for depth. Sound effects, BGM and some 3D models were generated with Python and Blender scripts.",
+    "myResponsibilities": "All programming (gameplay, UI, effects, scoring and rankings, ads), asset generation tools, tests, and the unityroom WebGL build and iOS release work",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask",
+      "New Input System",
+      "Game Center",
+      "AdMob",
+      "Python",
+      "Blender"
+    ],
+    "supportedPlatforms": [
+      "iOS (in App Store review)",
+      "Web (WebGL)"
+    ],
+    "images": [
+      "images/game/sliding-space-parking/ssp-title.webp",
+      "images/game/sliding-space-parking/ssp-sliding.webp",
+      "images/game/sliding-space-parking/ssp-meteor.webp",
+      "images/game/sliding-space-parking/ssp-last-course.webp",
+      "images/game/sliding-space-parking/ssp-result.webp",
+      "images/game/sliding-space-parking/ssp-parking.gif",
+      "images/game/sliding-space-parking/ssp-meteor.gif",
+      "images/game/sliding-space-parking/ssp-video.mp4"
+    ],
+    "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
+    "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
+    "comingSoon": "app-store",
+    "year": "3rd Year",
+    "category": "game",
+    "teamSize": "2 people (1 planner + me on programming)",
+    "period": "3 days (game jam) + release polish"
+  },
+  {
+    "title": "Kansei Palette",
+    "description": "A circuit puzzle where every connection brings one more color back to a black-and-white world",
+    "detailedFeatures": "A circuit-connecting puzzle I made solo for a two-day game jam. The theme \"kansei\" carries three meanings in Japanese: completing a circuit, the sense of feeling color, and the cheer when color returns. It is playable right in the browser.\n\nThe world has lost its colors. Tap tiles on a 5x5 board to rotate them, and clear the stage by running power from the source to every goal. Once the path is connected, the hero walks along it to the goal and one color returns to the world. Across ten stages that circle the color wheel (red, orange, yellow...), the title screen itself fills with color once every hue is back. There is no failure and no time limit, so you can play at your own pace.\n\n[Technical Highlights]\n- Dependency direction enforced by the build: the rules layer is a static library that does not link raylib, so using raylib from it is a compile error. The game layer records \"what happened\" as events, and audio and effects react to them.\n- Color-restoring shader: a shader splits each pixel's hue into ten bands and blends gray with the original color by each band's restore amount, so no separate grayscale art was needed. Web and native GLSL are switched with macros.\n- Board logic: connections are stored as 4 bits and rotation is a bit shift. A breadth-first search checks power flow, and its result is used to rebuild the path the hero walks. Unit tests verify that every stage is solvable.\n- Web release: built for the browser with Emscripten and published to GitHub Pages automatically via GitHub Actions, with support for portrait phones and high-DPI screens. All sound effects are synthesized with a Python script.",
+    "myResponsibilities": "Everything (design, programming, effects, sound effects, web release)",
+    "technologies": [
+      "C++17",
+      "raylib",
+      "GLSL",
+      "CMake",
+      "Emscripten",
+      "GitHub Actions",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Web browser (PC / mobile)"
+    ],
+    "images": [
+      "images/game/kansei-palette/kansei-title-after.webp",
+      "images/game/kansei-palette/kansei-title-before.webp",
+      "images/game/kansei-palette/kansei-ingame.webp"
+    ],
+    "thumbnailImage": "images/game/kansei-palette/kansei-title-after.webp",
+    "carouselImage": "images/game/kansei-palette/kansei-icon.png",
+    "playUrl": "https://wine-5.github.io/kansei-palette/",
+    "githubUrl": "https://github.com/wine-5/kansei-palette",
+    "year": "3rd Year",
+    "category": "game",
+    "teamSize": "1 person",
+    "period": "2 days (game jam)"
+  },
+  {
     "title": "Mirror Luka",
     "description": "Get reflected and you're pulled into the mirror. A top-down stealth puzzle about sneaking through a cursed mansion",
     "detailedFeatures": "A top-down stealth puzzle made for a one-day game jam with the theme \"utsuru\" (to be reflected).\n\nIf a mirror reflects you, you get pulled into the world inside it. Luka, a girl who wandered into an old mansion deep in the forest on a dare, finds that every mirror in the house is cursed to swallow whatever it reflects.\n\nIn front of each mirror, a faintly glowing \"reflection zone\" lies on the floor. Avoid it and make your way to the exit door! Hide behind pillars, bookshelves or sofas and the mirrors can't see you.",

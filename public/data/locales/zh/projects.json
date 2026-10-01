@@ -1,5 +1,74 @@
 [
   {
+    "title": "滑行宇宙停车场",
+    "description": "只靠惯性，把没有刹车的宇宙飞船稳稳停进车位的停车动作游戏",
+    "detailedFeatures": "以游戏Jam主题「惯性」制作的宇宙飞船停车游戏。iOS版目前正在App Store审核中。\n\n宇宙飞船没有刹车。喷射会加速，松开按键后也会在宇宙中持续滑行。想要停下，只能朝前进方向的反方向喷射。尽量减少喷射次数，把飞船稳稳停在车位里吧。\n\n【规则】\n共6条路线。在车位内保持足够慢的速度一小段时间即停车成功。撞到墙壁或货物会从路线起点重来，从第3条路线开始还会有带预警的陨石落下。得分取决于喷射按键次数、碰撞次数和用时，操作越少得分越高。结算画面会给出S〜C的评价。\n\n【技术亮点】\n・不依赖Unity的判定逻辑：惯性移动、碰撞和停车判定写在使用自制Vec2的C#类中，并以1/120秒的固定步长计算，帧率不同也能得到相同的运动。\n・用测试保证游戏设计：制作了只使用与键盘相同输入的自动驾驶，在测试中确认所有路线都能通关，同时也用作标题画面的演示。\n・MVP与事件总线：通过接口将画面与外部服务（排行榜、广告）分离，可在unityroom与iOS（Game Center・AdMob）之间切换。\n・HD-2D风格画面：计算保持2D，绘制时投影到3D地面上营造纵深感。音效、BGM和部分3D模型由Python与Blender脚本生成。",
+    "myResponsibilities": "全部程序（游戏玩法、UI、演出、得分与排行榜、广告）、素材自动生成工具、测试，以及unityroom用WebGL构建和iOS发布工作",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask",
+      "New Input System",
+      "Game Center",
+      "AdMob",
+      "Python",
+      "Blender"
+    ],
+    "supportedPlatforms": [
+      "iOS（App Store审核中）",
+      "Web（WebGL）"
+    ],
+    "images": [
+      "images/game/sliding-space-parking/ssp-title.webp",
+      "images/game/sliding-space-parking/ssp-sliding.webp",
+      "images/game/sliding-space-parking/ssp-meteor.webp",
+      "images/game/sliding-space-parking/ssp-last-course.webp",
+      "images/game/sliding-space-parking/ssp-result.webp",
+      "images/game/sliding-space-parking/ssp-parking.gif",
+      "images/game/sliding-space-parking/ssp-meteor.gif",
+      "images/game/sliding-space-parking/ssp-video.mp4"
+    ],
+    "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
+    "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
+    "comingSoon": "app-store",
+    "year": "三年级",
+    "category": "game",
+    "teamSize": "2人（策划1人・负责程序的我）",
+    "period": "3天（游戏Jam）＋发布调整"
+  },
+  {
+    "title": "感性的调色盘",
+    "description": "每接通一次电路，黑白世界就找回一种颜色的解谜游戏",
+    "detailedFeatures": "独自参加为期2天的游戏Jam时制作的电路连接解谜游戏。主题「かんせい」包含三层含义：完成电路的「完成」、感受色彩的「感性」，以及色彩回归瞬间的「欢声」。可以直接在浏览器中游玩。\n\n这是一个失去了色彩的黑白世界。点击5×5棋盘上的方块使其旋转，让电力从电源流到所有终点即可通关。道路接通后，主人公会沿着道路走向终点，世界也会找回一种颜色。全10关按红、橙、黄……绕色相环一周，所有颜色集齐后，连标题画面也会被染上色彩。没有失败也没有时间限制，可以慢慢游玩。\n\n【技术亮点】\n・用构建保证依赖方向：负责规则的层被拆分为不链接raylib的静态库，在该层使用raylib会导致编译错误。游戏层把「发生的事情」记录为事件，由音效和演出一侧读取并作出反应。\n・恢复色彩的着色器：将像素的色相分为10个色带，按各色带的恢复程度混合灰色与原色，因此无需另外准备黑白素材。Web版与原生版的GLSL通过宏切换。\n・棋盘逻辑：用4位表示连接方向，用位移表示旋转。通过广度优先搜索判断通电，并据此还原主人公行走的路线。所有关卡均可解开这一点由单元测试确认。\n・Web发布：使用Emscripten构建浏览器版本，并通过GitHub Actions自动发布到GitHub Pages，支持手机竖屏和高DPI屏幕。所有音效均由Python脚本合成。",
+    "myResponsibilities": "全部负责（策划、程序、演出、音效、Web发布）",
+    "technologies": [
+      "C++17",
+      "raylib",
+      "GLSL",
+      "CMake",
+      "Emscripten",
+      "GitHub Actions",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "网页浏览器（PC・手机）"
+    ],
+    "images": [
+      "images/game/kansei-palette/kansei-title-after.webp",
+      "images/game/kansei-palette/kansei-title-before.webp",
+      "images/game/kansei-palette/kansei-ingame.webp"
+    ],
+    "thumbnailImage": "images/game/kansei-palette/kansei-title-after.webp",
+    "carouselImage": "images/game/kansei-palette/kansei-icon.png",
+    "playUrl": "https://wine-5.github.io/kansei-palette/",
+    "githubUrl": "https://github.com/wine-5/kansei-palette",
+    "year": "三年级",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "2天（游戏Jam）"
+  },
+  {
     "title": "镜映的露卡",
     "description": "被镜子照到就会被吸进去。避开映照范围、穿过被诅咒洋馆的俯视角潜行解谜游戏",
     "detailedFeatures": "以一日游戏开发大赛（Game Jam）的主题「映る（映照）」制作的俯视角潜行解谜游戏。\n\n一旦被镜子照到，就会被吸进镜中的世界。少女露卡为了试胆，误入了森林深处的一座古老洋馆。馆内的镜子被施加了诅咒，会吞噬所映照到的一切。\n\n镜子前方的地板上，有一片微微发光的「映照范围」。请避开它前进，朝出口的大门前进吧！只要躲在柱子、书架或沙发的阴影里，镜子就照不到你。",

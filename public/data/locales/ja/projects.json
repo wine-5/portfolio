@@ -1,5 +1,74 @@
 [
   {
+    "title": "すべる宇宙駐車場",
+    "description": "ブレーキのない宇宙船を、慣性だけで駐車枠にぴたりと止める駐車アクション",
+    "detailedFeatures": "ゲームジャムのお題「慣性」から作った、宇宙船の駐車ゲームです。iOS版はApp Storeで審査中です。\n\n宇宙船にはブレーキがありません。噴射すると加速し、キーを離しても宇宙空間を滑り続けます。止まるには、進む向きと反対へ噴射するしかありません。噴射を最小限に抑えて、駐車枠の中でぴたりと止めましょう。\n\n【ルール】\n全6コース。枠の中でじゅうぶん遅くなった状態を少し保つと駐車成功です。壁や荷物にぶつかるとコースの最初からやり直しになり、コース3からは予告付きの隕石も降ってきます。スコアは噴射ボタンを押した回数・衝突回数・タイムで決まり、少ない操作でスマートに停めるほど高得点。結果画面でS〜Cの評価が付きます。\n\n【技術的な取り組み】\n・Unityに依存しない判定ロジック：慣性移動・当たり判定・駐車判定を独自のVec2で書いたC#のクラスに分け、1/120秒の固定ステップで計算することで、フレームレートが違っても同じ動きになるようにしました。\n・テストで保証するゲームデザイン：キー入力と同じ操作だけで走る自動操縦を作り、全コースがクリアできることをテストで確認。同じ自動操縦をタイトル画面のデモにも使っています。\n・MVPとイベントバス：画面と外部サービス（ランキング・広告）をインターフェースで切り離し、unityroomとiOS（Game Center・AdMob）で差し替えられる構成にしました。\n・HD-2D風の見た目：計算は2Dのまま、描画は3Dの床に写して奥行きのある画面にしています。効果音・BGM・3Dモデルの一部はPythonとBlenderのスクリプトで生成しました。",
+    "myResponsibilities": "プログラム全般（インゲーム・UI・演出・スコアとランキング・広告）、素材の自動生成ツール、テスト、unityroom向けWebGLビルドとiOSのリリース対応",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask",
+      "New Input System",
+      "Game Center",
+      "AdMob",
+      "Python",
+      "Blender"
+    ],
+    "supportedPlatforms": [
+      "iOS（App Store審査中）",
+      "Web（WebGL）"
+    ],
+    "images": [
+      "images/game/sliding-space-parking/ssp-title.webp",
+      "images/game/sliding-space-parking/ssp-sliding.webp",
+      "images/game/sliding-space-parking/ssp-meteor.webp",
+      "images/game/sliding-space-parking/ssp-last-course.webp",
+      "images/game/sliding-space-parking/ssp-result.webp",
+      "images/game/sliding-space-parking/ssp-parking.gif",
+      "images/game/sliding-space-parking/ssp-meteor.gif",
+      "images/game/sliding-space-parking/ssp-video.mp4"
+    ],
+    "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
+    "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
+    "comingSoon": "app-store",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "2人（プランナー1人・プログラム担当の自分）",
+    "period": "3日間（ゲームジャム）＋リリース調整"
+  },
+  {
+    "title": "かんせいのパレット",
+    "description": "回路をつなぐたびに、白黒の世界へ色がひとつずつ戻っていくパズル",
+    "detailedFeatures": "2日間のゲームジャムに1人で参加して作った、回路つなぎパズルです。お題「かんせい」に、回路の「完成」・色を感じる力の「感性」・色が戻る瞬間の「歓声」の3つの意味を込めました。ブラウザでそのまま遊べます。\n\n色を失った白黒の世界。5×5の盤面のタイルをタップして回し、電源からすべてのゴールまで電気を通すとステージクリアです。道がつながると主人公が道に沿ってゴールまで歩き、世界に色がひとつ戻ります。あか・だいだい・きいろ…と色相環を一周する全10ステージで、すべての色がそろうとタイトル画面まで色づきます。失敗も制限時間もない、ゆっくり遊べるパズルです。\n\n【技術的な取り組み】\n・ビルドで依存の向きを守る設計：ルールを担う層をraylibをリンクしない静的ライブラリに分け、その層からraylibを使うとコンパイルエラーになるようにしました。ゲーム層は「起きたこと」をイベントとして記録し、音や演出の側がそれを読んで反応します。\n・色を戻すシェーダー：画素の色相を10本の帯に分け、帯ごとの復元度でグレーと元の色を混ぜるシェーダーを書き、白黒用の素材を別に用意せずに済むようにしました。Web用とネイティブ用のGLSLはマクロで切り替えています。\n・盤面ロジック：接続方向を4ビットで持ち、回転をビットの移動で表現。幅優先探索で通電を判定し、その結果から主人公が歩く経路を復元しています。全ステージが解けることはユニットテストで確認しています。\n・Web公開：Emscriptenでブラウザ向けにビルドし、GitHub ActionsでGitHub Pagesへ自動公開。スマホの縦画面や高DPIにも対応しました。効果音はすべてPythonのスクリプトで合成しています。",
+    "myResponsibilities": "すべて担当（企画・プログラム・演出・効果音・Web公開）",
+    "technologies": [
+      "C++17",
+      "raylib",
+      "GLSL",
+      "CMake",
+      "Emscripten",
+      "GitHub Actions",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Webブラウザ（PC・スマホ）"
+    ],
+    "images": [
+      "images/game/kansei-palette/kansei-title-after.webp",
+      "images/game/kansei-palette/kansei-title-before.webp",
+      "images/game/kansei-palette/kansei-ingame.webp"
+    ],
+    "thumbnailImage": "images/game/kansei-palette/kansei-title-after.webp",
+    "carouselImage": "images/game/kansei-palette/kansei-icon.png",
+    "playUrl": "https://wine-5.github.io/kansei-palette/",
+    "githubUrl": "https://github.com/wine-5/kansei-palette",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "2日間（ゲームジャム）"
+  },
+  {
     "title": "鏡映しのルカ",
     "description": "鏡に映ったら吸い込まれる。映る範囲をよけて呪われた洋館を抜ける見下ろし型ステルスパズル",
     "detailedFeatures": "1日ゲームジャムのお題「うつる」から作った、見下ろし型のステルスパズルです。\n\n鏡に映ったら、鏡の中の世界へ吸い込まれてしまう。肝試しで森の奥の古い洋館に迷い込んだ少女ルカ。館の鏡には、映ったものを取り込む呪いがかかっていました。\n\n鏡の前の床には、うっすら光る「映る範囲」があります。そこに入らないように進み、出口の扉を目指しましょう！柱や本棚、ソファの陰にいれば鏡には映りません。",
