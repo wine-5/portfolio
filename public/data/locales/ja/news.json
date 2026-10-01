@@ -1,5 +1,17 @@
 [
   {
+    "id": "jirai-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-09-29",
+    "expireDate": null,
+    "title": "「病み菌少女 地雷ちゃん」をSteamでリリースしました",
+    "description": "バンダイナムコスタジオ杯の作品をブラッシュアップした2Dワイヤーアクション「病み菌少女 地雷ちゃん」を本日Steamで正式リリースしました。ワイヤーを駆使して悪夢の世界からの脱出を目指す爽快アクションを、ぜひプレイしてみてください。クリックすると作品の詳細をご覧いただけます。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/4190040/_/"
+  },
+  {
     "id": "kodama-release",
     "type": "release",
     "priority": "high",

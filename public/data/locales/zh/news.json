@@ -1,5 +1,17 @@
 [
   {
+    "id": "jirai-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-09-29",
+    "expireDate": null,
+    "title": "《病菌少女 地雷酱》已在Steam正式发售",
+    "description": "由万代南梦宫工作室杯作品打磨而成的2D钢索动作游戏《病菌少女 地雷酱》今日已在Steam正式发售。运用钢索逃离噩梦般的世界，欢迎前来体验。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/4190040/_/"
+  },
+  {
     "id": "kodama-release",
     "type": "release",
     "priority": "high",

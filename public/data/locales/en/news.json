@@ -1,5 +1,17 @@
 [
   {
+    "id": "jirai-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-09-29",
+    "expireDate": null,
+    "title": "\"Yamikin Girl Jirai-chan\" Now Available on Steam",
+    "description": "\"Yamikin Girl Jirai-chan\", a 2D wire-action game polished up from our Bandai Namco Studios Cup entry, is officially released on Steam today. Swing your wire and escape from a nightmare world — please give it a try. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/4190040/_/"
+  },
+  {
     "id": "kodama-release",
     "type": "release",
     "priority": "high",
