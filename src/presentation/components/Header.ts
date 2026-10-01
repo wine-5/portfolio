@@ -3,13 +3,17 @@ import { View } from './View';
 import { esc } from '../util/html';
 import { navItems } from './navigation';
 import { t, LOCALE_NAMES } from '../i18n/uiStrings';
-import { toggleTheme } from '../theme/themePreference';
+import { currentTheme, setTheme, type Theme } from '../theme/themePreference';
+import { detectBackground, persistBackground, type BackgroundKind } from '../background/backgroundPreference';
+import { showBackground } from '../background/backgroundSwitcher';
 
 export interface HeaderProps {
   /** 現在の表示言語(切り替え UI のアクティブ表示に使う) */
   readonly locale: Locale;
   /** 言語が選択されたときに App へ通知する */
   readonly onLocaleChange: (locale: Locale) => void;
+  /** 描画直後から設定パネルを開いておく(パネル内で言語を切り替えて再描画したとき) */
+  readonly settingsOpen?: boolean;
 }
 
 /** HUD 風ヘッダー。狭幅ではハンバーガーメニューに切り替わる */
@@ -27,8 +31,7 @@ export class Header extends View<HeaderProps> {
           .join('')}
       </nav>
       <div class="hud__tools">
-        ${themeToggle()}
-        ${languageSwitcher(props.locale)}
+        ${settingsMenu(props.locale)}
         <button class="hud__hamburger" aria-label="${esc(t('menu'))}" aria-expanded="false" aria-controls="hud-nav">
           <span></span><span></span><span></span>
         </button>
@@ -47,72 +50,105 @@ export class Header extends View<HeaderProps> {
       a.addEventListener('click', () => toggle(false));
     });
 
-    this.bindLanguageSwitcher(props);
-    this.bindThemeToggle();
+    this.bindSettings(props);
   }
 
-  private bindThemeToggle(): void {
-    const button = this.el.querySelector<HTMLButtonElement>('.theme-toggle')!;
-    button.addEventListener('click', () => {
-      const next = toggleTheme();
-      button.setAttribute('aria-label', next === 'dark' ? t('toLightMode') : t('toDarkMode'));
-    });
-  }
+  private bindSettings(props: HeaderProps): void {
+    const root = this.el.querySelector<HTMLElement>('.settings')!;
+    const button = root.querySelector<HTMLButtonElement>('.settings__button')!;
+    const panel = root.querySelector<HTMLElement>('.settings__panel')!;
 
-  private bindLanguageSwitcher(props: HeaderProps): void {
-    const switcher = this.el.querySelector<HTMLElement>('.lang-switcher')!;
-    const openButton = switcher.querySelector<HTMLButtonElement>('.lang-switcher__button')!;
-
-    openButton.addEventListener('click', (e) => {
+    const setOpen = (open: boolean): void => {
+      panel.hidden = !open;
+      button.setAttribute('aria-expanded', String(open));
+      root.classList.toggle('settings--open', open);
+    };
+    button.addEventListener('click', (e) => {
       e.stopPropagation();
-      switcher.classList.toggle('lang-switcher--open');
+      setOpen(panel.hidden);
     });
-    // ドロップダウン外をクリックしたら閉じる
-    document.addEventListener('click', () => switcher.classList.remove('lang-switcher--open'));
+    root.querySelector('.settings__close')!.addEventListener('click', () => {
+      setOpen(false);
+      button.focus();
+    });
+    // パネルの外をクリック / Esc で閉じる(ヘッダーは言語切り替えで作り直されるので、外れたら登録も解除する)
+    const onDocClick = (e: MouseEvent): void => {
+      if (!this.el.isConnected) return document.removeEventListener('click', onDocClick);
+      if (!root.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent): void => {
+      if (!this.el.isConnected) return document.removeEventListener('keydown', onKey);
+      if (e.key === 'Escape' && !panel.hidden) {
+        setOpen(false);
+        button.focus();
+      }
+    };
+    document.addEventListener('click', onDocClick);
+    document.addEventListener('keydown', onKey);
 
-    switcher.querySelectorAll<HTMLButtonElement>('[data-locale]').forEach((option) => {
+    // 各設定はその場で反映する(保存ボタンは置かない)
+    root.querySelectorAll<HTMLButtonElement>('[data-setting]').forEach((option) => {
       option.addEventListener('click', () => {
-        const locale = option.dataset['locale'] as Locale;
-        switcher.classList.remove('lang-switcher--open');
-        if (locale !== props.locale) props.onLocaleChange(locale);
+        const value = option.dataset['value']!;
+        option.parentElement!.querySelectorAll('[data-setting]').forEach((o) => {
+          o.setAttribute('aria-checked', String(o === option));
+        });
+        switch (option.dataset['setting']) {
+          case 'theme':
+            setTheme(value as Theme);
+            break;
+          case 'background':
+            persistBackground(value as BackgroundKind);
+            void showBackground(value as BackgroundKind);
+            break;
+          case 'locale':
+            if (value !== props.locale) props.onLocaleChange(value as Locale);
+            break;
+        }
       });
     });
+
+    if (props.settingsOpen) setOpen(true);
   }
 }
 
-/** 太陽/月アイコンは両方描画し、data-theme に応じて CSS で表示を切り替える */
-function themeToggle(): string {
-  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+/** ラジオボタン風の切り替え(選択中を aria-checked で示す) */
+function segment(setting: string, label: string, options: readonly (readonly [string, string])[], current: string): string {
   return `
-    <button class="theme-toggle" aria-label="${esc(isDark ? t('toLightMode') : t('toDarkMode'))}">
-      <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="12" cy="12" r="5" />
-        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-      </svg>
-      <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-      </svg>
-    </button>`;
+    <div class="settings__group">
+      <span class="settings__legend" id="settings-${setting}">${esc(label)}</span>
+      <div class="settings__segment" role="radiogroup" aria-labelledby="settings-${setting}">
+        ${options
+          .map(
+            ([value, text]) => `
+              <button type="button" role="radio" class="settings__option" data-setting="${setting}" data-value="${value}"
+                aria-checked="${value === current}">${esc(text)}</button>`,
+          )
+          .join('')}
+      </div>
+    </div>`;
 }
 
-function languageSwitcher(current: Locale): string {
+/** ヘッダー右上の設定ボタンと、テーマ / 言語 / 背景をまとめて切り替えるパネル */
+function settingsMenu(locale: Locale): string {
   return `
-    <div class="lang-switcher">
-      <button class="lang-switcher__button" aria-label="${esc(t('switchLanguage'))}" aria-haspopup="listbox">
+    <div class="settings">
+      <button class="settings__button" aria-label="${esc(t('settings'))}" aria-haspopup="dialog" aria-expanded="false" aria-controls="settings-panel">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M2 12h20M12 2c2.5 2.6 4 6.2 4 10s-1.5 7.4-4 10c-2.5-2.6-4-6.2-4-10s1.5-7.4 4-10z" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
         </svg>
-        <span>${esc(LOCALE_NAMES[current])}</span>
+        <span class="settings__button-label">${esc(t('settings'))}</span>
       </button>
-      <div class="lang-switcher__dropdown" role="listbox">
-        ${LOCALES.map(
-          (locale) => `
-            <button role="option" aria-selected="${locale === current}" data-locale="${locale}"
-              class="lang-switcher__option${locale === current ? ' lang-switcher__option--active' : ''}">
-              ${esc(LOCALE_NAMES[locale])}
-            </button>`,
-        ).join('')}
+      <div class="settings__panel" id="settings-panel" role="dialog" aria-label="${esc(t('settings'))}" hidden>
+        <div class="settings__head">
+          <span class="settings__title">// SETTINGS</span>
+          <button type="button" class="settings__close" aria-label="${esc(t('close'))}">×</button>
+        </div>
+        ${segment('theme', t('settingsTheme'), [['dark', t('themeDark')], ['light', t('themeLight')]], currentTheme())}
+        ${segment('locale', t('settingsLanguage'), LOCALES.map((l) => [l, LOCALE_NAMES[l]] as const), locale)}
+        ${segment('background', t('settingsBackground'), [['depth', t('backgroundDepth')], ['classic', t('backgroundClassic')]], detectBackground())}
+        <p class="settings__note">${esc(t('settingsNote'))}</p>
       </div>
     </div>`;
 }

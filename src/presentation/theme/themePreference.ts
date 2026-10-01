@@ -27,12 +27,16 @@ export function applyTheme(theme: Theme): void {
   document.documentElement.setAttribute('data-theme', theme);
 }
 
-/** テーマを切り替えて保存し、切り替え後のテーマを返す(画面全体をフェードで遷移させる) */
-export function toggleTheme(): Theme {
-  const next: Theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+/** 現在表示中のテーマ */
+export function currentTheme(): Theme {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
+
+/** テーマを変更して保存する(画面全体をフェードで遷移させる) */
+export function setTheme(next: Theme): void {
+  if (next === currentTheme()) return;
   crossFade(() => applyTheme(next));
   localStorage.setItem(STORAGE_KEY, next);
-  return next;
 }
 
 /**

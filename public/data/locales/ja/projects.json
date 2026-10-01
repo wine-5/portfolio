@@ -1,5 +1,71 @@
 [
   {
+    "title": "すべる宇宙駐車場",
+    "description": "ブレーキのない宇宙船を、慣性だけで駐車枠にぴたりと止める駐車アクション",
+    "detailedFeatures": "ゲームジャムのお題「かんせい」を「慣性」と捉えて作った、宇宙船の駐車ゲームです。iOS版はApp Storeで審査中です。\n\n宇宙船にはブレーキがありません。噴射すると加速し、キーを離しても宇宙空間を滑り続けます。止まるには、進む向きと反対へ噴射するしかありません。噴射を最小限に抑えて、駐車枠の中でぴたりと止めましょう。\n\n【Game Center・広告の連携】\n・Game Centerのランキング：起動時にサインインを済ませておき、全コースを駐車できたときだけスコアを送信します。結果画面のボタンから、Game Center標準のランキング画面を開けます。送信に失敗してもゲームは止めません。\n・AdMobのインタースティシャル広告：結果画面からタイトルへ戻るタイミングで表示します。起動時に1本先読みしておき、表示したら次を読み込みます。読み込みが間に合わないときは広告を出さずに進み、表示中はゲームと音を止めます。\n・App Tracking Transparency：広告の初期化前にトラッキングの許可を尋ねます。アプリが前面に出ていないとダイアログが表示されないため、前面に出てから尋ね、表示されなかったときは尋ね直すようにしました。\n・遊ぶ環境ごとの切り替え：ランキングと広告をインターフェースで切り離し、iOSではGame Center＋AdMob、unityroom（WebGL）ではunityroomのランキングだけを使い、エディタではどちらも使わないようにしています。",
+    "myResponsibilities": "プログラム全般とiOSのリリース対応",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask",
+      "Game Center",
+      "AdMob",
+      "Python",
+      "Blender"
+    ],
+    "supportedPlatforms": [
+      "iOS（App Store審査中）",
+      "Web（WebGL）"
+    ],
+    "images": [
+      "images/game/sliding-space-parking/ssp-title.webp",
+      "images/game/sliding-space-parking/ssp-sliding.webp",
+      "images/game/sliding-space-parking/ssp-meteor.webp",
+      "images/game/sliding-space-parking/ssp-last-course.webp",
+      "images/game/sliding-space-parking/ssp-meteor.gif",
+      "images/game/sliding-space-parking/ssp-video.mp4"
+    ],
+    "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
+    "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
+    "comingSoon": "app-store",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "2人（プランナー1人・プログラム担当の自分）",
+    "period": "3日間（ゲームジャム）＋リリース調整"
+  },
+  {
+    "title": "かんせいのパレット",
+    "description": "回路をつなぐたびに、白黒の世界へ色がひとつずつ戻っていくパズル",
+    "detailedFeatures": "2日間のゲームジャムに1人で参加して作った、回路つなぎパズルです。お題「かんせい」に、回路の「完成」と、色を感じる力の「感性」の2つの意味を込めました。ブラウザでそのまま遊べます。\n\n色を失った白黒の世界。5×5の盤面のタイルをタップして回し、電源からすべてのゴールまで電気を通すとステージクリアです。道がつながると主人公が道に沿ってゴールまで歩き、世界に色がひとつ戻ります。",
+    "myResponsibilities": "すべて担当（企画・プログラム・演出・効果音・Web公開）",
+    "technologies": [
+      "C++17",
+      "raylib",
+      "GLSL",
+      "CMake",
+      "Emscripten",
+      "GitHub Actions",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Webブラウザ（PC・スマホ）"
+    ],
+    "images": [
+      "images/game/kansei-palette/kansei-title-after.webp",
+      "images/game/kansei-palette/kansei-title-before.webp",
+      "images/game/kansei-palette/kansei-ingame.webp"
+    ],
+    "thumbnailImage": "images/game/kansei-palette/kansei-title-after.webp",
+    "carouselImage": "images/game/kansei-palette/kansei-icon.png",
+    "playUrl": "https://wine-5.github.io/kansei-palette/",
+    "githubUrl": "https://github.com/wine-5/kansei-palette",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "2日間"
+  },
+  {
     "title": "鏡映しのルカ",
     "description": "鏡に映ったら吸い込まれる。映る範囲をよけて呪われた洋館を抜ける見下ろし型ステルスパズル",
     "detailedFeatures": "1日ゲームジャムのお題「うつる」から作った、見下ろし型のステルスパズルです。\n\n鏡に映ったら、鏡の中の世界へ吸い込まれてしまう。肝試しで森の奥の古い洋館に迷い込んだ少女ルカ。館の鏡には、映ったものを取り込む呪いがかかっていました。\n\n鏡の前の床には、うっすら光る「映る範囲」があります。そこに入らないように進み、出口の扉を目指しましょう！柱や本棚、ソファの陰にいれば鏡には映りません。",

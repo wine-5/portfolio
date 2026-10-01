@@ -34,9 +34,15 @@ interface UiStrings {
   readonly reset: string;
   readonly categoryFilter: string;
   readonly languageFilter: string;
-  readonly switchLanguage: string;
-  readonly toLightMode: string;
-  readonly toDarkMode: string;
+  readonly settings: string;
+  readonly settingsTheme: string;
+  readonly themeDark: string;
+  readonly themeLight: string;
+  readonly settingsLanguage: string;
+  readonly settingsBackground: string;
+  readonly backgroundDepth: string;
+  readonly backgroundClassic: string;
+  readonly settingsNote: string;
 }
 
 const STRINGS: Record<Locale, UiStrings> = {
@@ -73,9 +79,15 @@ const STRINGS: Record<Locale, UiStrings> = {
     reset: 'リセット',
     categoryFilter: 'カテゴリ絞り込み',
     languageFilter: '言語で絞り込み',
-    switchLanguage: '言語切り替え',
-    toLightMode: 'ライトモードに切り替え',
-    toDarkMode: 'ダークモードに切り替え',
+    settings: '設定',
+    settingsTheme: 'テーマ',
+    themeDark: 'ダーク',
+    themeLight: 'ライト',
+    settingsLanguage: '言語',
+    settingsBackground: '背景',
+    backgroundDepth: '3D(作品回廊)',
+    backgroundClassic: '標準',
+    settingsNote: '設定はこのブラウザに保存されます',
   },
   en: {
     navGames: 'GAMES',
@@ -110,9 +122,15 @@ const STRINGS: Record<Locale, UiStrings> = {
     reset: 'Reset',
     categoryFilter: 'Filter by category',
     languageFilter: 'Filter by language',
-    switchLanguage: 'Switch language',
-    toLightMode: 'Switch to light mode',
-    toDarkMode: 'Switch to dark mode',
+    settings: 'Settings',
+    settingsTheme: 'Theme',
+    themeDark: 'Dark',
+    themeLight: 'Light',
+    settingsLanguage: 'Language',
+    settingsBackground: 'Background',
+    backgroundDepth: '3D Corridor',
+    backgroundClassic: 'Standard',
+    settingsNote: 'Settings are saved in this browser',
   },
   zh: {
     navGames: '游戏介绍',
@@ -147,9 +165,15 @@ const STRINGS: Record<Locale, UiStrings> = {
     reset: '重置',
     categoryFilter: '按类别筛选',
     languageFilter: '按语言筛选',
-    switchLanguage: '切换语言',
-    toLightMode: '切换到浅色模式',
-    toDarkMode: '切换到深色模式',
+    settings: '设置',
+    settingsTheme: '主题',
+    themeDark: '深色',
+    themeLight: '浅色',
+    settingsLanguage: '语言',
+    settingsBackground: '背景',
+    backgroundDepth: '3D（作品回廊）',
+    backgroundClassic: '标准',
+    settingsNote: '设置会保存在此浏览器中',
   },
 };
 

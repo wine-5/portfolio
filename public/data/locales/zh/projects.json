@@ -1,5 +1,71 @@
 [
   {
+    "title": "滑行宇宙停车场",
+    "description": "只靠惯性，把没有刹车的宇宙飞船稳稳停进车位的停车动作游戏",
+    "detailedFeatures": "以游戏Jam主题「かんせい」并理解为「惯性」（日语中同音）制作的宇宙飞船停车游戏。iOS版目前正在App Store审核中。\n\n宇宙飞船没有刹车。喷射会加速，松开按键后也会在宇宙中持续滑行。想要停下，只能朝前进方向的反方向喷射。尽量减少喷射次数，把飞船稳稳停在车位里吧。\n\n【Game Center与广告的接入】\n・Game Center排行榜：启动时先完成登录，只有所有路线都停车成功时才提交分数。可以从结算画面的按钮打开Game Center标准的排行榜画面。提交失败也不会中断游戏。\n・AdMob插页广告：在从结算画面返回标题时显示。启动时预先加载1条，显示后再加载下一条。来不及加载时不显示广告直接继续，广告显示期间会暂停游戏和声音。\n・App Tracking Transparency：在初始化广告前请求跟踪许可。由于应用不在前台时不会弹出对话框，因此等应用回到前台后再请求，未弹出时会重新请求。\n・按运行环境切换：通过接口将排行榜与广告分离，iOS使用Game Center＋AdMob，unityroom（WebGL）只使用unityroom的排行榜，编辑器中两者都不使用。",
+    "myResponsibilities": "全部程序以及iOS发布工作",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask",
+      "Game Center",
+      "AdMob",
+      "Python",
+      "Blender"
+    ],
+    "supportedPlatforms": [
+      "iOS（App Store审核中）",
+      "Web（WebGL）"
+    ],
+    "images": [
+      "images/game/sliding-space-parking/ssp-title.webp",
+      "images/game/sliding-space-parking/ssp-sliding.webp",
+      "images/game/sliding-space-parking/ssp-meteor.webp",
+      "images/game/sliding-space-parking/ssp-last-course.webp",
+      "images/game/sliding-space-parking/ssp-meteor.gif",
+      "images/game/sliding-space-parking/ssp-video.mp4"
+    ],
+    "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
+    "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
+    "comingSoon": "app-store",
+    "year": "三年级",
+    "category": "game",
+    "teamSize": "2人（策划1人・负责程序的我）",
+    "period": "3天（游戏Jam）＋发布调整"
+  },
+  {
+    "title": "感性的调色盘",
+    "description": "每接通一次电路，黑白世界就找回一种颜色的解谜游戏",
+    "detailedFeatures": "独自参加为期2天的游戏Jam时制作的电路连接解谜游戏。主题「かんせい」在这里包含两层含义：完成电路的「完成」，以及感受色彩的「感性」。可以直接在浏览器中游玩。\n\n这是一个失去了色彩的黑白世界。点击5×5棋盘上的方块使其旋转，让电力从电源流到所有终点即可通关。道路接通后，主人公会沿着道路走向终点，世界也会找回一种颜色。",
+    "myResponsibilities": "全部负责（策划、程序、演出、音效、Web发布）",
+    "technologies": [
+      "C++17",
+      "raylib",
+      "GLSL",
+      "CMake",
+      "Emscripten",
+      "GitHub Actions",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "网页浏览器（PC・手机）"
+    ],
+    "images": [
+      "images/game/kansei-palette/kansei-title-after.webp",
+      "images/game/kansei-palette/kansei-title-before.webp",
+      "images/game/kansei-palette/kansei-ingame.webp"
+    ],
+    "thumbnailImage": "images/game/kansei-palette/kansei-title-after.webp",
+    "carouselImage": "images/game/kansei-palette/kansei-icon.png",
+    "playUrl": "https://wine-5.github.io/kansei-palette/",
+    "githubUrl": "https://github.com/wine-5/kansei-palette",
+    "year": "三年级",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "2天"
+  },
+  {
     "title": "镜映的露卡",
     "description": "被镜子照到就会被吸进去。避开映照范围、穿过被诅咒洋馆的俯视角潜行解谜游戏",
     "detailedFeatures": "以一日游戏开发大赛（Game Jam）的主题「映る（映照）」制作的俯视角潜行解谜游戏。\n\n一旦被镜子照到，就会被吸进镜中的世界。少女露卡为了试胆，误入了森林深处的一座古老洋馆。馆内的镜子被施加了诅咒，会吞噬所映照到的一切。\n\n镜子前方的地板上，有一片微微发光的「映照范围」。请避开它前进，朝出口的大门前进吧！只要躲在柱子、书架或沙发的阴影里，镜子就照不到你。",

@@ -1,5 +1,71 @@
 [
   {
+    "title": "Sliding Space Parking",
+    "description": "A parking action game where you stop a brakeless spaceship dead in its bay using inertia alone",
+    "detailedFeatures": "A spaceship parking game made for a game jam with the theme \"kansei\", which I took as \"inertia\" (also read \"kansei\" in Japanese). The iOS version is currently under App Store review.\n\nYour spaceship has no brakes. Thrusting accelerates it, and it keeps sliding through space even after you let go. The only way to stop is to thrust in the opposite direction. Keep your thrusts to a minimum and bring the ship to a perfect stop inside the parking bay.\n\n[Game Center and Ads Integration]\n- Game Center leaderboard: the player is signed in at launch, and the score is submitted only when every course is parked. A button on the result screen opens the standard Game Center leaderboard. A failed submission never stops the game.\n- AdMob interstitial ads: shown when returning from the result screen to the title. One ad is preloaded at launch and the next is loaded after each one is shown. If loading is not ready in time, the game moves on without an ad, and the game and sound pause while an ad is on screen.\n- App Tracking Transparency: tracking permission is requested before the ads are initialized. Since the dialog does not appear unless the app is in the foreground, the request waits until the app is in front and is retried if the dialog still does not show.\n- Switching per platform: rankings and ads sit behind interfaces, so iOS uses Game Center + AdMob, unityroom (WebGL) uses only the unityroom leaderboard, and the editor uses neither.",
+    "myResponsibilities": "All programming and the iOS release work",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask",
+      "Game Center",
+      "AdMob",
+      "Python",
+      "Blender"
+    ],
+    "supportedPlatforms": [
+      "iOS (in App Store review)",
+      "Web (WebGL)"
+    ],
+    "images": [
+      "images/game/sliding-space-parking/ssp-title.webp",
+      "images/game/sliding-space-parking/ssp-sliding.webp",
+      "images/game/sliding-space-parking/ssp-meteor.webp",
+      "images/game/sliding-space-parking/ssp-last-course.webp",
+      "images/game/sliding-space-parking/ssp-meteor.gif",
+      "images/game/sliding-space-parking/ssp-video.mp4"
+    ],
+    "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
+    "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
+    "comingSoon": "app-store",
+    "year": "3rd Year",
+    "category": "game",
+    "teamSize": "2 people (1 planner + me on programming)",
+    "period": "3 days (game jam) + release polish"
+  },
+  {
+    "title": "Kansei Palette",
+    "description": "A circuit puzzle where every connection brings one more color back to a black-and-white world",
+    "detailedFeatures": "A circuit-connecting puzzle I made solo for a two-day game jam. The theme \"kansei\" carries two meanings in Japanese here: completing a circuit, and the sense of feeling color. It is playable right in the browser.\n\nThe world has lost its colors. Tap tiles on a 5x5 board to rotate them, and clear the stage by running power from the source to every goal. Once the path is connected, the hero walks along it to the goal and one color returns to the world.",
+    "myResponsibilities": "Everything (design, programming, effects, sound effects, web release)",
+    "technologies": [
+      "C++17",
+      "raylib",
+      "GLSL",
+      "CMake",
+      "Emscripten",
+      "GitHub Actions",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Web browser (PC / mobile)"
+    ],
+    "images": [
+      "images/game/kansei-palette/kansei-title-after.webp",
+      "images/game/kansei-palette/kansei-title-before.webp",
+      "images/game/kansei-palette/kansei-ingame.webp"
+    ],
+    "thumbnailImage": "images/game/kansei-palette/kansei-title-after.webp",
+    "carouselImage": "images/game/kansei-palette/kansei-icon.png",
+    "playUrl": "https://wine-5.github.io/kansei-palette/",
+    "githubUrl": "https://github.com/wine-5/kansei-palette",
+    "year": "3rd Year",
+    "category": "game",
+    "teamSize": "1 person",
+    "period": "2 days"
+  },
+  {
     "title": "Mirror Luka",
     "description": "Get reflected and you're pulled into the mirror. A top-down stealth puzzle about sneaking through a cursed mansion",
     "detailedFeatures": "A top-down stealth puzzle made for a one-day game jam with the theme \"utsuru\" (to be reflected).\n\nIf a mirror reflects you, you get pulled into the world inside it. Luka, a girl who wandered into an old mansion deep in the forest on a dare, finds that every mirror in the house is cursed to swallow whatever it reflects.\n\nIn front of each mirror, a faintly glowing \"reflection zone\" lies on the floor. Avoid it and make your way to the exit door! Hide behind pillars, bookshelves or sofas and the mirrors can't see you.",

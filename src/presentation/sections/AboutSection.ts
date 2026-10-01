@@ -3,7 +3,14 @@ import { gaugePercent } from '@domain/entities/Profile';
 import { View } from '../components/View';
 import { esc, asset, linkIcon } from '../util/html';
 import { t } from '../i18n/uiStrings';
+import { canRunWineRig, startWineRig, type WineRigHandle } from '../vendor/wine-icon-rig/wine-rig.js';
 import '../styles/about.css';
+
+/**
+ * 動いているアイコン。言語切り替えで About が作り直されたとき、古いアイコンの描画を止めるために持っておく
+ * (セクションは毎回 new されるので、インスタンスではなくモジュールで 1 つだけ管理する)
+ */
+let activeRig: WineRigHandle | null = null;
 
 /** 本人を主人公キャラとして表示するプレイヤーステータス風 About */
 export class AboutSection extends View<Profile> {
@@ -20,7 +27,8 @@ export class AboutSection extends View<Profile> {
       </header>
       <div class="about__panel">
         <div class="about__avatar">
-          <img src="${asset(profile.avatar)}" alt="${esc(profile.name)}" loading="lazy" />
+          <img src="${asset(profile.avatar)}" alt="${esc(profile.name)}" width="500" height="500" loading="lazy" />
+          <canvas aria-hidden="true"></canvas>
         </div>
         <div class="about__status">
           <span class="name-label">NAME</span>
@@ -60,6 +68,27 @@ export class AboutSection extends View<Profile> {
     `;
 
     this.animateGaugesOnScroll();
+    this.startAvatarRig();
+  }
+
+  /**
+   * アイコンを Live2D 風に動かす(まばたき・マウスの方向を見る・呼吸・髪の揺れ)。
+   * 動き出すまでと、WebGL が無い / 動きを減らす設定の環境では静止画のまま
+   */
+  private startAvatarRig(): void {
+    activeRig?.stop();
+    activeRig = null;
+    if (!canRunWineRig()) return;
+
+    const box = this.el.querySelector<HTMLElement>('.about__avatar')!;
+    startWineRig(box.querySelector('canvas')!, { modelUrl: asset('wine-icon-rig/wine_rig.json') })
+      .then((rig) => {
+        // 読み込み中に言語が切り替わり、このアイコンが画面から外れていたら止める
+        if (!box.isConnected) return rig.stop();
+        activeRig = rig;
+        box.classList.add('is-live');
+      })
+      .catch((e: unknown) => console.warn('wine icon rig disabled:', e));
   }
 
   /** セクションが見えたタイミングでゲージを伸ばす */

@@ -42,6 +42,8 @@ export class CyberBackground {
   private streaks: Streak[] = [];
   private nextStreakAt = 0;
   private rafId = 0;
+  /** stop() でまとめて外すためのリスナー登録用シグナル */
+  private readonly listeners = new AbortController();
   private lastTime = 0;
   /** グリッドの奥行きスクロール位置(0〜1 でループ) */
   private scroll = 0;
@@ -52,7 +54,8 @@ export class CyberBackground {
     parent.appendChild(this.canvas);
 
     this.resize();
-    window.addEventListener('resize', () => this.resize());
+    const { signal } = this.listeners;
+    window.addEventListener('resize', () => this.resize(), { signal });
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       this.draw(0);
@@ -67,10 +70,18 @@ export class CyberBackground {
         this.lastTime = performance.now();
         this.rafId = requestAnimationFrame(this.tick);
       }
-    });
+    }, { signal });
 
     this.lastTime = performance.now();
     this.rafId = requestAnimationFrame(this.tick);
+  }
+
+  /** 描画を止めてリスナーを外し、canvas を取り除く(設定で背景を切り替えたとき) */
+  stop(): void {
+    cancelAnimationFrame(this.rafId);
+    this.rafId = 0;
+    this.listeners.abort();
+    this.canvas.remove();
   }
 
   private resize(): void {

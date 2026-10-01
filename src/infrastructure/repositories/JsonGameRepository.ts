@@ -1,4 +1,4 @@
-import type { Game, GameCategory, Highlight, ReleaseState } from '@domain/entities/Game';
+import type { Game, GameCategory, Highlight, ReleaseState, Store } from '@domain/entities/Game';
 import type { GameRepository } from '@application/ports/GameRepository';
 import type { Locale } from '@application/ports/Locale';
 
@@ -26,6 +26,8 @@ interface ProjectDto {
   flagship?: boolean;
   highlights?: Highlight[];
   flagshipVideo?: string;
+  /** ストア審査中などで URL がまだ無い作品。指定したストアの COMING SOON として FEATURED に載せる */
+  comingSoon?: Store;
 }
 
 /**
@@ -81,7 +83,10 @@ export class JsonGameRepository implements GameRepository {
 
   private toGame(dto: ProjectDto, entryNo: number): Game {
     const key = dto.githubUrl ?? dto.install ?? dto.playUrl;
-    const featuredRelease = (key ? FEATURED_RELEASE[key] : undefined) ?? storeRelease(dto);
+    const featuredRelease =
+      (key ? FEATURED_RELEASE[key] : undefined) ??
+      (dto.comingSoon ? { kind: 'coming-soon' as const, store: dto.comingSoon } : undefined) ??
+      storeRelease(dto);
     const release: ReleaseState =
       featuredRelease ??
       (dto.install || dto.playUrl
