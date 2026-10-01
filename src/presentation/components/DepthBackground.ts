@@ -18,6 +18,8 @@ import { asset } from '../util/html';
  * 作品を追加したら、タイトル画面を幅 512px の webp に縮小してここへ足す
  */
 const PANEL_IMAGES = [
+  'sliding-space-parking',
+  'kansei-palette',
   'zirai-tyan',
   'chocho',
   'Tofu',
