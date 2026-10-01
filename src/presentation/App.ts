@@ -56,7 +56,8 @@ export class App {
     const data = await this.load(locale);
     await this.transitionSwap(() => {
       this.root.innerHTML = '';
-      this.renderAll(locale, data);
+      // 言語は設定パネルから切り替えるので、再描画後もパネルを開いたままにする
+      this.renderAll(locale, data, true);
     });
   }
 
@@ -94,12 +95,13 @@ export class App {
   private renderAll(
     locale: Locale,
     { collection, profile, skills, news, internships }: AppData,
+    settingsOpen = false,
   ): void {
     setUiLocale(locale);
     document.documentElement.lang = locale;
 
     const header = new Header();
-    header.render({ locale, onLocaleChange: (next) => void this.switchLocale(next) });
+    header.render({ locale, onLocaleChange: (next) => void this.switchLocale(next), settingsOpen });
     header.mount(this.root);
 
     const main = document.createElement('main');

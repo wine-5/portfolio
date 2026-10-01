@@ -205,58 +205,24 @@ img {
   }
 }
 
-/* ---- ヘッダー右側のツール(言語切り替え+ハンバーガー) ---- */
+/* ---- ヘッダー右側のツール(設定+ハンバーガー) ---- */
 .hud__tools {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 }
 
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  color: var(--color-text-dim);
-  background: transparent;
-  border: 1px solid var(--color-line);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.theme-toggle:hover {
-  color: var(--color-cyan);
-  border-color: var(--color-cyan);
-}
-
-/* ダーク中は太陽(ライトへ)、ライト中は月(ダークへ)を表示する */
-.theme-toggle__moon {
-  display: none;
-}
-
-:root[data-theme='light'] .theme-toggle__sun {
-  display: none;
-}
-
-:root[data-theme='light'] .theme-toggle__moon {
-  display: block;
-}
-
-.lang-switcher {
+/* ---- 設定(テーマ / 言語 / 背景をまとめて切り替えるパネル) ---- */
+.settings {
   position: relative;
 }
 
-.lang-switcher__button {
+.settings__button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  /* 言語名の長さ(日本語/English/中文)でヘッダーのレイアウトが揺れないよう幅を固定 */
-  min-width: 7.5em;
-  gap: 0.4em;
-  padding: 0.35em 0.8em;
+  gap: 0.45em;
+  height: 32px;
+  padding: 0 0.8em;
   font-family: var(--font-ui);
   font-weight: 600;
   font-size: 0.85rem;
@@ -269,39 +235,109 @@ img {
   transition: color 0.2s, border-color 0.2s, text-shadow 0.2s;
 }
 
-.lang-switcher__button:hover {
+.settings__button svg {
+  transition: transform 0.4s ease;
+}
+
+.settings__button:hover,
+.settings--open .settings__button {
   color: var(--color-cyan);
   border-color: var(--color-cyan);
   text-shadow: var(--glow-cyan);
 }
 
-.lang-switcher__dropdown {
+.settings--open .settings__button svg {
+  transform: rotate(90deg);
+}
+
+.settings__panel {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 8px);
   right: 0;
-  min-width: 8.5em;
-  display: none;
-  flex-direction: column;
+  z-index: 60;
+  width: 300px;
+  padding: 0.9rem 1rem 1rem;
   background: var(--color-chrome-solid);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid var(--color-line);
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  animation: settings-in 0.18s ease-out;
+}
+
+.settings__panel[hidden] {
+  display: none;
+}
+
+@keyframes settings-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.settings__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.settings__title {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.settings__close {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--color-text-dim);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.settings__close:hover {
+  color: var(--color-cyan);
+}
+
+.settings__group + .settings__group {
+  margin-top: 0.85rem;
+}
+
+.settings__legend {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text-dim);
+}
+
+/* 選択肢を横一列に並べたセグメント切り替え */
+.settings__segment {
+  display: flex;
+  border: 1px solid var(--color-line);
   border-radius: 4px;
   overflow: hidden;
-  z-index: 60;
 }
 
-.lang-switcher--open .lang-switcher__dropdown {
-  display: flex;
-}
-
-.lang-switcher__option {
-  padding: 0.55em 1em;
+.settings__option {
+  flex: 1;
+  min-height: 36px;
+  padding: 0.35em 0.5em;
   font-family: var(--font-ui);
   font-weight: 600;
   font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-align: left;
+  letter-spacing: 0.05em;
   color: var(--color-text-dim);
   background: transparent;
   border: none;
@@ -309,14 +345,52 @@ img {
   transition: color 0.2s, background 0.2s;
 }
 
-.lang-switcher__option:hover {
+.settings__option + .settings__option {
+  border-left: 1px solid var(--color-line);
+}
+
+.settings__option:hover {
   color: var(--color-cyan);
   background: rgba(0, 229, 255, 0.08);
 }
 
-.lang-switcher__option--active {
-  color: var(--color-cyan);
-  text-shadow: var(--glow-cyan);
+.settings__option[aria-checked='true'] {
+  color: var(--color-bg);
+  background: var(--color-cyan);
+  text-shadow: none;
+}
+
+.settings__note {
+  margin: 0.9rem 0 0;
+  font-size: 0.72rem;
+  color: var(--color-text-dim);
+  opacity: 0.8;
+}
+
+/* 狭幅ではボタンをアイコンだけにし、パネルは画面幅いっぱいに出す */
+@media (max-width: 640px) {
+  .settings__button {
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .settings__button-label {
+    display: none;
+  }
+
+  /* ヘッダー(sticky)を基準にして、ヘッダー直下に出す */
+  .settings {
+    position: static;
+  }
+
+  .settings__panel {
+    top: 100%;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+  }
 }
 
 /* ---- ハンバーガー(狭幅のみ表示) ---- */
