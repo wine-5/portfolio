@@ -123,6 +123,7 @@ export class App {
     // カルーセルは看板作品を先頭に置く(角度 0 = 正面なので初期表示で正面に来る)
     const allGames = [
       ...(flagshipGame ? [flagshipGame] : []),
+      ...(collection.spotlight ? [collection.spotlight] : []),
       ...collection.featured,
       ...collection.entries,
     ];

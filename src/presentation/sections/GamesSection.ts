@@ -115,6 +115,8 @@ export class GamesSection extends View<GameCollection> {
   private filter: FilterState = { ...DEFAULT_FILTER };
   /** 絞り込みパネルの開閉。条件が多いので普段は畳んでおく */
   private panelOpen = false;
+  /** 人気作カードのループ動画を、画面内にあるときだけ再生する */
+  private videoObserver: IntersectionObserver | null = null;
 
   constructor() {
     super('section', 'games');
@@ -126,6 +128,7 @@ export class GamesSection extends View<GameCollection> {
     // 看板作品もこのセクション内に並ぶので、登録数・言語フィルタの母集団には含める
     this.games = [
       ...(collection.flagship ? [collection.flagship] : []),
+      ...(collection.spotlight ? [collection.spotlight] : []),
       ...collection.featured,
       ...collection.entries,
     ];
@@ -169,6 +172,7 @@ export class GamesSection extends View<GameCollection> {
     const featured = this.collection.featured.filter(match);
     const entries = this.collection.entries.filter(match);
     const flagshipVisible = this.collection.flagship !== undefined && match(this.collection.flagship);
+    const spotlight = this.collection.spotlight !== undefined && match(this.collection.spotlight) ? this.collection.spotlight : undefined;
     // 実際に使っている言語だけを許可リストの順で並べる
     const used = new Set(this.games.flatMap((g) => [...gameLanguages(g)]));
     const techs = LANGUAGES.filter((l) => used.has(l));
@@ -180,7 +184,7 @@ export class GamesSection extends View<GameCollection> {
         .map((n) => ({ id: String(n), label: ORDINALS[n] ?? String(n) })),
     ];
     const active = activeCount(this.filter);
-    const shown = featured.length + entries.length + (flagshipVisible ? 1 : 0);
+    const shown = featured.length + entries.length + (flagshipVisible ? 1 : 0) + (spotlight ? 1 : 0);
 
     this.el.innerHTML = `
       <header class="games__header">
@@ -216,12 +220,18 @@ export class GamesSection extends View<GameCollection> {
           </select>
         </div>
       </div>
-      ${featured.length > 0 ? `<div class="games__featured">${featured.map((g) => featuredCard(g)).join('')}</div>` : ''}
+      ${spotlight ? spotlightCard(spotlight) : ''}
+      ${
+        featured.length > 0
+          ? `${spotlight ? `<p class="games__more-releases">// ${esc(t('moreReleases'))}</p>` : ''}
+             <div class="games__featured${spotlight ? ' games__featured--compact' : ''}">${featured.map((g) => featuredCard(g)).join('')}</div>`
+          : ''
+      }
       <div data-flagship-slot></div>
       ${
         entries.length > 0
           ? `<ol class="games__grid">${entries.map((g) => entryCard(g)).join('')}</ol>`
-          : featured.length === 0 && !flagshipVisible
+          : featured.length === 0 && !flagshipVisible && !spotlight
             ? '<p class="games__empty">NO DATA</p>'
             : ''
       }
@@ -255,6 +265,8 @@ export class GamesSection extends View<GameCollection> {
       this.redraw();
     });
 
+    this.watchSpotlightVideo();
+
     this.el.querySelectorAll<HTMLElement>('[data-entry]').forEach((node) => {
       node.addEventListener('click', (e) => {
         // FEATURED の PLAY NOW リンクはモーダルを開かずそのまま遷移させる
@@ -264,6 +276,26 @@ export class GamesSection extends View<GameCollection> {
         if (game) this.modal.open(game);
       });
     });
+  }
+
+  /** 人気作カードのループ動画を、画面に入ったら読み込んで再生し、外れたら止める(通信量と電池の節約) */
+  private watchSpotlightVideo(): void {
+    this.videoObserver?.disconnect();
+    this.videoObserver = null;
+    const video = this.el.querySelector<HTMLVideoElement>('video[data-spotlight-video]');
+    if (!video || !('IntersectionObserver' in window)) return;
+
+    this.videoObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          if (!video.src) video.src = video.dataset['src'] ?? '';
+          void video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      }
+    });
+    this.videoObserver.observe(video);
   }
 }
 
@@ -304,6 +336,60 @@ function featuredLabel(game: Game): string {
     return storeName ? `${storeName} RELEASED` : 'RELEASED';
   }
   return storeName ? `${storeName} COMING SOON` : 'FEATURED';
+}
+
+/**
+ * リリース作品の中で特に推す人気作の大きなカード。
+ * 動画(なければサムネイル)を大きく出し、ゲームのキービジュアルに合わせた紫〜ピンクの専用配色で他と差を付ける
+ */
+function spotlightCard(game: Game): string {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 動きを減らす設定のときは動画を流さず、キービジュアルを出す
+  const visual =
+    game.spotlightVideo && !reducedMotion
+      ? `<video data-spotlight-video data-src="${esc(asset(game.spotlightVideo))}" poster="${esc(asset(game.thumbnailImage))}" muted loop playsinline preload="none" aria-label="${esc(game.title)}"></video>`
+      : `<img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />`;
+  const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
+  const playButton =
+    game.release.kind === 'playable'
+      ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a>`
+      : '';
+  const siteButton = game.websiteUrl
+    ? `<a class="btn btn--lg" href="${esc(game.websiteUrl)}" target="_blank" rel="noopener">${esc(t('officialSite'))}</a>`
+    : '';
+
+  return `
+    <article class="spotlight-card" data-entry="${game.entryNo}" tabindex="0">
+      <div class="spotlight-card__ribbon">
+        <span class="spotlight-card__popular">★ MOST POPULAR</span>
+        <span class="spotlight-card__store">${featuredLabel(game)}</span>
+      </div>
+      <div class="spotlight-card__visual">${visual}</div>
+      <div class="spotlight-card__body">
+        <div class="featured-card__meta">
+          <span class="featured-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
+          ${crewChip(game)}
+          ${game.year ? `<span class="featured-card__year">${esc(game.year)}</span>` : ''}
+        </div>
+        <span class="name-label">NAME</span>
+        <h3 class="spotlight-card__title">${esc(game.title)}</h3>
+        <p class="spotlight-card__desc">${esc(game.description)}</p>
+        <dl class="spotlight-card__stats">
+          ${statCell('TEAM', game.teamSize)}
+          ${statCell('PERIOD', game.period)}
+          ${statCell('PLATFORM', game.supportedPlatforms.join(' / '))}
+        </dl>
+        <div class="featured-card__store-info">
+          ${game.release.kind === 'playable' ? '<span class="badge badge--play">PLAYABLE</span>' : '<span class="badge badge--soon">COMING SOON</span>'}${chip}
+        </div>
+        <div class="featured-card__buttons">${playButton}${siteButton}<span class="btn">${esc(t('details'))}</span></div>
+      </div>
+    </article>`;
+}
+
+function statCell(label: string, value: string): string {
+  if (!value) return '';
+  return `<div class="spotlight-card__stat"><dt>${label}</dt><dd>${esc(value)}</dd></div>`;
 }
 
 function featuredCard(game: Game): string {
