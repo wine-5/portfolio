@@ -200,7 +200,8 @@
         "title": "全編をOS演出で統一",
         "body": "難易度選択はUACダイアログ風、勝利はシャットダウン画面風、敗北はブルースクリーン風。"
       }
-    ]
+    ],
+    "flagshipVideo": "images/game/win-vs-mac/win-vs-mac.mp4"
   },
   {
     "title": "CodeTree (Git Tool)",
