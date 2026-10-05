@@ -1,5 +1,5 @@
 import { View } from './View';
-import { esc, asset } from '../util/html';
+import { esc, thumbImg } from '../util/html';
 
 export interface CarouselEntry {
   readonly entryNo: number;
@@ -49,7 +49,7 @@ export class GameCarousel extends View<readonly CarouselEntry[]> {
           .map(
             (e, i) => `
               <button class="carousel__item" data-index="${i}" aria-label="${esc(e.title)}">
-                <img src="${asset(e.image)}" alt="" draggable="false" loading="lazy" />
+                ${thumbImg(e.image, '', 'draggable="false"')}
               </button>`,
           )
           .join('')}

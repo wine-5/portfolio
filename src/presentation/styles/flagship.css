@@ -2,13 +2,9 @@
    FLAGSHIP(看板作品を 1 つだけ別格で見せる枠)
    FEATURED はストア公開が軸なので、こちらはゴールド系で色を分ける
    ============================================ */
+/* 人気作(地雷ちゃん)のカードと同じ幅・同じくらいの高さに揃え、大きな枠が 2 つ並んでも圧迫しないようにする */
 .flagship {
-  /* .app の 1080px から左右にはみ出して見せる。
-     100vw はスクロールバーを含むので 2rem 引いて横スクロールを防ぐ */
   position: relative;
-  left: 50%;
-  width: min(1280px, calc(100vw - 2rem));
-  transform: translateX(-50%);
   margin: 0 0 3rem;
 
   --flagship-gold: #ffcf5c;
@@ -24,7 +20,7 @@
 
 .flagship__frame {
   position: relative;
-  padding: clamp(1.1rem, 3vw, 2rem);
+  padding: clamp(1rem, 2.2vw, 1.4rem);
   background:
     radial-gradient(ellipse 70% 50% at 12% 0%, rgba(255, 207, 92, 0.1), transparent 70%),
     var(--color-panel);
@@ -33,21 +29,6 @@
   box-shadow:
     0 0 10px rgba(240, 180, 41, 0.35),
     0 0 42px rgba(240, 180, 41, 0.14);
-  animation: flagship-glow 5s ease-in-out infinite;
-}
-
-@keyframes flagship-glow {
-  0%,
-  100% {
-    box-shadow:
-      0 0 10px rgba(240, 180, 41, 0.35),
-      0 0 42px rgba(240, 180, 41, 0.14);
-  }
-  50% {
-    box-shadow:
-      0 0 16px rgba(255, 207, 92, 0.55),
-      0 0 64px rgba(255, 207, 92, 0.22);
-  }
 }
 
 /* ---- 見出し行 ---- */
@@ -56,8 +37,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.8rem;
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.9rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.6rem;
   border-bottom: 1px solid rgba(240, 180, 41, 0.35);
 }
 
@@ -101,8 +82,8 @@
 /* ---- 本体(映像 : 情報 = 6 : 5) ---- */
 .flagship__body {
   display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-  gap: clamp(1.2rem, 3vw, 2.2rem);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(1rem, 2vw, 1.4rem);
   align-items: start;
 }
 
@@ -166,51 +147,11 @@
   font-size: 0.85rem;
 }
 
-.flagship__thumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.6rem;
-}
 
-.flagship-thumb {
-  width: 88px;
-  aspect-ratio: 16 / 10;
-  padding: 0;
-  overflow: hidden;
-  background: var(--color-bg-2);
-  border: 1px solid rgba(240, 180, 41, 0.3);
-  border-radius: 4px;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s, border-color 0.2s, box-shadow 0.2s;
-}
 
-.flagship-thumb:hover {
-  opacity: 1;
-  border-color: var(--flagship-gold);
-}
 
-.flagship-thumb--active {
-  opacity: 1;
-  border-color: var(--flagship-gold);
-  box-shadow: 0 0 10px rgba(240, 180, 41, 0.45);
-}
 
-.flagship-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-.flagship-thumb__video {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: 1rem;
-  color: var(--flagship-gold);
-}
 
 /* ---- 右カラム(訴求) ---- */
 .flagship__lead {
@@ -226,7 +167,7 @@
   margin: 0.2rem 0 0.5rem;
   overflow-wrap: break-word;
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
   font-weight: 900;
   letter-spacing: 0.06em;
   line-height: 1.15;
@@ -235,18 +176,18 @@
 }
 
 .flagship__desc {
-  margin: 0 0 1.2rem;
-  font-size: 1rem;
+  margin: 0 0 0.7rem;
+  font-size: 0.9rem;
   color: var(--color-text);
 }
 
 /* ---- 訴求ポイント 3 点 ---- */
 .flagship__highlights {
   list-style: none;
-  margin: 0 0 1.3rem;
+  margin: 0 0 0.8rem;
   padding: 0;
   display: grid;
-  gap: 0.8rem;
+  gap: 0.35rem;
 }
 
 .flagship-point {
@@ -257,13 +198,15 @@
 .flagship-point__title {
   margin: 0;
   font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--flagship-gold);
 }
 
+/* 枠を人気作と同じ大きさに収めるため、訴求ポイントは見出しだけを出す(本文は詳細で読める) */
 .flagship-point__body {
+  display: none;
   margin: 0.1rem 0 0;
   font-size: 0.86rem;
   line-height: 1.6;
@@ -274,12 +217,12 @@
 .flagship__stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.6rem;
-  margin: 0 0 1rem;
+  gap: 0.4rem;
+  margin: 0 0 0.8rem;
 }
 
 .flagship-stat {
-  padding: 0.5rem 0.7rem;
+  padding: 0.35rem 0.6rem;
   background: rgba(240, 180, 41, 0.07);
   border: 1px solid rgba(240, 180, 41, 0.28);
 }
@@ -295,14 +238,15 @@
 .flagship-stat dd {
   margin: 0.1rem 0 0;
   font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--color-text);
 }
 
+/* 使用技術は詳細モーダルに任せ、枠の高さを抑える */
 .flagship__tech {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 0.3rem;
   margin: 0 0 1.2rem;
@@ -320,7 +264,13 @@
 .flagship__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.5rem;
+}
+
+.flagship__actions .btn {
+  padding: 0.5em 0.9em;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
 }
 
 /* ---- タブレット以下は縦積み(minmax(0,…) で中身によるはみ出しを止める) ---- */
@@ -330,7 +280,7 @@
   }
 
   .flagship__title {
-    font-size: clamp(1.7rem, 7vw, 2.4rem);
+    font-size: clamp(1.4rem, 6vw, 1.9rem);
   }
 }
 
@@ -353,12 +303,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  /* 指で押せる高さ(約 46px)を確保しつつ、1 行に 4 枚収まる幅にする */
-  .flagship-thumb {
-    width: 70px;
-    height: 46px;
-    aspect-ratio: auto;
-  }
 
   .flagship__play-icon {
     width: 52px;
@@ -374,8 +318,100 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flagship__frame,
   .flagship__rank {
     animation: none;
+  }
+}
+
+/* ---- 人気作カードと同じ構成にそろえる: 映像を枠いっぱいに置き、見出しは映像の左上のリボンにする ---- */
+.flagship__frame {
+  padding: 0;
+}
+
+.flagship__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+.flagship__kicker,
+.flagship__no {
+  padding: 0.35em 1em 0.35em 1.4em;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  background: rgba(5, 7, 15, 0.8);
+}
+
+:root[data-theme='light'] .flagship__kicker,
+:root[data-theme='light'] .flagship__no {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.flagship__rank {
+  padding: 0.35em 1em;
+}
+
+.flagship__no {
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+.flagship__body {
+  gap: 0;
+  align-items: stretch;
+}
+
+.flagship__visual {
+  border-right: 1px solid rgba(240, 180, 41, 0.4);
+}
+
+/* 映像は本文の高さに合わせて縦いっぱいに広げる(はみ出す左右は object-fit で切る) */
+.flagship__visual {
+  position: relative;
+  min-height: 100%;
+}
+
+.flagship__stage {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  border: none;
+}
+
+
+.flagship__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.2rem 1.4rem 1.2rem;
+}
+
+@media (max-width: 900px) {
+  .flagship__stage {
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+
+  .flagship__visual {
+    border-right: none;
+    border-bottom: 1px solid rgba(240, 180, 41, 0.4);
+  }
+
+  .flagship__info {
+    padding: 1.2rem 1.2rem 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flagship__kicker,
+  .flagship__rank,
+  .flagship__no {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
   }
 }

@@ -200,7 +200,8 @@
         "title": "Framed end to end in OS dressing",
         "body": "Difficulty selection is a UAC dialog, victory is a shutdown screen, defeat is a blue screen."
       }
-    ]
+    ],
+    "flagshipVideo": "images/game/win-vs-mac/win-vs-mac.mp4"
   },
   {
     "title": "CodeTree (Git Tool)",
@@ -464,7 +465,9 @@
     "category": "game",
     "teamSize": "10 people",
     "period": "2 weeks + 4 months",
-    "carouselImage": "images/game/zirai-tyan/zirai-icon.png"
+    "carouselImage": "images/game/zirai-tyan/zirai-icon.png",
+    "spotlight": true,
+    "spotlightVideo": "images/game/zirai-tyan/zirai-video.mp4"
   },
   {
     "title": "Takashi, Betting on Life",

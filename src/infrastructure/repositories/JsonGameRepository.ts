@@ -26,6 +26,8 @@ interface ProjectDto {
   flagship?: boolean;
   highlights?: Highlight[];
   flagshipVideo?: string;
+  spotlight?: boolean;
+  spotlightVideo?: string;
   /** ストア審査中などで URL がまだ無い作品。指定したストアの COMING SOON として FEATURED に載せる */
   comingSoon?: Store;
 }
@@ -108,6 +110,7 @@ export class JsonGameRepository implements GameRepository {
       ...(dto.websiteUrl !== undefined ? { websiteUrl: dto.websiteUrl } : {}),
       ...(dto.carouselImage !== undefined ? { carouselImage: dto.carouselImage } : {}),
       ...(dto.flagshipVideo !== undefined ? { flagshipVideo: dto.flagshipVideo } : {}),
+      ...(dto.spotlightVideo !== undefined ? { spotlightVideo: dto.spotlightVideo } : {}),
       ...(dto.award !== undefined ? { award: dto.award } : {}),
       year: dto.year ?? '',
       category: (dto.category ?? 'game') as GameCategory,
@@ -116,6 +119,7 @@ export class JsonGameRepository implements GameRepository {
       release,
       featured: featuredRelease !== undefined,
       flagship: dto.flagship === true,
+      spotlight: dto.spotlight === true,
       highlights: dto.highlights ?? [],
     };
   }

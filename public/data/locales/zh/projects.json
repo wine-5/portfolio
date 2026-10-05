@@ -200,7 +200,8 @@
         "title": "全程贯穿 OS 风格演出",
         "body": "难度选择为 UAC 对话框风，胜利是关机画面风，失败是蓝屏风。"
       }
-    ]
+    ],
+    "flagshipVideo": "images/game/win-vs-mac/win-vs-mac.mp4"
   },
   {
     "title": "CodeTree (Git Tool)",
@@ -464,7 +465,9 @@
     "category": "game",
     "teamSize": "10人",
     "period": "2周＋4个月",
-    "carouselImage": "images/game/zirai-tyan/zirai-icon.png"
+    "carouselImage": "images/game/zirai-tyan/zirai-icon.png",
+    "spotlight": true,
+    "spotlightVideo": "images/game/zirai-tyan/zirai-video.mp4"
   },
   {
     "title": "たかし、人生ベット中",

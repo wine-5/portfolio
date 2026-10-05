@@ -366,38 +366,13 @@
   box-shadow: var(--glow-cyan);
 }
 
-/* リリース済み・注目作品 ── 豪華な発光 + カラーシフト縁 */
+/* リリース済み・注目作品 ── 光の帯とオーラで目立たせる。
+   縁の box-shadow を毎フレーム動かすと、カード全体の描き直しでスクロールがカクつくため、動かすのは透明度と位置だけにする */
 .featured-card--released,
 .featured-card--upcoming {
   border-color: var(--color-cyan);
   overflow: hidden;
-  animation: released-glow 4s ease-in-out infinite;
-}
-
-/* 縁がシアン → マゼンタ → シアンと色相シフトしながら多層グロー */
-@keyframes released-glow {
-  0%,
-  100% {
-    border-color: var(--color-cyan);
-    box-shadow:
-      0 0  6px 2px rgba(0, 229, 255, 0.85),
-      0 0 18px 4px rgba(0, 229, 255, 0.50),
-      0 0 48px 8px rgba(0, 229, 255, 0.18);
-  }
-  40% {
-    border-color: #cc55ff;
-    box-shadow:
-      0 0  6px 2px rgba(204,  85, 255, 0.85),
-      0 0 18px 4px rgba(204,  85, 255, 0.50),
-      0 0 48px 8px rgba(204,  85, 255, 0.18);
-  }
-  75% {
-    border-color: var(--color-cyan);
-    box-shadow:
-      0 0 10px 3px rgba(0, 229, 255, 1.00),
-      0 0 28px 6px rgba(0, 229, 255, 0.60),
-      0 0 65px 12px rgba(0, 229, 255, 0.22);
-  }
+  box-shadow: 0 0 6px 2px rgba(0, 229, 255, 0.6);
 }
 
 /* スキャンライン : 光の帯が上から下へ定期的に流れる */
@@ -560,6 +535,306 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.7rem;
+}
+
+/* ---- 人気作(SPOTLIGHT) : リリース作品の先頭に横幅いっぱいで出す ---- */
+/* 作品のキービジュアルに合わせ、ここだけ紫〜ピンクの専用配色にして他のカードと差を付ける */
+.spotlight-card {
+  --spot-a: #b46bff;
+  --spot-b: #ff4fb8;
+  --spot-glow: rgba(196, 92, 255, 0.55);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  margin-bottom: 1.2rem;
+  background:
+    radial-gradient(ellipse 70% 90% at 100% 0%, rgba(255, 79, 184, 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 80% at 0% 100%, rgba(180, 107, 255, 0.16), transparent 60%),
+    var(--color-panel);
+  border: 1px solid var(--spot-a);
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  cursor: pointer;
+  transition: transform 0.25s;
+}
+
+/* 縁の色を紫 → ピンクへゆっくり変える。重ねた枠の透明度だけを動かし、描き直しを起こさない */
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid var(--spot-b);
+  box-shadow: inset 0 0 18px rgba(255, 79, 184, 0.35);
+  opacity: 0;
+  animation: spotlight-pulse 5s ease-in-out infinite;
+}
+
+@keyframes spotlight-pulse {
+  50% {
+    opacity: 1;
+  }
+}
+
+:root[data-theme='light'] .spotlight-card {
+  --spot-a: #8a3fe0;
+  --spot-b: #d81b8c;
+  --spot-glow: rgba(138, 63, 224, 0.35);
+}
+
+.spotlight-card:hover,
+.spotlight-card:focus-visible {
+  transform: translateY(-4px);
+}
+
+/* 左上のリボン: MOST POPULAR + ストア名 */
+.spotlight-card__ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+}
+
+.spotlight-card__popular {
+  padding: 0.35em 1.1em 0.35em 1.6em;
+  color: #fff;
+  background: linear-gradient(90deg, var(--spot-a), var(--spot-b), var(--spot-a));
+  background-size: 200% 100%;
+  animation: released-label-shimmer 4s linear infinite;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.spotlight-card__store {
+  padding: 0.35em 1em;
+  color: var(--spot-b);
+  background: rgba(5, 7, 15, 0.75);
+}
+
+:root[data-theme='light'] .spotlight-card__store {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* 本文の高さに合わせて縦いっぱいに広げる(はみ出す左右は object-fit で切る) */
+.spotlight-card__visual {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: #000;
+  border-right: 1px solid var(--spot-a);
+}
+
+.spotlight-card__visual video,
+.spotlight-card__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* 動画の右端を本文側へなじませる */
+.spotlight-card__visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 75%, rgba(5, 7, 15, 0.45));
+}
+
+.spotlight-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 2.2rem 1.4rem 1.2rem;
+}
+
+.spotlight-card .name-label {
+  display: none;
+}
+
+.spotlight-card .featured-card__buttons {
+  gap: 0.5rem;
+}
+
+.spotlight-card .featured-card__buttons .btn {
+  padding: 0.5em 0.9em;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.spotlight-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.1vw, 1.75rem);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, var(--color-text), var(--spot-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.spotlight-card__desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-dim);
+}
+
+/* TEAM / PERIOD / PLATFORM をステータス表示風に */
+.spotlight-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0.5rem 0 0;
+}
+
+.spotlight-card__stat {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(180, 107, 255, 0.35);
+  border-left: 3px solid var(--spot-b);
+  background: rgba(180, 107, 255, 0.06);
+}
+
+.spotlight-card__stat dt {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--spot-b);
+}
+
+.spotlight-card__stat dd {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* 人気作の下に並べる「ほかにもリリースしている作品」の見出し */
+.games__more-releases {
+  margin: 1.8rem 0 0.8rem;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--color-text-dim);
+}
+
+/* 人気作があるときは、ほかのリリース作品を小さめのカードで横に並べる */
+/* 4列 → 2列 → 1列と、半端な1枚が残らない列数で切り替える */
+.games__featured--compact {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 1100px) {
+  .games__featured--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .games__featured--compact {
+    grid-template-columns: 1fr;
+  }
+}
+
+.games__featured--compact .featured-card__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  padding: 0.2em 0.7em;
+}
+
+.games__featured--compact .featured-card__body {
+  gap: 0.3rem;
+  padding: 0.8rem 0.9rem 1rem;
+}
+
+.games__featured--compact .featured-card__title {
+  font-size: 1.05rem;
+}
+
+.games__featured--compact .featured-card__desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.8rem;
+}
+
+.games__featured--compact .name-label {
+  display: none;
+}
+
+.games__featured--compact .featured-card__store-info {
+  margin-top: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.games__featured--compact .featured-card__buttons {
+  margin-top: auto;
+  padding-top: 0.4rem;
+  gap: 0.5rem;
+}
+
+.games__featured--compact .featured-card__buttons .btn {
+  padding: 0.45em 0.9em;
+  font-size: 0.78rem;
+}
+
+.games__featured--compact .featured-card__body {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .spotlight-card {
+    grid-template-columns: 1fr;
+  }
+
+  .spotlight-card__visual {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--spot-a);
+  }
+
+  .spotlight-card__visual::after {
+    background: linear-gradient(180deg, transparent 75%, rgba(5, 7, 15, 0.45));
+  }
+
+  .spotlight-card__body {
+    padding: 1.2rem 1.2rem 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotlight-card__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* リボン 2 つが 1 行に収まるよう詰める */
+  .spotlight-card__ribbon {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+
+  .spotlight-card__popular {
+    padding-left: 1.1em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-card::after,
+  .spotlight-card__popular {
+    animation: none;
+  }
 }
 
 /* ---- 配信ストアのチップ ---- */

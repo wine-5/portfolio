@@ -200,7 +200,8 @@
         "title": "全編をOS演出で統一",
         "body": "難易度選択はUACダイアログ風、勝利はシャットダウン画面風、敗北はブルースクリーン風。"
       }
-    ]
+    ],
+    "flagshipVideo": "images/game/win-vs-mac/win-vs-mac.mp4"
   },
   {
     "title": "CodeTree (Git Tool)",
@@ -464,7 +465,9 @@
     "category": "game",
     "teamSize": "10人",
     "period": "2週間＋4か月",
-    "carouselImage": "images/game/zirai-tyan/zirai-icon.png"
+    "carouselImage": "images/game/zirai-tyan/zirai-icon.png",
+    "spotlight": true,
+    "spotlightVideo": "images/game/zirai-tyan/zirai-video.mp4"
   },
   {
     "title": "たかし、人生ベット中",

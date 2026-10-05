@@ -27,7 +27,7 @@ export class AboutSection extends View<Profile> {
       </header>
       <div class="about__panel">
         <div class="about__avatar">
-          <img src="${asset(profile.avatar)}" alt="${esc(profile.name)}" width="500" height="500" loading="lazy" />
+          <img src="${asset(profile.avatar)}" alt="${esc(profile.name)}" width="500" height="500" loading="lazy" decoding="async" />
           <canvas aria-hidden="true"></canvas>
         </div>
         <div class="about__status">

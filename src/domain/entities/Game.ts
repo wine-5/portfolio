@@ -49,6 +49,13 @@ export interface Game {
   readonly highlights: readonly Highlight[];
   /** FLAGSHIP セクションで自動再生するループ動画(未指定なら images の動画を手動再生) */
   readonly flagshipVideo?: string;
+  /**
+   * リリース作品の中で特に推す 1 作品(人気作)。リリース作品の先頭に横幅いっぱいの大きなカードで出す。
+   * 技術の看板である flagship とは別枠
+   */
+  readonly spotlight: boolean;
+  /** spotlight のカードで自動再生する短いループ動画(未指定ならサムネイル画像) */
+  readonly spotlightVideo?: string;
   /** 受賞歴(あればカード右上にバッジ表示) */
   readonly award?: string;
 }

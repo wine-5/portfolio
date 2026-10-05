@@ -21,6 +21,7 @@ interface UiStrings {
   readonly internshipTheme: string;
   readonly steamPage: string;
   readonly officialSite: string;
+  readonly moreReleases: string;
   readonly menu: string;
   readonly details: string;
   readonly viewDetails: string;
@@ -66,6 +67,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     internshipTheme: '課題',
     steamPage: 'Steamページ',
     officialSite: '公式サイト',
+    moreReleases: 'ほかにもリリースしている作品',
     menu: 'メニュー',
     details: '詳細',
     viewDetails: '詳細を見る',
@@ -109,6 +111,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     internshipTheme: 'Challenge',
     steamPage: 'Steam Page',
     officialSite: 'Official Site',
+    moreReleases: 'More Releases',
     menu: 'Menu',
     details: 'Details',
     viewDetails: 'View details',
@@ -152,6 +155,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     internshipTheme: '课题',
     steamPage: 'Steam页面',
     officialSite: '官方网站',
+    moreReleases: '其他已发布的作品',
     menu: '菜单',
     details: '详情',
     viewDetails: '查看详情',
