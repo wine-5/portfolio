@@ -1,13 +1,13 @@
 import { teamHeadcount, type Game } from '@domain/entities/Game';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
-import { esc, asset, linkIcon, thumbImg } from '../util/html';
+import { esc, asset, linkIcon } from '../util/html';
 import { t } from '../i18n/uiStrings';
 import '../styles/flagship.css';
 
 const VIDEO_RE = /\.(mp4|webm|mov)$/i;
 
-/** ステージに出せるメディア。loop は自動再生ループ、video は ▶ を押してから読み込む */
+/** 枠に出すメディア。loop は自動再生ループ、video は ▶ を押してから読み込む、image は動画が無い作品の静止画 */
 type Media =
   | { readonly kind: 'loop'; readonly path: string }
   | { readonly kind: 'video'; readonly path: string; readonly poster: string }
@@ -27,6 +27,7 @@ export class FlagshipSection extends View<Game> {
   }
 
   override render(game: Game): void {
+    // 人気作のカードと同じく、画像の一覧は出さず映像 1 つだけを大きく見せる(画像は詳細で見られる)
     const media = buildMedia(game);
     const headcount = teamHeadcount(game);
 
@@ -39,21 +40,7 @@ export class FlagshipSection extends View<Game> {
         </header>
         <div class="flagship__body">
           <div class="flagship__visual">
-            <div class="flagship__stage" data-stage>${mediaMain(media[0]!, game.title)}</div>
-            ${
-              media.length > 1
-                ? `<div class="flagship__thumbs">
-                    ${media
-                      .map(
-                        (m, i) => `
-                          <button class="flagship-thumb${i === 0 ? ' flagship-thumb--active' : ''}" data-media="${i}" aria-label="${esc(game.title)} ${i + 1}">
-                            ${thumbInner(m)}
-                          </button>`,
-                      )
-                      .join('')}
-                  </div>`
-                : ''
-            }
+            <div class="flagship__stage" data-stage>${mediaMain(media, game.title)}</div>
           </div>
           <div class="flagship__info">
             <p class="flagship__lead">${esc(t('flagshipLead'))}</p>
@@ -86,7 +73,7 @@ export class FlagshipSection extends View<Game> {
       </div>
     `;
 
-    this.setupStage(media, game);
+    this.setupStage(media);
     this.el
       .querySelector('[data-detail]')
       ?.addEventListener('click', () => this.modal.open(game));
@@ -103,14 +90,13 @@ export class FlagshipSection extends View<Game> {
     super.unmount();
   }
 
-  /** サムネ切り替え・▶ での動画読み込み・画面外での自動停止をまとめて配線する */
-  private setupStage(media: readonly Media[], game: Game): void {
+  /** ▶ での動画読み込みと、ループ動画の画面外での自動停止を配線する */
+  private setupStage(media: Media): void {
     const stage = this.el.querySelector<HTMLElement>('[data-stage]')!;
-    let current = 0;
 
-    // ループ動画は画面に入るまで src を付けない(先頭に置かれる想定)。
+    // ループ動画は画面に入るまで src を付けない。
     // 画面外に出たら止めて、無駄な再生とバッテリー消費を避ける
-    const loop = media[0]?.kind === 'loop' ? media[0] : undefined;
+    const loop = media.kind === 'loop' ? media : undefined;
     if (loop && 'IntersectionObserver' in window) {
       this.observer = new IntersectionObserver(
         (entries) => {
@@ -130,24 +116,6 @@ export class FlagshipSection extends View<Game> {
       this.observer.observe(this.el);
     }
 
-    const show = (index: number): void => {
-      const item = media[index];
-      if (!item || index === current) return;
-      current = index;
-      stage.innerHTML = mediaMain(item, game.title);
-      // ループ動画へ戻ってきたときは監視が再発火しないので、その場で読み込んで再生する
-      const video = stage.querySelector<HTMLVideoElement>('video[data-loop]');
-      if (video) {
-        video.src = asset(item.path);
-        void video.play().catch(() => {});
-      }
-      bindPlay();
-      this.el
-        .querySelectorAll('.flagship-thumb--active')
-        .forEach((n) => n.classList.remove('flagship-thumb--active'));
-      this.el.querySelector(`[data-media="${index}"]`)?.classList.add('flagship-thumb--active');
-    };
-
     // ▶ を押したときだけ実データを読み込む(重い動画を初期表示から外す)
     const bindPlay = (): void => {
       const button = stage.querySelector<HTMLButtonElement>('[data-play]');
@@ -158,26 +126,16 @@ export class FlagshipSection extends View<Game> {
       });
     };
     bindPlay();
-
-    this.el.querySelectorAll<HTMLButtonElement>('[data-media]').forEach((btn) => {
-      btn.addEventListener('click', () => show(Number(btn.dataset['media'])));
-    });
   }
 }
 
-/** 自動再生ループ → 手動再生動画 → スクリーンショット の順に並べる */
-function buildMedia(game: Game): readonly Media[] {
-  const shots = game.images.filter((p) => !VIDEO_RE.test(p));
-  const poster = shots[0] ?? game.thumbnailImage;
+/** 自動再生ループ → 手動再生動画 → 静止画 の順で、使えるものを 1 つ選ぶ */
+function buildMedia(game: Game): Media {
+  const poster = game.images.find((p) => !VIDEO_RE.test(p)) ?? game.thumbnailImage;
   const fullVideo = game.images.find((p) => VIDEO_RE.test(p));
-
-  const head: Media[] = game.flagshipVideo
-    ? [{ kind: 'loop', path: game.flagshipVideo }]
-    : fullVideo
-      ? [{ kind: 'video', path: fullVideo, poster }]
-      : [];
-
-  return [...head, ...shots.map((path): Media => ({ kind: 'image', path }))];
+  if (game.flagshipVideo) return { kind: 'loop', path: game.flagshipVideo };
+  if (fullVideo) return { kind: 'video', path: fullVideo, poster };
+  return { kind: 'image', path: poster };
 }
 
 function mediaMain(item: Media, title: string): string {
@@ -195,12 +153,6 @@ function mediaMain(item: Media, title: string): string {
     case 'image':
       return `<img src="${esc(asset(item.path))}" alt="${esc(title)}" decoding="async" />`;
   }
-}
-
-function thumbInner(item: Media): string {
-  return item.kind === 'image'
-    ? thumbImg(item.path, '')
-    : '<span class="flagship-thumb__video" aria-hidden="true">▶</span>';
 }
 
 function statCell(label: string, value: string): string {
