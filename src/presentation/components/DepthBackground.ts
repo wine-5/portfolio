@@ -321,6 +321,8 @@ export class DepthBackground {
       const height = Math.min(width / aspect, width * 0.8);
       mesh.scale.set(height * aspect, height, 1);
       material.uniforms.uMap!.value = texture;
+      // GPU への転送を読み込んだ時点で済ませる。初めて画面に入った瞬間に転送すると、スクロール中にカクつく
+      this.renderer.initTexture(texture);
       material.uniforms.uAspect!.value = aspect;
       panel.ready = true;
       if (this.reducedMotion) {
