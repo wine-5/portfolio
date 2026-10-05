@@ -7,7 +7,8 @@
     "dev": "vite --port 5173 --strictPort",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "thumbs": "node scripts/make-thumbs.mjs"
   },
   "devDependencies": {
     "@types/three": "^0.186.0",
