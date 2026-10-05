@@ -29,21 +29,6 @@
   box-shadow:
     0 0 10px rgba(240, 180, 41, 0.35),
     0 0 42px rgba(240, 180, 41, 0.14);
-  animation: flagship-glow 5s ease-in-out infinite;
-}
-
-@keyframes flagship-glow {
-  0%,
-  100% {
-    box-shadow:
-      0 0 10px rgba(240, 180, 41, 0.35),
-      0 0 42px rgba(240, 180, 41, 0.14);
-  }
-  50% {
-    box-shadow:
-      0 0 16px rgba(255, 207, 92, 0.55),
-      0 0 64px rgba(255, 207, 92, 0.22);
-  }
 }
 
 /* ---- 見出し行 ---- */
@@ -379,7 +364,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flagship__frame,
   .flagship__rank {
     animation: none;
   }

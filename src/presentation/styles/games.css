@@ -366,38 +366,13 @@
   box-shadow: var(--glow-cyan);
 }
 
-/* リリース済み・注目作品 ── 豪華な発光 + カラーシフト縁 */
+/* リリース済み・注目作品 ── 光の帯とオーラで目立たせる。
+   縁の box-shadow を毎フレーム動かすと、カード全体の描き直しでスクロールがカクつくため、動かすのは透明度と位置だけにする */
 .featured-card--released,
 .featured-card--upcoming {
   border-color: var(--color-cyan);
   overflow: hidden;
-  animation: released-glow 4s ease-in-out infinite;
-}
-
-/* 縁がシアン → マゼンタ → シアンと色相シフトしながら多層グロー */
-@keyframes released-glow {
-  0%,
-  100% {
-    border-color: var(--color-cyan);
-    box-shadow:
-      0 0  6px 2px rgba(0, 229, 255, 0.85),
-      0 0 18px 4px rgba(0, 229, 255, 0.50),
-      0 0 48px 8px rgba(0, 229, 255, 0.18);
-  }
-  40% {
-    border-color: #cc55ff;
-    box-shadow:
-      0 0  6px 2px rgba(204,  85, 255, 0.85),
-      0 0 18px 4px rgba(204,  85, 255, 0.50),
-      0 0 48px 8px rgba(204,  85, 255, 0.18);
-  }
-  75% {
-    border-color: var(--color-cyan);
-    box-shadow:
-      0 0 10px 3px rgba(0, 229, 255, 1.00),
-      0 0 28px 6px rgba(0, 229, 255, 0.60),
-      0 0 65px 12px rgba(0, 229, 255, 0.22);
-  }
+  box-shadow: 0 0 6px 2px rgba(0, 229, 255, 0.6);
 }
 
 /* スキャンライン : 光の帯が上から下へ定期的に流れる */
@@ -579,8 +554,26 @@
   border: 1px solid var(--spot-a);
   clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
   cursor: pointer;
-  animation: spotlight-glow 5s ease-in-out infinite;
   transition: transform 0.25s;
+}
+
+/* 縁の色を紫 → ピンクへゆっくり変える。重ねた枠の透明度だけを動かし、描き直しを起こさない */
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid var(--spot-b);
+  box-shadow: inset 0 0 18px rgba(255, 79, 184, 0.35);
+  opacity: 0;
+  animation: spotlight-pulse 5s ease-in-out infinite;
+}
+
+@keyframes spotlight-pulse {
+  50% {
+    opacity: 1;
+  }
 }
 
 :root[data-theme='light'] .spotlight-card {
@@ -592,18 +585,6 @@
 .spotlight-card:hover,
 .spotlight-card:focus-visible {
   transform: translateY(-4px);
-}
-
-@keyframes spotlight-glow {
-  0%,
-  100% {
-    border-color: var(--spot-a);
-    box-shadow: 0 0 10px 2px var(--spot-glow), 0 0 40px 6px rgba(180, 107, 255, 0.18);
-  }
-  50% {
-    border-color: var(--spot-b);
-    box-shadow: 0 0 14px 3px rgba(255, 79, 184, 0.55), 0 0 56px 10px rgba(255, 79, 184, 0.2);
-  }
 }
 
 /* 左上のリボン: MOST POPULAR + ストア名 */
@@ -850,7 +831,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spotlight-card,
+  .spotlight-card::after,
   .spotlight-card__popular {
     animation: none;
   }
