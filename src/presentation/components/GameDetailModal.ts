@@ -1,6 +1,6 @@
 import type { Game } from '@domain/entities/Game';
 import { View } from './View';
-import { esc, asset, storeChip, linkIcon } from '../util/html';
+import { esc, asset, storeChip, linkIcon, thumbImg } from '../util/html';
 import { t } from '../i18n/uiStrings';
 
 /** 図鑑エントリをクリックしたときのステータス詳細画面 */
@@ -156,14 +156,14 @@ const VIDEO_RE = /\.(mp4|webm|mov)$/i;
 function mediaMain(path: string, title: string): string {
   return VIDEO_RE.test(path)
     ? `<video src="${esc(asset(path))}" controls playsinline preload="metadata"></video>`
-    : `<img src="${esc(asset(path))}" alt="${esc(title)}" loading="lazy" />`;
+    : `<img src="${esc(asset(path))}" alt="${esc(title)}" loading="lazy" decoding="async" />`;
 }
 
 /** サムネイル: 動画は ▶ タイル、画像は縮小表示 */
 function thumbInner(path: string): string {
   return VIDEO_RE.test(path)
     ? '<span class="media-thumb__video" aria-hidden="true">▶</span>'
-    : `<img src="${esc(asset(path))}" alt="" loading="lazy" />`;
+    : thumbImg(path, '');
 }
 
 function releaseBadge(game: Game): string {

@@ -2,7 +2,7 @@ import { teamHeadcount, type Game, type GameCategory } from '@domain/entities/Ga
 import type { GameCollection } from '@application/usecases/GetGameCollection';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
-import { esc, asset, storeChip, linkIcon } from '../util/html';
+import { esc, asset, storeChip, linkIcon, thumb, thumbImg } from '../util/html';
 import { t } from '../i18n/uiStrings';
 import '../styles/games.css';
 
@@ -294,7 +294,8 @@ export class GamesSection extends View<GameCollection> {
           video.pause();
         }
       }
-    });
+      // 画面に入る少し手前から読み込みを始め、スクロール中に再生開始の処理が重ならないようにする
+    }, { rootMargin: '300px 0px' });
     this.videoObserver.observe(video);
   }
 }
@@ -347,8 +348,8 @@ function spotlightCard(game: Game): string {
   // 動きを減らす設定のときは動画を流さず、キービジュアルを出す
   const visual =
     game.spotlightVideo && !reducedMotion
-      ? `<video data-spotlight-video data-src="${esc(asset(game.spotlightVideo))}" poster="${esc(asset(game.thumbnailImage))}" muted loop playsinline preload="none" aria-label="${esc(game.title)}"></video>`
-      : `<img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />`;
+      ? `<video data-spotlight-video data-src="${esc(asset(game.spotlightVideo))}" poster="${esc(asset(thumb(game.thumbnailImage)))}" muted loop playsinline preload="none" aria-label="${esc(game.title)}"></video>`
+      : thumbImg(game.thumbnailImage, game.title);
   const chip = game.release.kind !== 'archived' && game.release.store ? storeChip(game.release.store) : '';
   const playButton =
     game.release.kind === 'playable'
@@ -419,7 +420,7 @@ function featuredCard(game: Game): string {
     <article class="featured-card${released ? ' featured-card--released' : ''}${upcoming ? ' featured-card--upcoming' : ''}" data-entry="${game.entryNo}" tabindex="0">
       <div class="featured-card__label">${featuredLabel(game)}</div>
       <div class="featured-card__visual">
-        <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
+        ${thumbImg(game.thumbnailImage, game.title)}
       </div>
       <div class="featured-card__body">
         <div class="featured-card__meta">
@@ -446,7 +447,7 @@ function entryCard(game: Game): string {
         ${game.year ? `<span class="entry-card__year">${esc(game.year)}</span>` : ''}
       </div>
       <div class="entry-card__visual">
-        <img src="${asset(game.thumbnailImage)}" alt="${esc(game.title)}" loading="lazy" />
+        ${thumbImg(game.thumbnailImage, game.title)}
       </div>
       <span class="name-label">NAME</span>
       <h3 class="entry-card__title">${esc(game.title)}</h3>

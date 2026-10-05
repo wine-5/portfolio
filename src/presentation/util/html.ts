@@ -75,3 +75,21 @@ export function skillIcon(name: string): string {
 export function asset(path: string): string {
   return import.meta.env.BASE_URL + path.replace(/^\//, '');
 }
+
+/**
+ * 一覧用の縮小画像のパス(scripts/make-thumbs.mjs が images/thumbs/ に作る webp)。
+ * 元のタイトル画像は数 MB あり、そのまま一覧に並べると展開が重くスクロールがカクつくため。
+ * GIF(アニメーションを残す)と動画は元のまま使う
+ */
+export function thumb(path: string): string {
+  return /\.(png|jpe?g|webp)$/i.test(path)
+    ? path.replace(/^images\//, 'images/thumbs/').replace(/\.(png|jpe?g|webp)$/i, '.webp')
+    : path;
+}
+
+/** 縮小画像の <img>。縮小版を作り忘れていても表示が欠けないよう、読めなければ元画像に切り替える */
+export function thumbImg(path: string, alt: string, attrs = ''): string {
+  const small = thumb(path);
+  const fallback = small === path ? '' : ` onerror="this.onerror=null;this.src='${esc(asset(path))}'"`;
+  return `<img src="${esc(asset(small))}" alt="${esc(alt)}"${attrs ? ` ${attrs}` : ''} loading="lazy" decoding="async"${fallback} />`;
+}

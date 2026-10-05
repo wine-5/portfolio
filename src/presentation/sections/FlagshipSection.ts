@@ -1,7 +1,7 @@
 import { teamHeadcount, type Game } from '@domain/entities/Game';
 import { View } from '../components/View';
 import { GameDetailModal } from '../components/GameDetailModal';
-import { esc, asset, linkIcon } from '../util/html';
+import { esc, asset, linkIcon, thumbImg } from '../util/html';
 import { t } from '../i18n/uiStrings';
 import '../styles/flagship.css';
 
@@ -187,19 +187,19 @@ function mediaMain(item: Media, title: string): string {
       return '<video data-loop muted loop playsinline preload="none"></video>';
     case 'video':
       return `
-        <img src="${esc(asset(item.poster))}" alt="${esc(title)}" />
+        <img src="${esc(asset(item.poster))}" alt="${esc(title)}" decoding="async" />
         <button class="flagship__play" data-play="${esc(item.path)}" aria-label="${esc(t('playVideo'))}">
           <span class="flagship__play-icon" aria-hidden="true">▶</span>
           <span class="flagship__play-text">${esc(t('playVideo'))}</span>
         </button>`;
     case 'image':
-      return `<img src="${esc(asset(item.path))}" alt="${esc(title)}" />`;
+      return `<img src="${esc(asset(item.path))}" alt="${esc(title)}" decoding="async" />`;
   }
 }
 
 function thumbInner(item: Media): string {
   return item.kind === 'image'
-    ? `<img src="${esc(asset(item.path))}" alt="" loading="lazy" />`
+    ? thumbImg(item.path, '')
     : '<span class="flagship-thumb__video" aria-hidden="true">▶</span>';
 }
 
