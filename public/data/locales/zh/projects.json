@@ -2,7 +2,7 @@
   {
     "title": "滑行宇宙停车场",
     "description": "只靠惯性，把没有刹车的宇宙飞船稳稳停进车位的停车动作游戏",
-    "detailedFeatures": "以游戏Jam主题「かんせい」并理解为「惯性」（日语中同音）制作的宇宙飞船停车游戏。iOS版目前正在App Store审核中。\n\n宇宙飞船没有刹车。喷射会加速，松开按键后也会在宇宙中持续滑行。想要停下，只能朝前进方向的反方向喷射。尽量减少喷射次数，把飞船稳稳停在车位里吧。\n\n【Game Center与广告的接入】\n・Game Center排行榜：启动时先完成登录，只有所有路线都停车成功时才提交分数。可以从结算画面的按钮打开Game Center标准的排行榜画面。提交失败也不会中断游戏。\n・AdMob插页广告：在从结算画面返回标题时显示。启动时预先加载1条，显示后再加载下一条。来不及加载时不显示广告直接继续，广告显示期间会暂停游戏和声音。\n・App Tracking Transparency：在初始化广告前请求跟踪许可。由于应用不在前台时不会弹出对话框，因此等应用回到前台后再请求，未弹出时会重新请求。\n・按运行环境切换：通过接口将排行榜与广告分离，iOS使用Game Center＋AdMob，unityroom（WebGL）只使用unityroom的排行榜，编辑器中两者都不使用。",
+    "detailedFeatures": "以游戏Jam主题「かんせい」并理解为「惯性」（日语中同音）制作的宇宙飞船停车游戏。iOS版已在App Store上架。\n\n宇宙飞船没有刹车。喷射会加速，松开按键后也会在宇宙中持续滑行。想要停下，只能朝前进方向的反方向喷射。尽量减少喷射次数，把飞船稳稳停在车位里吧。\n\n【Game Center与广告的接入】\n・Game Center排行榜：启动时先完成登录，只有所有路线都停车成功时才提交分数。可以从结算画面的按钮打开Game Center标准的排行榜画面。提交失败也不会中断游戏。\n・AdMob插页广告：在从结算画面返回标题时显示。启动时预先加载1条，显示后再加载下一条。来不及加载时不显示广告直接继续，广告显示期间会暂停游戏和声音。\n・App Tracking Transparency：在初始化广告前请求跟踪许可。由于应用不在前台时不会弹出对话框，因此等应用回到前台后再请求，未弹出时会重新请求。\n・按运行环境切换：通过接口将排行榜与广告分离，iOS使用Game Center＋AdMob，unityroom（WebGL）只使用unityroom的排行榜，编辑器中两者都不使用。",
     "myResponsibilities": "全部程序以及iOS发布工作",
     "technologies": [
       "Unity 6",
@@ -15,7 +15,7 @@
       "Blender"
     ],
     "supportedPlatforms": [
-      "iOS（App Store审核中）",
+      "iOS",
       "Web（WebGL）"
     ],
     "images": [
@@ -28,7 +28,7 @@
     ],
     "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
     "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
-    "comingSoon": "app-store",
+    "install": "https://apps.apple.com/jp/app/id6816609277",
     "year": "三年级",
     "category": "game",
     "teamSize": "2人（策划1人・负责程序的我）",
