@@ -2,7 +2,7 @@
   {
     "title": "Sliding Space Parking",
     "description": "A parking action game where you stop a brakeless spaceship dead in its bay using inertia alone",
-    "detailedFeatures": "A spaceship parking game made for a game jam with the theme \"kansei\", which I took as \"inertia\" (also read \"kansei\" in Japanese). The iOS version is currently under App Store review.\n\nYour spaceship has no brakes. Thrusting accelerates it, and it keeps sliding through space even after you let go. The only way to stop is to thrust in the opposite direction. Keep your thrusts to a minimum and bring the ship to a perfect stop inside the parking bay.\n\n[Game Center and Ads Integration]\n- Game Center leaderboard: the player is signed in at launch, and the score is submitted only when every course is parked. A button on the result screen opens the standard Game Center leaderboard. A failed submission never stops the game.\n- AdMob interstitial ads: shown when returning from the result screen to the title. One ad is preloaded at launch and the next is loaded after each one is shown. If loading is not ready in time, the game moves on without an ad, and the game and sound pause while an ad is on screen.\n- App Tracking Transparency: tracking permission is requested before the ads are initialized. Since the dialog does not appear unless the app is in the foreground, the request waits until the app is in front and is retried if the dialog still does not show.\n- Switching per platform: rankings and ads sit behind interfaces, so iOS uses Game Center + AdMob, unityroom (WebGL) uses only the unityroom leaderboard, and the editor uses neither.",
+    "detailedFeatures": "A spaceship parking game made for a game jam with the theme \"kansei\", which I took as \"inertia\" (also read \"kansei\" in Japanese). The iOS version is available on the App Store.\n\nYour spaceship has no brakes. Thrusting accelerates it, and it keeps sliding through space even after you let go. The only way to stop is to thrust in the opposite direction. Keep your thrusts to a minimum and bring the ship to a perfect stop inside the parking bay.\n\n[Game Center and Ads Integration]\n- Game Center leaderboard: the player is signed in at launch, and the score is submitted only when every course is parked. A button on the result screen opens the standard Game Center leaderboard. A failed submission never stops the game.\n- AdMob interstitial ads: shown when returning from the result screen to the title. One ad is preloaded at launch and the next is loaded after each one is shown. If loading is not ready in time, the game moves on without an ad, and the game and sound pause while an ad is on screen.\n- App Tracking Transparency: tracking permission is requested before the ads are initialized. Since the dialog does not appear unless the app is in the foreground, the request waits until the app is in front and is retried if the dialog still does not show.\n- Switching per platform: rankings and ads sit behind interfaces, so iOS uses Game Center + AdMob, unityroom (WebGL) uses only the unityroom leaderboard, and the editor uses neither.",
     "myResponsibilities": "All programming and the iOS release work",
     "technologies": [
       "Unity 6",
@@ -15,7 +15,7 @@
       "Blender"
     ],
     "supportedPlatforms": [
-      "iOS (in App Store review)",
+      "iOS",
       "Web (WebGL)"
     ],
     "images": [
@@ -28,7 +28,7 @@
     ],
     "thumbnailImage": "images/game/sliding-space-parking/ssp-title.webp",
     "carouselImage": "images/game/sliding-space-parking/ssp-icon.png",
-    "comingSoon": "app-store",
+    "install": "https://apps.apple.com/jp/app/id6816609277",
     "year": "3rd Year",
     "category": "game",
     "teamSize": "2 people (1 planner + me on programming)",

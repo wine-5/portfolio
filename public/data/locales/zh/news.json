@@ -1,5 +1,17 @@
 [
   {
+    "id": "ssp-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-10-07",
+    "expireDate": null,
+    "title": "《滑行宇宙停车场》已在App Store正式发售",
+    "description": "在游戏Jam中制作、只靠惯性把没有刹车的宇宙飞船停进车位的游戏《滑行宇宙停车场》今日已在App Store正式上架，并支持Game Center排行榜。欢迎在iPhone・iPad上体验。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/jp/app/id6816609277"
+  },
+  {
     "id": "jirai-release",
     "type": "release",
     "priority": "high",
