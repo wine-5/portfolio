@@ -1,5 +1,17 @@
 [
   {
+    "id": "ssp-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-10-07",
+    "expireDate": null,
+    "title": "「すべる宇宙駐車場」をApp Storeでリリースしました",
+    "description": "ゲームジャムで制作した、ブレーキのない宇宙船を慣性だけで駐車枠に止めるゲーム「すべる宇宙駐車場」を本日App Storeで正式リリースしました。Game Centerのランキングにも対応しています。ぜひiPhone・iPadで遊んでみてください。クリックすると作品の詳細をご覧いただけます。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/jp/app/id6816609277"
+  },
+  {
     "id": "jirai-release",
     "type": "release",
     "priority": "high",

@@ -1,5 +1,17 @@
 [
   {
+    "id": "ssp-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-10-07",
+    "expireDate": null,
+    "title": "\"Sliding Space Parking\" Now Available on the App Store",
+    "description": "\"Sliding Space Parking\", a game jam title where you stop a brakeless spaceship in its parking bay using inertia alone, is officially released on the App Store today. It also supports Game Center leaderboards. Give it a try on your iPhone or iPad. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/jp/app/id6816609277"
+  },
+  {
     "id": "jirai-release",
     "type": "release",
     "priority": "high",
