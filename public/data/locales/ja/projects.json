@@ -1,5 +1,38 @@
 [
   {
+    "title": "将ギ",
+    "description": "将棋の駒どうしが盤の上で斬り合う3Dアクション。倒した駒を持ち駒にして、その駒の技で戦う",
+    "detailedFeatures": "札幌ゲームジャム（SGC2026）で、お題「変」から9人チームで作った3Dアクションです。\n\nプレイヤーは刀を手にした「俺」の駒。次々と湧いてくる敵の駒を斬り倒し、倒した駒を「持ち駒」にしてその技を使います。雑魚を30体倒すと敵の大将「王」が現れ、王を討ち取れば勝利です。\n\n【持ち駒の技】\n・歩：続けて振ると3段攻撃になり、3段目は刀が大きくなって一気に斬り払う\n・飛：十字に走るレーザーで盤の端までなぎ払う\n・角：斜め4方向へ長く斬る\n・香：まっすぐ突撃。突っ込む間は無敵なので回避にも使える\n・変：虹色の「うず」か「ウェーブ」が使うたびにランダムで出る\n・治：HPを回復して周りを斬る\n\n大技はカットインと一緒に繰り出され、その間は時間がゆっくりになります。攻撃を当て続けると連撃が増え、10連撃を超えると攻撃の範囲とダメージが上がります。敵の攻撃は必ず赤い範囲で予告されるので、よく見て避けて斬り返します。\n\n【設計】\n・調整値はコンポーネントに直接書かず、すべてScriptableObjectに置きました。敵1種類は攻撃パターンのSOを並べて組み合わせるだけで作れます\n・出来事はEventBusで知らせ、演出・音・HUDはそれを受けて動きます\n・ヒットストップ・スロー・カットイン・ポーズの時間停止がぶつからないよう、Time.timeScaleを書けるのはGameClockだけにしました",
+    "myResponsibilities": "敵の一部とプレイヤーの入力処理を除くプログラムを担当。Player・カメラ・時間制御（ヒットストップ・スロー・カットイン）・演出に加え、敵の本実装（SOで組み合わせる攻撃パターン、重み付きの出現、王の登場演出と攻撃）、UI、音まわりを実装しました。",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask"
+    ],
+    "supportedPlatforms": [
+      "PC（ブラウザ / unityroom）"
+    ],
+    "images": [
+      "images/game/shogi/shogi-title.webp",
+      "images/game/shogi/shogi-ingame.webp",
+      "images/game/shogi/shogi-cutin-kaku.webp",
+      "images/game/shogi/shogi-cutin-kyo.webp",
+      "images/game/shogi/shogi-kyo-dash.webp",
+      "images/game/shogi/shogi-pieces.webp",
+      "images/game/shogi/shogi-boss.webp",
+      "images/game/shogi/shogi-result.webp",
+      "images/game/shogi/shogi-play.gif"
+    ],
+    "thumbnailImage": "images/game/shogi/shogi-title.webp",
+    "carouselImage": "images/game/shogi/shogi-icon.webp",
+    "playUrl": "https://unityroom.com/games/sho-gi",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "9人（プログラマー4人〈うちプロ1人〉、2Dデザイナー1人、3Dデザイナー2人、エフェクト1人、プランナー1人〈プロ〉）",
+    "period": "3日間"
+  },
+  {
     "title": "すべる宇宙駐車場",
     "description": "ブレーキのない宇宙船を、慣性だけで駐車枠にぴたりと止める駐車アクション",
     "detailedFeatures": "ゲームジャムのお題「かんせい」を「慣性」と捉えて作った、宇宙船の駐車ゲームです。iOS版はApp Storeで配信中です。\n\n宇宙船にはブレーキがありません。噴射すると加速し、キーを離しても宇宙空間を滑り続けます。止まるには、進む向きと反対へ噴射するしかありません。噴射を最小限に抑えて、駐車枠の中でぴたりと止めましょう。\n\n【Game Center・広告の連携】\n・Game Centerのランキング：起動時にサインインを済ませておき、全コースを駐車できたときだけスコアを送信します。結果画面のボタンから、Game Center標準のランキング画面を開けます。送信に失敗してもゲームは止めません。\n・AdMobのインタースティシャル広告：結果画面からタイトルへ戻るタイミングで表示します。起動時に1本先読みしておき、表示したら次を読み込みます。読み込みが間に合わないときは広告を出さずに進み、表示中はゲームと音を止めます。\n・App Tracking Transparency：広告の初期化前にトラッキングの許可を尋ねます。アプリが前面に出ていないとダイアログが表示されないため、前面に出てから尋ね、表示されなかったときは尋ね直すようにしました。\n・遊ぶ環境ごとの切り替え：ランキングと広告をインターフェースで切り離し、iOSではGame Center＋AdMob、unityroom（WebGL）ではunityroomのランキングだけを使い、エディタではどちらも使わないようにしています。",

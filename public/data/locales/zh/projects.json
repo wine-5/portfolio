@@ -1,5 +1,38 @@
 [
   {
+    "title": "将ギ",
+    "description": "将棋棋子在棋盘上互相厮杀的3D动作游戏。把打倒的棋子变成持驹，用它的招式战斗",
+    "detailedFeatures": "在札幌游戏Jam（SGC2026）上，以主题「変」由9人团队制作的3D动作游戏。\n\n玩家是手持长刀的「俺」之棋子。不断斩倒涌来的敌方棋子，打倒的棋子会变成「持驹」，可以使用它的招式。打倒30个杂兵后，敌方大将「王」就会出现，讨伐王即可获胜。\n\n【持驹的招式】\n・步：连续挥砍会变成3段攻击，第3段刀身变大，一口气横扫\n・飞：十字形激光，横扫至棋盘边缘\n・角：向斜方4个方向长距离斩击\n・香：直线突进，突进期间无敌，也能用来闪避\n・变：每次使用随机放出彩虹色的「漩涡」或「波浪」\n・治：回复HP并斩击周围\n\n大招会伴随切入画面释放，期间时间会变慢。持续命中会累积连击，超过10连击后攻击范围和伤害都会提升。敌人的攻击一定会用红色范围预告，看准后躲开再反击。\n\n【设计】\n・调整数值不直接写在组件里，全部放在ScriptableObject中。只要排列组合攻击模式的SO，就能做出一种敌人\n・事件通过EventBus通知，演出、声音和HUD接收后再行动\n・为了让顿帧、慢动作、切入画面和暂停的时间停止互不冲突，只允许GameClock写入Time.timeScale",
+    "myResponsibilities": "负责除部分敌人和玩家输入处理以外的程序。除了玩家、镜头、时间控制（顿帧・慢动作・切入画面）和演出外，还实现了敌人的主要逻辑（用SO组合的攻击模式、带权重的生成、王的登场演出与攻击）、UI和声音相关部分。",
+    "technologies": [
+      "Unity 6",
+      "C#",
+      "URP",
+      "UniTask"
+    ],
+    "supportedPlatforms": [
+      "PC（浏览器 / unityroom）"
+    ],
+    "images": [
+      "images/game/shogi/shogi-title.webp",
+      "images/game/shogi/shogi-ingame.webp",
+      "images/game/shogi/shogi-cutin-kaku.webp",
+      "images/game/shogi/shogi-cutin-kyo.webp",
+      "images/game/shogi/shogi-kyo-dash.webp",
+      "images/game/shogi/shogi-pieces.webp",
+      "images/game/shogi/shogi-boss.webp",
+      "images/game/shogi/shogi-result.webp",
+      "images/game/shogi/shogi-play.gif"
+    ],
+    "thumbnailImage": "images/game/shogi/shogi-title.webp",
+    "carouselImage": "images/game/shogi/shogi-icon.webp",
+    "playUrl": "https://unityroom.com/games/sho-gi",
+    "year": "三年级",
+    "category": "game",
+    "teamSize": "9人（程序员4人〈其中职业1人〉、2D设计师1人、3D设计师2人、特效1人、策划1人〈职业〉）",
+    "period": "3天"
+  },
+  {
     "title": "滑行宇宙停车场",
     "description": "只靠惯性，把没有刹车的宇宙飞船稳稳停进车位的停车动作游戏",
     "detailedFeatures": "以游戏Jam主题「かんせい」并理解为「惯性」（日语中同音）制作的宇宙飞船停车游戏。iOS版已在App Store上架。\n\n宇宙飞船没有刹车。喷射会加速，松开按键后也会在宇宙中持续滑行。想要停下，只能朝前进方向的反方向喷射。尽量减少喷射次数，把飞船稳稳停在车位里吧。\n\n【Game Center与广告的接入】\n・Game Center排行榜：启动时先完成登录，只有所有路线都停车成功时才提交分数。可以从结算画面的按钮打开Game Center标准的排行榜画面。提交失败也不会中断游戏。\n・AdMob插页广告：在从结算画面返回标题时显示。启动时预先加载1条，显示后再加载下一条。来不及加载时不显示广告直接继续，广告显示期间会暂停游戏和声音。\n・App Tracking Transparency：在初始化广告前请求跟踪许可。由于应用不在前台时不会弹出对话框，因此等应用回到前台后再请求，未弹出时会重新请求。\n・按运行环境切换：通过接口将排行榜与广告分离，iOS使用Game Center＋AdMob，unityroom（WebGL）只使用unityroom的排行榜，编辑器中两者都不使用。",
