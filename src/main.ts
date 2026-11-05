@@ -7,6 +7,8 @@ import { GetPlayerProfile } from '@application/usecases/GetPlayerProfile';
 import { GetPlayerSkills } from '@application/usecases/GetPlayerSkills';
 import { GetNews } from '@application/usecases/GetNews';
 import { GetInternships } from '@application/usecases/GetInternships';
+import { GetEngine } from '@application/usecases/GetEngine';
+import { JsonEngineRepository } from '@infrastructure/repositories/JsonEngineRepository';
 import { JsonGameRepository } from '@infrastructure/repositories/JsonGameRepository';
 import { JsonProfileRepository } from '@infrastructure/repositories/JsonProfileRepository';
 import { JsonSkillRepository } from '@infrastructure/repositories/JsonSkillRepository';
@@ -38,6 +40,7 @@ const app = new App(
   new GetPlayerSkills(new JsonSkillRepository(baseUrl)),
   new GetNews(new JsonNewsRepository(baseUrl)),
   new GetInternships(new JsonInternshipRepository(baseUrl)),
+  new GetEngine(new JsonEngineRepository(baseUrl)),
 );
 
 void app.start(detectLocale());

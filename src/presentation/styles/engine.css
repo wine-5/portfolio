@@ -1,0 +1,394 @@
+/* ============================================
+   ENGINE(自作ゲームエンジンの紹介)セクション
+   ============================================ */
+.engine {
+  margin: 4rem 0 3rem;
+}
+
+.engine__header {
+  margin-bottom: 1.5rem;
+}
+
+.engine__kicker {
+  margin: 0;
+  font-family: var(--font-ui);
+  letter-spacing: 0.3em;
+  color: var(--color-magenta);
+}
+
+.engine__title {
+  margin: 0.2rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-shadow: var(--glow-cyan);
+}
+
+.engine__tagline {
+  margin: 0.4rem 0 0;
+  font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--color-text-dim);
+}
+
+.engine__frame {
+  padding: clamp(1rem, 3vw, 1.8rem);
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+}
+
+.engine__summary {
+  margin: 0;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+/* ---- エディタの画面 ---- */
+.engine__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0 0;
+}
+
+.engine-figure {
+  margin: 0;
+}
+
+.engine-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line);
+  background: #000;
+}
+
+.engine-figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-dim);
+}
+
+/* ---- 特徴 ---- */
+.engine__pillars {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+}
+
+.engine-pillar {
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--color-cyan);
+  background: rgba(0, 229, 255, 0.04);
+}
+
+.engine-pillar__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.engine-pillar__body {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--color-text-dim);
+}
+
+/* ---- 技術タグ ---- */
+.engine__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.4rem 0 0;
+}
+
+.engine__tags span {
+  padding: 0.15em 0.8em;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  color: var(--color-text-dim);
+}
+
+/* ---- このエンジンで作った作品 ---- */
+.engine__works {
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+.engine__works-label {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-cyan);
+}
+
+.engine__works-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.engine-work {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.3rem 0.9rem 0.3rem 0.3rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.engine-work:hover,
+.engine-work:focus-visible {
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: var(--glow-cyan);
+}
+
+.engine-work img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ---- 開発状況の札とモットー ---- */
+.engine__status {
+  display: inline-block;
+  margin-left: 0.9rem;
+  padding: 0.25em 0.9em;
+  vertical-align: middle;
+  font-family: var(--font-ui);
+  font-size: clamp(0.75rem, 2.4vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-magenta);
+  border: 1px solid var(--color-magenta);
+  text-shadow: none;
+}
+
+.engine__motto {
+  margin: 0.8rem 0 0.4rem;
+  font-size: clamp(1.6rem, 6.2vw, 3rem);
+  font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- 狙い(短い一言) ---- */
+.engine__concepts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 0 1.2rem;
+  padding: 0;
+}
+
+.engine__concepts li {
+  padding: 0.5em 1.1em;
+  font-weight: 700;
+  border: 1px solid var(--color-cyan);
+  border-radius: 999px;
+  background: rgba(0, 229, 255, 0.07);
+}
+
+/* ---- AI がエンジンを操作する流れ(STEP 1〜3) ---- */
+.engine__steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.4rem;
+  margin: 1.6rem 0 0;
+  padding: 0;
+}
+
+.engine-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* 段と段の間の矢印(横に並ぶ幅のときだけ出す) */
+@media (min-width: 900px) {
+  .engine-step:not(:last-child)::after {
+    content: '▶';
+    position: absolute;
+    top: 52%;
+    right: -0.7rem;
+    transform: translateX(50%);
+    font-size: 0.9rem;
+    color: var(--color-cyan);
+    opacity: 0.8;
+  }
+}
+
+.engine-step__label {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--color-cyan);
+}
+
+.engine-step__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.8rem;
+}
+
+.engine-step__title {
+  margin: 0;
+  font-size: clamp(1.05rem, 3vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.engine-step__app {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-team);
+}
+
+.engine-step__media {
+  min-height: 11rem;
+  border: 1px solid var(--color-line);
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.engine-step__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.engine-step__caption {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--color-text-dim);
+}
+
+/* 依頼の例(チャットの吹き出し。実画面ではないので「例」と断っている) */
+.engine-chat {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.engine-chat__note {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text-dim);
+}
+
+.engine-chat__bubble {
+  margin: 0;
+  max-width: 88%;
+  padding: 0.7em 1em;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #fff;
+  background: linear-gradient(135deg, #2f7bff, #7a4dff);
+  border-radius: 1.1em 1.1em 0.25em 1.1em;
+}
+
+/* ---- 操作の履歴と「配って使ってもらっている」 ---- */
+.engine__record {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 1.2rem;
+  margin-top: 1.6rem;
+  align-items: stretch;
+}
+
+@media (max-width: 800px) {
+  .engine__record {
+    grid-template-columns: 1fr;
+  }
+}
+
+.engine-history {
+  margin: 0;
+}
+
+.engine-history__title {
+  margin: 0 0 0.5rem;
+  font-weight: 800;
+  color: var(--color-cyan);
+}
+
+.engine-history img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line);
+}
+
+.engine-history figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--color-text-dim);
+}
+
+.engine-shared {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--color-cyan);
+  background: rgba(0, 229, 255, 0.06);
+  box-shadow: var(--glow-cyan);
+}
+
+.engine-shared__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-cyan);
+}
+
+.engine-shared__body {
+  margin: 0;
+  line-height: 1.8;
+}

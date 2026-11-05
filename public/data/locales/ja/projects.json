@@ -1,5 +1,157 @@
 [
   {
+    "title": "ころりんグミ",
+    "description": "線を描いてグミを転がし、ゴールまで届けるお菓子の国のパズル",
+    "detailedFeatures": "指でなぞった線がアイシングになり、グミが転がる道になります。インクには限りがあるので、少ない線でゴールへ届けるほど星が増えます。\n\n【床の種類】\n・クッキー：ふつうの床\n・チョコ：グミがゆっくりになる\n・ウエハース：強く当たると割れる\n・プリン：グミが跳ねる\n\n【特徴】\n・10エリア・1000面。言語は8種類に対応\n・縦長のスマートフォン向けに作り、同じコードのままWindowsとiOSで動かしています\n・絵・音・3Dはすべてオリジナルで、模型はBlenderをPythonで動かして作りました\n・iOS版は課金（広告を消す）と広告まで実装し、App Storeの審査に提出しました\n\nWindows版は途中版（0.3.0）で、絵・音・面の並びはこれから変わります。",
+    "myResponsibilities": "個人制作のため、企画・設計・実装・素材制作・調整のすべてを担当。特に注力したのは、自作エンジン WineEngine の上での制作と、Blender を Python で動かした模型の生成です。",
+    "technologies": [
+      "C++",
+      "WineEngine",
+      "Blender",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Windows",
+      "iOS"
+    ],
+    "images": [
+      "images/game/kororin-gummy/kororin-gummy-title.webp",
+      "images/game/kororin-gummy/kororin-gummy-draw.webp",
+      "images/game/kororin-gummy/kororin-gummy-clear.webp",
+      "images/game/kororin-gummy/kororin-gummy-chocolate.webp",
+      "images/game/kororin-gummy/kororin-gummy-pudding.webp",
+      "images/game/kororin-gummy/kororin-gummy-areas.webp",
+      "images/game/kororin-gummy/kororin-gummy-stages.webp",
+      "images/game/kororin-gummy/kororin-gummy-video.mp4"
+    ],
+    "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
+    "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "約5日間＋iOS対応"
+  },
+  {
+    "title": "冒険者ショップ",
+    "description": "辺境の工房街で冒険者の店を営む2Dゲーム。素材を採り、薬と武器を作って渡す",
+    "detailedFeatures": "未知の土地へ向かう冒険者が集まる工房街で、旅の支度を引き受ける店の店主になります。\n\n【遊びの流れ】\n・お客さんの行き先と困りごとを聞いて注文を受ける\n・森の外れ・霧の洞窟・古い遺跡へ素材を採りに行く\n・調合：素材で進む道を決め、釜をかき混ぜて効果に着いたら仕上げる\n・鍛冶：炉で熱し、橙色の叩き頃に打って形を整え、水か油で冷やす\n・品を渡すと、次に来たときに旅の報告と新しい品の手掛かりがもらえる\n・図鑑の12の品をすべて作るとエンディング\n\n【特徴】\n・ドット絵と音はすべてオリジナルで、Pythonで生成しました\n・キーボード・マウス・パッドで遊べ、画面の下にその場で使えるキーを出します",
+    "myResponsibilities": "企画は友人。設計・実装・素材制作・調整を担当。特に注力したのは、自作エンジン WineEngine の上での制作と、Python によるドット絵と音の生成です。",
+    "technologies": [
+      "C++",
+      "WineEngine",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/adventurers-shop/adventurers-shop-title.webp",
+      "images/game/adventurers-shop/adventurers-shop-shop.webp",
+      "images/game/adventurers-shop/adventurers-shop-field.webp",
+      "images/game/adventurers-shop/adventurers-shop-alchemy.webp",
+      "images/game/adventurers-shop/adventurers-shop-smithy.webp",
+      "images/game/adventurers-shop/adventurers-shop-cave.webp",
+      "images/game/adventurers-shop/adventurers-shop-ruins.webp"
+    ],
+    "thumbnailImage": "images/game/adventurers-shop/adventurers-shop-title.webp",
+    "carouselImage": "images/game/adventurers-shop/adventurers-shop-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "2人（プランナー1人・プログラム担当の自分）",
+    "period": "2026年10月"
+  },
+  {
+    "title": "アーキペラゴ・パーティー",
+    "description": "空に浮かぶ4つの島をサイコロで巡る3Dすごろくパーティー。ミニゲーム100本",
+    "detailedFeatures": "空に浮かぶ群島を巡って星のかけらを集める、かわいい系の3Dすごろくです。1〜4人で遊べ、足りない人はCPUが遊びます。\n\n【遊びの流れ】\n・1ラウンドは「全員がサイコロで1回ずつ進む → みんなでミニゲーム」\n・ミニゲームで勝った人は、書き換えカードで島を書き換えられる（近道の橋・見えない罠・壁など）\n・星の泉でかけらを買い、いちばん多く集めた人の勝ち\n\n【ミニゲーム100本】\nひとりずつ50・1対3が13・2対2が16・協力15・ボス戦6。どれも専用の舞台があります。\n\n【特徴】\n・同じLANのPCと部屋を作って遊べるオンライン対戦。Tailscaleを入れれば離れた場所とも遊べます\n・キャラ・島・音・UIはすべてオリジナルで、島の模型はBlenderをPythonで動かして作りました\n・キーボード1台とパッド4台まで対応。いま押せるボタンを画面の下に絵で出します\n・島ごとに村・ショップ・効果音を作り分け、アイテムは17種類",
+    "myResponsibilities": "個人制作のため、企画・設計・実装・素材制作・調整のすべてを担当。特に注力したのは、自作エンジン WineEngine の上での制作と、Blender を Python で動かした模型の生成です。",
+    "technologies": [
+      "C++",
+      "WineEngine",
+      "Blender",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/archipelago-party/archipelago-party-title.webp",
+      "images/game/archipelago-party/archipelago-party-mode.webp",
+      "images/game/archipelago-party/archipelago-party-island.webp",
+      "images/game/archipelago-party/archipelago-party-chars.webp",
+      "images/game/archipelago-party/archipelago-party-turn.webp",
+      "images/game/archipelago-party/archipelago-party-roulette.webp",
+      "images/game/archipelago-party/archipelago-party-volcano.webp",
+      "images/game/archipelago-party/archipelago-party-ice.webp",
+      "images/game/archipelago-party/archipelago-party-mg-b06.webp",
+      "images/game/archipelago-party/archipelago-party-mg-f45.webp",
+      "images/game/archipelago-party/archipelago-party-coins.webp",
+      "images/game/archipelago-party/archipelago-party-video.mp4"
+    ],
+    "thumbnailImage": "images/game/archipelago-party/archipelago-party-title.webp",
+    "carouselImage": "images/game/archipelago-party/archipelago-party-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "約2週間"
+  },
+  {
+    "title": "占める50%",
+    "description": "線を引いて切る・玉を回す・太陽を動かす。ちょうど50%を狙う3Dパズル。全17面",
+    "detailedFeatures": "「○○が全体の50%を占めるようにしてください」というお題に、ちょうど50%を目指して答える3Dパズルです。割合は「決める」を押すまで見えません。50.00%ならPERFECTです。\n\n【面の種類】\n・面積：板の上に線を1本引いて切る\n・体積：線がそのまま3Dを切る面になる。立方体・円錐・岩・かじったドーナツなど\n・重さ：見た目は同じでも中に鉄がある。切った後は天秤で量る\n・表面積：体積ではなく外側の面の広さ\n・色・影・空間：赤い壁・色の玉・影・水槽・小さな惑星。切らなくてもいい面\n\n【特徴】\n・模型・絵・音はすべてエンジンの中で作りました\n・矢印キーはShiftで1/10、Ctrlで1/200の刻みになり、PERFECTを狙えます",
+    "myResponsibilities": "個人制作のため、企画・設計・実装・素材制作・調整のすべてを担当。特に注力したのは、自作エンジン WineEngine の上での制作と、Blender を Python で動かした模型の生成です。",
+    "technologies": [
+      "C++",
+      "WineEngine"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/fifty-fifty/fifty-fifty-title.webp",
+      "images/game/fifty-fifty/fifty-fifty-area.webp",
+      "images/game/fifty-fifty/fifty-fifty-rock.webp",
+      "images/game/fifty-fifty/fifty-fifty-balance.webp",
+      "images/game/fifty-fifty/fifty-fifty-perfect.webp",
+      "images/game/fifty-fifty/fifty-fifty-shadow.webp",
+      "images/game/fifty-fifty/fifty-fifty-planet.webp",
+      "images/game/fifty-fifty/fifty-fifty-video.mp4"
+    ],
+    "thumbnailImage": "images/game/fifty-fifty/fifty-fifty-title.webp",
+    "carouselImage": "images/game/fifty-fifty/fifty-fifty-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人",
+    "period": "2026年10月"
+  },
+  {
+    "title": "スロットダックレース",
+    "description": "4匹のダックが自動で走るレースを、目押しのスロットで動かす。先に3勝を狙う",
+    "detailedFeatures": "走るのは4匹のダックで、自分が触るのはスロットとアイテムだけです。スロットの目でダックが加速し、アイテムでほかのダックを邪魔できます。\n\n【遊び方】\n・横3本・斜め2本の線に同じ絵柄が2個並ぶと小効果、3個で大効果\n・回っている間にキーを押すと、左 → 中 → 右の順に止まる\n・JPが3つ揃うと大当たり。次の7回は「フィーバー」で毎回3個揃いが確定\n・順位が低いほどリールが1マスすべって揃いやすくなる\n・レースの後はショップでコインを使い、自分のリール18マスを1マスずつ買い替える\n・先に3勝したダックが総合優勝\n\n【特徴】\n・マウスでも、レバーや各リールの停止ボタンを押して遊べます\n・公開後にもらった報告をもとに、カクつき・音割れ・メモリの膨らみを直しました",
+    "myResponsibilities": "企画は友人。設計・実装・素材制作・調整を担当。特に注力したのは、自作エンジン WineEngine の上での制作と、公開後に見つかったカクつき・音割れの修正です。",
+    "technologies": [
+      "C++",
+      "WineEngine"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/slot-duck-race/slot-duck-race-title.webp",
+      "images/game/slot-duck-race/slot-duck-race-race.webp",
+      "images/game/slot-duck-race/slot-duck-race-fever.webp",
+      "images/game/slot-duck-race/slot-duck-race-results.webp",
+      "images/game/slot-duck-race/slot-duck-race-shop.webp",
+      "images/game/slot-duck-race/slot-duck-race-video.mp4"
+    ],
+    "thumbnailImage": "images/game/slot-duck-race/slot-duck-race-title.webp",
+    "carouselImage": "images/game/slot-duck-race/slot-duck-race-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "2人（プランナー1人・プログラム担当の自分）",
+    "period": "2026年10月"
+  },
+  {
     "title": "将ギ",
     "description": "将棋の駒どうしが盤の上で斬り合う3Dアクション。倒した駒を持ち駒にして、その駒の技で戦う",
     "detailedFeatures": "札幌ゲームジャム（SGC2026）で、お題「変」から9人チームで作った3Dアクションです。\n\nプレイヤーは刀を手にした「俺」の駒。次々と湧いてくる敵の駒を斬り倒し、倒した駒を「持ち駒」にしてその技を使います。雑魚を30体倒すと敵の大将「王」が現れ、王を討ち取れば勝利です。\n\n【持ち駒の技】\n・歩：続けて振ると3段攻撃になり、3段目は刀が大きくなって一気に斬り払う\n・飛：十字に走るレーザーで盤の端までなぎ払う\n・角：斜め4方向へ長く斬る\n・香：まっすぐ突撃。突っ込む間は無敵なので回避にも使える\n・変：虹色の「うず」か「ウェーブ」が使うたびにランダムで出る\n・治：HPを回復して周りを斬る\n\n大技はカットインと一緒に繰り出され、その間は時間がゆっくりになります。攻撃を当て続けると連撃が増え、10連撃を超えると攻撃の範囲とダメージが上がります。敵の攻撃は必ず赤い範囲で予告されるので、よく見て避けて斬り返します。\n\n【設計】\n・調整値はコンポーネントに直接書かず、すべてScriptableObjectに置きました。敵1種類は攻撃パターンのSOを並べて組み合わせるだけで作れます\n・出来事はEventBusで知らせ、演出・音・HUDはそれを受けて動きます\n・ヒットストップ・スロー・カットイン・ポーズの時間停止がぶつからないよう、Time.timeScaleを書けるのはGameClockだけにしました",

@@ -6,6 +6,8 @@ interface UiStrings {
   readonly navSkills: string;
   readonly navNews: string;
   readonly navInternship: string;
+  readonly navEngine: string;
+  readonly engineWorks: string;
   readonly navAbout: string;
   readonly skillsTitle: string;
   readonly groupLanguages: string;
@@ -52,6 +54,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     navSkills: 'SKILLS',
     navNews: 'NEWS',
     navInternship: 'INTERNSHIP',
+    navEngine: 'ENGINE',
+    engineWorks: 'このエンジンで作った作品',
     navAbout: 'ABOUT',
     skillsTitle: 'SKILLS',
     groupLanguages: 'LANGUAGES',
@@ -96,6 +100,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     navSkills: 'SKILLS',
     navNews: 'NEWS',
     navInternship: 'INTERNSHIP',
+    navEngine: 'ENGINE',
+    engineWorks: 'Made with this engine',
     navAbout: 'ABOUT',
     skillsTitle: 'SKILLS',
     groupLanguages: 'LANGUAGES',
@@ -140,6 +146,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     navSkills: '技能',
     navNews: '新闻',
     navInternship: '实习',
+    navEngine: '引擎',
+    engineWorks: '用这个引擎制作的作品',
     navAbout: '自我介绍',
     skillsTitle: '技能',
     groupLanguages: '编程语言',

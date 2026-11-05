@@ -1,0 +1,90 @@
+{
+  "name": "WineEngine",
+  "status": "开发中",
+  "motto": "人人都能成为游戏开发者",
+  "tagline": "在聊天中提出请求，AI 就会操作引擎来制作。由于通过 MCP 连接，ChatGPT 或 Claude 桌面应用中的 AI 可以直接操作引擎。",
+  "concepts": [
+    "人人都能借助 AI 制作游戏",
+    "以 AI 容易处理的形式保存数据",
+    "适合游戏 Jam 这样的短期开发"
+  ],
+  "summary": "这是一个使用 DxLib 渲染的 C++20 游戏引擎，以及参照 Unity 构成的编辑器（2026 年 8 月 9 日开工）。\n编辑器的所有操作都以「命令」的形式公开，界面、命令面板、无界面 CLI、MCP 走的是同一条路径，因此不仅是人，AI 也能从外部操作编辑器。",
+  "steps": [
+    {
+      "label": "STEP 1",
+      "title": "用语言提出请求",
+      "app": "ChatGPT / Claude 桌面应用",
+      "caption": "只需写下「做一个有房子、树和池塘的小花园」。无需指定文件名或命令",
+      "prompt": "做一个有房子、树和池塘的小花园",
+      "promptNote": "请求示例"
+    },
+    {
+      "label": "STEP 2",
+      "title": "AI 操作编辑器",
+      "app": "WineEngine",
+      "caption": "AI 搭建场景后，修改前后的画面会并排显示。修改由人确认并批准后才会保留",
+      "src": "images/engine/mcp-review.webp"
+    },
+    {
+      "label": "STEP 3",
+      "title": "做过的事全部留存",
+      "app": "WineEngine",
+      "caption": "在哪类工作上花了多少时间，会以图表和数量记录下来",
+      "src": "images/engine/ai-activity.webp"
+    }
+  ],
+  "history": {
+    "title": "AI 使用过的命令，连时间和内容都会留存",
+    "src": "images/engine/ai-history.webp",
+    "caption": "AI 实际通过 MCP 调用的命令历史（scene.apply、scene.save 等）"
+  },
+  "shared": {
+    "title": "已分发给他人使用",
+    "body": "引擎本体也交给了其他人，他们各自通过 ChatGPT / Claude 连接来制作游戏。「人人都能借助 AI 制作游戏」已经成为实际可行的形态。"
+  },
+  "figures": [
+    {
+      "src": "images/engine/mcp-editor.webp",
+      "caption": "AI 搭建场景后的编辑器。Hierarchy 中增加了 Entity，结果立即显示在 Scene 和 Game 中。AI Activity 与 Inspector 并排显示"
+    }
+  ],
+  "pillars": [
+    {
+      "title": "参照 Unity 的编辑器",
+      "body": "Scene、Game、Hierarchy、Inspector，可保留 Play 中修改的 Keep Changes，以及把素材拖到 Inspector 上分配，Unity 的操作习惯可以直接沿用。"
+    },
+    {
+      "title": "场景的语义差异",
+      "body": "显示 git diff 看不出的「哪个 Entity 改了什么」。编辑器内置 Git 客户端和终端。"
+    },
+    {
+      "title": "从策划书到 exe 与 iOS",
+      "body": "搭建界面 → 用 C++ 编写行为 → 导出，全部用同样的命令完成。除 Windows 的 exe 外，还支持 iOS（在 Mac 上构建并提交 App Store）。"
+    },
+    {
+      "title": "工具都在引擎里",
+      "body": "特效、音效、绘图、时间轴、Live2D 风格的 2D 角色、地形、物理、敌人 AI 等游戏所需的工具都在引擎内完成。"
+    }
+  ],
+  "tags": [
+    "C++20",
+    "DxLib",
+    "DirectX 11 / HLSL",
+    "Dear ImGui",
+    "ImGuizmo",
+    "C#（スクリプト）",
+    "MCP サーバ",
+    "ヘッドレス CLI",
+    "Windows x64",
+    "CMake（iOS）",
+    "Python",
+    "Blender"
+  ],
+  "works": [
+    "kororin-gummy",
+    "adventurers-shop",
+    "archipelago-party",
+    "fifty-fifty",
+    "slot-duck-race"
+  ]
+}
