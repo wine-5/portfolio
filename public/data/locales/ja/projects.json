@@ -1,5 +1,159 @@
 [
   {
+    "title": "ころりんグミ",
+    "description": "線を描いてグミを転がし、ゴールまで届けるお菓子の国のパズル。10 エリア・1000 面",
+    "detailedFeatures": "指で（マウスで）なぞった線がアイシングになって、グミが転がる道になります。インクは限りがあるので、少ない線でゴールへ届けるほど星が増えます。\n\n【床の種類】\n・クッキー：ふつうの床\n・チョコ：グミがゆっくりになる\n・ウエハース：強く当たると割れる\n・プリン：グミが跳ねる\n\n【作りの特徴】\n・縦長のスマートフォン向けに作ったゲームを、同じコードのまま Windows と iOS で動かしています\n・絵・音・3D はすべて AI がこのエンジンの中で生成したオリジナルです（Blender を Python で動かして模型を作成）\n・1000 面は、面の中身をデータの表にして並べています。エリアは 10 個で、言語は 8 種類に対応\n・iOS 版では課金（広告を消す）と広告まで実装し、App Store の審査に提出しました\n\nなお、Windows 版は「途中版 0.3.0」です。絵・音・面の並びはこれから変わります。",
+    "myResponsibilities": "企画は自分。制作は WineEngine の上で AI が行い、自分はエンジンの開発（物理・iOS への書き出しなど）と、遊んで確かめる検収を担当しました。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++",
+      "Box2D",
+      "Blender",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Windows",
+      "iOS（App Store 審査に提出済み）"
+    ],
+    "images": [
+      "images/game/kororin-gummy/kororin-gummy-title.webp",
+      "images/game/kororin-gummy/kororin-gummy-draw.webp",
+      "images/game/kororin-gummy/kororin-gummy-clear.webp",
+      "images/game/kororin-gummy/kororin-gummy-chocolate.webp",
+      "images/game/kororin-gummy/kororin-gummy-pudding.webp",
+      "images/game/kororin-gummy/kororin-gummy-areas.webp",
+      "images/game/kororin-gummy/kororin-gummy-stages.webp",
+      "images/game/kororin-gummy/kororin-gummy-video.mp4"
+    ],
+    "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
+    "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人＋AI（企画: 今多。企画書から AI が制作し、自分はエンジンと検収を担当）",
+    "period": "5日間（2026年11月）＋ iOS 対応"
+  },
+  {
+    "title": "冒険者ショップ",
+    "description": "辺境の工房街で冒険者の店を営む 2D ゲーム。素材を採り、釜で薬を、金床で武器を作って渡す",
+    "detailedFeatures": "未知の土地へ向かう冒険者が集まる工房街で、旅の支度を引き受ける店の店主になります。\n\n【遊びの流れ】\n・お客さんの行き先と困りごとを聞いて注文を受ける\n・森の外れ・霧の洞窟・古い遺跡へ素材を採りに行く（花は摘み、鉱石は掘る）\n・調合：素材で進む道を決め、釜をかき混ぜた分だけ霧に隠れた地図を進み、効果に着いたら仕上げる\n・鍛冶：炉で熱し、橙色の叩き頃に打って形を整え、水か油で冷やし、柄と飾りを組む\n・品を渡すと、次に来たときに旅の報告。新しい品の手掛かりが増える\n・図鑑の 12 の品（薬 6・武器と道具 6）を全部作るとエンディング\n\n【作りの特徴】\n・ドット絵と音はすべてオリジナルで、Python で生成しています\n・キーボード・マウス・パッドのどれでも遊べ、画面の下にその場で使えるキーを出します",
+    "myResponsibilities": "企画は友人（しまぜんざい）。制作は WineEngine の上で AI が行い、自分はエンジンの開発と、遊んで確かめる検収を担当しました。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++",
+      "Python（ドット絵と音を生成）"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/adventurers-shop/adventurers-shop-title.webp",
+      "images/game/adventurers-shop/adventurers-shop-shop.webp",
+      "images/game/adventurers-shop/adventurers-shop-field.webp",
+      "images/game/adventurers-shop/adventurers-shop-alchemy.webp",
+      "images/game/adventurers-shop/adventurers-shop-smithy.webp",
+      "images/game/adventurers-shop/adventurers-shop-cave.webp",
+      "images/game/adventurers-shop/adventurers-shop-ruins.webp"
+    ],
+    "thumbnailImage": "images/game/adventurers-shop/adventurers-shop-title.webp",
+    "carouselImage": "images/game/adventurers-shop/adventurers-shop-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人＋AI（企画: しまぜんざい。企画メモから AI が制作し、自分はエンジンと検収を担当）",
+    "period": "2026年10月（完成版 1.0.0 は 10/26）"
+  },
+  {
+    "title": "アーキペラゴ・パーティー",
+    "description": "空に浮かぶ 4 つの島をサイコロで巡る 3D すごろくパーティー。ミニゲーム 100 本、1〜4 人、オンライン対戦つき",
+    "detailedFeatures": "空に浮かぶ群島を巡って星のかけらを集める、かわいい系の 3D すごろくです。足りない人は CPU が遊びます。\n\n【遊びの流れ】\n・1 ラウンドは「全員がサイコロで 1 回ずつ進む → みんなでミニゲーム」\n・ミニゲームで勝った人は書き換えカードで島を書き換えられる（近道の橋・見えない罠・壁・マスの種類）\n・星の泉でかけらを買い、いちばん多く集めた人の勝ち\n\n【ミニゲーム 100 本】\nひとりずつ 50・1 対 3 が 13・2 対 2 が 16・協力 15・ボス戦 6。どれも専用の舞台があります。\n\n【作りの特徴】\n・同じ LAN の PC と部屋を作って遊べるオンライン対戦。Tailscale を入れれば離れた場所とも遊べます\n・キャラ・島・音・UI はすべてオリジナル。島の模型は Blender を Python で動かして生成\n・キーボード 1 台とパッド 4 台まで。いま押せるボタンを絵で画面の下に出します\n・島ごとに村・ショップ・効果音を作り分け。アイテム 17 種、実績やギャラリーも",
+    "myResponsibilities": "企画は自分。制作は WineEngine の上で AI が行い、自分はエンジンの開発（オンライン対戦・3D 描画・書き出しなど）と、遊んで確かめる検収を担当しました。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++",
+      "Blender",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Windows",
+      "LAN・Tailscale でオンライン対戦"
+    ],
+    "images": [
+      "images/game/archipelago-party/archipelago-party-title.webp",
+      "images/game/archipelago-party/archipelago-party-mode.webp",
+      "images/game/archipelago-party/archipelago-party-island.webp",
+      "images/game/archipelago-party/archipelago-party-chars.webp",
+      "images/game/archipelago-party/archipelago-party-turn.webp",
+      "images/game/archipelago-party/archipelago-party-roulette.webp",
+      "images/game/archipelago-party/archipelago-party-volcano.webp",
+      "images/game/archipelago-party/archipelago-party-ice.webp",
+      "images/game/archipelago-party/archipelago-party-mg-b06.webp",
+      "images/game/archipelago-party/archipelago-party-mg-f45.webp",
+      "images/game/archipelago-party/archipelago-party-coins.webp",
+      "images/game/archipelago-party/archipelago-party-video.mp4"
+    ],
+    "thumbnailImage": "images/game/archipelago-party/archipelago-party-title.webp",
+    "carouselImage": "images/game/archipelago-party/archipelago-party-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人＋AI（企画: 今多。企画書から AI が制作し、自分はエンジンと検収を担当）",
+    "period": "約2週間（2026年10月21日〜11月2日）"
+  },
+  {
+    "title": "占める50%",
+    "description": "線を引いて切る・玉を回す・太陽を動かす。何かが全体のちょうど 50% を占める状態を作る 3D パズル。全 17 面",
+    "detailedFeatures": "「○○が全体の 50% を占めるようにしてください」というお題に、ちょうど 50% を目指して答える 3D パズルです。割合は「決める」を押すまで見えません。50.00% なら PERFECT。\n\n【面の種類】\n・面積：板の上に線を 1 本引いて切る\n・体積：線がそのまま 3D を切る面になる。立方体・円錐・岩・かじったドーナツ・中が空洞の球など\n・重さ：見た目は同じでも中に鉄がある。切った後は天秤で量る\n・表面積：体積ではなく外側の面の広さ\n・色・影・空間：赤い壁・色の玉・白い板の影・水槽・小さな惑星。切らなくてもいい面\n\n【作りの特徴】\n・模型・絵・音はすべてエンジンの中で作りました\n・矢印キーは Shift で 1/10、Ctrl で 1/200 の刻みになり、PERFECT を狙えます\n・評価は 50.00% で★★★、49.8〜50.2% で★★、45〜55% で★",
+    "myResponsibilities": "企画は自分。制作は WineEngine の上で AI が行い、自分はエンジンの開発（3D 描画・物理など）と、遊んで確かめる検収を担当しました。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/fifty-fifty/fifty-fifty-title.webp",
+      "images/game/fifty-fifty/fifty-fifty-area.webp",
+      "images/game/fifty-fifty/fifty-fifty-rock.webp",
+      "images/game/fifty-fifty/fifty-fifty-balance.webp",
+      "images/game/fifty-fifty/fifty-fifty-perfect.webp",
+      "images/game/fifty-fifty/fifty-fifty-shadow.webp",
+      "images/game/fifty-fifty/fifty-fifty-planet.webp",
+      "images/game/fifty-fifty/fifty-fifty-video.mp4"
+    ],
+    "thumbnailImage": "images/game/fifty-fifty/fifty-fifty-title.webp",
+    "carouselImage": "images/game/fifty-fifty/fifty-fifty-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人＋AI（企画: 今多。企画書から AI が制作し、自分はエンジンと検収を担当）",
+    "period": "2026年10月（完成版 1.0.0 は 10/19）"
+  },
+  {
+    "title": "スロットダックレース",
+    "description": "4 匹のダックが自動で走るレースを、目押しのスロットで動かす。レース後はリールを改造して先に 3 勝を狙う",
+    "detailedFeatures": "走るのは 4 匹のダック。自分が触るのはスロットとアイテムだけです。スロットの目でダックが加速し、アイテムでほかのダックを邪魔できます。\n\n【遊び方】\n・横 3 本・斜め 2 本の線に同じ絵柄が 2 個並ぶと小効果、3 個で大効果\n・回っている間にキーを押すと、左 → 中 → 右の順に止まる（目押し）\n・JP が 3 つ揃うと大当たり。さらに次の 7 回は「フィーバー」で毎回 3 個揃いが確定\n・順位が低いほどリールが 1 マスすべって揃いやすくなる（ラック補正）\n・レースの後はショップでコインを使い、自分のリール 18 マスを 1 マスずつ買い替えて勝ち筋を作る\n・先に 3 勝したダックが総合優勝\n\n【作りの特徴】\n・マウスでも、レバーや各リールの停止ボタンを押して遊べます\n・WineEngine で 3 本目に作った 3D の試作で、公開後の利用者の報告をもとにカクつき・音割れ・メモリの膨らみを直しました",
+    "myResponsibilities": "企画は友人（しゅーと）。制作は WineEngine の上で AI が行い、自分はエンジンの開発と、公開後の不具合（カクつき・音割れ）の切り分けと修正の指示を担当しました。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/slot-duck-race/slot-duck-race-title.webp",
+      "images/game/slot-duck-race/slot-duck-race-race.webp",
+      "images/game/slot-duck-race/slot-duck-race-fever.webp",
+      "images/game/slot-duck-race/slot-duck-race-results.webp",
+      "images/game/slot-duck-race/slot-duck-race-shop.webp",
+      "images/game/slot-duck-race/slot-duck-race-video.mp4"
+    ],
+    "thumbnailImage": "images/game/slot-duck-race/slot-duck-race-title.webp",
+    "carouselImage": "images/game/slot-duck-race/slot-duck-race-icon.webp",
+    "year": "3年次",
+    "category": "game",
+    "teamSize": "1人＋AI（企画: しゅーと。企画書から AI が制作し、自分はエンジンと検収を担当）",
+    "period": "2026年10月7日〜（初版は翌日に公開、以後改良）"
+  },
+  {
     "title": "将ギ",
     "description": "将棋の駒どうしが盤の上で斬り合う3Dアクション。倒した駒を持ち駒にして、その駒の技で戦う",
     "detailedFeatures": "札幌ゲームジャム（SGC2026）で、お題「変」から9人チームで作った3Dアクションです。\n\nプレイヤーは刀を手にした「俺」の駒。次々と湧いてくる敵の駒を斬り倒し、倒した駒を「持ち駒」にしてその技を使います。雑魚を30体倒すと敵の大将「王」が現れ、王を討ち取れば勝利です。\n\n【持ち駒の技】\n・歩：続けて振ると3段攻撃になり、3段目は刀が大きくなって一気に斬り払う\n・飛：十字に走るレーザーで盤の端までなぎ払う\n・角：斜め4方向へ長く斬る\n・香：まっすぐ突撃。突っ込む間は無敵なので回避にも使える\n・変：虹色の「うず」か「ウェーブ」が使うたびにランダムで出る\n・治：HPを回復して周りを斬る\n\n大技はカットインと一緒に繰り出され、その間は時間がゆっくりになります。攻撃を当て続けると連撃が増え、10連撃を超えると攻撃の範囲とダメージが上がります。敵の攻撃は必ず赤い範囲で予告されるので、よく見て避けて斬り返します。\n\n【設計】\n・調整値はコンポーネントに直接書かず、すべてScriptableObjectに置きました。敵1種類は攻撃パターンのSOを並べて組み合わせるだけで作れます\n・出来事はEventBusで知らせ、演出・音・HUDはそれを受けて動きます\n・ヒットストップ・スロー・カットイン・ポーズの時間停止がぶつからないよう、Time.timeScaleを書けるのはGameClockだけにしました",

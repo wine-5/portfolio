@@ -1,5 +1,159 @@
 [
   {
+    "title": "滚滚软糖",
+    "description": "画线让软糖滚到终点的糖果王国解谜游戏。10 个区域、1000 个关卡",
+    "detailedFeatures": "用手指（鼠标）画出的线会变成糖霜，成为软糖滚动的道路。墨水有限，线画得越少，获得的星星越多。\n\n【地面种类】\n・饼干：普通地面\n・巧克力：软糖会变慢\n・威化：受到强力撞击会碎裂\n・布丁：软糖会弹跳\n\n【制作特点】\n・为竖屏手机而做，同一份代码同时运行于 Windows 与 iOS\n・画面、音效、3D 均为 AI 在引擎内生成的原创内容（用 Python 驱动 Blender 制作模型）\n・1000 个关卡以数据表的形式排列；共 10 个区域，支持 8 种语言\n・iOS 版已实现内购（去广告）与广告，并已提交 App Store 审核\n\nWindows 版为「制作中版本 0.3.0」，画面、音效与关卡顺序之后还会改变。",
+    "myResponsibilities": "策划由本人完成。游戏由 AI 在 WineEngine 上制作，本人负责引擎开发（物理、iOS 导出等）和试玩验收。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++",
+      "Box2D",
+      "Blender",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Windows",
+      "iOS（已提交 App Store 审核）"
+    ],
+    "images": [
+      "images/game/kororin-gummy/kororin-gummy-title.webp",
+      "images/game/kororin-gummy/kororin-gummy-draw.webp",
+      "images/game/kororin-gummy/kororin-gummy-clear.webp",
+      "images/game/kororin-gummy/kororin-gummy-chocolate.webp",
+      "images/game/kororin-gummy/kororin-gummy-pudding.webp",
+      "images/game/kororin-gummy/kororin-gummy-areas.webp",
+      "images/game/kororin-gummy/kororin-gummy-stages.webp",
+      "images/game/kororin-gummy/kororin-gummy-video.mp4"
+    ],
+    "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
+    "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",
+    "year": "3年级",
+    "category": "game",
+    "teamSize": "1人＋AI（策划: 本人。AI 依据策划书制作，本人负责引擎与验收）",
+    "period": "5天（2026年11月）＋ iOS 适配"
+  },
+  {
+    "title": "冒险者商店",
+    "description": "在边陲工坊街经营冒险者商店的 2D 游戏。采集素材，用大锅调药，用铁砧锻造武器",
+    "detailedFeatures": "你是工坊街上为前往未知之地的冒险者准备行装的店主。\n\n【游戏流程】\n・听取顾客的目的地和烦恼，接下订单\n・前往森林边缘、迷雾洞窟和古老遗迹采集素材（摘花、挖矿）\n・调药：用素材决定前进的路线，搅动大锅，在被迷雾遮住的地图上前进，到达效果后完成\n・锻造：在炉中加热，在橙色的最佳时机锤打成形，用水或油冷却，再装上握柄和装饰\n・交付物品后，顾客下次来访会讲述旅途见闻，并留下新物品的线索\n・做出图鉴中的 12 件物品（药 6 件、武器与道具 6 件）即可通关\n\n【制作特点】\n・像素画和音效均为原创，用 Python 生成\n・可用键盘、鼠标、手柄游玩，屏幕下方会显示当前可用的按键",
+    "myResponsibilities": "策划来自朋友（しまぜんざい）。游戏由 AI 在 WineEngine 上制作，本人负责引擎开发和试玩验收。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++",
+      "Python（ドット絵と音を生成）"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/adventurers-shop/adventurers-shop-title.webp",
+      "images/game/adventurers-shop/adventurers-shop-shop.webp",
+      "images/game/adventurers-shop/adventurers-shop-field.webp",
+      "images/game/adventurers-shop/adventurers-shop-alchemy.webp",
+      "images/game/adventurers-shop/adventurers-shop-smithy.webp",
+      "images/game/adventurers-shop/adventurers-shop-cave.webp",
+      "images/game/adventurers-shop/adventurers-shop-ruins.webp"
+    ],
+    "thumbnailImage": "images/game/adventurers-shop/adventurers-shop-title.webp",
+    "carouselImage": "images/game/adventurers-shop/adventurers-shop-icon.webp",
+    "year": "3年级",
+    "category": "game",
+    "teamSize": "1人＋AI（策划: しまぜんざい。AI 依据策划备忘录制作，本人负责引擎与验收）",
+    "period": "2026年10月（1.0.0 完成版于 10/26）"
+  },
+  {
+    "title": "群岛派对",
+    "description": "在四座空中浮岛上掷骰前进的 3D 大富翁派对游戏。100 个小游戏，1〜4 人，支持联机",
+    "detailedFeatures": "巡游空中群岛、收集星之碎片的可爱风 3D 大富翁。人数不足时由 CPU 补位。\n\n【游戏流程】\n・每一回合是「所有人各掷一次骰子前进 → 大家一起玩小游戏」\n・小游戏的胜者可以用改写卡改写岛屿（近道桥梁、隐形陷阱、墙壁、格子种类）\n・在星之泉购买碎片，收集最多者获胜\n\n【100 个小游戏】\n单人 50 个、1 对 3 共 13 个、2 对 2 共 16 个、合作 15 个、Boss 战 6 个，每个都有专属舞台。\n\n【制作特点】\n・可与同一 LAN 的电脑创建房间联机；装上 Tailscale 还能与远方的人一起玩\n・角色、岛屿、音效、UI 全部原创；岛屿模型用 Python 驱动 Blender 生成\n・支持 1 个键盘加最多 4 个手柄，屏幕下方以图标显示当前可按的按键\n・每座岛都有各自的村庄、商店与音效；17 种道具，另有成就与画廊",
+    "myResponsibilities": "策划由本人完成。游戏由 AI 在 WineEngine 上制作，本人负责引擎开发（联机对战、3D 渲染、导出等）和试玩验收。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++",
+      "Blender",
+      "Python"
+    ],
+    "supportedPlatforms": [
+      "Windows",
+      "可通过 LAN / Tailscale 联机对战"
+    ],
+    "images": [
+      "images/game/archipelago-party/archipelago-party-title.webp",
+      "images/game/archipelago-party/archipelago-party-mode.webp",
+      "images/game/archipelago-party/archipelago-party-island.webp",
+      "images/game/archipelago-party/archipelago-party-chars.webp",
+      "images/game/archipelago-party/archipelago-party-turn.webp",
+      "images/game/archipelago-party/archipelago-party-roulette.webp",
+      "images/game/archipelago-party/archipelago-party-volcano.webp",
+      "images/game/archipelago-party/archipelago-party-ice.webp",
+      "images/game/archipelago-party/archipelago-party-mg-b06.webp",
+      "images/game/archipelago-party/archipelago-party-mg-f45.webp",
+      "images/game/archipelago-party/archipelago-party-coins.webp",
+      "images/game/archipelago-party/archipelago-party-video.mp4"
+    ],
+    "thumbnailImage": "images/game/archipelago-party/archipelago-party-title.webp",
+    "carouselImage": "images/game/archipelago-party/archipelago-party-icon.webp",
+    "year": "3年级",
+    "category": "game",
+    "teamSize": "1人＋AI（策划: 本人。AI 依据策划书制作，本人负责引擎与验收）",
+    "period": "约2周（2026年10月21日〜11月2日）"
+  },
+  {
+    "title": "占比50%",
+    "description": "画线切割、转动球体、移动太阳。让某样东西恰好占整体的 50% 的 3D 解谜游戏。共 17 关",
+    "detailedFeatures": "题目是「请让○○占整体的 50%」，目标是做到恰好 50%。比例在按下「决定」之前看不到，恰好 50.00% 即为 PERFECT。\n\n【关卡类型】\n・面积：在板上画一条线进行切割\n・体积：线直接成为切开 3D 形体的平面（立方体、圆锥、岩石、被咬过的甜甜圈、空心球等）\n・重量：外观相同但内部有铁，切开后用天平称量\n・表面积：不是体积，而是外表面的面积\n・颜色、影子、空间：红墙、彩球、白板的影子、水槽、小行星；这些关卡不切也可以\n\n【制作特点】\n・模型、画面、音效全部在引擎内制作\n・方向键配合 Shift 以 1/10、配合 Ctrl 以 1/200 的步幅微调，便于冲击 PERFECT\n・评价：50.00% 为 ★★★，49.8〜50.2% 为 ★★，45〜55% 为 ★",
+    "myResponsibilities": "策划由本人完成。游戏由 AI 在 WineEngine 上制作，本人负责引擎开发（3D 渲染、物理等）和试玩验收。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/fifty-fifty/fifty-fifty-title.webp",
+      "images/game/fifty-fifty/fifty-fifty-area.webp",
+      "images/game/fifty-fifty/fifty-fifty-rock.webp",
+      "images/game/fifty-fifty/fifty-fifty-balance.webp",
+      "images/game/fifty-fifty/fifty-fifty-perfect.webp",
+      "images/game/fifty-fifty/fifty-fifty-shadow.webp",
+      "images/game/fifty-fifty/fifty-fifty-planet.webp",
+      "images/game/fifty-fifty/fifty-fifty-video.mp4"
+    ],
+    "thumbnailImage": "images/game/fifty-fifty/fifty-fifty-title.webp",
+    "carouselImage": "images/game/fifty-fifty/fifty-fifty-icon.webp",
+    "year": "3年级",
+    "category": "game",
+    "teamSize": "1人＋AI（策划: 本人。AI 依据策划书制作，本人负责引擎与验收）",
+    "period": "2026年10月（1.0.0 完成版于 10/19）"
+  },
+  {
+    "title": "老虎机鸭子竞速",
+    "description": "4 只鸭子自动奔跑的比赛，用抓时机的老虎机来推动。赛后改造转轴，率先取得 3 胜",
+    "detailedFeatures": "奔跑的是 4 只鸭子，玩家只操作老虎机和道具。老虎机的结果让鸭子加速，道具可以妨碍其他鸭子。\n\n【玩法】\n・横 3 条、斜 2 条的线上出现 2 个相同图案为小效果，3 个为大效果\n・转轴转动时按键，按左 → 中 → 右的顺序停下（抓时机）\n・出现 3 个 JP 为大奖，接下来的 7 次进入「狂热」，每次必定出现 3 个相同图案\n・名次越低，转轴越会滑动 1 格，更容易凑齐（运气补正）\n・赛后在商店花费金币，把自己的 18 格转轴逐格替换，打造自己的获胜套路\n・最先取得 3 胜的鸭子获得总冠军\n\n【制作特点】\n・也可以用鼠标按拉杆和各转轴的停止按钮来玩\n・这是在 WineEngine 上制作的第 3 个原型，发布后根据用户反馈修复了卡顿、爆音和内存膨胀",
+    "myResponsibilities": "策划来自朋友（しゅーと）。游戏由 AI 在 WineEngine 上制作，本人负责引擎开发，并指挥排查和修复发布后的问题（卡顿、爆音）。",
+    "technologies": [
+      "WineEngine（自作）",
+      "C++"
+    ],
+    "supportedPlatforms": [
+      "Windows"
+    ],
+    "images": [
+      "images/game/slot-duck-race/slot-duck-race-title.webp",
+      "images/game/slot-duck-race/slot-duck-race-race.webp",
+      "images/game/slot-duck-race/slot-duck-race-fever.webp",
+      "images/game/slot-duck-race/slot-duck-race-results.webp",
+      "images/game/slot-duck-race/slot-duck-race-shop.webp",
+      "images/game/slot-duck-race/slot-duck-race-video.mp4"
+    ],
+    "thumbnailImage": "images/game/slot-duck-race/slot-duck-race-title.webp",
+    "carouselImage": "images/game/slot-duck-race/slot-duck-race-icon.webp",
+    "year": "3年级",
+    "category": "game",
+    "teamSize": "1人＋AI（策划: しゅーと。AI 依据策划书制作，本人负责引擎与验收）",
+    "period": "2026年10月7日起（次日发布初版，之后持续改进）"
+  },
+  {
     "title": "将ギ",
     "description": "将棋棋子在棋盘上互相厮杀的3D动作游戏。把打倒的棋子变成持驹，用它的招式战斗",
     "detailedFeatures": "在札幌游戏Jam（SGC2026）上，以主题「変」由9人团队制作的3D动作游戏。\n\n玩家是手持长刀的「俺」之棋子。不断斩倒涌来的敌方棋子，打倒的棋子会变成「持驹」，可以使用它的招式。打倒30个杂兵后，敌方大将「王」就会出现，讨伐王即可获胜。\n\n【持驹的招式】\n・步：连续挥砍会变成3段攻击，第3段刀身变大，一口气横扫\n・飞：十字形激光，横扫至棋盘边缘\n・角：向斜方4个方向长距离斩击\n・香：直线突进，突进期间无敌，也能用来闪避\n・变：每次使用随机放出彩虹色的「漩涡」或「波浪」\n・治：回复HP并斩击周围\n\n大招会伴随切入画面释放，期间时间会变慢。持续命中会累积连击，超过10连击后攻击范围和伤害都会提升。敌人的攻击一定会用红色范围预告，看准后躲开再反击。\n\n【设计】\n・调整数值不直接写在组件里，全部放在ScriptableObject中。只要排列组合攻击模式的SO，就能做出一种敌人\n・事件通过EventBus通知，演出、声音和HUD接收后再行动\n・为了让顿帧、慢动作、切入画面和暂停的时间停止互不冲突，只允许GameClock写入Time.timeScale",
