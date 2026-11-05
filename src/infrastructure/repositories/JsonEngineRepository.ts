@@ -1,4 +1,4 @@
-import type { Engine } from '@domain/entities/Engine';
+import type { Engine, EngineStep } from '@domain/entities/Engine';
 import type { EngineRepository } from '@application/ports/EngineRepository';
 import type { Locale } from '@application/ports/Locale';
 
@@ -9,6 +9,10 @@ interface EngineDto {
   motto: string;
   tagline: string;
   summary: string;
+  concepts?: string[];
+  steps?: EngineStep[];
+  history?: { title: string; src: string; caption: string };
+  shared?: { title: string; body: string };
   pillars?: { title: string; body: string }[];
   tags?: string[];
   figures?: { src: string; caption: string }[];
@@ -30,6 +34,10 @@ export class JsonEngineRepository implements EngineRepository {
       motto: dto.motto,
       tagline: dto.tagline,
       summary: dto.summary,
+      concepts: dto.concepts ?? [],
+      steps: dto.steps ?? [],
+      history: dto.history,
+      shared: dto.shared,
       pillars: dto.pillars ?? [],
       tags: dto.tags ?? [],
       figures: dto.figures ?? [],

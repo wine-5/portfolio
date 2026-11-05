@@ -2,26 +2,56 @@
   "name": "WineEngine",
   "status": "IN DEVELOPMENT",
   "motto": "Everyone can be a game developer.",
-  "tagline": "A 3D / 2D game engine I am building so that an AI can finish a game and ship an exe from just a design document and assets.",
-  "summary": "A C++20 game engine that renders with DxLib, plus an editor modeled on Unity (started on Aug 9, 2026).\nEvery editor operation is exposed as a \"command\", and the GUI, command palette, headless CLI and MCP all go through the same path, so an AI as well as a person can drive the editor from the outside.\nThe games made with this engine, including the five below, were assembled by an AI from design documents.",
+  "tagline": "Ask in a chat and the AI drives the engine to build it. Because it is connected over MCP, an AI in the ChatGPT or Claude desktop app can operate the engine directly.",
+  "concepts": [
+    "Anyone can make a game with AI",
+    "Data is kept in a form AI can handle",
+    "Suited to short development like game jams"
+  ],
+  "summary": "A C++20 game engine that renders with DxLib, plus an editor modeled on Unity (started on Aug 9, 2026).\nEvery editor operation is exposed as a \"command\", and the GUI, command palette, headless CLI and MCP all go through the same path, so an AI as well as a person can drive the editor from the outside.",
+  "steps": [
+    {
+      "label": "STEP 1",
+      "title": "Ask in words",
+      "app": "ChatGPT / Claude desktop",
+      "caption": "Just write \"make a small garden with a house, a tree and a pond\". No file names or commands needed",
+      "prompt": "Make a small garden with a house, a tree and a pond.",
+      "promptNote": "Example request"
+    },
+    {
+      "label": "STEP 2",
+      "title": "The AI operates the editor",
+      "app": "WineEngine",
+      "caption": "When the AI builds a scene, before and after pictures appear side by side. A person reviews and approves the changes before they stay",
+      "src": "images/engine/mcp-review.webp"
+    },
+    {
+      "label": "STEP 3",
+      "title": "Everything it did is kept",
+      "app": "WineEngine",
+      "caption": "How much time went to which kind of work is recorded as a graph and counts",
+      "src": "images/engine/ai-activity.webp"
+    }
+  ],
+  "history": {
+    "title": "Every command the AI used is kept: when, and what it did",
+    "src": "images/engine/ai-history.webp",
+    "caption": "The history of commands the AI actually called over MCP (scene.apply, scene.save and more)"
+  },
+  "shared": {
+    "title": "Handed out and in use",
+    "body": "The engine itself is given to other people, who connect it from ChatGPT / Claude and make games with it. \"Anyone can make a game with AI\" now works in practice."
+  },
   "figures": [
     {
       "src": "images/engine/mcp-editor.webp",
-      "caption": "The editor right after an AI built a scene through MCP: new Entities appear in the Hierarchy and the result shows at once in Scene and Game"
-    },
-    {
-      "src": "images/engine/mcp-review.webp",
-      "caption": "Review AI Changes: compare before and after pictures of what the AI changed, and keep or undo it per Entity"
+      "caption": "The editor right after the AI built a scene: new Entities in the Hierarchy and the result shown at once in Scene and Game. AI Activity sits next to the Inspector"
     }
   ],
   "pillars": [
     {
       "title": "An editor modeled on Unity",
       "body": "Scene, Game, Hierarchy and Inspector, Keep Changes to retain edits made during Play, and dragging assets onto the Inspector, so Unity habits carry over."
-    },
-    {
-      "title": "Drivable by an AI from outside",
-      "body": "Every operation is a command (319 of them). An AI builds scenes through the headless CLI and an MCP server, and its changes can be reviewed and kept per Entity."
     },
     {
       "title": "Semantic scene diffs",
@@ -34,21 +64,18 @@
     {
       "title": "The tools are inside",
       "body": "Effects, sound, drawing, timeline, Live2D-style 2D characters, terrain, physics and enemy AI: the tools a game needs live inside the engine."
-    },
-    {
-      "title": "ECS and reflection",
-      "body": "Register a component in one place and the Inspector, saving and Add Component all work. Dependencies point one way, game → engine, checked by CI."
     }
   ],
   "tags": [
     "C++20",
-    "MSVC / MSBuild",
     "DxLib",
+    "DirectX 11 / HLSL",
     "Dear ImGui",
     "ImGuizmo",
-    "ECS + リフレクション",
-    "MCP",
+    "C#（スクリプト）",
+    "MCP サーバ",
     "ヘッドレス CLI",
+    "Windows x64",
     "CMake（iOS）",
     "Python",
     "Blender"

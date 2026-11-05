@@ -2,26 +2,56 @@
   "name": "WineEngine",
   "status": "現在開発中",
   "motto": "誰でもゲーム開発者に",
-  "tagline": "企画書と素材を渡すだけで、AI がゲームを完成させて exe まで出せる。そのために自作している 3D / 2D ゲームエンジンです。",
-  "summary": "DxLib を描画に使った C++20 製のゲームエンジンと、Unity に寄せた構成のエディタです（2026年8月9日に着手）。\nエディタの操作はすべて「コマンド」として公開していて、画面・コマンドパレット・ヘッドレス CLI・MCP のどこから呼んでも同じ経路を通ります。そのため、人だけでなく AI もエディタを外から操作できます。\nこのエンジンで作ったゲームは、下の 5 本を含め、企画書から AI が組み上げています。",
+  "tagline": "チャットで頼むと、AI がエンジンを操作して作る。MCP でつないだので、ChatGPT や Claude のデスクトップアプリから、AI がエンジンを直接動かせます。",
+  "concepts": [
+    "誰でも AI を使ってゲームが作れる",
+    "AI が扱いやすい形式でデータを持つ",
+    "ゲームジャムのような短期開発に向く"
+  ],
+  "summary": "DxLib で描画する C++20 製のゲームエンジンと、Unity に寄せた構成のエディタです（2026年8月9日に着手）。\nエディタの操作はすべて「コマンド」として公開していて、画面・コマンドパレット・ヘッドレス CLI・MCP のどこから呼んでも同じ経路を通ります。そのため、人だけでなく AI もエディタを外から操作できます。",
+  "steps": [
+    {
+      "label": "STEP 1",
+      "title": "言葉で頼む",
+      "app": "ChatGPT / Claude デスクトップ",
+      "caption": "「家と木と池のある小さな庭を作って」と書くだけ。ファイル名もコマンドも指定しない",
+      "prompt": "家と木と池のある、小さな庭を作って",
+      "promptNote": "依頼の例"
+    },
+    {
+      "label": "STEP 2",
+      "title": "AI がエディタを操作する",
+      "app": "WineEngine",
+      "caption": "AI がシーンを組むと、変更前と変更後の絵が並ぶ。変更は人が見て承認してから残る",
+      "src": "images/engine/mcp-review.webp"
+    },
+    {
+      "label": "STEP 3",
+      "title": "やったことが全部残る",
+      "app": "WineEngine",
+      "caption": "どの作業にどれだけ時間を使ったかが、グラフと件数で記録される",
+      "src": "images/engine/ai-activity.webp"
+    }
+  ],
+  "history": {
+    "title": "AI が使ったコマンドは、いつ・何をしたかまで残る",
+    "src": "images/engine/ai-history.webp",
+    "caption": "実際に AI が MCP から呼んだコマンド（scene.apply・scene.save など）の履歴"
+  },
+  "shared": {
+    "title": "配って使ってもらっている",
+    "body": "エンジン本体を他の人にも渡し、それぞれ ChatGPT / Claude からつないでゲームを作ってもらっています。「誰でも AI を使ってゲームが作れる」が、実際に動く形になりました。"
+  },
   "figures": [
     {
       "src": "images/engine/mcp-editor.webp",
-      "caption": "AI が MCP からエディタを操作してシーンを組んだ直後の画面。Hierarchy に Entity が増え、Scene と Game にその結果がすぐ出る"
-    },
-    {
-      "src": "images/engine/mcp-review.webp",
-      "caption": "Review AI Changes。AI が変えた Entity を、変更前と変更後の絵で見比べ、Entity ごとに残すか戻すかを選べる"
+      "caption": "AI がシーンを組んだ直後のエディタ。Hierarchy に Entity が増え、Scene と Game に結果がすぐ出る。右の AI Activity は Inspector の隣に並べて見られる"
     }
   ],
   "pillars": [
     {
       "title": "Unity に寄せたエディタ",
       "body": "Scene・Game・Hierarchy・Inspector、Play 中の変更を残せる Keep Changes、素材をつかんで Inspector へ落とす割り当てなど、Unity で慣れた操作をそのまま使えます。"
-    },
-    {
-      "title": "AI が外から操作できる",
-      "body": "全操作がコマンド（319 個）。ヘッドレス CLI と MCP サーバで AI がシーンを組み、AI の変更は Entity ごとに確認して残すかを選べます。"
     },
     {
       "title": "シーンの意味的な差分",
@@ -34,21 +64,18 @@
     {
       "title": "作る道具が中にある",
       "body": "エフェクト・サウンド・絵・タイムライン・Live2D 風の 2D キャラ・地形・物理・敵 AI など、ゲームに要る道具をエンジン内で完結させています。"
-    },
-    {
-      "title": "ECS とリフレクション",
-      "body": "部品を 1 か所登録すれば、Inspector・保存・Add Component が揃います。依存は game → engine の一方向で、CI が検査しています。"
     }
   ],
   "tags": [
     "C++20",
-    "MSVC / MSBuild",
     "DxLib",
+    "DirectX 11 / HLSL",
     "Dear ImGui",
     "ImGuizmo",
-    "ECS + リフレクション",
-    "MCP",
+    "C#（スクリプト）",
+    "MCP サーバ",
     "ヘッドレス CLI",
+    "Windows x64",
     "CMake（iOS）",
     "Python",
     "Blender"
