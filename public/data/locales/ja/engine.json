@@ -1,0 +1,83 @@
+{
+  "name": "WineEngine",
+  "tagline": "企画書と素材を渡すだけで、AI がゲームを完成させて exe まで出せる。そのために自作している 3D / 2D ゲームエンジンです。",
+  "summary": "DxLib を描画に使った C++20 製のゲームエンジンと、Unity に寄せた構成のエディタです（2026年8月9日に着手）。\nエディタの操作はすべて「コマンド」として公開していて、画面・コマンドパレット・ヘッドレス CLI・MCP のどこから呼んでも同じ経路を通ります。そのため、人だけでなく AI もエディタを外から操作できます。\nこのエンジンで作ったゲームは、下の 5 本を含め、企画書から AI が組み上げています。",
+  "stats": [
+    {
+      "label": "PERIOD",
+      "value": "2026/08/09〜（約3か月）"
+    },
+    {
+      "label": "COMMITS",
+      "value": "14,000+"
+    },
+    {
+      "label": "COMMANDS",
+      "value": "319"
+    },
+    {
+      "label": "CODE",
+      "value": "C++ 約37万行（検査含む）"
+    },
+    {
+      "label": "AUTO TESTS",
+      "value": "約1.5万件"
+    }
+  ],
+  "figures": [
+    {
+      "src": "images/engine/editor.webp",
+      "caption": "エディタ。Scene / Game / Hierarchy / Inspector と、Play・Pause・Step。ドッキングとレイアウト保存に対応"
+    },
+    {
+      "src": "images/engine/editor-vfx.webp",
+      "caption": "エフェクトの窓。溜め → 斬撃 → 衝撃波 → 煙を時間の帯に並べて、その場で再生して直せる"
+    }
+  ],
+  "pillars": [
+    {
+      "title": "Unity に寄せたエディタ",
+      "body": "Scene・Game・Hierarchy・Inspector、Play 中の変更を残せる Keep Changes、素材をつかんで Inspector へ落とす割り当てなど、Unity で慣れた操作をそのまま使えます。"
+    },
+    {
+      "title": "AI が外から操作できる",
+      "body": "全操作がコマンド（319 個）。ヘッドレス CLI と MCP サーバで AI がシーンを組み、AI の変更は Entity ごとに確認して残すかを選べます。"
+    },
+    {
+      "title": "シーンの意味的な差分",
+      "body": "git diff では読めない「どの Entity の何が変わったか」を表示。Git クライアントと組み込みターミナルもエディタに入っています。"
+    },
+    {
+      "title": "企画書から exe・iOS まで",
+      "body": "画面を組む → C++ で動きを書く → 書き出す、までを同じコマンドで通せます。Windows の exe に加え、iOS（Mac で建てて App Store へ）にも対応しています。"
+    },
+    {
+      "title": "作る道具が中にある",
+      "body": "エフェクト・サウンド・絵・タイムライン・Live2D 風の 2D キャラ・地形・物理・敵 AI など、ゲームに要る道具をエンジン内で完結させています。"
+    },
+    {
+      "title": "ECS とリフレクション",
+      "body": "部品を 1 か所登録すれば、Inspector・保存・Add Component が揃います。依存は game → engine の一方向で、CI が検査しています。"
+    }
+  ],
+  "tags": [
+    "C++20",
+    "MSVC / MSBuild",
+    "DxLib",
+    "Dear ImGui",
+    "ImGuizmo",
+    "ECS + リフレクション",
+    "MCP",
+    "ヘッドレス CLI",
+    "CMake（iOS）",
+    "Python",
+    "Blender"
+  ],
+  "works": [
+    "kororin-gummy",
+    "adventurers-shop",
+    "archipelago-party",
+    "fifty-fifty",
+    "slot-duck-race"
+  ]
+}

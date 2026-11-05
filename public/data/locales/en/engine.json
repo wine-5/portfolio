@@ -1,0 +1,83 @@
+{
+  "name": "WineEngine",
+  "tagline": "A 3D / 2D game engine I am building so that an AI can finish a game and ship an exe from just a design document and assets.",
+  "summary": "A C++20 game engine that renders with DxLib, plus an editor modeled on Unity (started on Aug 9, 2026).\nEvery editor operation is exposed as a \"command\", and the GUI, command palette, headless CLI and MCP all go through the same path, so an AI as well as a person can drive the editor from the outside.\nThe games made with this engine, including the five below, were assembled by an AI from design documents.",
+  "stats": [
+    {
+      "label": "PERIOD",
+      "value": "Since 2026/08/09 (about 3 months)"
+    },
+    {
+      "label": "COMMITS",
+      "value": "14,000+"
+    },
+    {
+      "label": "COMMANDS",
+      "value": "319"
+    },
+    {
+      "label": "CODE",
+      "value": "About 370k lines of C++ (incl. tests)"
+    },
+    {
+      "label": "AUTO TESTS",
+      "value": "About 15,000"
+    }
+  ],
+  "figures": [
+    {
+      "src": "images/engine/editor.webp",
+      "caption": "The editor: Scene / Game / Hierarchy / Inspector with Play, Pause and Step. Docking and saved layouts are supported"
+    },
+    {
+      "src": "images/engine/editor-vfx.webp",
+      "caption": "The effect window: charge → slash → shockwave → smoke laid out on a timeline, playable and editable in place"
+    }
+  ],
+  "pillars": [
+    {
+      "title": "An editor modeled on Unity",
+      "body": "Scene, Game, Hierarchy and Inspector, Keep Changes to retain edits made during Play, and dragging assets onto the Inspector, so Unity habits carry over."
+    },
+    {
+      "title": "Drivable by an AI from outside",
+      "body": "Every operation is a command (319 of them). An AI builds scenes through the headless CLI and an MCP server, and its changes can be reviewed and kept per Entity."
+    },
+    {
+      "title": "Semantic scene diffs",
+      "body": "Shows \"which Entity changed what\", which git diff cannot. A Git client and an integrated terminal are built into the editor."
+    },
+    {
+      "title": "From design doc to exe and iOS",
+      "body": "Compose screens, write behavior in C++ and export, all with the same commands. Besides a Windows exe, it supports iOS (build on a Mac and submit to the App Store)."
+    },
+    {
+      "title": "The tools are inside",
+      "body": "Effects, sound, drawing, timeline, Live2D-style 2D characters, terrain, physics and enemy AI: the tools a game needs live inside the engine."
+    },
+    {
+      "title": "ECS and reflection",
+      "body": "Register a component in one place and the Inspector, saving and Add Component all work. Dependencies point one way, game → engine, checked by CI."
+    }
+  ],
+  "tags": [
+    "C++20",
+    "MSVC / MSBuild",
+    "DxLib",
+    "Dear ImGui",
+    "ImGuizmo",
+    "ECS + リフレクション",
+    "MCP",
+    "ヘッドレス CLI",
+    "CMake（iOS）",
+    "Python",
+    "Blender"
+  ],
+  "works": [
+    "kororin-gummy",
+    "adventurers-shop",
+    "archipelago-party",
+    "fifty-fifty",
+    "slot-duck-race"
+  ]
+}
