@@ -6,12 +6,12 @@
   "summary": "DxLib を描画に使った C++20 製のゲームエンジンと、Unity に寄せた構成のエディタです（2026年8月9日に着手）。\nエディタの操作はすべて「コマンド」として公開していて、画面・コマンドパレット・ヘッドレス CLI・MCP のどこから呼んでも同じ経路を通ります。そのため、人だけでなく AI もエディタを外から操作できます。\nこのエンジンで作ったゲームは、下の 5 本を含め、企画書から AI が組み上げています。",
   "figures": [
     {
-      "src": "images/engine/editor.webp",
-      "caption": "エディタ。Scene / Game / Hierarchy / Inspector と、Play・Pause・Step。ドッキングとレイアウト保存に対応"
+      "src": "images/engine/mcp-editor.webp",
+      "caption": "AI が MCP からエディタを操作してシーンを組んだ直後の画面。Hierarchy に Entity が増え、Scene と Game にその結果がすぐ出る"
     },
     {
-      "src": "images/engine/editor-vfx.webp",
-      "caption": "エフェクトの窓。溜め → 斬撃 → 衝撃波 → 煙を時間の帯に並べて、その場で再生して直せる"
+      "src": "images/engine/mcp-review.webp",
+      "caption": "Review AI Changes。AI が変えた Entity を、変更前と変更後の絵で見比べ、Entity ごとに残すか戻すかを選べる"
     }
   ],
   "pillars": [

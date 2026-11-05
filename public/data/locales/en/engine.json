@@ -6,12 +6,12 @@
   "summary": "A C++20 game engine that renders with DxLib, plus an editor modeled on Unity (started on Aug 9, 2026).\nEvery editor operation is exposed as a \"command\", and the GUI, command palette, headless CLI and MCP all go through the same path, so an AI as well as a person can drive the editor from the outside.\nThe games made with this engine, including the five below, were assembled by an AI from design documents.",
   "figures": [
     {
-      "src": "images/engine/editor.webp",
-      "caption": "The editor: Scene / Game / Hierarchy / Inspector with Play, Pause and Step. Docking and saved layouts are supported"
+      "src": "images/engine/mcp-editor.webp",
+      "caption": "The editor right after an AI built a scene through MCP: new Entities appear in the Hierarchy and the result shows at once in Scene and Game"
     },
     {
-      "src": "images/engine/editor-vfx.webp",
-      "caption": "The effect window: charge → slash → shockwave → smoke laid out on a timeline, playable and editable in place"
+      "src": "images/engine/mcp-review.webp",
+      "caption": "Review AI Changes: compare before and after pictures of what the AI changed, and keep or undo it per Entity"
     }
   ],
   "pillars": [

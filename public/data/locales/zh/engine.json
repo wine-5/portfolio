@@ -6,12 +6,12 @@
   "summary": "这是一个使用 DxLib 渲染的 C++20 游戏引擎，以及参照 Unity 构成的编辑器（2026 年 8 月 9 日开工）。\n编辑器的所有操作都以「命令」的形式公开，界面、命令面板、无界面 CLI、MCP 走的是同一条路径，因此不仅是人，AI 也能从外部操作编辑器。\n用这个引擎制作的游戏（包括下面的 5 款）都是 AI 依据策划书组装完成的。",
   "figures": [
     {
-      "src": "images/engine/editor.webp",
-      "caption": "编辑器。Scene / Game / Hierarchy / Inspector，以及 Play、Pause、Step。支持停靠和布局保存"
+      "src": "images/engine/mcp-editor.webp",
+      "caption": "AI 通过 MCP 操作编辑器搭建场景后的画面。Hierarchy 中增加了 Entity，结果立即显示在 Scene 和 Game 中"
     },
     {
-      "src": "images/engine/editor-vfx.webp",
-      "caption": "特效窗口。将蓄力 → 斩击 → 冲击波 → 烟雾排在时间轴上，可当场播放并修改"
+      "src": "images/engine/mcp-review.webp",
+      "caption": "Review AI Changes。可对比 AI 修改前后的画面，并按 Entity 选择保留或撤销"
     }
   ],
   "pillars": [
