@@ -18,6 +18,11 @@ import { asset } from '../util/html';
  * 作品を追加したら、タイトル画面を幅 512px の webp に縮小してここへ足す
  */
 const PANEL_IMAGES = [
+  'kororin-gummy',
+  'archipelago-party',
+  'adventurers-shop',
+  'fifty-fifty',
+  'slot-duck-race',
   'shogi',
   'sliding-space-parking',
   'kansei-palette',
