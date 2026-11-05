@@ -1,29 +1,9 @@
 {
   "name": "WineEngine",
+  "status": "IN DEVELOPMENT",
+  "motto": "Everyone can be a game developer.",
   "tagline": "A 3D / 2D game engine I am building so that an AI can finish a game and ship an exe from just a design document and assets.",
   "summary": "A C++20 game engine that renders with DxLib, plus an editor modeled on Unity (started on Aug 9, 2026).\nEvery editor operation is exposed as a \"command\", and the GUI, command palette, headless CLI and MCP all go through the same path, so an AI as well as a person can drive the editor from the outside.\nThe games made with this engine, including the five below, were assembled by an AI from design documents.",
-  "stats": [
-    {
-      "label": "PERIOD",
-      "value": "Since 2026/08/09 (about 3 months)"
-    },
-    {
-      "label": "COMMITS",
-      "value": "14,000+"
-    },
-    {
-      "label": "COMMANDS",
-      "value": "319"
-    },
-    {
-      "label": "CODE",
-      "value": "About 370k lines of C++ (incl. tests)"
-    },
-    {
-      "label": "AUTO TESTS",
-      "value": "About 15,000"
-    }
-  ],
   "figures": [
     {
       "src": "images/engine/editor.webp",

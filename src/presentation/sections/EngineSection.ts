@@ -36,22 +36,12 @@ export class EngineSection extends View<EngineViewProps> {
     this.el.innerHTML = `
       <header class="engine__header">
         <p class="engine__kicker">// ENGINE</p>
-        <h2 class="engine__title">${esc(engine.name)}</h2>
+        <h2 class="engine__title">${esc(engine.name)}<span class="engine__status">${esc(engine.status)}</span></h2>
+        <p class="engine__motto">${esc(engine.motto)}</p>
         <p class="engine__tagline">${esc(engine.tagline)}</p>
       </header>
       <div class="engine__frame">
         <p class="engine__summary">${esc(engine.summary)}</p>
-        <dl class="engine__stats">
-          ${engine.stats
-            .map(
-              (s) => `
-                <div class="engine-stat">
-                  <dt>${esc(s.label)}</dt>
-                  <dd>${esc(s.value)}</dd>
-                </div>`,
-            )
-            .join('')}
-        </dl>
         <div class="engine__figures">
           ${engine.figures
             .map(

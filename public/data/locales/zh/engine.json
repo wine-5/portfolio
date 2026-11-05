@@ -1,29 +1,9 @@
 {
   "name": "WineEngine",
+  "status": "开发中",
+  "motto": "人人都能成为游戏开发者",
   "tagline": "这是我自制的 3D / 2D 游戏引擎，目标是只需交给 AI 策划书和素材，就能完成游戏并导出 exe。",
   "summary": "这是一个使用 DxLib 渲染的 C++20 游戏引擎，以及参照 Unity 构成的编辑器（2026 年 8 月 9 日开工）。\n编辑器的所有操作都以「命令」的形式公开，界面、命令面板、无界面 CLI、MCP 走的是同一条路径，因此不仅是人，AI 也能从外部操作编辑器。\n用这个引擎制作的游戏（包括下面的 5 款）都是 AI 依据策划书组装完成的。",
-  "stats": [
-    {
-      "label": "PERIOD",
-      "value": "2026/08/09 起（约 3 个月）"
-    },
-    {
-      "label": "COMMITS",
-      "value": "14,000+"
-    },
-    {
-      "label": "COMMANDS",
-      "value": "319"
-    },
-    {
-      "label": "CODE",
-      "value": "C++ 约 37 万行（含测试）"
-    },
-    {
-      "label": "AUTO TESTS",
-      "value": "约 1.5 万项"
-    }
-  ],
   "figures": [
     {
       "src": "images/engine/editor.webp",

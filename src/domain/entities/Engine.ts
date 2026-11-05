@@ -1,9 +1,3 @@
-/** エンジン紹介の数字 1 つ(ラベル + 値) */
-export interface EngineStat {
-  readonly label: string;
-  readonly value: string;
-}
-
 /** エンジンの特徴 1 つ(見出し + 補足) */
 export interface EnginePillar {
   readonly title: string;
@@ -22,9 +16,12 @@ export interface EngineFigure {
  */
 export interface Engine {
   readonly name: string;
+  /** 開発状況の表示(「現在開発中」など) */
+  readonly status: string;
+  /** エンジンのモットー。セクションの最も目立つ位置に大きく出す */
+  readonly motto: string;
   readonly tagline: string;
   readonly summary: string;
-  readonly stats: readonly EngineStat[];
   readonly pillars: readonly EnginePillar[];
   readonly tags: readonly string[];
   readonly figures: readonly EngineFigure[];

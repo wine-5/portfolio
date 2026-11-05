@@ -5,9 +5,10 @@ import type { Locale } from '@application/ports/Locale';
 /** public/data/locales/{locale}/engine.json の中身 */
 interface EngineDto {
   name: string;
+  status: string;
+  motto: string;
   tagline: string;
   summary: string;
-  stats?: { label: string; value: string }[];
   pillars?: { title: string; body: string }[];
   tags?: string[];
   figures?: { src: string; caption: string }[];
@@ -25,9 +26,10 @@ export class JsonEngineRepository implements EngineRepository {
     const dto = (await res.json()) as EngineDto;
     return {
       name: dto.name,
+      status: dto.status,
+      motto: dto.motto,
       tagline: dto.tagline,
       summary: dto.summary,
-      stats: dto.stats ?? [],
       pillars: dto.pillars ?? [],
       tags: dto.tags ?? [],
       figures: dto.figures ?? [],
