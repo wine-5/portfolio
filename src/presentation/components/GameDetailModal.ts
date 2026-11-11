@@ -152,10 +152,15 @@ export class GameDetailModal extends View<Game> {
 
 const VIDEO_RE = /\.(mp4|webm|mov)$/i;
 
-/** メイン表示エリア: 動画なら再生コントロール付き、画像ならそのまま */
+/**
+ * メイン表示エリア: 動画なら再生コントロール付き、画像ならそのまま。
+ * 動画の表紙は、同じ名前の `-poster.webp`(例: x-pv-ja.mp4 → x-pv-ja-poster.webp)を使う。
+ * 表紙が無い動画は poster が読めないだけで、再生には影響しない
+ */
 function mediaMain(path: string, title: string): string {
+  const poster = path.replace(VIDEO_RE, '-poster.webp');
   return VIDEO_RE.test(path)
-    ? `<video src="${esc(asset(path))}" controls playsinline muted preload="metadata"></video>`
+    ? `<video src="${esc(asset(path))}" poster="${esc(asset(poster))}" controls playsinline muted preload="metadata"></video>`
     : `<img src="${esc(asset(path))}" alt="${esc(title)}" loading="lazy" decoding="async" />`;
 }
 
