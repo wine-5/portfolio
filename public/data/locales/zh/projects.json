@@ -2,7 +2,7 @@
   {
     "title": "滚滚软糖",
     "description": "画线让软糖滚到终点的糖果王国解谜游戏",
-    "detailedFeatures": "用手指画出的线会变成糖霜，成为软糖滚动的道路。墨水有限，线画得越少，获得的星星越多。\n\n【地面种类】\n・饼干：普通地面\n・巧克力：软糖会变慢\n・威化：受到强力撞击会碎裂\n・布丁：软糖会弹跳\n\n【特点】\n・40张地图、1200个关卡，支持8种语言\n・可用水晶购买的换装商店，以及每日登录奖励（1.1.0新增）\n・为竖屏手机而做，同一份代码同时运行于Windows与iOS\n・画面、音效、3D均为原创，模型用Python驱动Blender制作\n・iOS版已实现内购（去广告）与广告，并已提交App Store审核\n\nWindows版为制作中版本（0.3.0），画面、音效与关卡顺序之后还会改变。",
+    "detailedFeatures": "用手指画出的线会变成糖霜，成为软糖滚动的道路。墨水有限，线画得越少，获得的星星越多。\n\n【地面种类】\n・饼干：普通地面\n・巧克力：软糖会变慢\n・威化：受到强力撞击会碎裂\n・布丁：软糖会弹跳\n\n【特点】\n・40张地图、1200个关卡，支持8种语言\n・可用水晶购买的换装商店，以及每日登录奖励（1.1.0新增）\n・为竖屏手机而做，同一份代码同时运行于Windows与iOS\n・画面、音效、3D均为原创，模型用Python驱动Blender制作\n・iOS版已实现内购（去广告）与广告，已在App Store上架\n\nWindows版为制作中版本（0.3.0），画面、音效与关卡顺序之后还会改变。",
     "myResponsibilities": "作为个人制作，负责策划、设计、实现、素材制作和调整的全部工作。特别用心的是在自制引擎 WineEngine 上制作，以及用 Python 驱动 Blender 生成模型。",
     "technologies": [
       "C++",
@@ -28,6 +28,7 @@
     ],
     "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
     "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",
+    "install": "https://apps.apple.com/app/id6830248450",
     "year": "3年级",
     "category": "game",
     "teamSize": "1人",
