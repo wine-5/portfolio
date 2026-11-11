@@ -155,7 +155,7 @@ const VIDEO_RE = /\.(mp4|webm|mov)$/i;
 /** メイン表示エリア: 動画なら再生コントロール付き、画像ならそのまま */
 function mediaMain(path: string, title: string): string {
   return VIDEO_RE.test(path)
-    ? `<video src="${esc(asset(path))}" controls playsinline preload="metadata"></video>`
+    ? `<video src="${esc(asset(path))}" controls playsinline muted preload="metadata"></video>`
     : `<img src="${esc(asset(path))}" alt="${esc(title)}" loading="lazy" decoding="async" />`;
 }
 

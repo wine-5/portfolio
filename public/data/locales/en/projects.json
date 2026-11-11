@@ -2,7 +2,7 @@
   {
     "title": "Kororin Gummy",
     "description": "A candy-land puzzle: draw lines to roll the gummy to the goal",
-    "detailedFeatures": "The line you draw becomes icing, a road for the gummy to roll on. Ink is limited, so the fewer lines you use, the more stars you earn.\n\n[Floor types]\n- Cookie: plain floor\n- Chocolate: slows the gummy down\n- Wafer: breaks when hit hard\n- Pudding: bounces the gummy\n\n[Features]\n- 10 areas, 1,000 stages, 8 languages\n- Made for portrait phones; the same code runs on both Windows and iOS\n- All art, sound and 3D are original, with models made by driving Blender from Python\n- The iOS build has in-app purchase (remove ads) and ads, and has been submitted to App Store review\n\nThe Windows build is a work-in-progress version (0.3.0); art, sound and stage order will still change.",
+    "detailedFeatures": "The line you draw becomes icing, a road for the gummy to roll on. Ink is limited, so the fewer lines you use, the more stars you earn.\n\n[Floor types]\n- Cookie: plain floor\n- Chocolate: slows the gummy down\n- Wafer: breaks when hit hard\n- Pudding: bounces the gummy\n\n[Features]\n- 40 maps, 1,200 stages, 8 languages\n- A crystal-based dress-up shop and a daily login bonus (added in 1.1.0)\n- Made for portrait phones; the same code runs on both Windows and iOS\n- All art, sound and 3D are original, with models made by driving Blender from Python\n- The iOS build has in-app purchase (remove ads) and ads, and has been submitted to App Store review\n\nThe Windows build is a work-in-progress version (0.3.0); art, sound and stage order will still change.",
     "myResponsibilities": "As a solo project, I handled design, implementation, asset creation and tuning. I focused especially on building it on my own engine, WineEngine, and on generating models by driving Blender from Python.",
     "technologies": [
       "C++",
@@ -15,14 +15,16 @@
       "iOS"
     ],
     "images": [
-      "images/game/kororin-gummy/kororin-gummy-title.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-hero-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-pv-en.mp4",
+      "images/game/kororin-gummy/kororin-gummy-promo-shop-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-closet-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-login-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-worlds-en.webp",
       "images/game/kororin-gummy/kororin-gummy-draw.webp",
-      "images/game/kororin-gummy/kororin-gummy-clear.webp",
       "images/game/kororin-gummy/kororin-gummy-chocolate.webp",
       "images/game/kororin-gummy/kororin-gummy-pudding.webp",
-      "images/game/kororin-gummy/kororin-gummy-areas.webp",
-      "images/game/kororin-gummy/kororin-gummy-stages.webp",
-      "images/game/kororin-gummy/kororin-gummy-video.mp4"
+      "images/game/kororin-gummy/kororin-gummy-clear.webp"
     ],
     "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
     "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",

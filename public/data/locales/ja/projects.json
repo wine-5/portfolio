@@ -2,7 +2,7 @@
   {
     "title": "ころりんグミ",
     "description": "線を描いてグミを転がし、ゴールまで届けるお菓子の国のパズル",
-    "detailedFeatures": "指でなぞった線がアイシングになり、グミが転がる道になります。インクには限りがあるので、少ない線でゴールへ届けるほど星が増えます。\n\n【床の種類】\n・クッキー：ふつうの床\n・チョコ：グミがゆっくりになる\n・ウエハース：強く当たると割れる\n・プリン：グミが跳ねる\n\n【特徴】\n・10エリア・1000面。言語は8種類に対応\n・縦長のスマートフォン向けに作り、同じコードのままWindowsとiOSで動かしています\n・絵・音・3Dはすべてオリジナルで、模型はBlenderをPythonで動かして作りました\n・iOS版は課金（広告を消す）と広告まで実装し、App Storeの審査に提出しました\n\nWindows版は途中版（0.3.0）で、絵・音・面の並びはこれから変わります。",
+    "detailedFeatures": "指でなぞった線がアイシングになり、グミが転がる道になります。インクには限りがあるので、少ない線でゴールへ届けるほど星が増えます。\n\n【床の種類】\n・クッキー：ふつうの床\n・チョコ：グミがゆっくりになる\n・ウエハース：強く当たると割れる\n・プリン：グミが跳ねる\n\n【特徴】\n・40マップ・1200面。言語は8種類に対応\n・クリスタルで買える着せかえショップと、毎日のログインボーナス（1.1.0で追加）\n・縦長のスマートフォン向けに作り、同じコードのままWindowsとiOSで動かしています\n・絵・音・3Dはすべてオリジナルで、模型はBlenderをPythonで動かして作りました\n・iOS版は課金（広告を消す）と広告まで実装し、App Storeの審査に提出しました\n\nWindows版は途中版（0.3.0）で、絵・音・面の並びはこれから変わります。",
     "myResponsibilities": "個人制作のため、企画・設計・実装・素材制作・調整のすべてを担当。特に注力したのは、自作エンジン WineEngine の上での制作と、Blender を Python で動かした模型の生成です。",
     "technologies": [
       "C++",
@@ -15,14 +15,16 @@
       "iOS"
     ],
     "images": [
-      "images/game/kororin-gummy/kororin-gummy-title.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-hero-ja.webp",
+      "images/game/kororin-gummy/kororin-gummy-pv-ja.mp4",
+      "images/game/kororin-gummy/kororin-gummy-promo-shop-ja.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-closet-ja.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-login-ja.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-worlds-ja.webp",
       "images/game/kororin-gummy/kororin-gummy-draw.webp",
-      "images/game/kororin-gummy/kororin-gummy-clear.webp",
       "images/game/kororin-gummy/kororin-gummy-chocolate.webp",
       "images/game/kororin-gummy/kororin-gummy-pudding.webp",
-      "images/game/kororin-gummy/kororin-gummy-areas.webp",
-      "images/game/kororin-gummy/kororin-gummy-stages.webp",
-      "images/game/kororin-gummy/kororin-gummy-video.mp4"
+      "images/game/kororin-gummy/kororin-gummy-clear.webp"
     ],
     "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
     "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",
