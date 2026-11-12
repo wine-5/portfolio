@@ -1,5 +1,17 @@
 [
   {
+    "id": "kiwa-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-12",
+    "expireDate": null,
+    "title": "「際 -KIWA-」をApp Storeでリリースしました",
+    "description": "ゲームジャムで制作した、ひとつの器へ交互に茶を注ぎ、こぼした方が負けになる対戦ゲーム「際 -KIWA-」を本日App Storeで正式リリースしました。ぜひiPhoneで遊んでみてください。クリックすると作品の詳細をご覧いただけます。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/jp/app/id6831152210"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",

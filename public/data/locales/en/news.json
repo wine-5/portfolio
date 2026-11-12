@@ -1,5 +1,17 @@
 [
   {
+    "id": "kiwa-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-12",
+    "expireDate": null,
+    "title": "\"Kiwa\" Now Available on the App Store",
+    "description": "\"Kiwa\", a game jam duel where two players take turns pouring tea into one cup and whoever spills it loses, is officially released on the App Store today. Give it a try on your iPhone. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6831152210"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",

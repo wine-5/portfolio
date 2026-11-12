@@ -1,5 +1,17 @@
 [
   {
+    "id": "kiwa-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-12",
+    "expireDate": null,
+    "title": "《际 -KIWA-》已在App Store正式发售",
+    "description": "在游戏Jam中制作、两人轮流往同一只器皿里斟茶、溢出的一方落败的对战游戏《际 -KIWA-》今日已在App Store正式上架。欢迎在iPhone上体验。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6831152210"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",
