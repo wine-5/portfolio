@@ -12,6 +12,18 @@
     "gameUrl": "https://apps.apple.com/app/id6831152210"
   },
   {
+    "id": "shogi-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-11-07",
+    "expireDate": null,
+    "title": "\"Sho-Gi\" Steam Store Page Now Live",
+    "description": "The Steam store page for \"Sho-Gi\", a 3D action game made at the Sapporo Game Jam (SGC2026), is now live. The Steam release is in preparation, and a demo is playable on unityroom. Please add it to your wishlist. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/5439170/"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",

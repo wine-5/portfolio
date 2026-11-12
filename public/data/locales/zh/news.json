@@ -12,6 +12,18 @@
     "gameUrl": "https://apps.apple.com/app/id6831152210"
   },
   {
+    "id": "shogi-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-11-07",
+    "expireDate": null,
+    "title": "《将ギ》Steam商店页面已公开",
+    "description": "在札幌游戏Jam（SGC2026）上制作的3D动作游戏《将ギ》的Steam商店页面已公开，Steam版正在准备发售。可在unityroom上试玩体验版。欢迎加入愿望单。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/5439170/"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",

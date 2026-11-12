@@ -12,6 +12,18 @@
     "gameUrl": "https://apps.apple.com/jp/app/id6831152210"
   },
   {
+    "id": "shogi-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-11-07",
+    "expireDate": null,
+    "title": "「将ギ」のSteamストアページを公開",
+    "description": "札幌ゲームジャム（SGC2026）で制作した3Dアクション「将ギ」のSteamストアページを公開しました。Steam版のリリースに向けて準備中です。unityroomでは体験版を遊べます。ぜひウィッシュリストに追加してください。クリックすると作品の詳細をご覧いただけます。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/5439170/"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",
