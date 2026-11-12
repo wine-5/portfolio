@@ -1,5 +1,41 @@
 [
   {
+    "id": "kororin-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-13",
+    "expireDate": null,
+    "title": "《滚滚软糖》已在App Store正式发售",
+    "description": "画线让软糖滚到终点的糖果王国解谜游戏《滚滚软糖》今日已在App Store正式上架。共有40张地图、1200个关卡，还有换装商店和每日登录奖励。欢迎在iPhone上体验。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6830248450"
+  },
+  {
+    "id": "kiwa-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-12",
+    "expireDate": null,
+    "title": "《际 -KIWA-》已在App Store正式发售",
+    "description": "在游戏Jam中制作、两人轮流往同一只器皿里斟茶、溢出的一方落败的对战游戏《际 -KIWA-》今日已在App Store正式上架。欢迎在iPhone上体验。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6831152210"
+  },
+  {
+    "id": "shogi-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-11-07",
+    "expireDate": null,
+    "title": "《将ギ》Steam商店页面已公开",
+    "description": "在札幌游戏Jam（SGC2026）上制作的3D动作游戏《将ギ》的Steam商店页面已公开，Steam版正在准备发售。可在unityroom上试玩体验版。欢迎加入愿望单。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/5439170/"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",

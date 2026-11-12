@@ -1,5 +1,41 @@
 [
   {
+    "id": "kororin-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-13",
+    "expireDate": null,
+    "title": "\"Kororin Gummy\" Now Available on the App Store",
+    "description": "\"Kororin Gummy\", a candy-land puzzle where you draw lines to roll the gummy to the goal, is officially released on the App Store today. It has 40 maps and 1,200 stages, plus a dress-up shop and a daily login bonus. Give it a try on your iPhone. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6830248450"
+  },
+  {
+    "id": "kiwa-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-12",
+    "expireDate": null,
+    "title": "\"Kiwa\" Now Available on the App Store",
+    "description": "\"Kiwa\", a game jam duel where two players take turns pouring tea into one cup and whoever spills it loses, is officially released on the App Store today. Give it a try on your iPhone. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6831152210"
+  },
+  {
+    "id": "shogi-steam-page",
+    "type": "release",
+    "priority": "medium",
+    "publishDate": "2026-11-07",
+    "expireDate": null,
+    "title": "\"Sho-Gi\" Steam Store Page Now Live",
+    "description": "The Steam store page for \"Sho-Gi\", a 3D action game made at the Sapporo Game Jam (SGC2026), is now live. The Steam release is in preparation, and a demo is playable on unityroom. Please add it to your wishlist. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://store.steampowered.com/app/5439170/"
+  },
+  {
     "id": "ssp-release",
     "type": "release",
     "priority": "high",

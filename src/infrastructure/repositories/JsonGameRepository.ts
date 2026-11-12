@@ -56,6 +56,13 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
     store: 'steam',
     url: 'https://store.steampowered.com/app/4190040/_/',
   },
+  // 将ギ = Steam ストアページ公開済み・未リリース(COMING SOON でウィッシュリストへ誘導)。
+  // リポジトリを載せない作品なので、キーは projects.json の playUrl(unityroom)
+  'https://unityroom.com/games/sho-gi': {
+    kind: 'coming-soon',
+    store: 'steam',
+    url: 'https://store.steampowered.com/app/5439170/',
+  },
 };
 
 /**
@@ -108,6 +115,8 @@ export class JsonGameRepository implements GameRepository {
       ...(dto.githubUrl !== undefined ? { githubUrl: dto.githubUrl } : {}),
       ...(dto.downloadUrl !== undefined ? { downloadUrl: dto.downloadUrl } : {}),
       ...(dto.websiteUrl !== undefined ? { websiteUrl: dto.websiteUrl } : {}),
+      // COMING SOON の作品は PLAY NOW を出さないので、playUrl は体験版として別のボタンにする
+      ...(release.kind === 'coming-soon' && dto.playUrl !== undefined ? { trialUrl: dto.playUrl } : {}),
       ...(dto.carouselImage !== undefined ? { carouselImage: dto.carouselImage } : {}),
       ...(dto.flagshipVideo !== undefined ? { flagshipVideo: dto.flagshipVideo } : {}),
       ...(dto.spotlightVideo !== undefined ? { spotlightVideo: dto.spotlightVideo } : {}),

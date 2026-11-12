@@ -2,8 +2,8 @@
   {
     "title": "滚滚软糖",
     "description": "画线让软糖滚到终点的糖果王国解谜游戏",
-    "detailedFeatures": "用手指画出的线会变成糖霜，成为软糖滚动的道路。墨水有限，线画得越少，获得的星星越多。\n\n【地面种类】\n・饼干：普通地面\n・巧克力：软糖会变慢\n・威化：受到强力撞击会碎裂\n・布丁：软糖会弹跳\n\n【特点】\n・10个区域、1000个关卡，支持8种语言\n・为竖屏手机而做，同一份代码同时运行于Windows与iOS\n・画面、音效、3D均为原创，模型用Python驱动Blender制作\n・iOS版已实现内购（去广告）与广告，并已提交App Store审核\n\nWindows版为制作中版本（0.3.0），画面、音效与关卡顺序之后还会改变。",
-    "myResponsibilities": "作为个人制作，负责策划、设计、实现、素材制作和调整的全部工作。特别用心的是在自制引擎 WineEngine 上制作，以及用 Python 驱动 Blender 生成模型。",
+    "detailedFeatures": "用手指画出的线会变成糖霜，成为软糖滚动的道路。墨水有限，线画得越少，获得的星星越多。\n\n【地面种类】\n・饼干：普通地面\n・巧克力：软糖会变慢\n・威化：受到强力撞击会碎裂\n・布丁：软糖会弹跳\n\n【特点】\n・40张地图、1200个关卡，支持8种语言\n・可用水晶购买的换装商店，以及每日登录奖励（1.1.0新增）\n・为竖屏手机而做，同一份代码同时运行于Windows与iOS\n・画面、音效、3D均为原创，模型用Python驱动Blender制作\n・iOS版已实现内购（去广告）与广告，已在App Store上架",
+    "myResponsibilities": "个人制作。策划、设计、测试和调整由我本人负责，实现与素材制作等由AI完成。使用自制引擎 WineEngine 制作。",
     "technologies": [
       "C++",
       "WineEngine",
@@ -15,17 +15,20 @@
       "iOS"
     ],
     "images": [
-      "images/game/kororin-gummy/kororin-gummy-title.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-hero-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-pv-en.mp4",
+      "images/game/kororin-gummy/kororin-gummy-promo-shop-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-closet-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-login-en.webp",
+      "images/game/kororin-gummy/kororin-gummy-promo-worlds-en.webp",
       "images/game/kororin-gummy/kororin-gummy-draw.webp",
-      "images/game/kororin-gummy/kororin-gummy-clear.webp",
       "images/game/kororin-gummy/kororin-gummy-chocolate.webp",
       "images/game/kororin-gummy/kororin-gummy-pudding.webp",
-      "images/game/kororin-gummy/kororin-gummy-areas.webp",
-      "images/game/kororin-gummy/kororin-gummy-stages.webp",
-      "images/game/kororin-gummy/kororin-gummy-video.mp4"
+      "images/game/kororin-gummy/kororin-gummy-clear.webp"
     ],
     "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
     "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",
+    "install": "https://apps.apple.com/app/id6830248450",
     "year": "3年级",
     "category": "game",
     "teamSize": "1人",
@@ -64,7 +67,7 @@
     "title": "群岛派对",
     "description": "在四座空中浮岛上掷骰前进的3D大富翁派对游戏。100个小游戏",
     "detailedFeatures": "巡游空中群岛、收集星之碎片的可爱风3D大富翁。支持1〜4人游玩，人数不足时由CPU补位。\n\n【游戏流程】\n・每一回合是「所有人各掷一次骰子前进 → 大家一起玩小游戏」\n・小游戏的胜者可以用改写卡改写岛屿（近道桥梁、隐形陷阱、墙壁等）\n・在星之泉购买碎片，收集最多者获胜\n\n【100个小游戏】\n单人50个、1对3共13个、2对2共16个、合作15个、Boss战6个，每个都有专属舞台。\n\n【特点】\n・可与同一LAN的电脑创建房间联机；装上Tailscale还能与远方的人一起玩\n・角色、岛屿、音效、UI全部原创，岛屿模型用Python驱动Blender制作\n・支持1个键盘加最多4个手柄，屏幕下方以图标显示当前可按的按键\n・每座岛都有各自的村庄、商店与音效，道具共17种",
-    "myResponsibilities": "作为个人制作，负责策划、设计、实现、素材制作和调整的全部工作。特别用心的是在自制引擎 WineEngine 上制作，以及用 Python 驱动 Blender 生成模型。",
+    "myResponsibilities": "个人制作。策划、设计、测试和调整由我本人负责，实现与素材制作等由AI完成。使用自制引擎 WineEngine 制作。",
     "technologies": [
       "C++",
       "WineEngine",
@@ -99,7 +102,7 @@
     "title": "占比50%",
     "description": "画线切割、转动球体、移动太阳，目标是恰好50%的3D解谜游戏。共17关",
     "detailedFeatures": "题目是「请让○○占整体的50%」，目标是做到恰好50%。比例在按下「决定」之前看不到，恰好50.00%即为PERFECT。\n\n【关卡类型】\n・面积：在板上画一条线进行切割\n・体积：线直接成为切开3D形体的平面，如立方体、圆锥、岩石、被咬过的甜甜圈等\n・重量：外观相同但内部有铁，切开后用天平称量\n・表面积：不是体积，而是外表面的面积\n・颜色、影子、空间：红墙、彩球、影子、水槽、小行星；这些关卡不切也可以\n\n【特点】\n・模型、画面、音效全部在引擎内制作\n・方向键配合Shift以1/10、配合Ctrl以1/200的步幅微调，便于冲击PERFECT",
-    "myResponsibilities": "作为个人制作，负责策划、设计、实现、素材制作和调整的全部工作。特别用心的是在自制引擎 WineEngine 上制作，以及用 Python 驱动 Blender 生成模型。",
+    "myResponsibilities": "个人制作。策划、设计、测试和调整由我本人负责，实现与素材制作等由AI完成。使用自制引擎 WineEngine 制作。",
     "technologies": [
       "C++",
       "WineEngine"
@@ -154,7 +157,7 @@
   {
     "title": "将ギ",
     "description": "将棋棋子在棋盘上互相厮杀的3D动作游戏。把打倒的棋子变成持驹，用它的招式战斗",
-    "detailedFeatures": "在札幌游戏Jam（SGC2026）上，以主题「変」由9人团队制作的3D动作游戏。\n\n玩家是手持长刀的「俺」之棋子。不断斩倒涌来的敌方棋子，打倒的棋子会变成「持驹」，可以使用它的招式。打倒30个杂兵后，敌方大将「王」就会出现，讨伐王即可获胜。\n\n【持驹的招式】\n・步：连续挥砍会变成3段攻击，第3段刀身变大，一口气横扫\n・飞：十字形激光，横扫至棋盘边缘\n・角：向斜方4个方向长距离斩击\n・香：直线突进，突进期间无敌，也能用来闪避\n・变：每次使用随机放出彩虹色的「漩涡」或「波浪」\n・治：回复HP并斩击周围\n\n大招会伴随切入画面释放，期间时间会变慢。持续命中会累积连击，超过10连击后攻击范围和伤害都会提升。敌人的攻击一定会用红色范围预告，看准后躲开再反击。\n\n【设计】\n・调整数值不直接写在组件里，全部放在ScriptableObject中。只要排列组合攻击模式的SO，就能做出一种敌人\n・事件通过EventBus通知，演出、声音和HUD接收后再行动\n・为了让顿帧、慢动作、切入画面和暂停的时间停止互不冲突，只允许GameClock写入Time.timeScale",
+    "detailedFeatures": "Steam商店页面已公开，Steam版正在准备发售。在札幌游戏Jam（SGC2026）上，以主题「変」由9人团队制作的3D动作游戏。\n\n玩家是手持长刀的「俺」之棋子。不断斩倒涌来的敌方棋子，打倒的棋子会变成「持驹」，可以使用它的招式。打倒30个杂兵后，敌方大将「王」就会出现，讨伐王即可获胜。\n\n【持驹的招式】\n・步：连续挥砍会变成3段攻击，第3段刀身变大，一口气横扫\n・飞：十字形激光，横扫至棋盘边缘\n・角：向斜方4个方向长距离斩击\n・香：直线突进，突进期间无敌，也能用来闪避\n・变：每次使用随机放出彩虹色的「漩涡」或「波浪」\n・治：回复HP并斩击周围\n\n大招会伴随切入画面释放，期间时间会变慢。持续命中会累积连击，超过10连击后攻击范围和伤害都会提升。敌人的攻击一定会用红色范围预告，看准后躲开再反击。\n\n【设计】\n・调整数值不直接写在组件里，全部放在ScriptableObject中。只要排列组合攻击模式的SO，就能做出一种敌人\n・事件通过EventBus通知，演出、声音和HUD接收后再行动\n・为了让顿帧、慢动作、切入画面和暂停的时间停止互不冲突，只允许GameClock写入Time.timeScale",
     "myResponsibilities": "负责除部分敌人和玩家输入处理以外的程序。除了玩家、镜头、时间控制（顿帧・慢动作・切入画面）和演出外，还实现了敌人的主要逻辑（用SO组合的攻击模式、带权重的生成、王的登场演出与攻击）、UI和声音相关部分。",
     "technologies": [
       "Unity 6",
@@ -278,7 +281,7 @@
   {
     "title": "际 -KIWA-",
     "description": "两人轮流往同一只器皿里斟茶，溢出的一方落败。以夜间茶室为舞台的对战游戏",
-    "detailedFeatures": "把Game Jam的主题「かさ」解读为「嵩（液面的高度）」而制作的双人对战游戏。\n\n夜晚的茶室，榻榻米上只放着一只器皿。两人轮流斟茶，让它溢出的一方输掉这一局。两胜制。\n\n【规则】\n只有按住时才会斟出，松开即停。轮到自己时必须至少斟出一滴，不能跳过。「际」不是隐藏的数值，而是器皿的口沿本身，极限始终可见。斟得少虽然安全，却给对手留下余地；斟得多能逼迫对手，但自己溢出的风险也随之增加——这是一场关于「把际逼到何处」的博弈。\n\n器皿每局都会更换（猪口杯・荞麦杯・茶杯・茶碗）。斟茶速度恒定，因此容量差异直接体现为「到口沿所需的时间」，上一局的手感无法直接沿用。对局前抽取花月纸牌决定先后手。\n\n也可以一个人玩，把第二手交给老僧・旅艺人・武士三种NPC。由于际对谁都可见，差异只体现在「在哪里停手」。通过改变目标液面、手的抖动与犹豫时间，表现出谨慎／随性／豪迈三种打法。\n\n【设计】\n采用 platform → infrastructure → game → core 的分层架构，游戏本体（core + game）完全不接触DxLib与OS API。为日后移植iOS，入口与字体注册等依赖OS的部分都收敛在platform层的少数文件中。对局规则放在Model，画面放在View，随机数与演出的衔接放在Presenter，并贯彻「不把随机数带进Model」的方针。\n\n器皿与茶壶的3D模型、贴图、图标均由Python脚本生成，器皿尺寸在视图侧的计算式与脚本之间共享。",
+    "detailedFeatures": "iOS版已在App Store上架。把Game Jam的主题「かさ」解读为「嵩（液面的高度）」而制作的双人对战游戏。\n\n夜晚的茶室，榻榻米上只放着一只器皿。两人轮流斟茶，让它溢出的一方输掉这一局。两胜制。\n\n【规则】\n只有按住时才会斟出，松开即停。轮到自己时必须至少斟出一滴，不能跳过。「际」不是隐藏的数值，而是器皿的口沿本身，极限始终可见。斟得少虽然安全，却给对手留下余地；斟得多能逼迫对手，但自己溢出的风险也随之增加——这是一场关于「把际逼到何处」的博弈。\n\n器皿每局都会更换（猪口杯・荞麦杯・茶杯・茶碗）。斟茶速度恒定，因此容量差异直接体现为「到口沿所需的时间」，上一局的手感无法直接沿用。对局前抽取花月纸牌决定先后手。\n\n也可以一个人玩，把第二手交给老僧・旅艺人・武士三种NPC。由于际对谁都可见，差异只体现在「在哪里停手」。通过改变目标液面、手的抖动与犹豫时间，表现出谨慎／随性／豪迈三种打法。\n\n【设计】\n采用 platform → infrastructure → game → core 的分层架构，游戏本体（core + game）完全不接触DxLib与OS API。为了能移植到iOS，入口与字体注册等依赖OS的部分都收敛在platform层的少数文件中。对局规则放在Model，画面放在View，随机数与演出的衔接放在Presenter，并贯彻「不把随机数带进Model」的方针。\n\n器皿与茶壶的3D模型、贴图、图标均由Python脚本生成，器皿尺寸在视图侧的计算式与脚本之间共享。",
     "myResponsibilities": "个人制作，企划・设计・实现全部由我负责。尤其着力于通过分层架构隔离DxLib依赖、Model / View / Presenter 的分离，以及NPC打法的设计。",
     "technologies": [
       "C++20",
@@ -287,7 +290,7 @@
       "レイヤードアーキテクチャ"
     ],
     "supportedPlatforms": [
-      "仅限PC"
+      "iOS", "PC"
     ],
     "images": [
       "images/game/kiwa/kiwa-title.png",
@@ -297,6 +300,7 @@
     ],
     "thumbnailImage": "images/game/kiwa/kiwa-title.png",
     "carouselImage": "images/game/kiwa/kiwa-icon.png",
+    "install": "https://apps.apple.com/app/id6831152210",
     "githubUrl": "https://github.com/wine-5/kasa-gamejam",
     "downloadUrl": "https://wine-5.github.io/portfolio/downloads/Kiwa_Windows.zip",
     "year": "三年级",

@@ -30,9 +30,9 @@
   {
     "id": "bandai-namco-studios-2026",
     "company": "万代南梦宫工作室（BANDAI NAMCO Studios）",
-    "period": "2026年8月3日〜8月7日（5天）",
+    "period": "夏季：2026年8月3日〜8月7日（5天）／秋季：2026年10月19日〜10月30日（参加了夏、秋两次）",
     "theme": "完整复刻《MAPPY》",
-    "summary": "用5天时间完整体验了游戏公司现场的开发流程。使用Emscripten将C++代码编译为WebAssembly，使游戏能在浏览器中运行。",
+    "summary": "完整体验了游戏公司现场的开发流程。使用Emscripten将C++代码编译为WebAssembly，使游戏能在浏览器中运行。",
     "tags": [
       "C++",
       "SDL2",

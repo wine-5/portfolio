@@ -407,6 +407,10 @@ function featuredCard(game: Game): string {
   const officialSiteButton = game.websiteUrl
     ? `<a class="btn btn--lg" href="${esc(game.websiteUrl)}" target="_blank" rel="noopener">${esc(t('officialSite'))}</a>`
     : '';
+  // ストア未リリースでも、unityroom などで先に遊べる体験版があれば並べる
+  const trialButton = game.trialUrl
+    ? `<a class="btn btn--lg" href="${esc(game.trialUrl)}" target="_blank" rel="noopener">${linkIcon(game.trialUrl)}${esc(t('playTrial'))}</a>`
+    : '';
   const buttons =
     game.release.kind === 'playable'
       ? `<a class="btn btn--primary btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a>${officialSiteButton}<span class="btn">${esc(t('details'))}</span>`
@@ -414,7 +418,7 @@ function featuredCard(game: Game): string {
           game.release.kind === 'coming-soon' && game.release.url
             ? `<a class="btn btn--lg" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}${esc(t('steamPage'))}</a>`
             : ''
-        }${officialSiteButton}<span class="btn">${esc(t('details'))}</span>`;
+        }${trialButton}${officialSiteButton}<span class="btn">${esc(t('details'))}</span>`;
 
   return `
     <article class="featured-card${released ? ' featured-card--released' : ''}${upcoming ? ' featured-card--upcoming' : ''}" data-entry="${game.entryNo}" tabindex="0">

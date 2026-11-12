@@ -30,9 +30,9 @@
   {
     "id": "bandai-namco-studios-2026",
     "company": "BANDAI NAMCO Studios Inc.",
-    "period": "Aug 3–7, 2026 (5 days)",
+    "period": "Summer: Aug 3–7, 2026 (5 days) / Autumn: Oct 19–30, 2026 (attended twice, summer and autumn)",
     "theme": "Full recreation of \"MAPPY\"",
-    "summary": "Experienced a studio's full development flow in 5 days. Compiled C++ code to WebAssembly with Emscripten so the same game runs in the browser.",
+    "summary": "Experienced a studio's full development flow. Compiled C++ code to WebAssembly with Emscripten so the same game runs in the browser.",
     "tags": [
       "C++",
       "SDL2",
