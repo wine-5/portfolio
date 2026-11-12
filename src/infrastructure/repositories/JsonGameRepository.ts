@@ -115,6 +115,8 @@ export class JsonGameRepository implements GameRepository {
       ...(dto.githubUrl !== undefined ? { githubUrl: dto.githubUrl } : {}),
       ...(dto.downloadUrl !== undefined ? { downloadUrl: dto.downloadUrl } : {}),
       ...(dto.websiteUrl !== undefined ? { websiteUrl: dto.websiteUrl } : {}),
+      // COMING SOON の作品は PLAY NOW を出さないので、playUrl は体験版として別のボタンにする
+      ...(release.kind === 'coming-soon' && dto.playUrl !== undefined ? { trialUrl: dto.playUrl } : {}),
       ...(dto.carouselImage !== undefined ? { carouselImage: dto.carouselImage } : {}),
       ...(dto.flagshipVideo !== undefined ? { flagshipVideo: dto.flagshipVideo } : {}),
       ...(dto.spotlightVideo !== undefined ? { spotlightVideo: dto.spotlightVideo } : {}),

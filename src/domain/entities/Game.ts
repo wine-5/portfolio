@@ -34,6 +34,11 @@ export interface Game {
   readonly downloadUrl?: string;
   /** 作品の公式サイト(ある作品だけ表示) */
   readonly websiteUrl?: string;
+  /**
+   * 体験版を遊べるページ。COMING SOON(ストア未リリース)の作品で、
+   * 先に unityroom などで遊べるときだけ持つ
+   */
+  readonly trialUrl?: string;
   readonly year: string;
   readonly category: GameCategory;
   readonly teamSize: string;

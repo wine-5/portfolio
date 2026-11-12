@@ -69,6 +69,7 @@ export class GameDetailModal extends View<Game> {
             <div class="game-modal__links">
               ${game.release.kind === 'playable' ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}PLAY NOW</a>` : ''}
               ${game.release.kind === 'coming-soon' && game.release.url ? `<a class="btn btn--primary" href="${esc(game.release.url)}" target="_blank" rel="noopener">${linkIcon(game.release.url)}${esc(t('steamPage'))}</a>` : ''}
+              ${game.trialUrl ? `<a class="btn" href="${esc(game.trialUrl)}" target="_blank" rel="noopener">${linkIcon(game.trialUrl)}${esc(t('playTrial'))}</a>` : ''}
               ${game.downloadUrl ? `<a class="btn btn--primary" href="${esc(game.downloadUrl)}" target="_blank" rel="noopener">${linkIcon(game.downloadUrl)}DOWNLOAD</a>` : ''}
               ${game.websiteUrl ? `<a class="btn" href="${esc(game.websiteUrl)}" target="_blank" rel="noopener">${esc(t('officialSite'))}</a>` : ''}
               ${game.githubUrl ? `<a class="btn" href="${esc(game.githubUrl)}" target="_blank" rel="noopener">${linkIcon(game.githubUrl)}GITHUB</a>` : ''}

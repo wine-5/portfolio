@@ -22,6 +22,8 @@ interface UiStrings {
   readonly internshipTitle: string;
   readonly internshipTheme: string;
   readonly steamPage: string;
+  /** COMING SOON の作品で、先に遊べる体験版へのボタン */
+  readonly playTrial: string;
   readonly officialSite: string;
   readonly moreReleases: string;
   readonly menu: string;
@@ -70,6 +72,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     internshipTitle: 'INTERNSHIP',
     internshipTheme: '課題',
     steamPage: 'Steamページ',
+    playTrial: '体験版をプレイ',
     officialSite: '公式サイト',
     moreReleases: 'ほかにもリリースしている作品',
     menu: 'メニュー',
@@ -116,6 +119,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     internshipTitle: 'INTERNSHIP',
     internshipTheme: 'Challenge',
     steamPage: 'Steam Page',
+    playTrial: 'Play Demo',
     officialSite: 'Official Site',
     moreReleases: 'More Releases',
     menu: 'Menu',
@@ -162,6 +166,7 @@ const STRINGS: Record<Locale, UiStrings> = {
     internshipTitle: '实习经历',
     internshipTheme: '课题',
     steamPage: 'Steam页面',
+    playTrial: '试玩体验版',
     officialSite: '官方网站',
     moreReleases: '其他已发布的作品',
     menu: '菜单',
