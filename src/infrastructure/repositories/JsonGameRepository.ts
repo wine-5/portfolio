@@ -56,6 +56,13 @@ const FEATURED_RELEASE: Record<string, ReleaseState> = {
     store: 'steam',
     url: 'https://store.steampowered.com/app/4190040/_/',
   },
+  // 将ギ = Steam ストアページ公開済み・未リリース(COMING SOON でウィッシュリストへ誘導)。
+  // リポジトリを載せない作品なので、キーは projects.json の playUrl(unityroom)
+  'https://unityroom.com/games/sho-gi': {
+    kind: 'coming-soon',
+    store: 'steam',
+    url: 'https://store.steampowered.com/app/5439170/',
+  },
 };
 
 /**
