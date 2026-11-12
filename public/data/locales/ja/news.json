@@ -1,5 +1,17 @@
 [
   {
+    "id": "kororin-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-13",
+    "expireDate": null,
+    "title": "「ころりんグミ」をApp Storeでリリースしました",
+    "description": "線を描いてグミを転がし、ゴールまで届けるお菓子の国のパズル「ころりんグミ」を本日App Storeで正式リリースしました。40マップ・1200面で、着せかえショップや毎日のログインボーナスも遊べます。ぜひiPhoneで遊んでみてください。クリックすると作品の詳細をご覧いただけます。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/jp/app/id6830248450"
+  },
+  {
     "id": "kiwa-release",
     "type": "release",
     "priority": "high",

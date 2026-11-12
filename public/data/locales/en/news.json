@@ -1,5 +1,17 @@
 [
   {
+    "id": "kororin-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-13",
+    "expireDate": null,
+    "title": "\"Kororin Gummy\" Now Available on the App Store",
+    "description": "\"Kororin Gummy\", a candy-land puzzle where you draw lines to roll the gummy to the goal, is officially released on the App Store today. It has 40 maps and 1,200 stages, plus a dress-up shop and a daily login bonus. Give it a try on your iPhone. Click to view the project details.",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6830248450"
+  },
+  {
     "id": "kiwa-release",
     "type": "release",
     "priority": "high",

@@ -1,5 +1,17 @@
 [
   {
+    "id": "kororin-release",
+    "type": "release",
+    "priority": "high",
+    "publishDate": "2026-11-13",
+    "expireDate": null,
+    "title": "《滚滚软糖》已在App Store正式发售",
+    "description": "画线让软糖滚到终点的糖果王国解谜游戏《滚滚软糖》今日已在App Store正式上架。共有40张地图、1200个关卡，还有换装商店和每日登录奖励。欢迎在iPhone上体验。点击即可查看作品详情。",
+    "icon": "",
+    "showBanner": true,
+    "gameUrl": "https://apps.apple.com/app/id6830248450"
+  },
+  {
     "id": "kiwa-release",
     "type": "release",
     "priority": "high",
