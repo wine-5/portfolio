@@ -59,6 +59,11 @@ export interface Game {
    * 技術の看板である flagship とは別枠
    */
   readonly spotlight: boolean;
+  /**
+   * リリース作品の中で、大きなカードで見せる作品(spotlight の次に推す枠)。
+   * false の作品は、ストア公開済みでも小さいグリッドに並ぶ
+   */
+  readonly showcase: boolean;
   /** spotlight のカードで自動再生する短いループ動画(未指定ならサムネイル画像) */
   readonly spotlightVideo?: string;
   /** 受賞歴(あればカード右上にバッジ表示) */

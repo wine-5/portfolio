@@ -27,8 +27,9 @@ export class GetGameCollection {
     return {
       ...(flagship !== undefined ? { flagship } : {}),
       ...(spotlight !== undefined ? { spotlight } : {}),
-      featured: rest.filter((g) => g.featured).sort(byNoDesc),
-      entries: rest.filter((g) => !g.featured).sort(byNoDesc),
+      // 大きく見せるのは showcase を立てたリリース作品だけ。残りは(ストア公開済みでも)小さいグリッドへ
+      featured: rest.filter((g) => g.featured && g.showcase).sort(byNoDesc),
+      entries: rest.filter((g) => !(g.featured && g.showcase)).sort(byNoDesc),
     };
   }
 }

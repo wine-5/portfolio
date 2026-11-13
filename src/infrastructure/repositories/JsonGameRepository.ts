@@ -27,6 +27,7 @@ interface ProjectDto {
   highlights?: Highlight[];
   flagshipVideo?: string;
   spotlight?: boolean;
+  showcase?: boolean;
   spotlightVideo?: string;
   /** ストア審査中などで URL がまだ無い作品。指定したストアの COMING SOON として FEATURED に載せる */
   comingSoon?: Store;
@@ -129,6 +130,7 @@ export class JsonGameRepository implements GameRepository {
       featured: featuredRelease !== undefined,
       flagship: dto.flagship === true,
       spotlight: dto.spotlight === true,
+      showcase: dto.showcase === true,
       highlights: dto.highlights ?? [],
     };
   }
