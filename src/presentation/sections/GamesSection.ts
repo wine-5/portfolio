@@ -389,7 +389,7 @@ function spotlightCard(game: Game, variant: 'popular' | 'showcase' = 'popular'):
     : '';
 
   return `
-    <article class="spotlight-card" data-entry="${game.entryNo}" tabindex="0">
+    <article class="spotlight-card${variant === 'showcase' ? ' spotlight-card--portrait' : ''}" data-entry="${game.entryNo}" tabindex="0">
       <div class="spotlight-card__ribbon">
         ${variant === 'popular' ? '<span class="spotlight-card__popular">★ MOST POPULAR</span>' : '<span class="spotlight-card__popular">★ PICK UP</span>'}
         <span class="spotlight-card__store">${featuredLabel(game)}</span>

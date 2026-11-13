@@ -769,9 +769,36 @@
   flex: 1;
 }
 
+/* 縦長 PV(9:16)の作品: 動画を切らず、比率のまま左の列だけに描く */
+.spotlight-card--portrait {
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+}
+
+.spotlight-card--portrait .spotlight-card__visual {
+  aspect-ratio: 9 / 16;
+  min-height: 0;
+}
+
+.spotlight-card--portrait .spotlight-card__visual video,
+.spotlight-card--portrait .spotlight-card__visual img {
+  object-fit: contain;
+}
+
 @media (max-width: 900px) {
   .spotlight-card {
     grid-template-columns: 1fr;
+  }
+
+  /* 縦長 PV は 1 列でも比率を保ち、幅を抑えて中央に置く */
+  .spotlight-card--portrait {
+    grid-template-columns: 1fr;
+  }
+
+  .spotlight-card--portrait .spotlight-card__visual {
+    aspect-ratio: 9 / 16;
+    width: min(100%, 300px);
+    margin: 0 auto;
+    border-bottom: none;
   }
 
   .spotlight-card__visual {
