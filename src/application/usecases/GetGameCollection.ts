@@ -7,6 +7,8 @@ export interface GameCollection {
   readonly flagship?: Game;
   /** リリース作品の中で大きく推す人気作(featured には含めない) */
   readonly spotlight?: Game;
+  /** 人気作の次に、同じ大きなカードで出すリリース作品(PV 付き) */
+  readonly showcase: readonly Game[];
   readonly featured: readonly Game[];
   readonly entries: readonly Game[];
 }
@@ -23,13 +25,15 @@ export class GetGameCollection {
     const flagship = all.filter((g) => g.flagship).sort(byNoDesc)[0];
     // 人気作もリリース作品から 1 つだけ選ぶ(複数立っていても最新のもの)
     const spotlight = all.filter((g) => g !== flagship && g.featured && g.spotlight).sort(byNoDesc)[0];
-    const rest = all.filter((g) => g !== flagship && g !== spotlight);
+    const showcase = all.filter((g) => g !== flagship && g !== spotlight && g.featured && g.showcase).sort(byNoDesc);
+    const rest = all.filter((g) => g !== flagship && g !== spotlight && !showcase.includes(g));
     return {
       ...(flagship !== undefined ? { flagship } : {}),
       ...(spotlight !== undefined ? { spotlight } : {}),
-      // 大きく見せるのは showcase を立てたリリース作品だけ。残りは(ストア公開済みでも)小さいグリッドへ
-      featured: rest.filter((g) => g.featured && g.showcase).sort(byNoDesc),
-      entries: rest.filter((g) => !(g.featured && g.showcase)).sort(byNoDesc),
+      showcase,
+      // 残りのリリース済み作品は小さく派手なカードで並べる。未リリース(COMING SOON)は小グリッドへ
+      featured: rest.filter((g) => g.release.kind === 'playable' && g.featured).sort(byNoDesc),
+      entries: rest.filter((g) => !(g.release.kind === 'playable' && g.featured)).sort(byNoDesc),
     };
   }
 }

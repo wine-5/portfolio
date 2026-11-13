@@ -130,6 +130,7 @@ export class App {
     const allGames = [
       ...(flagshipGame ? [flagshipGame] : []),
       ...(collection.spotlight ? [collection.spotlight] : []),
+      ...collection.showcase,
       ...collection.featured,
       ...collection.entries,
     ];

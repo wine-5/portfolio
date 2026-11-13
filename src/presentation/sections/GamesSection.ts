@@ -113,7 +113,7 @@ export class GamesSection extends View<GameCollection> {
   /** FEATURED と図鑑グリッドの間に差し込む外部セクション(看板作品)の受け皿。
    *  redraw で innerHTML を作り直しても中身が消えないよう、この要素は使い回す */
   private readonly flagshipSlot = document.createElement('div');
-  private collection: GameCollection = { featured: [], entries: [] };
+  private collection: GameCollection = { showcase: [], featured: [], entries: [] };
   private games: readonly Game[] = [];
   private filter: FilterState = { ...DEFAULT_FILTER };
   /** 絞り込みパネルの開閉。条件が多いので普段は畳んでおく */
@@ -134,6 +134,7 @@ export class GamesSection extends View<GameCollection> {
     this.games = [
       ...(collection.flagship ? [collection.flagship] : []),
       ...(collection.spotlight ? [collection.spotlight] : []),
+      ...collection.showcase,
       ...collection.featured,
       ...collection.entries,
     ];
@@ -179,6 +180,7 @@ export class GamesSection extends View<GameCollection> {
   private redraw(): void {
     const match = (g: Game): boolean => matches(g, this.filter);
     const featured = this.collection.featured.filter(match);
+    const showcase = this.collection.showcase.filter(match);
     const entries = this.collection.entries.filter(match);
     const flagshipVisible = this.collection.flagship !== undefined && match(this.collection.flagship);
     const spotlight = this.collection.spotlight !== undefined && match(this.collection.spotlight) ? this.collection.spotlight : undefined;
@@ -197,7 +199,7 @@ export class GamesSection extends View<GameCollection> {
     const limited = activeCount(this.filter) === 0 && !this.gridExpanded && entries.length > COMPACT_LIMIT;
     const gridEntries = limited ? entries.slice(0, COMPACT_LIMIT) : entries;
     const canCollapse = this.gridExpanded && activeCount(this.filter) === 0 && entries.length > COMPACT_LIMIT;
-    const shown = featured.length + entries.length + (flagshipVisible ? 1 : 0) + (spotlight ? 1 : 0);
+    const shown = featured.length + showcase.length + entries.length + (flagshipVisible ? 1 : 0) + (spotlight ? 1 : 0);
 
     this.el.innerHTML = `
       <header class="games__header">
@@ -234,10 +236,11 @@ export class GamesSection extends View<GameCollection> {
         </div>
       </div>
       ${spotlight ? spotlightCard(spotlight) : ''}
+      ${showcase.map((g) => spotlightCard(g, 'showcase')).join('')}
       ${
         featured.length > 0
-          ? `${spotlight ? `<p class="games__more-releases">// ${esc(t('moreReleases'))}</p>` : ''}
-             <div class="games__featured${spotlight ? ' games__featured--compact' : ''}">${featured.map((g) => featuredCard(g)).join('')}</div>`
+          ? `${spotlight || showcase.length > 0 ? `<p class="games__more-releases">// ${esc(t('moreReleases'))}</p>` : ''}
+             <div class="games__featured${spotlight || showcase.length > 0 ? ' games__featured--compact' : ''}">${featured.map((g) => featuredCard(g)).join('')}</div>`
           : ''
       }
       <div data-flagship-slot></div>
@@ -251,7 +254,7 @@ export class GamesSection extends View<GameCollection> {
                    }</button>`
                  : ''
              }`
-          : featured.length === 0 && !flagshipVisible && !spotlight
+          : featured.length === 0 && showcase.length === 0 && !flagshipVisible && !spotlight
             ? '<p class="games__empty">NO DATA</p>'
             : ''
       }
@@ -303,15 +306,16 @@ export class GamesSection extends View<GameCollection> {
     });
   }
 
-  /** 人気作カードのループ動画を、画面に入ったら読み込んで再生し、外れたら止める(通信量と電池の節約) */
+  /** 大きなカード(人気作・PICK UP)のループ動画を、画面に入ったら読み込んで再生し、外れたら止める(通信量と電池の節約) */
   private watchSpotlightVideo(): void {
     this.videoObserver?.disconnect();
     this.videoObserver = null;
-    const video = this.el.querySelector<HTMLVideoElement>('video[data-spotlight-video]');
-    if (!video || !('IntersectionObserver' in window)) return;
+    const videos = this.el.querySelectorAll<HTMLVideoElement>('video[data-spotlight-video]');
+    if (videos.length === 0 || !('IntersectionObserver' in window)) return;
 
     this.videoObserver = new IntersectionObserver((entries) => {
       for (const entry of entries) {
+        const video = entry.target as HTMLVideoElement;
         if (entry.isIntersecting) {
           if (!video.src) video.src = video.dataset['src'] ?? '';
           void video.play().catch(() => {});
@@ -321,7 +325,7 @@ export class GamesSection extends View<GameCollection> {
       }
       // 画面に入る少し手前から読み込みを始め、スクロール中に再生開始の処理が重ならないようにする
     }, { rootMargin: '300px 0px' });
-    this.videoObserver.observe(video);
+    videos.forEach((video) => this.videoObserver?.observe(video));
   }
 }
 
@@ -368,7 +372,7 @@ function featuredLabel(game: Game): string {
  * リリース作品の中で特に推す人気作の大きなカード。
  * 動画(なければサムネイル)を大きく出し、ゲームのキービジュアルに合わせた紫〜ピンクの専用配色で他と差を付ける
  */
-function spotlightCard(game: Game): string {
+function spotlightCard(game: Game, variant: 'popular' | 'showcase' = 'popular'): string {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // 動きを減らす設定のときは動画を流さず、キービジュアルを出す
   const visual =
@@ -387,7 +391,7 @@ function spotlightCard(game: Game): string {
   return `
     <article class="spotlight-card" data-entry="${game.entryNo}" tabindex="0">
       <div class="spotlight-card__ribbon">
-        <span class="spotlight-card__popular">★ MOST POPULAR</span>
+        ${variant === 'popular' ? '<span class="spotlight-card__popular">★ MOST POPULAR</span>' : '<span class="spotlight-card__popular">★ PICK UP</span>'}
         <span class="spotlight-card__store">${featuredLabel(game)}</span>
       </div>
       <div class="spotlight-card__visual">${visual}</div>

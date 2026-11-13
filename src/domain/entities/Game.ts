@@ -60,8 +60,7 @@ export interface Game {
    */
   readonly spotlight: boolean;
   /**
-   * リリース作品の中で、大きなカードで見せる作品(spotlight の次に推す枠)。
-   * false の作品は、ストア公開済みでも小さいグリッドに並ぶ
+   * リリース作品の中で、spotlight と同じ大きなカード(PV 付き)で見せる作品。spotlight の次に並ぶ
    */
   readonly showcase: boolean;
   /** spotlight のカードで自動再生する短いループ動画(未指定ならサムネイル画像) */
