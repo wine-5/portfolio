@@ -31,9 +31,9 @@ export class GetGameCollection {
       ...(flagship !== undefined ? { flagship } : {}),
       ...(spotlight !== undefined ? { spotlight } : {}),
       showcase,
-      // 残りのリリース済み作品は小さく派手なカードで並べる。未リリース(COMING SOON)は小グリッドへ
-      featured: rest.filter((g) => g.release.kind === 'playable' && g.featured).sort(byNoDesc),
-      entries: rest.filter((g) => !(g.release.kind === 'playable' && g.featured)).sort(byNoDesc),
+      // ストア掲載の作品(公開済みと COMING SOON)は小さく派手なカードで並べ、それ以外は小グリッドへ
+      featured: rest.filter((g) => g.featured).sort(byNoDesc),
+      entries: rest.filter((g) => !g.featured).sort(byNoDesc),
     };
   }
 }
