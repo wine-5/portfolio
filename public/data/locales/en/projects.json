@@ -29,6 +29,7 @@
     "thumbnailImage": "images/game/kororin-gummy/kororin-gummy-title.webp",
     "carouselImage": "images/game/kororin-gummy/kororin-gummy-icon.webp",
     "install": "https://apps.apple.com/app/id6830248450",
+    "showcase": true,
     "year": "3rd year",
     "category": "game",
     "teamSize": "1 person",
