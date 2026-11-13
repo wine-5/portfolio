@@ -29,6 +29,8 @@ interface UiStrings {
   readonly menu: string;
   readonly details: string;
   readonly viewDetails: string;
+  readonly showMore: string;
+  readonly showLess: string;
   readonly overview: string;
   readonly responsibilities: string;
   readonly close: string;
@@ -78,6 +80,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     menu: 'メニュー',
     details: '詳細',
     viewDetails: '詳細を見る',
+    showMore: 'もっと見る',
+    showLess: '閉じる',
     overview: '概要',
     responsibilities: '担当',
     close: '閉じる',
@@ -125,6 +129,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     menu: 'Menu',
     details: 'Details',
     viewDetails: 'View details',
+    showMore: 'Show more',
+    showLess: 'Show less',
     overview: 'Overview',
     responsibilities: 'My Role',
     close: 'Close',
@@ -172,6 +178,8 @@ const STRINGS: Record<Locale, UiStrings> = {
     menu: '菜单',
     details: '详情',
     viewDetails: '查看详情',
+    showMore: '查看更多',
+    showLess: '收起',
     overview: '概述',
     responsibilities: '负责内容',
     close: '关闭',
