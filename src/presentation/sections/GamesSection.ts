@@ -20,6 +20,9 @@ interface FilterState {
   year: string;
 }
 
+/** 小グリッドの初期表示数。これを超える作品は「もっと見る」で開く(絞り込み中は全件出す) */
+const COMPACT_LIMIT = 12;
+
 const DEFAULT_FILTER: FilterState = { category: 'all', tech: 'all', crew: 'all', status: 'all', year: 'all' };
 
 /**
@@ -115,6 +118,8 @@ export class GamesSection extends View<GameCollection> {
   private filter: FilterState = { ...DEFAULT_FILTER };
   /** 絞り込みパネルの開閉。条件が多いので普段は畳んでおく */
   private panelOpen = false;
+  /** 小グリッドを COMPACT_LIMIT 件を超えて全件出しているか */
+  private gridExpanded = false;
   /** 人気作カードのループ動画を、画面内にあるときだけ再生する */
   private videoObserver: IntersectionObserver | null = null;
 
@@ -148,9 +153,13 @@ export class GamesSection extends View<GameCollection> {
     const game = this.games.find((g) => g.entryNo === entryNo);
     if (!game) return;
 
-    // 絞り込みで対象カードが非表示なら条件を全解除して描画し直す
+    // 絞り込みで非表示、または「もっと見る」の手前で隠れているなら、全解除・全件表示にして描画し直す
     if (!matches(game, this.filter)) {
       this.filter = { ...DEFAULT_FILTER };
+      this.gridExpanded = true;
+      this.redraw();
+    } else if (!this.el.querySelector(`[data-entry="${entryNo}"]`)) {
+      this.gridExpanded = true;
       this.redraw();
     }
 
@@ -184,6 +193,10 @@ export class GamesSection extends View<GameCollection> {
         .map((n) => ({ id: String(n), label: ORDINALS[n] ?? String(n) })),
     ];
     const active = activeCount(this.filter);
+    // 絞り込み中は結果を見失わないよう全件出す。そうでなければ上限までに制限する
+    const limited = activeCount(this.filter) === 0 && !this.gridExpanded && entries.length > COMPACT_LIMIT;
+    const gridEntries = limited ? entries.slice(0, COMPACT_LIMIT) : entries;
+    const canCollapse = this.gridExpanded && activeCount(this.filter) === 0 && entries.length > COMPACT_LIMIT;
     const shown = featured.length + entries.length + (flagshipVisible ? 1 : 0) + (spotlight ? 1 : 0);
 
     this.el.innerHTML = `
@@ -230,7 +243,14 @@ export class GamesSection extends View<GameCollection> {
       <div data-flagship-slot></div>
       ${
         entries.length > 0
-          ? `<ol class="games__grid">${entries.map((g) => entryCard(g)).join('')}</ol>`
+          ? `<ol class="games__grid">${gridEntries.map((g) => entryCard(g)).join('')}</ol>
+             ${
+               limited || canCollapse
+                 ? `<button class="games__more" data-grid-toggle aria-expanded="${!limited}">${
+                     limited ? `▾ ${esc(t('showMore'))} (+${entries.length - COMPACT_LIMIT})` : `▴ ${esc(t('showLess'))}`
+                   }</button>`
+                 : ''
+             }`
           : featured.length === 0 && !flagshipVisible && !spotlight
             ? '<p class="games__empty">NO DATA</p>'
             : ''
@@ -244,6 +264,11 @@ export class GamesSection extends View<GameCollection> {
 
     this.el.querySelector<HTMLButtonElement>('[data-panel-toggle]')?.addEventListener('click', () => {
       this.panelOpen = !this.panelOpen;
+      this.redraw();
+    });
+
+    this.el.querySelector<HTMLButtonElement>('[data-grid-toggle]')?.addEventListener('click', () => {
+      this.gridExpanded = !this.gridExpanded;
       this.redraw();
     });
 
@@ -442,20 +467,23 @@ function featuredCard(game: Game): string {
 }
 
 function entryCard(game: Game): string {
+  const release = game.release;
+  // 小さくても「ストアで公開済み / 公開予定」だけは分かるよう、カード下に小さく出す
+  const status =
+    release.kind === 'archived' || !release.store
+      ? ''
+      : `<p class="entry-card__store">${release.kind === 'coming-soon' ? '<span class="badge badge--soon">SOON</span>' : ''}${storeChip(release.store)}</p>`;
   return `
     <li class="entry-card" data-entry="${game.entryNo}" tabindex="0">
       ${game.award ? `<span class="entry-card__award" title="${esc(game.award)}">🏆 ${esc(game.award)}</span>` : ''}
       <div class="entry-card__head">
         <span class="entry-card__no">No.${String(game.entryNo).padStart(3, '0')}</span>
-        ${crewChip(game)}
         ${game.year ? `<span class="entry-card__year">${esc(game.year)}</span>` : ''}
       </div>
       <div class="entry-card__visual">
         ${thumbImg(game.thumbnailImage, game.title)}
       </div>
-      <span class="name-label">NAME</span>
       <h3 class="entry-card__title">${esc(game.title)}</h3>
-      <p class="entry-card__tech">${game.technologies.map((t) => `<span>${esc(t)}</span>`).join('')}</p>
-      <span class="entry-card__detail">▸ ${esc(t('viewDetails'))}</span>
+      ${status}
     </li>`;
 }
